@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  DOTNET_VERSION: '9.0'
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Install CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.20'
+        
+    - name: Install cpp (Linux)
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install -y gcc
+      
+    - name: Install cpp (macOS)
+      if: runner.os == 'macOS'
+      run: xcode-select --install || true
+      
+    - name: Install cpp (Windows)
+      if: runner.os == 'Windows'
+      uses: ilammy/msvc-dev-cmd@v1
+      
+    - name: Restore dotnet tools
+      run: dotnet tool restore
+      
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.props', '**/*.targets') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+          
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+      
+    - name: Process grammar files
+      run: cmake --build build --target process
+      
+    - name: Build solution
+      run: cmake --build build --target build
+      
+    - name: Check code formatting
+      run: |
+        cmake --build build --target format
+        git diff --exit-code || (echo "Code is not properly formatted. Please run 'cmake --build build --target format'" && exit 1)
+      
+    - name: Run tests
+      run: cmake --build build --target test
+      
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.os }}
+        path: |
+          **/TestResults/**/*.xml
+          **/TestResults/**/*.trx
+          
+    - name: Generate code coverage (Linux only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        dotnet test --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
+        
+    - name: Upload coverage to Codecov (Linux only)
+      if: matrix.os == 'ubuntu-latest'
+      uses: codecov/codecov-action@v4
+      with:
+        directory: ./coverage
+        fail_ci_if_error: false
+        verbose: true
+        
+  package:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Install CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.20'
+        
+    - name: Install cpp
+      run: sudo apt-get update && sudo apt-get install -y gcc
+      
+    - name: Restore dotnet tools
+      run: dotnet tool restore
+      
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+      
+    - name: Build and package
+      run: |
+        cmake --build build --target process
+        cmake --build build --target build
+        cmake --build build --target publish
+        
+    - name: Upload NuGet packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: build/packages/*.nupkg
+        retention-days: 30

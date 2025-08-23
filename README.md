@@ -1,6 +1,6 @@
 # OpenLanguage
 
-[![Build Status](https://github.com/yourusername/OpenLanguage/workflows/CI/badge.svg)](https://github.com/yourusername/OpenLanguage/actions)
+[![Build Status](https://github.com/amkillam/OpenLanguage/workflows/CI/badge.svg)](https://github.com/amkillam/OpenLanguage/actions)
 [![NuGet Version](https://img.shields.io/nuget/v/OpenLanguage.svg)](https://www.nuget.org/packages/OpenLanguage/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
@@ -253,14 +253,14 @@ This project is licensed under the GNU General Public License v2.0 - see the [LI
 ## Acknowledgments
 
 - Built with [YaccLexTools](https://www.nuget.org/packages/YaccLexTools/) for grammar processing
-- Uses [DocumentFormat.OpenXml](https://github.com/OfficeDev/Open-XML-SDK) for Office document handling
+- Uses [DocumentFormat.OpenXml](https://github.com/OfficeDev/Open-XML-SDK) for Open Office XML handling
 - Inspired by the Microsoft Office Open XML specification
 
 ## Support
 
 - 📖 [Documentation](./docs/)
-- 🐛 [Issue Tracker](https://github.com/yourusername/OpenLanguage/issues)
-- 💬 [Discussions](https://github.com/yourusername/OpenLanguage/discussions)
+- 🐛 [Issue Tracker](https://github.com/amkillam/OpenLanguage/issues)
+- 💬 [Discussions](https://github.com/amkillam/OpenLanguage/discussions)
 - 📧 Email: support@openlanguage.dev
 
 ---
