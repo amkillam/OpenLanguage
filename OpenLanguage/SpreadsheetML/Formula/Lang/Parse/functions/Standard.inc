@@ -1,0 +1,741 @@
+/* Generated from Lexer/Functions/Standard.lex - DO NOT EDIT */
+/* Per-lex token fragment: Standard.lex */
+
+%token T_FUNC_ABS
+
+%token T_FUNC_ACCRINT
+
+%token T_FUNC_ACCRINTM
+
+%token T_FUNC_ACOS
+
+%token T_FUNC_ACOSH
+
+%token T_FUNC_ADDRESS
+
+%token T_FUNC_AMORDEGRC
+
+%token T_FUNC_AMORLINC
+
+%token T_FUNC_AND
+
+%token T_FUNC_AREAS
+
+%token T_FUNC_ASC
+
+%token T_FUNC_ASIN
+
+%token T_FUNC_ASINH
+
+%token T_FUNC_ATAN
+
+%token T_FUNC_ATAN2
+
+%token T_FUNC_ATANH
+
+%token T_FUNC_AVEDEV
+
+%token T_FUNC_AVERAGE
+
+%token T_FUNC_AVERAGEA
+
+%token T_FUNC_AVERAGEIF
+
+%token T_FUNC_AVERAGEIFS
+
+%token T_FUNC_BAHTTEXT
+
+%token T_FUNC_BESSELI
+
+%token T_FUNC_BESSELJ
+
+%token T_FUNC_BESSELK
+
+%token T_FUNC_BESSELY
+
+%token T_FUNC_BETADIST
+
+%token T_FUNC_BETAINV
+
+%token T_FUNC_BIN2DEC
+
+%token T_FUNC_BIN2HEX
+
+%token T_FUNC_BIN2OCT
+
+%token T_FUNC_BINOMDIST
+
+%token T_FUNC_CEILING
+
+%token T_FUNC_CELL
+
+%token T_FUNC_CHAR
+
+%token T_FUNC_CHIDIST
+
+%token T_FUNC_CHIINV
+
+%token T_FUNC_CHITEST
+
+%token T_FUNC_CHOOSE
+
+%token T_FUNC_CLEAN
+
+%token T_FUNC_CODE
+
+%token T_FUNC_COLUMN
+
+%token T_FUNC_COLUMNS
+
+%token T_FUNC_COMBIN
+
+%token T_FUNC_COMPLEX
+
+%token T_FUNC_CONCAT
+
+%token T_FUNC_CONCATENATE
+
+%token T_FUNC_CONFIDENCE
+
+%token T_FUNC_CONVERT
+
+%token T_FUNC_CORREL
+
+%token T_FUNC_COS
+
+%token T_FUNC_COSH
+
+%token T_FUNC_COUNT
+
+%token T_FUNC_COUNTA
+
+%token T_FUNC_COUNTBLANK
+
+%token T_FUNC_COUNTIF
+
+%token T_FUNC_COUNTIFS
+
+%token T_FUNC_COUPDAYBS
+
+%token T_FUNC_COUPDAYS
+
+%token T_FUNC_COUPDAYSNC
+
+%token T_FUNC_COUPNCD
+
+%token T_FUNC_COUPNUM
+
+%token T_FUNC_COUPPCD
+
+%token T_FUNC_COVAR
+
+%token T_FUNC_CRITBINOM
+
+%token T_FUNC_CUBEKPIMEMBER
+
+%token T_FUNC_CUBEMEMBER
+
+%token T_FUNC_CUBEMEMBERPROPERTY
+
+%token T_FUNC_CUBERANKEDMEMBER
+
+%token T_FUNC_CUBESET
+
+%token T_FUNC_CUBESETCOUNT
+
+%token T_FUNC_CUBEVALUE
+
+%token T_FUNC_CUMIPMT
+
+%token T_FUNC_CUMPRINC
+
+%token T_FUNC_DATE
+
+%token T_FUNC_DATEDIF
+
+%token T_FUNC_DATESTRING
+
+%token T_FUNC_DATEVALUE
+
+%token T_FUNC_DAVERAGE
+
+%token T_FUNC_DAY
+
+%token T_FUNC_DAYS360
+
+%token T_FUNC_DB
+
+%token T_FUNC_DBCS
+
+%token T_FUNC_DCOUNT
+
+%token T_FUNC_DCOUNTA
+
+%token T_FUNC_DDB
+
+%token T_FUNC_DEC2BIN
+
+%token T_FUNC_DEC2HEX
+
+%token T_FUNC_DEC2OCT
+
+%token T_FUNC_DEGREES
+
+%token T_FUNC_DELTA
+
+%token T_FUNC_DEVSQ
+
+%token T_FUNC_DGET
+
+%token T_FUNC_DISC
+
+%token T_FUNC_DMAX
+
+%token T_FUNC_DMIN
+
+%token T_FUNC_DOLLAR
+
+%token T_FUNC_DOLLARDE
+
+%token T_FUNC_DOLLARFR
+
+%token T_FUNC_DPRODUCT
+
+%token T_FUNC_DSTDEV
+
+%token T_FUNC_DSTDEVP
+
+%token T_FUNC_DSUM
+
+%token T_FUNC_DURATION
+
+%token T_FUNC_DVAR
+
+%token T_FUNC_DVARP
+
+%token T_FUNC_EDATE
+
+%token T_FUNC_EFFECT
+
+%token T_FUNC_EOMONTH
+
+%token T_FUNC_ERF
+
+%token T_FUNC_ERFC
+
+%token T_FUNC_ERROR_TYPE
+
+%token T_FUNC_EVEN
+
+%token T_FUNC_EXACT
+
+%token T_FUNC_EXP
+
+%token T_FUNC_EXPONDIST
+
+%token T_FUNC_FACT
+
+%token T_FUNC_FACTDOUBLE
+
+%token T_FUNC_FDIST
+
+%token T_FUNC_FIND
+
+%token T_FUNC_FINDB
+
+%token T_FUNC_FINV
+
+%token T_FUNC_FISHER
+
+%token T_FUNC_FISHERINV
+
+%token T_FUNC_FIXED
+
+%token T_FUNC_FLOOR
+
+%token T_FUNC_FORECAST
+
+%token T_FUNC_FREQUENCY
+
+%token T_FUNC_FTEST
+
+%token T_FUNC_FV
+
+%token T_FUNC_FVSCHEDULE
+
+%token T_FUNC_GAMMADIST
+
+%token T_FUNC_GAMMAINV
+
+%token T_FUNC_GAMMALN
+
+%token T_FUNC_GCD
+
+%token T_FUNC_GEOMEAN
+
+%token T_FUNC_GESTEP
+
+%token T_FUNC_GETPIVOTDATA
+
+%token T_FUNC_GROWTH
+
+%token T_FUNC_HARMEAN
+
+%token T_FUNC_HEX2BIN
+
+%token T_FUNC_HEX2DEC
+
+%token T_FUNC_HEX2OCT
+
+%token T_FUNC_HLOOKUP
+
+%token T_FUNC_HOUR
+
+%token T_FUNC_HYPERLINK
+
+%token T_FUNC_HYPGEOMDIST
+
+%token T_FUNC_IF
+
+%token T_FUNC_IFERROR
+
+%token T_FUNC_IFS
+
+%token T_FUNC_IMABS
+
+%token T_FUNC_IMAGINARY
+
+%token T_FUNC_IMARGUMENT
+
+%token T_FUNC_IMCONJUGATE
+
+%token T_FUNC_IMCOS
+
+%token T_FUNC_IMDIV
+
+%token T_FUNC_IMEXP
+
+%token T_FUNC_IMLN
+
+%token T_FUNC_IMLOG10
+
+%token T_FUNC_IMLOG2
+
+%token T_FUNC_IMPOWER
+
+%token T_FUNC_IMPRODUCT
+
+%token T_FUNC_IMREAL
+
+%token T_FUNC_IMSIN
+
+%token T_FUNC_IMSQRT
+
+%token T_FUNC_IMSUB
+
+%token T_FUNC_IMSUM
+
+%token T_FUNC_INDEX
+
+%token T_FUNC_INDIRECT
+
+%token T_FUNC_INFO
+
+%token T_FUNC_INT
+
+%token T_FUNC_INTERCEPT
+
+%token T_FUNC_INTRATE
+
+%token T_FUNC_IPMT
+
+%token T_FUNC_IRR
+
+%token T_FUNC_ISBLANK
+
+%token T_FUNC_ISERR
+
+%token T_FUNC_ISERROR
+
+%token T_FUNC_ISEVEN
+
+%token T_FUNC_ISLOGICAL
+
+%token T_FUNC_ISNA
+
+%token T_FUNC_ISNONTEXT
+
+%token T_FUNC_ISNUMBER
+
+%token T_FUNC_ISODD
+
+%token T_FUNC_ISPMT
+
+%token T_FUNC_ISREF
+
+%token T_FUNC_ISTEXT
+
+%token T_FUNC_ISTHAIDIGIT
+
+%token T_FUNC_KURT
+
+%token T_FUNC_LARGE
+
+%token T_FUNC_LCM
+
+%token T_FUNC_LEFT
+
+%token T_FUNC_LEFTB
+
+%token T_FUNC_LEN
+
+%token T_FUNC_LENB
+
+%token T_FUNC_LINEST
+
+%token T_FUNC_LN
+
+%token T_FUNC_LOG
+
+%token T_FUNC_LOG10
+
+%token T_FUNC_LOGEST
+
+%token T_FUNC_LOGINV
+
+%token T_FUNC_LOGNORMDIST
+
+%token T_FUNC_LOOKUP
+
+%token T_FUNC_LOWER
+
+%token T_FUNC_MATCH
+
+%token T_FUNC_MAX
+
+%token T_FUNC_MAXA
+
+%token T_FUNC_MAXIFS
+
+%token T_FUNC_MDETERM
+
+%token T_FUNC_MDURATION
+
+%token T_FUNC_MEDIAN
+
+%token T_FUNC_MID
+
+%token T_FUNC_MIDB
+
+%token T_FUNC_MIN
+
+%token T_FUNC_MINA
+
+%token T_FUNC_MINIFS
+
+%token T_FUNC_MINUTE
+
+%token T_FUNC_MINVERSE
+
+%token T_FUNC_MIRR
+
+%token T_FUNC_MMULT
+
+%token T_FUNC_MOD
+
+%token T_FUNC_MODE
+
+%token T_FUNC_MONTH
+
+%token T_FUNC_MROUND
+
+%token T_FUNC_MULTINOMIAL
+
+%token T_FUNC_N
+
+%token T_FUNC_NA
+
+%token T_FUNC_NEGBINOMDIST
+
+%token T_FUNC_NETWORKDAYS
+
+%token T_FUNC_NOMINAL
+
+%token T_FUNC_NORMDIST
+
+%token T_FUNC_NORMINV
+
+%token T_FUNC_NORMSDIST
+
+%token T_FUNC_NORMSINV
+
+%token T_FUNC_NOT
+
+%token T_FUNC_NOW
+
+%token T_FUNC_NPER
+
+%token T_FUNC_NPV
+
+%token T_FUNC_NUMBERSTRING
+
+%token T_FUNC_OCT2BIN
+
+%token T_FUNC_OCT2DEC
+
+%token T_FUNC_OCT2HEX
+
+%token T_FUNC_ODD
+
+%token T_FUNC_ODDFPRICE
+
+%token T_FUNC_ODDFYIELD
+
+%token T_FUNC_ODDLPRICE
+
+%token T_FUNC_ODDLYIELD
+
+%token T_FUNC_OFFSET
+
+%token T_FUNC_OR
+
+%token T_FUNC_PEARSON
+
+%token T_FUNC_PERCENTILE
+
+%token T_FUNC_PERCENTRANK
+
+%token T_FUNC_PERMUT
+
+%token T_FUNC_PHONETIC
+
+%token T_FUNC_PI
+
+%token T_FUNC_PMT
+
+%token T_FUNC_POISSON
+
+%token T_FUNC_POWER
+
+%token T_FUNC_PPMT
+
+%token T_FUNC_PRICE
+
+%token T_FUNC_PRICEDISC
+
+%token T_FUNC_PRICEMAT
+
+%token T_FUNC_PROB
+
+%token T_FUNC_PRODUCT
+
+%token T_FUNC_PROPER
+
+%token T_FUNC_PV
+
+%token T_FUNC_QUARTILE
+
+%token T_FUNC_QUOTIENT
+
+%token T_FUNC_RADIANS
+
+%token T_FUNC_RAND
+
+%token T_FUNC_RANDBETWEEN
+
+%token T_FUNC_RANK
+
+%token T_FUNC_RATE
+
+%token T_FUNC_RECEIVED
+
+%token T_FUNC_REPLACE
+
+%token T_FUNC_REPLACEB
+
+%token T_FUNC_REPT
+
+%token T_FUNC_RIGHT
+
+%token T_FUNC_RIGHTB
+
+%token T_FUNC_ROMAN
+
+%token T_FUNC_ROUND
+
+%token T_FUNC_ROUNDBAHTDOWN
+
+%token T_FUNC_ROUNDBAHTUP
+
+%token T_FUNC_ROUNDDOWN
+
+%token T_FUNC_ROUNDUP
+
+%token T_FUNC_ROW
+
+%token T_FUNC_ROWS
+
+%token T_FUNC_RSQ
+
+%token T_FUNC_RTD
+
+%token T_FUNC_SEARCH
+
+%token T_FUNC_SEARCHB
+
+%token T_FUNC_SECOND
+
+%token T_FUNC_SERIES
+
+%token T_FUNC_SERIESSUM
+
+%token T_FUNC_SIGN
+
+%token T_FUNC_SIN
+
+%token T_FUNC_SINH
+
+%token T_FUNC_SKEW
+
+%token T_FUNC_SLN
+
+%token T_FUNC_SLOPE
+
+%token T_FUNC_SMALL
+
+%token T_FUNC_SQRT
+
+%token T_FUNC_SQRTPI
+
+%token T_FUNC_STANDARDIZE
+
+%token T_FUNC_STDEV
+
+%token T_FUNC_STDEVA
+
+%token T_FUNC_STDEVP
+
+%token T_FUNC_STDEVPA
+
+%token T_FUNC_STEYX
+
+%token T_FUNC_SUBSTITUTE
+
+%token T_FUNC_SUBTOTAL
+
+%token T_FUNC_SUM
+
+%token T_FUNC_SUMIF
+
+%token T_FUNC_SUMIFS
+
+%token T_FUNC_SUMPRODUCT
+
+%token T_FUNC_SUMSQ
+
+%token T_FUNC_SUMX2MY2
+
+%token T_FUNC_SUMX2PY2
+
+%token T_FUNC_SUMXMY2
+
+%token T_FUNC_SWITCH
+
+%token T_FUNC_SYD
+
+%token T_FUNC_T
+
+%token T_FUNC_TAN
+
+%token T_FUNC_TANH
+
+%token T_FUNC_TBILLEQ
+
+%token T_FUNC_TBILLPRICE
+
+%token T_FUNC_TBILLYIELD
+
+%token T_FUNC_TDIST
+
+%token T_FUNC_TEXT
+
+%token T_FUNC_TEXTJOIN
+
+%token T_FUNC_THAIDAYOFWEEK
+
+%token T_FUNC_THAIDIGIT
+
+%token T_FUNC_THAIMONTHOFYEAR
+
+%token T_FUNC_THAINUMSOUND
+
+%token T_FUNC_THAINUMSTRING
+
+%token T_FUNC_THAISTRINGLENGTH
+
+%token T_FUNC_THAIYEAR
+
+%token T_FUNC_TIME
+
+%token T_FUNC_TIMEVALUE
+
+%token T_FUNC_TINV
+
+%token T_FUNC_TODAY
+
+%token T_FUNC_TRANSPOSE
+
+%token T_FUNC_TREND
+
+%token T_FUNC_TRIM
+
+%token T_FUNC_TRIMMEAN
+
+%token T_FUNC_TRUNC
+
+%token T_FUNC_TTEST
+
+%token T_FUNC_TYPE
+
+%token T_FUNC_UPPER
+
+%token T_FUNC_USDOLLAR
+
+%token T_FUNC_VALUE
+
+%token T_FUNC_VAR
+
+%token T_FUNC_VARA
+
+%token T_FUNC_VARP
+
+%token T_FUNC_VARPA
+
+%token T_FUNC_VDB
+
+%token T_FUNC_VLOOKUP
+
+%token T_FUNC_WEEKDAY
+
+%token T_FUNC_WEEKNUM
+
+%token T_FUNC_WEIBULL
+
+%token T_FUNC_WORKDAY
+
+%token T_FUNC_XIRR
+
+%token T_FUNC_XNPV
+
+%token T_FUNC_YEAR
+
+%token T_FUNC_YEARFRAC
+
+%token T_FUNC_YIELD
+
+%token T_FUNC_YIELDDISC
+
+%token T_FUNC_YIELDMAT
+
+%token T_FUNC_ZTEST
+

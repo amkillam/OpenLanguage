@@ -1,0 +1,152 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+namespace OpenLanguage.SpreadsheetML.Formula.Ast
+{
+    public class NumericLiteralNode<N> : ExpressionNode
+        where N : System.Numerics.INumber<N>,
+            System.Numerics.IBinaryNumber<N>,
+            System.Numerics.INumberBase<N>,
+            IParsable<N>,
+            IFormattable,
+            System.Numerics.IMinMaxValue<N>
+    {
+        public N Value { get; set; }
+        public override Int32 Precedence => Ast.Precedence.Primary;
+
+        public NumericLiteralNode(
+            N value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value.ToString("D", CultureInfo.InvariantCulture);
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+
+    public class StringNode : ExpressionNode
+    {
+        public string Value { get; set; }
+        public override Int32 Precedence => Ast.Precedence.Primary;
+
+        public StringNode(
+            string value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => $"\"{Value.Replace("\"", "\"\"")}\"";
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+
+    public class LogicalNode : ExpressionNode
+    {
+        public bool Value { get; set; }
+        public override Int32 Precedence => Ast.Precedence.Primary;
+
+        public LogicalNode(
+            bool value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value ? "TRUE" : "FALSE";
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+
+    public class ErrorNode : ExpressionNode
+    {
+        public string ErrorType { get; set; }
+        public override Int32 Precedence => Ast.Precedence.Primary;
+
+        public ErrorNode(
+            string errorType,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            ErrorType = errorType;
+        }
+
+        public override string ToRawString() => ErrorType;
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+
+    public class EmptyArgumentNode : ExpressionNode
+    {
+        public override Int32 Precedence => Ast.Precedence.Primary;
+
+        public EmptyArgumentNode(
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace) { }
+
+        public override string ToRawString() => string.Empty;
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+
+    public class WhitespaceNode : Node
+    {
+        public string Raw { get; set; }
+
+        public WhitespaceNode(string whitespaceStr)
+        {
+            Raw = whitespaceStr;
+        }
+
+        public override string ToString() => Raw;
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+    }
+}
