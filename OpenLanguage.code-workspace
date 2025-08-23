@@ -1,0 +1,37 @@
+{
+    "folders": [
+        {
+            "name": "OpenLanguage",
+            "path": "."
+        }
+    ],
+    "settings": {
+        // Inherit from .vscode/settings.json
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dotnettools.csharp",
+            "ms-dotnettools.csdevkit",
+            "ms-vscode.cmake-tools",
+            "csharpier.csharpier-vscode",
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Build All",
+                "dependsOrder": "sequence",
+                "dependsOn": [
+                    "cmake-configure",
+                    "cmake-process", 
+                    "cmake-build"
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                }
+            }
+        ]
+    }
+}

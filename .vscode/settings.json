@@ -1,0 +1,162 @@
+{
+  // .NET and C# settings
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "dotnet.inlayHints.enableInlayHintsForParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForLiteralParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForOtherParameters": true,
+  "dotnet.inlayHints.suppressInlayHintsForParametersThatDifferOnlyBySuffix": true,
+  "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchMethodIntent": true,
+  "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchArgumentName": true,
+  "dotnet.server.useOmnisharp": false,
+  "dotnet.unitTests.runSettingsPath": "./OpenLanguage.Test/test.runsettings",
+  // C# specific settings
+  "csharp.semanticHighlighting.enabled": true,
+  "csharp.format.enable": true,
+  "csharp.referencesCodeLens.enabled": true,
+  "csharp.testsCodeLens.enabled": true,
+  // Editor settings
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.trimAutoWhitespace": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.removeUnusedImports": "explicit"
+  },
+  "editor.rulers": [
+    100,
+    120
+  ],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+  // Files and search settings
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/Generated": true,
+    "**/build": true,
+    "**/out": true,
+    "**/.cmake": true,
+    "**/CMakeFiles": true,
+    "**/CMakeCache.txt": true
+  },
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/node_modules": true,
+    "**/Generated": true,
+    "**/build": true,
+    "**/out": true
+  },
+  "files.watcherExclude": {
+    "**/bin/**": true,
+    "**/obj/**": true,
+    "**/node_modules/**": true,
+    "**/Generated/**": true,
+    "**/build/**": true,
+    "**/out/**": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  // CMake settings
+  "cmake.configureOnOpen": true,
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.generator": "Unix Makefiles",
+  "cmake.buildBeforeRun": true,
+  "cmake.clearOutputBeforeBuild": true,
+  // Git settings
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  // Terminal settings
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  // Testing settings
+  "dotnetCoreExplorer.enableTelemetry": false,
+  "testExplorer.useNativeTesting": true,
+  // Markdown settings
+  "markdown.preview.fontSize": 14,
+  "markdown.preview.lineHeight": 1.6,
+  "markdown.extension.toc.levels": "2..6",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  // JSON settings
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  // YAML settings
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  },
+  // C# formatting (using CSharpier)
+  "[csharp]": {
+    "editor.defaultFormatter": "csharpier.csharpier-vscode",
+    "editor.formatOnSave": true
+  },
+  // XML settings
+  "[xml]": {
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  },
+  // Performance settings
+  "search.searchOnType": false,
+  "search.searchOnTypeDebouncePeriod": 300,
+  "extensions.autoUpdate": false,
+  // Workspace trust
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.startupPrompt": "never",
+  // Language-specific settings
+  "emmet.includeLanguages": {
+    "razor": "html"
+  },
+  // Spelling and grammar (if extensions are installed)
+  "cSpell.words": [
+    "OpenLanguage",
+    "SpreadsheetML",
+    "WordprocessingML",
+    "MERGEFIELD",
+    "MERGEFORMAT",
+    "CREATEDATE",
+    "SAVEDATE",
+    "PRINTDATE",
+    "ODBC",
+    "csharpier",
+    "YACC",
+    "LEX",
+    "Gppg",
+    "Gplex",
+    "NuGet",
+    "DocFX"
+  ]
+}

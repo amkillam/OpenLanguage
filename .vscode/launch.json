@@ -1,0 +1,98 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Tests",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/OpenLanguage.Test/OpenLanguage.Test.csproj",
+        "--configuration",
+        "Debug",
+        "--logger",
+        "console;verbosity=detailed"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "Debug Specific Test",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/OpenLanguage.Test/OpenLanguage.Test.csproj",
+        "--configuration",
+        "Debug",
+        "--filter",
+        "${input:testFilter}",
+        "--logger",
+        "console;verbosity=detailed"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "Build OpenLanguage",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/OpenLanguage.sln",
+        "--configuration",
+        "Debug",
+        "--verbosity",
+        "normal"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "Pack NuGet Package",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "pack",
+        "${workspaceFolder}/OpenLanguage/OpenLanguage.csproj",
+        "--configuration",
+        "Release",
+        "--output",
+        "${workspaceFolder}/packages",
+        "--verbosity",
+        "normal"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "Format Code",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "csharpier",
+        "${workspaceFolder}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testFilter",
+      "description": "Test filter (e.g., ClassName.MethodName or FullyQualifiedName~TestName)",
+      "default": "",
+      "type": "promptString"
+    }
+  ]
+}

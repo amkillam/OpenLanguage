@@ -2,9 +2,9 @@
 FROM mcr.microsoft.com/devcontainers/dotnet:1-9.0
 
 # Install additional tools and dependencies
-RUN apt-get update && apt-get install -y 
-# Build tools
-build-essential \
+RUN apt-get update && apt-get install -y \ 
+  # Build tools
+  build-essential \
   gcc \
   g++ \
   make \
