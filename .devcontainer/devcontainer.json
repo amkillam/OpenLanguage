@@ -1,0 +1,107 @@
+{
+  "name": "OpenLanguage Development",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-9.0",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/cmake:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-markdown",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
+        "visualstudioexptteam.vscodeintellicode",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.hexeditor",
+        "mechatroner.rainbow-csv"
+      ],
+      "settings": {
+        "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+        "dotnet.inlayHints.enableInlayHintsForParameters": true,
+        "dotnet.inlayHints.enableInlayHintsForLiteralParameters": true,
+        "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+        "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+        "dotnet.inlayHints.enableInlayHintsForOtherParameters": true,
+        "dotnet.inlayHints.suppressInlayHintsForParametersThatDifferOnlyBySuffix": true,
+        "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchMethodIntent": true,
+        "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchArgumentName": true,
+        "csharp.semanticHighlighting.enabled": true,
+        "csharp.format.enable": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "files.exclude": {
+          "**/bin": true,
+          "**/obj": true,
+          "**/.git": true,
+          "**/.svn": true,
+          "**/.hg": true,
+          "**/CVS": true,
+          "**/.DS_Store": true,
+          "**/node_modules": true,
+          "**/Generated": true
+        },
+        "search.exclude": {
+          "**/bin": true,
+          "**/obj": true,
+          "**/node_modules": true,
+          "**/Generated": true
+        },
+        "cmake.configureOnOpen": true,
+        "cmake.buildDirectory": "${workspaceFolder}/build",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.git,target=${containerWorkspaceFolder}/.git,type=bind,consistency=cached"
+  ],
+  "remoteUser": "vscode",
+  "forwardPorts": [
+    5000,
+    5001,
+    8080,
+    3000
+  ],
+  "portsAttributes": {
+    "5000": {
+      "label": "HTTP",
+      "onAutoForward": "notify"
+    },
+    "5001": {
+      "label": "HTTPS",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Web Server",
+      "onAutoForward": "openPreview"
+    },
+    "3000": {
+      "label": "Development Server",
+      "onAutoForward": "openPreview"
+    }
+  }
+}
