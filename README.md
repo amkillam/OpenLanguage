@@ -4,26 +4,25 @@
 [![NuGet Version](https://img.shields.io/nuget/v/OpenLanguage.svg)](https://www.nuget.org/packages/OpenLanguage/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-A comprehensive .NET library for parsing and processing Microsoft Office Open XML documents, with advanced language processing capabilities for WordprocessingML and SpreadsheetML formats.
+A .NET library for parsing Microsoft Office document languages. It provides parsing capabilities for Excel formulas and Word field instructions using GPLEX/GPPG-generated lexers and parsers.
 
 ## Features
 
 ### 🔍 WordprocessingML Support
 
-- **Field Instructions**: Parse and process Word document field instructions
-- **Merge Fields**: Handle mail merge field operations
-- **ODBC Integration**: Support for database connectivity in Word documents
-- **Expression Processing**: Evaluate complex expressions within documents
+- **Field Instructions**: Parse Word field codes into structured objects with arguments
+- **Typed Field Instructions**: Factory pattern for converting generic instructions to strongly-typed objects
+- **Comprehensive Field Types**: Support for 70+ Word field instruction types (REF, MERGEFIELD, IF, etc.)
+- **Argument Handling**: Process identifiers, string literals, switches, and nested fields
+- **Field Reconstruction**: Convert parsed instructions back to valid field code strings
 
 ### 📊 SpreadsheetML Support
 
-- **Formula Parsing**: Complete Excel formula parser with support for all standard functions
-- **Function Categories**:
-  - Standard worksheet functions
-  - Future functions
-  - Command functions
-  - Macro functions
-- **Advanced Grammar**: YACC/LEX-based parsing for robust formula processing
+- **Formula Parsing**: Parse Excel formulas into Abstract Syntax Trees (AST)
+- **Grammar-Based**: Uses GPLEX lexer (.lex) and GPPG parser (.y) for robust parsing
+- **AST Manipulation**: Access and modify parsed formula structures programmatically
+- **Formula Reconstruction**: Convert modified ASTs back to valid Excel formula strings
+- **Reference Support**: Handle A1, R1C1, table references, and structured references
 
 ### ⚡ Performance & Quality
 
@@ -54,26 +53,36 @@ Install-Package OpenLanguage
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Parse an Excel formula
-var formula = "SUM(A1:A10) + AVERAGE(B1:B10)";
-var parser = new FormulaParser();
-var result = parser.Parse(formula);
+var formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
 
-// Access parsed components
-Console.WriteLine($"Parsed formula: {result}");
+// Access the AST
+Console.WriteLine($"Original: {formula.FormulaText}");
+Console.WriteLine($"Reconstructed: {formula.AstRoot.ToString()}");
+
+// Try parsing with error handling
+var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
+if (maybeFormula == null)
+{
+    Console.WriteLine("Parse failed - invalid syntax");
+}
 ```
 
 ### Field Instruction Processing
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
 
-// Process Word field instructions
-var fieldInstruction = "MERGEFIELD FirstName \* MERGEFORMAT";
-var parser = new FieldInstructionParser();
-var parsed = parser.Parse(fieldInstruction);
+// Create a field instruction
+var instruction = new FieldInstruction("MERGEFIELD");
+instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "FirstName"));
+instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
 
-Console.WriteLine($"Field type: {parsed.FieldType}");
-Console.WriteLine($"Field name: {parsed.FieldName}");
+// Convert to strongly-typed (if available)
+var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+// Reconstruct field code
+Console.WriteLine($"Field Code: {instruction.ToString()}");
 ```
 
 ## Building from Source

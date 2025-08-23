@@ -1,358 +1,294 @@
-# Merge Fields
+# Merge Field Lexer
 
-The `OpenLanguage.WordprocessingML.MergeField` namespace provides specialized functionality for handling Word mail merge operations.
+The `OpenLanguage.WordprocessingML.MergeField` namespace provides lexical analysis functionality for parsing merge field placeholders using character-by-character state machine parsing.
 
 ## Overview
 
-Mail merge functionality includes:
+The merge field lexer provides:
 
-- **Data Source Integration**: Connect to various data sources (CSV, database, JSON)
-- **Field Mapping**: Map data columns to merge fields
-- **Conditional Merging**: Support for conditional merge logic
-- **Bulk Operations**: Efficient processing of large datasets
+- **Placeholder Parsing**: Parse merge field placeholders with « » delimiters
+- **State Machine Parsing**: Character-by-character lexical analysis
+- **Address Block Templates**: Process templates containing multiple merge fields
+- **Language ID Parsing**: Parse language identifiers for localization
 
 ## Core Classes
 
 ### MergeFieldLexer
 
-Lexical analysis for merge field syntax:
+Static class providing lexical analysis methods:
 
 ```csharp
 using OpenLanguage.WordprocessingML.MergeField;
 
-var lexer = new MergeFieldLexer();
-var tokens = lexer.Tokenize("MERGEFIELD FirstName \* UPPER \* MERGEFORMAT");
+// Parse a single merge field placeholder
+var placeholder = MergeFieldLexer.ParseMergeField("«FirstName»");
+Console.WriteLine($"Field Name: {placeholder.FieldName}"); // "FirstName"
+
+// Parse with formatting switch
+var formatted = MergeFieldLexer.ParseMergeField("«LastName\* Upper»");
+Console.WriteLine($"Field: {formatted.FieldName}");        // "LastName"
+Console.WriteLine($"Switch: {formatted.FormattingSwitch}"); // "\* Upper"
 ```
 
-### MergeFieldProcessor
+### MergeFieldPlaceholder
 
-Main class for merge field processing:
-
-```csharp
-var processor = new MergeFieldProcessor();
-var dataSource = new CsvDataSource("customers.csv");
-
-processor.SetDataSource(dataSource);
-var result = processor.ProcessDocument("template.docx", "output.docx");
-```
-
-## Data Source Support
-
-### CSV Data Sources
+Represents a parsed merge field placeholder:
 
 ```csharp
-var csvSource = new CsvDataSource("data.csv")
+public class MergeFieldPlaceholder
 {
-    HasHeaders = true,
-    Delimiter = ",",
-    Encoding = Encoding.UTF8
-};
-
-processor.SetDataSource(csvSource);
-```
-
-### Database Data Sources
-
-```csharp
-var dbSource = new DatabaseDataSource("Server=.;Database=MyDB;Trusted_Connection=true;")
-{
-    Query = "SELECT FirstName, LastName, Email FROM Customers",
-    CommandTimeout = 30
-};
-
-processor.SetDataSource(dbSource);
-```
-
-### JSON Data Sources
-
-```csharp
-var jsonSource = new JsonDataSource("data.json");
-processor.SetDataSource(jsonSource);
-```
-
-### Custom Data Sources
-
-```csharp
-public class CustomDataSource : IDataSource
-{
-    public IEnumerable<DataRecord> GetRecords()
-    {
-        // Custom data retrieval logic
-        yield return new DataRecord
-        {
-            ["FirstName"] = "John",
-            ["LastName"] = "Doe",
-            ["Email"] = "john.doe@example.com"
-        };
-    }
+    public string FieldName { get; set; }           // Field name without delimiters
+    public string RawText { get; set; }             // Original placeholder text
+    public bool IsValid => !string.IsNullOrWhiteSpace(FieldName);
+    public string? FormattingSwitch { get; set; }   // Optional formatting switch
 }
 ```
 
-## Field Mapping
+### AddressBlockTemplate
 
-### Automatic Mapping
-
-```csharp
-// Automatic mapping based on field names
-processor.MapFields(autoMap: true);
-```
-
-### Manual Mapping
+Represents a parsed address block template with merge fields:
 
 ```csharp
-processor.MapField("MERGEFIELD_FirstName", "First_Name_Column");
-processor.MapField("MERGEFIELD_LastName", "Last_Name_Column");
-processor.MapField("MERGEFIELD_Email", "Email_Address_Column");
-```
-
-### Conditional Mapping
-
-```csharp
-processor.MapFieldConditionally("MERGEFIELD_Discount",
-    record => record["CustomerType"] == "Premium" ? "10%" : "5%");
-```
-
-## Processing Options
-
-### MergeOptions
-
-Configure merge behavior:
-
-```csharp
-var options = new MergeOptions
+public class AddressBlockTemplate
 {
-    RemoveEmptyParagraphs = true,
-    PreserveFormatting = true,
-    HandleMissingFields = MissingFieldBehavior.RemoveField,
-    DateFormat = "MM/dd/yyyy",
-    NumberFormat = "#,##0.00"
-};
-
-processor.SetOptions(options);
-```
-
-### Formatting Options
-
-```csharp
-// Apply formatting to specific fields
-processor.SetFieldFormat("MERGEFIELD_Amount", "#,##0.00");
-processor.SetFieldFormat("MERGEFIELD_Date", "MMMM d, yyyy");
-
-// Apply conditional formatting
-processor.SetConditionalFormat("MERGEFIELD_Status",
-    value => value == "Active" ? "color:green" : "color:red");
-```
-
-## Advanced Features
-
-### Conditional Merge Logic
-
-```csharp
-// IF field support
-processor.AddConditionalLogic("IF CustomerType = "Premium"",
-    thenAction: record => "Premium Customer Benefits",
-    elseAction: record => "Standard Customer Information");
-
-// COMPARE field support
-processor.AddComparison("COMPARE Amount GT 1000",
-    trueAction: record => "High Value Customer",
-    falseAction: record => "Standard Customer");
-```
-
-### Nested Merge Fields
-
-```csharp
-// Support for nested field structures
-processor.EnableNestedFields();
-
-// Process nested table structures
-processor.ProcessNestedTable("OrderItems",
-    parentField: "CustomerID",
-    childDataSource: orderItemsSource);
-```
-
-### Mail Merge Events
-
-```csharp
-processor.BeforeFieldMerge += (sender, e) =>
-{
-    // Modify field value before merging
-    if (e.FieldName == "Email")
-    {
-        e.Value = e.Value.ToString().ToLower();
-    }
-};
-
-processor.AfterFieldMerge += (sender, e) =>
-{
-    // Post-processing after field merge
-    Console.WriteLine($"Merged {e.FieldName}: {e.Value}");
-};
-
-processor.DocumentProcessed += (sender, e) =>
-{
-    Console.WriteLine($"Processed document with {e.RecordCount} records");
-};
-```
-
-## Bulk Processing
-
-### Batch Operations
-
-```csharp
-var batchProcessor = new BatchMergeProcessor();
-
-var batch = new MergeBatch()
-    .AddTemplate("template1.docx", "customers.csv")
-    .AddTemplate("template2.docx", "orders.csv")
-    .AddTemplate("template3.docx", "products.csv");
-
-var results = await batchProcessor.ProcessBatchAsync(batch);
-```
-
-### Parallel Processing
-
-```csharp
-var parallelOptions = new ParallelMergeOptions
-{
-    MaxDegreeOfParallelism = Environment.ProcessorCount,
-    ChunkSize = 100
-};
-
-var results = await processor.ProcessParallelAsync(dataSource, parallelOptions);
-```
-
-## Error Handling
-
-### Merge Validation
-
-```csharp
-var validator = new MergeValidator();
-var validationResult = validator.ValidateTemplate("template.docx");
-
-if (!validationResult.IsValid)
-{
-    foreach (var error in validationResult.Errors)
-    {
-        Console.WriteLine($"Template error: {error.Message}");
-        Console.WriteLine($"Field: {error.FieldName}");
-        Console.WriteLine($"Location: {error.Location}");
-    }
+    public string RawTemplate { get; set; }                        // Original template text
+    public List<MergeFieldPlaceholder> Placeholders { get; set; }  // Found placeholders
+    public string ProcessedTemplate { get; set; }                  // Template with format specifiers
 }
 ```
 
-### Data Validation
+## Parsing Methods
+
+### Single Merge Field Parsing
 
 ```csharp
-processor.AddDataValidator("Email", value =>
-{
-    return IsValidEmail(value.ToString())
-        ? ValidationResult.Success()
-        : ValidationResult.Error("Invalid email format");
-});
+// Parse a simple merge field
+var simple = MergeFieldLexer.ParseMergeField("«CustomerName»");
+Console.WriteLine($"Field: {simple.FieldName}");   // "CustomerName"
+Console.WriteLine($"Valid: {simple.IsValid}");     // True
 
-processor.AddDataValidator("Amount", value =>
-{
-    return decimal.TryParse(value.ToString(), out _)
-        ? ValidationResult.Success()
-        : ValidationResult.Error("Invalid amount format");
-});
+// Parse with formatting switch
+var withSwitch = MergeFieldLexer.ParseMergeField("«Amount\* #,##0.00»");
+Console.WriteLine($"Field: {withSwitch.FieldName}");           // "Amount"
+Console.WriteLine($"Switch: {withSwitch.FormattingSwitch}");   // "\* #,##0.00"
 ```
 
-## Performance Optimization
-
-### Caching Strategies
+### Address Block Template Parsing
 
 ```csharp
-// Enable template caching
-processor.EnableTemplateCache(maxSize: 100);
+// Parse an address block template with multiple merge fields
+string template = "«Title» «FirstName» «LastName»\n«Address1»\n«City», «State» «PostalCode»";
+var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
 
-// Enable data source caching
-processor.EnableDataCache(TimeSpan.FromMinutes(30));
+Console.WriteLine($"Found {addressBlock.Placeholders.Count} placeholders");
+Console.WriteLine($"Processed template: {addressBlock.ProcessedTemplate}");
+// Output: "Processed template: {0} {1} {2}\n{3}\n{4}, {5} {6}"
+
+// Access individual placeholders
+foreach (var placeholder in addressBlock.Placeholders)
+{
+    Console.WriteLine($"Field: {placeholder.FieldName}");
+}
 ```
 
-### Memory Management
+### Field Name Extraction
 
 ```csharp
-// Configure memory usage for large datasets
-var memoryOptions = new MergeMemoryOptions
+// Extract all unique merge field names from text
+string document = "Dear «FirstName» «LastName», your order «OrderNumber» is ready.";
+var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(document);
+
+foreach (string fieldName in fieldNames)
 {
-    MaxMemoryUsage = 500 * 1024 * 1024, // 500MB
-    EnableStreaming = true,
-    ChunkSize = 1000
+    Console.WriteLine($"Found field: {fieldName}");
+}
+// Output: "FirstName", "LastName", "OrderNumber"
+```
+
+## Utility Methods
+
+### Validation
+
+```csharp
+// Check if text contains valid merge fields
+string text1 = "Hello «FirstName»!";
+string text2 = "Hello World!";
+
+bool hasFields1 = MergeFieldLexer.ContainsValidMergeFields(text1); // True
+bool hasFields2 = MergeFieldLexer.ContainsValidMergeFields(text2); // False
+```
+
+### Formatting
+
+```csharp
+// Format a field name with merge field delimiters
+string formatted = MergeFieldLexer.FormatMergeField("CustomerName");
+Console.WriteLine(formatted); // "«CustomerName»"
+
+// Format with a formatting switch
+string withSwitch = MergeFieldLexer.FormatMergeFieldWithSwitch("Amount", "* #,##0.00");
+Console.WriteLine(withSwitch); // "«Amount\* #,##0.00»"
+```
+
+### Reconstruction
+
+```csharp
+// Reconstruct a merge field from a placeholder object
+var placeholder = new MergeFieldPlaceholder
+{
+    FieldName = "Total",
+    FormattingSwitch = "* Currency"
 };
 
-processor.SetMemoryOptions(memoryOptions);
+string reconstructed = MergeFieldLexer.Reconstruct(placeholder);
+Console.WriteLine(reconstructed); // "«Total * Currency»"
 ```
 
-## Integration Examples
+## Language ID Parsing
 
-### ASP.NET Core Integration
+The lexer includes functionality for parsing language identifiers:
+
+### Parse Language IDs
 
 ```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class MergeController : ControllerBase
+// Parse numeric LCID
+var langId1 = MergeFieldLexer.ParseLanguageId("1033");
+Console.WriteLine(langId1); // EnglishUS
+
+// Parse enum name
+var langId2 = MergeFieldLexer.ParseLanguageId("FrenchFrance");
+Console.WriteLine(langId2); // FrenchFrance
+
+// Parse culture name
+var langId3 = MergeFieldLexer.ParseLanguageId("en-US");
+Console.WriteLine(langId3); // EnglishUS
+
+// Invalid input returns null
+var invalid = MergeFieldLexer.ParseLanguageId("invalid");
+Console.WriteLine(invalid == null); // True
+```
+
+## State Machine Implementation
+
+The lexer uses a character-by-character state machine for robust parsing:
+
+### Lexer States
+
+```csharp
+internal enum MergeFieldLexerState
 {
-    private readonly IMergeFieldProcessor _processor;
-
-    public MergeController(IMergeFieldProcessor processor)
-    {
-        _processor = processor;
-    }
-
-    [HttpPost("merge")]
-    public async Task<IActionResult> MergeDocument([FromBody] MergeRequest request)
-    {
-        try
-        {
-            var result = await _processor.ProcessAsync(request.Template, request.Data);
-            return File(result.DocumentBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-        }
-        catch (MergeException ex)
-        {
-            return BadRequest(new { error = ex.Message, details = ex.ValidationErrors });
-        }
-    }
+    SearchingForStart,          // Looking for « character
+    ParsingFieldName,           // Inside field, parsing name
+    ParsingFormattingSwitch,    // Parsing switch after backslash
+    SearchingForEnd             // Looking for » character
 }
 ```
 
-### Background Service Integration
+### Parsing Process
+
+1. **SearchingForStart**: Scans text looking for opening « delimiter
+2. **ParsingFieldName**: Extracts field name until backslash or closing delimiter
+3. **ParsingFormattingSwitch**: Captures formatting switch text after backslash
+4. **SearchingForEnd**: Completes parsing when closing » delimiter is found
+
+## Usage Examples
+
+### Complete Parsing Example
 
 ```csharp
-public class MergeBackgroundService : BackgroundService
+using OpenLanguage.WordprocessingML.MergeField;
+
+string template = @"
+Dear «Title» «FirstName» «LastName»,
+
+Your account balance is «Balance\* Currency».
+Please contact us at «CompanyPhone» if you have questions.
+
+Sincerely,
+«AgentName\* Upper»
+";
+
+// Parse the entire template
+var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
+
+Console.WriteLine($"Original template:");
+Console.WriteLine(addressBlock.RawTemplate);
+
+Console.WriteLine($"\nFound {addressBlock.Placeholders.Count} merge fields:");
+foreach (var placeholder in addressBlock.Placeholders)
 {
-    private readonly IMergeFieldProcessor _processor;
-    private readonly ILogger<MergeBackgroundService> _logger;
-
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    Console.WriteLine($"  Field: {placeholder.FieldName}");
+    if (!string.IsNullOrEmpty(placeholder.FormattingSwitch))
     {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            var mergeJobs = await GetPendingMergeJobs();
-
-            foreach (var job in mergeJobs)
-            {
-                try
-                {
-                    await _processor.ProcessJobAsync(job);
-                    await MarkJobCompleted(job.Id);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Failed to process merge job {JobId}", job.Id);
-                    await MarkJobFailed(job.Id, ex.Message);
-                }
-            }
-
-            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
-        }
+        Console.WriteLine($"    Switch: {placeholder.FormattingSwitch}");
     }
 }
+
+Console.WriteLine($"\nProcessed template:");
+Console.WriteLine(addressBlock.ProcessedTemplate);
 ```
+
+### Field Name Validation
+
+```csharp
+// Validate merge field syntax in user input
+string userInput = "«FirstName» «InvalidField «LastName»";
+
+if (MergeFieldLexer.ContainsValidMergeFields(userInput))
+{
+    var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(userInput);
+    Console.WriteLine($"Valid fields found: {string.Join(", ", fieldNames)}");
+}
+else
+{
+    Console.WriteLine("No valid merge fields found");
+}
+```
+
+### Dynamic Field Generation
+
+```csharp
+// Generate merge fields programmatically
+var fieldNames = new[] { "FirstName", "LastName", "Email", "Amount" };
+var formattingSwitches = new[] { null, "* Upper", null, "* Currency" };
+
+for (int i = 0; i < fieldNames.Length; i++)
+{
+    string mergeField;
+
+    if (formattingSwitches[i] != null)
+    {
+        mergeField = MergeFieldLexer.FormatMergeFieldWithSwitch(
+            fieldNames[i],
+            formattingSwitches[i]
+        );
+    }
+    else
+    {
+        mergeField = MergeFieldLexer.FormatMergeField(fieldNames[i]);
+    }
+
+    Console.WriteLine($"Generated: {mergeField}");
+}
+```
+
+## Technical Details
+
+- **Character-by-Character Parsing**: Uses state machine for robust parsing
+- **Delimiter Support**: Recognizes « and » characters for merge field boundaries
+- **Switch Parsing**: Handles formatting switches after backslash character
+- **Language Support**: Includes comprehensive language ID mapping
+- **Whitespace Handling**: Properly trims field names while preserving switch formatting
+- **Error Tolerance**: Gracefully handles malformed input
+
+## Limitations
+
+- Only supports « » delimiter style (not {{ }} or other formats)
+- Formatting switches are captured as strings but not further parsed
+- No validation of switch syntax or values
+- Language ID mapping covers common locales but may not be exhaustive
 
 ## See Also
 
-- [Field Instructions](../FieldInstruction/FieldInstruction.md) - Basic field instruction parsing
-- [Typed Field Instructions](../FieldInstruction/Typed.md) - Type-safe field handling
-- [ODBC Integration](../ODBC/ODBC.md) - Database connectivity features
+- [Field Instructions](../FieldInstruction/FieldInstruction.md) - Generic field instruction handling
+- [Unit Tests](../../../OpenLanguage.Test/WordprocessingML/FieldInstruction/) - Test examples showing usage

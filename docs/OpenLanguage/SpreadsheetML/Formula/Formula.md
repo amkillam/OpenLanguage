@@ -1,217 +1,209 @@
 # Formula Processing
 
-The `OpenLanguage.SpreadsheetML.Formula` namespace provides comprehensive Excel formula parsing and evaluation capabilities.
+The `OpenLanguage.SpreadsheetML.Formula` namespace provides Excel formula parsing capabilities using GPLEX/GPPG-generated lexer and parser.
 
 ## Overview
 
 The Formula component offers:
 
-- **Complete Excel Formula Parsing**: Support for all standard Excel formula syntax
-- **Function Categories**: Standard, Future, Command, and Macro functions
-- **Grammar-Based Parsing**: Robust YACC/LEX-based parser for accurate syntax analysis
-- **Performance Optimized**: High-performance parsing with minimal allocations
+- **Excel Formula Parsing**: Parse Excel formulas into Abstract Syntax Trees (AST)
+- **Grammar-Based Parsing**: Uses GPLEX lexer (.lex) and GPPG parser (.y) for robust parsing
+- **AST Manipulation**: Access and modify parsed formula structures programmatically
+- **Formula Reconstruction**: Convert ASTs back to valid Excel formula strings
 
 ## Core Classes
 
 ### FormulaParser
 
-The main entry point for formula parsing operations.
+Static class providing the main entry point for formula parsing operations.
 
 ```csharp
 using OpenLanguage.SpreadsheetML.Formula;
 
-var parser = new FormulaParser();
-var result = parser.Parse("SUM(A1:A10) + AVERAGE(B1:B10)");
+// Parse a formula
+var formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
+
+// Try parsing with error handling
+var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
 ```
 
 #### Methods
 
-- `Parse(string formula)` - Parses a formula string and returns the parsed result
-- `Validate(string formula)` - Validates formula syntax without full parsing
-- `GetTokens(string formula)` - Returns lexical tokens for the formula
+- `Parse(string formulaText)` - Parses a formula string and returns a Formula object
+- `TryParse(string formulaText)` - Attempts to parse, returns null on failure
 
 ### Formula
 
-Represents a parsed formula with its components.
+Represents a parsed formula with its original text and AST.
 
 ```csharp
 public class Formula
 {
-    public string OriginalText { get; }
-    public IReadOnlyList<FormulaToken> Tokens { get; }
-    public FormulaNode RootNode { get; }
-    public bool IsValid { get; }
-    public IReadOnlyList<FormulaError> Errors { get; }
+    public string FormulaText { get; }      // Original formula text
+    public Node AstRoot { get; }            // Root node of the AST
+
+    public override string ToString()       // Reconstructs formula from AST
 }
 ```
 
-## Grammar Specification
+## Parser Implementation
 
-The formula parser is built using a comprehensive grammar that supports:
+The formula parser is built using GPLEX/GPPG tools:
 
-### Basic Operators
+### Grammar Files
 
-| Operator | Description          | Example   |
-| -------- | -------------------- | --------- |
-| `+`      | Addition             | `A1 + B1` |
-| `-`      | Subtraction          | `A1 - B1` |
-| `*`      | Multiplication       | `A1 * B1` |
-| `/`      | Division             | `A1 / B1` |
-| `^`      | Exponentiation       | `A1 ^ 2`  |
-| `&`      | String concatenation | `A1 & B1` |
+- **Lexer**: `SpreadsheetML/Formula/Lang/Lex/formula.lex` - Tokenizes formula text
+- **Parser**: `SpreadsheetML/Formula/Lang/Parse/formula.y` - Defines grammar rules
 
-### Comparison Operators
+### Supported Syntax
 
-| Operator | Description           | Example    |
-| -------- | --------------------- | ---------- |
-| `=`      | Equal                 | `A1 = B1`  |
-| `<>`     | Not equal             | `A1 <> B1` |
-| `<`      | Less than             | `A1 < B1`  |
-| `<=`     | Less than or equal    | `A1 <= B1` |
-| `>`      | Greater than          | `A1 > B1`  |
-| `>=`     | Greater than or equal | `A1 >= B1` |
+Based on the test cases, the parser supports:
 
-### Cell References
+#### Literals and Identifiers
 
-- **Single Cell**: `A1`, `$A$1`, `$A1`, `A$1`
-- **Range**: `A1:B10`, `$A$1:$B$10`
-- **Named Ranges**: `MyRange`, `Sheet1!MyRange`
-- **3D References**: `Sheet1:Sheet3!A1`
+- Numbers: `123`
+- Strings: `"hello"`
+- Booleans: `TRUE`, `FALSE`
+- Errors: `#VALUE!`
+- Cell references: `A1`
+- Named ranges: `MyNamedRange`
 
-### Functions
+#### Binary Operations
 
-The parser supports all Excel function categories:
+- Arithmetic: `1+2*3`, `(1+2)*3`, `10/2*5`
+- Power: `2^3^2` (right-associative)
+- Range operations: `A1:B2 C3:D4` (intersection), `A1:B2,C3:D4` (union)
 
-#### Standard Functions
+#### Unary Operations
 
-- Mathematical: `SUM`, `AVERAGE`, `MAX`, `MIN`, `COUNT`
-- Logical: `IF`, `AND`, `OR`, `NOT`
-- Text: `CONCATENATE`, `LEFT`, `RIGHT`, `MID`, `LEN`
-- Date/Time: `TODAY`, `NOW`, `DATE`, `TIME`
+- Negative: `-5`
+- Positive: `+A1`
+- Applied to ranges: `-A1:B2`
+
+#### Function Calls
+
+- Basic: `SUM(1, 2, 3)`
+- Nested: `IF(A1>B1, "Yes", "No")`
+- With references: `VLOOKUP(A1, Sheet2!A:B, 2, FALSE)`
+
+#### Array Literals
+
+- Row arrays: `{1,2,3}`
+- Column arrays: `{1;2;3}`
+- 2D arrays: `{"a","b";"c","d"}`
+
+#### Advanced References
+
+- Table references: `Table1[@Column1]`
 
 #### Example Usage
 
 ```csharp
-// Mathematical functions
-var mathFormula = parser.Parse("SUM(A1:A10) + AVERAGE(B1:B10)");
-
-// Logical functions
-var logicalFormula = parser.Parse("IF(A1 > 0, "Positive", "Negative")");
-
-// Nested functions
-var nestedFormula = parser.Parse("IF(AND(A1 > 0, B1 < 100), SUM(C1:C10), 0)");
+// Parse various formula types
+var literal = FormulaParser.Parse("123");
+var arithmetic = FormulaParser.Parse("1+2*3");
+var function = FormulaParser.Parse("SUM(A1:A10)");
+var complex = FormulaParser.Parse("IF(A1>B1, "Yes", "No")");
 ```
 
-## Advanced Features
+## Error Handling
 
-### Error Handling
-
-The parser provides comprehensive error reporting:
+The parser throws `InvalidOperationException` for syntax errors:
 
 ```csharp
-var result = parser.Parse("SUM(A1:A10");  // Missing closing parenthesis
-if (!result.IsValid)
+try
 {
-    foreach (var error in result.Errors)
-    {
-        Console.WriteLine($"Error at position {error.Position}: {error.Message}");
-    }
+    var formula = FormulaParser.Parse("=SUM(1,");  // Missing closing parenthesis
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine($"Parse error: {ex.Message}");
+}
+
+// Or use TryParse for error handling
+var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
+if (maybeFormula == null)
+{
+    Console.WriteLine("Parse failed");
 }
 ```
 
-### Custom Functions
+## AST Manipulation
 
-Extend the parser with custom functions:
-
-```csharp
-parser.RegisterFunction("CUSTOMSUM", (args) => {
-    // Custom function implementation
-    return args.Sum();
-});
-```
-
-### Performance Optimization
-
-For high-performance scenarios:
+The parsed AST can be modified and reconstructed:
 
 ```csharp
-// Reuse parser instances
-private static readonly FormulaParser _parser = new FormulaParser();
+var formula = FormulaParser.Parse("=A1+B1");
 
-// Use validation for syntax checking without full parsing
-if (_parser.Validate(formula))
-{
-    var result = _parser.Parse(formula);
-    // Process result
-}
+// Access the AST
+var astRoot = formula.AstRoot;
+
+// Modify the AST (implementation-specific)
+// ...
+
+// Reconstruct the formula
+var reconstructed = formula.ToString(); // Uses AstRoot.ToString()
 ```
 
-## Grammar Files
+## Build Process
 
-The formula parser is built from grammar files located in:
+The grammar files are processed during build:
 
-- **Lexer**: `SpreadsheetML/Formula/Lang/Lex/formula.lex`
-- **Parser**: `SpreadsheetML/Formula/Lang/Parse/formula.y`
-- **Functions**: `SpreadsheetML/Formula/Lang/Lex/functions/*.lex`
-
-These files are processed during build to generate the C# parser code.
-
-## Thread Safety
-
-The `FormulaParser` class is thread-safe and can be used from multiple threads concurrently. However, the `Formula` instances returned by parsing operations are not thread-safe.
+1. `formula.lex` is processed by GPLEX to generate the lexer
+2. `formula.y` is processed by GPPG to generate the parser
+3. Generated code is placed in the `Generated/` directory
+4. The build system uses CMake to orchestrate this process
 
 ## Examples
 
-### Basic Formula Parsing
+### Basic Usage
 
 ```csharp
 using OpenLanguage.SpreadsheetML.Formula;
 
-var parser = new FormulaParser();
+// Parse a simple formula
+var formula = FormulaParser.Parse("=1+2*3");
+Console.WriteLine($"Original: {formula.FormulaText}");
+Console.WriteLine($"Reconstructed: {formula.ToString()}");
 
-// Simple arithmetic
-var formula1 = parser.Parse("A1 + B1 * C1");
-
-// Function calls
-var formula2 = parser.Parse("SUM(A1:A10)");
-
-// Complex nested formula
-var formula3 = parser.Parse("IF(AVERAGE(A1:A10) > 50, "Pass", "Fail")");
-```
-
-### Working with Parse Results
-
-```csharp
-var result = parser.Parse("SUM(A1:A10) + AVERAGE(B1:B10)");
-
-if (result.IsValid)
-{
-    Console.WriteLine($"Original: {result.OriginalText}");
-    Console.WriteLine($"Tokens: {result.Tokens.Count}");
-
-    // Access the parse tree
-    var rootNode = result.RootNode;
-    Console.WriteLine($"Root node type: {rootNode.Type}");
-}
+// Parse with functions
+var funcFormula = FormulaParser.Parse("=SUM(A1:A10)");
+Console.WriteLine($"Function formula: {funcFormula}");
 ```
 
 ### Error Handling
 
 ```csharp
-var result = parser.Parse("SUM(A1:A10, B1:B10, "); // Incomplete formula
+// Handle parse errors gracefully
+var result = FormulaParser.TryParse("=SUM(1,"); // Invalid syntax
 
-if (!result.IsValid)
+if (result != null)
 {
-    Console.WriteLine("Formula has errors:");
-    foreach (var error in result.Errors)
-    {
-        Console.WriteLine($"  {error.Type}: {error.Message} at position {error.Position}");
-    }
+    Console.WriteLine("Parsed successfully");
+}
+else
+{
+    Console.WriteLine("Parse failed - check syntax");
 }
 ```
 
-## See Also
+### Working with ASTs
 
-- [Function Categories](./Functions.md) - Complete list of supported functions
-- [Grammar Reference](./Grammar.md) - Detailed grammar specification
-- [Performance Guide](../../guides/performance.md) - Optimization strategies
+```csharp
+var formula = FormulaParser.Parse("=A1+B1");
+
+// The AstRoot property gives access to the parsed tree structure
+var root = formula.AstRoot;
+
+// Convert back to string representation
+var reconstructed = root.ToString();
+Console.WriteLine($"Reconstructed: {reconstructed}");
+```
+
+## Technical Details
+
+- Uses GPLEX for lexical analysis and GPPG for parsing
+- Generates C# code from .lex and .y grammar files
+- Supports Excel formula syntax including functions, operators, and references
+- AST nodes implement ToString() for formula reconstruction
+- Thread-safe static parsing methods

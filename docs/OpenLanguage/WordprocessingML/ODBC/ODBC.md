@@ -1,407 +1,336 @@
-# ODBC Integration
+# ODBC Support Components
 
-The `OpenLanguage.WordprocessingML.ODBC` namespace provides comprehensive database connectivity for Word document processing through ODBC.
+The ODBC-related namespaces provide support for database connection string parsing and SQL query validation for Word document database field processing.
 
 ## Overview
 
-ODBC integration features:
+The ODBC support includes:
 
-- **Multi-Database Support**: Connect to SQL Server, Oracle, MySQL, PostgreSQL, and more
-- **Query Execution**: Execute parameterized queries safely
-- **Data Binding**: Bind query results to Word document fields
-- **Connection Management**: Efficient connection pooling and management
-- **Transaction Support**: Full transaction control for data operations
+- **Connection String Parsing**: Parse and validate database connection strings
+- **SQL Query Validation**: Validate SQL syntax for different database types
+- **Database Type Detection**: Identify query types (SQL, Excel, Access QBE, etc.)
+- **Connection Component Analysis**: Parse connection string components
 
-## Core Classes
+## Namespaces
 
-### OdbcParser
+### OpenLanguage.ODBC
 
-Parses ODBC-related field instructions:
+Contains SQL query parsing and validation:
+
+```csharp
+using OpenLanguage.ODBC;
+
+// Create and validate a database query
+var query = new DatabaseQuery("SELECT * FROM Customers WHERE Region = 'West'");
+Console.WriteLine($"Query type: {query.QueryType}"); // Sql
+Console.WriteLine($"Query text: {query.QueryText}");
+```
+
+### OpenLanguage.WordprocessingML.ODBC
+
+Contains ODBC connection string parsing:
 
 ```csharp
 using OpenLanguage.WordprocessingML.ODBC;
 
-var parser = new OdbcParser();
-var query = parser.Parse("DATABASE \s "SELECT * FROM Customers WHERE Region = 'West'"");
+// Parse a connection string
+var builder = ODBCConnectionLexer.Parse("Driver={SQL Server};Server=localhost;Database=MyDB;");
+Console.WriteLine($"Driver: {builder["Driver"]}");
+Console.WriteLine($"Server: {builder["Server"]}");
 ```
 
-### OdbcLexer
+## DatabaseQuery Class
 
-Lexical analysis for ODBC syntax:
-
-```csharp
-var lexer = new OdbcLexer();
-var tokens = lexer.Tokenize("DATABASE \s "SELECT Name, Email FROM Users"");
-```
-
-### DatabaseConnection
-
-Manages database connections:
+Represents a validated database query with syntax checking:
 
 ```csharp
-var connection = new DatabaseConnection("Driver={SQL Server};Server=localhost;Database=MyDB;Trusted_Connection=yes;");
-await connection.OpenAsync();
-
-var result = await connection.ExecuteQueryAsync("SELECT * FROM Customers");
-await connection.CloseAsync();
-```
-
-## Connection Configuration
-
-### Connection Strings
-
-```csharp
-// SQL Server
-var sqlServerConnection = new DatabaseConnection(
-    "Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=MyDB;Trusted_Connection=yes;");
-
-// MySQL
-var mysqlConnection = new DatabaseConnection(
-    "Driver={MySQL ODBC 8.0 Driver};Server=localhost;Database=MyDB;User=root;Password=password;");
-
-// PostgreSQL
-var postgresConnection = new DatabaseConnection(
-    "Driver={PostgreSQL Unicode};Server=localhost;Port=5432;Database=MyDB;Uid=postgres;Pwd=password;");
-
-// Oracle
-var oracleConnection = new DatabaseConnection(
-    "Driver={Oracle in OraClient12Home1};Dbq=localhost:1521/XE;Uid=hr;Pwd=password;");
-```
-
-### Connection Pooling
-
-```csharp
-var poolConfig = new ConnectionPoolConfig
+public class DatabaseQuery
 {
-    MinPoolSize = 5,
-    MaxPoolSize = 50,
-    ConnectionTimeout = TimeSpan.FromSeconds(30),
-    IdleTimeout = TimeSpan.FromMinutes(10)
-};
+    public string QueryText { get; }           // The validated query text
+    public DatabaseQueryType QueryType { get; } // Detected query type
 
-var connectionManager = new DatabaseConnectionManager(poolConfig);
-```
+    public DatabaseQuery(string queryText)     // Constructor with validation
 
-## Query Execution
-
-### Simple Queries
-
-```csharp
-var connection = new DatabaseConnection(connectionString);
-
-// Execute query and get results
-var customers = await connection.ExecuteQueryAsync<Customer>(
-    "SELECT CustomerID, Name, Email FROM Customers");
-
-// Execute scalar query
-var customerCount = await connection.ExecuteScalarAsync<int>(
-    "SELECT COUNT(*) FROM Customers");
-
-// Execute non-query (INSERT, UPDATE, DELETE)
-var rowsAffected = await connection.ExecuteNonQueryAsync(
-    "UPDATE Customers SET LastLogin = GETDATE() WHERE CustomerID = 123");
-```
-
-### Parameterized Queries
-
-```csharp
-// Safe parameterized queries
-var parameters = new Dictionary<string, object>
-{
-    ["@Region"] = "West",
-    ["@MinOrderValue"] = 1000
-};
-
-var customers = await connection.ExecuteQueryAsync<Customer>(
-    "SELECT * FROM Customers WHERE Region = @Region AND TotalOrders >= @MinOrderValue",
-    parameters);
-```
-
-### Stored Procedures
-
-```csharp
-// Execute stored procedure
-var parameters = new Dictionary<string, object>
-{
-    ["@CustomerID"] = 123,
-    ["@StartDate"] = new DateTime(2024, 1, 1),
-    ["@EndDate"] = new DateTime(2024, 12, 31)
-};
-
-var orders = await connection.ExecuteStoredProcedureAsync<Order>(
-    "GetCustomerOrders", parameters);
-```
-
-## Data Binding
-
-### Field Binding
-
-```csharp
-var binder = new DatabaseFieldBinder(connection);
-
-// Bind single field
-binder.BindField("MERGEFIELD CustomerName",
-    "SELECT Name FROM Customers WHERE CustomerID = @ID");
-
-// Bind multiple fields
-binder.BindFields(new Dictionary<string, string>
-{
-    ["MERGEFIELD CustomerName"] = "SELECT Name FROM Customers WHERE CustomerID = @ID",
-    ["MERGEFIELD CustomerEmail"] = "SELECT Email FROM Customers WHERE CustomerID = @ID",
-    ["MERGEFIELD OrderCount"] = "SELECT COUNT(*) FROM Orders WHERE CustomerID = @ID"
-});
-```
-
-### Document Processing
-
-```csharp
-public async Task ProcessDocumentWithDatabase(string templatePath, string outputPath)
-{
-    var processor = new DatabaseDocumentProcessor(connectionString);
-
-    // Set global parameters
-    processor.SetParameter("@CurrentDate", DateTime.Now);
-    processor.SetParameter("@UserID", currentUserId);
-
-    // Process document
-    await processor.ProcessDocumentAsync(templatePath, outputPath);
+    // Implicit conversions
+    public static implicit operator string(DatabaseQuery databaseQuery)
+    public static implicit operator DatabaseQuery(string queryText)
 }
 ```
 
-## Advanced Features
+### Query Type Detection
 
-### Transaction Management
+The system can identify these query types:
 
 ```csharp
-using var transaction = await connection.BeginTransactionAsync();
+public enum DatabaseQueryType
+{
+    Sql,            // Standard SQL queries
+    AccessQbe,      // Microsoft Access Query-by-Example
+    DBase,          // dBase query expressions
+    FoxPro,         // FoxPro query expressions
+    Paradox,        // Paradox queries
+    Excel,          // Excel range references
+    Odbc,           // ODBC-compatible queries
+    OleDb,          // OLE DB queries
+    Unknown         // Unrecognized query type
+}
+```
 
+### SQL Command Types
+
+For SQL queries, the system recognizes these command types:
+
+```csharp
+public enum SqlCommandType
+{
+    Select, Insert, Update, Delete,     // DML commands
+    Create, Alter, Drop, Truncate,      // DDL commands
+    Grant, Revoke,                      // DCL commands
+    Commit, Rollback, Savepoint,       // TCL commands
+    Execute,                            // Stored procedures
+    Unknown                             // Unrecognized commands
+}
+```
+
+## Query Validation Examples
+
+### SQL Query Validation
+
+```csharp
+// Valid SQL queries
+var selectQuery = new DatabaseQuery("SELECT * FROM Customers WHERE Region = 'West'");
+var insertQuery = new DatabaseQuery("INSERT INTO Customers (Name, Email) VALUES ('John', 'john@example.com')");
+var updateQuery = new DatabaseQuery("UPDATE Customers SET LastLogin = GETDATE() WHERE ID = 123");
+
+// Query type is automatically detected
+Console.WriteLine(selectQuery.QueryType); // Sql
+
+// Invalid SQL queries throw ArgumentException
 try
 {
-    // Execute multiple operations within transaction
-    await connection.ExecuteNonQueryAsync(
-        "INSERT INTO Customers (Name, Email) VALUES (@Name, @Email)",
-        new { Name = "John Doe", Email = "john@example.com" },
-        transaction);
-
-    await connection.ExecuteNonQueryAsync(
-        "INSERT INTO Orders (CustomerID, Amount) VALUES (@CustomerID, @Amount)",
-        new { CustomerID = newCustomerId, Amount = 100.00 },
-        transaction);
-
-    await transaction.CommitAsync();
+    var invalidQuery = new DatabaseQuery("SELECT * FROM"); // Missing table name
 }
-catch (Exception)
+catch (ArgumentException ex)
 {
-    await transaction.RollbackAsync();
-    throw;
+    Console.WriteLine($"Validation error: {ex.Message}");
 }
 ```
 
-### Bulk Operations
+### Excel Range Validation
 
 ```csharp
-// Bulk insert
-var customers = new List<Customer>
+// Valid Excel range references
+var excelRange1 = new DatabaseQuery("Sheet1$A1:C10");
+var excelRange2 = new DatabaseQuery("MyNamedRange");
+var excelRange3 = new DatabaseQuery("'Sales Data'!A:C");
+
+Console.WriteLine(excelRange1.QueryType); // Excel
+```
+
+### Access QBE and Other Formats
+
+```csharp
+// Access Query-by-Example format
+var qbeQuery = new DatabaseQuery("CustomerName, OrderDate FROM Orders WHERE OrderDate > #2024-01-01#");
+
+// dBase filter expression
+var dbaseQuery = new DatabaseQuery("FOR CustomerType = 'Premium'");
+
+// System detects the appropriate query type
+Console.WriteLine(qbeQuery.QueryType);  // AccessQbe
+Console.WriteLine(dbaseQuery.QueryType); // DBase
+```
+
+## Connection String Parsing
+
+### ODBCConnectionLexer
+
+Static class for parsing ODBC connection strings:
+
+```csharp
+using System.Data.Odbc;
+using OpenLanguage.WordprocessingML.ODBC;
+
+// Parse a connection string
+string connectionString = "Driver={SQL Server};Server=localhost;Database=MyDB;Trusted_Connection=yes;";
+var builder = ODBCConnectionLexer.Parse(connectionString);
+
+if (builder != null)
 {
-    new Customer { Name = "John Doe", Email = "john@example.com" },
-    new Customer { Name = "Jane Smith", Email = "jane@example.com" }
+    Console.WriteLine($"Driver: {builder["Driver"]}");
+    Console.WriteLine($"Server: {builder["Server"]}");
+    Console.WriteLine($"Database: {builder["Database"]}");
+}
+```
+
+### Connection String Components
+
+The lexer recognizes these connection component types:
+
+```csharp
+public enum ODBCConnectionComponentType
+{
+    // ODBC Components
+    DataSourceName, DBQ, FIL, Driver, Server, Database,
+    UID, PWD, ConnectionTimeout, CommandTimeout,
+
+    // OLE DB Components
+    Provider, DataSource, InitialCatalog, IntegratedSecurity,
+    TrustedConnection, PersistSecurityInfo, Pooling,
+
+    // SQL Server Specific
+    ServerInstance, NetworkLibrary, ApplicationName, WorkstationID,
+    PacketSize, Encrypt, TrustServerCertificate, MultipleActiveResultSets,
+
+    // Access/Jet Specific
+    SystemDB, Exclusive, ReadOnly, JetOLEDBEngineType,
+    JetOLEDBDatabasePassword, JetOLEDBSystemDatabase,
+
+    // Oracle, MySQL, Excel, dBase, Text/CSV specific components...
+    // (Many more component types supported)
+
+    Custom  // Unknown component types
+}
+```
+
+### ODBCConnectionComponent
+
+Represents a parsed connection string component:
+
+```csharp
+public class ODBCConnectionComponent
+{
+    public ODBCConnectionComponentType ComponentType { get; set; }
+    public string Key { get; set; }
+    public string Value { get; set; }
+
+    public ODBCConnectionComponent(string key, string value)
+
+    public override string ToString() // Reconstructs key=value format
+}
+```
+
+## Usage Examples
+
+### Connection String Parsing
+
+```csharp
+using System.Data.Odbc;
+using OpenLanguage.WordprocessingML.ODBC;
+
+// Parse various connection string formats
+string[] connectionStrings = {
+    "Driver={SQL Server};Server=localhost;Database=MyDB;Trusted_Connection=yes;",
+    "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\mydb.mdb;",
+    "Driver={MySQL ODBC 8.0 Driver};Server=localhost;Database=test;User=root;Password=secret;",
+    "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\myfile.xlsx;Extended Properties="Excel 12.0 Xml;HDR=YES";"
 };
 
-await connection.BulkInsertAsync("Customers", customers);
-
-// Bulk update
-var updateData = customers.Select(c => new {
-    CustomerID = c.ID,
-    LastUpdated = DateTime.Now
-}).ToList();
-
-await connection.BulkUpdateAsync("Customers", updateData, "CustomerID");
-```
-
-### Dynamic Queries
-
-```csharp
-var queryBuilder = new DynamicQueryBuilder();
-
-// Build query dynamically based on conditions
-var query = queryBuilder
-    .Select("CustomerID", "Name", "Email")
-    .From("Customers")
-    .Where("Region = @Region")
-    .WhereIf(includeInactive, "Status = 'Active'")
-    .OrderBy("Name")
-    .Build();
-
-var results = await connection.ExecuteQueryAsync(query.Sql, query.Parameters);
-```
-
-## Error Handling
-
-### Database Exceptions
-
-```csharp
-try
+foreach (string connStr in connectionStrings)
 {
-    var result = await connection.ExecuteQueryAsync("SELECT * FROM NonExistentTable");
-}
-catch (DatabaseConnectionException ex)
-{
-    Console.WriteLine($"Connection error: {ex.Message}");
-}
-catch (DatabaseQueryException ex)
-{
-    Console.WriteLine($"Query error: {ex.Message}");
-    Console.WriteLine($"SQL: {ex.SqlCommand}");
-}
-catch (DatabaseTimeoutException ex)
-{
-    Console.WriteLine($"Timeout error: {ex.Message}");
-    Console.WriteLine($"Timeout duration: {ex.TimeoutDuration}");
-}
-```
-
-### Retry Policies
-
-```csharp
-var retryPolicy = new DatabaseRetryPolicy
-{
-    MaxRetries = 3,
-    RetryDelay = TimeSpan.FromSeconds(1),
-    BackoffMultiplier = 2.0
-};
-
-connection.SetRetryPolicy(retryPolicy);
-
-// Connection will automatically retry on transient failures
-var result = await connection.ExecuteQueryAsync("SELECT * FROM Customers");
-```
-
-## Performance Optimization
-
-### Query Caching
-
-```csharp
-// Enable query result caching
-connection.EnableQueryCache(new QueryCacheOptions
-{
-    MaxCacheSize = 100,
-    DefaultExpiration = TimeSpan.FromMinutes(10)
-});
-
-// Cache specific queries
-var result = await connection.ExecuteQueryAsync(
-    "SELECT * FROM Products",
-    cacheKey: "all-products",
-    cacheExpiration: TimeSpan.FromHours(1));
-```
-
-### Connection Optimization
-
-```csharp
-// Optimize connection settings
-var options = new ConnectionOptions
-{
-    CommandTimeout = TimeSpan.FromSeconds(30),
-    EnableConnectionPooling = true,
-    MaxConnectionLifetime = TimeSpan.FromMinutes(30),
-    EnableStatementCaching = true
-};
-
-connection.SetOptions(options);
-```
-
-## Security Features
-
-### SQL Injection Prevention
-
-```csharp
-// Always use parameterized queries
-var safeQuery = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
-var parameters = new { Username = username, Password = hashedPassword };
-
-var user = await connection.ExecuteQueryAsync<User>(safeQuery, parameters);
-
-// NEVER do this (SQL injection vulnerable)
-// var unsafeQuery = $"SELECT * FROM Users WHERE Username = '{username}'";
-```
-
-### Connection Security
-
-```csharp
-// Use encrypted connections
-var secureConnection = new DatabaseConnection(
-    "Driver={SQL Server};Server=localhost;Database=MyDB;Encrypt=yes;TrustServerCertificate=no;");
-
-// Use integrated authentication when possible
-var integratedAuth = new DatabaseConnection(
-    "Driver={SQL Server};Server=localhost;Database=MyDB;Trusted_Connection=yes;");
-```
-
-## Integration Examples
-
-### Mail Merge with Database
-
-```csharp
-public class DatabaseMailMerge
-{
-    private readonly DatabaseConnection _connection;
-
-    public DatabaseMailMerge(string connectionString)
+    var builder = ODBCConnectionLexer.Parse(connStr);
+    if (builder != null)
     {
-        _connection = new DatabaseConnection(connectionString);
-    }
-
-    public async Task<byte[]> GenerateMailMergeDocument(string templatePath, int customerId)
-    {
-        // Get customer data
-        var customer = await _connection.ExecuteQueryAsync<Customer>(
-            "SELECT * FROM Customers WHERE CustomerID = @CustomerID",
-            new { CustomerID = customerId });
-
-        // Get related data
-        var orders = await _connection.ExecuteQueryAsync<Order>(
-            "SELECT * FROM Orders WHERE CustomerID = @CustomerID",
-            new { CustomerID = customerId });
-
-        // Process document with data
-        var processor = new MailMergeProcessor();
-        processor.SetDataSource(customer);
-        processor.SetRelatedData("Orders", orders);
-
-        return await processor.ProcessDocumentAsync(templatePath);
-    }
-}
-```
-
-### Real-time Document Updates
-
-```csharp
-public class RealtimeDocumentProcessor
-{
-    private readonly DatabaseConnection _connection;
-    private readonly IHubContext<DocumentHub> _hubContext;
-
-    public async Task ProcessDocumentWithLiveUpdates(string documentId)
-    {
-        // Set up database change notifications
-        _connection.OnDataChanged += async (sender, e) =>
+        Console.WriteLine($"Connection string: {connStr}");
+        foreach (string key in builder.Keys)
         {
-            if (e.TableName == "DocumentData")
-            {
-                await RefreshDocumentData(documentId);
-                await _hubContext.Clients.Group(documentId)
-                    .SendAsync("DocumentUpdated", documentId);
-            }
-        };
-
-        // Start monitoring
-        await _connection.StartChangeMonitoringAsync("DocumentData");
+            Console.WriteLine($"  {key} = {builder[key]}");
+        }
+        Console.WriteLine();
     }
 }
 ```
+
+### Manual Connection String Reconstruction
+
+```csharp
+// Create connection components manually
+var components = new List<ODBCConnectionComponent>
+{
+    new ODBCConnectionComponent("Driver", "{SQL Server}"),
+    new ODBCConnectionComponent("Server", "localhost"),
+    new ODBCConnectionComponent("Database", "MyDB"),
+    new ODBCConnectionComponent("Trusted_Connection", "yes")
+};
+
+// Reconstruct connection string
+string reconstructed = ODBCConnectionLexer.Reconstruct(components);
+Console.WriteLine(reconstructed);
+// Output: Driver={SQL Server}; Server=localhost; Database=MyDB; Trusted_Connection=yes
+```
+
+### Query Validation with Different Database Types
+
+```csharp
+using OpenLanguage.ODBC;
+
+// Test various query formats
+string[] queries = {
+    "SELECT * FROM Customers WHERE Region = 'West'",           // SQL
+    "CustomerName, OrderDate FROM Orders",                      // Access QBE
+    "Sheet1$A1:C10",                                           // Excel range
+    "FOR CustomerType = 'Premium'",                            // dBase
+    "MyNamedRange"                                             // Excel named range
+};
+
+foreach (string queryText in queries)
+{
+    try
+    {
+        var query = new DatabaseQuery(queryText);
+        Console.WriteLine($"Query: {queryText}");
+        Console.WriteLine($"  Type: {query.QueryType}");
+        Console.WriteLine($"  Valid: Yes");
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($"Query: {queryText}");
+        Console.WriteLine($"  Valid: No - {ex.Message}");
+    }
+    Console.WriteLine();
+}
+```
+
+## Syntax Validation Details
+
+### SQL Validation Rules
+
+The `DatabaseQuery` class validates SQL syntax with these rules:
+
+- **SELECT**: Must contain FROM clause (or reference DUAL)
+- **INSERT**: Must contain INTO clause  
+- **UPDATE**: Must contain SET clause
+- **DELETE**: Must contain FROM clause
+- **CREATE/DROP**: Must specify object type (TABLE, DATABASE, INDEX, etc.)
+- **All queries**: Must have balanced parentheses and quotes
+
+### Basic Syntax Validation
+
+For non-SQL query types, basic validation includes:
+
+- Balanced parentheses `()` 
+- Balanced single quotes `''`
+- Balanced double quotes `""`
+- Excel range format validation (alphanumeric, $, :, !, single quotes)
+
+## Technical Details
+
+- **Connection String Parsing**: Uses `OdbcConnectionStringBuilder` with manual fallback
+- **Query Type Detection**: Based on first keyword and structural patterns
+- **Component Type Recognition**: Extensive mapping of connection string keys
+- **Error Handling**: Throws `ArgumentException` for invalid syntax
+- **Implicit Conversions**: Support for string ↔ DatabaseQuery conversion
+- **Quote Handling**: Proper escaping and unescaping of quoted values
+
+## Limitations
+
+- No actual database connectivity (parsing and validation only)
+- Limited to syntax validation (no semantic validation)
+- Connection string parsing may not handle all edge cases
+- Query type detection based on heuristics, not full parsing
+- No support for complex nested queries or advanced SQL features
 
 ## See Also
 
-- [Field Instructions](../FieldInstruction/FieldInstruction.md) - Field instruction parsing
-- [Merge Fields](../MergeField/MergeField.md) - Mail merge functionality
-- [Expression Processing](../Expression/Expression.md) - Expression evaluation
+- [Field Instructions](../FieldInstruction/FieldInstruction.md) - Generic field instruction handling
+- [Unit Tests](../../../OpenLanguage.Test/) - Test examples showing usage patterns

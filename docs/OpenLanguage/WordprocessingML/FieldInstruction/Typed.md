@@ -1,367 +1,247 @@
 # Typed Field Instructions
 
-The typed field instruction system provides strongly-typed, compile-time safe handling of Word field instructions with full IntelliSense support.
+The typed field instruction system provides a factory pattern for converting generic `FieldInstruction` objects into strongly-typed representations.
 
 ## Overview
 
 The typed system offers:
 
-- **Compile-Time Safety**: Catch field instruction errors at compile time
-- **IntelliSense Support**: Full IDE support with autocomplete and documentation
-- **Type-Specific APIs**: Specialized methods for each field type
-- **Fluent Interface**: Chainable method calls for building complex fields
+- **Factory Pattern**: Convert generic field instructions to strongly-typed objects
+- **Base Class**: Common base for all typed field instructions
+- **Limited Implementation**: Currently supports only REF fields with basic functionality
 
-## Core Interfaces
+## Core Classes
 
-### ITypedFieldInstruction<T>
+### TypedFieldInstruction
 
-Base interface for all typed field instructions:
+Base class for all strongly-typed field instructions:
 
 ```csharp
-public interface ITypedFieldInstruction<T> where T : ITypedFieldInstruction<T>
+public class TypedFieldInstruction
 {
-    string FieldType { get; }
-    IReadOnlyList<FieldSwitch> Switches { get; }
-    string ToFieldCode();
-    T WithSwitch(FieldSwitch switch);
-    T WithFormat(string format);
+    public FieldInstruction Source { get; }    // Original field instruction
+
+    protected TypedFieldInstruction(FieldInstruction source)
+
+    public override string ToString()          // Default implementation
 }
 ```
 
-## Typed Field Classes
+## Implemented Typed Fields
 
-### MergeFieldInstruction
+### RefInstruction
 
-Strongly-typed merge field with validation:
-
-```csharp
-var mergeField = new MergeFieldInstruction("FirstName")
-    .WithFormat(MergeFormat.Upper)
-    .WithMergeFormat();
-
-Console.WriteLine(mergeField.ToFieldCode());
-// Output: MERGEFIELD FirstName \* UPPER \* MERGEFORMAT
-```
-
-#### Available Methods
+Strongly-typed REF field for cross-references:
 
 ```csharp
-public class MergeFieldInstruction : ITypedFieldInstruction<MergeFieldInstruction>
+public class RefInstruction : TypedFieldInstruction
 {
-    // Constructors
-    public MergeFieldInstruction(string fieldName);
+    public string BookmarkName { get; set; }           // The bookmark being referenced
+    public FieldArgument? FormattingSwitch { get; set; } // Optional formatting switch
 
-    // Formatting methods
-    public MergeFieldInstruction WithFormat(MergeFormat format);
-    public MergeFieldInstruction WithMergeFormat();
-    public MergeFieldInstruction WithCaps();
-    public MergeFieldInstruction WithFirstCap();
-    public MergeFieldInstruction WithLower();
-    public MergeFieldInstruction WithUpper();
-
-    // Properties
-    public string FieldName { get; }
-    public MergeFormat Format { get; }
-    public bool PreserveFormatting { get; }
+    public RefInstruction(FieldInstruction source)     // Constructor validates arguments
 }
 ```
 
-### DateFieldInstruction
-
-Type-safe date field handling:
+#### Usage Example
 
 ```csharp
-var dateField = new DateFieldInstruction(DateFieldType.CreateDate)
-    .WithFormat("MMMM d, yyyy")
-    .WithMergeFormat();
+// Create a generic REF field instruction
+var genericRef = new FieldInstruction("REF");
+genericRef.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "MyBookmark"));
+genericRef.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* MERGEFORMAT"));
 
-// Or use the fluent builder
-var currentDate = DateField.Current()
-    .WithFormat("dd/MM/yyyy")
-    .Build();
+// Convert to strongly-typed
+var typedRef = new RefInstruction(genericRef);
+Console.WriteLine($"Bookmark: {typedRef.BookmarkName}");        // "MyBookmark"
+Console.WriteLine($"Switch: {typedRef.FormattingSwitch?.Value}"); // "\* MERGEFORMAT"
 ```
 
-#### Supported Date Field Types
+## TypedFieldInstructionFactory
+
+Factory class for creating strongly-typed field instructions from generic ones:
 
 ```csharp
-public enum DateFieldType
+public static class TypedFieldInstructionFactory
 {
-    Date,           // DATE
-    CreateDate,     // CREATEDATE
-    SaveDate,       // SAVEDATE
-    PrintDate,      // PRINTDATE
-    EditTime,       // EDITTIME
-    Time            // TIME
+    public static TypedFieldInstruction? Create(FieldInstruction genericInstruction)
 }
 ```
 
-### FormulaFieldInstruction
+### Supported Field Types
 
-Type-safe formula fields:
+The factory currently recognizes these field instruction types:
 
-```csharp
-var formula = new FormulaFieldInstruction("SUM(A1:A10)")
-    .WithNumericFormat("#,##0.00")
-    .WithLockResult();
+- **REF**: Returns `RefInstruction` for cross-references
+- **70+ Other Types**: The factory includes cases for many field types, but most return `null` (not implemented)
 
-// Using the builder pattern
-var complexFormula = FormulaField
-    .Create("AVERAGE(A1:A10) * 1.2")
-    .WithFormat("#0.00%")
-    .Build();
-```
-
-### HyperlinkFieldInstruction
-
-Strongly-typed hyperlinks:
+#### Example Usage
 
 ```csharp
-var hyperlink = new HyperlinkFieldInstruction("http://example.com")
-    .WithDisplayText("Visit Example")
-    .WithTooltip("Click to visit example.com")
-    .WithTarget("_blank");
+using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
 
-// Email hyperlink
-var emailLink = HyperlinkField.Email("user@example.com")
-    .WithDisplayText("Send Email")
-    .WithSubject("Hello from Word")
-    .Build();
-```
+// Create a generic field instruction
+var genericField = new FieldInstruction("REF");
+genericField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "SectionTitle"));
 
-## Builder Pattern
+// Convert to strongly-typed
+var typedField = TypedFieldInstructionFactory.Create(genericField);
 
-### FieldBuilder
-
-Fluent builder for complex field instructions:
-
-```csharp
-var field = FieldBuilder
-    .MergeField("CustomerName")
-    .WithFormat(MergeFormat.FirstCap)
-    .WithMergeFormat()
-    .Build();
-
-var dateField = FieldBuilder
-    .Date(DateFieldType.SaveDate)
-    .WithFormat("yyyy-MM-dd HH:mm:ss")
-    .Build();
-```
-
-### Conditional Fields
-
-Build conditional field logic:
-
-```csharp
-var conditionalField = FieldBuilder
-    .If("CustomerType = "Premium"")
-    .Then(FieldBuilder.MergeField("PremiumDiscount"))
-    .Else(FieldBuilder.Text("Standard Rate"))
-    .Build();
-```
-
-## Validation and Error Handling
-
-### Compile-Time Validation
-
-The typed system prevents common errors at compile time:
-
-```csharp
-// This won't compile - invalid format for merge field
-// var invalid = new MergeFieldInstruction("Name").WithFormat("##0.00");
-
-// This is valid
-var valid = new MergeFieldInstruction("Name").WithFormat(MergeFormat.Upper);
-```
-
-### Runtime Validation
-
-Runtime validation for dynamic scenarios:
-
-```csharp
-var builder = new MergeFieldInstruction("DynamicField");
-var validationResult = builder.Validate();
-
-if (!validationResult.IsValid)
+if (typedField is RefInstruction refField)
 {
-    foreach (var error in validationResult.Errors)
-    {
-        Console.WriteLine($"Validation error: {error.Message}");
-    }
+    Console.WriteLine($"This is a REF field pointing to: {refField.BookmarkName}");
+}
+else if (typedField == null)
+{
+    Console.WriteLine("Field type not supported or invalid arguments");
 }
 ```
 
-## Advanced Features
+## Field Type Recognition
 
-### Custom Field Types
+The factory recognizes field types by their instruction string (case-insensitive):
 
-Create custom typed field instructions:
+### Recognized Field Types
 
 ```csharp
-public class CustomFieldInstruction : ITypedFieldInstruction<CustomFieldInstruction>
+// These field types are recognized but most return null (not implemented):
+"ADDRESSBLOCK", "ADVANCE", "ASK", "AUTHOR", "AUTONUM", "AUTONUMLGL",
+"AUTONUMOUT", "AUTOTEXT", "AUTOTEXTLIST", "BARCODE", "BIBLIOGRAPHY",
+"CITATION", "COMMENTS", "COMPARE", "CREATEDATE", "DATABASE", "DATE",
+"DOCPROPERTY", "DOCVARIABLE", "EDITTIME", "EQ", "FILENAME", "FILESIZE",
+"FILLIN", "FORMCHECKBOX", "FORMDROPDOWN", "FORMTEXT", "GOTOBUTTON",
+"GREETINGLINE", "HYPERLINK", "IF", "INCLUDEPICTURE", "INCLUDETEXT",
+"INDEX", "INFO", "KEYWORDS", "LASTSAVEDBY", "LINK", "LISTNUM",
+"MACROBUTTON", "MERGEFIELD", "MERGEREC", "MERGESEQ", "NEXT", "NEXTIF",
+"NOTEREF", "NUMCHARS", "NUMPAGES", "NUMWORDS", "PAGE", "PAGEREF",
+"PRINT", "PRINTDATE", "QUOTE", "RD", "REF", "REVNUM", "SAVEDATE",
+"SECTION", "SECTIONPAGES", "SEQ", "SET", "SKIPIF", "STYLEREF",
+"SUBJECT", "SYMBOL", "TA", "TC", "TEMPLATE", "TIME", "TITLE", "TOA",
+"TOC", "USERADDRESS", "USERINITIALS", "USERNAME", "XE"
+```
+
+### Error Handling
+
+```csharp
+// Invalid field arguments will cause the factory to return null
+var invalidRef = new FieldInstruction("REF"); // Missing bookmark argument
+var result = TypedFieldInstructionFactory.Create(invalidRef);
+Console.WriteLine(result == null); // True - invalid REF field
+
+// ArgumentException is caught and null is returned
+var malformedField = new FieldInstruction("REF");
+malformedField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\h")); // Wrong argument type
+var result2 = TypedFieldInstructionFactory.Create(malformedField);
+Console.WriteLine(result2 == null); // True
+```
+
+## Current Limitations
+
+The typed field instruction system is currently in early development:
+
+### Limited Implementation
+
+- Only `RefInstruction` is fully implemented
+- Most field types return `null` from the factory
+- No fluent interface or advanced features
+
+### RefInstruction Validation
+
+The `RefInstruction` constructor validates that:
+
+- The source field instruction is "REF"
+- The first argument is an `Identifier` type (the bookmark name)
+- Optionally finds formatting switches that start with `\*`
+
+```csharp
+// Valid REF field
+var validRef = new FieldInstruction("REF");
+validRef.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "BookmarkName"));
+var typed = new RefInstruction(validRef); // Success
+
+// Invalid REF field - will throw ArgumentException
+var invalidRef = new FieldInstruction("REF");
+// Missing bookmark argument
+var typed2 = new RefInstruction(invalidRef); // Throws ArgumentException
+```
+
+## Usage Patterns
+
+### Basic Factory Usage
+
+```csharp
+using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
+
+// Create a generic field
+var genericField = new FieldInstruction("REF");
+genericField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "Introduction"));
+
+// Try to convert to typed version
+var typedField = TypedFieldInstructionFactory.Create(genericField);
+
+if (typedField != null)
 {
-    private readonly string _customValue;
+    Console.WriteLine($"Created typed field: {typedField.GetType().Name}");
 
-    public CustomFieldInstruction(string customValue)
+    // Cast to specific type if needed
+    if (typedField is RefInstruction refField)
     {
-        _customValue = customValue;
+        Console.WriteLine($"References bookmark: {refField.BookmarkName}");
+
+        // Access the original field instruction
+        Console.WriteLine($"Original field code: {refField.Source.ToString()}");
     }
-
-    public string FieldType => "CUSTOMFIELD";
-
-    public string ToFieldCode() => $"CUSTOMFIELD {_customValue}";
-
-    public CustomFieldInstruction WithCustomOption(string option)
-    {
-        return new CustomFieldInstruction($"{_customValue} {option}");
-    }
+}
+else
+{
+    Console.WriteLine("Field type not supported or invalid");
 }
 ```
 
-### Field Collections
-
-Manage collections of typed fields:
+### Batch Processing
 
 ```csharp
-var fieldCollection = new TypedFieldCollection();
-
-fieldCollection.Add(new MergeFieldInstruction("FirstName"));
-fieldCollection.Add(new MergeFieldInstruction("LastName"));
-fieldCollection.Add(new DateFieldInstruction(DateFieldType.Date));
-
-// Generate all field codes
-var fieldCodes = fieldCollection.Select(f => f.ToFieldCode()).ToList();
-
-// Validate all fields
-var validationResults = fieldCollection.ValidateAll();
-```
-
-### Field Templates
-
-Create reusable field templates:
-
-```csharp
-public static class FieldTemplates
+// Process multiple field instructions
+var fieldInstructions = new List<FieldInstruction>
 {
-    public static MergeFieldInstruction StandardName(string fieldName)
-    {
-        return new MergeFieldInstruction(fieldName)
-            .WithFormat(MergeFormat.FirstCap)
-            .WithMergeFormat();
-    }
+    CreateRefField("Bookmark1"),
+    CreateRefField("Bookmark2"),
+    CreateMergeField("FirstName"), // This will return null
+};
 
-    public static DateFieldInstruction StandardDate(DateFieldType dateType)
-    {
-        return new DateFieldInstruction(dateType)
-            .WithFormat("MMMM d, yyyy")
-            .WithMergeFormat();
-    }
-}
-
-// Usage
-var customerName = FieldTemplates.StandardName("CustomerName");
-var invoiceDate = FieldTemplates.StandardDate(DateFieldType.Date);
-```
-
-## Integration Examples
-
-### Document Generation
-
-```csharp
-using DocumentFormat.OpenXml.Wordprocessing;
-
-public void InsertTypedField(Paragraph paragraph, ITypedFieldInstruction field)
+foreach (var generic in fieldInstructions)
 {
-    var fieldCode = new FieldCode(field.ToFieldCode());
-    var fieldChar1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-    var fieldChar2 = new FieldChar() { FieldCharType = FieldCharValues.End };
+    var typed = TypedFieldInstructionFactory.Create(generic);
 
-    var run1 = new Run(fieldChar1);
-    var run2 = new Run(fieldCode);
-    var run3 = new Run(fieldChar2);
-
-    paragraph.Append(run1, run2, run3);
-}
-```
-
-### Mail Merge Document Creation
-
-```csharp
-public class MailMergeDocumentBuilder
-{
-    private readonly List<ITypedFieldInstruction> _fields = new();
-
-    public MailMergeDocumentBuilder AddMergeField(string name, MergeFormat format = MergeFormat.None)
+    if (typed != null)
     {
-        var field = new MergeFieldInstruction(name);
-        if (format != MergeFormat.None)
-            field = field.WithFormat(format);
-
-        _fields.Add(field);
-        return this;
+        Console.WriteLine($"Successfully typed: {generic.Instruction}");
     }
-
-    public MailMergeDocumentBuilder AddCurrentDate(string format = "MMMM d, yyyy")
+    else
     {
-        _fields.Add(new DateFieldInstruction(DateFieldType.Date).WithFormat(format));
-        return this;
-    }
-
-    public WordprocessingDocument Build()
-    {
-        // Create document with typed fields
-        var document = CreateDocument();
-
-        foreach (var field in _fields)
-        {
-            InsertField(document, field);
-        }
-
-        return document;
+        Console.WriteLine($"Not supported: {generic.Instruction}");
     }
 }
 ```
 
-## Performance Considerations
+## Future Development
 
-### Field Caching
+The typed field instruction system is designed for future expansion:
 
-Cache commonly used field instances:
+- Additional field types can be added by implementing new classes that inherit from `TypedFieldInstruction`
+- The factory can be extended with more case statements
+- Validation logic can be enhanced for each field type
+- More sophisticated APIs can be built on top of the base classes
 
-```csharp
-public static class CachedFields
-{
-    private static readonly ConcurrentDictionary<string, MergeFieldInstruction> _mergeFields
-        = new ConcurrentDictionary<string, MergeFieldInstruction>();
+## Technical Details
 
-    public static MergeFieldInstruction GetMergeField(string name)
-    {
-        return _mergeFields.GetOrAdd(name, n => new MergeFieldInstruction(n));
-    }
-}
-```
-
-### Bulk Operations
-
-Optimize bulk field operations:
-
-```csharp
-public class BulkFieldProcessor
-{
-    public IEnumerable<string> GenerateFieldCodes(IEnumerable<ITypedFieldInstruction> fields)
-    {
-        return fields.AsParallel().Select(f => f.ToFieldCode());
-    }
-
-    public ValidationResult ValidateFields(IEnumerable<ITypedFieldInstruction> fields)
-    {
-        var results = fields.AsParallel().Select(f => f.Validate()).ToList();
-        return ValidationResult.Combine(results);
-    }
-}
-```
+- The factory uses case-insensitive string matching for field instruction types
+- Exception handling ensures that invalid arguments don't crash the factory
+- The base `TypedFieldInstruction` class provides access to the original `FieldInstruction` via the `Source` property
+- Typed instructions inherit `ToString()` behavior from the base class, which returns the instruction name by default
 
 ## See Also
 
-- [Field Instructions](./FieldInstruction.md) - Basic field instruction parsing
-- [Merge Fields](../MergeField/MergeField.md) - Specialized merge field processing
-- [Examples](../../examples/) - Complete usage examples
+- [Field Instructions](./FieldInstruction.md) - Basic field instruction creation and manipulation
+- [Unit Tests](../../../OpenLanguage.Test/WordprocessingML/FieldInstruction/TypedFieldInstructionTests.cs) - Examples of testing typed instructions

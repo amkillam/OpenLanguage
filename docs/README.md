@@ -1,6 +1,6 @@
 # OpenLanguage Documentation
 
-Welcome to the comprehensive documentation for OpenLanguage, a powerful .NET library for processing Microsoft Office Open XML documents.
+Welcome to the documentation for OpenLanguage, a .NET library for parsing Microsoft Office document languages using GPLEX/GPPG-generated lexers and parsers.
 
 ## Table of Contents
 
@@ -8,76 +8,70 @@ Welcome to the comprehensive documentation for OpenLanguage, a powerful .NET lib
 
 #### SpreadsheetML
 
-- [Formula Processing](./OpenLanguage/SpreadsheetML/Formula/Formula.md) - Excel formula parsing and evaluation
-- [Formula Grammar Reference](./OpenLanguage/SpreadsheetML/Formula/Grammar.md) - Complete grammar specification
-- [Function Categories](./OpenLanguage/SpreadsheetML/Formula/Functions.md) - Available function categories
+- [Formula Processing](./OpenLanguage/SpreadsheetML/Formula/Formula.md) - Excel formula parsing with AST generation
 
 #### WordprocessingML
 
-- [Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) - Word field instruction processing
-- [Typed Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md) - Type-safe field instruction handling
-- [Merge Fields](./OpenLanguage/WordprocessingML/MergeField/MergeField.md) - Mail merge functionality
-- [Expression Processing](./OpenLanguage/WordprocessingML/Expression/Expression.md) - Expression evaluation engine
-- [ODBC Integration](./OpenLanguage/WordprocessingML/ODBC/ODBC.md) - Database connectivity features
+- [Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) - Word field instruction parsing
+- [Typed Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
+- [MergeField Processing](./OpenLanguage/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
+- [Expression Processing](./OpenLanguage/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
+- [ODBC Support](./OpenLanguage/WordprocessingML/ODBC/ODBC.md) - ODBC-related parsing components
 
-### Guides and Examples
+### Development
 
-- [Getting Started](./guides/getting-started.md) - Quick start guide
-- [Examples](./examples/) - Code examples and tutorials
-- [Best Practices](./guides/best-practices.md) - Recommended usage patterns
-- [Performance Guide](./guides/performance.md) - Optimization strategies
-
-### Advanced Topics
-
-- [Grammar Files](./advanced/grammar-files.md) - Working with .y and .lex files
-- [Build System](./advanced/build-system.md) - CMake build system documentation
-- [Contributing](./advanced/contributing.md) - Development and contribution guidelines
+- [Build System](./advanced/build-system.md) - CMake build system with .y/.lex processing
+- [Grammar Files](./advanced/grammar-files.md) - Working with YACC and LEX grammar files
+- [Testing](./advanced/testing.md) - Unit test documentation
 
 ## API Reference
 
-The complete API reference is generated automatically from XML documentation comments and is available at:
-
-- [Online API Documentation](https://amkillam.github.io/OpenLanguage/docs/latest/)
-- [Latest Release Documentation](https://amkillam.github.io/OpenLanguage/docs/)
+The API reference is generated from XML documentation comments in the source code.
 
 ## Quick Navigation
 
-| Component          | Description           | Documentation                                                                               |
-| ------------------ | --------------------- | ------------------------------------------------------------------------------------------- |
-| Formula Parser     | Excel formula parsing | [Formula.md](./OpenLanguage/SpreadsheetML/Formula/Formula.md)                               |
-| Field Instructions | Word field processing | [FieldInstruction.md](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) |
-| Merge Fields       | Mail merge operations | [MergeField.md](./OpenLanguage/WordprocessingML/MergeField/MergeField.md)                   |
-| ODBC Integration   | Database connectivity | [ODBC.md](./OpenLanguage/WordprocessingML/ODBC/ODBC.md)                                     |
-| Expression Engine  | Expression evaluation | [Expression.md](./OpenLanguage/WordprocessingML/Expression/Expression.md)                   |
+| Component          | Description                    | Documentation                                                                               |
+| ------------------ | ------------------------------ | ------------------------------------------------------------------------------------------- |
+| Formula Parser     | Excel formula AST parsing      | [Formula.md](./OpenLanguage/SpreadsheetML/Formula/Formula.md)                               |
+| Field Instructions | Word field instruction parsing | [FieldInstruction.md](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) |
+| Typed Instructions | Strongly-typed field factory   | [Typed.md](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md)                       |
+| MergeField Lexer   | Mail merge field lexing        | [MergeField.md](./OpenLanguage/WordprocessingML/MergeField/MergeField.md)                   |
+| Expression Lexer   | Expression lexical analysis    | [Expression.md](./OpenLanguage/WordprocessingML/Expression/Expression.md)                   |
+| ODBC Components    | ODBC parsing support           | [ODBC.md](./OpenLanguage/WordprocessingML/ODBC/ODBC.md)                                     |
 
-## Documentation Standards
+## Project Structure
 
-All documentation in this project follows these standards:
+OpenLanguage consists of:
 
-- **Markdown Format**: All documentation uses GitHub-flavored Markdown
-- **Code Examples**: Every API includes working code examples
-- **Version Information**: Documentation is versioned alongside releases
-- **Cross-References**: Extensive linking between related topics
-- **Accessibility**: Documentation is accessible and screen-reader friendly
+- **SpreadsheetML.Formula**: Excel formula parser using GPLEX/GPPG
+  - Formula.cs: Main API for parsing formulas into ASTs
+  - FormulaParser.cs: Static parser methods
+  - Lang/Lex/formula.lex: Lexical grammar for Excel formulas
+  - Lang/Parse/formula.y: YACC grammar for Excel formulas
+- **WordprocessingML.FieldInstruction**: Word field instruction parser
 
-## Contributing to Documentation
+  - FieldInstruction.cs: Core field instruction and argument classes
+  - Typed/: Factory and base classes for strongly-typed instructions
+  - Parser.cs & Lexer.cs: Generated parser components
 
-We welcome contributions to improve our documentation! Please see our [Contributing Guide](./advanced/contributing.md) for details on:
+- **Other WordprocessingML Components**:
+  - MergeField, Expression, ODBC: Additional lexer components
 
-- Documentation style guide
-- How to add new documentation
-- Review process for documentation changes
-- Building documentation locally
+## Build System
+
+The project uses CMake to process .y and .lex files with the C preprocessor (cpp) before compilation. Generated code is placed in the Generated/ directory.
+
+## Testing
+
+Unit tests are located in OpenLanguage.Test/ and use xUnit framework. Tests cover:
+
+- Formula parsing with various Excel syntax
+- Field instruction creation and manipulation
+- Argument type validation
+- AST reconstruction and round-trip testing
 
 ## Support
 
-If you need help with OpenLanguage:
-
-1. Check this documentation first
-2. Look at our [Examples](./examples/)
-3. Search existing [Issues](https://github.com/amkillam/OpenLanguage/issues)
-4. Create a new issue if needed
-
----
-
-_This documentation is automatically updated with each release of OpenLanguage._
+- 📖 View source code for implementation details
+- 🐛 [Issue Tracker](https://github.com/amkillam/OpenLanguage/issues)
+- 📧 Contact the maintainers through GitHub
