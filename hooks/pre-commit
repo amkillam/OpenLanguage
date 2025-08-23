@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Pre-commit hook for OpenLanguage
+# Runs formatting and tests before allowing commit
+
+set -e
+
+echo "Running pre-commit checks..."
+
+# Run formatter
+echo "Formatting code..."
+cmake --build . --target format
+
+# Check if there are any formatting changes
+if ! git diff --quiet; then
+    echo "Code formatting changes detected. Please stage the formatted files and commit again."
+    exit 1
+fi
+
+# Run tests
+echo "Running tests..."
+cmake --build . --target test
+
+echo "Pre-commit checks passed!"
+exit 0
