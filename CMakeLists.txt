@@ -50,8 +50,8 @@ file(GLOB_RECURSE YACC_FILES "${PROJECT_DIR}/**/*.y")
 file(GLOB_RECURSE LEX_FILES "${PROJECT_DIR}/**/*.lex")
 
 # Exclude files that are already in the Generated directory to avoid reprocessing.
-list(FILTER YACC_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
-list(FILTER LEX_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
+list(FILTER YACC_FILES EXCLUDE REGEX ^${GENERATED_DIR})
+list(FILTER LEX_FILES EXCLUDE REGEX ^${GENERATED_DIR})
 
 # Custom target to process .y and .lex files
 add_custom_target(process ALL
@@ -99,9 +99,7 @@ endforeach()
 
 # --- Main Build Targets ---
 
-# Umbrella build target that will depend on all RID-specific builds
 add_custom_target(build
-    DEPENDS process
     COMMENT "Building solution for specified RIDs"
 )
 
@@ -128,13 +126,14 @@ foreach(RID ${RUNTIMES_LIST})
     )
   # Make the main 'build' target depend on this one
   add_dependencies(build ${RID_TARGET_NAME})
+  add_dependencies(${RID_TARGET_NAME} process)
 endforeach()
 
 # --- Other Utility Targets ---
 
 # Test target - dependent on build
 add_custom_target(test
-    COMMAND dotnet test ${SOLUTION_FILE} --configuration Release --no-build --verbosity normal
+    COMMAND dotnet test "${SOLUTION_FILE}" --configuration Release --no-build --verbosity normal
     DEPENDS build
     COMMENT "Running unit tests"
 )
@@ -156,10 +155,10 @@ add_custom_target(format
 # Documentation target - dependent on build
 add_custom_target(doc
     COMMAND dotnet tool install --global docfx || echo "DocFX already installed"
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/docs
-    COMMAND docfx init -q -o ${CMAKE_BINARY_DIR}/docs || echo "DocFX project exists"
-    COMMAND docfx metadata ${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json
-    COMMAND docfx build ${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json -o ${CMAKE_BINARY_DIR}/docs/site
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/docs"
+    COMMAND docfx init -q -o "${CMAKE_BINARY_DIR}/docs" || echo "DocFX project exists"
+    COMMAND docfx metadata "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json"
+    COMMAND docfx build "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json" -o "${CMAKE_BINARY_DIR}/docs/site"
     DEPENDS build
     COMMENT "Generating API documentation with DocFX"
 )
@@ -175,10 +174,10 @@ add_custom_target(install-hooks
 
 # Clean target
 add_custom_target(clean-all
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${GENERATED_DIR}
-    COMMAND find ${CMAKE_SOURCE_DIR} -name "obj" -type d -exec rm -rf {} + || true
-    COMMAND find ${CMAKE_SOURCE_DIR} -name "bin" -type d -exec rm -rf {} + || true
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${CMAKE_BINARY_DIR}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${GENERATED_DIR}"
+    COMMAND find "${CMAKE_SOURCE_DIR}" -name "obj" -type d -exec rm -rf {} + || true
+    COMMAND find "${CMAKE_SOURCE_DIR}" -name "bin" -type d -exec rm -rf {} + || true
     COMMENT "Cleaning all build artifacts"
 )
 
