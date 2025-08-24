@@ -1,18 +1,55 @@
 cmake_minimum_required(VERSION 3.20)
 project(OpenLanguage)
 
-# Set variables
+# --- RID Detection and Configuration ---
+
+# Detect the architecture
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64)$")
+  set(DETECTED_ARCH "x64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64)$")
+  set(DETECTED_ARCH "arm64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(i[3-6]86|x86)$")
+  set(DETECTED_ARCH "x86")
+else()
+  set(DETECTED_ARCH ${CMAKE_SYSTEM_PROCESSOR})
+endif()
+
+# Detect the OS
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(DETECTED_OS "linux")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(DETECTED_OS "osx")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  set(DETECTED_OS "win")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+  set(DETECTED_OS "freebsd")
+endif()
+
+# Combine to form the RID, if possible
+if(DEFINED DETECTED_OS AND DEFINED DETECTED_ARCH)
+  set(DETECTED_RID "${DETECTED_OS}-${DETECTED_ARCH}")
+  message(STATUS "Detected .NET Runtime Identifier (RID): ${DETECTED_RID}")
+else()
+  message(WARNING "Could not automatically determine .NET RID. You must specify it with -D RUNTIMES=...")
+  set(DETECTED_RID "")
+endif()
+
+# Allow user to override the RIDs. Defaults to the detected RID.
+set(RUNTIMES "${DETECTED_RID}" CACHE STRING "Semicolon-separated list of .NET RIDs for AOT compilation.")
+message(STATUS "Configured to build for RIDs: ${RUNTIMES}")
+
+# --- Project Variables ---
 set(SOLUTION_FILE "${CMAKE_SOURCE_DIR}/OpenLanguage.sln")
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage")
 set(GENERATED_DIR "${PROJECT_DIR}/Generated")
 set(TEST_PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage.Test")
 
+# --- File Pre-processing ---
 # Find all .y and .lex files
 file(GLOB_RECURSE YACC_FILES "${PROJECT_DIR}/**/*.y")
 file(GLOB_RECURSE LEX_FILES "${PROJECT_DIR}/**/*.lex")
 
 # Exclude files that are already in the Generated directory to avoid reprocessing.
-# The regex "^${GENERATED_DIR}" matches any path that *starts with* the Generated directory's path.
 list(FILTER YACC_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
 list(FILTER LEX_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
 
@@ -30,12 +67,9 @@ add_custom_command(
 
 # Process .y files
 foreach(YACC_FILE ${YACC_FILES})
-  # Get relative path from OpenLanguage directory
   file(RELATIVE_PATH REL_PATH ${PROJECT_DIR} ${YACC_FILE})
   get_filename_component(REL_DIR ${REL_PATH} DIRECTORY)
   get_filename_component(FILENAME ${YACC_FILE} NAME)
-
-  # Create output directory structure
   set(OUTPUT_DIR "${GENERATED_DIR}/${REL_DIR}")
   set(OUTPUT_FILE "${OUTPUT_DIR}/${FILENAME}")
 
@@ -49,12 +83,9 @@ endforeach()
 
 # Process .lex files
 foreach(LEX_FILE ${LEX_FILES})
-  # Get relative path from OpenLanguage directory
   file(RELATIVE_PATH REL_PATH ${PROJECT_DIR} ${LEX_FILE})
   get_filename_component(REL_DIR ${REL_PATH} DIRECTORY)
   get_filename_component(FILENAME ${LEX_FILE} NAME)
-
-  # Create output directory structure
   set(OUTPUT_DIR "${GENERATED_DIR}/${REL_DIR}")
   set(OUTPUT_FILE "${OUTPUT_DIR}/${FILENAME}")
 
@@ -66,13 +97,40 @@ foreach(LEX_FILE ${LEX_FILES})
     )
 endforeach()
 
-# Build target - dependent on process
+# --- Main Build Targets ---
+
+# Umbrella build target that will depend on all RID-specific builds
 add_custom_target(build
-    COMMAND dotnet publish ${SOLUTION_FILE} --configuration Release --output ${CMAKE_BINARY_DIR}/publish
-    WORKING_DIRECTORY ${PROJECT_DIR}
     DEPENDS process
-    COMMENT "Building and publishing OpenLanguage solution"
+    COMMENT "Building solution for specified RIDs"
 )
+
+# Create a separate build target for each RID for concurrent compilation
+string(REPLACE ";" " " RUNTIMES_LIST "${RUNTIMES}")
+foreach(RID ${RUNTIMES_LIST})
+  if(NOT RID)
+    continue() # Skip if the RID list is empty
+  endif()
+
+  # Sanitize the RID to create a valid CMake target name (e.g., win-x64 -> win_x64)
+  string(REPLACE "-" "_" RID_SAFE ${RID})
+  set(RID_TARGET_NAME "build_${RID_SAFE}")
+
+  add_custom_target(${RID_TARGET_NAME}
+        COMMAND dotnet publish ${SOLUTION_FILE}
+                --configuration Release
+                -r ${RID}
+                --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${RID}"
+                --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${RID}"
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Building and publishing for RID: ${RID}"
+        VERBATIM
+    )
+  # Make the main 'build' target depend on this one
+  add_dependencies(build ${RID_TARGET_NAME})
+endforeach()
+
+# --- Other Utility Targets ---
 
 # Test target - dependent on build
 add_custom_target(test
@@ -83,7 +141,7 @@ add_custom_target(test
 
 # Publish target - dependent on build
 add_custom_target(publish
-    COMMAND dotnet pack ${PROJECT_DIR}/OpenLanguage.csproj --configuration Release --output ${CMAKE_BINARY_DIR}/packages --no-build
+    COMMAND dotnet pack ${PROJECT_DIR}/OpenLanguage.csproj --configuration Release --property:OutputPath="${CMAKE_BINARY_DIR}/packages" --no-build
     COMMAND echo "Ready to publish to NuGet. Run: dotnet nuget push ${CMAKE_BINARY_DIR}/packages/*.nupkg --source https://api.nuget.org/v3/index.json"
     DEPENDS build
     COMMENT "Packaging for NuGet publication"
@@ -125,4 +183,4 @@ add_custom_target(clean-all
 )
 
 # Default target
-add_custom_target(default ALL DEPENDS process)
+add_custom_target(default ALL DEPENDS process build)
