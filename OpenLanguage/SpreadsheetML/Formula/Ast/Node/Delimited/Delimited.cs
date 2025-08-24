@@ -34,11 +34,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Left is O l)
+            {
                 yield return l;
+            }
             if (Delimiter is O d)
+            {
                 yield return d;
+            }
             if (Right is O r)
+            {
                 yield return r;
+            }
             yield break;
         }
 

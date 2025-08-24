@@ -51,11 +51,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (FunctionIdentifier is O funcImp)
+            {
                 yield return funcImp;
+            }
             foreach (ExpressionNode child in Arguments)
             {
                 if (child is O childImp)
+                {
                     yield return childImp;
+                }
             }
         }
 

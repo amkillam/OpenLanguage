@@ -1,6 +1,6 @@
 using System;
 
-namespace OpenLanguage.SpreadsheetML.Formula
+namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
     internal static class Precedence
     {

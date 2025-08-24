@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using OpenLanguage.WordprocessingML.Expression;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents the type of location target for a GOTOBUTTON field.
@@ -50,12 +51,12 @@ namespace OpenLanguage
         /// <summary>
         /// The location to jump to (field-argument-1, required).
         /// </summary>
-        public Expression? TargetLocation { get; set; }
+        public Expression.Expression? TargetLocation { get; set; }
 
         /// <summary>
         /// The text or graphic "button" that appears in the document (field-argument-2, required).
         /// </summary>
-        public Expression? ButtonDisplayContent { get; set; }
+        public Expression.Expression? ButtonDisplayContent { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the GoToButtonFieldInstruction class.

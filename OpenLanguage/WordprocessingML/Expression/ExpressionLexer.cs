@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using OpenLanguage.WordprocessingML.Operators;
 
 namespace OpenLanguage.WordprocessingML.Expression
 {
@@ -129,7 +129,7 @@ namespace OpenLanguage.WordprocessingML.Expression
             {
                 string left = LeftOperand ?? string.Empty;
                 string op = Operator.HasValue
-                    ? ExpressionLexer.OperatorToString(Operator.Value)
+                    ? ComparisonOperatorExtensions.OperatorToString(Operator.Value)
                     : string.Empty;
                 string right = RightOperand ?? string.Empty;
                 return $"{left} {op} {right}";
@@ -572,44 +572,6 @@ namespace OpenLanguage.WordprocessingML.Expression
                 "<" => nextChar == '=' || nextChar == '>',
                 ">" => nextChar == '=',
                 _ => false,
-            };
-        }
-
-        /// <summary>
-        /// Parses a comparison operator string into a ComparisonOperator enum value.
-        /// </summary>
-        /// <param name="operatorText">The operator text to parse.</param>
-        /// <returns>The corresponding ComparisonOperator value.</returns>
-        public static ComparisonOperator ParseOperator(string? operatorText)
-        {
-            return operatorText?.Trim() switch
-            {
-                "=" => ComparisonOperator.Equal,
-                "<>" => ComparisonOperator.NotEqual,
-                "<" => ComparisonOperator.LessThan,
-                "<=" => ComparisonOperator.LessThanOrEqual,
-                ">" => ComparisonOperator.GreaterThan,
-                ">=" => ComparisonOperator.GreaterThanOrEqual,
-                _ => throw new ArgumentException($"Unknown comparison operator: {operatorText}"),
-            };
-        }
-
-        /// <summary>
-        /// Converts a ComparisonOperator enum value to its string representation.
-        /// </summary>
-        /// <param name="op">The operator to convert.</param>
-        /// <returns>The string representation of the operator.</returns>
-        public static string OperatorToString(ComparisonOperator op)
-        {
-            return op switch
-            {
-                ComparisonOperator.Equal => "=",
-                ComparisonOperator.NotEqual => "<>",
-                ComparisonOperator.LessThan => "<",
-                ComparisonOperator.LessThanOrEqual => "<=",
-                ComparisonOperator.GreaterThan => ">",
-                ComparisonOperator.GreaterThanOrEqual => ">=",
-                _ => throw new ArgumentException($"Unknown comparison operator: {op}"),
             };
         }
     }

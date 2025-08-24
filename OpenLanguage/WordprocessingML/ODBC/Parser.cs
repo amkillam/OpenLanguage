@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Data.Odbc;
 using System.Linq;
-using System.Text;
 
-namespace OpenLanguage.ODBC
+namespace OpenLanguage.WordprocessingML.ODBC
 {
     /// <summary>
     /// Represents the type of SQL command being executed.
@@ -126,7 +123,8 @@ namespace OpenLanguage.ODBC
                         new char[] { ' ', '\t', '\n', '\r' },
                         StringSplitOptions.RemoveEmptyEntries
                     )
-                    .FirstOrDefault() ?? string.Empty;
+                    .FirstOrDefault()
+                ?? string.Empty;
 
             // SQL keywords
             if (
@@ -212,7 +210,8 @@ namespace OpenLanguage.ODBC
                         new char[] { ' ', '\t', '\n', '\r' },
                         StringSplitOptions.RemoveEmptyEntries
                     )
-                    .FirstOrDefault() ?? string.Empty;
+                    .FirstOrDefault()
+                ?? string.Empty;
 
             switch (firstWord)
             {

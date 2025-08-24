@@ -11,6 +11,11 @@ set(TEST_PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage.Test")
 file(GLOB_RECURSE YACC_FILES "${PROJECT_DIR}/**/*.y")
 file(GLOB_RECURSE LEX_FILES "${PROJECT_DIR}/**/*.lex")
 
+# Exclude files that are already in the Generated directory to avoid reprocessing.
+# The regex "^${GENERATED_DIR}" matches any path that *starts with* the Generated directory's path.
+list(FILTER YACC_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
+list(FILTER LEX_FILES EXCLUDE REGEX "^${GENERATED_DIR}")
+
 # Custom target to process .y and .lex files
 add_custom_target(process ALL
     COMMENT "Processing .y and .lex files with cpp"
@@ -37,8 +42,7 @@ foreach(YACC_FILE ${YACC_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND cpp -E -P ${YACC_FILE} -o ${OUTPUT_FILE}
-        DEPENDS ${YACC_FILE}
+        COMMAND cpp -P ${YACC_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
         COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE}"
     )
 endforeach()
@@ -57,8 +61,7 @@ foreach(LEX_FILE ${LEX_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND cpp -E -P ${LEX_FILE} -o ${OUTPUT_FILE}
-        DEPENDS ${LEX_FILE}
+        COMMAND cpp -P ${LEX_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
         COMMENT "Processing ${LEX_FILE} -> ${OUTPUT_FILE}"
     )
 endforeach()
@@ -66,6 +69,7 @@ endforeach()
 # Build target - dependent on process
 add_custom_target(build
     COMMAND dotnet publish ${SOLUTION_FILE} --configuration Release --output ${CMAKE_BINARY_DIR}/publish
+    WORKING_DIRECTORY ${PROJECT_DIR}
     DEPENDS process
     COMMENT "Building and publishing OpenLanguage solution"
 )

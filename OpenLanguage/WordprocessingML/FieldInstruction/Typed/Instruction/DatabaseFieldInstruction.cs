@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Linq;
+using OpenLanguage.WordprocessingML.ODBC;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed DATABASE field instruction.
@@ -41,7 +42,7 @@ namespace OpenLanguage
         /// Switch: \f field-argument
         /// Specifies the integral record number of the first data record to insert.
         /// </summary>
-        public int? FirstRecord { get; set; }
+        public Int32? FirstRecord { get; set; }
 
         /// <summary>
         /// Switch: \h
@@ -74,7 +75,7 @@ namespace OpenLanguage
         /// Switch: \t field-argument
         /// Specifies the integral record number of the last data record to insert.
         /// </summary>
-        public int? LastRecord { get; set; }
+        public Int32? LastRecord { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the DatabaseFieldInstruction class.
@@ -119,7 +120,7 @@ namespace OpenLanguage
             }
 
             // Parse switches
-            for (int i = 0; i < Source.Arguments.Count; i++)
+            for (Int32 i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)
@@ -182,7 +183,7 @@ namespace OpenLanguage
         /// <summary>
         /// Gets the next argument after the specified switch index.
         /// </summary>
-        private string GetNextArgumentAfter(int switchIndex)
+        private string GetNextArgumentAfter(Int32 switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -200,10 +201,10 @@ namespace OpenLanguage
         /// </summary>
         private DatabaseTableAttributes? ParseTableAttributes(string? attributesText)
         {
-            if (string.IsNullOrWhiteSpace(attributesText))
-                return null;
-
-            if (int.TryParse(attributesText.Trim(), out int attributeValue))
+            if (
+                !string.IsNullOrWhiteSpace(attributesText)
+                && Int32.TryParse(attributesText.Trim(), out Int32 attributeValue)
+            )
             {
                 return (DatabaseTableAttributes)attributeValue;
             }
@@ -214,12 +215,12 @@ namespace OpenLanguage
         /// <summary>
         /// Parses an integer argument from a string value.
         /// </summary>
-        private int? ParseIntegerArgument(string? argumentText)
+        private Int32? ParseIntegerArgument(string? argumentText)
         {
-            if (string.IsNullOrWhiteSpace(argumentText))
-                return null;
-
-            if (int.TryParse(argumentText.Trim(), out int value))
+            if (
+                !string.IsNullOrWhiteSpace(argumentText)
+                && Int32.TryParse(argumentText.Trim(), out Int32 value)
+            )
             {
                 return value;
             }
@@ -232,15 +233,13 @@ namespace OpenLanguage
         /// </summary>
         private DatabaseTableFormat? ParseTableFormat(string? formatText)
         {
-            if (string.IsNullOrWhiteSpace(formatText))
-                return null;
-
-            if (int.TryParse(formatText.Trim(), out int formatValue))
+            if (
+                !string.IsNullOrWhiteSpace(formatText)
+                && Int32.TryParse(formatText.Trim(), out Int32 formatValue)
+                && (formatValue >= 0 && formatValue <= 41)
+            )
             {
-                if (formatValue >= 0 && formatValue <= 41)
-                {
-                    return (DatabaseTableFormat)formatValue;
-                }
+                return (DatabaseTableFormat)formatValue;
             }
 
             return null;
@@ -252,7 +251,9 @@ namespace OpenLanguage
         private DatabaseOptimizationFlag? ParseOptimizationFlag(string? flagText)
         {
             if (string.IsNullOrWhiteSpace(flagText))
+            {
                 return null;
+            }
 
             return flagText.Trim().ToLowerInvariant() switch
             {
@@ -271,20 +272,17 @@ namespace OpenLanguage
         /// </summary>
         private DatabaseQuery? ParseDatabaseQuery(string? queryText)
         {
-            if (string.IsNullOrWhiteSpace(queryText))
-                return null;
-
-            try
+            if (!string.IsNullOrWhiteSpace(queryText))
             {
-                // Unescape quotes in query text (backslash-escaped quotes)
-                string unescapedQuery = queryText.Replace("\\\"", "\"");
-                return new DatabaseQuery(unescapedQuery);
+                try
+                {
+                    // Unescape quotes in query text (backslash-escaped quotes)
+                    string unescapedQuery = queryText.Replace("\\\"", "\"");
+                    return new DatabaseQuery(unescapedQuery);
+                }
+                catch { }
             }
-            catch
-            {
-                // If parsing fails, return null
-                return null;
-            }
+            return null;
         }
 
         /// <summary>
@@ -323,7 +321,7 @@ namespace OpenLanguage
         /// </summary>
         private bool IsSwitchArgument(FieldArgument argument)
         {
-            int argumentIndex = Source.Arguments.IndexOf(argument);
+            Int32 argumentIndex = Source.Arguments.IndexOf(argument);
             if (argumentIndex > 0)
             {
                 FieldArgument previousArg = Source.Arguments[argumentIndex - 1];

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents the primary switch types for EQ field instructions.
@@ -150,19 +150,19 @@ namespace OpenLanguage
         /// Switch: \co field-argument
         /// Number of columns in the array (default is 1).
         /// </summary>
-        public int? ColumnCount { get; set; }
+        public Int32? ColumnCount { get; set; }
 
         /// <summary>
         /// Switch: \hs field-argument
         /// Horizontal spacing between columns in points.
         /// </summary>
-        public int? HorizontalSpacing { get; set; }
+        public Int32? HorizontalSpacing { get; set; }
 
         /// <summary>
         /// Switch: \vs field-argument
         /// Vertical spacing between lines in points.
         /// </summary>
-        public int? VerticalSpacing { get; set; }
+        public Int32? VerticalSpacing { get; set; }
 
         // Bracket switches (\b)
         /// <summary>
@@ -188,13 +188,13 @@ namespace OpenLanguage
         /// Switch: \ba field-argument
         /// Backward displacement in points.
         /// </summary>
-        public int? BackwardDisplacement { get; set; }
+        public Int32? BackwardDisplacement { get; set; }
 
         /// <summary>
         /// Switch: \fo field-argument
         /// Forward displacement in points.
         /// </summary>
-        public int? ForwardDisplacement { get; set; }
+        public Int32? ForwardDisplacement { get; set; }
 
         /// <summary>
         /// Switch: \li
@@ -239,25 +239,25 @@ namespace OpenLanguage
         /// Switch: \ai field-argument
         /// Space above line in points (default 2).
         /// </summary>
-        public int? SpaceAboveLine { get; set; }
+        public Int32? SpaceAboveLine { get; set; }
 
         /// <summary>
         /// Switch: \di field-argument
         /// Space below line in points.
         /// </summary>
-        public int? SpaceBelowLine { get; set; }
+        public Int32? SpaceBelowLine { get; set; }
 
         /// <summary>
         /// Switch: \do field-argument
         /// Move argument below adjacent text by points (default 2).
         /// </summary>
-        public int? MoveDown { get; set; }
+        public Int32? MoveDown { get; set; }
 
         /// <summary>
         /// Switch: \up field-argument
         /// Move argument above adjacent text by points.
         /// </summary>
-        public int? MoveUp { get; set; }
+        public Int32? MoveUp { get; set; }
 
         // Box switches (\x)
         /// <summary>
@@ -326,7 +326,7 @@ namespace OpenLanguage
             }
 
             // Parse additional switches
-            for (int i = 0; i < Source.Arguments.Count; i++)
+            for (Int32 i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)
@@ -369,13 +369,17 @@ namespace OpenLanguage
                 " ",
                 Source.Arguments.Select(arg => arg.Value?.ToString() ?? string.Empty)
             );
-            int startIndex = fullText.IndexOf('(');
+            Int32 startIndex = fullText.IndexOf('(');
             if (startIndex == -1)
+            {
                 return string.Empty;
+            }
 
-            int endIndex = fullText.LastIndexOf(')');
+            Int32 endIndex = fullText.LastIndexOf(')');
             if (endIndex == -1 || endIndex <= startIndex)
+            {
                 return string.Empty;
+            }
 
             return fullText.Substring(startIndex + 1, endIndex - startIndex - 1).Trim();
         }
@@ -386,19 +390,19 @@ namespace OpenLanguage
         private List<string> ParseArgumentList(string argumentListText)
         {
             List<string> arguments = new List<string>();
-            if (string.IsNullOrWhiteSpace(argumentListText))
-                return arguments;
-
-            // Use comma as separator for decimal point implementations, semicolon for comma decimal implementations
-            char separator = argumentListText.Contains(';') ? ';' : ',';
-            string[] parts = argumentListText.Split(separator);
-
-            foreach (string part in parts)
+            if (!string.IsNullOrWhiteSpace(argumentListText))
             {
-                string trimmedPart = part.Trim();
-                if (!string.IsNullOrEmpty(trimmedPart))
+                // Use comma as separator for decimal point implementations, semicolon for comma decimal implementations
+                char separator = argumentListText.Contains(';') ? ';' : ',';
+                string[] parts = argumentListText.Split(separator);
+
+                foreach (string part in parts)
                 {
-                    arguments.Add(trimmedPart);
+                    string trimmedPart = part.Trim();
+                    if (!string.IsNullOrEmpty(trimmedPart))
+                    {
+                        arguments.Add(trimmedPart);
+                    }
                 }
             }
 
@@ -408,28 +412,40 @@ namespace OpenLanguage
         /// <summary>
         /// Parses individual switches and their arguments.
         /// </summary>
-        private void ParseSwitch(string switchValue, int switchIndex)
+        private void ParseSwitch(string switchValue, Int32 switchIndex)
         {
             switch (switchValue.ToLowerInvariant())
             {
                 // Array switches
                 case "\\ac":
                     if (PrimarySwitch == EqPrimarySwitch.Array)
+                    {
                         ArrayAlignment = EqArrayAlignment.Center;
+                    }
                     else if (PrimarySwitch == EqPrimarySwitch.Overlay)
+                    {
                         OverlayAlignment = EqOverlayAlignment.Center;
+                    }
                     break;
                 case "\\al":
                     if (PrimarySwitch == EqPrimarySwitch.Array)
+                    {
                         ArrayAlignment = EqArrayAlignment.Left;
+                    }
                     else if (PrimarySwitch == EqPrimarySwitch.Overlay)
+                    {
                         OverlayAlignment = EqOverlayAlignment.Left;
+                    }
                     break;
                 case "\\ar":
                     if (PrimarySwitch == EqPrimarySwitch.Array)
+                    {
                         ArrayAlignment = EqArrayAlignment.Right;
+                    }
                     else if (PrimarySwitch == EqPrimarySwitch.Overlay)
+                    {
                         OverlayAlignment = EqOverlayAlignment.Right;
+                    }
                     break;
                 case "\\co":
                     ColumnCount = GetIntegerArgumentAfter(switchIndex);
@@ -513,7 +529,7 @@ namespace OpenLanguage
         /// <summary>
         /// Gets the integer argument following the specified switch index.
         /// </summary>
-        private int? GetIntegerArgumentAfter(int switchIndex)
+        private Int32? GetIntegerArgumentAfter(Int32 switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -521,7 +537,7 @@ namespace OpenLanguage
                 if (nextArg.Type != FieldArgumentType.Switch)
                 {
                     string argValue = nextArg.Value?.ToString() ?? "";
-                    if (int.TryParse(argValue, out int result))
+                    if (int.TryParse(argValue, out Int32 result))
                     {
                         return result;
                     }
@@ -533,7 +549,7 @@ namespace OpenLanguage
         /// <summary>
         /// Gets the character argument following the specified switch index.
         /// </summary>
-        private char? GetCharacterArgumentAfter(int switchIndex)
+        private char? GetCharacterArgumentAfter(Int32 switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -558,41 +574,70 @@ namespace OpenLanguage
             switch (PrimarySwitch)
             {
                 case EqPrimarySwitch.Bracket:
+                {
                     if (ArgumentList.Count != 1)
+                    {
                         throw new ArgumentException(
                             "Bracket (\\b) switch requires exactly one argument"
                         );
+                    }
                     break;
+                }
+
                 case EqPrimarySwitch.Displacement:
+                {
                     if (ArgumentList.Count != 0)
+                    {
                         throw new ArgumentException(
                             "Displacement (\\d) switch requires no arguments"
                         );
+                    }
                     break;
+                }
+
                 case EqPrimarySwitch.Fraction:
+                {
                     if (ArgumentList.Count != 2)
+                    {
                         throw new ArgumentException(
                             "Fraction (\\f) switch requires exactly two arguments (numerator, denominator)"
                         );
+                    }
                     break;
+                }
+
                 case EqPrimarySwitch.Integral:
+                {
                     if (ArgumentList.Count != 3)
+                    {
                         throw new ArgumentException(
                             "Integral (\\i) switch requires exactly three arguments (lower limit, upper limit, integrand)"
                         );
+                    }
                     break;
+                }
+
                 case EqPrimarySwitch.Radical:
+                {
                     if (ArgumentList.Count < 1 || ArgumentList.Count > 2)
+                    {
                         throw new ArgumentException(
                             "Radical (\\r) switch requires one or two arguments"
                         );
+                    }
                     break;
+                }
+
                 case EqPrimarySwitch.Box:
+                {
                     if (ArgumentList.Count != 1)
+                    {
                         throw new ArgumentException(
                             "Box (\\x) switch requires exactly one argument"
                         );
+                    }
                     break;
+                }
             }
         }
 
@@ -647,195 +692,195 @@ namespace OpenLanguage
 
         private void AddArraySwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Array)
-                return;
-
-            if (ArrayAlignment.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Array)
             {
-                result.Add(
-                    ArrayAlignment.Value switch
-                    {
-                        EqArrayAlignment.Center => "\\ac",
-                        EqArrayAlignment.Left => "\\al",
-                        EqArrayAlignment.Right => "\\ar",
-                        _ => "",
-                    }
-                );
-            }
+                if (ArrayAlignment.HasValue)
+                {
+                    result.Add(
+                        ArrayAlignment.Value switch
+                        {
+                            EqArrayAlignment.Center => "\\ac",
+                            EqArrayAlignment.Left => "\\al",
+                            EqArrayAlignment.Right => "\\ar",
+                            _ => "",
+                        }
+                    );
+                }
 
-            if (ColumnCount.HasValue)
-            {
-                result.Add("\\co");
-                result.Add(ColumnCount.Value.ToString());
-            }
+                if (ColumnCount.HasValue)
+                {
+                    result.Add("\\co");
+                    result.Add(ColumnCount.Value.ToString());
+                }
 
-            if (HorizontalSpacing.HasValue)
-            {
-                result.Add("\\hs");
-                result.Add(HorizontalSpacing.Value.ToString());
-            }
+                if (HorizontalSpacing.HasValue)
+                {
+                    result.Add("\\hs");
+                    result.Add(HorizontalSpacing.Value.ToString());
+                }
 
-            if (VerticalSpacing.HasValue)
-            {
-                result.Add("\\vs");
-                result.Add(VerticalSpacing.Value.ToString());
+                if (VerticalSpacing.HasValue)
+                {
+                    result.Add("\\vs");
+                    result.Add(VerticalSpacing.Value.ToString());
+                }
             }
         }
 
         private void AddBracketSwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Bracket)
-                return;
-
-            if (BothBracketCharacter.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Bracket)
             {
-                result.Add("\\bc");
-                result.Add($"\\ {BothBracketCharacter.Value}");
-            }
+                if (BothBracketCharacter.HasValue)
+                {
+                    result.Add("\\bc");
+                    result.Add($"\\ {BothBracketCharacter.Value}");
+                }
 
-            if (LeftBracketCharacter.HasValue)
-            {
-                result.Add("\\lc");
-                result.Add($"\\ {LeftBracketCharacter.Value}");
-            }
+                if (LeftBracketCharacter.HasValue)
+                {
+                    result.Add("\\lc");
+                    result.Add($"\\ {LeftBracketCharacter.Value}");
+                }
 
-            if (RightBracketCharacter.HasValue)
-            {
-                result.Add("\\rc");
-                result.Add($"\\ {RightBracketCharacter.Value}");
+                if (RightBracketCharacter.HasValue)
+                {
+                    result.Add("\\rc");
+                    result.Add($"\\ {RightBracketCharacter.Value}");
+                }
             }
         }
 
         private void AddDisplacementSwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Displacement)
-                return;
-
-            if (BackwardDisplacement.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Displacement)
             {
-                result.Add("\\ba");
-                result.Add(BackwardDisplacement.Value.ToString());
-            }
+                if (BackwardDisplacement.HasValue)
+                {
+                    result.Add("\\ba");
+                    result.Add(BackwardDisplacement.Value.ToString());
+                }
 
-            if (ForwardDisplacement.HasValue)
-            {
-                result.Add("\\fo");
-                result.Add(ForwardDisplacement.Value.ToString());
-            }
+                if (ForwardDisplacement.HasValue)
+                {
+                    result.Add("\\fo");
+                    result.Add(ForwardDisplacement.Value.ToString());
+                }
 
-            if (UnderlineSpace)
-            {
-                result.Add("\\li");
+                if (UnderlineSpace)
+                {
+                    result.Add("\\li");
+                }
             }
         }
 
         private void AddIntegralSwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Integral)
-                return;
-
-            if (FixedHeightCharacter.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Integral)
             {
-                result.Add("\\fc");
-                result.Add($"\\ {FixedHeightCharacter.Value}");
-            }
+                if (FixedHeightCharacter.HasValue)
+                {
+                    result.Add("\\fc");
+                    result.Add($"\\ {FixedHeightCharacter.Value}");
+                }
 
-            if (InlineFormat)
-            {
-                result.Add("\\in");
-            }
+                if (InlineFormat)
+                {
+                    result.Add("\\in");
+                }
 
-            if (IntegralSymbol.HasValue)
-            {
-                result.Add(
-                    IntegralSymbol.Value switch
-                    {
-                        EqIntegralSymbol.Product => "\\pr",
-                        EqIntegralSymbol.Summation => "\\su",
-                        _ => "",
-                    }
-                );
-            }
+                if (IntegralSymbol.HasValue)
+                {
+                    result.Add(
+                        IntegralSymbol.Value switch
+                        {
+                            EqIntegralSymbol.Product => "\\pr",
+                            EqIntegralSymbol.Summation => "\\su",
+                            _ => "",
+                        }
+                    );
+                }
 
-            if (VariableHeightCharacter.HasValue)
-            {
-                result.Add("\\vc");
-                result.Add($"\\ {VariableHeightCharacter.Value}");
+                if (VariableHeightCharacter.HasValue)
+                {
+                    result.Add("\\vc");
+                    result.Add($"\\ {VariableHeightCharacter.Value}");
+                }
             }
         }
 
         private void AddOverlaySwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Overlay)
-                return;
-
-            if (OverlayAlignment.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Overlay)
             {
-                result.Add(
-                    OverlayAlignment.Value switch
-                    {
-                        EqOverlayAlignment.Center => "\\ac",
-                        EqOverlayAlignment.Left => "\\al",
-                        EqOverlayAlignment.Right => "\\ar",
-                        _ => "",
-                    }
-                );
+                if (OverlayAlignment.HasValue)
+                {
+                    result.Add(
+                        OverlayAlignment.Value switch
+                        {
+                            EqOverlayAlignment.Center => "\\ac",
+                            EqOverlayAlignment.Left => "\\al",
+                            EqOverlayAlignment.Right => "\\ar",
+                            _ => "",
+                        }
+                    );
+                }
             }
         }
 
         private void AddScriptSwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Script)
-                return;
-
-            if (SpaceAboveLine.HasValue)
+            if (PrimarySwitch == EqPrimarySwitch.Script)
             {
-                result.Add("\\ai");
-                result.Add(SpaceAboveLine.Value.ToString());
-            }
+                if (SpaceAboveLine.HasValue)
+                {
+                    result.Add("\\ai");
+                    result.Add(SpaceAboveLine.Value.ToString());
+                }
 
-            if (SpaceBelowLine.HasValue)
-            {
-                result.Add("\\di");
-                result.Add(SpaceBelowLine.Value.ToString());
-            }
+                if (SpaceBelowLine.HasValue)
+                {
+                    result.Add("\\di");
+                    result.Add(SpaceBelowLine.Value.ToString());
+                }
 
-            if (MoveDown.HasValue)
-            {
-                result.Add("\\do");
-                result.Add(MoveDown.Value.ToString());
-            }
+                if (MoveDown.HasValue)
+                {
+                    result.Add("\\do");
+                    result.Add(MoveDown.Value.ToString());
+                }
 
-            if (MoveUp.HasValue)
-            {
-                result.Add("\\up");
-                result.Add(MoveUp.Value.ToString());
+                if (MoveUp.HasValue)
+                {
+                    result.Add("\\up");
+                    result.Add(MoveUp.Value.ToString());
+                }
             }
         }
 
         private void AddBoxSwitches(List<string> result)
         {
-            if (PrimarySwitch != EqPrimarySwitch.Box)
-                return;
-
-            if (BorderBottom)
+            if (PrimarySwitch == EqPrimarySwitch.Box)
             {
-                result.Add("\\bo");
-            }
+                if (BorderBottom)
+                {
+                    result.Add("\\bo");
+                }
 
-            if (BorderLeft)
-            {
-                result.Add("\\le");
-            }
+                if (BorderLeft)
+                {
+                    result.Add("\\le");
+                }
 
-            if (BorderRight)
-            {
-                result.Add("\\ri");
-            }
+                if (BorderRight)
+                {
+                    result.Add("\\ri");
+                }
 
-            if (BorderTop)
-            {
-                result.Add("\\to");
+                if (BorderTop)
+                {
+                    result.Add("\\to");
+                }
             }
         }
     }

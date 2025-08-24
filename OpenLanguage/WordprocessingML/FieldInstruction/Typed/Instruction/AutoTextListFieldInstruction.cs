@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed AUTOTEXTLIST field instruction.
@@ -41,17 +41,17 @@ namespace OpenLanguage
         /// <summary>
         /// Gets the next argument after the specified switch index.
         /// </summary>
-        private string GetNextArgumentAfter(int switchIndex)
+        private string GetNextArgumentAfter(Int32 switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
                 FieldArgument nextArg = Source.Arguments[switchIndex + 1];
                 if (nextArg.Type != FieldArgumentType.Switch)
                 {
-                    return nextArg.Value?.ToString() ?? "";
+                    return nextArg.Value?.ToString() ?? string.Empty;
                 }
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace OpenLanguage
             {
                 throw new ArgumentException("AUTOTEXTLIST field requires a display text argument");
             }
-            DisplayText = firstNonSwitch.Value?.ToString() ?? "";
+            DisplayText = firstNonSwitch.Value?.ToString() ?? string.Empty;
 
             // Parse switches
-            for (int i = 0; i < Source.Arguments.Count; i++)
+            for (Int32 i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)

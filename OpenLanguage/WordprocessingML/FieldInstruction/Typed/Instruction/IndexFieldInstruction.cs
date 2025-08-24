@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed INDEX field instruction.
@@ -312,7 +312,9 @@ namespace OpenLanguage
         private static LanguageIdentifier ParseLanguageId(string languageValue)
         {
             if (string.IsNullOrEmpty(languageValue))
+            {
                 throw new ArgumentException("Language ID cannot be null or empty");
+            }
 
             // Try to parse as LCID (numeric)
             if (int.TryParse(languageValue, out int lcid))

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed AUTOTEXT field instruction.
@@ -48,7 +48,7 @@ namespace OpenLanguage
                     "AUTOTEXT field requires an AutoText entry name argument"
                 );
             }
-            AutoTextEntryName = firstNonSwitch.Value?.ToString() ?? "";
+            AutoTextEntryName = firstNonSwitch.Value?.ToString() ?? string.Empty;
         }
 
         /// <summary>

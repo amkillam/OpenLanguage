@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed GREETINGLINE field instruction.
@@ -21,7 +20,7 @@ namespace OpenLanguage
         /// Switch: \f field-argument
         /// Specifies the format of the name included in the field.
         /// </summary>
-        public NameFormat? NameFormat { get; set; }
+        public NameFormat? Format { get; set; }
 
         /// <summary>
         /// Switch: \l field-argument
@@ -88,7 +87,7 @@ namespace OpenLanguage
                                 if (nextArg.Type != FieldArgumentType.Switch)
                                 {
                                     string formatValue = nextArg.Value?.ToString() ?? string.Empty;
-                                    NameFormat = ParseNameFormat(formatValue);
+                                    Format = ParseNameFormat(formatValue);
                                     i++; // Skip consumed argument
                                 }
                             }
@@ -119,16 +118,18 @@ namespace OpenLanguage
         private NameFormat ParseNameFormat(string formatValue)
         {
             if (string.IsNullOrEmpty(formatValue))
-                return OpenLanguage.NameFormat.FirstName;
+            {
+                return NameFormat.FirstName;
+            }
 
             return formatValue.ToLowerInvariant() switch
             {
-                "firstname" or "first" => OpenLanguage.NameFormat.FirstName,
-                "lastname" or "last" => OpenLanguage.NameFormat.LastName,
-                "firstlast" or "firstlastname" => OpenLanguage.NameFormat.FirstLastName,
-                "lastfirst" or "lastfirstname" => OpenLanguage.NameFormat.LastFirstName,
-                "titlelast" or "titlelastname" => OpenLanguage.NameFormat.TitleLastName,
-                "fullformal" or "full" => OpenLanguage.NameFormat.FullFormalName,
+                "firstname" or "first" => NameFormat.FirstName,
+                "lastname" or "last" => NameFormat.LastName,
+                "firstlast" or "firstlastname" => NameFormat.FirstLastName,
+                "lastfirst" or "lastfirstname" => NameFormat.LastFirstName,
+                "titlelast" or "titlelastname" => NameFormat.TitleLastName,
+                "fullformal" or "full" => NameFormat.FullFormalName,
                 _ => throw new ArgumentException($"Invalid name format: {formatValue}"),
             };
         }
@@ -141,7 +142,9 @@ namespace OpenLanguage
         private LanguageIdentifier ParseLanguageId(string languageValue)
         {
             if (string.IsNullOrEmpty(languageValue))
+            {
                 return LanguageIdentifier.EnglishUS;
+            }
 
             // Try to parse as LCID (numeric)
             if (int.TryParse(languageValue, out int lcid))
@@ -208,17 +211,17 @@ namespace OpenLanguage
                 result.Add(BlankNameText.Contains(" ") ? $"\"{BlankNameText}\"" : BlankNameText);
             }
 
-            if (NameFormat.HasValue)
+            if (Format.HasValue)
             {
                 result.Add("\\f");
-                string formatValue = NameFormat.Value switch
+                string formatValue = Format.Value switch
                 {
-                    OpenLanguage.NameFormat.FirstName => "FirstName",
-                    OpenLanguage.NameFormat.LastName => "LastName",
-                    OpenLanguage.NameFormat.FirstLastName => "FirstLastName",
-                    OpenLanguage.NameFormat.LastFirstName => "LastFirstName",
-                    OpenLanguage.NameFormat.TitleLastName => "TitleLastName",
-                    OpenLanguage.NameFormat.FullFormalName => "FullFormalName",
+                    NameFormat.FirstName => "FirstName",
+                    NameFormat.LastName => "LastName",
+                    NameFormat.FirstLastName => "FirstLastName",
+                    NameFormat.LastFirstName => "LastFirstName",
+                    NameFormat.TitleLastName => "TitleLastName",
+                    NameFormat.FullFormalName => "FullFormalName",
                     _ => "FirstName",
                 };
                 result.Add(formatValue);

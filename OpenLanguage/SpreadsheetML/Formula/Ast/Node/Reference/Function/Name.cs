@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -57,7 +55,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class BuiltInCommandFunctionNode : BuiltInFunctionNode
     {
-        QuestionMarkNode QuestionMark { get; set; }
+        public QuestionMarkNode QuestionMark { get; set; }
 
         public BuiltInCommandFunctionNode(
             string name,

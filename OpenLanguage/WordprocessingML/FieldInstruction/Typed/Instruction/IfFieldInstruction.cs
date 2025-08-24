@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenLanguage.WordprocessingML.Expression;
+using OpenLanguage.WordprocessingML.Operators;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed IF field instruction.
@@ -13,7 +15,7 @@ namespace OpenLanguage
         /// <summary>
         /// The first expression in the comparison (Expression-1, required).
         /// </summary>
-        public Expression FirstExpression { get; set; } = null!;
+        public Expression.Expression FirstExpression { get; set; } = null!;
 
         /// <summary>
         /// The comparison operator (required).
@@ -23,17 +25,17 @@ namespace OpenLanguage
         /// <summary>
         /// The second expression in the comparison (Expression-2, required).
         /// </summary>
-        public Expression SecondExpression { get; set; } = null!;
+        public Expression.Expression SecondExpression { get; set; } = null!;
 
         /// <summary>
         /// The expression to return if the comparison is true (field-argument-1, required).
         /// </summary>
-        public Expression TrueExpression { get; set; } = null!;
+        public Expression.Expression TrueExpression { get; set; } = null!;
 
         /// <summary>
         /// The expression to return if the comparison is false (field-argument-2, required).
         /// </summary>
-        public Expression FalseExpression { get; set; } = null!;
+        public Expression.Expression FalseExpression { get; set; } = null!;
 
         /// <summary>
         /// Initializes a new instance of the IfFieldInstruction class.
@@ -147,9 +149,6 @@ namespace OpenLanguage
                 ComparisonOperator.LessThanOrEqual => "<=",
                 ComparisonOperator.GreaterThan => ">",
                 ComparisonOperator.GreaterThanOrEqual => ">=",
-                _ => throw new InvalidOperationException(
-                    $"Unknown comparison operator: {ComparisonOperator}"
-                ),
             };
             result.Add(operatorString);
 

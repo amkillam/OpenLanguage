@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenLanguage.WordprocessingML.Expression;
+using OpenLanguage.WordprocessingML.Operators;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed COMPARE field instruction.
@@ -14,7 +16,7 @@ namespace OpenLanguage
         /// <summary>
         /// The first expression to compare.
         /// </summary>
-        public Expression? Expression1 { get; set; }
+        public Expression.Expression? Expression1 { get; set; }
 
         /// <summary>
         /// The comparison operator to use.
@@ -24,7 +26,7 @@ namespace OpenLanguage
         /// <summary>
         /// The second expression to compare.
         /// </summary>
-        public Expression? Expression2 { get; set; }
+        public Expression.Expression? Expression2 { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the CompareFieldInstruction class.

@@ -17,25 +17,25 @@
 
     <ItemGroup Label="OpenLanguage.SpreadsheetML.Formula">
         <YaccFile
-            Include="Generated/SpreadsheetML/Formula/Grammar/Formula.y">
-            <OutputFile>Generated/SpreadsheetML/Formula/Generated/Formula.Parser.Generated.cs</OutputFile>
+            Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
+            <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
             <Arguments>/gplex /nolines</Arguments>
         </YaccFile>
         <None
-            Include="Generated/SpreadsheetML/Formula/Generated/Formula.Parser.Generated.cs">
+            Include="Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
-            <DependentUpon>Formula.y</DependentUpon>
+            <DependentUpon>formula.y</DependentUpon>
         </None>
         <LexFile
-            Include="Generated/SpreadsheetML/Formula/Grammar/Formula.lex">
-            <OutputFile>Generated/SpreadsheetML/Formula/Generated/Formula.Lexer.Generated.cs</OutputFile>
+            Include="Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex">
+            <OutputFile>Generated/SpreadsheetML/Formula/Lang/Lex/Formula.Lexer.Generated.cs</OutputFile>
         </LexFile>
         <None
-            Include="Generated/SpreadsheetML/Formula/Generated/Formula.Lexer.Generated.cs">
+            Include="Generated/SpreadsheetML/Formula/Lang/Lex/Formula.Lexer.Generated.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
-            <DependentUpon>Formula.lex</DependentUpon>
+            <DependentUpon>formula.lex</DependentUpon>
         </None>
     </ItemGroup>
 

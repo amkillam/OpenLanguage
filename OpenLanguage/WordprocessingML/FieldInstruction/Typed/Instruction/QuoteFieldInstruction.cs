@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed QUOTE field instruction.
@@ -63,13 +63,13 @@ namespace OpenLanguage
         /// </summary>
         private void ParseSubFields()
         {
-            if (string.IsNullOrEmpty(QuoteText))
-                return;
+            if (!string.IsNullOrEmpty(QuoteText))
+            {
+                string[] forbiddenFields = { "AUTONUM", "AUTONUMLGL", "AUTONUMOUT", "SYMBOL" };
 
-            string[] forbiddenFields = { "AUTONUM", "AUTONUMLGL", "AUTONUMOUT", "SYMBOL" };
-
-            // Parse nested field instructions recursively
-            SubFields = ExtractNestedFields(QuoteText, forbiddenFields);
+                // Parse nested field instructions recursively
+                SubFields = ExtractNestedFields(QuoteText, forbiddenFields);
+            }
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace OpenLanguage
             List<FieldInstruction> extractedFields = new List<FieldInstruction>();
 
             // Parse nested field instructions using comprehensive field parser
-            int position = 0;
+            Int32 position = 0;
             while (position < text.Length)
             {
                 // Look for field instruction patterns
@@ -114,7 +114,7 @@ namespace OpenLanguage
         /// <returns>The parsed field instruction, or null if none found.</returns>
         private FieldInstruction? ParseNextFieldInstruction(
             string text,
-            ref int position,
+            ref Int32 position,
             string[] forbiddenFields
         )
         {
@@ -178,14 +178,16 @@ namespace OpenLanguage
         /// <returns>The parsed field instruction.</returns>
         private FieldInstruction? ParseFieldInstructionAt(
             string text,
-            int startPosition,
+            Int32 startPosition,
             string fieldType
         )
         {
             // Extract the field instruction and its arguments
-            int endPosition = FindFieldInstructionEnd(text, startPosition);
+            Int32 endPosition = FindFieldInstructionEnd(text, startPosition);
             if (endPosition == -1)
+            {
                 return null;
+            }
 
             string fieldText = text.Substring(startPosition, endPosition - startPosition + 1);
 
@@ -204,12 +206,12 @@ namespace OpenLanguage
         /// <param name="text">The text to search.</param>
         /// <param name="startPosition">The starting position.</param>
         /// <returns>The end position, or -1 if not found.</returns>
-        private int FindFieldInstructionEnd(string text, int startPosition)
+        private Int32 FindFieldInstructionEnd(string text, Int32 startPosition)
         {
             // Simple heuristic: find the next space, quote, or end of text that would terminate the field
-            int position = startPosition;
+            Int32 position = startPosition;
             bool inQuotes = false;
-            int depth = 0;
+            Int32 depth = 0;
 
             while (position < text.Length)
             {
@@ -222,14 +224,21 @@ namespace OpenLanguage
                 else if (!inQuotes)
                 {
                     if (current == '(' || current == '{')
-                        depth++;
-                    else if (current == ')' || current == '}')
-                        depth--;
-                    else if ((current == ' ' || current == '\t' || current == '\n') && depth == 0)
                     {
+                        depth++;
+                    }
+                    else if (current == ')' || current == '}')
+                    {
+                        depth--;
+                    }
+                    else if (
+                        (current == ' ' || current == '\t' || current == '\n')
+                        && depth == 0
                         // Check if this space terminates the field or is part of arguments
-                        if (IsFieldTerminator(text, position))
-                            return position - 1;
+                        && IsFieldTerminator(text, position)
+                    )
+                    {
+                        return position - 1;
                     }
                 }
 
@@ -245,15 +254,19 @@ namespace OpenLanguage
         /// <param name="text">The text to check.</param>
         /// <param name="position">The position to check.</param>
         /// <returns>True if this position terminates the field.</returns>
-        private bool IsFieldTerminator(string text, int position)
+        private bool IsFieldTerminator(string text, Int32 position)
         {
             // Look ahead to see if the next non-whitespace character starts a new field or regular text
-            int nextPos = position + 1;
+            Int32 nextPos = position + 1;
             while (nextPos < text.Length && char.IsWhiteSpace(text[nextPos]))
+            {
                 nextPos++;
+            }
 
             if (nextPos >= text.Length)
+            {
                 return true;
+            }
 
             // Check if the next text looks like a field instruction or regular text
             string remaining = text.Substring(nextPos);
@@ -272,7 +285,9 @@ namespace OpenLanguage
             foreach (string keyword in fieldKeywords)
             {
                 if (remaining.StartsWith(keyword, StringComparison.OrdinalIgnoreCase))
+                {
                     return true;
+                }
             }
 
             return false;
@@ -288,15 +303,15 @@ namespace OpenLanguage
             // Split the field text into tokens, respecting quotes and switches
             string[] tokens = TokenizeFieldText(fieldText);
 
-            for (int i = 1; i < tokens.Length; i++) // Skip the first token (field name)
+            for (Int32 i = 1; i < tokens.Length; i++) // Skip the first token (field name)
             {
                 string token = tokens[i].Trim();
-                if (string.IsNullOrEmpty(token))
-                    continue;
-
-                FieldArgumentType argType = DetermineArgumentType(token);
-                FieldArgument arg = new FieldArgument(argType, token);
-                field.Arguments.Add(arg);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    FieldArgumentType argType = DetermineArgumentType(token);
+                    FieldArgument arg = new FieldArgument(argType, token);
+                    field.Arguments.Add(arg);
+                }
             }
         }
 
@@ -311,7 +326,7 @@ namespace OpenLanguage
             bool inQuotes = false;
             string currentToken = string.Empty;
 
-            for (int i = 0; i < fieldText.Length; i++)
+            for (Int32 i = 0; i < fieldText.Length; i++)
             {
                 char c = fieldText[i];
 
@@ -335,7 +350,9 @@ namespace OpenLanguage
             }
 
             if (!string.IsNullOrEmpty(currentToken))
+            {
                 tokens.Add(currentToken);
+            }
 
             return tokens.ToArray();
         }
@@ -348,13 +365,18 @@ namespace OpenLanguage
         private FieldArgumentType DetermineArgumentType(string token)
         {
             if (token.StartsWith(""))
+            {
                 return FieldArgumentType.Switch;
-            else if (token.StartsWith(""") && token.EndsWith("""))
+            }
+            if (token.StartsWith(""") && token.EndsWith("""))
+            {
                 return FieldArgumentType.StringLiteral;
-            else if (int.TryParse(token, out _) || double.TryParse(token, out _))
+            }
+            if (int.TryParse(token, out _) || double.TryParse(token, out _))
+            {
                 return FieldArgumentType.Number;
-            else
-                return FieldArgumentType.Identifier;
+            }
+            return FieldArgumentType.Identifier;
         }
 
         /// <summary>

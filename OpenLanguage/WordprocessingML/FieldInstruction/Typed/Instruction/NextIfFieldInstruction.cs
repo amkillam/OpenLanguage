@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenLanguage.WordprocessingML.Expression;
+using OpenLanguage.WordprocessingML.Operators;
 
-namespace OpenLanguage
+namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed NEXTIF field instruction.
@@ -13,17 +15,17 @@ namespace OpenLanguage
         /// <summary>
         /// The first expression to compare.
         /// </summary>
-        public Expression? LeftExpression { get; set; }
+        public Expression.Expression? LeftExpression { get; set; }
 
         /// <summary>
         /// The comparison operator.
         /// </summary>
-        public ComparisonOperator ComparisonOperator { get; set; } = ComparisonOperator.Equal;
+        public ComparisonOperator Operator { get; set; } = ComparisonOperator.Equal;
 
         /// <summary>
         /// The second expression to compare.
         /// </summary>
-        public Expression? RightExpression { get; set; }
+        public Expression.Expression? RightExpression { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the NextIfFieldInstruction class.
@@ -50,31 +52,35 @@ namespace OpenLanguage
             // NEXTIF requires exactly 3 arguments: Expression-1, Operator, Expression-2
             // Parse the arguments in order
             if (Source.Arguments.Count > 0)
+            {
                 LeftExpression = ExpressionLexer.ParseExpression(
                     Source.Arguments[0].Value?.ToString()
                 );
 
-            if (Source.Arguments.Count > 1)
-            {
-                try
+                if (Source.Arguments.Count > 1)
                 {
-                    ComparisonOperator = ExpressionLexer.ParseOperator(
-                        Source.Arguments[1].Value?.ToString()
-                    );
-                }
-                catch (ArgumentException ex)
-                {
-                    throw new ArgumentException(
-                        $"Invalid comparison operator in NEXTIF field: \"{Source.Arguments[1].Value?.ToString()}\"",
-                        ex
-                    );
+                    try
+                    {
+                        Operator = ComparisonOperatorExtensions.ParseOperator(
+                            Source.Arguments[1].Value?.ToString()
+                        );
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        throw new ArgumentException(
+                            $"Invalid comparison operator in NEXTIF field: \"{Source.Arguments[1].Value?.ToString()}\"",
+                            ex
+                        );
+                    }
+
+                    if (Source.Arguments.Count > 2)
+                    {
+                        RightExpression = ExpressionLexer.ParseExpression(
+                            Source.Arguments[2].Value?.ToString()
+                        );
+                    }
                 }
             }
-
-            if (Source.Arguments.Count > 2)
-                RightExpression = ExpressionLexer.ParseExpression(
-                    Source.Arguments[2].Value?.ToString()
-                );
         }
 
         /// <summary>
@@ -90,7 +96,7 @@ namespace OpenLanguage
                 result.Add(LeftExpression.RawText);
             }
 
-            result.Add(ExpressionLexer.OperatorToString(ComparisonOperator));
+            result.Add(ComparisonOperatorExtensions.OperatorToString(Operator));
 
             if (RightExpression != null)
             {

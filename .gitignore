@@ -1,6 +1,7 @@
 **/Generated/
 **/obj/
 **/bin/
+**/*.lst
 
 # CMake build directories
 build/
