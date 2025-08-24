@@ -298,7 +298,7 @@ foreach (string queryText in queries)
 The `DatabaseQuery` class validates SQL syntax with these rules:
 
 - **SELECT**: Must contain FROM clause (or reference DUAL)
-- **INSERT**: Must contain INTO clause  
+- **INSERT**: Must contain INTO clause
 - **UPDATE**: Must contain SET clause
 - **DELETE**: Must contain FROM clause
 - **CREATE/DROP**: Must specify object type (TABLE, DATABASE, INDEX, etc.)
@@ -308,7 +308,7 @@ The `DatabaseQuery` class validates SQL syntax with these rules:
 
 For non-SQL query types, basic validation includes:
 
-- Balanced parentheses `()` 
+- Balanced parentheses `()`
 - Balanced single quotes `''`
 - Balanced double quotes `""`
 - Excel range format validation (alphanumeric, $, :, !, single quotes)

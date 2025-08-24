@@ -222,7 +222,7 @@ catch (ArgumentOutOfRangeException ex)
 
 ## Integration with Typed Instructions
 
-Field instructions can be converted to strongly-typed versions:
+Field instructions can be converted to strongly-typed versions using the `TypedFieldInstructionFactory`:
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
@@ -234,9 +234,414 @@ genericField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "MyBo
 // Convert to strongly-typed (if supported)
 var typedField = TypedFieldInstructionFactory.Create(genericField);
 
-if (typedField is RefInstruction refInstruction)
+if (typedField is RefFieldInstruction refInstruction)
 {
     Console.WriteLine($"Bookmark: {refInstruction.BookmarkName}");
+}
+```
+
+### Supported Field Types for Typed Instructions
+
+The `TypedFieldInstructionFactory` supports over 60 field instruction types, providing strongly-typed access to field-specific properties and switches:
+
+#### Document Information Fields
+
+- `AUTHOR` → `AuthorFieldInstruction`
+- `COMMENTS` → `CommentsFieldInstruction`
+- `CREATEDATE` → `CreateDateFieldInstruction`
+- `EDITTIME` → `EditTimeFieldInstruction`
+- `FILENAME` → `FileNameFieldInstruction`
+- `FILESIZE` → `FileSizeFieldInstruction`
+- `KEYWORDS` → `KeywordsFieldInstruction`
+- `LASTSAVEDBY` → `LastSavedByFieldInstruction`
+- `NUMCHARS` → `NumCharsFieldInstruction`
+- `NUMPAGES` → `NumPagesFieldInstruction`
+- `NUMWORDS` → `NumWordsFieldInstruction`
+- `REVNUM` → `RevNumFieldInstruction`
+- `SAVEDATE` → `SaveDateFieldInstruction`
+- `SUBJECT` → `SubjectFieldInstruction`
+- `TEMPLATE` → `TemplateFieldInstruction`
+- `TITLE` → `TitleFieldInstruction`
+
+#### Date and Time Fields
+
+- `DATE` → `DateFieldInstruction`
+- `PRINTDATE` → `PrintDateFieldInstruction`
+- `TIME` → `TimeFieldInstruction`
+
+#### Mail Merge Fields
+
+- `ADDRESSBLOCK` → `AddressBlockFieldInstruction`
+- `GREETINGLINE` → `GreetingLineFieldInstruction`
+- `MERGEFIELD` → `MergeFieldFieldInstruction`
+- `MERGEREC` → `MergeRecFieldInstruction`
+- `MERGESEQ` → `MergeSeqFieldInstruction`
+- `NEXT` → `NextFieldInstruction`
+- `NEXTIF` → `NextIfFieldInstruction`
+- `SKIPIF` → `SkipIfFieldInstruction`
+
+#### Reference Fields
+
+- `REF` → `RefFieldInstruction`
+- `PAGEREF` → `PageRefFieldInstruction`
+- `STYLEREF` → `StyleRefFieldInstruction`
+- `NOTEREF` → `NoteRefFieldInstruction`
+
+#### Page and Section Fields
+
+- `PAGE` → `PageFieldInstruction`
+- `SECTION` → `SectionFieldInstruction`
+- `SECTIONPAGES` → `SectionPagesFieldInstruction`
+
+#### Numbering Fields
+
+- `AUTONUM` → `AutoNumFieldInstruction`
+- `AUTONUMLGL` → `AutoNumLglFieldInstruction`
+- `AUTONUMOUT` → `AutoNumOutFieldInstruction`
+- `LISTNUM` → `ListNumFieldInstruction`
+- `SEQ` → `SeqFieldInstruction`
+
+#### Index and Table Fields
+
+- `INDEX` → `IndexFieldInstruction`
+- `TOC` → `TocFieldInstruction`
+- `TOA` → `ToaFieldInstruction`
+- `XE` → `XeFieldInstruction`
+- `TA` → `TaFieldInstruction`
+- `TC` → `TcFieldInstruction`
+
+#### Form Fields
+
+- `FORMCHECKBOX` → `FormCheckBoxFieldInstruction`
+- `FORMDROPDOWN` → `FormDropDownFieldInstruction`
+- `FORMTEXT` → `FormTextFieldInstruction`
+
+#### User Information Fields
+
+- `USERNAME` → `UserNameFieldInstruction`
+- `USERINITIALS` → `UserInitialsFieldInstruction`
+- `USERADDRESS` → `UserAddressFieldInstruction`
+
+#### Interactive Fields
+
+- `ASK` → `AskFieldInstruction`
+- `FILLIN` → `FillInFieldInstruction`
+
+#### Button Fields
+
+- `GOTOBUTTON` → `GoToButtonFieldInstruction`
+- `MACROBUTTON` → `MacroButtonFieldInstruction`
+
+#### Advanced Fields
+
+- `DATABASE` → `DatabaseFieldInstruction`
+- `EQ` → `EqFieldInstruction`
+- `HYPERLINK` → `HyperlinkFieldInstruction`
+- `QUOTE` → `QuoteFieldInstruction`
+
+#### Conditional Fields
+
+- `IF` → `IfFieldInstruction`
+- `COMPARE` → `CompareFieldInstruction`
+
+#### Other Fields
+
+- `ADVANCE` → `AdvanceFieldInstruction`
+- `AUTOTEXT` → `AutoTextFieldInstruction`
+- `AUTOTEXTLIST` → `AutoTextListFieldInstruction`
+- `BARCODE` → `BarcodeFieldInstruction`
+- `BIBLIOGRAPHY` → `BibliographyFieldInstruction`
+- `CITATION` → `CitationFieldInstruction`
+- `DOCPROPERTY` → `DocPropertyFieldInstruction`
+- `DOCVARIABLE` → `DocVariableFieldInstruction`
+- `INCLUDEPICTURE` → `IncludePictureFieldInstruction`
+- `INCLUDETEXT` → `IncludeTextFieldInstruction`
+- `INFO` → `InfoFieldInstruction`
+- `LINK` → `LinkFieldInstruction`
+- `PRINT` → `PrintFieldInstruction`
+- `RD` → `RdFieldInstruction`
+- `SET` → `SetFieldInstruction`
+- `SYMBOL` → `SymbolFieldInstruction`
+
+### Factory Usage Examples
+
+```csharp
+// Mail merge field with formatting
+var mergeField = new FieldInstruction("MERGEFIELD");
+mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "FirstName"));
+mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
+
+var typedMerge = TypedFieldInstructionFactory.Create(mergeField) as MergeFieldFieldInstruction;
+if (typedMerge != null)
+{
+    Console.WriteLine($"Field Name: {typedMerge.FieldName}");
+    Console.WriteLine($"Text Format: {typedMerge.TextFormat}");
+}
+
+// Date field with custom format
+var dateField = new FieldInstruction("DATE");
+dateField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\@ "MMMM d, yyyy""));
+
+var typedDate = TypedFieldInstructionFactory.Create(dateField) as DateFieldInstruction;
+if (typedDate != null)
+{
+    Console.WriteLine($"Date Format: {typedDate.DateFormat}");
+}
+
+// Hyperlink field
+var hyperlinkField = new FieldInstruction("HYPERLINK");
+hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "http://example.com"));
+hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\o "Tooltip text""));
+
+var typedHyperlink = TypedFieldInstructionFactory.Create(hyperlinkField) as HyperlinkFieldInstruction;
+if (typedHyperlink != null)
+{
+    Console.WriteLine($"URL: {typedHyperlink.Url}");
+    Console.WriteLine($"Screen Tip: {typedHyperlink.ScreenTip}");
+}
+```
+
+## Advanced Usage Patterns
+
+### Field Instruction Parsing from Text
+
+The library provides robust parsing capabilities for field codes:
+
+```csharp
+// Parse complex nested fields
+var complexField = "IF { MERGEFIELD Amount } > { QUOTE 1000 } "Large Order" "Standard Order"";
+var instruction = FieldInstructionParser.Parse(complexField);
+
+Console.WriteLine($"Instruction: {instruction.Instruction}"); // "IF"
+Console.WriteLine($"Arguments: {instruction.Arguments.Count}"); // Number of parsed arguments
+
+// Access nested fields
+foreach (var arg in instruction.Arguments)
+{
+    if (arg.Type == FieldArgumentType.NestedField && arg.Value is FieldInstruction nested)
+    {
+        Console.WriteLine($"Nested: {nested.Instruction} - {nested.Arguments.Count} args");
+    }
+}
+```
+
+### Dynamic Field Construction
+
+Build field instructions programmatically based on runtime conditions:
+
+```csharp
+public FieldInstruction CreateConditionalMergeField(string fieldName, string condition, string trueValue, string falseValue)
+{
+    var ifField = new FieldInstruction("IF");
+    
+    // Create nested MERGEFIELD
+    var mergeField = new FieldInstruction("MERGEFIELD");
+    mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fieldName));
+    
+    // Add arguments to IF field
+    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, mergeField));
+    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Text, condition));
+    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, trueValue));
+    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, falseValue));
+    
+    return ifField;
+}
+
+// Usage
+var conditionalField = CreateConditionalMergeField("Status", "> 5", "Active", "Inactive");
+Console.WriteLine(conditionalField.ToString());
+// "IF { MERGEFIELD Status } > 5 "Active" "Inactive""
+```
+
+### Field Instruction Validation
+
+Implement validation for field-specific requirements:
+
+```csharp
+public bool ValidateFieldInstruction(FieldInstruction instruction)
+{
+    switch (instruction.Instruction.ToUpperInvariant())
+    {
+        case "MERGEFIELD":
+            // MERGEFIELD requires at least one identifier argument
+            return instruction.Arguments.Any(arg => arg.Type == FieldArgumentType.Identifier);
+            
+        case "REF":
+        case "PAGEREF":
+            // Reference fields require a bookmark name
+            return instruction.Arguments.Any(arg => arg.Type == FieldArgumentType.Identifier);
+            
+        case "DATE":
+        case "TIME":
+            // Date/time fields can have format switches
+            var hasValidFormat = true;
+            foreach (var arg in instruction.Arguments.Where(a => a.Type == FieldArgumentType.Switch))
+            {
+                if (arg.Value.ToString().StartsWith("\@"))
+                {
+                    // Validate date format syntax here
+                    hasValidFormat = ValidateDateFormat(arg.Value.ToString());
+                }
+            }
+            return hasValidFormat;
+            
+        default:
+            return true; // Unknown fields are considered valid
+    }
+}
+
+private bool ValidateDateFormat(string formatSwitch)
+{
+    // Extract format string and validate
+    // Implementation would check for valid date/time format patterns
+    return !string.IsNullOrEmpty(formatSwitch);
+}
+```
+
+### Field Instruction Transformation
+
+Transform field instructions for different document contexts:
+
+```csharp
+public FieldInstruction TransformForMailMerge(FieldInstruction original)
+{
+    // Clone the original instruction
+    var transformed = new FieldInstruction(original.Instruction);
+    
+    foreach (var arg in original.Arguments)
+    {
+        var newArg = arg;
+        
+        // Transform specific argument types
+        if (arg.Type == FieldArgumentType.Identifier)
+        {
+            // Prefix field names for mail merge context
+            var fieldName = arg.Value.ToString();
+            newArg = new FieldArgument(FieldArgumentType.Identifier, $"MailMerge_{fieldName}");
+        }
+        else if (arg.Type == FieldArgumentType.NestedField && arg.Value is FieldInstruction nestedField)
+        {
+            // Recursively transform nested fields
+            newArg = new FieldArgument(FieldArgumentType.NestedField, TransformForMailMerge(nestedField));
+        }
+        
+        transformed.Arguments.Add(newArg);
+    }
+    
+    return transformed;
+}
+```
+
+### Batch Field Processing
+
+Process multiple field instructions efficiently:
+
+```csharp
+public class FieldInstructionProcessor
+{
+    private readonly Dictionary<string, Func<FieldInstruction, string>> _processors;
+    
+    public FieldInstructionProcessor()
+    {
+        _processors = new Dictionary<string, Func<FieldInstruction, string>>
+        {
+            ["MERGEFIELD"] = ProcessMergeField,
+            ["DATE"] = ProcessDateField,
+            ["REF"] = ProcessRefField,
+            ["HYPERLINK"] = ProcessHyperlinkField
+        };
+    }
+    
+    public List<string> ProcessFields(IEnumerable<FieldInstruction> fields)
+    {
+        var results = new List<string>();
+        
+        foreach (var field in fields)
+        {
+            if (_processors.TryGetValue(field.Instruction.ToUpperInvariant(), out var processor))
+            {
+                results.Add(processor(field));
+            }
+            else
+            {
+                results.Add($"Unsupported field: {field.Instruction}");
+            }
+        }
+        
+        return results;
+    }
+    
+    private string ProcessMergeField(FieldInstruction field)
+    {
+        var typedField = TypedFieldInstructionFactory.Create(field) as MergeFieldFieldInstruction;
+        return typedField != null 
+            ? $"Merge field for: {typedField.FieldName}"
+            : "Invalid merge field";
+    }
+    
+    private string ProcessDateField(FieldInstruction field)
+    {
+        var typedField = TypedFieldInstructionFactory.Create(field) as DateFieldInstruction;
+        return typedField != null 
+            ? $"Date field with format: {typedField.DateFormat ?? "default"}"
+            : "Invalid date field";
+    }
+    
+    // Additional processors...
+    private string ProcessRefField(FieldInstruction field) => "Reference field processed";
+    private string ProcessHyperlinkField(FieldInstruction field) => "Hyperlink field processed";
+}
+```
+
+### Field Instruction Serialization
+
+Serialize field instructions for storage or transmission:
+
+```csharp
+public class FieldInstructionSerializer
+{
+    public string SerializeToJson(FieldInstruction instruction)
+    {
+        var data = new
+        {
+            Instruction = instruction.Instruction,
+            Arguments = instruction.Arguments.Select(arg => new
+            {
+                Type = arg.Type.ToString(),
+                Value = arg.Type == FieldArgumentType.NestedField && arg.Value is FieldInstruction nested
+                    ? SerializeToJson(nested)
+                    : arg.Value.ToString()
+            }).ToArray()
+        };
+        
+        return System.Text.Json.JsonSerializer.Serialize(data);
+    }
+    
+    public FieldInstruction DeserializeFromJson(string json)
+    {
+        using var document = System.Text.Json.JsonDocument.Parse(json);
+        var root = document.RootElement;
+        
+        var instruction = new FieldInstruction(root.GetProperty("Instruction").GetString());
+        
+        foreach (var argElement in root.GetProperty("Arguments").EnumerateArray())
+        {
+            var type = Enum.Parse<FieldArgumentType>(argElement.GetProperty("Type").GetString());
+            var value = argElement.GetProperty("Value").GetString();
+            
+            if (type == FieldArgumentType.NestedField)
+            {
+                var nestedField = DeserializeFromJson(value);
+                instruction.Arguments.Add(new FieldArgument(type, nestedField));
+            }
+            else
+            {
+                instruction.Arguments.Add(new FieldArgument(type, value));
+            }
+        }
+        
+        return instruction;
+    }
 }
 ```
 
@@ -248,6 +653,9 @@ if (typedField is RefInstruction refInstruction)
 - All string values are properly escaped when reconstructed
 - Nested fields are formatted with proper brace spacing
 - The component includes comprehensive enumerations for Word-specific values
+- Field instruction parsing handles complex nested structures and quoted strings
+- Memory-efficient argument storage using object references
+- Thread-safe factory methods for typed instruction creation
 
 ## See Also
 
