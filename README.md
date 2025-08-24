@@ -193,10 +193,10 @@ This project uses [CSharpier](https://csharpier.com/) for code formatting:
 
 ```bash
 # Format entire solution
-dotnet csharpier .
+dotnet csharpier format .
 
 # Check formatting
-dotnet csharpier --check .
+dotnet csharpier check .
 ```
 
 ### Git Hooks

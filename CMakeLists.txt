@@ -91,7 +91,7 @@ add_custom_target(publish
 
 # Format target
 add_custom_target(format
-    COMMAND dotnet csharpier ${CMAKE_SOURCE_DIR}
+    COMMAND dotnet csharpier format ${CMAKE_SOURCE_DIR}
     COMMENT "Formatting code with CSharpier"
 )
 
