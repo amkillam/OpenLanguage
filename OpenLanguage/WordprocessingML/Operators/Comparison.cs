@@ -5,14 +5,14 @@ namespace OpenLanguage.WordprocessingML.Operators
     /// <summary>
     /// Enumeration of comparison operators.
     /// </summary>
-    public enum ComparisonOperator
+    public enum ComparisonOperator : sbyte
     {
-        Equal,
-        NotEqual,
-        LessThan,
-        LessThanOrEqual,
-        GreaterThan,
-        GreaterThanOrEqual,
+        Equal = 0b01,
+        NotEqual = ~ComparisonOperator.Equal,
+        LessThan = 0b10,
+        LessThanOrEqual = ComparisonOperator.Equal | ComparisonOperator.LessThan,
+        GreaterThan = ~ComparisonOperator.LessThanOrEqual,
+        GreaterThanOrEqual = ComparisonOperator.Equal | ComparisonOperator.GreaterThan,
     }
 
     public static class ComparisonOperatorExtensions

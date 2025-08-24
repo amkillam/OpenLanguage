@@ -20,7 +20,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// The comparison operator (required).
         /// </summary>
-        public ComparisonOperator ComparisonOperator { get; set; } = ComparisonOperator.Equal;
+        public ComparisonOperator Operator { get; set; } = ComparisonOperator.Equal;
 
         /// <summary>
         /// The second expression in the comparison (Expression-2, required).
@@ -74,7 +74,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 nonSwitchArgs.Count > 1
                     ? nonSwitchArgs[1].Value?.ToString() ?? string.Empty
                     : string.Empty;
-            ComparisonOperator = ParseComparisonOperator(operatorText);
+            Operator = ParseComparisonOperator(operatorText);
 
             // Parse Expression-2
             string secondExpressionText =
@@ -141,14 +141,14 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             }
 
             // Add Operator
-            string operatorString = ComparisonOperator switch
+            string operatorString = Operator switch
             {
-                ComparisonOperator.Equal => "=",
                 ComparisonOperator.NotEqual => "<>",
                 ComparisonOperator.LessThan => "<",
                 ComparisonOperator.LessThanOrEqual => "<=",
                 ComparisonOperator.GreaterThan => ">",
                 ComparisonOperator.GreaterThanOrEqual => ">=",
+                _ => "=",
             };
             result.Add(operatorString);
 
