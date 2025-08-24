@@ -156,7 +156,7 @@ add_custom_target(format
 add_custom_target(doc
     COMMAND dotnet tool install --global docfx || echo "DocFX already installed"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/docs"
-    COMMAND docfx init -q -o "${CMAKE_BINARY_DIR}/docs" || echo "DocFX project exists"
+    COMMAND docfx init --yes --output "${CMAKE_BINARY_DIR}/docs" || echo "DocFX project exists"
     COMMAND docfx metadata "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json"
     COMMAND docfx build "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json" -o "${CMAKE_BINARY_DIR}/docs/site"
     DEPENDS build
