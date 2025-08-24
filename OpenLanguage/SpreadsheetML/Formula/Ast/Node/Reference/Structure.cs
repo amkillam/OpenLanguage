@@ -83,7 +83,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Name is O o)
+            {
                 yield return o;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -114,7 +116,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Name is O o)
+            {
                 yield return o;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -147,9 +151,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Start is O s)
+            {
                 yield return s;
+            }
             if (End is O e)
+            {
                 yield return e;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -191,9 +199,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (ThisRow is O t)
+            {
                 yield return t;
+            }
             if (Column is O c)
+            {
                 yield return c;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -232,9 +244,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Headers is O h)
+            {
                 yield return h;
+            }
             if (Data is O d)
+            {
                 yield return d;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -273,9 +289,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Data is O d)
+            {
                 yield return d;
+            }
             if (Totals is O t)
+            {
                 yield return t;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -314,9 +334,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Keyword is O k)
+            {
                 yield return k;
+            }
             if (ColumnRange is O c)
+            {
                 yield return c;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -355,9 +379,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Keyword is O k)
+            {
                 yield return k;
+            }
             if (Column is O c)
+            {
                 yield return c;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)
@@ -514,9 +542,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Workbook is O w)
+            {
                 yield return w;
+            }
             if (TableName is O t)
+            {
                 yield return t;
+            }
 
             foreach (ExpressionNode intraTableRef in IntraTableReferences)
             {

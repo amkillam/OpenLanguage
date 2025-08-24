@@ -12,10 +12,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// </summary>
         /// <param name="genericInstruction">The generic field instruction to convert.</param>
         /// <returns>A strongly-typed field instruction, or null if the type is not supported.</returns>
-        public static TypedFieldInstruction? Create(FieldInstruction genericInstruction)
+        public static TypedFieldInstruction? Create(FieldInstruction? genericInstruction)
         {
             if (genericInstruction == null)
+            {
                 throw new ArgumentNullException(nameof(genericInstruction));
+            }
 
             switch (genericInstruction.Instruction.ToUpperInvariant())
             {

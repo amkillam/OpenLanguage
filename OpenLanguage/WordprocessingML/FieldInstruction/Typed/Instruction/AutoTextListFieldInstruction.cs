@@ -71,7 +71,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 arg.Type == FieldArgumentType.Identifier
                 || arg.Type == FieldArgumentType.StringLiteral
             );
-            if (firstNonSwitch == null)
+            if (firstNonSwitch is null)
             {
                 throw new ArgumentException("AUTOTEXTLIST field requires a display text argument");
             }

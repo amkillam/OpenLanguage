@@ -308,7 +308,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             FieldArgument? primarySwitchArg = Source.Arguments.FirstOrDefault(arg =>
                 arg.Type == FieldArgumentType.Switch
             );
-            if (primarySwitchArg == null)
+            if (primarySwitchArg is null)
             {
                 throw new ArgumentException(
                     "EQ field requires a primary switch (\\a, \\b, \\d, \\f, \\i, \\l, \\o, \\r, \\s, or \\x)"

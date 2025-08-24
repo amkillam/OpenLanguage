@@ -66,7 +66,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         private FacingIdentificationMarkType? ParseFacingIdentificationMark(string fimText)
         {
             if (string.IsNullOrWhiteSpace(fimText))
+            {
                 return null;
+            }
 
             return fimText.Trim().ToUpperInvariant() switch
             {

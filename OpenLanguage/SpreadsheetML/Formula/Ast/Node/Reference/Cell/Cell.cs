@@ -102,9 +102,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Row is O r)
+            {
                 yield return r;
+            }
             if (Column is O c)
+            {
                 yield return c;
+            }
         }
 
         public override Node? ReplaceChild(Int32 index, Node replacement)

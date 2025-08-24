@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
@@ -13,12 +10,14 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// </summary>
     public static class FieldParser
     {
-        private static int _currentTokenIndex;
+        private static Int32 _currentTokenIndex;
 
         public static FieldInstruction Parse(string fieldCode)
         {
             if (string.IsNullOrEmpty(fieldCode))
+            {
                 throw new Exception("Failed to parse FieldInstruction: empty or null input");
+            }
 
             IEnumerable<FieldToken> tokenEnumerable = FieldLexer.Tokenize(fieldCode);
             List<FieldToken> tokens = new List<FieldToken>();
@@ -176,7 +175,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                     case FieldTokenType.LeftBrace:
                         // A nested field begins. Parse it recursively.
                         FieldInstruction? nestedInstruction = TryParseInstruction(tokens);
-                        if (nestedInstruction != null)
+                        if (nestedInstruction is not null)
                         {
                             instruction.Arguments.Add(
                                 new FieldArgument(FieldArgumentType.NestedField, nestedInstruction)

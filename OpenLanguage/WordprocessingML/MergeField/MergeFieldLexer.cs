@@ -88,7 +88,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="placeholderText">The placeholder text to parse (e.g., "«FirstName»").</param>
         /// <returns>A parsed MergeFieldPlaceholder object.</returns>
-        public static MergeFieldPlaceholder ParseMergeField(string placeholderText)
+        public static MergeFieldPlaceholder ParseMergeField(string? placeholderText)
         {
             if (string.IsNullOrEmpty(placeholderText))
             {
@@ -171,7 +171,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="templateText">The template text to parse.</param>
         /// <returns>A parsed AddressBlockTemplate object.</returns>
-        public static AddressBlockTemplate ParseAddressBlockTemplate(string templateText)
+        public static AddressBlockTemplate ParseAddressBlockTemplate(string? templateText)
         {
             if (string.IsNullOrEmpty(templateText))
             {
@@ -223,12 +223,14 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="text">The text to search for merge fields.</param>
         /// <returns>A list of merge field placeholders found in the text.</returns>
-        private static List<MergeFieldPlaceholder> ExtractMergeFieldPlaceholders(string text)
+        private static List<MergeFieldPlaceholder> ExtractMergeFieldPlaceholders(string? text)
         {
             List<MergeFieldPlaceholder> placeholders = new List<MergeFieldPlaceholder>();
 
             if (string.IsNullOrEmpty(text))
+            {
                 return placeholders;
+            }
 
             int position = 0;
             while (position < text.Length)
@@ -269,7 +271,9 @@ namespace OpenLanguage.WordprocessingML.MergeField
         private static int FindMergeFieldEnd(string text, int startPosition)
         {
             if (startPosition >= text.Length || text[startPosition] != '«')
+            {
                 return -1;
+            }
 
             for (int i = startPosition + 1; i < text.Length; i++)
             {
@@ -292,7 +296,9 @@ namespace OpenLanguage.WordprocessingML.MergeField
             List<string> fieldNames = new List<string>();
 
             if (string.IsNullOrEmpty(text))
+            {
                 return fieldNames;
+            }
 
             List<MergeFieldPlaceholder> placeholders = ExtractMergeFieldPlaceholders(text);
             foreach (MergeFieldPlaceholder placeholder in placeholders)
@@ -314,10 +320,12 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="text">The text to validate.</param>
         /// <returns>True if the text contains valid merge field placeholders.</returns>
-        public static bool ContainsValidMergeFields(string text)
+        public static bool ContainsValidMergeFields(string? text)
         {
             if (string.IsNullOrEmpty(text))
+            {
                 return false;
+            }
 
             List<MergeFieldPlaceholder> placeholders = ExtractMergeFieldPlaceholders(text);
             foreach (MergeFieldPlaceholder placeholder in placeholders)
@@ -336,10 +344,12 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="fieldName">The field name to format.</param>
         /// <returns>The formatted merge field placeholder.</returns>
-        public static string FormatMergeField(string fieldName)
+        public static string FormatMergeField(string? fieldName)
         {
             if (string.IsNullOrEmpty(fieldName))
+            {
                 return string.Empty;
+            }
 
             return $"«{fieldName}»";
         }
@@ -350,13 +360,17 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// <param name="fieldName">The field name to format.</param>
         /// <param name="formattingSwitch">The formatting switch to apply.</param>
         /// <returns>The formatted merge field placeholder with switch.</returns>
-        public static string FormatMergeFieldWithSwitch(string fieldName, string? formattingSwitch)
+        public static string FormatMergeFieldWithSwitch(string? fieldName, string? formattingSwitch)
         {
             if (string.IsNullOrEmpty(fieldName))
+            {
                 return string.Empty;
+            }
 
             if (string.IsNullOrEmpty(formattingSwitch))
+            {
                 return FormatMergeField(fieldName);
+            }
 
             return $"«{fieldName}\\{formattingSwitch}»";
         }
@@ -366,10 +380,12 @@ namespace OpenLanguage.WordprocessingML.MergeField
         /// </summary>
         /// <param name="languageIdText">The language ID text to parse.</param>
         /// <returns>The parsed LanguageIdentifier, or null if invalid.</returns>
-        public static LanguageIdentifier? ParseLanguageId(string languageIdText)
+        public static LanguageIdentifier? ParseLanguageId(string? languageIdText)
         {
             if (string.IsNullOrWhiteSpace(languageIdText))
+            {
                 return null;
+            }
 
             string trimmedText = languageIdText.Trim();
 
@@ -409,62 +425,65 @@ namespace OpenLanguage.WordprocessingML.MergeField
             return null;
         }
 
+        private static readonly Dictionary<string, LanguageIdentifier> cultureMap = new Dictionary<
+            string,
+            LanguageIdentifier
+        >(StringComparer.OrdinalIgnoreCase)
+        {
+            { "en-US", LanguageIdentifier.EnglishUS },
+            { "en-GB", LanguageIdentifier.EnglishUK },
+            { "fr-FR", LanguageIdentifier.FrenchFrance },
+            { "de-DE", LanguageIdentifier.GermanGermany },
+            { "es-ES", LanguageIdentifier.SpanishSpain },
+            { "it-IT", LanguageIdentifier.ItalianItaly },
+            { "pt-BR", LanguageIdentifier.PortugueseBrazil },
+            { "ja-JP", LanguageIdentifier.Japanese },
+            { "ko-KR", LanguageIdentifier.Korean },
+            { "zh-CN", LanguageIdentifier.ChineseSimplified },
+            { "zh-TW", LanguageIdentifier.ChineseTraditional },
+            { "en-CA", LanguageIdentifier.EnglishCanada },
+            { "fr-CA", LanguageIdentifier.FrenchCanada },
+            { "es-MX", LanguageIdentifier.SpanishMexico },
+            { "ru-RU", LanguageIdentifier.Russian },
+            { "ar-SA", LanguageIdentifier.ArabicSaudiArabia },
+            { "hi-IN", LanguageIdentifier.Hindi },
+            { "th-TH", LanguageIdentifier.Thai },
+            { "vi-VN", LanguageIdentifier.Vietnamese },
+            { "tr-TR", LanguageIdentifier.Turkish },
+            { "pl-PL", LanguageIdentifier.Polish },
+            { "nl-NL", LanguageIdentifier.DutchNetherlands },
+            { "sv-SE", LanguageIdentifier.Swedish },
+            { "da-DK", LanguageIdentifier.Danish },
+            { "no-NO", LanguageIdentifier.NorwegianBokmal },
+            { "fi-FI", LanguageIdentifier.Finnish },
+            { "el-GR", LanguageIdentifier.Greek },
+            { "he-IL", LanguageIdentifier.Hebrew },
+            { "cs-CZ", LanguageIdentifier.Czech },
+            { "hu-HU", LanguageIdentifier.Hungarian },
+            { "sk-SK", LanguageIdentifier.Slovak },
+            { "sl-SI", LanguageIdentifier.Slovenian },
+            { "et-EE", LanguageIdentifier.Estonian },
+            { "lv-LV", LanguageIdentifier.Latvian },
+            { "lt-LT", LanguageIdentifier.Lithuanian },
+            { "bg-BG", LanguageIdentifier.Bulgarian },
+            { "hr-HR", LanguageIdentifier.Croatian },
+            { "ro-RO", LanguageIdentifier.Romanian },
+            { "uk-UA", LanguageIdentifier.Ukrainian },
+        };
+
         /// <summary>
         /// Maps common culture names to LanguageIdentifier enum values.
         /// </summary>
         /// <param name="cultureName">The culture name to map (e.g., "en-US").</param>
         /// <returns>The corresponding LanguageIdentifier, or null if not found.</returns>
-        private static LanguageIdentifier? MapCultureNameToLanguageIdentifier(string cultureName)
+        private static LanguageIdentifier? MapCultureNameToLanguageIdentifier(string? cultureName)
         {
-            Dictionary<string, LanguageIdentifier> cultureMap = new Dictionary<
-                string,
-                LanguageIdentifier
-            >(StringComparer.OrdinalIgnoreCase)
+            if (!string.IsNullOrWhiteSpace(cultureName))
             {
-                { "en-US", LanguageIdentifier.EnglishUS },
-                { "en-GB", LanguageIdentifier.EnglishUK },
-                { "fr-FR", LanguageIdentifier.FrenchFrance },
-                { "de-DE", LanguageIdentifier.GermanGermany },
-                { "es-ES", LanguageIdentifier.SpanishSpain },
-                { "it-IT", LanguageIdentifier.ItalianItaly },
-                { "pt-BR", LanguageIdentifier.PortugueseBrazil },
-                { "ja-JP", LanguageIdentifier.Japanese },
-                { "ko-KR", LanguageIdentifier.Korean },
-                { "zh-CN", LanguageIdentifier.ChineseSimplified },
-                { "zh-TW", LanguageIdentifier.ChineseTraditional },
-                { "en-CA", LanguageIdentifier.EnglishCanada },
-                { "fr-CA", LanguageIdentifier.FrenchCanada },
-                { "es-MX", LanguageIdentifier.SpanishMexico },
-                { "ru-RU", LanguageIdentifier.Russian },
-                { "ar-SA", LanguageIdentifier.ArabicSaudiArabia },
-                { "hi-IN", LanguageIdentifier.Hindi },
-                { "th-TH", LanguageIdentifier.Thai },
-                { "vi-VN", LanguageIdentifier.Vietnamese },
-                { "tr-TR", LanguageIdentifier.Turkish },
-                { "pl-PL", LanguageIdentifier.Polish },
-                { "nl-NL", LanguageIdentifier.DutchNetherlands },
-                { "sv-SE", LanguageIdentifier.Swedish },
-                { "da-DK", LanguageIdentifier.Danish },
-                { "no-NO", LanguageIdentifier.NorwegianBokmal },
-                { "fi-FI", LanguageIdentifier.Finnish },
-                { "el-GR", LanguageIdentifier.Greek },
-                { "he-IL", LanguageIdentifier.Hebrew },
-                { "cs-CZ", LanguageIdentifier.Czech },
-                { "hu-HU", LanguageIdentifier.Hungarian },
-                { "sk-SK", LanguageIdentifier.Slovak },
-                { "sl-SI", LanguageIdentifier.Slovenian },
-                { "et-EE", LanguageIdentifier.Estonian },
-                { "lv-LV", LanguageIdentifier.Latvian },
-                { "lt-LT", LanguageIdentifier.Lithuanian },
-                { "bg-BG", LanguageIdentifier.Bulgarian },
-                { "hr-HR", LanguageIdentifier.Croatian },
-                { "ro-RO", LanguageIdentifier.Romanian },
-                { "uk-UA", LanguageIdentifier.Ukrainian },
-            };
-
-            if (cultureMap.TryGetValue(cultureName, out LanguageIdentifier mappedId))
-            {
-                return mappedId;
+                if (cultureMap.TryGetValue(cultureName.Trim(), out LanguageIdentifier mappedId))
+                {
+                    return mappedId;
+                }
             }
 
             return null;
@@ -488,7 +507,9 @@ namespace OpenLanguage.WordprocessingML.MergeField
         public static string Reconstruct(MergeFieldPlaceholder placeholder)
         {
             if (placeholder == null || string.IsNullOrEmpty(placeholder.FieldName))
+            {
                 return string.Empty;
+            }
 
             StringBuilder result = new StringBuilder();
             result.Append("«");

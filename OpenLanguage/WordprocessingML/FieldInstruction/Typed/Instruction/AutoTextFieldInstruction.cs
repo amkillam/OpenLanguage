@@ -42,7 +42,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 arg.Type == FieldArgumentType.Identifier
                 || arg.Type == FieldArgumentType.StringLiteral
             );
-            if (firstNonSwitch == null)
+            if (firstNonSwitch is null)
             {
                 throw new ArgumentException(
                     "AUTOTEXT field requires an AutoText entry name argument"

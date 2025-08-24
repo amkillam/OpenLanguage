@@ -412,10 +412,12 @@ namespace OpenLanguage.WordprocessingML.ODBC
         /// </summary>
         /// <param name="connectionString">The connection string to parse.</param>
         /// <returns>An OdbcConnectionStringBuilder with parsed components.</returns>
-        public static OdbcConnectionStringBuilder? Parse(string connectionString)
+        public static OdbcConnectionStringBuilder? Parse(string? connectionString)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
+            {
                 return null;
+            }
 
             try
             {
@@ -442,7 +444,9 @@ namespace OpenLanguage.WordprocessingML.ODBC
             OdbcConnectionStringBuilder builder = new OdbcConnectionStringBuilder();
 
             if (string.IsNullOrWhiteSpace(connectionString))
+            {
                 return builder;
+            }
 
             int currentIndex = 0;
             while (currentIndex < connectionString.Length)
@@ -521,7 +525,9 @@ namespace OpenLanguage.WordprocessingML.ODBC
         public static string Reconstruct(List<ODBCConnectionComponent> components)
         {
             if (components == null || components.Count == 0)
+            {
                 return string.Empty;
+            }
 
             List<string> parts = new List<string>();
 

@@ -79,7 +79,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         private PtsMeasurementValue? ParsePtsMeasurementArgument(string argumentText)
         {
             if (string.IsNullOrWhiteSpace(argumentText))
+            {
                 return null;
+            }
 
             if (int.TryParse(argumentText.Trim(), out int value))
             {

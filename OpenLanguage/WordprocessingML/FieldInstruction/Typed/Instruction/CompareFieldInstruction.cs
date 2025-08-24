@@ -101,7 +101,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         private ComparisonOperator? ParseComparisonOperator(string? operatorText)
         {
             if (string.IsNullOrWhiteSpace(operatorText))
+            {
                 return null;
+            }
 
             return operatorText.Trim() switch
             {

@@ -33,29 +33,29 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             {
                 case "_top":
                 case "top":
-                    {
-                        return FrameTarget.Top;
-                    }
+                {
+                    return FrameTarget.Top;
+                }
                 case "_self":
                 case "self":
-                    {
-                        return FrameTarget.Self;
-                    }
+                {
+                    return FrameTarget.Self;
+                }
 
                 case "_blank":
                 case "blank":
-                    {
-                        return FrameTarget.Blank;
-                    }
+                {
+                    return FrameTarget.Blank;
+                }
                 case "_parent":
                 case "parent":
-                    {
-                        return FrameTarget.Parent;
-                    }
+                {
+                    return FrameTarget.Parent;
+                }
                 default:
-                    {
-                        throw new ArgumentException($"Invalid frame target: {frameTargetText}");
-                    }
+                {
+                    throw new ArgumentException($"Invalid frame target: {frameTargetText}");
+                }
             }
         }
 
@@ -1274,10 +1274,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             set
             {
                 if (value < -31 || value > 31)
+                {
                     throw new ArgumentOutOfRangeException(
                         nameof(value),
                         "Points measurement must be between -31 and 31"
                     );
+                }
                 _value = value;
             }
         }
@@ -1332,7 +1334,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             set
             {
                 if (!IsValidZipCode(value))
+                {
                     throw new ArgumentException("Invalid postal data format.");
+                }
                 _value = value;
             }
         }
@@ -1353,11 +1357,15 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         private static bool IsValidZipCode(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
+            {
                 return false;
+            }
 
             // 5-digit ZIP code
             if (value.Length == 5 && value.All(char.IsDigit))
+            {
                 return true;
+            }
 
             // 9-digit ZIP code (12345-6789)
             if (
@@ -1366,11 +1374,15 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 && value.Substring(0, 5).All(char.IsDigit)
                 && value.Substring(6, 4).All(char.IsDigit)
             )
+            {
                 return true;
+            }
 
             // 9-digit ZIP code without hyphen
             if (value.Length == 9 && value.All(char.IsDigit))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -1504,19 +1516,25 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         private static bool IsValidNCName(string name)
         {
             if (string.IsNullOrEmpty(name))
+            {
                 return false;
+            }
 
             // NCName must start with letter or underscore
             char first = name[0];
             if (!char.IsLetter(first) && first != '_')
+            {
                 return false;
+            }
 
             // Subsequent characters can be letters, digits, hyphens, periods, or underscores
             for (int i = 1; i < name.Length; i++)
             {
                 char c = name[i];
                 if (!char.IsLetterOrDigit(c) && c != '-' && c != '.' && c != '_')
+                {
                     return false;
+                }
             }
 
             return true;
@@ -1538,9 +1556,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// The value of the argument. This is a string for simple types
         /// and a FieldInstruction object for the NestedField type.
         /// </summary>
-        public object Value { get; }
+        public object? Value { get; }
 
-        public FieldArgument(FieldArgumentType type, object value)
+        public FieldArgument(FieldArgumentType type, object? value)
         {
             Type = type;
             Value = value;
@@ -1563,11 +1581,11 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 case FieldArgumentType.StringLiteral:
                     // When recompiling, quotes within the string must be escaped with a backslash.
                     // The Value for StringLiteral is already the unescaped string.
-                    return $"\"{Value?.ToString()?.Replace("\"", "\\\"")}\"";
+                    return $"\"{Value?.ToString()?.Replace("\"", "\\\"") ?? string.Empty}\"";
 
                 case FieldArgumentType.NestedField:
                     // Recompile the nested instruction and wrap it in braces with standard spacing.
-                    return $"{{ {Value.ToString()} }}";
+                    return Value == null ? string.Empty : $"{{ {Value.ToString()} }}";
 
                 default:
                     return string.Empty;

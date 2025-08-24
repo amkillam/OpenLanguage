@@ -33,7 +33,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             foreach (ExpressionNode cell in Rows.SelectMany(row => row))
             {
                 if (cell is O cellImp)
+                {
                     yield return cellImp;
+                }
             }
         }
 

@@ -66,7 +66,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Reference is O o)
+            {
                 yield return o;
+            }
         }
 
         public override Node? ReplaceChild(int index, Node replacement)
@@ -120,10 +122,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (BangReference is O b)
+            {
                 yield return b;
+            }
 
             if (Sheet is O s)
+            {
                 yield return s;
+            }
 
             yield break;
         }
@@ -187,7 +193,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Workbook is O o)
+            {
                 yield return o;
+            }
         }
 
         public override Node? ReplaceChild(int index, Node replacement) => null;
@@ -243,7 +251,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override IEnumerable<O> Children<O>()
         {
             if (Workbook is O o)
+            {
                 yield return o;
+            }
         }
 
         public override Node? ReplaceChild(int index, Node replacement) => null;

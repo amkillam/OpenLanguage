@@ -101,7 +101,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         private LanguageIdentifier? ParseLanguageId(string languageText)
         {
             if (string.IsNullOrWhiteSpace(languageText))
+            {
                 return null;
+            }
 
             // Try parsing as LCID number first
             if (int.TryParse(languageText.Trim(), out int lcid))

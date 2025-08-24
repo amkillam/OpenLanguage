@@ -64,7 +64,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 {
                     string switchValue = arg.Value?.ToString() ?? string.Empty;
                     if (string.IsNullOrEmpty(switchValue) || switchValue.Length < 2)
+                    {
                         continue;
+                    }
 
                     string switchChar = switchValue.Substring(1).ToLowerInvariant();
 
@@ -156,7 +158,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         private LanguageIdentifier ParseLanguageId(string languageValue)
         {
             if (string.IsNullOrEmpty(languageValue))
+            {
                 return LanguageIdentifier.EnglishUS;
+            }
 
             // Try to parse as LCID (numeric)
             if (int.TryParse(languageValue, out int lcid))

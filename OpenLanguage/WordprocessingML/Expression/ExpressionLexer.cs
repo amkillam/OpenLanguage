@@ -324,7 +324,9 @@ namespace OpenLanguage.WordprocessingML.Expression
             op = ComparisonOperator.Equal;
 
             if (string.IsNullOrEmpty(operatorText))
+            {
                 return false;
+            }
 
             switch (operatorText.Trim())
             {
@@ -359,7 +361,9 @@ namespace OpenLanguage.WordprocessingML.Expression
         public static List<ExpressionToken> TokenizeExpression(string? text)
         {
             if (string.IsNullOrWhiteSpace(text))
+            {
                 return new List<ExpressionToken>();
+            }
 
             List<ExpressionToken> tokens = new List<ExpressionToken>();
             int position = 0;

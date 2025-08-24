@@ -85,7 +85,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 || arg.Type == FieldArgumentType.StringLiteral
             );
 
-            if (firstNonSwitch == null)
+            if (firstNonSwitch is null)
             {
                 throw new ArgumentException(
                     "XE field requires a field-argument for the entry text"
