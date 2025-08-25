@@ -160,13 +160,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class SheetNode : ExpressionNode
     {
         public ExpressionNode? Workbook { get; set; }
-        public List<Node> WsAfterWorkbook { get; set; }
         public string SheetName { get; set; }
         public bool IsQuoted { get; set; }
 
         public SheetNode(
             ExpressionNode? workbook,
-            List<Node> wsAfterWorkbook,
             string sheetName,
             bool isQuoted,
             List<Node>? leadingWs = null,
@@ -175,20 +173,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWs, trailingWs)
         {
             Workbook = workbook;
-            WsAfterWorkbook = wsAfterWorkbook;
             SheetName = sheetName;
             IsQuoted = isQuoted;
         }
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString()
-        {
-            string workbookStr = Workbook?.ToString() ?? "";
-            string wsStr = string.Concat(WsAfterWorkbook.Select(w => w.ToString()));
-            string nameStr = IsQuoted ? $"'{SheetName.Replace("'", "''")}'" : SheetName;
-            return $"{workbookStr}{wsStr}{nameStr}";
-        }
+        public override string ToRawString() =>
+            Workbook?.ToString() + (IsQuoted ? $"'{SheetName.Replace("'", "''")}'" : SheetName);
 
         public override IEnumerable<O> Children<O>()
         {
@@ -207,18 +199,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class SheetRangeNode : ExpressionNode
     {
         public ExpressionNode? Workbook { get; set; }
-        public List<Node> WsAfterWorkbook { get; set; }
         public string StartSheetName { get; set; }
-        public List<Node> WsBeforeColon { get; set; }
-        public List<Node> WsAfterColon { get; set; }
         public string EndSheetName { get; set; }
+        public ColonNode ColonNode { get; set; }
 
         public SheetRangeNode(
             ExpressionNode? workbook,
-            List<Node> wsAfterWorkbook,
             string startSheet,
-            List<Node> wsBeforeColon,
-            List<Node> wsAfterColon,
+            ColonNode colon,
             string endSheet,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
@@ -226,27 +214,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWs, trailingWs)
         {
             Workbook = workbook;
-            WsAfterWorkbook = wsAfterWorkbook;
             StartSheetName = startSheet;
-            WsBeforeColon = wsBeforeColon;
-            WsAfterColon = wsAfterColon;
             EndSheetName = endSheet;
+            ColonNode = colon;
         }
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString()
-        {
-            return new System.Text.StringBuilder()
-                .Append(Workbook?.ToString() ?? "")
-                .Append(string.Concat(WsAfterWorkbook.Select(w => w.ToString())))
-                .Append(StartSheetName)
-                .Append(string.Concat(WsBeforeColon.Select(w => w.ToString())))
-                .Append(":")
-                .Append(string.Concat(WsAfterColon.Select(w => w.ToString())))
-                .Append(EndSheetName)
-                .ToString();
-        }
+        public override string ToRawString() =>
+            (Workbook?.ToString() ?? "") + StartSheetName + ColonNode.ToString() + EndSheetName;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -264,26 +240,28 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     /// </summary>
     public class WorkbookIndexNode : ExpressionNode
     {
-        public List<Node> WsAfterOpenBracket { get; set; }
         public long Index { get; set; }
-        public List<Node> WsBeforeCloseBracket { get; set; }
+        public WhitespaceNode OpenBracket { get; set; }
+        public WhitespaceNode CloseBracket { get; set; }
 
         public WorkbookIndexNode(
             long index,
+            WhitespaceNode openBracket,
+            WhitespaceNode closeBracket,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
             : base(leadingWs, trailingWs)
         {
-            WsAfterOpenBracket = new List<Node>();
             Index = index;
-            WsBeforeCloseBracket = new List<Node>();
+            OpenBracket = openBracket;
+            CloseBracket = closeBracket;
         }
 
         public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() =>
-            $"[{string.Concat(WsAfterOpenBracket.Select(w => w.ToString()))}{Index.ToString("D")}{string.Concat(WsBeforeCloseBracket.Select(w => w.ToString()))}]";
+            OpenBracket.ToString() + Index.ToString() + CloseBracket.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

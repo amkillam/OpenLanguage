@@ -75,30 +75,20 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode
     {
         public string Prefix { get; set; }
-        public List<Node> WsAfterPrefix { get; set; }
         public string FunctionName { get; set; }
 
         public BuiltInWorksheetFunctionNode(
             string prefix,
-            List<Node> wsAfterPrefix,
             string functionName,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
-            : base(
-                prefix + string.Concat(wsAfterPrefix.Select(w => w.ToString())) + functionName,
-                leadingWs,
-                trailingWs
-            )
+            : base(prefix + functionName, leadingWs, trailingWs)
         {
             Prefix = prefix;
-            WsAfterPrefix = wsAfterPrefix;
             FunctionName = functionName;
         }
 
-        public override string ToRawString()
-        {
-            return Prefix + string.Concat(WsAfterPrefix.Select(w => w.ToString())) + FunctionName;
-        }
+        public override string ToRawString() => Prefix + FunctionName;
     }
 }

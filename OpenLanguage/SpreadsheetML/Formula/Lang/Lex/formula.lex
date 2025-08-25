@@ -108,15 +108,10 @@
 
 
 
-    [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
-    [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponents"); } // Invalid: 1E2E3
-    [0-9]+[Ee]                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E
-    \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
     [0-9]+[A-Za-z_][A-Za-z0-9_]*                         { throw new System.FormatException("Invalid number format"); }
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
-    [0-9]+[Ee][\+\-][ \t\r\n]*                            { throw new System.FormatException("Incomplete scientific notation with sign"); }
+    [0-9]+[Ee][\+\-][\s\r\n\t ]*                            { throw new System.FormatException("Incomplete scientific notation with sign"); }
     [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponents"); } // Invalid: 1E2E3
-    [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
     \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
     ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?([0-9]+))?    { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
     [0-9]+[Ee][\+\-]?([0-9]+)                            { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
@@ -125,7 +120,7 @@
     [a-zA-Z_\\`][a-zA-Z0-9_.?`]*                                    { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
 
 
-    "@" { yylval.stringVal = yytext; return (int)Tokens.T_AT_SYMBOL; } "+" { return (int)Tokens.T_PLUS; } "-" { return (int)Tokens.T_MINUS; } "*" { return (int)Tokens.T_ASTERISK; } "/" { return (int)Tokens.T_SLASH; } "^" { return (int)Tokens.T_CARET; } "&" { return (int)Tokens.T_AMPERSAND; } "%" { return (int)Tokens.T_PERCENT; } "=" { return (int)Tokens.T_EQ; } ">" { return (int)Tokens.T_GT; } "<" { return (int)Tokens.T_LT; } "(" { return (int)Tokens.T_LPAREN; } ")" { return (int)Tokens.T_RPAREN; } "{" { return (int)Tokens.T_LBRACE; } "}" { return (int)Tokens.T_RBRACE; } "[" { return (int)Tokens.T_LBRACK; } "]" { return (int)Tokens.T_RBRACK; } "," { return (int)Tokens.T_COMMA; } ":" { return (int)Tokens.T_COLON; } ";" { return (int)Tokens.T_SEMICOLON; } "!" { yylval.stringVal = "!"; return (int)Tokens.T_BANG; } "$" { return (int)Tokens.T_DOLLAR; } "#" { return (int)Tokens.T_HASH; } "?" { return (int)Tokens.T_QUESTIONMARK; }
+    "@" { yylval.stringVal = yytext; return (int)Tokens.T_AT_SYMBOL; } "+" { return (int)Tokens.T_PLUS; } "-" { return (int)Tokens.T_MINUS; } "*" { return (int)Tokens.T_ASTERISK; } "/" { return (int)Tokens.T_SLASH; } "^" { return (int)Tokens.T_CARET; } "&" { return (int)Tokens.T_AMPERSAND; } "%" { return (int)Tokens.T_PERCENT; } "=" { return (int)Tokens.T_EQ; } ">" { return (int)Tokens.T_GT; } "<" { return (int)Tokens.T_LT; } "(" { return (int)Tokens.T_LPAREN; } ")" { return (int)Tokens.T_RPAREN; } "{" { return (int)Tokens.T_LBRACE; } "}" { return (int)Tokens.T_RBRACE; } "[" { yylval.stringVal = yytext; return (int)Tokens.T_LBRACK; } "]" { yylval.stringVal = yytext; return (int)Tokens.T_RBRACK; } "," { return (int)Tokens.T_COMMA; } ":" { return (int)Tokens.T_COLON; } ";" { return (int)Tokens.T_SEMICOLON; } "!" { yylval.stringVal = "!"; return (int)Tokens.T_BANG; } "$" { return (int)Tokens.T_DOLLAR; } "#" { return (int)Tokens.T_HASH; } "?" { return (int)Tokens.T_QUESTIONMARK; }
 
     .                   { }
 }
@@ -176,8 +171,8 @@
 
 <IN_R1C1_CELL> {
 "R" { return (int)Tokens.R1C1_ROW_PREFIX; }
-"[" { return (int)Tokens.T_LBRACK; }
-"]" { return (int)Tokens.T_RBRACK; }
+"[" { yylval.stringVal = yytext; return (int)Tokens.T_LBRACK; }
+"]" { yylval.stringVal = yytext; return (int)Tokens.T_RBRACK; }
 [\+\-]?[1-9]{0,6} { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_R1C1_ROW; }
 
 
@@ -186,8 +181,8 @@
 
 <IN_R1C1_COLUMN> {
 [\+\-]?[1-9]+ { BEGIN(INITIAL); yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_R1C1_COLUMN; }
-"[" { BEGIN(IN_R1C1_BRACKETED_COLUMN); return (int)Tokens.T_LBRACK; }
-"]" { BEGIN(INITIAL); return (int)Tokens.T_RBRACK; }
+"[" { BEGIN(IN_R1C1_BRACKETED_COLUMN); yylval.stringVal = yytext; return (int)Tokens.T_LBRACK; }
+"]" { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_RBRACK; }
 ":" { BEGIN(INITIAL); return (int)Tokens.T_COLON; }
 
 . { BEGIN(INITIAL); }

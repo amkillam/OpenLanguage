@@ -48,8 +48,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         protected BinaryOperatorNode(
             ExpressionNode left,
             ExpressionNode right,
-            List<Node>? wsBeforeOp = null,
-            List<Node>? wsAfterOp = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )

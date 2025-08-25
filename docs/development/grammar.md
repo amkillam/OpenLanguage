@@ -493,21 +493,6 @@ statement_list
     ;
 ```
 
-### Custom Actions
-
-Add custom C# code to grammar actions:
-
-```yacc
-function_call
-    : T_IDENTIFIER T_LPAREN argument_list T_RPAREN
-    {
-        var node = new FunctionCallNode($1, $3);
-        node.SourceLocation = new Location(@1.StartLine, @1.StartColumn);
-        $$ = node;
-    }
-    ;
-```
-
 ### Semantic Predicates
 
 Use semantic actions for context-sensitive parsing:

@@ -10,8 +10,6 @@
     public class ArgumentParseResult
     {
         public List<ExpressionNode> Arguments { get; set; } = new List<ExpressionNode>();
-        public List<List<Node>> WsBeforeComma { get; set; } = new List<List<Node>>();
-        public List<List<Node>> WsAfterComma { get; set; } = new List<List<Node>>();
     }
 %}
 
@@ -122,10 +120,10 @@ public BangReferenceNode bangReferenceVal;
 %token <stringVal> T_IDENTIFIER  T_STRING_CONSTANT T_QUOTED_IDENTIFIER T_SHEET_NAME_SPECIAL
 %token <stringVal> T_STRUCTURED_REFERENCE T_XLFN_XLWS_
 %token <stringVal> T_DIV0_ERROR T_NA_ERROR T_NAME_ERROR T_NULL_ERROR T_NUM_ERROR T_VALUE_ERROR T_GETTING_DATA_ERROR T_REF_ERROR T_SPILL_ERROR T_CALC_ERROR T_BLOCKED_ERROR T_BUSY_ERROR T_CIRCULAR_ERROR T_CONNECT_ERROR T_EXTERNAL_ERROR T_FIELD_ERROR T_PYTHON_ERROR T_UNKNOWN_ERROR
-%token <stringVal> T_QUESTIONMARK
+%token <stringVal> T_QUESTIONMARK T_LBRACK T_RBRACK
 %token T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_HASH
 %token T_EQ T_NE T_LT T_LE T_GT T_GE
-%token T_LPAREN T_RPAREN T_LBRACE T_RBRACE T_LBRACK T_RBRACK T_COMMA T_COLON T_SEMICOLON
+%token T_LPAREN T_RPAREN T_LBRACE T_RBRACE T_COMMA T_COLON T_SEMICOLON
 %token T_TRUE T_FALSE T_EMPTY_BRACKETS
 %token T_SR_ALL T_SR_DATA T_SR_HEADERS T_SR_TOTALS T_SR_THIS_ROW
 
@@ -288,45 +286,23 @@ function_call_head: standard_function_name { $$ = new BuiltInStandardFunctionNod
     | opt_whitespace T_XLFN_XLWS_ opt_whitespace worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, $3, $4, $1, $5); }
     ;
 
-function_call: function_call_head opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN
+function_call: opt_whitespace function_call_head opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN
         {
-            ArgumentParseResult result = $5;
-            for (int i = 0; i < result.WsBeforeComma.Count; i++)
-            {
-                if (i + 1 < result.Arguments.Count && result.WsBeforeComma[i] != null) {
-                result.Arguments[i].TrailingWhitespace.AddRange(result.WsBeforeComma[i]);
-                }
-                if (i + 1 < result.Arguments.Count && result.WsAfterComma[i] != null)
-                {
-                    result.Arguments[i+1].LeadingWhitespace.AddRange(result.WsAfterComma[i]);
-                }
-            }
-            $$ = new FunctionCallNode($1, $2, $4, result.Arguments, result.WsBeforeComma, result.WsAfterComma, $6);
+            ArgumentParseResult result = $6;
+            $$ = new FunctionCallNode($2, result.Arguments,  $1, $7);
         };
 
-solo_function: opt_whitespace T_XLFN_XLWS_ opt_whitespace T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
+solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
         {
-            BuiltInWorksheetFunctionNode pyNode = new BuiltInWorksheetFunctionNode($2, $3, "PY", $1, $5);
-            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($8, $7, $9);
-            NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($12, $11, $13);
+            BuiltInWorksheetFunctionNode pyNode = new BuiltInWorksheetFunctionNode($2,  "PY", $1, $3);
+            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $5);
+            NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, $10, $12);
 
-            ArgumentParseResult result = $14;
+            ArgumentParseResult result = $13;
             result.Arguments.Insert(0, arg2);
             result.Arguments.Insert(0, arg1);
 
-            result.WsBeforeComma.Insert(0, $9);
-            result.WsAfterComma.Insert(0, $11);
-
-            for (int i = 0; i < result.WsBeforeComma.Count; i++)
-            {
-                if (i < result.Arguments.Count - 1)
-                {
-                    result.Arguments[i].TrailingWhitespace.AddRange(result.WsBeforeComma[i]);
-                    result.Arguments[i+1].LeadingWhitespace.AddRange(result.WsAfterComma[i]);
-                }
-            }
-
-            FunctionCallNode funcCall = new FunctionCallNode(pyNode, $5, $7, result.Arguments, result.WsBeforeComma, result.WsAfterComma, $15, null, $17);
+                       FunctionCallNode funcCall = new FunctionCallNode(pyNode,  result.Arguments, $1, $16);
             $$ = funcCall;
         }
     ;
@@ -336,8 +312,6 @@ argument_list:
         {
             $$ = $1;
             if ($5 != null) $$.Arguments.Add($5);
-            $$.WsBeforeComma.Add($2);
-            $$.WsAfterComma.Add($4);
         }
     |     expression { $$ = new ArgumentParseResult(); if ($1 != null) $$.Arguments.Add($1); }
     | /* empty */ { $$ = new ArgumentParseResult(); }
@@ -397,23 +371,14 @@ constant_list_row: constant { $$ = new List<ExpressionNode> { $1 }; }
     ;
 
 cell_reference : external_cell_reference { $$ = $1; } | cell_range { $$ = $1; } | cell { $$ = $1; };
-name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN
+name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
     {
         // This logic is moved from the old function_call rule.
         // $1 is a NameNode, which correctly captures the identifier and its whitespace.
         UserDefinedFunctionNode head = new UserDefinedFunctionNode($2, $1, $3);
         ArgumentParseResult result = $6;
-        for (int i = 0; i < result.WsBeforeComma.Count; i++)
-            {
-                if (i + 1 < result.Arguments.Count && result.WsBeforeComma[i] != null) {
-                result.Arguments[i].TrailingWhitespace.AddRange(result.WsBeforeComma[i]);
-                }
-                if (i + 1 < result.Arguments.Count && result.WsAfterComma[i] != null)
-                {
-                    result.Arguments[i+1].LeadingWhitespace.AddRange(result.WsAfterComma[i]);
-                }
-            }
-        $$ = new FunctionCallNode(head, new List<Node>(), $5, result.Arguments,  $7);
+
+        $$ = new FunctionCallNode(head,  result.Arguments,  null, $9);
     }
     | name
     {
@@ -568,7 +533,7 @@ keyword_list
 column_range: structure_column T_COLON structure_column { $$ = new StructureColumnRange($1, $3); };
 structure_column: T_LBRACK name T_RBRACK { $$ = new StructureColumn($2); };
 
-workbook_index : T_LBRACK opt_whitespace T_LONG opt_whitespace T_RBRACK { $$ = new WorkbookIndexNode($3, $2, $4); };
+workbook_index : T_LBRACK opt_whitespace T_LONG opt_whitespace T_RBRACK {  $2.InsertRange(0, new WhitespaceNode($1)); $4.InsertRange(0, new WhitespaceNode($3)); $$ = new WorkbookIndexNode($3, $2, $4); };
 
 whitespace: T_NEWLINE { $$ = new WhitespaceNode($1); }
           | T_INTERSECTION { $$ = new WhitespaceNode($1); };

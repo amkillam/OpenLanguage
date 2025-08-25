@@ -8,120 +8,27 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class FunctionCallNode : ExpressionNode
     {
         public ExpressionNode FunctionIdentifier { get; set; }
-        public List<Node> WsAfterIdentifier { get; set; }
-        public List<Node> WsAfterOpenParen { get; set; }
         public List<ExpressionNode> Arguments { get; }
-        public List<Node> WsBeforeCloseParen { get; set; }
-        public List<List<Node>> WsBeforeCommas { get; set; }
-        public List<List<Node>> WsAfterCommas { get; set; }
 
         public override int Precedence => Ast.Precedence.Primary;
 
         public FunctionCallNode(
             ExpressionNode functionIdentifier,
-            List<Node>? wsAfterIdentifier,
-            List<Node>? wsAfterOpenParen,
             List<ExpressionNode> arguments,
-            List<List<Node>>? wsBeforeCommas,
-            List<List<Node>>? wsAfterCommas,
-            List<Node>? wsBeforeCloseParen,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
             FunctionIdentifier = functionIdentifier;
-            WsAfterIdentifier = wsAfterIdentifier ?? new List<Node>();
-            WsAfterOpenParen = wsAfterOpenParen ?? new List<Node>();
             Arguments = arguments;
-            WsBeforeCommas = wsBeforeCommas ?? new List<List<Node>>();
-            WsAfterCommas = wsAfterCommas ?? new List<List<Node>>();
-            WsBeforeCloseParen = wsBeforeCloseParen ?? new List<Node>();
         }
 
-        // Back-compat constructors for generated parser calls that don't provide per-comma whitespace
-        public FunctionCallNode(
-            ExpressionNode functionIdentifier,
-            List<Node>? wsAfterIdentifier,
-            List<Node>? wsAfterOpenParen,
-            List<ExpressionNode> arguments,
-            List<Node>? wsBeforeCloseParen
-        )
-            : this(
-                functionIdentifier,
-                wsAfterIdentifier,
-                wsAfterOpenParen,
-                arguments,
-                null,
-                null,
-                wsBeforeCloseParen,
-                null,
-                null
-            ) { }
-
-        public FunctionCallNode(
-            ExpressionNode functionIdentifier,
-            List<Node>? wsAfterIdentifier,
-            List<Node>? wsAfterOpenParen,
-            List<ExpressionNode> arguments,
-            List<Node>? wsBeforeCloseParen,
-            List<Node>? leadingWhitespace,
-            List<Node>? trailingWhitespace
-        )
-            : this(
-                functionIdentifier,
-                wsAfterIdentifier,
-                wsAfterOpenParen,
-                arguments,
-                null,
-                null,
-                wsBeforeCloseParen,
-                leadingWhitespace,
-                trailingWhitespace
-            ) { }
-
-        public override string ToRawString()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append(FunctionIdentifier.ToString());
-            builder.Append(string.Concat(WsAfterIdentifier.Select(w => w.ToString())));
-            builder.Append('(');
-            builder.Append(string.Concat(WsAfterOpenParen.Select(w => w.ToString())));
-
-            for (int i = 0; i < Arguments.Count; i++)
-            {
-                builder.Append(Arguments[i].ToString());
-                if (i < Arguments.Count - 1)
-                {
-                    // Preserve any explicit whitespace that should appear before the comma.
-                    if (
-                        i < WsBeforeCommas.Count
-                        && WsBeforeCommas[i] != null
-                        && WsBeforeCommas[i].Count > 0
-                    )
-                    {
-                        builder.Append(string.Concat(WsBeforeCommas[i].Select(w => w.ToString())));
-                    }
-
-                    // Always emit the comma
-                    builder.Append(',');
-
-                    // Only render explicit whitespace after the comma if present.
-                    if (
-                        i < WsAfterCommas.Count
-                        && WsAfterCommas[i] != null
-                        && WsAfterCommas[i].Count > 0
-                    )
-                    {
-                        builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
-                    }
-                }
-            }
-
-            builder.Append(string.Concat(WsBeforeCloseParen.Select(w => w.ToString())));
-            builder.Append(')');
-            return builder.ToString();
-        }
+        public override string ToRawString() =>
+            FunctionIdentifier.ToString()
+            + "("
+            + string.Join(",", Arguments.Select(a => a.ToString()))
+            + ")";
 
         public override IEnumerable<O> Children<O>()
         {

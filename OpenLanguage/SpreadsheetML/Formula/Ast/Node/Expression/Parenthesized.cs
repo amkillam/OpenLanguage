@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -11,21 +8,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class ParenthesizedExpressionNode : ExpressionNode
     {
         public ExpressionNode Expression { get; set; }
-        public List<Node> WsAfterOpenParen { get; set; }
-        public List<Node> WsBeforeCloseParen { get; set; }
 
         public ParenthesizedExpressionNode(
             ExpressionNode expression,
-            List<Node> wsAfterOpenParen,
-            List<Node> wsBeforeCloseParen,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
             Expression = expression;
-            WsAfterOpenParen = wsAfterOpenParen;
-            WsBeforeCloseParen = wsBeforeCloseParen;
         }
 
         public override int Precedence => Ast.Precedence.Primary;
@@ -49,16 +40,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             return null;
         }
 
-        public override string ToRawString()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append('(');
-            builder.Append(string.Concat(WsAfterOpenParen.Select(w => w.ToString())));
-            // The child expression's ToString() call will handle its own surrounding whitespace correctly.
-            builder.Append(Expression.ToString());
-            builder.Append(string.Concat(WsBeforeCloseParen.Select(w => w.ToString())));
-            builder.Append(')');
-            return builder.ToString();
-        }
+        public override string ToRawString() => "(" + Expression.ToRawString() + ")";
     }
 }
