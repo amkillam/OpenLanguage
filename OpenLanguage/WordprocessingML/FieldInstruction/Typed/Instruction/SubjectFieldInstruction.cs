@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed SUBJECT field instruction.
-    /// Retrieves, and optionally sets, the document's subject, as recorded in the `<Subject>` element of the Core File Properties part or, if field-argument is present, the subject specified by text in field-argument. Specifying a field-argument shall change `<Subject>` to text.
+    /// Retrieves, and optionally sets, the document's subject, as recorded in the &lt;Subject&gt; element of the Core File Properties part or, if field-argument is present, the subject specified by text in field-argument. Specifying a field-argument shall change &lt;Subject&gt; to text.
     /// </summary>
     public class SubjectFieldInstruction : TypedFieldInstruction
     {

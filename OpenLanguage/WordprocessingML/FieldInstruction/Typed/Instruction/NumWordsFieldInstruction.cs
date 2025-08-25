@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed NUMWORDS field instruction.
-    /// Retrieves the number of words in the current document, as recorded in the `<Words>` element of the Application-Defined File Properties part.
+    /// Retrieves the number of words in the current document, as recorded in the &lt;Words&gt; element of the Application-Defined File Properties part.
     /// </summary>
     public class NumWordsFieldInstruction : TypedFieldInstruction
     {

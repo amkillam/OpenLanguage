@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed EDITTIME field instruction.
-    /// Retrieves the total editing time, in minutes, since the document was created, as recorded in the `<TotalTime>` element of the Application-Defined File Properties part. By default, the numeric-formatting-switch or general-formatting-switch used is implementation-defined.
+    /// Retrieves the total editing time, in minutes, since the document was created, as recorded in the &lt;TotalTime&gt; element of the Application-Defined File Properties part. By default, the numeric-formatting-switch or general-formatting-switch used is implementation-defined.
     /// </summary>
     public class EditTimeFieldInstruction : TypedFieldInstruction
     {

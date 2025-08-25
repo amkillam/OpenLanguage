@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed KEYWORDS field instruction.
-    /// Retrieves, and optionally sets, the document's keywords, as recorded in the `<Keywords>` element of the Core File Properties part or, if field-argument is present, the subject specified by text in field-argument. Specifying a field-argument shall change `<Keywords>` to text. The `<Keywords>` element contains a string of text whose format and semantics is unspecified by this Office Open XML Standard.
+    /// Retrieves, and optionally sets, the document's keywords, as recorded in the &lt;Keywords&gt; element of the Core File Properties part or, if field-argument is present, the subject specified by text in field-argument. Specifying a field-argument shall change &lt;Keywords&gt; to text. The &lt;Keywords&gt; element contains a string of text whose format and semantics is unspecified by this Office Open XML Standard.
     /// </summary>
     public class KeywordsFieldInstruction : TypedFieldInstruction
     {

@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed LASTSAVEDBY field instruction.
-    /// Retrieves the name of the user who last modified and saved the current document, as recorded in the `<LastModifiedBy>` element of the Core File Properties part.
+    /// Retrieves the name of the user who last modified and saved the current document, as recorded in the &lt;LastModifiedBy&gt; element of the Core File Properties part.
     /// </summary>
     public class LastSavedByFieldInstruction : TypedFieldInstruction
     {

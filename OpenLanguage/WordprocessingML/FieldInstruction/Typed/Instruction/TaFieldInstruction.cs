@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed TA field instruction.
-    /// Defines the text and page number for a table of authorities entry, which is used by a `TOA` field ([TOA](TOA.md)).
+    /// Defines the text and page number for a table of authorities entry, which is used by a `TOA` field.
     /// </summary>
     public class TaFieldInstruction : TypedFieldInstruction
     {

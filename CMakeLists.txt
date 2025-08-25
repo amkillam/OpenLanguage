@@ -154,12 +154,11 @@ add_custom_target(format
 
 # Documentation target - dependent on build
 add_custom_target(doc
-    COMMAND dotnet tool install --global docfx || echo "DocFX already installed"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/docs"
-    COMMAND docfx init --yes --output "${CMAKE_BINARY_DIR}/docs" || echo "DocFX project exists"
-    COMMAND docfx metadata "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json"
-    COMMAND docfx build "${CMAKE_BINARY_DIR}/docs/docfx_project/docfx.json" -o "${CMAKE_BINARY_DIR}/docs/site"
     DEPENDS build
+    COMMAND dotnet tool install --global docfx || echo "DocFX already installed"
+    COMMAND docfx metadata "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
+    COMMAND docfx build "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docfx"
     COMMENT "Generating API documentation with DocFX"
 )
 

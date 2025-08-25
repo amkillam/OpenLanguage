@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed TC field instruction.
-    /// Defines the text and page number for a table of contents (including a table of figures) entry, which is used by a `TOC` field ([TOC](TOC.md)). The text of the entry is text in field-argument.
+    /// Defines the text and page number for a table of contents (including a table of figures) entry, which is used by a `TOC` field. The text of the entry is text in field-argument.
     /// </summary>
     public class TcFieldInstruction : TypedFieldInstruction
     {

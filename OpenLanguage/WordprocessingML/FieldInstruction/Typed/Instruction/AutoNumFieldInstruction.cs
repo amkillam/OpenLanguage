@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed AUTONUM field instruction.
-    /// In paragraphs formatted with one of the nine built-in heading styles, paragraph numbering restarts at 1 in each successive heading level. If headings that contain `AUTONUM` fields are followed by body text paragraphs that also contain `AUTONUM` fields, the paragraph numbering of the body text is restarted at 1 after each heading. If the headings don't contain `AUTONUM` fields, body text paragraphs that contain `AUTONUM` fields are numbered in a continuous, sequential series throughout the document. ##### Note This field is supported for legacy reasons, It is recommended that `LISTNUM` (§ [LISTNUM](LISTNUM.md)) be used instead. The XML generated for a complex field implementation shall not have the optional field value stored.
+    /// In paragraphs formatted with one of the nine built-in heading styles, paragraph numbering restarts at 1 in each successive heading level. If headings that contain `AUTONUM` fields are followed by body text paragraphs that also contain `AUTONUM` fields, the paragraph numbering of the body text is restarted at 1 after each heading. If the headings don't contain `AUTONUM` fields, body text paragraphs that contain `AUTONUM` fields are numbered in a continuous, sequential series throughout the document. Note: This field is supported for legacy reasons, It is recommended that `LISTNUM` be used instead. The XML generated for a complex field implementation shall not have the optional field value stored.
     /// </summary>
     public class AutoNumFieldInstruction : TypedFieldInstruction
     {

@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed COMMENTS field instruction.
-    /// Retrieves, and optionally sets, the comments relating to the current document, as recorded in the `<Description>` element of the Core File Properties part or, if field-argument is present, the comments specified by text in field-argument. Specifying a field-argument shall change `<Description>` to text.
+    /// Retrieves, and optionally sets, the comments relating to the current document, as recorded in the &lt;Description&gt; element of the Core File Properties part or, if field-argument is present, the comments specified by text in field-argument. Specifying a field-argument shall change &lt;Description&gt; to text.
     /// </summary>
     public class CommentsFieldInstruction : TypedFieldInstruction
     {

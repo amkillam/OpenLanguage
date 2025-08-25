@@ -46,7 +46,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         public bool DontStoreGraphicData { get; set; }
 
         /// <summary>
-        /// <summary>
         /// Enum for the formatting mode of a LINK field.
         /// </summary>
         public enum LinkFormattingMode

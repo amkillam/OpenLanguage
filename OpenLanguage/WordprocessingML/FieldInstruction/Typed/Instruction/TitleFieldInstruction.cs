@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed TITLE field instruction.
-    /// Retrieves, and optionally sets, the document's title, as recorded in the `<Title>` element of the Core File Properties part or, if field-argument is present, the name specified by text in field-argument. Specifying a field-argument shall change `<Title>` to text.
+    /// Retrieves, and optionally sets, the document's title, as recorded in the &lt;Title&gt; element of the Core File Properties part or, if field-argument is present, the name specified by text in field-argument. Specifying a field-argument shall change &lt;Title&gt; to text.
     /// </summary>
     public class TitleFieldInstruction : TypedFieldInstruction
     {

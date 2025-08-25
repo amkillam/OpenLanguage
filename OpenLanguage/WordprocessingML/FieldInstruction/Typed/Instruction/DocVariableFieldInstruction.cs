@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed DOCVARIABLE field instruction.
-    /// Inserts the string assigned to the document variable designated by text in field-argument. Each WordprocessingML document has a collection of variables. This field is used to access and display the contents of `<docVar>` (§[2.15.1.30](https://c-rex.net/samples/ooxml/e1/Part4/OOXML_P4_DOCX_docVar_topic_ID0EMOWX.html#topic_ID0EMOWX)) elements in the Document Settings part.
+    /// Inserts the string assigned to the document variable designated by text in field-argument. Each WordprocessingML document has a collection of variables. This field is used to access and display the contents of &lt;docVar&gt; elements in the Document Settings part.
     /// </summary>
     public class DocVariableFieldInstruction : TypedFieldInstruction
     {

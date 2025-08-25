@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed NUMPAGES field instruction.
-    /// Retrieves the number of pages in the current document, as recorded in the `<Pages>` element of the Application-Defined File Properties part.
+    /// Retrieves the number of pages in the current document, as recorded in the &lt;Pages&gt; element of the Application-Defined File Properties part.
     /// </summary>
     public class NumPagesFieldInstruction : TypedFieldInstruction
     {

@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed RD field instruction.
-    /// field-argument identifies a file to include when creating a table of contents, a table of authorities, or an index using a `TOC` ([TOC](TOC.md)), `TOA` ([TOA](TOA.md)), or `INDEX` field ([INDEX](INDEX.md)). `RD` fields that reference a series of files must be in the same order as the files in the final document. If the location includes a long file name containing spaces, field-argument shall contain delimiting quotes. A single backslash in the file path shall be preceded directly by a backslash. For a complex field implementation in XML the optional field-value storage is not needed.
+    /// field-argument identifies a file to include when creating a table of contents, a table of authorities, or an index using a `TOC`, `TOA`, or `INDEX` field. `RD` fields that reference a series of files must be in the same order as the files in the final document. If the location includes a long file name containing spaces, field-argument shall contain delimiting quotes. A single backslash in the file path shall be preceded directly by a backslash. For a complex field implementation in XML the optional field-value storage is not needed.
     /// </summary>
     public class RdFieldInstruction : TypedFieldInstruction
     {

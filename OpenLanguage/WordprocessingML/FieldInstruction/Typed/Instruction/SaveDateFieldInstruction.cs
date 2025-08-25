@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed SAVEDATE field instruction.
-    /// Retrieves the date and time on which the document was last saved, as recorded in the `<DateModified>` element of the Core File Properties part. By default, the Gregorian calendar is used and the date-and-time-formatting-switch used is implementation-defined. For a document that has never been saved, the date and time corresponds to `0000-00-00T00:00:00` local time and each text component is `XXX`.
+    /// Retrieves the date and time on which the document was last saved, as recorded in the &lt;DateModified&gt; element of the Core File Properties part. By default, the Gregorian calendar is used and the date-and-time-formatting-switch used is implementation-defined. For a document that has never been saved, the date and time corresponds to 0000-00-00T00:00:00 local time and each text component is XXX.
     /// </summary>
     public class SaveDateFieldInstruction : TypedFieldInstruction
     {

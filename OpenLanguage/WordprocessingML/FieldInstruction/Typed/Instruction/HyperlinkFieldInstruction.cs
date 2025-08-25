@@ -49,12 +49,11 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         public string? InternalLocation { get; set; }
 
         /// <summary>
-        ///
         /// Undocumented in OOXML, documented for Word 2003
         /// Used internally by Word for internally labelled, non-exported location names
-        ///
         /// Left here for the sake of completeness, and also to not forget that this exists, where it's undocumented
         /// Switch: \s arbLocation
+        /// </summary>
         public string? ArbLocation { get; set; }
 
         /// <summary>

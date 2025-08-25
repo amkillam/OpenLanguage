@@ -591,7 +591,7 @@ command_function_name: T_FUNC_A1_R1C1 { $$ = "A1.R1C1"; } | T_FUNC_ACTIVATE { $$
 %%
 
 public Node root;
-internal Parser(FormulaScanner scanner) : base(scanner)
+internal Parser(OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner) : base(scanner)
 {
     scanner.Parser = this;
 }

@@ -6,7 +6,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
     /// <summary>
     /// Represents a strongly-typed FORMCHECKBOX field instruction.
-    /// Inserts a check box style form field which, when the editing of form fields is enabled using the `<documentProtection>` element (§[2.15.1.28](https://c-rex.net/samples/ooxml/e1/Part4/OOXML_P4_DOCX_documentProtection_topic_ID0EJVTX.html#topic_ID0EJVTX)), can be checked and unchecked. An instance of this field shall be accompanied by a use of the `<ffData>` element (§[2.16.17](https://c-rex.net/samples/ooxml/e1/Part4/OOXML_P4_DOCX_ffData_topic_ID0EJFT1.html#topic_ID0EJFT1)) which contains the form field's properties.
+    /// Inserts a check box style form field which, when the editing of form fields is enabled using the &lt;documentProtection&gt; element, can be checked and unchecked. An instance of this field shall be accompanied by a use of the &lt;ffData&gt; element which contains the form field's properties.
     /// </summary>
     public class FormCheckBoxFieldInstruction : TypedFieldInstruction
     {

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "..",
+          "files": [
+            "OpenLanguage/OpenLanguage.csproj"
+          ]
+        }
+      ],
+      "output": "../build/docs/api",
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "src": "../build/docs/api",
+        "files": [
+          "**.yml",
+          "index.md"
+        ]
+      },
+      {
+        "files": [
+          "**.md",
+          "../*.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "src": "../docs",
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "../build/docs/site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "OpenLanguage",
+      "_appTitle": "OpenLanguage Documentation",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "repo": "https://github.com/amkillam/OpenLanguage",
+        "branch": "main"
+      },
+      "_gitUrlPattern": "github"
+    },
+    "fileMetadata": {
+      "_appLogoPath": {
+        "docs/**": "images/logo.png"
+      }
+    }
+  }
+}
