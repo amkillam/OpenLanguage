@@ -12,4 +12,4 @@ Browse the [API documentation](api/index.md) for detailed information about clas
 
 ## Getting Started
 
-To get started with OpenLanguage, see the README file in the project root.
+To get started with OpenLanguage, see the [README file](https://github.com/amkillam/OpenLanguage/README.md) in the project root.

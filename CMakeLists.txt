@@ -137,6 +137,13 @@ endforeach()
 
 # --- Other Utility Targets ---
 
+add_custom_target(tool_restore
+    COMMAND dotnet tool restore --verbosity q
+    COMMENT "Restoring dotnet tools"
+)
+
+
+
 # Test target - dependent on build
 add_custom_target(test
     COMMAND dotnet test "${TEST_PROJECT_DIR}/OpenLanguage.Test.csproj" --configuration Release --no-build --verbosity normal
@@ -154,17 +161,16 @@ add_custom_target(publish
 
 # Format target
 add_custom_target(format
-    COMMAND dotnet tool restore
+    DEPENDS tool_restore
     COMMAND dotnet csharpier format ${CMAKE_SOURCE_DIR}
     COMMENT "Formatting code with CSharpier"
 )
 
 # Documentation target - dependent on build
 add_custom_target(doc
-    DEPENDS build
-    COMMAND dotnet tool install --global docfx || echo "DocFX already installed"
-    COMMAND docfx metadata "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
-    COMMAND docfx build "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
+    DEPENDS build tool_restore
+    COMMAND dotnet docfx metadata "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
+    COMMAND dotnet docfx build "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docfx"
     COMMENT "Generating API documentation with DocFX"
 )
