@@ -12,6 +12,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public List<Node> WsAfterOpenParen { get; set; }
         public List<ExpressionNode> Arguments { get; }
         public List<Node> WsBeforeCloseParen { get; set; }
+        public List<List<Node>> WsBeforeCommas { get; set; }
+        public List<List<Node>> WsAfterCommas { get; set; }
 
         public override int Precedence => Ast.Precedence.Primary;
 
@@ -20,6 +22,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? wsAfterIdentifier,
             List<Node>? wsAfterOpenParen,
             List<ExpressionNode> arguments,
+            List<List<Node>>? wsBeforeCommas,
+            List<List<Node>>? wsAfterCommas,
             List<Node>? wsBeforeCloseParen,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -30,6 +34,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             WsAfterIdentifier = wsAfterIdentifier ?? new List<Node>();
             WsAfterOpenParen = wsAfterOpenParen ?? new List<Node>();
             Arguments = arguments;
+            WsBeforeCommas = wsBeforeCommas ?? new List<List<Node>>();
+            WsAfterCommas = wsAfterCommas ?? new List<List<Node>>();
             WsBeforeCloseParen = wsBeforeCloseParen ?? new List<Node>();
         }
 
@@ -41,7 +47,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             builder.Append('(');
             builder.Append(string.Concat(WsAfterOpenParen.Select(w => w.ToString())));
 
-            builder.Append(string.Join(",", Arguments.Select(a => a.ToString())));
+            for (int i = 0; i < Arguments.Count; i++)
+            {
+                builder.Append(Arguments[i].ToString());
+                if (i < Arguments.Count - 1)
+                {
+                    if (i < WsBeforeCommas.Count)
+                    {
+                        builder.Append(string.Concat(WsBeforeCommas[i].Select(w => w.ToString())));
+                    }
+                    builder.Append(',');
+                    if (i < WsAfterCommas.Count)
+                    {
+                        builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
+                    }
+                }
+            }
 
             builder.Append(string.Concat(WsBeforeCloseParen.Select(w => w.ToString())));
             builder.Append(')');

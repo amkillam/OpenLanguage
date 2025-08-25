@@ -23,7 +23,7 @@
 
 %x IN_A1_ROW_RANGE
 %x IN_A1_ROW_RANGE_SECOND_ROW
-
+%x IN_COMMENT
 
 %%
 
@@ -84,6 +84,9 @@
     \"                  { stringBuffer.Clear(); BEGIN(IN_STRING); }
     \'                  { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
 
+    "//".*             { /* skip single-line comment */ }
+    "/\*"              { BEGIN(IN_COMMENT); }
+
     \s               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
     [\xA0]+             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
@@ -113,6 +116,9 @@
 
     .                   { }
 }
+
+<IN_COMMENT>"\*/" { BEGIN(INITIAL); }
+<IN_COMMENT>[\s\S] { /* consume comment content */ }
 
 <IN_A1_CELL> {
     \$ { return  (int)Tokens.T_DOLLAR; }

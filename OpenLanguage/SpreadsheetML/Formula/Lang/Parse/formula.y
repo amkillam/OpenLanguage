@@ -298,7 +298,7 @@ function_call: function_call_head opt_whitespace T_LPAREN opt_whitespace argumen
                     result.Arguments[i+1].LeadingWhitespace.AddRange(result.WsAfterComma[i]);
                 }
             }
-            $$ = new FunctionCallNode($1, $2, $4, result.Arguments, $6);
+            $$ = new FunctionCallNode($1, $2, $4, result.Arguments, result.WsBeforeComma, result.WsAfterComma, $6);
         };
 
 solo_function: opt_whitespace T_XLFN_XLWS_ opt_whitespace T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
@@ -323,7 +323,7 @@ solo_function: opt_whitespace T_XLFN_XLWS_ opt_whitespace T_FUNC_PY opt_whitespa
                 }
             }
 
-            FunctionCallNode funcCall = new FunctionCallNode(pyNode, $5, $7, result.Arguments, $15, null, $17);
+            FunctionCallNode funcCall = new FunctionCallNode(pyNode, $5, $7, result.Arguments, result.WsBeforeComma, result.WsAfterComma, $15, null, $17);
             $$ = funcCall;
         }
     ;
