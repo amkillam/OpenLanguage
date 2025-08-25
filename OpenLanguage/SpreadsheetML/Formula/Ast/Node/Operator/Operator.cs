@@ -348,25 +348,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class IntersectionNode : BinaryOperatorNode
     {
-        public List<Node> IntersectionWhitespace { get; set; }
-
         public IntersectionNode(
             ExpressionNode l,
             ExpressionNode @operator,
             ExpressionNode r,
-            List<Node> intersectionWhitespace
+            List<Node>? lws = null,
+            List<Node>? tws = null
         )
-            : base(l, @operator, r)
-        {
-            IntersectionWhitespace = intersectionWhitespace;
-        }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Intersection;
-
-        public override string ToRawString() =>
-            Left.ToString()
-            + string.Concat(IntersectionWhitespace.Select(w => w.ToString()))
-            + Right.ToString();
     }
 
     public class ImplicitIntersectionNode : UnaryOperatorNode

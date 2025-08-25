@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
     public abstract class NameNode : ExpressionNode
     {
-        public string Name { get; set; }
+        public ExpressionNode Name { get; set; }
         public override int Precedence => Ast.Precedence.Primary;
 
         protected NameNode(
-            string name,
+            ExpressionNode name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -19,20 +17,34 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Name = name;
         }
 
-        public override string ToRawString() => Name;
+        public override string ToRawString() => Name.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
+            if (Name is O o)
+            {
+                yield return o;
+            }
+
             yield break;
         }
 
-        public override Node? ReplaceChild(int index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            if (index == 0 && replacement is ExpressionNode expr)
+            {
+                Node current = Name;
+                Name = expr;
+                return current;
+            }
+            return null;
+        }
     }
 
     public class NamedRangeNode : NameNode
     {
         public NamedRangeNode(
-            string name,
+            ExpressionNode name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
