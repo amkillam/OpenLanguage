@@ -870,9 +870,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 
             // Comments should be either preserved as special tokens or stripped
             List<ExpressionToken> tokens = result.Tokens.ToList();
-            bool hasCommentTokens = tokens.Any(t =>
-                t.Value != null && t.Value.Contains("comment")
-            );
+            bool hasCommentTokens = tokens.Any(t => t.Value != null && t.Value.Contains("comment"));
             bool commentStripped = !tokens.Any(t => t.Value != null && t.Value.Contains("/*"));
 
             Assert.True(hasCommentTokens || commentStripped);
