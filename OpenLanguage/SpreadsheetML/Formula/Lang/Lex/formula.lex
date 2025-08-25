@@ -3,6 +3,7 @@
 %scannertype FormulaScanner
 %tokentype Tokens
 %visibility internal
+%option unicode
 
 %{
     private System.Text.StringBuilder stringBuffer = new System.Text.StringBuilder();
