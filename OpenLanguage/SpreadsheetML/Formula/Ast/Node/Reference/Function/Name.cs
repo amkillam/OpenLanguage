@@ -68,11 +68,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             QuestionMark = qMarkNode;
         }
 
-        public override string ToRawString()
-        {
-            string mark = QuestionMark != null ? QuestionMark.ToString() : string.Empty;
-            return base.ToRawString() + mark;
-        }
+        public override string ToRawString() =>
+            base.ToRawString() + QuestionMark?.ToString() ?? string.Empty;
     }
 
     public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode
