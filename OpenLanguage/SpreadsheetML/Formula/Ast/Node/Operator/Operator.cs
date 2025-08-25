@@ -440,6 +440,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             $"@{string.Concat(WsBetween.Select(w => w.ToString()))}{Operand.ToString()}";
     }
 
+    public class AtSuffixNode : UnaryOperatorNode
+    {
+        public AtSuffixNode(
+            ExpressionNode op,
+            List<Node>? ws = null,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(op, ws, lws, tws) { }
+
+        public override int Precedence => Ast.Precedence.Unary;
+
+        public override string ToRawString() =>
+            $"{Operand.ToString()}{string.Concat(WsBetween.Select(w => w.ToString()))}@";
+    }
+
     public class UnionNode : BinaryOperatorNode
     {
         public UnionNode(

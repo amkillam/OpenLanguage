@@ -99,7 +99,7 @@
     [\u00A0]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
 
 
-    [R]\[?[\+\-]?[1-9]{0,6}\]?[C]\[?[\+\-]?[1-9]{0,6}\]?                  { BEGIN(IN_R1C1_CELL); yyless(0); }
+    [R](\[?[\+\-]?[1-9][0-9]{0,6}\])?[C](\[?[\+\-]?[1-9][0-9]{0,6}\])?    { BEGIN(IN_R1C1_CELL); yyless(0); }
     \$?[A-Z][A-Z]{0,2}\$?[1-9][0-9]{0,6}                                  { BEGIN(IN_A1_CELL); yyless(0); }
 
     \$?[A-Z][A-Z]{0,2}:\$?[A-Z][A-Z]{0,2}                                                    { BEGIN(IN_A1_COLUMN_RANGE); yyless(0); }

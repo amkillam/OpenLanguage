@@ -30,7 +30,12 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 }
             }
 
-            string formulaBody = leadingEqualsCount > 0 ? formulaText.Substring(1) : formulaText;
+            string formulaBody = formulaText;
+            if (leadingEqualsCount > 0)
+            {
+                // Strip all leading '=' characters before parsing
+                formulaBody = formulaText.Substring(leadingEqualsCount);
+            }
 
             byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(formulaBody);
             MemoryStream stream = new(byteArray);

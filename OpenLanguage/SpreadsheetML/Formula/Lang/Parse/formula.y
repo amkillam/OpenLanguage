@@ -262,6 +262,8 @@ expression: T_LPAREN opt_whitespace expression opt_whitespace T_RPAREN { $$ = ne
     | T_PLUS opt_whitespace expression %prec UMINUS                      { $$ = new UnaryPlusNode($3, $2); }
     | T_MINUS opt_whitespace expression %prec UMINUS                     { $$ = new UnaryMinusNode($3, $2); }
     | expression T_INTERSECTION opt_whitespace expression { List<Node> whitespace = new List<Node>() { new WhitespaceNode($2) }; whitespace.AddRange($3); $$ = new IntersectionNode($1, $4, whitespace); }
+    | T_AT_SYMBOL opt_whitespace expression %prec UMINUS { $$ = new ImplicitIntersectionNode($3, $2); }
+    | expression opt_whitespace T_AT_SYMBOL             { $$ = new AtSuffixNode($1, $2); }
     | primary { $$ = $1; }
     ;
 
@@ -272,6 +274,7 @@ primary: constant
     | A1_row { $$ = $1; }
     | A1_column { $$ = $1; }
     | function_call
+    | function_call_head { $$ = $1; }
     | name_reference
     // | pivot_items
     ;
