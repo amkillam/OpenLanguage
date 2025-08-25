@@ -68,6 +68,7 @@
     "#FIELD!"           { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
     "#PYTHON!"          { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
     "#UNKNOWN!"         { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
+    #[A-Za-z_]+!        { throw new System.FormatException("Unknown error literal"); }
 
     "TRUE"              { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
     "FALSE"             { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
@@ -111,6 +112,12 @@
     [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponent"); } // Invalid: 1E2E3
     [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
     \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
+    [0-9]+[A-Za-z_][A-Za-z0-9_]*                         { throw new System.FormatException("Invalid number format"); }
+    [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
+    [0-9]+[Ee][\+\-][ \t\r\n]*                            { throw new System.FormatException("Incomplete scientific notation with sign"); }
+    [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponents"); } // Invalid: 1E2E3
+    [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
+    \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
     ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?([0-9]+))?    { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
     [0-9]+[Ee][\+\-]?([0-9]+)                            { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
     [0-9]+                                               { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
@@ -128,8 +135,8 @@
 
 <IN_A1_CELL> {
     \$ { return  (int)Tokens.T_DOLLAR; }
-    [A-Z][A-Z]{0,2}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
-    [1-9][0-9]{0,6}                                              { BEGIN(INITIAL); yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_A1_ROW; }
+    [A-Z][A-Z]{0,2}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); if (yylval.ulongVal > 16384UL) { throw new System.FormatException("Column reference out of range"); } return (int)Tokens.T_A1_COLUMN; }
+    [1-9][0-9]{0,6}                                              { BEGIN(INITIAL); yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); if (yylval.ulongVal > 1048576UL) { throw new System.FormatException("Row number out of range"); } return (int)Tokens.T_A1_ROW; }
     . { BEGIN(INITIAL); yyless(0); }
 }
 
@@ -137,7 +144,7 @@
    \$ { return  (int)Tokens.T_DOLLAR; }
    ":" { BEGIN(IN_A1_COLUMN_RANGE_SECOND_COLUMN); return (int)Tokens.T_COLON; }
 
-   [A-Z]{1,3}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
+   [A-Z]{1,3}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); if (yylval.ulongVal > 16384UL) { throw new System.FormatException("Column reference out of range"); } return (int)Tokens.T_A1_COLUMN; }
    . { BEGIN(INITIAL); yyless(0); }
 
 }
@@ -145,7 +152,7 @@
 <IN_A1_COLUMN_RANGE_SECOND_COLUMN> {
    \$ { return  (int)Tokens.T_DOLLAR; }
 
-   [A-Z][A-Z]{0,2}                                                    { BEGIN(INITIAL); yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
+   [A-Z][A-Z]{0,2}                                                    { BEGIN(INITIAL); yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); if (yylval.ulongVal > 16384UL) { throw new System.FormatException("Column reference out of range"); } return (int)Tokens.T_A1_COLUMN; }
    . { BEGIN(INITIAL); yyless(0); }
 }
 
@@ -153,7 +160,7 @@
    \$ { return  (int)Tokens.T_DOLLAR; }
    ":" { BEGIN(IN_A1_ROW_RANGE_SECOND_ROW); return (int)Tokens.T_COLON; }
 
-   [1-9][0-9]{0,6}                                              { yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_A1_ROW; }
+   [1-9][0-9]{0,6}                                              { yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); if (yylval.ulongVal > 1048576UL) { throw new System.FormatException("Row number out of range"); } return (int)Tokens.T_A1_ROW; }
 
    . { BEGIN(INITIAL); yyless(0); }
 
@@ -162,7 +169,7 @@
 <IN_A1_ROW_RANGE_SECOND_ROW> {
    \$ { return  (int)Tokens.T_DOLLAR; }
 
-   [1-9][0-9]{0,6}                                              { BEGIN(INITIAL); yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_A1_ROW; }
+   [1-9][0-9]{0,6}                                              { BEGIN(INITIAL); yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); if (yylval.ulongVal > 1048576UL) { throw new System.FormatException("Row number out of range"); } return (int)Tokens.T_A1_ROW; }
 
    . { BEGIN(INITIAL); yyless(0); }
 }
@@ -198,6 +205,7 @@
     \"                    { BEGIN(INITIAL); yylval.stringVal = stringBuffer.ToString(); return (int)Tokens.T_STRING_CONSTANT; }
     [^\"]+                { stringBuffer.Append(yytext); }
 }
+<IN_STRING><<EOF>>       { throw new System.FormatException("Unterminated string"); }
 
 <IN_QUOTED_SHEET_NAME>{
     \'\'                  { stringBuffer.Append("'"); }
