@@ -6,18 +6,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public abstract class UnaryOperatorNode : ExpressionNode
     {
         public ExpressionNode Operand { get; set; }
-        public List<Node> WsBetween { get; set; }
+        public ExpressionNode Operator { get; set; }
 
         protected UnaryOperatorNode(
+            ExpressionNode @operator,
             ExpressionNode operand,
-            List<Node>? wsBetween = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
+            Operator = @operator;
             Operand = operand;
-            WsBetween = wsBetween ?? new List<Node>();
         }
 
         public override IEnumerable<O> Children<O>()
@@ -38,15 +38,19 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
             return null;
         }
+
+        public override string ToRawString() => Operator.ToString() + Operand.ToString();
     }
 
     public abstract class BinaryOperatorNode : ExpressionNode
     {
         public ExpressionNode Left { get; set; }
+        public ExpressionNode Operator { get; set; }
         public ExpressionNode Right { get; set; }
 
         protected BinaryOperatorNode(
             ExpressionNode left,
+            ExpressionNode @operator,
             ExpressionNode right,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -54,6 +58,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWhitespace, trailingWhitespace)
         {
             Left = left;
+            Operator = @operator;
             Right = right;
         }
 
@@ -62,6 +67,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             if (Left is O leftImp)
             {
                 yield return leftImp;
+            }
+            if (Operator is O opImp)
+            {
+                yield return opImp;
             }
             if (Right is O rightImp)
             {
@@ -81,6 +90,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 }
                 else if (index == 1)
                 {
+                    ExpressionNode currentOperator = Operator;
+                    Operator = expr;
+                    return currentOperator;
+                }
+                else if (index == 2)
+                {
                     ExpressionNode currentRight = Right;
                     Right = expr;
                     return currentRight;
@@ -88,51 +103,65 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
             return null;
         }
+
+        public override string ToRawString() =>
+            Left.ToString() + Operator.ToString() + Right.ToString();
     }
 
     public class UnaryPlusNode : UnaryOperatorNode
     {
-        public UnaryPlusNode(ExpressionNode op, List<Node>? lws = null, List<Node>? tws = null)
-            : base(op, lws, tws) { }
+        public UnaryPlusNode(
+            ExpressionNode @operator,
+            ExpressionNode operand,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(operand, @operator, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
-
-        public override string ToRawString() => $"+{Operand.ToString()}";
     }
 
     public class DynamicNode : UnaryOperatorNode
     {
-        public DynamicNode(ExpressionNode op, List<Node>? lws = null, List<Node>? tws = null)
-            : base(op, lws, tws) { }
+        public DynamicNode(
+            ExpressionNode @operator,
+            ExpressionNode operand,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(operand, @operator, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => $"{Operand.ToString()}#";
+        public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
     }
 
     public class UnaryMinusNode : UnaryOperatorNode
     {
-        public UnaryMinusNode(ExpressionNode op, List<Node>? lws = null, List<Node>? tws = null)
-            : base(op, lws, tws) { }
+        public UnaryMinusNode(
+            ExpressionNode @operator,
+            ExpressionNode operand,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(operand, @operator, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
-
-        public override string ToRawString() => $"-{Operand.ToString()}";
     }
 
     public class PercentNode : UnaryOperatorNode
     {
         public PercentNode(
-            ExpressionNode op,
-            List<Node>? ws,
+            ExpressionNode @operator,
+            ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(op, ws, lws, tws) { }
+            : base(operand, @operator, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Percent;
 
-        public override string ToRawString() => $"{Operand.ToString()}%";
+        public override string ToRawString() => base.Operator.ToString() + base.Operand.ToString();
     }
 
     public class AddNode : BinaryOperatorNode
@@ -140,194 +169,181 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public AddNode(
             ExpressionNode l,
             ExpressionNode r,
+            ExpressionNode @operator,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Additive;
-
-        public override string ToRawString() => $"{Left.ToString()}+{Right.ToString()}";
     }
 
     public class SubtractNode : BinaryOperatorNode
     {
         public SubtractNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Additive;
-
-        public override string ToRawString() => $"{Left.ToString()}-{Right.ToString()}";
     }
 
     public class MultiplyNode : BinaryOperatorNode
     {
         public MultiplyNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Multiplicative;
-
-        public override string ToRawString() => $"{Left.ToString()}*{Right.ToString()}";
     }
 
     public class DivideNode : BinaryOperatorNode
     {
         public DivideNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Multiplicative;
-
-        public override string ToRawString() => $"{Left.ToString()}/{Right.ToString()}";
     }
 
     public class PowerNode : BinaryOperatorNode
     {
         public PowerNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Power;
-
-        public override string ToRawString() => $"{Left.ToString()}^{Right.ToString()}";
     }
 
     public class ConcatenateNode : BinaryOperatorNode
     {
         public ConcatenateNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Concat;
-
-        public override string ToRawString() => $"{Left.ToString()}&{Right.ToString()}";
     }
 
     public class EqualNode : BinaryOperatorNode
     {
         public EqualNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => $"{Left.ToString()}={Right.ToString()}";
     }
 
     public class NotEqualNode : BinaryOperatorNode
     {
         public NotEqualNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => $"{Left.ToString()}<>{Right.ToString()}";
     }
 
     public class LessThanNode : BinaryOperatorNode
     {
         public LessThanNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => $"{Left.ToString()}<{Right.ToString()}";
     }
 
     public class LessThanOrEqualNode : BinaryOperatorNode
     {
         public LessThanOrEqualNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => $"{Left.ToString()}<={Right.ToString()}";
     }
 
     public class GreaterThanNode : BinaryOperatorNode
     {
         public GreaterThanNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => Left.ToString() + ">" + Right.ToString();
     }
 
     public class GreaterThanOrEqualNode : BinaryOperatorNode
     {
         public GreaterThanOrEqualNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
-
-        public override string ToRawString() => $"{Left.ToString()}>={Right.ToString()}";
     }
 
     public class RangeNode : BinaryOperatorNode
     {
         public RangeNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Range;
-
-        public override string ToRawString() => $"{Left.ToString()}:{Right.ToString()}";
     }
 
     public class IntersectionNode : BinaryOperatorNode
@@ -336,10 +352,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public IntersectionNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node> intersectionWhitespace
         )
-            : base(l, r)
+            : base(l, @operator, r)
         {
             IntersectionWhitespace = intersectionWhitespace;
         }
@@ -355,47 +372,46 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class ImplicitIntersectionNode : UnaryOperatorNode
     {
         public ImplicitIntersectionNode(
+            ExpressionNode @operator,
             ExpressionNode operand,
-            List<Node>? wsBetween = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(operand, wsBetween, leadingWhitespace, trailingWhitespace) { }
+            : base(@operator, operand, leadingWhitespace, trailingWhitespace) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => $"@{Operand.ToString()}";
+        public override string ToRawString() => Operand.ToString() + Operator.ToString();
     }
 
     public class AtSuffixNode : UnaryOperatorNode
     {
         public AtSuffixNode(
-            ExpressionNode op,
-            List<Node>? ws = null,
+            ExpressionNode @operator,
+            ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(op, ws, lws, tws) { }
+            : base(@operator, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => $"{Operand.ToString()}@";
+        public override string ToRawString() => Operand.ToString() + Operator.ToString();
     }
 
     public class UnionNode : BinaryOperatorNode
     {
         public UnionNode(
             ExpressionNode l,
+            ExpressionNode @operator,
             ExpressionNode r,
             List<Node>? wsB,
             List<Node>? wsA,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, r, lws, tws) { }
+            : base(l, @operator, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Union;
-
-        public override string ToRawString() => $"{Left.ToString()},{Right.ToString()}";
     }
 }
