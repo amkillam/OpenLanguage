@@ -60,8 +60,8 @@ namespace OpenLanguage.Utils.Tests
         public void Format_WithZero_ThrowsArgumentException(ulong input)
         {
             // Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(
-                () => _provider.Format("AH", input, _provider)
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+                _provider.Format("AH", input, _provider)
             );
         }
 

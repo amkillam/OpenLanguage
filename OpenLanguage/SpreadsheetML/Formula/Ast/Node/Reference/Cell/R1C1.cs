@@ -13,7 +13,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "C" + base.ToString();
+        public override string ToRawString() => "C" + base.ToRawString();
     }
 
     public class R1C1AbsoluteColumnNode : R1C1ColumnNode
@@ -35,7 +35,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "C" + "[" + base.ToString() + "]";
+        public override string ToRawString() => "C" + "[" + base.ToRawString() + "]";
     }
 
     public abstract class R1C1RowNode : RowNode<long>
@@ -47,7 +47,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "R" + base.ToString();
+        public override string ToRawString() => "R" + base.ToRawString();
     }
 
     public class R1C1AbsoluteRowNode : R1C1RowNode
@@ -69,7 +69,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "R" + "[" + base.ToString() + "]";
+        public override string ToRawString() => "R" + "[" + base.ToRawString() + "]";
     }
 
     public class R1C1CellNode : CellNode<R1C1RowNode, long, R1C1ColumnNode, long>
@@ -77,6 +77,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public R1C1CellNode(R1C1RowNode row, R1C1ColumnNode column)
             : base(row, column) { }
 
-        public override string ToRawString() => Row.ToString() + Column.ToString();
+        public override string ToRawString() => Row.ToRawString() + Column.ToRawString();
     }
 }

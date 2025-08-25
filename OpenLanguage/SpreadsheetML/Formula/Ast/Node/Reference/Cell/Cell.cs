@@ -97,7 +97,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Column = column;
         }
 
-        public override string ToRawString() => Row.ToString() + Column.ToString();
+        public override string ToRawString() => Row.ToRawString() + Column.ToRawString();
 
         public override IEnumerable<O> Children<O>()
         {

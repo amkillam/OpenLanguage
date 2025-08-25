@@ -37,7 +37,10 @@ namespace OpenLanguage.Utils
         {
             if (string.IsNullOrWhiteSpace(s))
             {
-                throw new ArgumentException("Input cannot be null, empty, or whitespace.", nameof(s));
+                throw new ArgumentException(
+                    "Input cannot be null, empty, or whitespace.",
+                    nameof(s)
+                );
             }
 
             if (s.Any(c => c < 'A' || c > 'Z'))
@@ -177,10 +180,12 @@ namespace OpenLanguage.Utils
                     return Format(format, b, formatProvider);
                 case long i64:
                     if (i64 < 0)
+                    {
                         throw new ArgumentOutOfRangeException(
                             nameof(arg),
                             "Value must be a positive number."
                         );
+                    }
                     return Format(format, (ulong)i64, formatProvider);
                 default:
                     return HandleDefaultFormat(format, arg, formatProvider);
@@ -196,8 +201,7 @@ namespace OpenLanguage.Utils
             return arg switch
             {
                 null => string.Empty,
-                IFormattable formattable
-                    => formattable.ToString(format, formatProvider),
+                IFormattable formattable => formattable.ToString(format, formatProvider),
                 _ => arg?.ToString() ?? string.Empty,
             };
         }
