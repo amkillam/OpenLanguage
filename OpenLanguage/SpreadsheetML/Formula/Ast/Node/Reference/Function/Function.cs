@@ -39,6 +39,51 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             WsBeforeCloseParen = wsBeforeCloseParen ?? new List<Node>();
         }
 
+        // Back-compat constructors for generated parser calls that don't provide per-comma whitespace
+        public FunctionCallNode(
+            ExpressionNode functionIdentifier,
+            List<Node>? wsAfterIdentifier,
+            List<Node>? wsAfterOpenParen,
+            List<ExpressionNode> arguments,
+            List<Node>? wsBeforeCloseParen
+        )
+            : this(
+                functionIdentifier,
+                wsAfterIdentifier,
+                wsAfterOpenParen,
+                arguments,
+                null,
+                null,
+                wsBeforeCloseParen,
+                null,
+                null
+            )
+        {
+        }
+
+        public FunctionCallNode(
+            ExpressionNode functionIdentifier,
+            List<Node>? wsAfterIdentifier,
+            List<Node>? wsAfterOpenParen,
+            List<ExpressionNode> arguments,
+            List<Node>? wsBeforeCloseParen,
+            List<Node>? leadingWhitespace,
+            List<Node>? trailingWhitespace
+        )
+            : this(
+                functionIdentifier,
+                wsAfterIdentifier,
+                wsAfterOpenParen,
+                arguments,
+                null,
+                null,
+                wsBeforeCloseParen,
+                leadingWhitespace,
+                trailingWhitespace
+            )
+        {
+        }
+
         public override string ToRawString()
         {
             StringBuilder builder = new StringBuilder();
