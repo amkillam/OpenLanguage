@@ -95,7 +95,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 {
                     // If the caller provided explicit whitespace that should appear
                     // before the comma, render it. (Rare; preserve existing behavior.)
-                    if (i < WsBeforeCommas.Count && WsBeforeCommas[i] != null && WsBeforeCommas[i].Count > 0)
+                    if (
+                        i < WsBeforeCommas.Count
+                        && WsBeforeCommas[i] != null
+                        && WsBeforeCommas[i].Count > 0
+                    )
                     {
                         builder.Append(string.Concat(WsBeforeCommas[i].Select(w => w.ToString())));
                     }
