@@ -503,7 +503,7 @@ namespace OpenLanguage.Utils.Tests
         public void StringComparison_WithUnicodeCharacters_HandlesCorrectly()
         {
             string unicodeString1 = "café";
-            string unicodeString2 = "café"; // Same visually but might be different normalization
+            string unicodeString2 = "café"; // Same visually but must ensure preservation for each
             string unicodeString3 = "CAFÉ";
 
             Assert.Equal(unicodeString2, unicodeString1, StringComparer.Ordinal);

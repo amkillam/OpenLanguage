@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenLanguage.SpreadsheetML.Formula.Ast;
 using Xunit;
@@ -368,9 +369,33 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Formula formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula.AstRoot);
-            // The ToString should normalize whitespace
+            // The ToString should not normalize insignificant whitespace
             string result = formula.AstRoot.ToString();
-            Assert.DoesNotContain("  ", result); // No double spaces
+            Dictionary<char, int> numWhitespaceChar = new Dictionary<char, int>();
+
+            foreach (
+                string whitespace in formulaString
+                    .Where(c => char.IsWhiteSpace(c))
+                    .Select(c => c.ToString())
+            )
+            {
+                if (numWhitespaceChar.ContainsKey(whitespace[0]))
+                {
+                    numWhitespaceChar[whitespace[0]]++;
+                }
+                else
+                {
+                    numWhitespaceChar[whitespace[0]] = 1;
+                }
+            }
+
+            foreach (KeyValuePair<char, int> kvp in numWhitespaceChar)
+            {
+                char wsChar = kvp.Key;
+                int count = kvp.Value;
+                int resultCount = result.Count(c => c == wsChar);
+                Assert.Equal(count, resultCount);
+            }
         }
 
         [Theory]
@@ -598,7 +623,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Fact]
-        public void Tokenize_WithWhitespace_IgnoresWhitespace()
+        public void Tokenize_WithWhitespace_DoesNotIgnoreWhitespace()
         {
             string formulaWithSpaces = " SUM ( A1 : A10 ) ";
             string formulaWithoutSpaces = "SUM(A1:A10)";
@@ -609,6 +634,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // The AST should be equivalent regardless of whitespace
             Assert.NotNull(formula1.AstRoot);
             Assert.NotNull(formula2.AstRoot);
+
+            Assert.NotEqual(formula2.AstRoot.ToString(), formula1.AstRoot.ToString());
+            Assert.Equal(formulaWithSpaces, formula1.AstRoot.ToString());
+            Assert.Equal(formulaWithoutSpaces, formula2.AstRoot.ToString());
         }
 
         [Theory]
@@ -1103,22 +1132,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Theory]
-        [InlineData("\u0041\u0031", "A1")] // Unicode A1
-        [InlineData("\u0053\u0055\u004D", "SUM")] // Unicode SUM
-        [InlineData("\u0022hello\u0022", "\"hello\"")] // Unicode quotes
-        public void Tokenize_UnicodeCharacters_HandlesCorrectly(
-            string input,
-            string expectedNormalized
-        )
+        [InlineData("\u0041\u0031")] // Unicode A1
+        [InlineData("\u0053\u0055\u004D")] // Unicode SUM
+        [InlineData("\u0022hello\u0022")] // Unicode quotes
+        public void Tokenize_UnicodeCharacters_HandlesCorrectly(string input)
         {
             Formula formula = FormulaParser.Parse(input);
             Assert.NotNull(formula.AstRoot);
-            // Unicode should be preserved or normalized appropriately
-            string result = formula.AstRoot.ToString();
-            Assert.True(
-                result == input || result == expectedNormalized,
-                $"Expected {expectedNormalized} or {input}, got {result}"
-            );
+            // Unicode should be preserved and never normalized
+            Assert.Equal(formula.AstRoot.ToString(), input);
         }
 
         [Fact]
@@ -1155,17 +1177,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("  SUM   (   A1   :   A10   )   ")]
         [InlineData("\tIF\t(\tA1\t>\t0\t,\t\"Yes\"\t,\t\"No\"\t)\t")]
         [InlineData("\r\nVLOOKUP\r\n(\r\nA1\r\n,\r\nB:C\r\n,\r\n2\r\n,\r\nFALSE\r\n)\r\n")]
-        public void Tokenize_ExcessiveWhitespace_IgnoresAppropriately(string input)
+        public void Tokenize_InsignificantWhitespace_Retains(string input)
         {
             Formula formula = FormulaParser.Parse(input);
             Assert.NotNull(formula.AstRoot);
 
             string result = formula.AstRoot.ToString();
-            // Result should not contain excessive whitespace
-            Assert.DoesNotContain("  ", result); // No double spaces
-            Assert.DoesNotContain("\t", result); // No tabs
-            Assert.DoesNotContain("\r", result); // No carriage returns
-            Assert.DoesNotContain("\n", result); // No newlines
+            Assert.Equal(input, result);
         }
 
         [Theory]
