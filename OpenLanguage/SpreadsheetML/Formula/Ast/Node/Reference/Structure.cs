@@ -21,28 +21,28 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class StructureAllNode : StructureKeywordNode
     {
-        private const string Keyword = "[#All]";
+        private const string Keyword = "#All";
 
         public override string ToRawString() => Keyword;
     }
 
     public class StructureDataNode : StructureKeywordNode
     {
-        private const string Keyword = "[#Data]";
+        private const string Keyword = "#Data";
 
         public override string ToRawString() => Keyword;
     }
 
     public class StructureHeadersNode : StructureKeywordNode
     {
-        private const string Keyword = "[#Headers]";
+        private const string Keyword = "#Headers";
 
         public override string ToRawString() => Keyword;
     }
 
     public class StructureTotalsNode : StructureKeywordNode
     {
-        private const string Keyword = "[#Totals]";
+        private const string Keyword = "#Totals";
 
         public override string ToRawString() => Keyword;
     }

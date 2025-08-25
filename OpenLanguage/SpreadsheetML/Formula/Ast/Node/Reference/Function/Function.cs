@@ -98,7 +98,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                         builder.Append(string.Concat(WsBeforeCommas[i].Select(w => w.ToString())));
                     }
                     builder.Append(',');
-                    if (i < WsAfterCommas.Count)
+                    if (
+                        i < WsAfterCommas.Count
+                        && WsAfterCommas[i] != null
+                        && WsAfterCommas[i].Count > 0
+                    )
                     {
                         builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
                     }

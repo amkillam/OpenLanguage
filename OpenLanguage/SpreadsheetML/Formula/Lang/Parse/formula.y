@@ -433,11 +433,11 @@ A1_row: A1_row_absolute { $$ = $1; } | A1_row_relative { $$ = $1; };
 
 R1C1_column_relative: R1C1_COLUMN_PREFIX T_LBRACK T_R1C1_COLUMN T_RBRACK { $$ = new R1C1RelativeColumnNode($3); };
 R1C1_column_absolute: R1C1_COLUMN_PREFIX T_R1C1_COLUMN { $$ = new R1C1AbsoluteColumnNode($2); };
-R1C1_column: R1C1_column_relative { $$ = $1; }  | R1C1_column_absolute { $$ = $1; };
+R1C1_column: R1C1_column_relative { $$ = $1; }  | R1C1_column_absolute { $$ = $1; } | R1C1_COLUMN_PREFIX { $$ = new R1C1CurrentColumnNode(0); };
 
 R1C1_row_relative: R1C1_ROW_PREFIX T_LBRACK T_R1C1_ROW T_RBRACK { $$ = new R1C1RelativeRowNode($3); };
 R1C1_row_absolute: R1C1_ROW_PREFIX T_R1C1_ROW { $$ = new R1C1AbsoluteRowNode($2); };
-R1C1_row: R1C1_row_relative { $$ = $1; } | R1C1_row_absolute { $$ = $1; };
+R1C1_row: R1C1_row_relative { $$ = $1; } | R1C1_row_absolute { $$ = $1; } | R1C1_ROW_PREFIX { $$ = new R1C1CurrentRowNode(0); };
 
 R1C1_cell: R1C1_row R1C1_column { $$ = new R1C1CellNode($1, $2); };
 A1_cell: A1_column A1_row { $$ = new A1CellNode($1, $2); };

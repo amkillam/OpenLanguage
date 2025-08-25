@@ -40,7 +40,7 @@
     "#Data"            { return (int)Tokens.T_SR_DATA; }
     "#Headers"         { return (int)Tokens.T_SR_HEADERS; }
     "#Totals"          { return (int)Tokens.T_SR_TOTALS; }
-    "#This Row"        { return (int)Tokens.T_SR_THIS_ROW; }
+    "#This Row"        { yylval.stringVal = yytext; return (int)Tokens.T_SR_THIS_ROW; }
     "[]"               { return (int)Tokens.T_EMPTY_BRACKETS; }
 
 
@@ -181,6 +181,7 @@
 [\+\-]?[1-9]+ { BEGIN(INITIAL); yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_R1C1_COLUMN; }
 "[" { BEGIN(IN_R1C1_BRACKETED_COLUMN); return (int)Tokens.T_LBRACK; }
 "]" { BEGIN(INITIAL); return (int)Tokens.T_RBRACK; }
+":" { BEGIN(INITIAL); return (int)Tokens.T_COLON; }
 
 . { BEGIN(INITIAL); }
 }

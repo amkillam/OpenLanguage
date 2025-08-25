@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -42,6 +40,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             + "]";
     }
 
+    public class R1C1CurrentColumnNode : R1C1ColumnNode
+    {
+        public R1C1CurrentColumnNode(
+            long val = 0,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(val, leadingWhitespace, trailingWhitespace) { }
+
+        public override string ToRawString() => "C";
+    }
+
     public abstract class R1C1RowNode : RowNode<long>
     {
         public R1C1RowNode(
@@ -78,6 +88,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             + "["
             + base.RowSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture)
             + "]";
+    }
+
+    public class R1C1CurrentRowNode : R1C1RowNode
+    {
+        public R1C1CurrentRowNode(
+            long val = 0,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(val, leadingWhitespace, trailingWhitespace) { }
+
+        public override string ToRawString() => "R";
     }
 
     public class R1C1CellNode : CellNode<R1C1RowNode, long, R1C1ColumnNode, long>

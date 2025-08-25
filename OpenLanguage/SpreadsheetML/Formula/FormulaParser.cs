@@ -18,9 +18,19 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 );
             }
 
-            string formulaBody = formulaText.StartsWith('=')
-                ? formulaText.Substring(1)
-                : formulaText;
+            int leadingEqualsCount = 0;
+            if (!string.IsNullOrEmpty(formulaText))
+            {
+                while (
+                    leadingEqualsCount < formulaText.Length
+                    && formulaText[leadingEqualsCount] == '='
+                )
+                {
+                    leadingEqualsCount++;
+                }
+            }
+
+            string formulaBody = leadingEqualsCount > 0 ? formulaText.Substring(1) : formulaText;
 
             byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(formulaBody);
             MemoryStream stream = new(byteArray);
@@ -37,7 +47,24 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 );
             }
 
-            return new Formula(formulaText, parser.root);
+            Ast.Node astRoot = parser.root;
+            // Preserve any extra leading '=' signs (beyond the first stripped for parsing)
+            if (
+                astRoot is OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode exprNode
+                && leadingEqualsCount > 1
+            )
+            {
+                int extras = leadingEqualsCount - 1;
+                for (int i = 0; i < extras; i++)
+                {
+                    exprNode.LeadingWhitespace.Insert(
+                        0,
+                        new OpenLanguage.SpreadsheetML.Formula.Ast.WhitespaceNode("=")
+                    );
+                }
+            }
+
+            return new Formula(formulaText, astRoot);
         }
 
         public static Formula? TryParse(string formulaText)
