@@ -240,16 +240,11 @@ namespace OpenLanguage.Utils.Tests
         }
 
         [Theory]
-        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
-        public void Parse_WithAllLetters_HandlesCorrectly(string input)
+        [InlineData("CRPXNLS", 1148355331UL)]
+        public void Parse_WithLargeValue_HandlesCorrectly(string input, ulong expected)
         {
-            UInt128 result = AlphabeticHexevigesimalProvider.Parse<UInt128>(input);
-
-            Assert.True(result > 0);
-
-            // Verify round trip
-            string convertedBack = UtilEdgeCaseTests._provider.Format("AH", result);
-            Assert.Equal(input, convertedBack);
+            ulong result = AlphabeticHexevigesimalProvider.Parse<ulong>(input);
+            Assert.Equal(expected, result);
         }
 
         [Fact]

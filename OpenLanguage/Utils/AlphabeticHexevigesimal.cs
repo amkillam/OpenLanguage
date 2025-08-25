@@ -155,7 +155,7 @@ namespace OpenLanguage.Utils
             while (current > N.CreateChecked(0))
             {
                 N remainder = (current - N.CreateChecked(1)) % N.CreateChecked(Base);
-                sb.Insert(0, Convert.ToChar(N.CreateChecked('A') + remainder));
+                sb.Insert(0, (char)('A' + byte.CreateChecked(remainder)));
                 current = (current - N.CreateChecked(1)) / N.CreateChecked(Base);
             }
 
