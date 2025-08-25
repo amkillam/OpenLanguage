@@ -617,7 +617,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 
             Assert.Equal(original.Instruction, clone.Instruction);
             Assert.Equal(original.Arguments.Count, clone.Arguments.Count);
-            for (Int32 i = 0; i < original.Arguments.Count; i++)
+            for (int i = 0; i < original.Arguments.Count; i++)
             {
                 Assert.Equal(original.Arguments[i].Type, clone.Arguments[i].Type);
                 Assert.Equal(original.Arguments[i].Value, clone.Arguments[i].Value);

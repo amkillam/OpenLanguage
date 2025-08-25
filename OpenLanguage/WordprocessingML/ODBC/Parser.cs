@@ -304,21 +304,21 @@ namespace OpenLanguage.WordprocessingML.ODBC
         private static void ValidateBasicSyntax(string query)
         {
             // Check for balanced parentheses
-            Int32 openParens = query.Count(c => c == '(');
-            Int32 closeParens = query.Count(c => c == ')');
+            int openParens = query.Count(c => c == '(');
+            int closeParens = query.Count(c => c == ')');
             if (openParens != closeParens)
             {
                 throw new ArgumentException("Query has unbalanced parentheses");
             }
 
             // Check for balanced quotes
-            Int32 singleQuotes = query.Count(c => c == '\'');
+            int singleQuotes = query.Count(c => c == '\'');
             if (singleQuotes % 2 != 0)
             {
                 throw new ArgumentException("Query has unbalanced single quotes");
             }
 
-            Int32 doubleQuotes = query.Count(c => c == '"');
+            int doubleQuotes = query.Count(c => c == '"');
             if (doubleQuotes % 2 != 0)
             {
                 throw new ArgumentException("Query has unbalanced double quotes");

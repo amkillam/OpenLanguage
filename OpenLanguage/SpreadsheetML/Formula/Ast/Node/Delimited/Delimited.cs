@@ -48,7 +48,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
             if (index == 0 && replacement is L leftRep)
@@ -69,7 +69,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             return current;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
     }
 
     public class ColonDelimitedNodes<L, R> : CharacterDelimitedExpressionNodes<L, ColonNode, R>

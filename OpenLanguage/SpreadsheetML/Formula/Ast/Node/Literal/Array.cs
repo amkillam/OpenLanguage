@@ -39,7 +39,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (replacement is ExpressionNode expr)
             {

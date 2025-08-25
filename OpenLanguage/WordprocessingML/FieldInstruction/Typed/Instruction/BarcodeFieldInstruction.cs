@@ -47,7 +47,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Gets the next argument after the specified switch index.
         /// </summary>
-        private string GetNextArgumentAfter(Int32 switchIndex)
+        private string GetNextArgumentAfter(int switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {

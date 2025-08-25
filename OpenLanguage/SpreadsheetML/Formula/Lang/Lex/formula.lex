@@ -100,7 +100,7 @@
 
 <IN_A1_CELL> {
     \$ { return  (int)Tokens.T_DOLLAR; }
-    [A-Z][A-Z]{0,2}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse(yytext); return (int)Tokens.T_A1_COLUMN; }
+    [A-Z][A-Z]{0,2}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
     [1-9][0-9]{0,6}                                              { BEGIN(INITIAL); yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_A1_ROW; }
     . { BEGIN(INITIAL); yyless(0); }
 }
@@ -109,7 +109,7 @@
    \$ { return  (int)Tokens.T_DOLLAR; }
    ":" { BEGIN(IN_A1_COLUMN_RANGE_SECOND_COLUMN); return (int)Tokens.T_COLON; }
 
-   [A-Z]{1,3}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse(yytext); return (int)Tokens.T_A1_COLUMN; }
+   [A-Z]{1,3}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
    . { BEGIN(INITIAL); yyless(0); }
 
 }
@@ -117,7 +117,7 @@
 <IN_A1_COLUMN_RANGE_SECOND_COLUMN> {
    \$ { return  (int)Tokens.T_DOLLAR; }
 
-   [A-Z][A-Z]{0,2}                                                    { BEGIN(INITIAL); yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse(yytext); return (int)Tokens.T_A1_COLUMN; }
+   [A-Z][A-Z]{0,2}                                                    { BEGIN(INITIAL); yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); return (int)Tokens.T_A1_COLUMN; }
    . { BEGIN(INITIAL); yyless(0); }
 }
 

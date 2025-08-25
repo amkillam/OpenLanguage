@@ -32,7 +32,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         /// <summary>
         /// Gets the operator precedence for this expression node.
         /// </summary>
-        public abstract Int32 Precedence { get; }
+        public abstract int Precedence { get; }
 
         /// <summary>
         /// Renders the core content of the node without its own leading/trailing whitespace.

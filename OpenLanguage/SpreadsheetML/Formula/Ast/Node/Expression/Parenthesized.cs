@@ -28,7 +28,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             WsBeforeCloseParen = wsBeforeCloseParen;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -38,7 +38,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is ExpressionNode expr)
             {

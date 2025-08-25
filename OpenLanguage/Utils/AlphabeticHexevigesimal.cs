@@ -34,13 +34,19 @@ namespace OpenLanguage.Utils
         /// <exception cref="ArgumentNullException">s is null.</exception>
         /// <exception cref="FormatException">s is not in the correct format (A-Z).</exception>
         /// <exception cref="OverflowException">s represents a number larger than UInt64.MaxValue.</exception>
-        public static UInt64 Parse(string s)
+        public static N Parse<N>(string s)
+            where N : System.Numerics.INumber<N>,
+                System.Numerics.IBinaryNumber<N>,
+                System.Numerics.INumberBase<N>,
+                IParsable<N>,
+                IFormattable,
+                System.Numerics.IMinMaxValue<N>
         {
             if (s == null)
             {
                 throw new ArgumentNullException(nameof(s));
             }
-            if (TryParse(s, out UInt64 result))
+            if (TryParse(s, out N result))
             {
                 return result;
             }
@@ -55,15 +61,21 @@ namespace OpenLanguage.Utils
         /// <param name="s">A string containing the alphabetic number to convert.</param>
         /// <param name="result">When this method returns, contains the UInt64 equivalent, if the conversion succeeded.</param>
         /// <returns>true if s was converted successfully; otherwise, false.</returns>
-        public static bool TryParse(string s, out UInt64 result)
+        public static bool TryParse<N>(string s, out N result)
+            where N : System.Numerics.INumber<N>,
+                System.Numerics.IBinaryNumber<N>,
+                System.Numerics.INumberBase<N>,
+                IParsable<N>,
+                IFormattable,
+                System.Numerics.IMinMaxValue<N>
         {
-            result = 0;
+            result = N.CreateChecked(0);
             if (string.IsNullOrEmpty(s))
             {
                 return false;
             }
 
-            UInt64 value = 0;
+            N value = N.CreateChecked(0);
             foreach (char c in s)
             {
                 char upperChar = char.ToUpperInvariant(c);
@@ -77,8 +89,8 @@ namespace OpenLanguage.Utils
                     // checked block throws OverflowException on overflow
                     checked
                     {
-                        value *= Base;
-                        value += (UInt64)(upperChar - 'A' + 1);
+                        value *= N.CreateChecked(Base);
+                        value += N.CreateChecked(upperChar - 'A' + 1);
                     }
                 }
                 catch (OverflowException)
@@ -108,7 +120,13 @@ namespace OpenLanguage.Utils
         /// Converts the value of a specified object to an equivalent string representation
         /// using specified format and culture-specific formatting information.
         /// </summary>
-        public string Format(string? format, object? arg, IFormatProvider? formatProvider)
+        public string Format<N>(string? format, N? arg, IFormatProvider? formatProvider = null)
+            where N : System.Numerics.INumber<N>,
+                System.Numerics.IBinaryNumber<N>,
+                System.Numerics.INumberBase<N>,
+                IParsable<N>,
+                IFormattable,
+                System.Numerics.IMinMaxValue<N>
         {
             // We only handle our custom "AH" (Alphabetic Hexevigesimal) format specifier.
             if (
@@ -120,29 +138,50 @@ namespace OpenLanguage.Utils
             }
 
             // We only format unsigned integer types.
-            if (arg is not (UInt64 or UInt32 or UInt16 or byte))
+            if (arg is not (ulong or uint or ushort or byte))
             {
                 return HandleDefaultFormat(format, arg, formatProvider);
             }
 
-            UInt64 value = Convert.ToUInt64(arg);
+            N value = arg;
 
-            if (value == 0)
+            if (value == N.CreateChecked(0))
             {
                 return string.Empty;
             }
 
             StringBuilder sb = new StringBuilder();
-            UInt64 current = value;
+            N current = value;
 
-            while (current > 0)
+            while (current > N.CreateChecked(0))
             {
-                UInt64 remainder = (current - 1) % Base;
-                sb.Insert(0, (char)('A' + remainder));
-                current = (current - 1) / Base;
+                N remainder = (current - N.CreateChecked(1)) % N.CreateChecked(Base);
+                sb.Insert(0, (char)Convert.ToByte(N.CreateChecked('A') + remainder));
+                current = (current - N.CreateChecked(1)) / N.CreateChecked(Base);
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Converts the value of a specified object to an equivalent string representation
+        /// using specified format and culture-specific formatting information.
+        /// </summary>
+        public string Format(string? format, object? arg, IFormatProvider? formatProvider = null)
+        {
+            switch (arg)
+            {
+                case ulong u64:
+                    return Format(format, u64, formatProvider);
+                case uint u32:
+                    return Format(format, u32, formatProvider);
+                case ushort u16:
+                    return Format(format, u16, formatProvider);
+                case byte b:
+                    return Format(format, b, formatProvider);
+                default:
+                    return HandleDefaultFormat(format, arg, formatProvider);
+            }
         }
 
         private static string HandleDefaultFormat(

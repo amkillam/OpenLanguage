@@ -14,7 +14,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// The character code of the symbol
         /// </summary>
-        public Int32? CharacterCode { get; set; }
+        public int? CharacterCode { get; set; }
 
         /// <summary>
         /// Switch: \a
@@ -70,7 +70,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 string? characterCodeStr = firstNonSwitch.Value?.ToString();
                 if (characterCodeStr != null)
                 {
-                    if (Int32.TryParse(characterCodeStr, out int tempCharacterCode))
+                    if (int.TryParse(characterCodeStr, out int tempCharacterCode))
                     {
                         CharacterCode = tempCharacterCode;
                     }
@@ -104,7 +104,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                                     string? pointsValText = nextArg.Value?.ToString();
                                     if (
                                         pointsValText != null
-                                        && UInt64.TryParse(pointsValText, out UInt64 pointsVal)
+                                        && ulong.TryParse(pointsValText, out ulong pointsVal)
                                     )
                                     {
                                         bool isHalfPoints =

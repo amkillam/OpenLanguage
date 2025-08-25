@@ -20,8 +20,8 @@ public class Formula
 
     internal Formula(string formulaText, Node astRoot)
     {
-        this.FormulaText = formulaText;
-        this.AstRoot = astRoot;
+        FormulaText = formulaText;
+        AstRoot = astRoot;
     }
 
     /// <summary>

@@ -41,7 +41,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Gets the next argument after the specified switch index.
         /// </summary>
-        private string GetNextArgumentAfter(Int32 switchIndex)
+        private string GetNextArgumentAfter(int switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -78,7 +78,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             DisplayText = firstNonSwitch.Value?.ToString() ?? string.Empty;
 
             // Parse switches
-            for (Int32 i = 0; i < Source.Arguments.Count; i++)
+            for (int i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)

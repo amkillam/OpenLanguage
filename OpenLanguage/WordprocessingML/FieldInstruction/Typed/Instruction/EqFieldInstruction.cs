@@ -150,19 +150,19 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \co field-argument
         /// Number of columns in the array (default is 1).
         /// </summary>
-        public Int32? ColumnCount { get; set; }
+        public int? ColumnCount { get; set; }
 
         /// <summary>
         /// Switch: \hs field-argument
         /// Horizontal spacing between columns in points.
         /// </summary>
-        public Int32? HorizontalSpacing { get; set; }
+        public int? HorizontalSpacing { get; set; }
 
         /// <summary>
         /// Switch: \vs field-argument
         /// Vertical spacing between lines in points.
         /// </summary>
-        public Int32? VerticalSpacing { get; set; }
+        public int? VerticalSpacing { get; set; }
 
         // Bracket switches (\b)
         /// <summary>
@@ -188,13 +188,13 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \ba field-argument
         /// Backward displacement in points.
         /// </summary>
-        public Int32? BackwardDisplacement { get; set; }
+        public int? BackwardDisplacement { get; set; }
 
         /// <summary>
         /// Switch: \fo field-argument
         /// Forward displacement in points.
         /// </summary>
-        public Int32? ForwardDisplacement { get; set; }
+        public int? ForwardDisplacement { get; set; }
 
         /// <summary>
         /// Switch: \li
@@ -239,25 +239,25 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \ai field-argument
         /// Space above line in points (default 2).
         /// </summary>
-        public Int32? SpaceAboveLine { get; set; }
+        public int? SpaceAboveLine { get; set; }
 
         /// <summary>
         /// Switch: \di field-argument
         /// Space below line in points.
         /// </summary>
-        public Int32? SpaceBelowLine { get; set; }
+        public int? SpaceBelowLine { get; set; }
 
         /// <summary>
         /// Switch: \do field-argument
         /// Move argument below adjacent text by points (default 2).
         /// </summary>
-        public Int32? MoveDown { get; set; }
+        public int? MoveDown { get; set; }
 
         /// <summary>
         /// Switch: \up field-argument
         /// Move argument above adjacent text by points.
         /// </summary>
-        public Int32? MoveUp { get; set; }
+        public int? MoveUp { get; set; }
 
         // Box switches (\x)
         /// <summary>
@@ -326,7 +326,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             }
 
             // Parse additional switches
-            for (Int32 i = 0; i < Source.Arguments.Count; i++)
+            for (int i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)
@@ -369,13 +369,13 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 " ",
                 Source.Arguments.Select(arg => arg.Value?.ToString() ?? string.Empty)
             );
-            Int32 startIndex = fullText.IndexOf('(');
+            int startIndex = fullText.IndexOf('(');
             if (startIndex == -1)
             {
                 return string.Empty;
             }
 
-            Int32 endIndex = fullText.LastIndexOf(')');
+            int endIndex = fullText.LastIndexOf(')');
             if (endIndex == -1 || endIndex <= startIndex)
             {
                 return string.Empty;
@@ -412,7 +412,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Parses individual switches and their arguments.
         /// </summary>
-        private void ParseSwitch(string switchValue, Int32 switchIndex)
+        private void ParseSwitch(string switchValue, int switchIndex)
         {
             switch (switchValue.ToLowerInvariant())
             {
@@ -529,7 +529,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Gets the integer argument following the specified switch index.
         /// </summary>
-        private Int32? GetIntegerArgumentAfter(Int32 switchIndex)
+        private int? GetIntegerArgumentAfter(int switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -537,7 +537,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 if (nextArg.Type != FieldArgumentType.Switch)
                 {
                     string argValue = nextArg.Value?.ToString() ?? "";
-                    if (int.TryParse(argValue, out Int32 result))
+                    if (int.TryParse(argValue, out int result))
                     {
                         return result;
                     }
@@ -549,7 +549,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Gets the character argument following the specified switch index.
         /// </summary>
-        private char? GetCharacterArgumentAfter(Int32 switchIndex)
+        private char? GetCharacterArgumentAfter(int switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -574,70 +574,70 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             switch (PrimarySwitch)
             {
                 case EqPrimarySwitch.Bracket:
-                {
-                    if (ArgumentList.Count != 1)
                     {
-                        throw new ArgumentException(
-                            "Bracket (\\b) switch requires exactly one argument"
-                        );
+                        if (ArgumentList.Count != 1)
+                        {
+                            throw new ArgumentException(
+                                "Bracket (\\b) switch requires exactly one argument"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case EqPrimarySwitch.Displacement:
-                {
-                    if (ArgumentList.Count != 0)
                     {
-                        throw new ArgumentException(
-                            "Displacement (\\d) switch requires no arguments"
-                        );
+                        if (ArgumentList.Count != 0)
+                        {
+                            throw new ArgumentException(
+                                "Displacement (\\d) switch requires no arguments"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case EqPrimarySwitch.Fraction:
-                {
-                    if (ArgumentList.Count != 2)
                     {
-                        throw new ArgumentException(
-                            "Fraction (\\f) switch requires exactly two arguments (numerator, denominator)"
-                        );
+                        if (ArgumentList.Count != 2)
+                        {
+                            throw new ArgumentException(
+                                "Fraction (\\f) switch requires exactly two arguments (numerator, denominator)"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case EqPrimarySwitch.Integral:
-                {
-                    if (ArgumentList.Count != 3)
                     {
-                        throw new ArgumentException(
-                            "Integral (\\i) switch requires exactly three arguments (lower limit, upper limit, integrand)"
-                        );
+                        if (ArgumentList.Count != 3)
+                        {
+                            throw new ArgumentException(
+                                "Integral (\\i) switch requires exactly three arguments (lower limit, upper limit, integrand)"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case EqPrimarySwitch.Radical:
-                {
-                    if (ArgumentList.Count < 1 || ArgumentList.Count > 2)
                     {
-                        throw new ArgumentException(
-                            "Radical (\\r) switch requires one or two arguments"
-                        );
+                        if (ArgumentList.Count < 1 || ArgumentList.Count > 2)
+                        {
+                            throw new ArgumentException(
+                                "Radical (\\r) switch requires one or two arguments"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case EqPrimarySwitch.Box:
-                {
-                    if (ArgumentList.Count != 1)
                     {
-                        throw new ArgumentException(
-                            "Box (\\x) switch requires exactly one argument"
-                        );
+                        if (ArgumentList.Count != 1)
+                        {
+                            throw new ArgumentException(
+                                "Box (\\x) switch requires exactly one argument"
+                            );
+                        }
+                        break;
                     }
-                    break;
-                }
             }
         }
 

@@ -4,10 +4,10 @@ using OpenLanguage.Utils;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public abstract class A1ColumnNode : ColumnNode<UInt64>
+    public abstract class A1ColumnNode : ColumnNode<ulong>
     {
         public A1ColumnNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -24,7 +24,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class A1AbsoluteColumnNode : A1ColumnNode
     {
         public A1AbsoluteColumnNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -36,17 +36,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class A1RelativeColumnNode : A1ColumnNode
     {
         public A1RelativeColumnNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public abstract class A1RowNode : RowNode<UInt64>
+    public abstract class A1RowNode : RowNode<ulong>
     {
         public A1RowNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -55,20 +55,20 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class A1ColumnOnlyNode : A1ColumnNode
     {
-        public A1ColumnOnlyNode(UInt64 val)
+        public A1ColumnOnlyNode(ulong val)
             : base(val) { }
     }
 
     public class A1RowOnlyNode : A1RowNode
     {
-        public A1RowOnlyNode(UInt64 val)
+        public A1RowOnlyNode(ulong val)
             : base(val) { }
     }
 
     public class A1AbsoluteRowNode : A1RowNode
     {
         public A1AbsoluteRowNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -80,14 +80,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class A1RelativeRowNode : A1RowNode
     {
         public A1RelativeRowNode(
-            UInt64 val,
+            ulong val,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class A1CellNode : CellNode<A1RowNode, UInt64, A1ColumnNode, UInt64>
+    public class A1CellNode : CellNode<A1RowNode, ulong, A1ColumnNode, ulong>
     {
         public A1CellNode(A1ColumnNode column, A1RowNode row)
             : base(row, column) { }
@@ -106,7 +106,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
             if (index == 0 && replacement is A1ColumnNode columnRep)

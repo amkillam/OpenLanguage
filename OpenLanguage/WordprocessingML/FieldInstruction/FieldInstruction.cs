@@ -33,29 +33,29 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             {
                 case "_top":
                 case "top":
-                {
-                    return FrameTarget.Top;
-                }
+                    {
+                        return FrameTarget.Top;
+                    }
                 case "_self":
                 case "self":
-                {
-                    return FrameTarget.Self;
-                }
+                    {
+                        return FrameTarget.Self;
+                    }
 
                 case "_blank":
                 case "blank":
-                {
-                    return FrameTarget.Blank;
-                }
+                    {
+                        return FrameTarget.Blank;
+                    }
                 case "_parent":
                 case "parent":
-                {
-                    return FrameTarget.Parent;
-                }
+                    {
+                        return FrameTarget.Parent;
+                    }
                 default:
-                {
-                    throw new ArgumentException($"Invalid frame target: {frameTargetText}");
-                }
+                    {
+                        throw new ArgumentException($"Invalid frame target: {frameTargetText}");
+                    }
             }
         }
 
@@ -1263,12 +1263,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// </summary>
     public class PtsMeasurementValue
     {
-        private Int32 _value;
+        private int _value;
 
         /// <summary>
         /// The measurement value in points.
         /// </summary>
-        public Int32 Value
+        public int Value
         {
             get => _value;
             set
@@ -1288,7 +1288,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// Initializes a new instance of the PtsMeasurementValue class.
         /// </summary>
         /// <param name="value">The measurement value in points (-31 to 31).</param>
-        public PtsMeasurementValue(Int32 value)
+        public PtsMeasurementValue(int value)
         {
             Value = value;
         }
@@ -1296,7 +1296,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// <summary>
         /// Implicit conversion from Int32 to PtsMeasurementValue.
         /// </summary>
-        public static implicit operator PtsMeasurementValue(Int32 value)
+        public static implicit operator PtsMeasurementValue(int value)
         {
             return new PtsMeasurementValue(value);
         }
@@ -1304,7 +1304,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// <summary>
         /// Implicit conversion from PtsMeasurementValue to int.
         /// </summary>
-        public static implicit operator Int32(PtsMeasurementValue measurement)
+        public static implicit operator int(PtsMeasurementValue measurement)
         {
             return measurement.Value;
         }

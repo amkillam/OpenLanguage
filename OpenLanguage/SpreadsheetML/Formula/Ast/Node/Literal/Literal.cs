@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -14,7 +13,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             System.Numerics.IMinMaxValue<N>
     {
         public N Value { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public NumericLiteralNode(
             N value,
@@ -33,13 +32,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class StringNode : ExpressionNode
     {
         public string Value { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public StringNode(
             string value,
@@ -58,13 +57,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class LogicalNode : ExpressionNode
     {
         public bool Value { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public LogicalNode(
             bool value,
@@ -83,13 +82,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class ErrorNode : ExpressionNode
     {
         public string ErrorType { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public ErrorNode(
             string errorType,
@@ -108,12 +107,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class EmptyArgumentNode : ExpressionNode
     {
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public EmptyArgumentNode(
             List<Node>? leadingWhitespace = null,
@@ -128,7 +127,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class WhitespaceNode : Node
@@ -147,6 +146,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 }

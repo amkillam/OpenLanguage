@@ -27,9 +27,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override string ToRawString() =>
             ColumnSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -60,9 +60,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override string ToRawString() =>
             RowSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -88,7 +88,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public R Row { get; set; }
         public C Column { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public CellNode(R row, C column)
             : base(null, null)
@@ -111,7 +111,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
             if (index == 0 && replacement is R rowRep)

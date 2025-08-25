@@ -4,17 +4,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
     internal static class Precedence
     {
-        public const Int32 Primary = 10;
-        public const Int32 Percent = 9;
-        public const Int32 Unary = 8;
-        public const Int32 Power = 7;
-        public const Int32 Multiplicative = 6;
-        public const Int32 Additive = 5;
-        public const Int32 Concat = 4;
-        public const Int32 Comparison = 3;
-        public const Int32 Range = 2;
-        public const Int32 Intersection = 2;
-        public const Int32 Union = 1;
-        public const Int32 Default = 0;
+        public const int Primary = 10;
+        public const int Percent = 9;
+        public const int Unary = 8;
+        public const int Power = 7;
+        public const int Multiplicative = 6;
+        public const int Additive = 5;
+        public const int Concat = 4;
+        public const int Comparison = 3;
+        public const int Range = 2;
+        public const int Intersection = 2;
+        public const int Union = 1;
+        public const int Default = 0;
     }
 }

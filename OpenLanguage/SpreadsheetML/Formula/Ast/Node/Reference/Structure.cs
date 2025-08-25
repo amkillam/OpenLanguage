@@ -9,14 +9,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         protected StructureKeywordNode(List<Node>? leadingWs = null, List<Node>? trailingWs = null)
             : base(leadingWs, trailingWs) { }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override IEnumerable<O> Children<O>()
         {
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class StructureAllNode : StructureKeywordNode
@@ -76,7 +76,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Name = name;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"[{Name.ToString()}]";
 
@@ -88,7 +88,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is ExpressionNode nn)
             {
@@ -109,7 +109,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Name = name;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => Name.ToString();
 
@@ -121,7 +121,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is ExpressionNode nn)
             {
@@ -144,7 +144,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             End = end;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"{Start.ToString()}:{End.ToString()}";
 
@@ -160,7 +160,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (replacement is StructureColumn sc)
             {
@@ -208,7 +208,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is StructureThisRowNode t)
             {
@@ -237,7 +237,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Data = data;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"{Headers.ToString()},{Data.ToString()}";
 
@@ -253,7 +253,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is StructureHeadersNode h)
             {
@@ -282,7 +282,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Totals = totals;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"{Data.ToString()},{Totals.ToString()}";
 
@@ -298,7 +298,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is StructureDataNode d)
             {
@@ -327,7 +327,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             ColumnRange = columnRange;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"{Keyword.ToString()},{ColumnRange.ToString()}";
 
@@ -343,7 +343,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is ExpressionNode k)
             {
@@ -372,7 +372,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Column = column;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() => $"{Keyword.ToString()},{Column.ToString()}";
 
@@ -388,7 +388,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (index == 0 && replacement is ExpressionNode k)
             {
@@ -438,7 +438,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString()
         {
@@ -464,7 +464,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
             if (index < InnerReferences.Count && replacement is ExpressionNode ir)
@@ -526,7 +526,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 builder.Append(TableName.ToString());
             }
 
-            for (Int32 i = 0; i < IntraTableReferences.Count - 1; i++)
+            for (int i = 0; i < IntraTableReferences.Count - 1; i++)
             {
                 ExpressionNode intraTableRef = IntraTableReferences[i];
                 builder.Append(intraTableRef.ToString());
@@ -561,11 +561,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
-            Int32 nameNodeIdx = 0;
-            Int32 referencesStartIdx = 0;
+            int nameNodeIdx = 0;
+            int referencesStartIdx = 0;
             if (Workbook != null)
             {
                 if (index == 0 && replacement is WorkbookIndexNode w)
@@ -590,7 +590,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 referencesStartIdx++;
             }
 
-            Int32 referenceOffset = referencesStartIdx + index;
+            int referenceOffset = referencesStartIdx + index;
 
             if (referenceOffset < IntraTableReferences.Count && replacement is ExpressionNode e)
             {

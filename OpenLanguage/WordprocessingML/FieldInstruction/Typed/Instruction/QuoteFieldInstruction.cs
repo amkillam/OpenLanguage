@@ -83,7 +83,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             List<FieldInstruction> extractedFields = new List<FieldInstruction>();
 
             // Parse nested field instructions using comprehensive field parser
-            Int32 position = 0;
+            int position = 0;
             while (position < text.Length)
             {
                 // Look for field instruction patterns
@@ -114,7 +114,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <returns>The parsed field instruction, or null if none found.</returns>
         private FieldInstruction? ParseNextFieldInstruction(
             string text,
-            ref Int32 position,
+            ref int position,
             string[] forbiddenFields
         )
         {
@@ -178,12 +178,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <returns>The parsed field instruction.</returns>
         private FieldInstruction? ParseFieldInstructionAt(
             string text,
-            Int32 startPosition,
+            int startPosition,
             string fieldType
         )
         {
             // Extract the field instruction and its arguments
-            Int32 endPosition = FindFieldInstructionEnd(text, startPosition);
+            int endPosition = FindFieldInstructionEnd(text, startPosition);
             if (endPosition == -1)
             {
                 return null;
@@ -206,12 +206,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <param name="text">The text to search.</param>
         /// <param name="startPosition">The starting position.</param>
         /// <returns>The end position, or -1 if not found.</returns>
-        private Int32 FindFieldInstructionEnd(string text, Int32 startPosition)
+        private int FindFieldInstructionEnd(string text, int startPosition)
         {
             // Simple heuristic: find the next space, quote, or end of text that would terminate the field
-            Int32 position = startPosition;
+            int position = startPosition;
             bool inQuotes = false;
-            Int32 depth = 0;
+            int depth = 0;
 
             while (position < text.Length)
             {
@@ -254,10 +254,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <param name="text">The text to check.</param>
         /// <param name="position">The position to check.</param>
         /// <returns>True if this position terminates the field.</returns>
-        private bool IsFieldTerminator(string text, Int32 position)
+        private bool IsFieldTerminator(string text, int position)
         {
             // Look ahead to see if the next non-whitespace character starts a new field or regular text
-            Int32 nextPos = position + 1;
+            int nextPos = position + 1;
             while (nextPos < text.Length && char.IsWhiteSpace(text[nextPos]))
             {
                 nextPos++;
@@ -303,7 +303,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             // Split the field text into tokens, respecting quotes and switches
             string[] tokens = TokenizeFieldText(fieldText);
 
-            for (Int32 i = 1; i < tokens.Length; i++) // Skip the first token (field name)
+            for (int i = 1; i < tokens.Length; i++) // Skip the first token (field name)
             {
                 string token = tokens[i].Trim();
                 if (!string.IsNullOrEmpty(token))
@@ -326,7 +326,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             bool inQuotes = false;
             string currentToken = string.Empty;
 
-            for (Int32 i = 0; i < fieldText.Length; i++)
+            for (int i = 0; i < fieldText.Length; i++)
             {
                 char c = fieldText[i];
 

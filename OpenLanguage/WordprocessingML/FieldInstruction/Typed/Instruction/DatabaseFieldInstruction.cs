@@ -42,7 +42,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \f field-argument
         /// Specifies the integral record number of the first data record to insert.
         /// </summary>
-        public Int32? FirstRecord { get; set; }
+        public int? FirstRecord { get; set; }
 
         /// <summary>
         /// Switch: \h
@@ -75,7 +75,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \t field-argument
         /// Specifies the integral record number of the last data record to insert.
         /// </summary>
-        public Int32? LastRecord { get; set; }
+        public int? LastRecord { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the DatabaseFieldInstruction class.
@@ -120,7 +120,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             }
 
             // Parse switches
-            for (Int32 i = 0; i < Source.Arguments.Count; i++)
+            for (int i = 0; i < Source.Arguments.Count; i++)
             {
                 FieldArgument arg = Source.Arguments[i];
                 if (arg.Type == FieldArgumentType.Switch)
@@ -183,7 +183,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Gets the next argument after the specified switch index.
         /// </summary>
-        private string GetNextArgumentAfter(Int32 switchIndex)
+        private string GetNextArgumentAfter(int switchIndex)
         {
             if (switchIndex + 1 < Source.Arguments.Count)
             {
@@ -203,7 +203,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         {
             if (
                 !string.IsNullOrWhiteSpace(attributesText)
-                && Int32.TryParse(attributesText.Trim(), out Int32 attributeValue)
+                && int.TryParse(attributesText.Trim(), out int attributeValue)
             )
             {
                 return (DatabaseTableAttributes)attributeValue;
@@ -215,11 +215,11 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Parses an integer argument from a string value.
         /// </summary>
-        private Int32? ParseIntegerArgument(string? argumentText)
+        private int? ParseIntegerArgument(string? argumentText)
         {
             if (
                 !string.IsNullOrWhiteSpace(argumentText)
-                && Int32.TryParse(argumentText.Trim(), out Int32 value)
+                && int.TryParse(argumentText.Trim(), out int value)
             )
             {
                 return value;
@@ -235,7 +235,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         {
             if (
                 !string.IsNullOrWhiteSpace(formatText)
-                && Int32.TryParse(formatText.Trim(), out Int32 formatValue)
+                && int.TryParse(formatText.Trim(), out int formatValue)
                 && (formatValue >= 0 && formatValue <= 41)
             )
             {
@@ -321,7 +321,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// </summary>
         private bool IsSwitchArgument(FieldArgument argument)
         {
-            Int32 argumentIndex = Source.Arguments.IndexOf(argument);
+            int argumentIndex = Source.Arguments.IndexOf(argument);
             if (argumentIndex > 0)
             {
                 FieldArgument previousArg = Source.Arguments[argumentIndex - 1];

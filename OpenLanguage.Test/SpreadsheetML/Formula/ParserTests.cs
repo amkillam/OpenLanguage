@@ -662,7 +662,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         {
             // Create a deeply nested formula
             string nestedFormula = "SUM(";
-            for (Int32 i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 nestedFormula += $"IF(A{i}>0,A{i},0),";
             }
@@ -683,7 +683,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void Parse_ManySimpleFormulas_ParsesWithinReasonableTime()
         {
             string[] formulas = new string[1000];
-            for (Int32 i = 0; i < formulas.Length; i++)
+            for (int i = 0; i < formulas.Length; i++)
             {
                 formulas[i] = $"SUM(A{i}:A{i + 10})";
             }
@@ -716,6 +716,472 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Formula parsed = FormulaParser.Parse(formula);
             Assert.NotNull(parsed.AstRoot);
             Assert.Equal(formula, parsed.AstRoot.ToString());
+        }
+    }
+
+    /// <summary>
+    /// Advanced edge case tests for formula parsing with comprehensive coverage
+    /// </summary>
+    public class AdvancedFormulaParserTests
+    {
+        [Theory]
+        [InlineData("0xFF")] // Hexadecimal
+        [InlineData("0x1A2B")] // Hexadecimal
+        [InlineData("0b101010")] // Binary
+        [InlineData("0b11110000")] // Binary
+        [InlineData("1,234.56")] // Thousands separator
+        [InlineData("1.234,56")] // European decimal separator
+        [InlineData("123_456.789")] // Underscore separator
+        [InlineData("∞")] // Infinity
+        [InlineData("-∞")] // Negative infinity
+        [InlineData("NaN")] // Not a number
+        public void Parse_AlternativeNumberFormats_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("\"string with \\n newline\"")]
+        [InlineData("\"string with \\t tab\"")]
+        [InlineData("\"string with \\r carriage return\"")]
+        [InlineData("\"string with \\\\ backslash\"")]
+        [InlineData("\"string with / forward slash\"")]
+        [InlineData("\"string with \\b backspace\"")]
+        [InlineData("\"string with \\f form feed\"")]
+        [InlineData("\"string with \\v vertical tab\"")]
+        [InlineData("\"string with \\0 null character\"")]
+        [InlineData("\"string with \\x41 hex escape\"")]
+        [InlineData("\"string with \\u0041 unicode escape\"")]
+        [InlineData("\"string with \\U00000041 extended unicode\"")]
+        public void Parse_ComplexStringEscapes_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("[1]Sheet1!A1")] // Workbook by index
+        [InlineData("[Book with spaces.xlsx]Sheet1!A1")] // Workbook with spaces
+        [InlineData("[http://server/path/file.xlsx]Sheet1!A1")] // URL reference
+        [InlineData("['External Sheet']!A1")] // Sheet with apostrophes
+        [InlineData("Sheet1:Sheet3!A1")] // 3D reference
+        [InlineData("Sheet1:Sheet3!A1:B10")] // 3D range reference
+        [InlineData("[Book1.xlsx]Sheet1:Sheet3!A1:B10")] // External 3D reference
+        [InlineData("'C:\\[File.xlsx]Sheet'!A1")] // Complex path reference
+        public void Parse_ComplexExternalReferences_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("{=SUM(A1:A10)}")] // Array formula
+        [InlineData("{=A1:A10*B1:B10}")] // Array multiplication
+        [InlineData("{=TRANSPOSE(A1:C3)}")] // Array function
+        [InlineData("{=IF(A1:A10>0,A1:A10,0)}")] // Conditional array
+        [InlineData("{=INDEX(A:A,ROW(A1:A10))}")] // Dynamic array
+        [InlineData("{=MMULT(A1:B2,C1:D2)}")] // Matrix multiplication
+        [InlineData("{1,2,3;4,5,6;7,8,9}")] // 3D array literal
+        [InlineData("{={{1,2},{3,4}}}")] // Nested array literal
+        public void Parse_AdvancedArrayFormulas_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("Table1[[#Headers],[Column1]:[Column3]]")] // Multi-column header reference
+        [InlineData("Table1[[#Data],[#Totals]]")] // Multiple specifiers
+        [InlineData("Table1[[@[Column Name]]]")] // This row with complex column name
+        [InlineData("Table1[[Column1],[Column2]]")] // Multiple columns
+        [InlineData("Table1[[Column Name with Spaces]]")] // Column with spaces
+        [InlineData("Table1[[@]]")] // This row shorthand
+        [InlineData("Table1[[#This Row],[Column1]]")] // Explicit this row
+        [InlineData("Table_Name_With_Underscores[[Column_1]]")] // Table name with underscores
+        public void Parse_AdvancedStructuredReferences_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("1+2*3^4%5")] // Complex precedence
+        [InlineData("-2^3^2")] // Right associative with unary
+        [InlineData("1+2*3-4/5^6")] // Mixed operators
+        [InlineData("((1+2))*((3-4))")] // Nested parentheses
+        [InlineData("1&2&3")] // String concatenation precedence
+        [InlineData("1=2<>3<4<=5>6>=7")] // Comparison chaining
+        [InlineData("TRUE AND FALSE OR TRUE")] // Logical precedence
+        [InlineData("NOT TRUE AND FALSE")] // Unary logical with binary
+        public void Parse_ComplexOperatorPrecedence_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("LAMBDA(x,y,z,x+y*z)")] // Multiple parameters
+        [InlineData("LAMBDA(x,LAMBDA(y,x+y))")] // Nested lambda
+        [InlineData("LET(x,1,y,x+1,z,y*2,x+y+z)")] // Multiple LET assignments
+        [InlineData("LET(a,A1:A10,b,SUM(a),c,AVERAGE(a),b+c)")] // Complex LET
+        [InlineData("MAP(A1:A10,LAMBDA(x,IF(x>0,x*2,0)))")] // MAP with conditional lambda
+        [InlineData("REDUCE(0,A1:A10,LAMBDA(acc,val,IF(val>acc,val,acc)))")] // REDUCE with conditional
+        [InlineData("FILTER(A1:A10,LAMBDA(x,MOD(x,2)=0))")] // FILTER with lambda
+        [InlineData("SORT(A1:A10,LAMBDA(x,y,x>y))")] // SORT with lambda comparator
+        public void Parse_AdvancedLambdaAndLetFunctions_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("SUM(OFFSET(A1,1,1,10,1))")] // Dynamic range with OFFSET
+        [InlineData("INDEX(INDIRECT(\"A1:A\"&COUNTA(A:A)),1)")] // Dynamic reference with INDIRECT
+        [InlineData("SUMPRODUCT((A1:A10>0)*(B1:B10))")] // Array multiplication in SUMPRODUCT
+        [InlineData("AGGREGATE(9,5,A1:A10)")] // AGGREGATE function
+        [InlineData("SUBTOTAL(109,A1:A10)")] // SUBTOTAL with hidden rows
+        [InlineData("XLOOKUP(A1,B:B,C:C,\"Not Found\")")] // XLOOKUP with default
+        [InlineData("XMATCH(A1,B:B,0,1)")] // XMATCH with search mode
+        [InlineData("UNIQUE(FILTER(A:A,B:B>0))")] // Nested dynamic array functions
+        public void Parse_AdvancedBuiltInFunctions_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("// Comment\n1+2")] // Single line comment
+        [InlineData("/* Multi\nline\ncomment */1+2")] // Multi-line comment
+        [InlineData("1+2 // End of line comment")] // End of line comment
+        [InlineData("SUM(A1:A10) /* inline comment */ + 1")] // Inline comment
+        public void Parse_FormulasWithComments_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            // Comments should be stripped from the AST representation
+            Assert.DoesNotContain("//", formula.AstRoot.ToString());
+            Assert.DoesNotContain("/*", formula.AstRoot.ToString());
+            Assert.DoesNotContain("*/", formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("1\u00A0+\u00A02")] // Non-breaking spaces
+        [InlineData("SUM(\u2000A1:A10\u2000)")] // En quad spaces
+        [InlineData("\u3000IF(A1>0,\"Yes\",\"No\")\u3000")] // Ideographic spaces
+        [InlineData("\uFEFFSUM(A1:A10)")] // Byte order mark
+        [InlineData("\u200BSUM(A1:A10)\u200B")] // Zero-width spaces
+        public void Parse_FormulasWithUnicodeWhitespace_HandlesCorrectly(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            // Unicode whitespace should be normalized
+            string result = formula.AstRoot.ToString();
+            Assert.DoesNotContain("\u00A0", result);
+            Assert.DoesNotContain("\u2000", result);
+            Assert.DoesNotContain("\u3000", result);
+        }
+
+        [Theory]
+        [InlineData("1 +\n 2")] // Line break in expression
+        [InlineData("SUM(\n  A1,\n  A2,\n  A3\n)")] // Multi-line function call
+        [InlineData("IF(\n  A1>0,\n  \"Positive\",\n  \"Non - positive\"\n)")] // Multi-line IF
+        [InlineData("LET(\n  x, A1,\n  y, B1,\n  x + y\n)")] // Multi-line LET
+        public void Parse_MultiLineFormulas_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            // Multi-line formulas should be normalized to single line
+            string result = formula.AstRoot.ToString();
+            Assert.DoesNotContain("\n", result);
+        }
+
+        [Theory]
+        [InlineData("1+(")] // Unclosed parenthesis
+        [InlineData("SUM(A1,")] // Unclosed function
+        [InlineData("{1,2")] // Unclosed array
+        [InlineData("\"unclosed string")] // Unclosed string
+        [InlineData("A1:")] // Incomplete range
+        [InlineData("1 2 3")] // Invalid syntax
+        [InlineData("++1")] // Double unary operator
+        [InlineData("1++2")] // Invalid operator sequence
+        [InlineData("SUM()()")] // Double function call
+        [InlineData("A1..B2")] // Double range operator
+        public void Parse_MalformedFormulas_ThrowsInformativeExceptions(string formulaString)
+        {
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() =>
+                FormulaParser.Parse(formulaString)
+            );
+
+            Assert.NotNull(exception.Message);
+            Assert.Contains("syntax", exception.Message.ToLower());
+        }
+
+        [Theory]
+        [InlineData("#CIRCULAR!")] // Circular reference error
+        [InlineData("#BLOCKED!")] // Blocked reference error
+        [InlineData("#CONNECT!")] // Connection error
+        [InlineData("#EXTERNAL!")] // External reference error
+        [InlineData("#FIELD!")] // Field error
+        [InlineData("#UNKNOWN!")] // Unknown error
+        [InlineData("#PYTHON!")] // Python error (Excel 365)
+        [InlineData("#BUSY!")] // Busy error
+        public void Parse_ExtendedErrorLiterals_ReturnsCorrectAST(string formulaString)
+        {
+            Formula formula = FormulaParser.Parse(formulaString);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(formulaString, formula.AstRoot.ToString());
+        }
+
+        [Fact]
+        public void Parse_ExtremelyLongFormula_HandlesCorrectly()
+        {
+            // Create a very long formula with many nested function calls
+            System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
+            formulaBuilder.Append("SUM(");
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (i > 0)
+                {
+                    formulaBuilder.Append(",");
+                }
+                formulaBuilder.Append($"IF(A{i}>0,A{i},0)");
+            }
+
+            formulaBuilder.Append(")");
+            string longFormula = formulaBuilder.ToString();
+
+            Formula formula = FormulaParser.Parse(longFormula);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(longFormula, formula.AstRoot.ToString());
+        }
+
+        [Fact]
+        public void Parse_FormulaWithMaximumNestingDepth_HandlesCorrectly()
+        {
+            // Create a formula with deep nesting
+            System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
+
+            for (int i = 0; i < 50; i++)
+            {
+                formulaBuilder.Append("IF(A1>0,");
+            }
+
+            formulaBuilder.Append("1");
+
+            for (int i = 0; i < 50; i++)
+            {
+                formulaBuilder.Append(",0)");
+            }
+
+            string deepFormula = formulaBuilder.ToString();
+
+            Formula formula = FormulaParser.Parse(deepFormula);
+
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(deepFormula, formula.AstRoot.ToString());
+        }
+    }
+
+    /// <summary>
+    /// Comprehensive tests for formula lexing with advanced tokenization scenarios
+    /// </summary>
+    public class AdvancedFormulaLexerTests
+    {
+        [Theory]
+        [InlineData("123", "NUMBER")]
+        [InlineData("123.45", "NUMBER")]
+        [InlineData(".5", "NUMBER")]
+        [InlineData("1E5", "NUMBER")]
+        [InlineData("\"hello\"", "STRING")]
+        [InlineData("TRUE", "BOOLEAN")]
+        [InlineData("A1", "CELL_REFERENCE")]
+        [InlineData("SUM", "FUNCTION_NAME")]
+        [InlineData("+", "OPERATOR")]
+        [InlineData("(", "LEFT_PAREN")]
+        [InlineData(")", "RIGHT_PAREN")]
+        public void Tokenize_BasicTokenTypes_IdentifiesCorrectly(
+            string input,
+            string expectedTokenType
+        )
+        {
+            // This test requires access to lexer directly
+            // For now, we verify through parser that tokenization works
+            Formula formula = FormulaParser.Parse(input);
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(expectedTokenType, formula.AstRoot.GetType().Name);
+        }
+
+        [Theory]
+        [InlineData("123abc", "Invalid number format")]
+        [InlineData("\"unclosed string", "Unterminated string")]
+        [InlineData("#INVALID_ERROR!", "Unknown error literal")]
+        [InlineData("@#$%", "Invalid character sequence")]
+        [InlineData("A1048577", "Row number out of range")]
+        [InlineData("XFE1", "Column reference out of range")]
+        public void Tokenize_InvalidTokens_ThrowsDescriptiveErrors(
+            string input,
+            string expectedErrorType
+        )
+        {
+            Exception exception = Assert.ThrowsAny<Exception>(() => FormulaParser.Parse(input));
+
+            Assert.NotNull(exception.Message);
+            // Verify that the error message contains some indication of the problem
+            Assert.True(exception.Message.Length > 10, "Error message should be descriptive");
+            Assert.Contains(
+                expectedErrorType,
+                exception.Message,
+                StringComparison.OrdinalIgnoreCase
+            );
+        }
+
+        [Theory]
+        [InlineData("A1 B2", new[] { "A1", " ", "B2" })]
+        [InlineData("SUM(A1,B2)", new[] { "SUM", "(", "A1", ",", "B2", ")" })]
+        [InlineData("1+2*3", new[] { "1", "+", "2", "*", "3" })]
+        [InlineData("\"hello world\"", new[] { "\"hello world\"" })]
+        public void Tokenize_ComplexInput_ProducesExpectedTokenSequence(
+            string input,
+            string[] expectedTokens
+        )
+        {
+            // Verify through parser that complex tokenization works correctly
+            Formula formula = FormulaParser.Parse(input);
+            Assert.NotNull(formula.AstRoot);
+
+            // The toString should reconstruct something equivalent
+            string reconstructed = formula.AstRoot.ToString();
+            Assert.NotNull(reconstructed);
+            Assert.True(reconstructed.Length > 0);
+
+            Assert.Equal(
+                string.Join("", expectedTokens).Replace(" ", ""),
+                reconstructed.Replace(" ", "")
+            );
+        }
+
+        [Theory]
+        [InlineData("A1#")] // Spill reference
+        [InlineData("A1@")] // Implicit intersection
+        [InlineData("@A1")] // Implicit intersection prefix
+        [InlineData("#REF!")] // Error reference
+        [InlineData("#SPILL!")] // Spill error
+        public void Tokenize_SpecialOperators_RecognizesCorrectly(string input)
+        {
+            Formula formula = FormulaParser.Parse(input);
+            Assert.NotNull(formula.AstRoot);
+            Assert.Equal(input, formula.AstRoot.ToString());
+        }
+
+        [Theory]
+        [InlineData("\u0041\u0031", "A1")] // Unicode A1
+        [InlineData("\u0053\u0055\u004D", "SUM")] // Unicode SUM
+        [InlineData("\u0022hello\u0022", "\"hello\"")] // Unicode quotes
+        public void Tokenize_UnicodeCharacters_HandlesCorrectly(
+            string input,
+            string expectedNormalized
+        )
+        {
+            Formula formula = FormulaParser.Parse(input);
+            Assert.NotNull(formula.AstRoot);
+            // Unicode should be preserved or normalized appropriately
+            string result = formula.AstRoot.ToString();
+            Assert.True(
+                result == input || result == expectedNormalized,
+                $"Expected {expectedNormalized} or {input}, got {result}"
+            );
+        }
+
+        [Fact]
+        public void Tokenize_TokenBoundaryEdgeCases_HandlesCorrectly()
+        {
+            string[] edgeCases = new string[]
+            {
+                "A1B2", // Adjacent cell references
+                "123abc", // Number followed by letters
+                "SUM()", // Function with no space before parenthesis
+                "1+2", // Operators without spaces
+                "\"\"&\"\"", // Empty strings with concatenation
+                "A1:B2C3:D4", // Adjacent ranges
+            };
+
+            foreach (string testCase in edgeCases)
+            {
+                try
+                {
+                    Formula formula = FormulaParser.Parse(testCase);
+                    Assert.NotNull(formula.AstRoot);
+                    // If parsing succeeds, tokenization handled boundaries correctly
+                }
+                catch (Exception ex)
+                {
+                    // If parsing fails, it should be due to syntax, not tokenization
+                    Assert.IsType<InvalidOperationException>(ex);
+                    Assert.Contains("syntax", ex.Message.ToLower());
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("  SUM   (   A1   :   A10   )   ")]
+        [InlineData("\tIF\t(\tA1\t>\t0\t,\t\"Yes\"\t,\t\"No\"\t)\t")]
+        [InlineData("\r\nVLOOKUP\r\n(\r\nA1\r\n,\r\nB:C\r\n,\r\n2\r\n,\r\nFALSE\r\n)\r\n")]
+        public void Tokenize_ExcessiveWhitespace_IgnoresAppropriately(string input)
+        {
+            Formula formula = FormulaParser.Parse(input);
+            Assert.NotNull(formula.AstRoot);
+
+            string result = formula.AstRoot.ToString();
+            // Result should not contain excessive whitespace
+            Assert.DoesNotContain("  ", result); // No double spaces
+            Assert.DoesNotContain("\t", result); // No tabs
+            Assert.DoesNotContain("\r", result); // No carriage returns
+            Assert.DoesNotContain("\n", result); // No newlines
+        }
+
+        [Theory]
+        [InlineData("1.2.3", "Invalid number format with multiple decimal points")]
+        [InlineData("1E2E3", "Invalid scientific notation with multiple exponents")]
+        [InlineData("1E", "Incomplete scientific notation")]
+        [InlineData("1E+", "Incomplete scientific notation with sign")]
+        [InlineData(".E5", "Invalid decimal point without digits")]
+        public void Tokenize_InvalidNumberFormats_ThrowsAppropriateErrors(
+            string input,
+            string errorDescription
+        )
+        {
+            Exception exception = Assert.ThrowsAny<Exception>(() => FormulaParser.Parse(input));
+            Assert.NotNull(exception);
+            // Verify we get some kind of parsing error
+            Assert.True(exception is InvalidOperationException || exception is ArgumentException);
+            Assert.Contains(
+                errorDescription,
+                exception.Message,
+                StringComparison.OrdinalIgnoreCase
+            );
         }
     }
 }

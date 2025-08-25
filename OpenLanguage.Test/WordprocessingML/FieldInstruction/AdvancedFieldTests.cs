@@ -447,7 +447,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void Parse_ManySimpleFields_ParsesWithinReasonableTime()
         {
             string[] fields = new string[1000];
-            for (Int32 i = 0; i < fields.Length; i++)
+            for (int i = 0; i < fields.Length; i++)
             {
                 fields[i] = $"MERGEFIELD Field{i}";
             }
@@ -492,7 +492,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             // Create a field with many merge field references
             string[] mergeFields = new string[argumentCount];
-            for (Int32 i = 0; i < argumentCount; i++)
+            for (int i = 0; i < argumentCount; i++)
             {
                 mergeFields[i] = $"{{ MERGEFIELD Field{i} }}";
             }

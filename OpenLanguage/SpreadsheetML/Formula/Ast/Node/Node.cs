@@ -11,7 +11,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public abstract IEnumerable<O> Children<O>()
             where O : Node;
 
-        public abstract Node? ReplaceChild(Int32 index, Node replacement);
+        public abstract Node? ReplaceChild(int index, Node replacement);
 
         /// <summary>
         /// Converts the AST node back into its exact string representation in a formula.

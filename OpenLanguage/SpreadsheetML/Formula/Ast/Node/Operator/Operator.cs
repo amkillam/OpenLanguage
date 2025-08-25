@@ -29,7 +29,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (replacement is ExpressionNode expr && index == 0)
             {
@@ -76,7 +76,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (replacement is ExpressionNode expr)
             {
@@ -107,7 +107,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(op, ws, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Unary;
+        public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() =>
             $"+{string.Concat(WsBetween.Select(w => w.ToString()))}{Operand.ToString()}";
@@ -123,7 +123,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(op, ws, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Unary;
+        public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() =>
             $"{Operand.ToString()}{string.Concat(WsBetween.Select(w => w.ToString()))}#";
@@ -139,7 +139,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(op, ws, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Unary;
+        public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() =>
             $"-{string.Concat(WsBetween.Select(w => w.ToString()))}{Operand.ToString()}";
@@ -155,7 +155,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(op, ws, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Percent;
+        public override int Precedence => Ast.Precedence.Percent;
 
         public override string ToRawString() =>
             $"{Operand.ToString()}{string.Concat(WsBetween.Select(w => w.ToString()))}%";
@@ -173,7 +173,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Additive;
+        public override int Precedence => Ast.Precedence.Additive;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}+{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -191,7 +191,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Additive;
+        public override int Precedence => Ast.Precedence.Additive;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}-{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -209,7 +209,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Multiplicative;
+        public override int Precedence => Ast.Precedence.Multiplicative;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}*{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -227,7 +227,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Multiplicative;
+        public override int Precedence => Ast.Precedence.Multiplicative;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}/{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -245,7 +245,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Power;
+        public override int Precedence => Ast.Precedence.Power;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}^{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -263,7 +263,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Concat;
+        public override int Precedence => Ast.Precedence.Concat;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}&{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -281,7 +281,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}={string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -299,7 +299,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}<>{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -317,7 +317,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}<{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -335,7 +335,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}<={string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -353,7 +353,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString()
         {
@@ -378,7 +378,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Comparison;
+        public override int Precedence => Ast.Precedence.Comparison;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}>={string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -396,7 +396,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Range;
+        public override int Precedence => Ast.Precedence.Range;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))}:{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";
@@ -416,7 +416,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             IntersectionWhitespace = intersectionWhitespace;
         }
 
-        public override Int32 Precedence => Ast.Precedence.Intersection;
+        public override int Precedence => Ast.Precedence.Intersection;
 
         public override string ToRawString() =>
             Left.ToString()
@@ -434,7 +434,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(operand, wsBetween, leadingWhitespace, trailingWhitespace) { }
 
-        public override Int32 Precedence => Ast.Precedence.Unary;
+        public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() =>
             $"@{string.Concat(WsBetween.Select(w => w.ToString()))}{Operand.ToString()}";
@@ -452,7 +452,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(l, r, wsB, wsA, lws, tws) { }
 
-        public override Int32 Precedence => Ast.Precedence.Union;
+        public override int Precedence => Ast.Precedence.Union;
 
         public override string ToRawString() =>
             $"{Left.ToString()}{string.Concat(WsBeforeOp.Select(w => w.ToString()))},{string.Concat(WsAfterOp.Select(w => w.ToString()))}{Right.ToString()}";

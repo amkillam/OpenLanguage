@@ -10,7 +10,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// </summary>
     public static class FieldParser
     {
-        private static Int32 _currentTokenIndex;
+        private static int _currentTokenIndex;
 
         public static FieldInstruction Parse(string fieldCode)
         {

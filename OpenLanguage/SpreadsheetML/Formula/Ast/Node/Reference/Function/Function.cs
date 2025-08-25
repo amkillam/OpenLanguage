@@ -13,7 +13,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public List<ExpressionNode> Arguments { get; }
         public List<Node> WsBeforeCloseParen { get; set; }
 
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public override int Precedence => Ast.Precedence.Primary;
 
         public FunctionCallNode(
             ExpressionNode functionIdentifier,
@@ -63,7 +63,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement)
+        public override Node? ReplaceChild(int index, Node replacement)
         {
             if (replacement is ExpressionNode expr)
             {

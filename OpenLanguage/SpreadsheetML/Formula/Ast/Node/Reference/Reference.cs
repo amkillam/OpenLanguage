@@ -6,8 +6,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
     public abstract class NameNode : ExpressionNode
     {
-        public String Name { get; set; }
-        public override Int32 Precedence => Ast.Precedence.Primary;
+        public string Name { get; set; }
+        public override int Precedence => Ast.Precedence.Primary;
 
         protected NameNode(
             string name,
@@ -26,7 +26,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class NamedRangeNode : NameNode
@@ -265,11 +265,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class WorkbookIndexNode : ExpressionNode
     {
         public List<Node> WsAfterOpenBracket { get; set; }
-        public Int64 Index { get; set; }
+        public long Index { get; set; }
         public List<Node> WsBeforeCloseBracket { get; set; }
 
         public WorkbookIndexNode(
-            Int64 index,
+            long index,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
