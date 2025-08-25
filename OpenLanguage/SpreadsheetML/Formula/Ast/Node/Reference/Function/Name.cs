@@ -55,11 +55,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class BuiltInCommandFunctionNode : BuiltInFunctionNode
     {
-        public QuestionMarkNode QuestionMark { get; set; }
+        public QuestionMarkNode? QuestionMark { get; set; }
 
         public BuiltInCommandFunctionNode(
             string name,
-            QuestionMarkNode qMarkNode,
+            QuestionMarkNode? qMarkNode,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -68,7 +68,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             QuestionMark = qMarkNode;
         }
 
-        public override string ToRawString() => base.ToRawString() + QuestionMark.ToString();
+        public override string ToRawString()
+        {
+            string mark = QuestionMark != null ? QuestionMark.ToString() : string.Empty;
+            return base.ToRawString() + mark;
+        }
     }
 
     public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode

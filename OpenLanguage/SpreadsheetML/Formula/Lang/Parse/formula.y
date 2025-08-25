@@ -495,11 +495,6 @@ opt_name:
         | /* empty */ { $$ = null; };
 
 
-opt_name:
-        name
-        | /* empty */ { $$ = null; };
-
-
 structure_reference
     : workbook_index opt_name intra_table_reference_list { $$ = new StructuredReferenceNode($1, $2, $3); }
     |  opt_name intra_table_reference_list { $$ = new StructuredReferenceNode(null, $1, $2); }
