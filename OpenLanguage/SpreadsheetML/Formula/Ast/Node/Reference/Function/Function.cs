@@ -106,6 +106,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                     {
                         builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
                     }
+                    else
+                    {
+                        builder.Append(' ');
+                    }
                 }
             }
 
