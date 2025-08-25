@@ -35,12 +35,12 @@
     "<="                { return (int)Tokens.T_LE; }
 
 
-    "[#All]"        { return (int)Tokens.T_SR_ALL; }
-    "[#Data]"       { return (int)Tokens.T_SR_DATA; }
-    "[#Headers]"    { return (int)Tokens.T_SR_HEADERS; }
-    "[#Totals]"     { return (int)Tokens.T_SR_TOTALS; }
-    "[#This Row]" { return (int)Tokens.T_SR_THIS_ROW; }
-    "[]"                { return (int)Tokens.T_EMPTY_BRACKETS; }
+    "#All"             { return (int)Tokens.T_SR_ALL; }
+    "#Data"            { return (int)Tokens.T_SR_DATA; }
+    "#Headers"         { return (int)Tokens.T_SR_HEADERS; }
+    "#Totals"          { return (int)Tokens.T_SR_TOTALS; }
+    "#This Row"        { return (int)Tokens.T_SR_THIS_ROW; }
+    "[]"               { return (int)Tokens.T_EMPTY_BRACKETS; }
 
 
     "_xlfn\._xlws\."     { return (int)Tokens.T_XLFN_XLWS_; }
@@ -87,8 +87,13 @@
     "//".*             { /* skip single-line comment */ }
     "/\*"              { BEGIN(IN_COMMENT); }
 
-    \s               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
-    [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
+    [\x2000-\x200A]+    { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // General punctuation spaces: en quad to hair space
+    [\x202F]+           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Narrow no-break space
+    [\x205F]+           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Medium mathematical space
+    [\x3000]+           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Ideographic space
+    [\x200B]+           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Zero-width space
+    \s                  { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    [\r\n]+             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; }
     [\xA0]+             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
 
 
