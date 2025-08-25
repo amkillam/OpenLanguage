@@ -106,7 +106,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                     {
                         builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
                     }
-                    // Do not insert any default space after commas; only use explicitly captured whitespace
                 }
             }
 
