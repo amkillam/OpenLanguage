@@ -44,6 +44,8 @@ set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage")
 set(GENERATED_DIR "${PROJECT_DIR}/Generated")
 set(TEST_PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage.Test")
 
+file (GLOB_RECURSE PROJECT_LIST "${PROJECT_DIR}/*.csproj")
+
 # --- File Pre-processing ---
 # Find all .y and .lex files
 file(GLOB_RECURSE YACC_FILES "${PROJECT_DIR}/**/*.y")
@@ -105,35 +107,39 @@ add_custom_target(build
 
 # Create a separate build target for each RID for concurrent compilation
 string(REPLACE ";" " " RUNTIMES_LIST "${RUNTIMES}")
-foreach(RID ${RUNTIMES_LIST})
-  if(NOT RID)
-    continue() # Skip if the RID list is empty
-  endif()
+foreach (PROJECT ${PROJECT_LIST})
+  get_filename_component(PROJECT_NAME ${PROJECT} NAME_WE)
+  foreach(RID ${RUNTIMES_LIST})
+    if(NOT RID)
+      continue() # Skip if the RID list is empty
+    endif()
 
-  # Sanitize the RID to create a valid CMake target name (e.g., win-x64 -> win_x64)
-  string(REPLACE "-" "_" RID_SAFE ${RID})
-  set(RID_TARGET_NAME "build_${RID_SAFE}")
+    # Sanitize the RID to create a valid CMake target name (e.g., win-x64 -> win_x64)
+    string(REPLACE "-" "_" RID_SAFE ${RID})
+    set(RID_TARGET_NAME "build_${PROJECT_NAME}_${RID_SAFE}")
 
-  add_custom_target(${RID_TARGET_NAME}
-        COMMAND dotnet publish ${SOLUTION_FILE}
+    add_custom_target(${RID_TARGET_NAME}
+        COMMAND dotnet publish ${PROJECT}
                 --configuration Release
                 -r ${RID}
-                --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${RID}"
-                --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${RID}"
+                # CMAKE_BINARY_DIR/PROJECT_NAME/publish/RID
+                --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${PROJECT_NAME}/${RID}"
+                --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/${RID}"
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMENT "Building and publishing for RID: ${RID}"
         VERBATIM
     )
-  # Make the main 'build' target depend on this one
-  add_dependencies(build ${RID_TARGET_NAME})
-  add_dependencies(${RID_TARGET_NAME} process)
+    # Make the main 'build' target depend on this one
+    add_dependencies(build ${RID_TARGET_NAME})
+    add_dependencies(${RID_TARGET_NAME} process)
+  endforeach()
 endforeach()
 
 # --- Other Utility Targets ---
 
 # Test target - dependent on build
 add_custom_target(test
-    COMMAND dotnet test "${SOLUTION_FILE}" --configuration Release --no-build --verbosity normal
+    COMMAND dotnet test "${TEST_PROJECT_DIR}/OpenLanguage.Test.csproj" --configuration Release --no-build --verbosity normal
     DEPENDS build
     COMMENT "Running unit tests"
 )
@@ -148,6 +154,7 @@ add_custom_target(publish
 
 # Format target
 add_custom_target(format
+    COMMAND dotnet tool restore
     COMMAND dotnet csharpier format ${CMAKE_SOURCE_DIR}
     COMMENT "Formatting code with CSharpier"
 )

@@ -21,7 +21,7 @@
     <None Include="Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>formula.y</DependentUpon>
+      <DependentUpon>Generated/SpreadsheetML/Formula/Lang/Parse/formula.y</DependentUpon>
     </None>
     <LexFile Include="Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex">
       <OutputFile>Generated/SpreadsheetML/Formula/Lang/Lex/Formula.Lexer.Generated.cs</OutputFile>
@@ -29,7 +29,7 @@
     <None Include="Generated/SpreadsheetML/Formula/Lang/Lex/Formula.Lexer.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>formula.lex</DependentUpon>
+      <DependentUpon>Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' != 'Release'">
@@ -41,7 +41,6 @@
     <PackageReference Include="DocumentFormat.OpenXml.Framework" Version="3.3.0" />
     <PackageReference Include="DocumentFormat.OpenXml.Linq" Version="3.3.0" />
     <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
-    <PackageReference Include="YaccLexTools" Version="1.2.3" />
     <PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.1" />
     <PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.1" />
   </ItemGroup>

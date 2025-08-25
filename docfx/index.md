@@ -4,7 +4,7 @@ Welcome to the OpenLanguage project documentation.
 
 ## Overview
 
-OpenLanguage is a comprehensive library for working with Office Open XML documents, providing lexers, parsers, and other language processing tools for various Microsoft Office formats.
+OpenLanguage is a library for working with Office Open XML Domain-specific Languages, providing lexers, parsers, and other processing tools for various DSLs used in Open Office XML.
 
 ## API Reference
 

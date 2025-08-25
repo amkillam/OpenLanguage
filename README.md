@@ -4,7 +4,7 @@
 [![NuGet Version](https://img.shields.io/nuget/v/OpenLanguage.svg)](https://www.nuget.org/packages/OpenLanguage/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-A .NET library for parsing Microsoft Office document languages. It provides parsing capabilities for Excel formulas and Word field instructions using GPLEX/GPPG-generated lexers and parsers.
+OpenLanguage is a library for working with Office Open XML Domain-specific Languages, providing lexers, parsers, and other processing tools for major DSLs used in Open Office XML.
 
 ## Features
 
@@ -12,14 +12,14 @@ A .NET library for parsing Microsoft Office document languages. It provides pars
 
 - **Field Instructions**: Parse Word field codes into structured objects with arguments
 - **Typed Field Instructions**: Factory pattern for converting generic instructions to strongly-typed objects
-- **Comprehensive Field Types**: Support for 70+ Word field instruction types (REF, MERGEFIELD, IF, etc.)
+- **Comprehensive Field Types**: Support for 70+ Word field instruction types (REF, MERGEFIELD, IF, etc.) - intended to be comprehensive
 - **Argument Handling**: Process identifiers, string literals, switches, and nested fields
 - **Field Reconstruction**: Convert parsed instructions back to valid field code strings
 
 ### 📊 SpreadsheetML Support
 
-- **Formula Parsing**: Parse Excel formulas into Abstract Syntax Trees (AST)
-- **Grammar-Based**: Uses GPLEX lexer (.lex) and GPPG parser (.y) for robust parsing
+- **Formula Parsing**: Parse SpreadsheetML formulas into Abstract Syntax Trees (AST)
+- **Grammar-Based**: Uses GPLEX GNU LEX-style lexer (.lex) and GPPG GNU YACC-style parser for concise and efficient grammar specification and parsing logic
 - **AST Manipulation**: Access and modify parsed formula structures programmatically
 - **Formula Reconstruction**: Convert modified ASTs back to valid Excel formula strings
 - **Reference Support**: Handle A1, R1C1, table references, and structured references
@@ -28,8 +28,6 @@ A .NET library for parsing Microsoft Office document languages. It provides pars
 
 - **AOT Compatible**: Full support for Native AOT compilation
 - **Optimized**: Built with performance-first approach
-- **Type Safe**: Nullable reference types enabled throughout
-- **Zero Warnings**: Treats warnings as errors for maximum code quality
 
 ## Installation
 
@@ -151,18 +149,17 @@ dotnet pack --configuration Release
 OpenLanguage/
 ├── OpenLanguage/                    # Main library
 │   ├── SpreadsheetML/
-│   │   └── Formula/                 # Excel formula processing
+│   │   └── Formula/                 # SpreadsheetML formula processing
 │   │       ├── Lang/
 │   │       │   ├── Lex/            # Lexical analysis (.lex files)
 │   │       │   └── Parse/          # Grammar parsing (.y files)
 │   │       ├── Formula.cs          # Main formula API
 │   │       └── FormulaParser.cs    # Parser implementation
-│   ├── WordprocessingML/
-│   │   ├── FieldInstruction/       # Word field instructions
-│   │   ├── MergeField/            # Mail merge functionality
-│   │   ├── Expression/            # Expression evaluation
-│   │   └── ODBC/                  # Database connectivity
-│   └── Generated/                  # Auto-generated code (ignored in git)
+│   └── WordprocessingML/
+│       ├── FieldInstruction/       # WordprocessingML field instructions
+│       ├── MergeField/            # Mail merge functionality
+│       ├── Expression/            # Expression evaluation
+│       └── ODBC/                  # Database connectivity
 ├── OpenLanguage.Test/              # Unit tests
 ├── docs/                          # Documentation
 └── CMakeLists.txt                 # Build system configuration
@@ -170,7 +167,7 @@ OpenLanguage/
 
 ## Grammar Files
 
-The project uses YACC/LEX grammar files for robust parsing:
+The project uses GNU YACC/LEX style grammar files for robust parsing:
 
 - **Formula Grammar**: `SpreadsheetML/Formula/Lang/Parse/formula.y`
 - **Formula Lexer**: `SpreadsheetML/Formula/Lang/Lex/formula.lex`
@@ -244,16 +241,12 @@ dotnet test OpenLanguage.Test/
 OpenLanguage is built with performance as a primary concern:
 
 - **Native AOT Ready**: Full compatibility with .NET Native AOT
-- **Zero Allocation Parsing**: Minimal memory allocations during parsing
-- **Optimized Grammar**: Hand-tuned YACC/LEX grammars for maximum performance
-- **Unsafe Code**: Strategic use of unsafe code for performance-critical paths
+- **Optimized Grammar**: Hand-tuned, hyper-optimized LALR YACC-style parser used with highly optimized, minimal LEX-style grammar
 
 ## Compatibility
 
 - **.NET 9.0**: Primary target framework
 - **Native AOT**: Full support for ahead-of-time compilation
-- **Trimming**: Compatible with .NET trimming for smaller deployments
-- **Nullable**: Full nullable reference type annotations
 
 ## License
 
@@ -261,17 +254,11 @@ This project is licensed under the GNU General Public License v2.0 - see the [LI
 
 ## Acknowledgments
 
-- Built with [YaccLexTools](https://www.nuget.org/packages/YaccLexTools/) for grammar processing
+- Built with [YaccLexTools](https://www.nuget.org/packages/YaccLexTools/) for code generation from GPPG and GPLEX grammar specification and logic
 - Uses [DocumentFormat.OpenXml](https://github.com/OfficeDev/Open-XML-SDK) for Open Office XML handling
-- Inspired by the Microsoft Office Open XML specification
 
 ## Support
 
 - 📖 [Documentation](./docs/)
 - 🐛 [Issue Tracker](https://github.com/amkillam/OpenLanguage/issues)
 - 💬 [Discussions](https://github.com/amkillam/OpenLanguage/discussions)
-- 📧 Email: support@openlanguage.dev
-
----
-
-**OpenLanguage** - Empowering developers with robust Office document processing capabilities.
