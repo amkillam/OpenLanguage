@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 
 namespace OpenLanguage.Utils
@@ -9,29 +10,23 @@ namespace OpenLanguage.Utils
     ///
     /// Usage for formatting:
     ///   UInt64 value = 27;
-    ///   string formatted = value.ToString("AH", AlphabeticHexevigesimalProvider.Instance); // "AA"
+    ///   string formatted = value.ToString("AH", new AlphabeticHexevigesimalProvider()); // "AA"
     ///
     /// Usage for parsing:
     ///   string column = "AA";
-    ///   UInt64 parsed = AlphabeticHexevigesimalProvider.Parse(column); // 27
+    ///   UInt64 parsed = AlphabeticHexevigesimalProvider.Parse<UInt64>(column); // 27
     /// </summary>
     public class AlphabeticHexevigesimalProvider : IFormatProvider, ICustomFormatter
     {
-        /// <summary>
-        /// A convenient singleton instance for use in formatting calls.
-        /// </summary>
         private const byte Base = 26;
 
         /// <summary>
-        /// Converts the Excel-style alphabetic string to its UInt64 equivalent.
-        /// Note: This is a static helper method because UInt64.TryParse is not extensible
-        /// for custom alphabetic systems via IFormatProvider.
+        /// Converts the Excel-style alphabetic string to its numeric equivalent.
         /// </summary>
         /// <param name="s">A string containing the alphabetic number to convert (e.g., "A", "AZ").</param>
-        /// <returns>The UInt64 equivalent of the number contained in s.</returns>
-        /// <exception cref="ArgumentNullException">s is null.</exception>
-        /// <exception cref="FormatException">s is not in the correct format (A-Z).</exception>
-        /// <exception cref="OverflowException">s represents a number larger than UInt64.MaxValue.</exception>
+        /// <returns>The numeric equivalent of the number contained in s.</returns>
+        /// <exception cref="ArgumentException">s is null, empty, whitespace, or contains invalid characters.</exception>
+        /// <exception cref="OverflowException">s represents a number larger than the specified type can hold.</exception>
         public static N Parse<N>(string? s)
             where N : System.Numerics.INumber<N>,
                 System.Numerics.IBinaryNumber<N>,
@@ -40,24 +35,34 @@ namespace OpenLanguage.Utils
                 IFormattable,
                 System.Numerics.IMinMaxValue<N>
         {
-            if (s == null)
+            if (string.IsNullOrWhiteSpace(s))
             {
-                throw new ArgumentNullException(nameof(s));
+                throw new ArgumentException("Input cannot be null, empty, or whitespace.", nameof(s));
             }
-            if (TryParse(s, out N result))
+
+            if (s.Any(c => c < 'A' || c > 'Z'))
             {
-                return result;
+                throw new ArgumentException(
+                    "Input string must contain only uppercase letters A-Z.",
+                    nameof(s)
+                );
             }
-            throw new FormatException(
-                "Input string was not in a correct format. It must contain only characters A-Z."
-            );
+
+            if (!TryParse(s, out N result))
+            {
+                throw new OverflowException(
+                    "The input string represents a number larger than the specified type can hold."
+                );
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// Tries to convert the Excel-style alphabetic string to its UInt64 equivalent.
+        /// Tries to convert the Excel-style alphabetic string to its numeric equivalent.
         /// </summary>
         /// <param name="s">A string containing the alphabetic number to convert.</param>
-        /// <param name="result">When this method returns, contains the UInt64 equivalent, if the conversion succeeded.</param>
+        /// <param name="result">When this method returns, contains the numeric equivalent, if the conversion succeeded.</param>
         /// <returns>true if s was converted successfully; otherwise, false.</returns>
         public static bool TryParse<N>(string? s, out N result)
             where N : System.Numerics.INumber<N>,
@@ -76,19 +81,17 @@ namespace OpenLanguage.Utils
             N value = N.CreateChecked(0);
             foreach (char c in s)
             {
-                char upperChar = char.ToUpperInvariant(c);
-                if (upperChar < 'A' || upperChar > 'Z')
+                if (c < 'A' || c > 'Z')
                 {
                     return false; // Invalid character
                 }
 
                 try
                 {
-                    // checked block throws OverflowException on overflow
                     checked
                     {
                         value *= N.CreateChecked(Base);
-                        value += N.CreateChecked(upperChar - 'A' + 1);
+                        value += N.CreateChecked(c - 'A' + 1);
                     }
                 }
                 catch (OverflowException)
@@ -106,7 +109,6 @@ namespace OpenLanguage.Utils
         /// </summary>
         public object? GetFormat(Type? formatType)
         {
-            // Return this object if a custom formatter is requested.
             return formatType == typeof(ICustomFormatter) ? this : null;
         }
 
@@ -122,28 +124,28 @@ namespace OpenLanguage.Utils
                 IFormattable,
                 System.Numerics.IMinMaxValue<N>
         {
-            // We only handle our custom "AH" (Alphabetic Hexevigesimal) format specifier.
             if (
                 string.IsNullOrEmpty(format)
                 || !format.Equals("AH", StringComparison.OrdinalIgnoreCase)
             )
             {
-                return HandleDefaultFormat(format, arg, formatProvider);
+                throw new FormatException($"The format of '{format}' is invalid.");
             }
 
-            // We only format unsigned integer types.
-            if (arg is not (ulong or uint or ushort or byte))
+            if (arg == null)
             {
-                return HandleDefaultFormat(format, arg, formatProvider);
+                throw new ArgumentNullException(nameof(arg));
+            }
+
+            if (N.IsZero(arg) || N.IsNegative(arg))
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(arg),
+                    "Value must be a positive number."
+                );
             }
 
             N value = arg;
-
-            if (value == N.CreateChecked(0))
-            {
-                return string.Empty;
-            }
-
             StringBuilder sb = new StringBuilder();
             N current = value;
 
@@ -173,6 +175,13 @@ namespace OpenLanguage.Utils
                     return Format(format, u16, formatProvider);
                 case byte b:
                     return Format(format, b, formatProvider);
+                case long i64:
+                    if (i64 < 0)
+                        throw new ArgumentOutOfRangeException(
+                            nameof(arg),
+                            "Value must be a positive number."
+                        );
+                    return Format(format, (ulong)i64, formatProvider);
                 default:
                     return HandleDefaultFormat(format, arg, formatProvider);
             }
@@ -187,20 +196,8 @@ namespace OpenLanguage.Utils
             return arg switch
             {
                 null => string.Empty,
-                string s => s,
-                UInt128 u128 => u128.ToString(format, formatProvider),
-                Int128 i128 => i128.ToString(format, formatProvider),
-                UIntPtr uptr => uptr.ToString(format, formatProvider),
-                IntPtr iptr => iptr.ToString(format, formatProvider),
-                UInt64 u64 => u64.ToString(format, formatProvider),
-                Int64 i64 => i64.ToString(format, formatProvider),
-                UInt32 u32 => u32.ToString(format, formatProvider),
-                Int32 i32 => i32.ToString(format, formatProvider),
-                UInt16 u16 => u16.ToString(format, formatProvider),
-                Int16 i16 => i16.ToString(format, formatProvider),
-                Byte b => b.ToString(format, formatProvider),
-                SByte sb => sb.ToString(format, formatProvider),
-                IFormattable formattable => formattable.ToString(format, formatProvider),
+                IFormattable formattable
+                    => formattable.ToString(format, formatProvider),
                 _ => arg?.ToString() ?? string.Empty,
             };
         }

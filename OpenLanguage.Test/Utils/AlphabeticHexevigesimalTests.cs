@@ -60,7 +60,9 @@ namespace OpenLanguage.Utils.Tests
         public void Format_WithZero_ThrowsArgumentException(ulong input)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => _provider.Format("AH", input, _provider));
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _provider.Format("AH", input, _provider)
+            );
         }
 
         [Theory]
@@ -184,7 +186,7 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void Provider_GetFormat_ReturnsCorrectType()
         {
-            object? result = _provider.GetFormat(typeof(AlphabeticHexevigesimalProvider));
+            object? result = _provider.GetFormat(typeof(ICustomFormatter));
 
             Assert.NotNull(result);
             Assert.IsType<AlphabeticHexevigesimalProvider>(result);

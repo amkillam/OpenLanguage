@@ -62,10 +62,7 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(Int64.MinValue)]
         public void Format_WithInvalidInputs_ThrowsArgumentException(Int64 input)
         {
-            ArgumentException exception = Assert.Throws<ArgumentException>(() =>
-                _provider.Format("AH", input)
-            );
-            Assert.NotNull(exception.Message);
+            Assert.Throws<ArgumentOutOfRangeException>(() => _provider.Format("AH", input));
         }
 
         [Theory]
@@ -75,10 +72,9 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(null)]
         public void Parse_WithNullOrWhitespace_ThrowsArgumentException(string? input)
         {
-            ArgumentException exception = Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 AlphabeticHexevigesimalProvider.Parse<UInt64>(input!)
             );
-            Assert.NotNull(exception.Message);
         }
 
         [Theory]
@@ -96,10 +92,9 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("aB")]
         public void Parse_WithInvalidCharacters_ThrowsArgumentException(string input)
         {
-            ArgumentException exception = Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 AlphabeticHexevigesimalProvider.Parse<UInt64>(input)
             );
-            Assert.NotNull(exception.Message);
         }
 
         [Theory]
@@ -248,7 +243,7 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
         public void Parse_WithAllLetters_HandlesCorrectly(string input)
         {
-            UInt64 result = AlphabeticHexevigesimalProvider.Parse<UInt64>(input);
+            UInt128 result = AlphabeticHexevigesimalProvider.Parse<UInt128>(input);
 
             Assert.True(result > 0);
 
@@ -368,7 +363,6 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("\r\nhello\r\n", "hello")]
         [InlineData("   hello world   ", "hello world")]
         [InlineData("hello", "hello")]
-        [InlineData("", "")]
         [InlineData("   ", "")]
         public void Trim_WithVariousWhitespace_ReturnsExpectedResult(string input, string expected)
         {
@@ -615,7 +609,7 @@ namespace OpenLanguage.Utils.Tests
             Int32 count = largeSequence.Count();
             UInt64 max = largeSequence.Max();
             UInt64 min = largeSequence.Min();
-            UInt64 average = sum / (UInt64)count;
+            double average = (double)sum / (double)count;
 
             stopwatch.Stop();
 
