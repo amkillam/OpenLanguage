@@ -27,7 +27,7 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(18279, "AAAA")]
         [InlineData(475254, "ZZZZ")]
         [InlineData(475255, "AAAAA")]
-        public void Format_WithValidInputs_ReturnsExpectedString(int input, string expected)
+        public void Format_WithValidInputs_ReturnsExpectedString(UInt64 input, string expected)
         {
             string result = UtilEdgeCaseTests._provider.Format("AH", input);
 
@@ -35,22 +35,22 @@ namespace OpenLanguage.Utils.Tests
         }
 
         [Theory]
-        [InlineData("A", 1)]
-        [InlineData("Z", 26)]
-        [InlineData("AA", 27)]
-        [InlineData("AZ", 52)]
-        [InlineData("BA", 53)]
-        [InlineData("ZZ", 702)]
-        [InlineData("AAA", 703)]
-        [InlineData("AAZ", 728)]
-        [InlineData("ABA", 729)]
-        [InlineData("ZZZ", 18278)]
-        [InlineData("AAAA", 18279)]
-        [InlineData("ZZZZ", 475254)]
-        [InlineData("AAAAA", 475255)]
-        public void Parse_WithValidInputs_ReturnsExpectedNumber(string input, int expected)
+        [InlineData("A", 1uL)]
+        [InlineData("Z", 26uL)]
+        [InlineData("AA", 27uL)]
+        [InlineData("AZ", 52uL)]
+        [InlineData("BA", 53uL)]
+        [InlineData("ZZ", 702uL)]
+        [InlineData("AAA", 703uL)]
+        [InlineData("AAZ", 728uL)]
+        [InlineData("ABA", 729uL)]
+        [InlineData("ZZZ", 18278uL)]
+        [InlineData("AAAA", 18279uL)]
+        [InlineData("ZZZZ", 475254uL)]
+        [InlineData("AAAAA", 475255uL)]
+        public void Parse_WithValidInputs_ReturnsExpectedNumber(string input, UInt64 expected)
         {
-            int result = AlphabeticHexevigesimalProvider.Parse<int>(input);
+            UInt64 result = AlphabeticHexevigesimalProvider.Parse<UInt64>(input);
 
             Assert.Equal(expected, result);
         }
@@ -59,8 +59,8 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-100)]
-        [InlineData(int.MinValue)]
-        public void Format_WithInvalidInputs_ThrowsArgumentException(int input)
+        [InlineData(Int64.MinValue)]
+        public void Format_WithInvalidInputs_ThrowsArgumentException(Int64 input)
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() =>
                 _provider.Format("AH", input)
@@ -76,7 +76,7 @@ namespace OpenLanguage.Utils.Tests
         public void Parse_WithNullOrWhitespace_ThrowsArgumentException(string? input)
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() =>
-                AlphabeticHexevigesimalProvider.Parse<int>(input!)
+                AlphabeticHexevigesimalProvider.Parse<UInt64>(input!)
             );
             Assert.NotNull(exception.Message);
         }
@@ -97,7 +97,7 @@ namespace OpenLanguage.Utils.Tests
         public void Parse_WithInvalidCharacters_ThrowsArgumentException(string input)
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() =>
-                AlphabeticHexevigesimalProvider.Parse<int>(input)
+                AlphabeticHexevigesimalProvider.Parse<UInt64>(input)
             );
             Assert.NotNull(exception.Message);
         }
@@ -112,10 +112,10 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(18279)]
         [InlineData(475254)]
         [InlineData(1000000)]
-        public void RoundTripConversion_IsConsistent(int originalNumber)
+        public void RoundTripConversion_IsConsistent(UInt64 originalNumber)
         {
             string alphabetic = UtilEdgeCaseTests._provider.Format("AH", originalNumber);
-            int convertedBack = AlphabeticHexevigesimalProvider.Parse<int>(alphabetic);
+            UInt64 convertedBack = AlphabeticHexevigesimalProvider.Parse<UInt64>(alphabetic);
 
             Assert.Equal(originalNumber, convertedBack);
         }
@@ -132,16 +132,16 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("AAAAA")]
         public void ReverseRoundTripConversion_IsConsistent(string originalString)
         {
-            int number = AlphabeticHexevigesimalProvider.Parse<int>(originalString);
+            UInt64 number = AlphabeticHexevigesimalProvider.Parse<UInt64>(originalString);
             string convertedBack = UtilEdgeCaseTests._provider.Format("AH", number);
 
             Assert.Equal(originalString, convertedBack);
         }
 
         [Fact]
-        public void Format_WithMaxInt32_HandlesCorrectly()
+        public void Format_WithMaxUInt64_HandlesCorrectly()
         {
-            int maxValue = int.MaxValue;
+            UInt64 maxValue = UInt64.MaxValue;
 
             string result = UtilEdgeCaseTests._provider.Format("AH", maxValue);
 
@@ -150,7 +150,7 @@ namespace OpenLanguage.Utils.Tests
             Assert.All(result, c => Assert.True(c >= 'A' && c <= 'Z'));
 
             // Verify round trip
-            int convertedBack = AlphabeticHexevigesimalProvider.Parse<int>(result);
+            UInt64 convertedBack = AlphabeticHexevigesimalProvider.Parse<UInt64>(result);
             Assert.Equal(maxValue, convertedBack);
         }
 
@@ -159,7 +159,7 @@ namespace OpenLanguage.Utils.Tests
         {
             string longString = new string('A', 10); // AAAAAAAAAA
 
-            int result = AlphabeticHexevigesimalProvider.Parse<int>(longString);
+            UInt64 result = AlphabeticHexevigesimalProvider.Parse<UInt64>(longString);
 
             Assert.True(result > 0);
 
@@ -176,8 +176,8 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("AAZ", "ABA")]
         public void SequentialValues_FollowCorrectPattern(string current, string expectedNext)
         {
-            int currentNumber = AlphabeticHexevigesimalProvider.Parse<int>(current);
-            int nextNumber = currentNumber + 1;
+            UInt64 currentNumber = AlphabeticHexevigesimalProvider.Parse<UInt64>(current);
+            UInt64 nextNumber = currentNumber + 1;
             string actualNext = UtilEdgeCaseTests._provider.Format("AH", nextNumber);
 
             Assert.Equal(expectedNext, actualNext);
@@ -186,14 +186,17 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void ConversionPerformance_HandlesLargeVolume()
         {
-            int[] testNumbers = Enumerable.Range(1, 10000).ToArray();
+            UInt64[] testNumbers = Enumerable
+                .Range(1, 10000)
+                .Select((Int32 v) => Convert.ToUInt64(v))
+                .ToArray();
 
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-            foreach (int number in testNumbers)
+            foreach (UInt64 number in testNumbers)
             {
                 string alphabetic = UtilEdgeCaseTests._provider.Format("AH", number);
-                int converted = AlphabeticHexevigesimalProvider.Parse<int>(alphabetic);
+                UInt64 converted = AlphabeticHexevigesimalProvider.Parse<UInt64>(alphabetic);
                 Assert.Equal(number, converted);
             }
 
@@ -215,7 +218,7 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(18279, 4)]
         [InlineData(475254, 4)]
         [InlineData(475255, 5)]
-        public void AlphabeticLength_FollowsExpectedPattern(int input, int expectedLength)
+        public void AlphabeticLength_FollowsExpectedPattern(UInt64 input, Int32 expectedLength)
         {
             string result = UtilEdgeCaseTests._provider.Format("AH", input);
 
@@ -225,14 +228,17 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void ConcurrentConversions_ThreadSafe()
         {
-            int[] testNumbers = Enumerable.Range(1, 1000).ToArray();
+            UInt64[] testNumbers = Enumerable
+                .Range(1, 1000)
+                .Select((Int32 v) => Convert.ToUInt64(v))
+                .ToArray();
 
             System.Threading.Tasks.Parallel.ForEach(
                 testNumbers,
                 number =>
                 {
                     string alphabetic = UtilEdgeCaseTests._provider.Format("AH", number);
-                    int converted = AlphabeticHexevigesimalProvider.Parse<int>(alphabetic);
+                    UInt64 converted = AlphabeticHexevigesimalProvider.Parse<UInt64>(alphabetic);
                     Assert.Equal(number, converted);
                 }
             );
@@ -242,7 +248,7 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
         public void Parse_WithAllLetters_HandlesCorrectly(string input)
         {
-            int result = AlphabeticHexevigesimalProvider.Parse<int>(input);
+            UInt64 result = AlphabeticHexevigesimalProvider.Parse<UInt64>(input);
 
             Assert.True(result > 0);
 
@@ -255,7 +261,7 @@ namespace OpenLanguage.Utils.Tests
         public void Format_WithBoundaryValues_HandlesCorrectly()
         {
             // Test boundary values where the pattern changes
-            Dictionary<int, string> boundaryTests = new Dictionary<int, string>
+            Dictionary<UInt64, string> boundaryTests = new Dictionary<UInt64, string>
             {
                 { 25, "Y" },
                 { 26, "Z" },
@@ -271,7 +277,7 @@ namespace OpenLanguage.Utils.Tests
                 { 18279, "AAAA" },
             };
 
-            foreach (KeyValuePair<int, string> test in boundaryTests)
+            foreach (KeyValuePair<UInt64, string> test in boundaryTests)
             {
                 string result = UtilEdgeCaseTests._provider.Format("AH", test.Key);
 
@@ -388,7 +394,7 @@ namespace OpenLanguage.Utils.Tests
             string[] result = input.Split(separator);
 
             Assert.Equal(expected.Length, result.Length);
-            for (int i = 0; i < expected.Length; i++)
+            for (Int32 i = 0; i < expected.Length; i++)
             {
                 Assert.Equal(expected[i], result[i]);
             }
@@ -480,8 +486,8 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("", 0, 0, "")]
         public void Substring_WithValidParameters_ReturnsExpectedResult(
             string input,
-            int startIndex,
-            int length,
+            Int32 startIndex,
+            Int32 length,
             string expected
         )
         {
@@ -497,8 +503,8 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("hello", 3, 3)]
         public void Substring_WithInvalidParameters_ThrowsArgumentOutOfRangeException(
             string input,
-            int startIndex,
-            int length
+            Int32 startIndex,
+            Int32 length
         )
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => input.Substring(startIndex, length));
@@ -599,22 +605,24 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void EnumerableOperations_WithLargeSequence_PerformEfficiently()
         {
-            IEnumerable<int> largeSequence = Enumerable.Range(1, 1000000);
+            IEnumerable<UInt64> largeSequence = Enumerable
+                .Range(1, 1000000)
+                .Select((Int32 v) => Convert.ToUInt64(v));
 
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-            long sum = largeSequence.Select(n => (long)n).Sum();
-            int count = largeSequence.Count();
-            int max = largeSequence.Max();
-            int min = largeSequence.Min();
-            double average = largeSequence.Average();
+            UInt64 sum = Convert.ToUInt64(largeSequence.Select(n => (long)n).Sum());
+            Int32 count = largeSequence.Count();
+            UInt64 max = largeSequence.Max();
+            UInt64 min = largeSequence.Min();
+            UInt64 average = sum / (UInt64)count;
 
             stopwatch.Stop();
 
-            Assert.Equal(500000500000L, sum);
+            Assert.Equal(500000500000uL, sum);
             Assert.Equal(1000000, count);
-            Assert.Equal(1000000, max);
-            Assert.Equal(1, min);
+            Assert.Equal(1000000uL, max);
+            Assert.Equal(1uL, min);
             Assert.Equal(500000.5, average);
             Assert.True(
                 stopwatch.ElapsedMilliseconds < 1000,
@@ -625,9 +633,12 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void ConcurrentCollectionOperations_ThreadSafe()
         {
-            System.Collections.Concurrent.ConcurrentBag<int> concurrentBag =
-                new System.Collections.Concurrent.ConcurrentBag<int>();
-            int[] numbersToAdd = Enumerable.Range(1, 10000).ToArray();
+            System.Collections.Concurrent.ConcurrentBag<UInt64> concurrentBag =
+                new System.Collections.Concurrent.ConcurrentBag<UInt64>();
+            UInt64[] numbersToAdd = Enumerable
+                .Range(1, 10000)
+                .Select((Int32 v) => Convert.ToUInt64(v))
+                .ToArray();
 
             System.Threading.Tasks.Parallel.ForEach(
                 numbersToAdd,
@@ -638,9 +649,12 @@ namespace OpenLanguage.Utils.Tests
             );
 
             Assert.Equal(10000, concurrentBag.Count);
-            Assert.Contains(1, concurrentBag);
-            Assert.Contains(10000, concurrentBag);
-            Assert.Equal(numbersToAdd.Sum(), concurrentBag.Sum());
+            Assert.Contains(1uL, concurrentBag);
+            Assert.Contains(10000uL, concurrentBag);
+            Assert.Equal(
+                numbersToAdd.Select((UInt64 v) => Convert.ToInt64(v)).Sum(),
+                concurrentBag.Select((UInt64 v) => Convert.ToInt64(v)).Sum()
+            );
         }
     }
 }

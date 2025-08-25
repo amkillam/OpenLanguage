@@ -20,9 +20,7 @@ namespace OpenLanguage.Utils
         /// <summary>
         /// A convenient singleton instance for use in formatting calls.
         /// </summary>
-        private const int Base = 26;
-
-        #region Parsing (String -> UInt64)
+        private const byte Base = 26;
 
         /// <summary>
         /// Converts the Excel-style alphabetic string to its UInt64 equivalent.
@@ -34,7 +32,7 @@ namespace OpenLanguage.Utils
         /// <exception cref="ArgumentNullException">s is null.</exception>
         /// <exception cref="FormatException">s is not in the correct format (A-Z).</exception>
         /// <exception cref="OverflowException">s represents a number larger than UInt64.MaxValue.</exception>
-        public static N Parse<N>(string s)
+        public static N Parse<N>(string? s)
             where N : System.Numerics.INumber<N>,
                 System.Numerics.IBinaryNumber<N>,
                 System.Numerics.INumberBase<N>,
@@ -61,7 +59,7 @@ namespace OpenLanguage.Utils
         /// <param name="s">A string containing the alphabetic number to convert.</param>
         /// <param name="result">When this method returns, contains the UInt64 equivalent, if the conversion succeeded.</param>
         /// <returns>true if s was converted successfully; otherwise, false.</returns>
-        public static bool TryParse<N>(string s, out N result)
+        public static bool TryParse<N>(string? s, out N result)
             where N : System.Numerics.INumber<N>,
                 System.Numerics.IBinaryNumber<N>,
                 System.Numerics.INumberBase<N>,
@@ -102,10 +100,6 @@ namespace OpenLanguage.Utils
             result = value;
             return true;
         }
-
-        #endregion
-
-        #region Formatting (UInt64 -> String) - IFormatProvider and ICustomFormatter
 
         /// <summary>
         /// Returns an object that provides formatting services for the specified type.
@@ -156,7 +150,7 @@ namespace OpenLanguage.Utils
             while (current > N.CreateChecked(0))
             {
                 N remainder = (current - N.CreateChecked(1)) % N.CreateChecked(Base);
-                sb.Insert(0, (char)Convert.ToByte(N.CreateChecked('A') + remainder));
+                sb.Insert(0, Convert.ToChar(N.CreateChecked('A') + remainder));
                 current = (current - N.CreateChecked(1)) / N.CreateChecked(Base);
             }
 
@@ -190,13 +184,25 @@ namespace OpenLanguage.Utils
             IFormatProvider? formatProvider
         )
         {
-            if (arg is IFormattable formattable)
+            return arg switch
             {
-                return formattable.ToString(format, formatProvider);
-            }
-            return arg?.ToString() ?? string.Empty;
+                null => string.Empty,
+                string s => s,
+                UInt128 u128 => u128.ToString(format, formatProvider),
+                Int128 i128 => i128.ToString(format, formatProvider),
+                UIntPtr uptr => uptr.ToString(format, formatProvider),
+                IntPtr iptr => iptr.ToString(format, formatProvider),
+                UInt64 u64 => u64.ToString(format, formatProvider),
+                Int64 i64 => i64.ToString(format, formatProvider),
+                UInt32 u32 => u32.ToString(format, formatProvider),
+                Int32 i32 => i32.ToString(format, formatProvider),
+                UInt16 u16 => u16.ToString(format, formatProvider),
+                Int16 i16 => i16.ToString(format, formatProvider),
+                Byte b => b.ToString(format, formatProvider),
+                SByte sb => sb.ToString(format, formatProvider),
+                IFormattable formattable => formattable.ToString(format, formatProvider),
+                _ => arg?.ToString() ?? string.Empty,
+            };
         }
-
-        #endregion
     }
 }
