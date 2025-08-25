@@ -8,11 +8,11 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 
 #### SpreadsheetML
 
-- [Formula Processing](./OpenLanguage/SpreadsheetML/Formula/Formula.md) - Excel formula parsing with AST generation
+- [Formula Processing](./OpenLanguage/SpreadsheetML/Formula/Formula.md) - SpreadsheetML formula parsing with AST generation
 
 #### WordprocessingML
 
-- [Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) - Word field instruction parsing
+- [Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) - WordprocessingML field instruction parsing
 - [Typed Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
 - [MergeField Processing](./OpenLanguage/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
 - [Expression Processing](./OpenLanguage/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
@@ -30,29 +30,29 @@ The API reference is generated from XML documentation comments in the source cod
 
 ## Quick Navigation
 
-| Component          | Description                    | Documentation                                                                               |
-| ------------------ | ------------------------------ | ------------------------------------------------------------------------------------------- |
-| Formula Parser     | Excel formula AST parsing      | [Formula.md](./OpenLanguage/SpreadsheetML/Formula/Formula.md)                               |
-| Field Instructions | Word field instruction parsing | [FieldInstruction.md](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) |
-| Typed Instructions | Strongly-typed field factory   | [Typed.md](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md)                       |
-| MergeField Lexer   | Mail merge field lexing        | [MergeField.md](./OpenLanguage/WordprocessingML/MergeField/MergeField.md)                   |
-| Expression Lexer   | Expression lexical analysis    | [Expression.md](./OpenLanguage/WordprocessingML/Expression/Expression.md)                   |
-| ODBC Components    | ODBC parsing support           | [ODBC.md](./OpenLanguage/WordprocessingML/ODBC/ODBC.md)                                     |
+| Component          | Description                                | Documentation                                                                               |
+| ------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| Formula Parser     | SpreadsheetML formula AST parsing          | [Formula.md](./OpenLanguage/SpreadsheetML/Formula/Formula.md)                               |
+| Field Instructions | WordprocessingML field instruction parsing | [FieldInstruction.md](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) |
+| Typed Instructions | Strongly-typed field factory               | [Typed.md](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md)                       |
+| MergeField Lexer   | Mail merge field lexing                    | [MergeField.md](./OpenLanguage/WordprocessingML/MergeField/MergeField.md)                   |
+| Expression Lexer   | Expression lexical analysis                | [Expression.md](./OpenLanguage/WordprocessingML/Expression/Expression.md)                   |
+| ODBC Components    | ODBC parsing support                       | [ODBC.md](./OpenLanguage/WordprocessingML/ODBC/ODBC.md)                                     |
 
 ## Project Structure
 
 OpenLanguage consists of:
 
-- **SpreadsheetML.Formula**: Excel formula parser using GPLEX/GPPG
+- **SpreadsheetML.Formula**: SpreadsheetML formula parser using GPLEX/GPPG
   - Formula.cs: Main API for parsing formulas into ASTs
   - FormulaParser.cs: Static parser methods
-  - Lang/Lex/formula.lex: Lexical grammar for Excel formulas
-  - Lang/Parse/formula.y: YACC grammar for Excel formulas
-- **WordprocessingML.FieldInstruction**: Word field instruction parser
+  - Lang/Lex/formula.lex: Lexical grammar for SpreadsheetML formulas
+  - Lang/Parse/formula.y: YACC grammar for SpreadsheetML formulas
+- **WordprocessingML.FieldInstruction**: WordprocessingML field instruction parser
 
   - FieldInstruction.cs: Core field instruction and argument classes
   - Typed/: Factory and base classes for strongly-typed instructions
-  - Parser.cs & Lexer.cs: Generated parser components
+  - Parser.cs & Lexer.cs: Parser components
 
 - **Other WordprocessingML Components**:
   - MergeField, Expression, ODBC: Additional lexer components
@@ -65,7 +65,7 @@ The project uses CMake to process .y and .lex files with the C preprocessor (cpp
 
 Unit tests are located in OpenLanguage.Test/ and use xUnit framework. Tests cover:
 
-- Formula parsing with various Excel syntax
+- Formula parsing with various combinations of pattern cases
 - Field instruction creation and manipulation
 - Argument type validation
 - AST reconstruction and round-trip testing
