@@ -1072,7 +1072,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Theory]
         [InlineData("123abc", "Invalid number format")]
         [InlineData("\"unclosed string", "Unterminated string")]
-        [InlineData("#INVALID_ERROR!", "Unknown error literal")]
         [InlineData("@#$%", "Invalid character sequence")]
         [InlineData("A1048577", "Row number out of range")]
         [InlineData("XFE1", "Column reference out of range")]
