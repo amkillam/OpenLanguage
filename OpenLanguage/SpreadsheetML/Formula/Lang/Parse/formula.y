@@ -241,27 +241,27 @@ opt_solo_function: { $$ = null; }
     ;
 
 expression: T_LPAREN opt_whitespace expression opt_whitespace T_RPAREN { $$ = new ParenthesizedExpressionNode($3, $2, $4); }
-    | expression opt_whitespace T_PLUS opt_whitespace expression         { $$ = new AddNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_MINUS opt_whitespace expression        { $$ = new SubtractNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_ASTERISK opt_whitespace expression     { $$ = new MultiplyNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_SLASH opt_whitespace expression        { $$ = new DivideNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_CARET opt_whitespace expression        { $$ = new PowerNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_AMPERSAND opt_whitespace expression    { $$ = new ConcatenateNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_NE opt_whitespace expression           { $$ = new NotEqualNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_LE opt_whitespace expression           { $$ = new LessThanOrEqualNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_LT opt_whitespace expression           { $$ = new LessThanNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_GE opt_whitespace expression           { $$ = new GreaterThanOrEqualNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_GT opt_whitespace expression           { $$ = new GreaterThanNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_EQ opt_whitespace expression           { $$ = new EqualNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_COLON opt_whitespace expression        { $$ = new RangeNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_COMMA opt_whitespace expression        { $$ = new UnionNode($1, $5, $2, $4); }
-    | expression opt_whitespace T_PERCENT %prec T_PERCENT                { $$ = new PercentNode($1, $2); }
-    | expression opt_whitespace T_HASH                                 { $$ = new DynamicNode($1, $2); }
-    | T_PLUS opt_whitespace expression %prec UMINUS                      { $$ = new UnaryPlusNode($3, $2); }
-    | T_MINUS opt_whitespace expression %prec UMINUS                     { $$ = new UnaryMinusNode($3, $2); }
-    | expression T_INTERSECTION opt_whitespace expression { List<Node> whitespace = new List<Node>() { new WhitespaceNode($2) }; whitespace.AddRange($3); $$ = new IntersectionNode($1, $4, whitespace); }
-    | T_AT_SYMBOL opt_whitespace expression %prec UMINUS { $$ = new ImplicitIntersectionNode($3, $2); }
-    | expression opt_whitespace T_AT_SYMBOL             { $$ = new AtSuffixNode($1, $2); }
+    | expression opt_whitespace T_PLUS opt_whitespace expression         { $ = new AddNode($1, new PlusOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_MINUS opt_whitespace expression        { $ = new SubtractNode($1, new MinusOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_ASTERISK opt_whitespace expression     { $ = new MultiplyNode($1, new AsteriskOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_SLASH opt_whitespace expression        { $ = new DivideNode($1, new SlashOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_CARET opt_whitespace expression        { $ = new PowerNode($1, new CaretOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_AMPERSAND opt_whitespace expression    { $ = new ConcatenateNode($1, new AmpersandOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_NE opt_whitespace expression           { $ = new NotEqualNode($1, new NotEqualOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_LE opt_whitespace expression           { $ = new LessThanOrEqualNode($1, new LessThanOrEqualOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_LT opt_whitespace expression           { $ = new LessThanNode($1, new LessThanOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_GE opt_whitespace expression           { $ = new GreaterThanOrEqualNode($1, new GreaterThanOrEqualOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_GT opt_whitespace expression           { $ = new GreaterThanNode($1, new GreaterThanOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_EQ opt_whitespace expression           { $ = new EqualNode($1, new EqualOperatorTokenNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_COLON opt_whitespace expression        { $ = new RangeNode($1, new ColonNode($3.stringVal, $2, $4), $5, null, null); }
+    | expression opt_whitespace T_COMMA opt_whitespace expression        { $ = new UnionNode($1, new CommaNode($3.stringVal, $2, $4), $5, $4, $2, null, null); }
+    | expression opt_whitespace T_PERCENT %prec T_PERCENT                { $ = new PercentNode(new PercentOperatorTokenNode($3.stringVal, $2, null), $1, null, null); }
+    | expression opt_whitespace T_HASH                                 { $ = new DynamicNode(new HashOperatorTokenNode($3.stringVal, $2, null), $1, null, null); }
+    | T_PLUS opt_whitespace expression %prec UMINUS                      { $ = new UnaryPlusNode(new PlusOperatorTokenNode($1.stringVal, null, $2), $3, null, null); }
+    | T_MINUS opt_whitespace expression %prec UMINUS                     { $ = new UnaryMinusNode(new MinusOperatorTokenNode($1.stringVal, null, $2), $3, null, null); }
+    | expression T_INTERSECTION opt_whitespace expression { $ = new IntersectionNode($1, new IntersectionOperatorTokenNode($2.stringVal, null, null), $4, $3); }
+    | T_AT_SYMBOL opt_whitespace expression %prec UMINUS { $ = new ImplicitIntersectionNode(new AtSymbolOperatorTokenNode($1.stringVal, null, $2), $3, null, null); }
+    | expression opt_whitespace T_AT_SYMBOL             { $ = new AtSuffixNode(new AtSymbolOperatorTokenNode($3.stringVal, $2, null), $1, null, null); }
     | primary { $$ = $1; }
     ;
 
@@ -283,7 +283,7 @@ function_call_head: standard_function_name { $$ = new BuiltInStandardFunctionNod
     | command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($1, new QuestionMarkNode($3, $2, $4)); }
     | command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($1, null); }
 
-    | opt_whitespace T_XLFN_XLWS_ opt_whitespace worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, $3, $4, $1, $5); }
+    | opt_whitespace T_XLFN_XLWS_ opt_whitespace worksheet_function_name opt_whitespace { $ = new BuiltInWorksheetFunctionNode($2.stringVal, $4.stringVal, $1.Concat($3).ToList(), $5); }
     ;
 
 function_call: opt_whitespace function_call_head opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN
@@ -429,13 +429,13 @@ bang_reference : opt_whitespace bang cell_or_ref_constant opt_whitespace { $$ = 
 sheet_range_reference   : sheet_range bang_reference { $$ = new SheetReferenceNode($1, $2); };
 single_sheet_reference   :  single_sheet bang_reference { $$ = new SheetReferenceNode($1, $2); };
 single_sheet
-    : workbook_index opt_whitespace T_IDENTIFIER { $$ = new SheetNode($1, $2, $3, false); }
-    |                opt_whitespace T_IDENTIFIER { $$ = new SheetNode(null, new List<Node>(), $2, false, $1, new List<Node>()); }
-    | opt_whitespace T_SHEET_NAME_SPECIAL opt_whitespace { $$ = new SheetNode(null, new List<Node>(), $2, true, $1, $3); }
+    : workbook_index opt_whitespace T_IDENTIFIER { $ = new SheetNode($1, $3.stringVal, false, $2, null); }
+    |                opt_whitespace T_IDENTIFIER { $ = new SheetNode(null, $2.stringVal, false, $1, null); }
+    | opt_whitespace T_SHEET_NAME_SPECIAL opt_whitespace { $ = new SheetNode(null, $2.stringVal, true, $1, $3); }
      ;
 sheet_range
-    : workbook_index opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode($1, $2, $3, $4, $6, $7); }
-    |                opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode(null, $1, $2, $3, $5, $6); }
+    : workbook_index opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $ = new SheetRangeNode($1, $3.stringVal, new ColonNode($5.stringVal, $4, $6), $7.stringVal, $2, null); }
+    |                opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $ = new SheetRangeNode(null, $2.stringVal, new ColonNode($4.stringVal, $3, $5), $6.stringVal, $1, null); }
     ;
 
 
@@ -535,8 +535,8 @@ structure_column: T_LBRACK name T_RBRACK { $$ = new StructureColumn($2); };
 
 workbook_index : T_LBRACK opt_whitespace T_LONG opt_whitespace T_RBRACK {  $2.InsertRange(0, new WhitespaceNode($1)); $4.InsertRange(0, new WhitespaceNode($3)); $$ = new WorkbookIndexNode($3, $2, $4); };
 
-whitespace: T_NEWLINE { $$ = new WhitespaceNode($1); }
-          | T_INTERSECTION { $$ = new WhitespaceNode($1); };
+whitespace: T_NEWLINE { $ = new WhitespaceNode($1.stringVal); }
+          | T_INTERSECTION { $ = new WhitespaceNode($1.stringVal); };
 opt_whitespace:
      opt_whitespace whitespace { $1.Add($2); $$ = $1; }
     | whitespace { $$ = new List<Node>() { $1 }; }
