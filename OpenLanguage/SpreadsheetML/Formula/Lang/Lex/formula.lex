@@ -68,7 +68,7 @@
     "#FIELD!"           { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
     "#PYTHON!"          { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
     "#UNKNOWN!"         { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
-    #[A-Za-z_]+!        { throw new System.FormatException("Unknown error literal"); }
+    "#"[A-Za-z_]+"!"        { throw new System.FormatException("Unknown error literal"); }
 
     "TRUE"              { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
     "FALSE"             { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
@@ -109,8 +109,8 @@
 
 
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
-    [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponent"); } // Invalid: 1E2E3
-    [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
+    [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponents"); } // Invalid: 1E2E3
+    [0-9]+[Ee]                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E
     \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
     [0-9]+[A-Za-z_][A-Za-z0-9_]*                         { throw new System.FormatException("Invalid number format"); }
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
