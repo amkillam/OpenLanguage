@@ -294,4 +294,3 @@ Console.WriteLine($"Binary expression: {binaryExpr.ToString()}"); // "Status = A
 
 - [Field Instructions](../FieldInstruction/FieldInstruction.md) - Generic field instruction handling
 - [MergeField Lexer](../MergeField/MergeField.md) - Merge field specific parsing
-- [Unit Tests](../../../OpenLanguage.Test/WordprocessingML/FieldInstruction/) - Test examples

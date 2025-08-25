@@ -433,17 +433,17 @@ Build field instructions programmatically based on runtime conditions:
 public FieldInstruction CreateConditionalMergeField(string fieldName, string condition, string trueValue, string falseValue)
 {
     var ifField = new FieldInstruction("IF");
-    
+
     // Create nested MERGEFIELD
     var mergeField = new FieldInstruction("MERGEFIELD");
     mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fieldName));
-    
+
     // Add arguments to IF field
     ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, mergeField));
     ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Text, condition));
     ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, trueValue));
     ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, falseValue));
-    
+
     return ifField;
 }
 
@@ -465,12 +465,12 @@ public bool ValidateFieldInstruction(FieldInstruction instruction)
         case "MERGEFIELD":
             // MERGEFIELD requires at least one identifier argument
             return instruction.Arguments.Any(arg => arg.Type == FieldArgumentType.Identifier);
-            
+
         case "REF":
         case "PAGEREF":
             // Reference fields require a bookmark name
             return instruction.Arguments.Any(arg => arg.Type == FieldArgumentType.Identifier);
-            
+
         case "DATE":
         case "TIME":
             // Date/time fields can have format switches
@@ -484,7 +484,7 @@ public bool ValidateFieldInstruction(FieldInstruction instruction)
                 }
             }
             return hasValidFormat;
-            
+
         default:
             return true; // Unknown fields are considered valid
     }
@@ -507,11 +507,11 @@ public FieldInstruction TransformForMailMerge(FieldInstruction original)
 {
     // Clone the original instruction
     var transformed = new FieldInstruction(original.Instruction);
-    
+
     foreach (var arg in original.Arguments)
     {
         var newArg = arg;
-        
+
         // Transform specific argument types
         if (arg.Type == FieldArgumentType.Identifier)
         {
@@ -524,10 +524,10 @@ public FieldInstruction TransformForMailMerge(FieldInstruction original)
             // Recursively transform nested fields
             newArg = new FieldArgument(FieldArgumentType.NestedField, TransformForMailMerge(nestedField));
         }
-        
+
         transformed.Arguments.Add(newArg);
     }
-    
+
     return transformed;
 }
 ```
@@ -540,7 +540,7 @@ Process multiple field instructions efficiently:
 public class FieldInstructionProcessor
 {
     private readonly Dictionary<string, Func<FieldInstruction, string>> _processors;
-    
+
     public FieldInstructionProcessor()
     {
         _processors = new Dictionary<string, Func<FieldInstruction, string>>
@@ -551,11 +551,11 @@ public class FieldInstructionProcessor
             ["HYPERLINK"] = ProcessHyperlinkField
         };
     }
-    
+
     public List<string> ProcessFields(IEnumerable<FieldInstruction> fields)
     {
         var results = new List<string>();
-        
+
         foreach (var field in fields)
         {
             if (_processors.TryGetValue(field.Instruction.ToUpperInvariant(), out var processor))
@@ -567,26 +567,26 @@ public class FieldInstructionProcessor
                 results.Add($"Unsupported field: {field.Instruction}");
             }
         }
-        
+
         return results;
     }
-    
+
     private string ProcessMergeField(FieldInstruction field)
     {
         var typedField = TypedFieldInstructionFactory.Create(field) as MergeFieldFieldInstruction;
-        return typedField != null 
+        return typedField != null
             ? $"Merge field for: {typedField.FieldName}"
             : "Invalid merge field";
     }
-    
+
     private string ProcessDateField(FieldInstruction field)
     {
         var typedField = TypedFieldInstructionFactory.Create(field) as DateFieldInstruction;
-        return typedField != null 
+        return typedField != null
             ? $"Date field with format: {typedField.DateFormat ?? "default"}"
             : "Invalid date field";
     }
-    
+
     // Additional processors...
     private string ProcessRefField(FieldInstruction field) => "Reference field processed";
     private string ProcessHyperlinkField(FieldInstruction field) => "Hyperlink field processed";
@@ -613,22 +613,22 @@ public class FieldInstructionSerializer
                     : arg.Value.ToString()
             }).ToArray()
         };
-        
+
         return System.Text.Json.JsonSerializer.Serialize(data);
     }
-    
+
     public FieldInstruction DeserializeFromJson(string json)
     {
         using var document = System.Text.Json.JsonDocument.Parse(json);
         var root = document.RootElement;
-        
+
         var instruction = new FieldInstruction(root.GetProperty("Instruction").GetString());
-        
+
         foreach (var argElement in root.GetProperty("Arguments").EnumerateArray())
         {
             var type = Enum.Parse<FieldArgumentType>(argElement.GetProperty("Type").GetString());
             var value = argElement.GetProperty("Value").GetString();
-            
+
             if (type == FieldArgumentType.NestedField)
             {
                 var nestedField = DeserializeFromJson(value);
@@ -639,7 +639,7 @@ public class FieldInstructionSerializer
                 instruction.Arguments.Add(new FieldArgument(type, value));
             }
         }
-        
+
         return instruction;
     }
 }
@@ -660,4 +660,4 @@ public class FieldInstructionSerializer
 ## See Also
 
 - [Typed Field Instructions](./Typed.md) - Strongly-typed field instruction factory
-- [Testing Documentation](../../../advanced/testing.md) - Unit test examples
+- [Testing Documentation](../../../development/testing.md) - Unit test examples

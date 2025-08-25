@@ -4,13 +4,13 @@
     {
       "src": [
         {
-          "src": "..",
+          "src": "../..",
           "files": [
             "OpenLanguage/OpenLanguage.csproj"
           ]
         }
       ],
-      "output": "../build/docs/api",
+      "output": "./api",
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -18,29 +18,25 @@
   "build": {
     "content": [
       {
-        "src": "../build/docs/api",
         "files": [
-          "**.yml",
-          "**.md",
-          "**.html"
-        ]
-      },
-      {
-        "files": [
-          "**.md",
-          "../*.md"
+          "index.md",
+          "toc.yml",
+          "api/**.yml",
+          "api/**.md",
+          "docs/**.md",
+          "docs/**.yml"
         ]
       }
     ],
     "resource": [
       {
-        "src": "../docs",
+        "src": "docs",
         "files": [
           "img/**"
         ]
       }
     ],
-    "output": "../build/docs/site",
+    "output": "./site",
     "template": [
       "default",
       "modern"
@@ -57,7 +53,7 @@
     },
     "fileMetadata": {
       "_appLogoPath": {
-        "docs/**": "img/logo.png"
+        "docs/**": "img/logo.svg"
       }
     }
   }

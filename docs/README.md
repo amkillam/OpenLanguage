@@ -8,21 +8,21 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 
 #### SpreadsheetML
 
-- [Formula Processing](./OpenLanguage/SpreadsheetML/Formula/Formula.md) - SpreadsheetML formula parsing with AST generation
+- [Formula Processing](api/SpreadsheetML/Formula/Formula.md) - SpreadsheetML formula parsing with AST generation
 
 #### WordprocessingML
 
-- [Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) - WordprocessingML field instruction parsing
-- [Typed Field Instructions](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
-- [MergeField Processing](./OpenLanguage/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
-- [Expression Processing](./OpenLanguage/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
-- [ODBC Support](./OpenLanguage/WordprocessingML/ODBC/ODBC.md) - ODBC-related parsing components
+- [Field Instructions](api/WordprocessingML/FieldInstruction/FieldInstruction.md) - WordprocessingML field instruction parsing
+- [Typed Field Instructions](api/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
+- [MergeField Processing](api/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
+- [Expression Processing](api/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
+- [ODBC Support](api/WordprocessingML/ODBC/ODBC.md) - ODBC-related parsing components
 
 ### Development
 
-- [Build System](./advanced/build-system.md) - CMake build system with .y/.lex processing
-- [Grammar Files](./advanced/grammar-files.md) - Working with YACC and LEX grammar files
-- [Testing](./advanced/testing.md) - Unit test documentation
+- [Build System](development/build.md) - CMake build system with .y/.lex processing
+- [Grammar Files](development/grammar.md) - Working with YACC and LEX grammar files
+- [Testing](development/test.md) - Unit test documentation
 
 ## API Reference
 
@@ -30,14 +30,14 @@ The API reference is generated from XML documentation comments in the source cod
 
 ## Quick Navigation
 
-| Component          | Description                                | Documentation                                                                               |
-| ------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| Formula Parser     | SpreadsheetML formula AST parsing          | [Formula.md](./OpenLanguage/SpreadsheetML/Formula/Formula.md)                               |
-| Field Instructions | WordprocessingML field instruction parsing | [FieldInstruction.md](./OpenLanguage/WordprocessingML/FieldInstruction/FieldInstruction.md) |
-| Typed Instructions | Strongly-typed field factory               | [Typed.md](./OpenLanguage/WordprocessingML/FieldInstruction/Typed.md)                       |
-| MergeField Lexer   | Mail merge field lexing                    | [MergeField.md](./OpenLanguage/WordprocessingML/MergeField/MergeField.md)                   |
-| Expression Lexer   | Expression lexical analysis                | [Expression.md](./OpenLanguage/WordprocessingML/Expression/Expression.md)                   |
-| ODBC Components    | ODBC parsing support                       | [ODBC.md](./OpenLanguage/WordprocessingML/ODBC/ODBC.md)                                     |
+| Component          | Description                                | Documentation                                                                    |
+| ------------------ | ------------------------------------------ | -------------------------------------------------------------------------------- |
+| Formula Parser     | SpreadsheetML formula AST parsing          | [Formula.md](api/SpreadsheetML/Formula/Formula.md)                               |
+| Field Instructions | WordprocessingML field instruction parsing | [FieldInstruction.md](api/WordprocessingML/FieldInstruction/FieldInstruction.md) |
+| Typed Instructions | Strongly-typed field factory               | [Typed.md](api/WordprocessingML/FieldInstruction/Typed.md)                       |
+| MergeField Lexer   | Mail merge field lexing                    | [MergeField.md](api/WordprocessingML/MergeField/MergeField.md)                   |
+| Expression Lexer   | Expression lexical analysis                | [Expression.md](api/WordprocessingML/Expression/Expression.md)                   |
+| ODBC Components    | ODBC parsing support                       | [ODBC.md](api/WordprocessingML/ODBC/ODBC.md)                                     |
 
 ## Project Structure
 

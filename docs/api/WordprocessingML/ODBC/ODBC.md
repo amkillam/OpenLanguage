@@ -333,4 +333,3 @@ For non-SQL query types, basic validation includes:
 ## See Also
 
 - [Field Instructions](../FieldInstruction/FieldInstruction.md) - Generic field instruction handling
-- [Unit Tests](../../../OpenLanguage.Test/) - Test examples showing usage patterns

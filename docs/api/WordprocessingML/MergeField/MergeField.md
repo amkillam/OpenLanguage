@@ -291,4 +291,3 @@ for (int i = 0; i < fieldNames.Length; i++)
 ## See Also
 
 - [Field Instructions](../FieldInstruction/FieldInstruction.md) - Generic field instruction handling
-- [Unit Tests](../../../OpenLanguage.Test/WordprocessingML/FieldInstruction/) - Test examples showing usage

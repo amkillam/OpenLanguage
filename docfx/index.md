@@ -8,7 +8,7 @@ OpenLanguage is a library for working with Office Open XML Domain-specific Langu
 
 ## API Reference
 
-Browse the [API documentation](api/index.md) for detailed information about classes, methods, and interfaces.
+Browse the API documentation for detailed information about classes, methods, and interfaces.
 
 ## Getting Started
 

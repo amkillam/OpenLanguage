@@ -122,7 +122,6 @@ foreach (PROJECT ${PROJECT_LIST})
         COMMAND dotnet publish ${PROJECT}
                 --configuration Release
                 -r ${RID}
-                # CMAKE_BINARY_DIR/PROJECT_NAME/publish/RID
                 --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${PROJECT_NAME}/${RID}"
                 --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/${RID}"
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -166,12 +165,19 @@ add_custom_target(format
     COMMENT "Formatting code with CSharpier"
 )
 
+add_custom_target(prepare_doc_output
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/docs"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/docs" "${CMAKE_BINARY_DIR}/docs/docs"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/docfx" "${CMAKE_BINARY_DIR}/docs"
+    COMMENT "Preparing documentation output directory"
+)
+
 # Documentation target - dependent on build
 add_custom_target(doc
-    DEPENDS build tool_restore
-    COMMAND dotnet docfx metadata "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
-    COMMAND dotnet docfx build "${CMAKE_SOURCE_DIR}/docfx/docfx.json"
-    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docfx"
+    DEPENDS build tool_restore prepare_doc_output
+    COMMAND dotnet docfx metadata "${CMAKE_BINARY_DIR}/docs/docfx.json"
+    COMMAND dotnet docfx build "${CMAKE_BINARY_DIR}/docs/docfx.json"
+    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/docs"
     COMMENT "Generating API documentation with DocFX"
 )
 
