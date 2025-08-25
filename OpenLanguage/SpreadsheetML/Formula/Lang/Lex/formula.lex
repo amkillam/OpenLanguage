@@ -87,7 +87,13 @@
 
 
 
-    ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?[0-9]+)? | [0-9]+[Ee][\+\-]?[0-9]+               { yylval.doubleVal = double.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
+    ([0-9]+(\.[0-9]*)?|\.[0-9]+)([Ee][\+\-]?([0-9]+))? | [0-9]+[Ee][\+\-]?([0-9]+)               { yylval.doubleVal = double.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
+    [0-9]+                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
+    [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
+    [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponent"); } // Invalid: 1E2E3
+    [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
+    [\.,][Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
+    ([0-9]+([.,][0-9]*)|[.,][0-9]+)([Ee][\+\-]?([0-9]+))? | [0-9]+[Ee][\+\-]?([0-9]+)               { yylval.doubleVal = double.Parse(yytext.Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
     [0-9]+                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
 
     [a-zA-Z_\\`][a-zA-Z0-9_.?`]*                                    { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
