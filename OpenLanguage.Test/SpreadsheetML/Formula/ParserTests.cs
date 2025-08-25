@@ -364,7 +364,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("1 + 2")]
         [InlineData("SUM( 1 , 2 , 3 )")]
         [InlineData("IF( A1 > 0 , \"Yes\" , \"No\" )")]
-        public void Parse_WithWhitespace_IgnoresWhitespaceCorrectly(string formulaString)
+        public void Parse_WithWhitespace_RetainsWhitespaceCorrectly(string formulaString)
         {
             Formula formula = FormulaParser.Parse(formulaString);
 

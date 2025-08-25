@@ -351,11 +351,11 @@ argument: expression
 constant: opt_whitespace constant_leaf opt_whitespace { $$ = $2; $2.LeadingWhitespace = $1; $2.TrailingWhitespace = $3; }
     ;
 
-constant_leaf: T_NUMERICAL_CONSTANT { $$ = new NumericLiteralNode<double>($1); }
-             | T_LONG { $$ = new NumericLiteralNode<long>($1); }
-             | T_STRING_CONSTANT { $$ = new StringNode($1); }
-             | T_TRUE { $$ = new LogicalNode(true); }
-             | T_FALSE { $$ = new LogicalNode(false); }
+constant_leaf: opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace { $$ = new NumericLiteralNode<double>($2, $1, $3); }
+             | opt_whitespace T_LONG opt_whitespace { $$ = new NumericLiteralNode<long>($2, $1, $3); }
+             | opt_whitespace T_STRING_CONSTANT opt_whitespace { $$ = new StringNode($2, $1, $3); }
+             | opt_whitespace T_TRUE opt_whitespace { $$ = new LogicalNode(true, $1, $3); }
+             | opt_whitespace T_FALSE opt_whitespace { $$ = new LogicalNode(false, $1, $3); }
              | error_constant { $$ = $1; }
              | array_constant { $$ = $1; };
 
@@ -396,7 +396,7 @@ constant_list_row: constant { $$ = new List<ExpressionNode> { $1 }; }
         }
     ;
 
-cell_reference : external_cell_reference  | cell_range | cell;
+cell_reference : external_cell_reference { $$ = $1; } | cell_range { $$ = $1; } | cell { $$ = $1; };
 name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN
     {
         // This logic is moved from the old function_call rule.
