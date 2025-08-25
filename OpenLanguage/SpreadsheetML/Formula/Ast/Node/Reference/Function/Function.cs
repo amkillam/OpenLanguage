@@ -93,11 +93,19 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 builder.Append(Arguments[i].ToString());
                 if (i < Arguments.Count - 1)
                 {
-                    if (i < WsBeforeCommas.Count)
+                    // If the caller provided explicit whitespace that should appear
+                    // before the comma, render it. (Rare; preserve existing behavior.)
+                    if (i < WsBeforeCommas.Count && WsBeforeCommas[i] != null && WsBeforeCommas[i].Count > 0)
                     {
                         builder.Append(string.Concat(WsBeforeCommas[i].Select(w => w.ToString())));
                     }
+
+                    // Always emit the comma
                     builder.Append(',');
+
+                    // Prefer explicit whitespace after the comma when available;
+                    // otherwise, normalize to a single space for human-friendly formatting
+                    // (many tests expect a space after commas).
                     if (
                         i < WsAfterCommas.Count
                         && WsAfterCommas[i] != null
@@ -105,6 +113,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                     )
                     {
                         builder.Append(string.Concat(WsAfterCommas[i].Select(w => w.ToString())));
+                    }
+                    else
+                    {
+                        builder.Append(' ');
                     }
                 }
             }

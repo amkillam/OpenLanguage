@@ -43,7 +43,20 @@ namespace OpenLanguage.SpreadsheetML.Formula
             OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner = new(stream);
             OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser = new(scanner);
 
-            bool success = parser.Parse();
+            bool success;
+            try
+            {
+                success = parser.Parse();
+            }
+            catch (Exception ex)
+            {
+                // Wrap lexer/parser exceptions with a consistent InvalidOperationException
+                // while preserving the original diagnostic message so tests can assert on it.
+                throw new System.InvalidOperationException(
+                    $"Failed to parse formula due to syntax errors. {ex.Message}",
+                    ex
+                );
+            }
 
             if (!success || parser.root == null)
             {
