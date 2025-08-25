@@ -61,42 +61,101 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class StructureThisRowByPrefixNode : StructureAbsoluteColumn
     {
-        public StructureThisRowByPrefixNode(ExpressionNode name)
-            : base(name) { }
+        public AtSymbolLiteralNode AtSymbol { get; set; }
 
-        public override string ToRawString() => "@" + base.ToRawString();
-    }
-
-    public class StructureColumn : ExpressionNode
-    {
-        public ExpressionNode Name { get; set; }
-
-        public StructureColumn(ExpressionNode name)
+        public StructureThisRowByPrefixNode(AtSymbolLiteralNode atSymbol, ExpressionNode name)
+            : base(name)
         {
-            Name = name;
+            AtSymbol = atSymbol;
         }
 
-        public override int Precedence => Ast.Precedence.Primary;
-
-        public override string ToRawString() => $"[{Name.ToString()}]";
+        public override string ToRawString() => AtSymbol.ToString() + base.ToRawString();
 
         public override IEnumerable<O> Children<O>()
         {
-            if (Name is O o)
+            if (AtSymbol is O ats)
             {
-                yield return o;
+                yield return ats;
+            }
+            foreach (O child in base.Children<O>())
+            {
+                yield return child;
             }
         }
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
-            if (index == 0 && replacement is ExpressionNode nn)
+            if (index == 0 && replacement is AtSymbolLiteralNode atsn)
             {
-                Node current = Name;
-                Name = nn;
+                AtSymbolLiteralNode current = AtSymbol;
+                AtSymbol = atsn;
                 return current;
             }
-            return null;
+            // If index is not 0, pass to base class for Name replacement
+            return base.ReplaceChild(index - 1, replacement);
+        }
+    }
+
+    public class StructureColumn : ExpressionNode
+    {
+        public LeftBracketNode OpenBracket { get; set; }
+        public ExpressionNode Name { get; set; }
+        public RightBracketNode CloseBracket { get; set; }
+
+        public StructureColumn(
+            LeftBracketNode openBracket,
+            ExpressionNode name,
+            RightBracketNode closeBracket,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            OpenBracket = openBracket;
+            Name = name;
+            CloseBracket = closeBracket;
+        }
+
+        public override int Precedence => Ast.Precedence.Primary;
+
+        public override string ToRawString() =>
+            OpenBracket.ToString() + Name.ToString() + CloseBracket.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (OpenBracket is O ob)
+            {
+                yield return ob;
+            }
+            if (Name is O n)
+            {
+                yield return n;
+            }
+            if (CloseBracket is O cb)
+            {
+                yield return cb;
+            }
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            if (index == 0 && replacement is LeftBracketNode lbn)
+            {
+                current = OpenBracket;
+                OpenBracket = lbn;
+            }
+            else if (index == 1 && replacement is ExpressionNode nn)
+            {
+                current = Name;
+                Name = nn;
+            }
+            else if (index == 2 && replacement is RightBracketNode rbn)
+            {
+                current = CloseBracket;
+                CloseBracket = rbn;
+            }
+            return current;
         }
     }
 

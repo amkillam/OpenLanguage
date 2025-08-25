@@ -241,13 +241,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class WorkbookIndexNode : ExpressionNode
     {
         public long Index { get; set; }
-        public WhitespaceNode OpenBracket { get; set; }
-        public WhitespaceNode CloseBracket { get; set; }
+        public LeftBracketNode OpenBracket { get; set; }
+        public RightBracketNode CloseBracket { get; set; }
 
         public WorkbookIndexNode(
             long index,
-            WhitespaceNode openBracket,
-            WhitespaceNode closeBracket,
+            LeftBracketNode openBracket,
+            RightBracketNode closeBracket,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
@@ -265,9 +265,30 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override IEnumerable<O> Children<O>()
         {
-            yield break;
+            if (OpenBracket is O ob)
+            {
+                yield return ob;
+            }
+            if (CloseBracket is O cb)
+            {
+                yield return cb;
+            }
         }
 
-        public override Node? ReplaceChild(int index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            if (index == 0 && replacement is LeftBracketNode lbn)
+            {
+                current = OpenBracket;
+                OpenBracket = lbn;
+            }
+            else if (index == 1 && replacement is RightBracketNode rbn)
+            {
+                current = CloseBracket;
+                CloseBracket = rbn;
+            }
+            return current;
+        }
     }
 }

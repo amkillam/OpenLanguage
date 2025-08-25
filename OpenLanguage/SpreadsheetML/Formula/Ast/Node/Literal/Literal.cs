@@ -162,4 +162,24 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override Node? ReplaceChild(Int32 index, Node replacement) => null;
     }
+
+    public class LeftBracketNode : CharacterLiteralNode
+    {
+        public LeftBracketNode(
+            string rawStr,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(rawStr, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class RightBracketNode : CharacterLiteralNode
+    {
+        public RightBracketNode(
+            string rawStr,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(rawStr, leadingWhitespace, trailingWhitespace) { }
+    }
 }
