@@ -99,7 +99,6 @@ public BangReferenceNode bangReferenceVal;
 %token T_NEWLINE
 %token T_NULL_ERROR
 %token T_NUM_ERROR
-%token T_NUMERICAL_CONSTANT
 %token T_QUESTIONMARK
 %token T_REF_ERROR
 %token T_SHEET_NAME_SPECIAL
@@ -110,7 +109,6 @@ public BangReferenceNode bangReferenceVal;
 %token T_SR_TOTALS
 %token T_TRUE
 %token T_VALUE_ERROR
-%token T_LONG
 %token T_XLFN_
 %token T_XLFN_XLWS_
 %token T_XLOP_

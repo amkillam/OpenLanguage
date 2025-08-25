@@ -86,7 +86,7 @@
 
     \s               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
-    [\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF\u200B]+ { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    [\xA0]+             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
 
 
     [R]\[?[\+\-]?[1-9]{0,6}\]?[C]\[?[\+\-]?[1-9]{0,6}\]?                  { BEGIN(IN_R1C1_CELL); yyless(0); }
