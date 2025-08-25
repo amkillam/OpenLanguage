@@ -74,7 +74,7 @@
     \"                  { stringBuffer.Clear(); BEGIN(IN_STRING); }
     \'                  { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
 
-    [ \t]               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    \s               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
 
 
@@ -87,8 +87,6 @@
 
 
 
-    ([0-9]+(\.[0-9]*)?|\.[0-9]+)([Ee][\+\-]?([0-9]+))? | [0-9]+[Ee][\+\-]?([0-9]+)               { yylval.doubleVal = double.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
-    [0-9]+                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
     [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponent"); } // Invalid: 1E2E3
     [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
