@@ -55,6 +55,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class BuiltInFunctionPrefixNode : NameNode
+    {
+        public BuiltInFunctionPrefixNode(
+            ExpressionNode prefix,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class BuiltInFunctionNode : NameNode
     {
         public BuiltInFunctionNode(
@@ -65,7 +75,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, leadingWhitespace, trailingWhitespace) { }
 
         public static BuiltInFunctionNode CreatePrefixed(
-            ExpressionNode prefix,
+            BuiltInFunctionPrefixNode prefix,
             ExpressionNode name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -133,13 +143,27 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode
     {
         public BuiltInWorksheetFunctionNode(
-            ExpressionNode prefix,
-            ExpressionNode functionNode,
+            NameNode prefix,
+            BuiltInFunctionNode functionNode,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
             : base(
                 new ConcatenatedNodes(new List<ExpressionNode>() { prefix, functionNode }),
+                leadingWs,
+                trailingWs
+            ) { }
+
+        public BuiltInWorksheetFunctionNode(
+            string prefix,
+            BuiltInFunctionNode functionNode,
+            List<Node>? leadingWs = null,
+            List<Node>? trailingWs = null
+        )
+            : base(
+                new ConcatenatedNodes(
+                    new List<ExpressionNode>() { new NameNode(prefix), functionNode }
+                ),
                 leadingWs,
                 trailingWs
             ) { }

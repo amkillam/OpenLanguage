@@ -2,22 +2,36 @@ using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public abstract class NameNode : ExpressionNode
+    public class NameNode : ExpressionNode
     {
-        public ExpressionNode Name { get; set; }
+        public string? RawName { get; set; } = null;
+        public ExpressionNode? Name { get; set; } = null;
         public override int Precedence => Ast.Precedence.Primary;
 
-        protected NameNode(
-            ExpressionNode name,
+        public NameNode(
+            string name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
-            Name = name;
+            RawName = name;
+            Name = null;
         }
 
-        public override string ToRawString() => Name.ToString();
+        public NameNode(
+            ExpressionNode name,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(null, null)
+        {
+            Name = name;
+            RawName = null;
+        }
+
+        public override string ToRawString() =>
+            Name == null ? (RawName ?? string.Empty) : Name.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -31,10 +45,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
+            Node? current = null;
             if (index == 0 && replacement is ExpressionNode expr)
             {
-                Node current = Name;
+                current = Name;
                 Name = expr;
+                RawName = null;
                 return current;
             }
             return null;
@@ -45,6 +61,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public NamedRangeNode(
             ExpressionNode name,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(name, leadingWhitespace, trailingWhitespace) { }
+
+        public NamedRangeNode(
+            string name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
