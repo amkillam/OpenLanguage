@@ -893,11 +893,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Formula formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula.AstRoot);
-            // Unicode whitespace should be normalized
+            // Unicode whitespace should be retained - insignifcant
             string result = formula.AstRoot.ToString();
-            Assert.DoesNotContain("\u00A0", result);
-            Assert.DoesNotContain("\u2000", result);
-            Assert.DoesNotContain("\u3000", result);
+            foreach (
+                string whitespace in formulaString
+                    .Where(c => char.IsWhiteSpace(c))
+                    .Select(c => c.ToString())
+                    .Distinct()
+            )
+            {
+                Assert.Contains(whitespace, result);
+            }
         }
 
         [Theory]
@@ -910,9 +916,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Formula formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula.AstRoot);
-            // Multi-line formulas should be normalized to single line
+            // Multi-line formulas should have insignificant whitgespace retained
             string result = formula.AstRoot.ToString();
-            Assert.DoesNotContain("\n", result);
+            Assert.Contains("\n", result);
         }
 
         [Theory]

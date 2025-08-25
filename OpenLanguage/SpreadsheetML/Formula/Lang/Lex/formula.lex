@@ -75,7 +75,7 @@
     \'                  { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
 
     [ \t]               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
-    [\r\n]+             { yylval.stringVal=yytext;return(int)Tokens.T_NEWLINE;}
+    [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
 
 
     [R]\[?[\+\-]?[1-9]{0,6}\]?[C]\[?[\+\-]?[1-9]{0,6}\]?                  { BEGIN(IN_R1C1_CELL); yyless(0); }
@@ -87,8 +87,8 @@
 
 
 
-    ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?[0-9]+)?                 { yylval.doubleVal = double.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
-    [0-9]+([Ee][\+\-]?[0-9]+)?                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
+    ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?[0-9]+)? | [0-9]+[Ee][\+\-]?[0-9]+               { yylval.doubleVal = double.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
+    [0-9]+                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
 
     [a-zA-Z_\\`][a-zA-Z0-9_.?`]*                                    { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
 

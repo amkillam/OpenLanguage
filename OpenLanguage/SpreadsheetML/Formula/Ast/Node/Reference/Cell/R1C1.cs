@@ -35,7 +35,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "C" + "[" + base.ToRawString() + "]";
+        public override string ToRawString() =>
+            "C"
+            + "["
+            + base.ColumnSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture)
+            + "]";
     }
 
     public abstract class R1C1RowNode : RowNode<long>
@@ -69,7 +73,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "R" + "[" + base.ToRawString() + "]";
+        public override string ToRawString() =>
+            "R"
+            + "["
+            + base.RowSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture)
+            + "]";
     }
 
     public class R1C1CellNode : CellNode<R1C1RowNode, long, R1C1ColumnNode, long>
