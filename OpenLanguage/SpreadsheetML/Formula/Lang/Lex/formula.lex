@@ -57,6 +57,16 @@
     "#VALUE!"           { yylval.stringVal = yytext; return (int)Tokens.T_VALUE_ERROR; }
     "#REF!"             { yylval.stringVal = yytext; return (int)Tokens.T_REF_ERROR; }
     "#GETTING_DATA"     { yylval.stringVal = yytext; return (int)Tokens.T_GETTING_DATA_ERROR; }
+    "#SPILL!"           { yylval.stringVal = yytext; return (int)Tokens.T_SPILL_ERROR; }
+    "#CALC!"            { yylval.stringVal = yytext; return (int)Tokens.T_CALC_ERROR; }
+    "#BLOCKED!"         { yylval.stringVal = yytext; return (int)Tokens.T_BLOCKED_ERROR; }
+    "#BUSY!"            { yylval.stringVal = yytext; return (int)Tokens.T_BUSY_ERROR; }
+    "#CIRCULAR!"        { yylval.stringVal = yytext; return (int)Tokens.T_CIRCULAR_ERROR; }
+    "#CONNECT!"         { yylval.stringVal = yytext; return (int)Tokens.T_CONNECT_ERROR; }
+    "#EXTERNAL!"        { yylval.stringVal = yytext; return (int)Tokens.T_EXTERNAL_ERROR; }
+    "#FIELD!"           { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
+    "#PYTHON!"          { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
+    "#UNKNOWN!"         { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
 
     "TRUE"              { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
     "FALSE"             { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
@@ -76,6 +86,7 @@
 
     \s               { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\r\n]+             { yylval.stringVal=yytext; return(int)Tokens.T_NEWLINE; }
+    [\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF\u200B]+ { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
 
 
     [R]\[?[\+\-]?[1-9]{0,6}\]?[C]\[?[\+\-]?[1-9]{0,6}\]?                  { BEGIN(IN_R1C1_CELL); yyless(0); }
@@ -90,9 +101,10 @@
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
     [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponent"); } // Invalid: 1E2E3
     [0-9]+[Ee][\+\-]?                                     { throw new System.FormatException("Incomplete scientific notation"); } // Invalid: 1E, 1E+
-    [\.,][Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
-    ([0-9]+([.,][0-9]*)|[.,][0-9]+)([Ee][\+\-]?([0-9]+))? | [0-9]+[Ee][\+\-]?([0-9]+)               { yylval.doubleVal = double.Parse(yytext.Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_NUMERICAL_CONSTANT; }
-    [0-9]+                                       { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
+    \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
+    ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?([0-9]+))?    { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
+    [0-9]+[Ee][\+\-]?([0-9]+)                            { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }
+    [0-9]+                                               { yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_LONG; }
 
     [a-zA-Z_\\`][a-zA-Z0-9_.?`]*                                    { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
 

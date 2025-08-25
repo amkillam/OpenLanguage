@@ -13,6 +13,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             System.Numerics.IMinMaxValue<N>
     {
         public N Value { get; set; }
+        public string? RawText { get; set; }
         public override int Precedence => Ast.Precedence.Primary;
 
         public NumericLiteralNode(
@@ -23,9 +24,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWhitespace, trailingWhitespace)
         {
             Value = value;
+            RawText = null;
         }
 
-        public override string ToRawString() => Value.ToString(null, CultureInfo.InvariantCulture);
+        public NumericLiteralNode(
+            string rawText,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            RawText = rawText;
+            Value = N.Parse(rawText, CultureInfo.InvariantCulture);
+        }
+
+        public override string ToRawString() =>
+            RawText != null ? RawText : Value.ToString(null, CultureInfo.InvariantCulture);
 
         public override IEnumerable<O> Children<O>()
         {
