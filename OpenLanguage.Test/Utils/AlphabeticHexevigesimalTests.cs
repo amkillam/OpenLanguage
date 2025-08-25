@@ -1,5 +1,4 @@
 using System;
-using OpenLanguage.Utils;
 using Xunit;
 
 namespace OpenLanguage.Utils.Tests
@@ -51,7 +50,7 @@ namespace OpenLanguage.Utils.Tests
             ulong expected
         )
         {
-            ulong result = _provider.Parse(input);
+            ulong result = AlphabeticHexevigesimalProvider.Parse(input);
 
             Assert.Equal(expected, result);
         }
@@ -76,7 +75,7 @@ namespace OpenLanguage.Utils.Tests
         public void Parse_WithInvalidStrings_ThrowsArgumentException(string? input)
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => _provider.Parse(input!));
+            Assert.Throws<ArgumentException>(() => AlphabeticHexevigesimalProvider.Parse(input!));
         }
 
         [Fact]
@@ -88,7 +87,7 @@ namespace OpenLanguage.Utils.Tests
             foreach (ulong original in testValues)
             {
                 string formatted = _provider.Format("AH", original, _provider);
-                ulong parsed = _provider.Parse(formatted);
+                ulong parsed = AlphabeticHexevigesimalProvider.Parse(formatted);
 
                 Assert.Equal(original, parsed);
             }
@@ -102,7 +101,7 @@ namespace OpenLanguage.Utils.Tests
 
             foreach (string original in testStrings)
             {
-                ulong parsed = _provider.Parse(original);
+                ulong parsed = AlphabeticHexevigesimalProvider.Parse(original);
                 string formatted = _provider.Format("AH", parsed, _provider);
 
                 Assert.Equal(original, formatted);
@@ -117,7 +116,7 @@ namespace OpenLanguage.Utils.Tests
             ulong expectedValue
         )
         {
-            ulong result = _provider.Parse(columnString);
+            ulong result = AlphabeticHexevigesimalProvider.Parse(columnString);
 
             Assert.Equal(expectedValue, result);
         }
@@ -144,7 +143,7 @@ namespace OpenLanguage.Utils.Tests
             foreach (ulong number in largeNumbers)
             {
                 string formatted = _provider.Format("AH", number, _provider);
-                ulong parsed = _provider.Parse(formatted);
+                ulong parsed = AlphabeticHexevigesimalProvider.Parse(formatted);
 
                 Assert.Equal(number, parsed);
                 Assert.True(formatted.Length > 0);
@@ -163,7 +162,7 @@ namespace OpenLanguage.Utils.Tests
         )
         {
             // This test verifies the length pattern for strings with all A's
-            ulong result = _provider.Parse(input);
+            ulong result = AlphabeticHexevigesimalProvider.Parse(input);
 
             // Verify that the string has the expected length
             Assert.Equal(expectedCharCount, input.Length);
@@ -265,7 +264,7 @@ namespace OpenLanguage.Utils.Tests
                 string formatted = _provider.Format("AH", value, _provider);
                 Assert.Equal(expectedSequence[i], formatted);
 
-                ulong parsed = _provider.Parse(expectedSequence[i]);
+                ulong parsed = AlphabeticHexevigesimalProvider.Parse(expectedSequence[i]);
                 Assert.Equal(value, parsed);
             }
         }
@@ -279,7 +278,7 @@ namespace OpenLanguage.Utils.Tests
             for (ulong i = 1; i <= 10000; i++)
             {
                 string formatted = _provider.Format("AH", i, _provider);
-                ulong parsed = _provider.Parse(formatted);
+                ulong parsed = AlphabeticHexevigesimalProvider.Parse(formatted);
                 Assert.Equal(i, parsed);
             }
 

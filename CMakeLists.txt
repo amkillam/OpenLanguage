@@ -145,7 +145,8 @@ add_custom_target(tool_restore
 
 # Test target - dependent on build
 add_custom_target(test
-    COMMAND dotnet test "${TEST_PROJECT_DIR}/OpenLanguage.Test.csproj" --configuration Release --no-build --verbosity normal
+    COMMAND dotnet test --configuration Release
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     DEPENDS build
     COMMENT "Running unit tests"
 )

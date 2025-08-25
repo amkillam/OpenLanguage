@@ -124,28 +124,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("1.23E+10")]
         public void Parse_NumericLiterals_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
         [Theory]
-        [InlineData("""")] // Empty string
-        [InlineData(""hello"")]
-        [InlineData(""hello world"")]
-        [InlineData(""with "quotes""")] // Escaped quotes
-        [InlineData(""line1\nline2"")] // Newlines
-        [InlineData(""tab\there"")] // Tabs
-        [InlineData(""special chars: @#$%^&*()"")]
-        [InlineData(""unicode: αβγδε"")] // Unicode
+        [InlineData("\"\"")] // Empty string
+        [InlineData("\"hello\"")]
+        [InlineData("\"hello world\"")]
+        [InlineData("\"with \"\"quotes\"\"\"")] // Escaped quotes
+        [InlineData("\"line1\nline2\"")] // Newlines
+        [InlineData("\"tab\tthere\"")] // Tabs
+        [InlineData("\"special chars: @#$%^&*()\"")]
+        [InlineData("\"unicode: αβγδε\"")] // Unicode
         public void Parse_StringLiterals_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -158,10 +156,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("False")]
         public void Parse_BooleanLiterals_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
         }
 
         [Theory]
@@ -177,10 +174,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("#CALC!")]
         public void Parse_ErrorLiterals_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -198,10 +194,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("[Book1]Sheet1!A1")] // External reference
         public void Parse_CellReferences_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -217,10 +212,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("(A1:B2 C3:D4)")] // Parenthesized union
         public void Parse_RangeReferences_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -237,13 +231,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("1<=2")]
         [InlineData("1>2")]
         [InlineData("1>=2")]
-        [InlineData(""a"&"b"")]
+        [InlineData("\"a\"&\"b\"")]
         public void Parse_BinaryOperators_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -256,10 +249,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("+SUM(A1:A10)")]
         public void Parse_UnaryOperators_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -273,10 +265,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("(-2)^2")] // Parentheses change unary precedence
         public void Parse_OperatorPrecedence_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
             // Note: We're not evaluating here, just ensuring parsing preserves precedence
         }
@@ -286,22 +277,21 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("SUM(1)")]
         [InlineData("SUM(1,2,3)")]
         [InlineData("SUM(A1:A10)")]
-        [InlineData("SUM(1,A1:A10,"text",TRUE)")]
+        [InlineData("SUM(1,A1:A10,\"text\",TRUE)")]
         [InlineData("AVERAGE(1,2,3,4,5)")]
         [InlineData("COUNT(A1:A10)")]
         [InlineData("COUNTA(A1:A10)")]
         [InlineData("MAX(A1:A10)")]
         [InlineData("MIN(A1:A10)")]
-        [InlineData("IF(A1>0,"Positive","Non-positive")")]
+        [InlineData("IF(A1>0,\"Positive\",\"Non - positive\")")]
         [InlineData("VLOOKUP(A1,B:C,2,FALSE)")]
-        [InlineData("INDEX(A:A,MATCH("value",B:B,0))")]
-        [InlineData("CONCATENATE("Hello"," ","World")")]
+        [InlineData("INDEX(A:A,MATCH(\"value\",B:B,0))")]
+        [InlineData("CONCATENATE(\"Hello\",\" \",\"World\")")]
         public void Parse_StandardFunctions_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -312,10 +302,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("INDEX(A:A,MATCH(MAX(B:B),B:B,0))")]
         public void Parse_NestedFunctions_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -324,16 +313,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("{1,2,3}")]
         [InlineData("{1;2;3}")]
         [InlineData("{1,2;3,4}")]
-        [InlineData("{"a","b","c"}")]
+        [InlineData("{\"a\",\"b\",\"c\"}")]
         [InlineData("{TRUE,FALSE}")]
-        [InlineData("{1,"text",TRUE,#N/A}")]
+        [InlineData("{1,\"text\",TRUE,#N/A}")]
         [InlineData("{=SUM(1,2),=AVERAGE(1,2)}")]
         public void Parse_ArrayLiterals_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -347,10 +335,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("[Workbook.xlsx]Sheet1!MyRange")]
         public void Parse_NamedRanges_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -364,10 +351,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("Table1[[Column1]:[Column3]]")]
         public void Parse_StructuredReferences_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -376,13 +362,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("\t1+2\t")]
         [InlineData("1 + 2")]
         [InlineData("SUM( 1 , 2 , 3 )")]
-        [InlineData("IF( A1 > 0 , "Yes" , "No" )")]
+        [InlineData("IF( A1 > 0 , \"Yes\" , \"No\" )")]
         public void Parse_WithWhitespace_IgnoresWhitespaceCorrectly(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             // The ToString should normalize whitespace
             string result = formula.AstRoot.ToString();
             Assert.DoesNotContain("  ", result); // No double spaces
@@ -396,10 +381,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("((1+2)*(3+4))")]
         public void Parse_ExtraParentheses_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -411,10 +395,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("REDUCE(0,A1:A10,LAMBDA(acc,val,acc+val))")]
         public void Parse_DynamicArrayFunctions_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -447,16 +430,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Theory]
         [InlineData("1+2")]
         [InlineData("SUM(A1:A10)")]
-        [InlineData("IF(A1>0,"Yes","No")")]
+        [InlineData("IF(A1>0,\"Yes\",\"No\")")]
         [InlineData("VLOOKUP(A1,Sheet2!A:B,2,FALSE)")]
         [InlineData("{1,2,3}")]
         [InlineData("Table1[@Column1]")]
         public void TryParse_ValidFormulas_ReturnsFormula(string formulaString)
         {
-
             Formula? result = FormulaParser.TryParse(formulaString);
 
-                        Assert.NotNull(result);
+            Assert.NotNull(result);
             Assert.Equal(formulaString, result.FormulaText);
         }
 
@@ -468,10 +450,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData(null)]
         public void TryParse_InvalidFormulas_ReturnsNull(string? formulaString)
         {
-
             Formula? result = FormulaParser.TryParse(formulaString!);
 
-                        Assert.Null(result);
+            Assert.Null(result);
         }
 
         [Fact]
@@ -494,7 +475,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void Parse_ComplexRealWorldFormula_ReturnsCorrectAST()
         {
             // A complex real-world formula
-            string complexFormula = "IF(AND(A1<>"",B1<>""),VLOOKUP(A1,Sheet2!$A:$D,MATCH(B1,Sheet2!$1:$1,0),FALSE),"")";
+            string complexFormula =
+                "IF(AND(A1<>\"\",B1<>\"\"),VLOOKUP(A1,Sheet2!$A:$D,MATCH(B1,Sheet2!$1:$1,0),FALSE),\"\")";
 
             Formula formula = FormulaParser.Parse(complexFormula);
 
@@ -506,13 +488,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void Parse_FormulaReconstruction_IsIdempotent()
         {
             // Test that parsing and reconstructing a formula yields the same result
-            string[] testFormulas = {
+            string[] testFormulas =
+            {
                 "SUM(A1:A10)",
-                "IF(A1>0,"Positive","Zero or Negative")",
+                "IF(A1>0,\"Positive\",\"Zero or Negative\")",
                 "VLOOKUP(A1,Sheet2!A:B,2,FALSE)",
                 "1+2*3-4/5",
                 "{1,2,3;4,5,6}",
-                "Table1[@Column1]"
+                "Table1[@Column1]",
             };
 
             foreach (string original in testFormulas)
@@ -547,10 +530,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Theory]
-        [InlineData(""hello"")]
-        [InlineData(""hello world"")]
-        [InlineData("""")] // Empty string
-        [InlineData(""with "quotes"")] // Escaped quotes
+        [InlineData("\"hello\"")]
+        [InlineData("\"hello world\"")]
+        [InlineData("\"\"")] // Empty string
+        [InlineData("\"with \"\"quotes\"\"\"")] // Escaped quotes
         public void Tokenize_Strings_ParsesSuccessfully(string input)
         {
             Formula formula = FormulaParser.Parse(input);
@@ -607,7 +590,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Fact]
         public void Tokenize_ComplexFormula_TokenizesCorrectly()
         {
-            string complexFormula = "IF(SUM(A1:A10)>100,"High","Low")";
+            string complexFormula = "IF(SUM(A1:A10)>100,\"High\",\"Low\")";
 
             Formula formula = FormulaParser.Parse(complexFormula);
             Assert.NotNull(formula.AstRoot);
@@ -637,10 +620,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("RC")]
         public void Parse_R1C1References_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -650,10 +632,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("[Book1]Sheet1!R1C1")]
         public void Parse_R1C1WithSheetReferences_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
 
@@ -664,10 +645,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("C:C")] // Entire column
         public void Parse_R1C1RangeReferences_ReturnsCorrectAST(string formulaString)
         {
-
             Formula formula = FormulaParser.Parse(formulaString);
 
-                        Assert.NotNull(formula.AstRoot);
+            Assert.NotNull(formula.AstRoot);
             Assert.Equal(formulaString, formula.AstRoot.ToString());
         }
     }
@@ -682,7 +662,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         {
             // Create a deeply nested formula
             string nestedFormula = "SUM(";
-            for (int i = 0; i < 100; i++)
+            for (Int32 i = 0; i < 100; i++)
             {
                 nestedFormula += $"IF(A{i}>0,A{i},0),";
             }
@@ -693,14 +673,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             stopwatch.Stop();
 
             Assert.NotNull(formula.AstRoot);
-            Assert.True(stopwatch.ElapsedMilliseconds < 1000, $"Parsing took {stopwatch.ElapsedMilliseconds}ms, expected < 1000ms");
+            Assert.True(
+                stopwatch.ElapsedMilliseconds < 1000,
+                $"Parsing took {stopwatch.ElapsedMilliseconds}ms, expected < 1000ms"
+            );
         }
 
         [Fact]
         public void Parse_ManySimpleFormulas_ParsesWithinReasonableTime()
         {
             string[] formulas = new string[1000];
-            for (int i = 0; i < formulas.Length; i++)
+            for (Int32 i = 0; i < formulas.Length; i++)
             {
                 formulas[i] = $"SUM(A{i}:A{i + 10})";
             }
@@ -713,7 +696,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             }
             stopwatch.Stop();
 
-            Assert.True(stopwatch.ElapsedMilliseconds < 5000, $"Parsing 1000 formulas took {stopwatch.ElapsedMilliseconds}ms, expected < 5000ms");
+            Assert.True(
+                stopwatch.ElapsedMilliseconds < 5000,
+                $"Parsing 1000 formulas took {stopwatch.ElapsedMilliseconds}ms, expected < 5000ms"
+            );
         }
 
         [Theory]
@@ -722,7 +708,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData(100)]
         public void Parse_FormulaWithManyArguments_ParsesSuccessfully(int argumentCount)
         {
-            string formula = "SUM(" + string.Join(",", Enumerable.Range(1, argumentCount).Select(i => $"A{i}")) + ")";
+            string formula =
+                "SUM("
+                + string.Join(",", Enumerable.Range(1, argumentCount).Select(i => $"A{i}"))
+                + ")";
 
             Formula parsed = FormulaParser.Parse(formula);
             Assert.NotNull(parsed.AstRoot);

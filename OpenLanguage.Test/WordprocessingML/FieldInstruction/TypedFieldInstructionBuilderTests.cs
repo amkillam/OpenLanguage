@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
-using OpenLanguage.WordprocessingML.FieldInstruction;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 {
@@ -25,13 +23,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CreateMergeField_WithFormatting_ReturnsCorrectField()
         {
-            FieldInstruction field = CreateMergeFieldWithFormatting("Amount", "\# "$#,##0.00"");
-
+            FieldInstruction field = CreateMergeFieldWithFormatting("Amount", "\"$#,##0.00\"");
 
             Assert.Equal("MERGEFIELD", field.Instruction);
             Assert.Equal(3, field.Arguments.Count);
             Assert.Equal("Amount", field.Arguments[0].Value);
-            Assert.Equal("\#", field.Arguments[1].Value);
+            Assert.Equal("\\#", field.Arguments[1].Value);
             Assert.Equal("$#,##0.00", field.Arguments[2].Value);
         }
 
@@ -64,7 +61,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 
             Assert.Equal("DATE", field.Instruction);
             Assert.Equal(2, field.Arguments.Count);
-            Assert.Equal("\@", field.Arguments[0].Value);
+            Assert.Equal("\\@", field.Arguments[0].Value);
             Assert.Equal("MMMM d, yyyy", field.Arguments[1].Value);
         }
 
@@ -85,13 +82,18 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CreateAddressBlock_WithCountryExclusion_ReturnsCorrectField()
         {
-            FieldInstruction field = CreateAddressBlock(CountryRegion.UnitedStates, LanguageIdentifier.EnglishUS);
+            FieldInstruction field = CreateAddressBlock(
+                CountryRegion.UnitedStates,
+                LanguageIdentifier.EnglishUS
+            );
 
             Assert.Equal("ADDRESSBLOCK", field.Instruction);
             Assert.True(field.Arguments.Count >= 4);
 
             // Should contain exclusion switch
-            FieldArgument? excludeSwitch = field.Arguments.FirstOrDefault(arg => arg.Value?.ToString() == "\e");
+            FieldArgument? excludeSwitch = field.Arguments.FirstOrDefault(arg =>
+                arg.Value?.ToString() == "\\e"
+            );
             Assert.NotNull(excludeSwitch);
         }
 
@@ -104,7 +106,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             Assert.True(field.Arguments.Count >= 6);
 
             // Check for format switches
-            FieldArgument? formatSwitch = field.Arguments.FirstOrDefault(arg => arg.Value?.ToString() == "\f");
+            FieldArgument? formatSwitch = field.Arguments.FirstOrDefault(arg =>
+                arg.Value?.ToString() == "\\f"
+            );
             Assert.NotNull(formatSwitch);
         }
 
@@ -112,7 +116,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void CreateBarcode_WithPostalData_ReturnsCorrectField()
         {
             PostalData postalData = new PostalData("12345-6789");
-            FieldInstruction field = CreateBarcodeField(postalData, FacingIdentificationMarkType.BusinessReply);
+            FieldInstruction field = CreateBarcodeField(
+                postalData,
+                FacingIdentificationMarkType.BusinessReply
+            );
 
             Assert.Equal("BARCODE", field.Instruction);
             Assert.True(field.Arguments.Count >= 3);
@@ -123,20 +130,24 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void CreateDatabaseField_WithConnectionAndQuery_ReturnsCorrectField()
         {
             FieldInstruction field = CreateDatabaseField(
-    "Data Source=server;Initial Catalog=database;",
-    "SELECT Name, Age FROM Customers",
-    DatabaseTableFormat.Professional
-);
+                "Data Source=server;Initial Catalog=database;",
+                "SELECT Name, Age FROM Customers",
+                DatabaseTableFormat.Professional
+            );
 
             Assert.Equal("DATABASE", field.Instruction);
             Assert.True(field.Arguments.Count >= 6);
 
             // Check for connection string switch
-            FieldArgument? dataSwitch = field.Arguments.FirstOrDefault(arg => arg.Value?.ToString() == "\d");
+            FieldArgument? dataSwitch = field.Arguments.FirstOrDefault(arg =>
+                arg.Value?.ToString() == "\\d"
+            );
             Assert.NotNull(dataSwitch);
 
             // Check for query switch
-            FieldArgument? sqlSwitch = field.Arguments.FirstOrDefault(arg => arg.Value?.ToString() == "\s");
+            FieldArgument? sqlSwitch = field.Arguments.FirstOrDefault(arg =>
+                arg.Value?.ToString() == "\\s"
+            );
             Assert.NotNull(sqlSwitch);
         }
 
@@ -156,7 +167,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(CountryRegion.UnitedKingdom, "UnitedKingdom")]
         [InlineData(CountryRegion.Germany, "Germany")]
         [InlineData(CountryRegion.France, "France")]
-        public void CreateCountrySpecificField_WithDifferentCountries_ReturnsCorrectCountry(CountryRegion country, string expectedName)
+        public void CreateCountrySpecificField_WithDifferentCountries_ReturnsCorrectCountry(
+            CountryRegion country,
+            string expectedName
+        )
         {
             FieldInstruction field = CreateCountryConditionalField(country);
 
@@ -169,12 +183,18 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(LanguageIdentifier.FrenchFrance, 1036)]
         [InlineData(LanguageIdentifier.GermanGermany, 1031)]
         [InlineData(LanguageIdentifier.SpanishSpain, 3082)]
-        public void CreateLanguageSpecificField_WithDifferentLanguages_ReturnsCorrectLCID(LanguageIdentifier language, int expectedLCID)
+        public void CreateLanguageSpecificField_WithDifferentLanguages_ReturnsCorrectLCID(
+            LanguageIdentifier language,
+            int expectedLCID
+        )
         {
             FieldInstruction field = CreateLanguageSpecificAddressBlock(language);
 
             Assert.Equal("ADDRESSBLOCK", field.Instruction);
-            Assert.Contains(field.Arguments, arg => arg.Value?.ToString() == expectedLCID.ToString());
+            Assert.Contains(
+                field.Arguments,
+                arg => arg.Value?.ToString() == expectedLCID.ToString()
+            );
         }
 
         [Fact]
@@ -185,14 +205,17 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             Assert.Equal("IF", field.Instruction);
 
             // Count nested fields
-            int nestedFieldCount = field.Arguments.Count(arg => arg.Type == FieldArgumentType.NestedField);
+            int nestedFieldCount = field.Arguments.Count(arg =>
+                arg.Type == FieldArgumentType.NestedField
+            );
             Assert.True(nestedFieldCount >= 2);
 
             // Verify nested structure
             FieldArgument? nestedField = field.Arguments.FirstOrDefault(arg =>
-                arg.Type == FieldArgumentType.NestedField &&
-                arg.Value is FieldInstruction nested &&
-                nested.Instruction == "MERGEFIELD");
+                arg.Type == FieldArgumentType.NestedField
+                && arg.Value is FieldInstruction nested
+                && nested.Instruction == "MERGEFIELD"
+            );
             Assert.NotNull(nestedField);
         }
 
@@ -229,12 +252,17 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CreateFieldWithNamespaceDeclaration_WithValidNamespace_ReturnsCorrectField()
         {
-            NamespaceDeclaration ns = new NamespaceDeclaration("xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"");
+            NamespaceDeclaration ns = new NamespaceDeclaration(
+                "xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\""
+            );
             FieldInstruction field = CreateFieldWithNamespace("XML", ns, "//w:p/w:t");
 
             Assert.Equal("XML", field.Instruction);
             Assert.True(field.Arguments.Count >= 2);
-            Assert.Contains(field.Arguments, arg => arg.Value?.ToString()?.Contains("xmlns:w") == true);
+            Assert.Contains(
+                field.Arguments,
+                arg => arg.Value?.ToString()?.Contains("xmlns:w") == true
+            );
         }
 
         // Helper methods for creating typed field instructions
@@ -245,12 +273,17 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             return field;
         }
 
-        private static FieldInstruction CreateMergeFieldWithFormatting(string fieldName, string format)
+        private static FieldInstruction CreateMergeFieldWithFormatting(
+            string fieldName,
+            string format
+        )
         {
             FieldInstruction field = new FieldInstruction("MERGEFIELD");
             field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fieldName));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\#"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, format.Trim('"')));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\#"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, format.Trim('"'))
+            );
             return field;
         }
 
@@ -260,7 +293,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, url));
             if (displayText != null)
             {
-                field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, displayText));
+                field.Arguments.Add(
+                    new FieldArgument(FieldArgumentType.StringLiteral, displayText)
+                );
             }
             return field;
         }
@@ -268,12 +303,18 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         private static FieldInstruction CreateDateField(string format)
         {
             FieldInstruction field = new FieldInstruction("DATE");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\@"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\@"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, format));
             return field;
         }
 
-        private static FieldInstruction CreateIfField(string left, string op, string right, string trueText, string falseText)
+        private static FieldInstruction CreateIfField(
+            string left,
+            string op,
+            string right,
+            string trueText,
+            string falseText
+        )
         {
             FieldInstruction field = new FieldInstruction("IF");
             field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, left));
@@ -284,46 +325,75 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             return field;
         }
 
-        private static FieldInstruction CreateAddressBlock(CountryRegion excludedCountry, LanguageIdentifier language)
+        private static FieldInstruction CreateAddressBlock(
+            CountryRegion excludedCountry,
+            LanguageIdentifier language
+        )
         {
             FieldInstruction field = new FieldInstruction("ADDRESSBLOCK");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\e"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, excludedCountry.ToString()));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\l"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)language).ToString()));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\e"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, excludedCountry.ToString())
+            );
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\l"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Number, ((int)language).ToString())
+            );
             return field;
         }
 
-        private static FieldInstruction CreateGreetingLine(string greeting, string punctuation, string fallback)
+        private static FieldInstruction CreateGreetingLine(
+            string greeting,
+            string punctuation,
+            string fallback
+        )
         {
             FieldInstruction field = new FieldInstruction("GREETINGLINE");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\f"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\f"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, greeting));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\l"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\l"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, punctuation));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\e"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\e"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, fallback));
             return field;
         }
 
-        private static FieldInstruction CreateBarcodeField(PostalData postalData, FacingIdentificationMarkType fimType)
+        private static FieldInstruction CreateBarcodeField(
+            PostalData postalData,
+            FacingIdentificationMarkType fimType
+        )
         {
             FieldInstruction field = new FieldInstruction("BARCODE");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, postalData.ToString()));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\f"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fimType == FacingIdentificationMarkType.CourtesyReply ? "A" : "C"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, postalData.ToString())
+            );
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\f"));
+            field.Arguments.Add(
+                new FieldArgument(
+                    FieldArgumentType.Identifier,
+                    fimType == FacingIdentificationMarkType.CourtesyReply ? "A" : "C"
+                )
+            );
             return field;
         }
 
-        private static FieldInstruction CreateDatabaseField(string connectionString, string query, DatabaseTableFormat format)
+        private static FieldInstruction CreateDatabaseField(
+            string connectionString,
+            string query,
+            DatabaseTableFormat format
+        )
         {
             FieldInstruction field = new FieldInstruction("DATABASE");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\d"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, connectionString));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\s"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\d"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, connectionString)
+            );
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\s"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, query));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\t"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)format).ToString()));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\t"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Number, ((int)format).ToString())
+            );
             return field;
         }
 
@@ -337,7 +407,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 DocumentPropertyCategory.Company => "Company",
                 DocumentPropertyCategory.CreateTime => "CreateTime",
                 DocumentPropertyCategory.LastSavedBy => "LastSavedBy",
-                _ => category.ToString()
+                _ => category.ToString(),
             };
             field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, propertyName));
             return field;
@@ -346,22 +416,34 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         private static FieldInstruction CreateCountryConditionalField(CountryRegion country)
         {
             FieldInstruction countryMergeField = new FieldInstruction("MERGEFIELD");
-            countryMergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "Country"));
+            countryMergeField.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Identifier, "Country")
+            );
 
             FieldInstruction field = new FieldInstruction("IF");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, countryMergeField));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.NestedField, countryMergeField)
+            );
             field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "="));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, country.ToString()));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, country.ToString())
+            );
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "Domestic"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "International"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.StringLiteral, "International")
+            );
             return field;
         }
 
-        private static FieldInstruction CreateLanguageSpecificAddressBlock(LanguageIdentifier language)
+        private static FieldInstruction CreateLanguageSpecificAddressBlock(
+            LanguageIdentifier language
+        )
         {
             FieldInstruction field = new FieldInstruction("ADDRESSBLOCK");
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\l"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)language).ToString()));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\l"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Number, ((int)language).ToString())
+            );
             return field;
         }
 
@@ -373,11 +455,15 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 
             // Create nested MERGEFIELD for true case
             FieldInstruction seniorField = new FieldInstruction("MERGEFIELD");
-            seniorField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "SeniorDiscount"));
+            seniorField.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Identifier, "SeniorDiscount")
+            );
 
             // Create nested MERGEFIELD for false case
             FieldInstruction standardField = new FieldInstruction("MERGEFIELD");
-            standardField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "StandardPrice"));
+            standardField.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Identifier, "StandardPrice")
+            );
 
             // Create main IF field
             FieldInstruction field = new FieldInstruction("IF");
@@ -394,38 +480,71 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             // Basic validation rules
             if (string.IsNullOrWhiteSpace(field.Instruction))
+            {
                 return false;
+            }
 
             // Check for known field types
-            string[] validInstructions = {
-                "MERGEFIELD", "HYPERLINK", "IF", "DATE", "TIME", "PAGE", "NUMPAGES",
-                "DOCPROPERTY", "ADDRESSBLOCK", "GREETINGLINE", "BARCODE", "DATABASE",
-                "REF", "PAGEREF", "AUTHOR", "FILENAME", "CREATEDATE", "SAVEDATE", "PRINTDATE"
+            string[] validInstructions =
+            {
+                "MERGEFIELD",
+                "HYPERLINK",
+                "IF",
+                "DATE",
+                "TIME",
+                "PAGE",
+                "NUMPAGES",
+                "DOCPROPERTY",
+                "ADDRESSBLOCK",
+                "GREETINGLINE",
+                "BARCODE",
+                "DATABASE",
+                "REF",
+                "PAGEREF",
+                "AUTHOR",
+                "FILENAME",
+                "CREATEDATE",
+                "SAVEDATE",
+                "PRINTDATE",
             };
 
             if (!validInstructions.Contains(field.Instruction.ToUpperInvariant()))
+            {
                 return false;
+            }
 
             // Field-specific validation
             return field.Instruction.ToUpperInvariant() switch
             {
-                "MERGEFIELD" => field.Arguments.Count >= 1 && field.Arguments[0].Type == FieldArgumentType.Identifier,
-                "HYPERLINK" => field.Arguments.Count >= 1 && field.Arguments[0].Type == FieldArgumentType.StringLiteral,
+                "MERGEFIELD" => field.Arguments.Count >= 1
+                    && field.Arguments[0].Type == FieldArgumentType.Identifier,
+                "HYPERLINK" => field.Arguments.Count >= 1
+                    && field.Arguments[0].Type == FieldArgumentType.StringLiteral,
                 "IF" => field.Arguments.Count >= 5,
-                _ => true // Default validation passes for other fields
+                _ => true, // Default validation passes for other fields
             };
         }
 
-        private static FieldInstruction CreateFieldWithMeasurement(string instruction, string data, PtsMeasurementValue measurement)
+        private static FieldInstruction CreateFieldWithMeasurement(
+            string instruction,
+            string data,
+            PtsMeasurementValue measurement
+        )
         {
             FieldInstruction field = new FieldInstruction(instruction);
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, data));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\h"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, measurement.ToString()));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\h"));
+            field.Arguments.Add(
+                new FieldArgument(FieldArgumentType.Number, measurement.ToString())
+            );
             return field;
         }
 
-        private static FieldInstruction CreateFieldWithNamespace(string instruction, NamespaceDeclaration ns, string xpath)
+        private static FieldInstruction CreateFieldWithNamespace(
+            string instruction,
+            NamespaceDeclaration ns,
+            string xpath
+        )
         {
             FieldInstruction field = new FieldInstruction(instruction);
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, ns.Declaration));
@@ -454,11 +573,11 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             FieldInstruction field = new FieldInstruction("DATE");
 
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\@"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\@"));
             field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "MM/dd/yyyy"));
 
             Assert.Equal(2, field.Arguments.Count);
-            Assert.Equal("\@", field.Arguments[0].Value);
+            Assert.Equal("\\@", field.Arguments[0].Value);
             Assert.Equal("MM/dd/yyyy", field.Arguments[1].Value);
         }
 
@@ -467,7 +586,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             FieldInstruction field = new FieldInstruction("MERGEFIELD");
             field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "Name"));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\* Upper"));
 
             field.Arguments.RemoveAt(1);
 
@@ -492,7 +611,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             FieldInstruction original = new FieldInstruction("MERGEFIELD");
             original.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "Name"));
-            original.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
+            original.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\* Upper"));
 
             FieldInstruction clone = CloneFieldInstruction(original);
 
@@ -512,14 +631,14 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             field1.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "Name"));
 
             FieldInstruction field2 = new FieldInstruction("MERGEFIELD");
-            field2.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
+            field2.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\\* Upper"));
 
             FieldInstruction merged = MergeFieldInstructions(field1, field2);
 
             Assert.Equal("MERGEFIELD", merged.Instruction);
             Assert.Equal(2, merged.Arguments.Count);
             Assert.Equal("Name", merged.Arguments[0].Value);
-            Assert.Equal("\* Upper", merged.Arguments[1].Value);
+            Assert.Equal("\\* Upper", merged.Arguments[1].Value);
         }
 
         [Fact]
@@ -547,7 +666,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             return clone;
         }
 
-        private static FieldInstruction MergeFieldInstructions(FieldInstruction field1, FieldInstruction field2)
+        private static FieldInstruction MergeFieldInstructions(
+            FieldInstruction field1,
+            FieldInstruction field2
+        )
         {
             // Assumes same instruction type
             FieldInstruction merged = new FieldInstruction(field1.Instruction);

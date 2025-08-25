@@ -24,13 +24,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void Constructor_WithValidSource_SetsSourceProperty()
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction("TEST");
 
-            // Act
             TestTypedFieldInstruction typedInstruction = new TestTypedFieldInstruction(source);
 
-            // Assert
             Assert.Equal(source, typedInstruction.Source);
             Assert.Equal("TEST", typedInstruction.Source.Instruction);
         }
@@ -38,21 +35,17 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void Constructor_WithNullSource_ThrowsArgumentNullException()
         {
-            // Act & Assert
             Assert.Throws<ArgumentNullException>(() => new TestTypedFieldInstruction(null!));
         }
 
         [Fact]
         public void Source_IsReadOnlyAfterConstruction()
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction("TEST");
             TestTypedFieldInstruction typedInstruction = new TestTypedFieldInstruction(source);
 
-            // Act - Attempting to modify source arguments
             source.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\t\\test"));
 
-            // Assert
             Assert.Single(typedInstruction.Source.Arguments);
             Assert.Equal("\t\\test", typedInstruction.Source.Arguments[0].Value);
         }
@@ -60,31 +53,25 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void ToString_CallsOverriddenMethod()
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction("TEST");
             TestTypedFieldInstruction typedInstruction = new TestTypedFieldInstruction(source)
             {
                 TestProperty = "VALUE",
             };
 
-            // Act
             string result = typedInstruction.ToString();
 
-            // Assert
             Assert.Equal("TEST VALUE", result);
         }
 
         [Fact]
         public void ToString_WithEmptyProperty_ReturnsInstructionOnly()
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction("TEST");
             TestTypedFieldInstruction typedInstruction = new TestTypedFieldInstruction(source);
 
-            // Act
             string result = typedInstruction.ToString();
 
-            // Assert
             Assert.Equal("TEST", result);
         }
 
@@ -95,13 +82,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("AUTHOR")]
         public void InheritanceWorksWithDifferentInstructions(string instruction)
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction(instruction);
 
-            // Act
             TestTypedFieldInstruction typedInstruction = new TestTypedFieldInstruction(source);
 
-            // Assert
             Assert.Equal(instruction, typedInstruction.Source.Instruction);
             Assert.IsAssignableFrom<TypedFieldInstruction>(typedInstruction);
         }
@@ -109,11 +93,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void MultipleInstances_HaveIndependentSources()
         {
-            // Arrange
             FieldInstruction source1 = new FieldInstruction("TEST1");
             FieldInstruction source2 = new FieldInstruction("TEST2");
 
-            // Act
             TestTypedFieldInstruction typed1 = new TestTypedFieldInstruction(source1)
             {
                 TestProperty = "PROP1",
@@ -123,7 +105,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 TestProperty = "PROP2",
             };
 
-            // Assert
             Assert.Equal("TEST1", typed1.Source.Instruction);
             Assert.Equal("TEST2", typed2.Source.Instruction);
             Assert.Equal("PROP1", typed1.TestProperty);
@@ -134,7 +115,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void TypedFieldInstruction_IsAbstractClass()
         {
-            // Assert
             Assert.False(typeof(TypedFieldInstruction).IsAbstract);
             Assert.True(typeof(TypedFieldInstruction).IsClass);
         }
@@ -142,10 +122,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void TypedFieldInstruction_HasExpectedMembers()
         {
-            // Act
             Type type = typeof(TypedFieldInstruction);
 
-            // Assert
             Assert.NotNull(type.GetProperty("Source"));
             Assert.NotNull(
                 type.GetMethod(
@@ -153,15 +131,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance
                 )
             );
-            // The ToString method is no longer abstract in the base class
-            // Assert.True(
-            //     type.GetMethod(
-            //         "ToString",
-            //         System.Reflection.BindingFlags.Public
-            //             | System.Reflection.BindingFlags.Instance
-            //             | System.Reflection.BindingFlags.DeclaredOnly
-            //     )!.IsAbstract
-            // );
         }
     }
 
@@ -220,15 +189,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string? args = null
         )
         {
-            // Arrange
             FieldInstruction source = FieldParser.Parse(
                 instruction + (args != null ? $" {args}" : "")
             );
 
-            // Act
             TypedFieldInstruction? result = TypedFieldInstructionFactory.Create(source);
 
-            // Assert
             Assert.NotNull(result);
             Assert.IsType(expectedType, result);
             Assert.Equal(source, result.Source);
@@ -240,13 +206,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("TIME")] // uppercase
         public void Create_CaseInsensitive_ReturnsCorrectType(string instruction)
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction(instruction);
 
-            // Act
             TypedFieldInstruction? result = TypedFieldInstructionFactory.Create(source);
 
-            // Assert
             Assert.NotNull(result);
             // Should handle case insensitively
         }
@@ -257,27 +220,22 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("NOTAFIELD")]
         public void Create_WithUnknownFieldType_ReturnsNull(string instruction)
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction(instruction);
 
-            // Act
             TypedFieldInstruction? result = TypedFieldInstructionFactory.Create(source);
 
-            // Assert
             Assert.Null(result);
         }
 
         [Fact]
         public void Create_WithNullSource_ThrowsArgumentNullException()
         {
-            // Act & Assert
             Assert.Throws<ArgumentNullException>(() => TypedFieldInstructionFactory.Create(null!));
         }
 
         [Fact]
         public void Create_WithSourceHavingArguments_PreservesArguments()
         {
-            // Arrange
             List<FieldArgument> arguments = new List<FieldArgument>
             {
                 new FieldArgument(FieldArgumentType.Switch, "\\* Upper"),
@@ -285,10 +243,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             };
             FieldInstruction source = new FieldInstruction("PAGE", arguments);
 
-            // Act
             TypedFieldInstruction? result = TypedFieldInstructionFactory.Create(source);
 
-            // Assert
             Assert.NotNull(result);
             Assert.IsType<PageFieldInstruction>(result);
             Assert.Equal(2, result.Source.Arguments.Count);
@@ -299,14 +255,11 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void Create_MultipleCalls_ReturnsDifferentInstances()
         {
-            // Arrange
             FieldInstruction source = new FieldInstruction("PAGE");
 
-            // Act
             TypedFieldInstruction? result1 = TypedFieldInstructionFactory.Create(source);
             TypedFieldInstruction? result2 = TypedFieldInstructionFactory.Create(source);
 
-            // Assert
             Assert.NotNull(result1);
             Assert.NotNull(result2);
             Assert.NotSame(result1, result2);
