@@ -57,9 +57,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 wsBeforeCloseParen,
                 null,
                 null
-            )
-        {
-        }
+            ) { }
 
         public FunctionCallNode(
             ExpressionNode functionIdentifier,
@@ -80,9 +78,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 wsBeforeCloseParen,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        {
-        }
+            ) { }
 
         public override string ToRawString()
         {
