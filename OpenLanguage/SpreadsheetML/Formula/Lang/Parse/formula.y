@@ -70,7 +70,7 @@ public BangReferenceNode bangReferenceVal;
 
 %token R1C1_COLUMN_PREFIX
 %token R1C1_ROW_PREFIX
-
+%token T_XLFN_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
 #include "function/command.inc"
 #include "function/future.inc"
 #include "function/macro.inc"
