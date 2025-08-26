@@ -160,7 +160,7 @@
 
 <IN_A1_COLUMN_RANGE> {
    \$ { return  (int)Tokens.T_DOLLAR; }
-   ":" { BEGIN(IN_A1_COLUMN_RANGE_SECOND_COLUMN); return (int)Tokens.T_COLON; }
+   ":" { yylval.stringVal = yytext; BEGIN(IN_A1_COLUMN_RANGE_SECOND_COLUMN); return (int)Tokens.T_COLON; }
 
    [A-Z]{1,3}                                                    { yylval.ulongVal = AlphabeticHexevigesimalProvider.Parse<ulong>(yytext); if (yylval.ulongVal > 16384UL) { throw new System.FormatException("Column reference out of range"); } return (int)Tokens.T_A1_COLUMN; }
    . { BEGIN(INITIAL); yyless(0); }
@@ -176,7 +176,7 @@
 
 <IN_A1_ROW_RANGE> {
    \$ { return  (int)Tokens.T_DOLLAR; }
-   ":" { BEGIN(IN_A1_ROW_RANGE_SECOND_ROW); return (int)Tokens.T_COLON; }
+   ":" { yylval.stringVal = yytext; BEGIN(IN_A1_ROW_RANGE_SECOND_ROW); return (int)Tokens.T_COLON; }
 
    [1-9][0-9]{0,6}                                              { yylval.ulongVal = ulong.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); if (yylval.ulongVal > 1048576UL) { throw new System.FormatException("Row number out of range"); } return (int)Tokens.T_A1_ROW; }
 
@@ -206,7 +206,7 @@
 [\+\-]?[1-9]+ { BEGIN(INITIAL); yylval.longVal = long.Parse(yytext, System.Globalization.CultureInfo.InvariantCulture); return (int)Tokens.T_R1C1_COLUMN; }
 "[" { BEGIN(IN_R1C1_BRACKETED_COLUMN); yylval.stringVal = yytext; return (int)Tokens.T_LBRACK; }
 "]" { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_RBRACK; }
-":" { BEGIN(INITIAL); return (int)Tokens.T_COLON; }
+":" { yylval.stringVal = yytext; BEGIN(INITIAL); return (int)Tokens.T_COLON; }
 
 . { BEGIN(INITIAL); }
 }
