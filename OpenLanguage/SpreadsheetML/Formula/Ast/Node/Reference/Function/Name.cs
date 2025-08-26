@@ -74,6 +74,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(name, leadingWhitespace, trailingWhitespace) { }
 
+        // Expose the function identifier text as a string for tests and consumers.
+        // This intentionally hides NameNode.Name (ExpressionNode) to provide a simple string name here.
+        public new string Name => base.ToRawString();
+
         public static BuiltInFunctionNode CreatePrefixed(
             BuiltInFunctionPrefixNode prefix,
             ExpressionNode name,

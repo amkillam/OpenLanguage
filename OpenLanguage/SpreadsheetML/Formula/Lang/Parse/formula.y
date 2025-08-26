@@ -410,8 +410,8 @@ cell_range :
            | A1_cell T_COLON  R1C1_cell { $$ = new CellRangeNode<A1CellNode, R1C1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, $3); }
            | R1C1_cell T_COLON A1_cell  { $$ = new CellRangeNode<R1C1CellNode, A1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, $3); }
                        | R1C1_cell T_COLON  R1C1_cell { $$ = new CellRangeNode<R1C1CellNode, R1C1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, $3); }
-            | A1_column T_COLON A1_column { $$ = new RangeNode($1, $3, null, null); }
-            | A1_row T_COLON A1_row { $$ = new RangeNode($1, $3, null, null); };
+            | A1_column T_COLON A1_column { $$ = new RangeNode($1, new ColonNode($2, null, null), $3); }
+            | A1_row T_COLON A1_row { $$ = new RangeNode($1, new ColonNode($2, null, null), $3); };
 
 
 
