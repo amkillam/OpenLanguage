@@ -88,13 +88,13 @@
     "//".*             { /* skip single-line comment */ }
     "/\*"              { BEGIN(IN_COMMENT); }
 
+    [\r\n]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; }
     [\u2000-\u200A]    { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // General punctuation spaces: en quad to hair space
     [\u202F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Narrow no-break space
     [\u205F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Medium mathematical space
     [\u3000]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Ideographic space
     [\u200B]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Zero-width space
     \s                  { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
-    [\r\n]+             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; }
     [\u00A0]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\uFEFF]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Byte Order Mark treated as whitespace
 

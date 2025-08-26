@@ -80,28 +80,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
+            Node? current = null;
             if (replacement is ExpressionNode expr)
             {
                 if (index == 0)
                 {
-                    ExpressionNode currentLeft = Left;
+                    current = Left;
                     Left = expr;
-                    return currentLeft;
                 }
                 else if (index == 1)
                 {
-                    ExpressionNode currentOperator = Operator;
+                    current = Operator;
                     Operator = expr;
-                    return currentOperator;
                 }
                 else if (index == 2)
                 {
-                    ExpressionNode currentRight = Right;
+                    current = Right;
                     Right = expr;
-                    return currentRight;
                 }
             }
-            return null;
+            return current;
         }
 
         public override string ToRawString() =>
