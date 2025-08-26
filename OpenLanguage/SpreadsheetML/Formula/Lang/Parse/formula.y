@@ -70,7 +70,7 @@ public BangReferenceNode bangReferenceVal;
 
 %token R1C1_COLUMN_PREFIX
 %token R1C1_ROW_PREFIX
-%token T_XLFN_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
+
 #include "function/command.inc"
 #include "function/future.inc"
 #include "function/macro.inc"
@@ -79,6 +79,7 @@ public BangReferenceNode bangReferenceVal;
 
 
 
+%token<stringVal> T_XLFN_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
 %token<stringVal> T_NUMERICAL_CONSTANT T_DOLLAR
 %token<longVal> T_LONG T_R1C1_ROW T_R1C1_COLUMN
 %token<ulongVal>  T_A1_ROW T_A1_COLUMN
@@ -251,7 +252,7 @@ function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = 
     | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
     | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
     | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
-    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode("_xlfn._xlws.", new BuiltInFunctionNode($3), $1, $4); }
+    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
     ;
 
 function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
@@ -262,7 +263,7 @@ function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPARE
 
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
         {
-            BuiltInWorksheetFunctionNode pyNode = new PyWorksheetFunctionNode($1, $16);
+            BuiltInWorksheetFunctionNode pyNode = new PyWorksheetFunctionNode($1, $4);
             NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $8);
             NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, $10, $12);
 

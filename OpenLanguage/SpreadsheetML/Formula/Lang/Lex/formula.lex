@@ -44,10 +44,10 @@
     "[]"               { return (int)Tokens.T_EMPTY_BRACKETS; }
 
 
-    "_xlfn\._xlws\."     { return (int)Tokens.T_XLFN_XLWS_; }
-    "_xlfn\."            { return (int)Tokens.T_XLFN_; }
-    "xlpm\."             { return (int)Tokens.T_XLPM_; }
-    "xlop\."             { return (int)Tokens.T_XLOP_; }
+    "_xlfn\._xlws\."     { yylval.stringVal = yytext; return (int)Tokens.T_XLFN_XLWS_; }
+    "_xlfn\."            { yylval.stringVal = yytext; return (int)Tokens.T_XLFN_; }
+    "xlpm\."             { yylval.stringVal = yytext; return (int)Tokens.T_XLPM_; }
+    "xlop\."             { yylval.stringVal = yytext; return (int)Tokens.T_XLOP_; }
 
 
     "#DIV/0!"           { yylval.stringVal = yytext; return (int)Tokens.T_DIV0_ERROR; }
