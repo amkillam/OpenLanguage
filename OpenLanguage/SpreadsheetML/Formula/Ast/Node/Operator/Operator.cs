@@ -116,7 +116,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(operand, @operator, lws, tws) { }
+            : base(@operator, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
     }
@@ -129,7 +129,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(operand, @operator, lws, tws) { }
+            : base(@operator, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
@@ -144,7 +144,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(operand, @operator, lws, tws) { }
+            : base(@operator, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
     }
@@ -157,11 +157,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(operand, @operator, lws, tws) { }
+            : base(@operator, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Percent;
 
-        public override string ToRawString() => base.Operator.ToString() + base.Operand.ToString();
+        // Percent is a suffix operator: render operand then operator
+        public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
     }
 
     public class AddNode : BinaryOperatorNode
