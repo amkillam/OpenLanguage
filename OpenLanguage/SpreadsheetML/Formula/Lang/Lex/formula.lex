@@ -96,6 +96,7 @@
     \s                  { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
     [\r\n]+             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; }
     [\u00A0]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    [\uFEFF]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Byte Order Mark treated as whitespace
 
 
     [R](\[?[\+\-]?[1-9][0-9]{0,6}\])?[C](\[?[\+\-]?[1-9][0-9]{0,6}\])?    { BEGIN(IN_R1C1_CELL); yyless(0); }
