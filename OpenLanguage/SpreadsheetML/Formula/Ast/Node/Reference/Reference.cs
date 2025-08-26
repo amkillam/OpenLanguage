@@ -24,7 +24,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(null, null)
+            : base(leadingWhitespace, trailingWhitespace)
         {
             Name = name;
             RawName = null;
@@ -297,6 +297,60 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override string ToRawString() =>
             OpenBracket.ToString() + Index.ToString() + CloseBracket.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (OpenBracket is O ob)
+            {
+                yield return ob;
+            }
+            if (CloseBracket is O cb)
+            {
+                yield return cb;
+            }
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            if (index == 0 && replacement is LeftBracketNode lbn)
+            {
+                current = OpenBracket;
+                OpenBracket = lbn;
+            }
+            else if (index == 1 && replacement is RightBracketNode rbn)
+            {
+                current = CloseBracket;
+                CloseBracket = rbn;
+            }
+            return current;
+        }
+    }
+
+    public class WorkbookNameNode : ExpressionNode
+    {
+        public string Name { get; set; }
+        public LeftBracketNode OpenBracket { get; set; }
+        public RightBracketNode CloseBracket { get; set; }
+
+        public WorkbookNameNode(
+            string name,
+            LeftBracketNode openBracket,
+            RightBracketNode closeBracket,
+            List<Node>? leadingWs = null,
+            List<Node>? trailingWs = null
+        )
+            : base(leadingWs, trailingWs)
+        {
+            Name = name;
+            OpenBracket = openBracket;
+            CloseBracket = closeBracket;
+        }
+
+        public override int Precedence => Ast.Precedence.Primary;
+
+        public override string ToRawString() =>
+            OpenBracket.ToString() + Name + CloseBracket.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

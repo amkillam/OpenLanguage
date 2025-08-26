@@ -84,7 +84,7 @@ public BangReferenceNode bangReferenceVal;
 %token<ulongVal>  T_A1_ROW T_A1_COLUMN
 %token<stringVal> T_UNKNOWN_CHAR T_BANG T_AT_SYMBOL T_INTERSECTION T_NEWLINE T_SR_THIS_ROW
 %token<stringVal> T_IDENTIFIER  T_STRING_CONSTANT T_QUOTED_IDENTIFIER T_SHEET_NAME_SPECIAL
-%token<stringVal> T_STRUCTURED_REFERENCE T_XLFN_XLWS_
+%token<stringVal> T_STRUCTURED_REFERENCE
 %token<stringVal> T_DIV0_ERROR T_NA_ERROR T_NAME_ERROR T_NULL_ERROR T_NUM_ERROR T_VALUE_ERROR T_GETTING_DATA_ERROR T_REF_ERROR T_SPILL_ERROR T_CALC_ERROR T_BLOCKED_ERROR T_BUSY_ERROR T_CIRCULAR_ERROR T_CONNECT_ERROR T_EXTERNAL_ERROR T_FIELD_ERROR T_PYTHON_ERROR T_UNKNOWN_ERROR
 %token<stringVal> T_LBRACK T_RBRACK  T_QUESTIONMARK
 %token<stringVal> T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_HASH
@@ -106,6 +106,9 @@ public BangReferenceNode bangReferenceVal;
 %type <expressionVal> keyword
 %type <structureColumnRangeVal>    column_range
 %type <workbookIndexVal>  workbook_index
+%type <expressionVal> workbook_name
+%type <stringVal> workbook_name_text
+%type <stringVal> workbook_name_piece
 
 %type <A1RelativeColumnVal>       A1_column_relative
 %type <A1RelativeRowVal>          A1_row_relative
@@ -248,7 +251,7 @@ function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = 
     | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
     | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
     | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
-    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
+    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, (BuiltInFunctionNode)$3, $1, $4); }
     ;
 
 function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
@@ -396,11 +399,13 @@ sheet_range_reference   : sheet_range bang_reference { $$ = new SheetReferenceNo
 single_sheet_reference   :  single_sheet bang_reference { $$ = new SheetReferenceNode($1, $2); };
 single_sheet
     : workbook_index opt_whitespace T_IDENTIFIER { $$ = new SheetNode($1, $3, false, $2, null); }
+    | workbook_name opt_whitespace T_IDENTIFIER { $$ = new SheetNode($1, $3, false, $2, null); }
     |                opt_whitespace T_IDENTIFIER { $$ = new SheetNode(null, $2, false, $1, null); }
     | opt_whitespace T_SHEET_NAME_SPECIAL opt_whitespace { $$ = new SheetNode(null, $2, true, $1, $3); }
      ;
 sheet_range
     : workbook_index opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode($1, $3, new ColonNode($5, $4, $6), $7, $2, null); }
+    | workbook_name opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode($1, $3, new ColonNode($5, $4, $6), $7, $2, null); }
     |                opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode(null, $2, new ColonNode($4, $3, $5), $6, $1, null); }
     ;
 
@@ -486,7 +491,8 @@ structure_data: T_SR_DATA { $$ = new StructureDataNode(); };
 structure_headers: T_SR_HEADERS { $$ = new StructureHeadersNode(); };
 structure_totals: T_SR_TOTALS { $$ = new StructureTotalsNode(); };
 
-structure_this_row: T_AT_SYMBOL opt_whitespace structure_column
+structure_this_row
+    : T_AT_SYMBOL opt_whitespace structure_column
     {
         AtSymbolLiteralNode atSymbol = new AtSymbolLiteralNode($1, null, $2);
         $$ = new StructureThisRowByPrefixNode(atSymbol, $3);
@@ -496,7 +502,9 @@ structure_this_row: T_AT_SYMBOL opt_whitespace structure_column
         AtSymbolLiteralNode atSymbol = new AtSymbolLiteralNode($1, null, $2);
         $$ = new StructureThisRowByPrefixNode(atSymbol, $3);
     }
-    | T_SR_THIS_ROW { $$ = new StructureThisRowNode($1); };
+    | T_SR_THIS_ROW { $$ = new StructureThisRowNode($1); }
+    | T_AT_SYMBOL { $$ = new StructureThisRowNode($1); }
+    ;
 
 structure_all: T_SR_ALL { $$ = new StructureAllNode(); };
 keyword: structure_all { $$ = $1; }| structure_data { $$ = $1; }| structure_headers { $$ = $1; }| structure_totals { $$ = $1; } | structure_this_row { $$ = $1; };
@@ -518,6 +526,50 @@ workbook_index : T_LBRACK opt_whitespace T_LONG opt_whitespace T_RBRACK
         RightBracketNode closeBracket = new RightBracketNode($5, $4, null);
         $$ = new WorkbookIndexNode($3, openBracket, closeBracket);
     };
+
+workbook_name
+    : T_LBRACK opt_whitespace workbook_name_text opt_whitespace T_RBRACK
+    {
+        LeftBracketNode openBracket = new LeftBracketNode($1, null, $2);
+        RightBracketNode closeBracket = new RightBracketNode($5, $4, null);
+        $$ = new WorkbookNameNode($3, openBracket, closeBracket);
+    }
+    ;
+
+workbook_name_text
+    : workbook_name_text workbook_name_piece { $$ = $1 + $2; }
+    | workbook_name_piece { $$ = $1; }
+    ;
+
+workbook_name_piece
+    : T_IDENTIFIER { $$ = $1; }
+    | T_COLON { $$ = $1; }
+    | T_SLASH { $$ = $1; }
+    | T_MINUS { $$ = $1; }
+    | T_DOLLAR { $$ = $1; }
+    | T_HASH { $$ = $1; }
+    | T_AMPERSAND { $$ = $1; }
+    | T_LPAREN { $$ = $1; }
+    | T_RPAREN { $$ = $1; }
+    | T_AT_SYMBOL { $$ = $1; }
+    | T_EQ { $$ = $1; }
+    | T_GT { $$ = $1; }
+    | T_GE { $$ = $1; }
+    | T_LT { $$ = $1; }
+    | T_LE { $$ = $1; }
+    | T_PERCENT { $$ = $1; }
+    | T_CARET { $$ = $1; }
+    | T_ASTERISK { $$ = $1; }
+    | T_COMMA { $$ = $1; }
+    | T_SEMICOLON { $$ = $1; }
+    | T_NUMERICAL_CONSTANT { $$ = $1; }
+    | T_LONG
+    {
+        string l = $1.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        $$ = l;
+    }
+    | whitespace { $$ = $1.ToString(); }
+    ;
 
 whitespace: T_NEWLINE { $$ = new WhitespaceNode($1); }
           | T_INTERSECTION { $$ = new WhitespaceNode($1); };
