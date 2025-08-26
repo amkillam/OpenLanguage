@@ -148,8 +148,6 @@ public BangReferenceNode bangReferenceVal;
 
 
 %token UMINUS
-%nonassoc T_IDENTIFIER
-%nonassoc T_LPAREN
 %right T_COMMA
 %left T_INTERSECTION T_NEWLINE
 %left T_COLON
@@ -245,12 +243,12 @@ primary: constant { $$ = $1; }
     // | pivot_items { $$ = $1; }
     ;
 
-function_call_head: opt_whitespace Standard_function_name opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
-    | opt_whitespace future_function_name opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInFutureFunctionNode($2, $1, $3); }
-    | opt_whitespace macro_function_name opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
-    | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
-    | opt_whitespace command_function_name opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
-    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace %prec T_IDENTIFIER { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
+function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
+    | opt_whitespace future_function_name opt_whitespace { $$ = new BuiltInFutureFunctionNode($2, $1, $3); }
+    | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
+    | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
+    | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
+    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
     ;
 
 function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
