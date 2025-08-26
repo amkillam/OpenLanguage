@@ -262,7 +262,7 @@ function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPARE
 
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
         {
-            BuiltInWorksheetFunctionNode pyNode = new BuiltInWorksheetFunctionNode($2,  new BuiltInFunctionNode(new NameNode("PY")), $1, $16);
+            BuiltInWorksheetFunctionNode pyNode = new PyWorksheetFunctionNode($1, $16);
             NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $8);
             NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, $10, $12);
 
