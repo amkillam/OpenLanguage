@@ -79,7 +79,7 @@ public BangReferenceNode bangReferenceVal;
 
 
 
-%token<stringVal> T_NUMERICAL_CONSTANT
+%token<stringVal> T_NUMERICAL_CONSTANT T_DOLLAR
 %token<longVal> T_LONG T_R1C1_ROW T_R1C1_COLUMN
 %token<ulongVal>  T_A1_ROW T_A1_COLUMN
 %token<stringVal> T_UNKNOWN_CHAR T_BANG T_AT_SYMBOL T_INTERSECTION T_NEWLINE T_SR_THIS_ROW
