@@ -251,7 +251,7 @@ function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = 
     | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
     | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
     | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
-    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, (BuiltInFunctionNode)$3, $1, $4); }
+    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode("_xlfn._xlws.", (BuiltInFunctionNode)$3, $1, $4); }
     ;
 
 function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
