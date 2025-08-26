@@ -68,18 +68,8 @@ public BangReferenceNode bangReferenceVal;
 
 }
 
-%token T_A1_ROW
-%token T_A1_COLUMN
 %token R1C1_COLUMN_PREFIX
 %token R1C1_ROW_PREFIX
-%token R1C1_ROW
-%token R1C1_COLUMN
-
-%token T_AT_SYMBOL
-%token T_DOLLAR
-%token T_DIV0_ERROR
-%token T_EMPTY_BRACKETS
-%token T_FALSE
 
 #include "function/command.inc"
 #include "function/future.inc"
@@ -87,29 +77,6 @@ public BangReferenceNode bangReferenceVal;
 #include "function/standard.inc"
 #include "function/worksheet.inc"
 
-%token T_HASH
-%token T_GE
-%token T_GETTING_DATA_ERROR
-%token T_LE
-%token T_NA_ERROR
-%token T_NAME_ERROR
-%token T_NE
-%token T_NEWLINE
-%token T_NULL_ERROR
-%token T_NUM_ERROR
-%token T_REF_ERROR
-%token T_SHEET_NAME_SPECIAL
-%token T_SR_ALL
-%token T_SR_DATA
-%token T_SR_HEADERS
-%token T_SR_THIS_ROW
-%token T_SR_TOTALS
-%token T_TRUE
-%token T_VALUE_ERROR
-%token T_XLFN_
-%token T_XLFN_XLWS_
-%token T_XLOP_
-%token T_XLPM_
 
 
 %token<stringVal> T_NUMERICAL_CONSTANT

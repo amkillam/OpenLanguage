@@ -169,8 +169,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public AddNode(
             ExpressionNode l,
-            ExpressionNode r,
             ExpressionNode @operator,
+            ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
@@ -373,7 +373,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => Operand.ToString() + Operator.ToString();
+        public override string ToRawString() => Operator.ToString() + Operand.ToString();
     }
 
     public class AtSuffixNode : UnaryOperatorNode
