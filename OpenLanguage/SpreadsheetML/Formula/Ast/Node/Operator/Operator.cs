@@ -397,8 +397,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             ExpressionNode l,
             ExpressionNode @operator,
             ExpressionNode r,
-            List<Node>? wsB,
-            List<Node>? wsA,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
