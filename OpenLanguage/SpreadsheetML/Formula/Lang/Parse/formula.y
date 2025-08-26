@@ -279,21 +279,21 @@ primary: constant { $$ = $1; }
 function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
     | opt_whitespace future_function_name opt_whitespace { $$ = new BuiltInFutureFunctionNode($2, $1, $3); }
     | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
-    | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1); }
-    | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, $1, $3); }
-    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, $3, $1, $4); }
+    | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
+    | opt_whitespace command_function_name opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
+    | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
     ;
 
 function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
         {
             ArgumentParseResult result = $4;
-            $$ = new FunctionCallNode($2, result.Arguments,  $1, $5);
+            $$ = new FunctionCallNode($2, result.Arguments,  $1, $6);
         };
 
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
         {
-            BuiltInWorksheetFunctionNode pyNode = new BuiltInWorksheetFunctionNode($2,  new PyWorksheetFunctionNode(), $1, $16);
-            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $5);
+            BuiltInWorksheetFunctionNode pyNode = new BuiltInWorksheetFunctionNode($2,  new BuiltInFunctionNode(new NameNode("PY")), $1, $16);
+            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $8);
             NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, $10, $12);
 
             ArgumentParseResult result = $13;
@@ -368,11 +368,11 @@ cell_reference : external_cell_reference { $$ = $1; } | cell_range { $$ = $1; } 
 name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
     {
         // This logic is moved from the old function_call rule.
-        // $1 is a NameNode, which correctly captures the identifier and its whitespace.
-        UserDefinedFunctionNode head = new UserDefinedFunctionNode($2, $1, $3);
+        // $2 is a string, we need to wrap it in a NameNode.
+        UserDefinedFunctionNode head = new UserDefinedFunctionNode(new NameNode($2), $1, $3);
         ArgumentParseResult result = $6;
 
-        $$ = new FunctionCallNode(head,  result.Arguments,  null, $9);
+        $$ = new FunctionCallNode(head,  result.Arguments,  $1, $9);
     }
     | name
     {
@@ -380,7 +380,7 @@ name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespa
         $$ = $1;
     }
     ;
-name :  opt_whitespace T_AT_SYMBOL opt_whitespace T_IDENTIFIER opt_whitespace { $$ = new ImplicitIntersectionNode(new NamedRangeNode($4, $3, null), $1, $5); }
+name :  opt_whitespace T_AT_SYMBOL opt_whitespace T_IDENTIFIER opt_whitespace { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($2, $1, $3), new NamedRangeNode($4, null, null), null, $5); }
         | opt_whitespace T_IDENTIFIER opt_whitespace { $$ = new NamedRangeNode($2, $1, $3); };
 
 A1_column_absolute: T_DOLLAR T_A1_COLUMN { $$ = new A1AbsoluteColumnNode($2); };

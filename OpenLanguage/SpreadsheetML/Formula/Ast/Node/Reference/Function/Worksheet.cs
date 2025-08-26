@@ -8,7 +8,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILTER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode("_xlfn.XLWS."), new BuiltInFunctionNode(new NameNode("FILTER")), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class SortWorksheetFunctionNode : BuiltInWorksheetFunctionNode
@@ -17,7 +17,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SORT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode("_xlfn.XLWS."), new BuiltInFunctionNode(new NameNode("SORT")), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class PyWorksheetFunctionNode : BuiltInWorksheetFunctionNode
@@ -26,6 +26,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode("_xlfn.XLWS."), new BuiltInFunctionNode(new NameNode("PY")), leadingWhitespace, trailingWhitespace) { }
     }
 }
