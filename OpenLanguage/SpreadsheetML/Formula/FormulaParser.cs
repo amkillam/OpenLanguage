@@ -19,7 +19,11 @@ namespace OpenLanguage.SpreadsheetML.Formula
             }
 
             int leadingEqualsCount = 0;
-            if (!string.IsNullOrEmpty(formulaText) && formulaText.Length > 0 && formulaText[0] == '=')
+            if (
+                !string.IsNullOrEmpty(formulaText)
+                && formulaText.Length > 0
+                && formulaText[0] == '='
+            )
             {
                 // Only strip the initial formula indicator '='. Leave any additional leading '='
                 // characters in the input so the lexer/parser can recognise them as tokens.
@@ -33,9 +37,11 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 formulaBody = formulaText.Substring(leadingEqualsCount);
             }
 
-            OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner = new OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner();
+            OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner =
+                new OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner();
             scanner.SetSource(formulaBody, 0);
-            OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser = new OpenLanguage.SpreadsheetML.Formula.Generated.Parser(scanner);
+            OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser =
+                new OpenLanguage.SpreadsheetML.Formula.Generated.Parser(scanner);
 
             bool success;
             try
