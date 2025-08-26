@@ -19,29 +19,23 @@ namespace OpenLanguage.SpreadsheetML.Formula
             }
 
             int leadingEqualsCount = 0;
-            if (!string.IsNullOrEmpty(formulaText))
+            if (!string.IsNullOrEmpty(formulaText) && formulaText.Length > 0 && formulaText[0] == '=')
             {
-                while (
-                    leadingEqualsCount < formulaText.Length
-                    && formulaText[leadingEqualsCount] == '='
-                )
-                {
-                    leadingEqualsCount++;
-                }
+                // Only strip the initial formula indicator '='. Leave any additional leading '='
+                // characters in the input so the lexer/parser can recognise them as tokens.
+                leadingEqualsCount = 1;
             }
 
             string formulaBody = formulaText;
             if (leadingEqualsCount > 0)
             {
-                // Strip all leading '=' characters before parsing
+                // Strip exactly one leading '=' before parsing
                 formulaBody = formulaText.Substring(leadingEqualsCount);
             }
 
-            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(formulaBody);
-            MemoryStream stream = new(byteArray);
-
-            OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner = new(stream);
-            OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser = new(scanner);
+            OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner = new OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner();
+            scanner.SetSource(formulaBody, 0);
+            OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser = new OpenLanguage.SpreadsheetML.Formula.Generated.Parser(scanner);
 
             bool success;
             try
@@ -66,21 +60,9 @@ namespace OpenLanguage.SpreadsheetML.Formula
             }
 
             Ast.Node astRoot = parser.root;
-            // Preserve any extra leading '=' signs (beyond the first stripped for parsing)
-            if (
-                astRoot is OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode exprNode
-                && leadingEqualsCount > 1
-            )
-            {
-                int extras = leadingEqualsCount - 1;
-                for (int i = 0; i < extras; i++)
-                {
-                    exprNode.LeadingWhitespace.Insert(
-                        0,
-                        new OpenLanguage.SpreadsheetML.Formula.Ast.WhitespaceNode("=")
-                    );
-                }
-            }
+            // We only stripped the initial formula marker '=' above.
+            // Any additional '=' characters were left in formulaBody and parsed normally,
+            // therefore there is nothing to reinsert here.
 
             return new Formula(formulaText, astRoot);
         }
