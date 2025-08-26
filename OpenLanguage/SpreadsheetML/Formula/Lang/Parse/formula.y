@@ -225,7 +225,7 @@ expression: opt_whitespace T_LPAREN expression T_RPAREN opt_whitespace { $$ = ne
     | opt_whitespace expression opt_whitespace T_HASH opt_whitespace { $$ = new DynamicNode(new HashOperatorLiteralNode($4, $3, $5), $2, $1, null); }
     | opt_whitespace T_PLUS opt_whitespace expression opt_whitespace %prec UMINUS { $$ = new UnaryPlusNode(new PlusOperatorLiteralNode($2, $1, $3), $4, null, $5); }
     | opt_whitespace T_MINUS opt_whitespace expression opt_whitespace %prec UMINUS { $$ = new UnaryMinusNode(new MinusOperatorLiteralNode($2, $1, $3), $4, null, $5); }
-    | opt_whitespace expression T_INTERSECTION opt_whitespace expression opt_whitespace { $$ = new IntersectionNode($2, new IntersectionOperatorLiteralNode($3, null, $4), $5, $1, $6); }
+    | opt_whitespace cell_or_ref_constant opt_whitespace T_INTERSECTION opt_whitespace cell_or_ref_constant opt_whitespace { $$ = new IntersectionNode($2, new IntersectionOperatorLiteralNode($4, $3, $5), $6, $1, $7); }
     | opt_whitespace T_AT_SYMBOL opt_whitespace expression opt_whitespace %prec UMINUS { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($2, $1, $3), $4, null, $5); }
     | opt_whitespace expression opt_whitespace T_AT_SYMBOL opt_whitespace { $$ = new AtSuffixNode(new AtSymbolLiteralNode($4, $3, $5), $2, $1, null); }
     | primary { $$ = $1; }
@@ -295,6 +295,11 @@ constant_leaf: opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace { $$ = new Num
              | opt_whitespace T_STRING_CONSTANT opt_whitespace { $$ = new StringNode($2, $1, $3); }
              | opt_whitespace T_TRUE opt_whitespace { $$ = new LogicalNode(true, $1, $3); }
              | opt_whitespace T_FALSE opt_whitespace { $$ = new LogicalNode(false, $1, $3); }
+             | opt_whitespace T_EQ opt_whitespace expression opt_whitespace
+               {
+                   if ($3 != null) { $4.LeadingWhitespace.InsertRange(0, $3); }
+                   $$ = new LeadingEqualsExpressionNode($4, $1, $5);
+               }
              | error_constant { $$ = $1; }
              | array_constant { $$ = $1; };
 
