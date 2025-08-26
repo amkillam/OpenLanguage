@@ -145,7 +145,7 @@ add_custom_target(tool_restore
 
 # Test target - dependent on build
 add_custom_target(test
-    COMMAND dotnet test --configuration Release
+    COMMAND dotnet test
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     DEPENDS build
     COMMENT "Running unit tests"

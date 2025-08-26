@@ -2504,9 +2504,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("RIGHT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RightbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RightBStandardFunctionNode : BuiltInStandardFunctionNode
     {
-        public RightbStandardFunctionNode(
+        public RightBStandardFunctionNode(
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
