@@ -230,10 +230,10 @@ function_call_head: opt_whitespace standard_function_name opt_whitespace { $$ = 
     | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
     ;
 
-function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPAREN opt_whitespace
+function_call: function_call_head T_LPAREN argument_list T_RPAREN
         {
-            ArgumentParseResult result = $4;
-            $$ = new FunctionCallNode($2, result.Arguments,  $1, $6);
+            ArgumentParseResult result = $3;
+            $$ = new FunctionCallNode($1, result.Arguments);
         };
 
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace

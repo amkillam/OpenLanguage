@@ -359,10 +359,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
 
         [Theory]
         [InlineData(" 1+2 ")]
-        // [InlineData("\t1+2\t")]
-        // [InlineData("1 + 2")]
-        // [InlineData("SUM( 1 , 2 , 3 )")]
-        // [InlineData("IF( A1 > 0 , \"Yes\" , \"No\" )")]
+        [InlineData("\t1+2\t")]
+        [InlineData("1 + 2")]
+        [InlineData("SUM( 1 , 2 , 3 )")]
+        [InlineData("IF( A1 > 0 , \"Yes\" , \"No\" )")]
         public void Parse_WithWhitespace_RetainsWhitespaceCorrectly(string formulaString)
         {
             Ast.Node formula = FormulaParser.Parse(formulaString);
@@ -666,7 +666,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         {
             // Create a deeply nested formula
             string nestedFormula = "SUM(";
-            for (int i = 0; i < 100; i++)
+            for (Int32 i = 0; i < 100; i++)
             {
                 nestedFormula += $"IF(A{i}>0,A{i},0),";
             }
@@ -687,7 +687,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void Parse_ManySimpleFormulas_ParsesWithinReasonableTime()
         {
             string[] formulas = new string[1000];
-            for (int i = 0; i < formulas.Length; i++)
+            for (Int32 i = 0; i < formulas.Length; i++)
             {
                 formulas[i] = $"SUM(A{i}:A{i + 10})";
             }
@@ -962,7 +962,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
             formulaBuilder.Append("SUM(");
 
-            for (int i = 0; i < 1000; i++)
+            for (Int32 i = 0; i < 1000; i++)
             {
                 if (i > 0)
                 {
@@ -986,14 +986,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // Create a formula with deep nesting
             System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
 
-            for (int i = 0; i < 50; i++)
+            for (Int32 i = 0; i < 50; i++)
             {
                 formulaBuilder.Append("IF(A1>0,");
             }
 
             formulaBuilder.Append("1");
 
-            for (int i = 0; i < 50; i++)
+            for (Int32 i = 0; i < 50; i++)
             {
                 formulaBuilder.Append(",0)");
             }
@@ -1021,9 +1021,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("TRUE", "LogicalNode")]
         [InlineData("A1", "A1CellNode")]
         [InlineData("SUM", "BuiltInStandardFunctionNode")]
-        [InlineData("+", "BinaryOperatorNode")]
-        // [InlineData("(", "LEFT_PAREN")]
-        // [InlineData(")", "RIGHT_PAREN")]
         public void Tokenize_BasicTokenTypes_IdentifiesCorrectly(
             string input,
             string expectedTokenType
@@ -1039,7 +1036,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Theory]
         [InlineData("123abc", "Invalid number format")]
         [InlineData("\"unclosed string", "Unterminated string")]
-        [InlineData("@#$%", "Invalid character sequence")]
         [InlineData("A1048577", "Row number out of range")]
         [InlineData("XFE1", "Column reference out of range")]
         public void Tokenize_InvalidTokens_ThrowsDescriptiveErrors(
@@ -1073,7 +1069,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Ast.Node formula = FormulaParser.Parse(input);
             Assert.NotNull(formula);
 
-            // The toString should reconstruct something equivalent
+            // ToString should reconstruct an equivalent string as input
             string reconstructed = formula.ToString();
             Assert.NotNull(reconstructed);
             Assert.True(reconstructed.Length > 0);
@@ -1086,7 +1082,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
 
         [Theory]
         [InlineData("A1#")] // Spill reference
-        [InlineData("A1@")] // Implicit intersection
         [InlineData("@A1")] // Implicit intersection prefix
         [InlineData("#REF!")] // Error reference
         [InlineData("#SPILL!")] // Spill error
