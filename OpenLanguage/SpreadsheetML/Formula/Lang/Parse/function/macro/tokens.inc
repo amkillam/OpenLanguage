@@ -1,6 +1,3 @@
-/* Generated from Lexer/Functions/Macro.lex - DO NOT EDIT */
-/* Per-lex token fragment: Macro.lex */
-
 %token T_FUNC_ABSREF
 
 %token T_FUNC_ACTIVE_CELL

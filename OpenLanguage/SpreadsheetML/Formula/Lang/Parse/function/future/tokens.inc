@@ -1,303 +1,150 @@
-/* Generated from Lexer/Functions/Future.lex - DO NOT EDIT */
-/* Per-lex token fragment: Future.lex */
-
 %token T_FUNC_ACOT
-
 %token T_FUNC_ACOTH
-
 %token T_FUNC_AGGREGATE
-
 %token T_FUNC_ARABIC
-
 %token T_FUNC_BASE
-
 %token T_FUNC_BETA_DIST
-
 %token T_FUNC_BETA_INV
-
 %token T_FUNC_BINOM_DIST
-
 %token T_FUNC_BINOM_DIST_RANGE
-
 %token T_FUNC_BINOM_INV
-
 %token T_FUNC_BITAND
-
 %token T_FUNC_BITLSHIFT
-
 %token T_FUNC_BITOR
-
 %token T_FUNC_BITRSHIFT
-
 %token T_FUNC_BITXOR
-
 %token T_FUNC_BYCOL
-
 %token T_FUNC_BYROW
-
 %token T_FUNC_CEILING_MATH
-
 %token T_FUNC_CEILING_PRECISE
-
 %token T_FUNC_CHISQ_DIST
-
 %token T_FUNC_CHISQ_DIST_RT
-
 %token T_FUNC_CHISQ_INV
-
 %token T_FUNC_CHISQ_INV_RT
-
 %token T_FUNC_CHISQ_TEST
-
 %token T_FUNC_CHOOSECOLS
-
 %token T_FUNC_CHOOSEROWS
-
 %token T_FUNC_COMBINA
-
 %token T_FUNC_CONFIDENCE_NORM
-
 %token T_FUNC_CONFIDENCE_T
-
 %token T_FUNC_COT
-
 %token T_FUNC_COTH
-
 %token T_FUNC_COVARIANCE_P
-
 %token T_FUNC_COVARIANCE_S
-
 %token T_FUNC_CSC
-
 %token T_FUNC_CSCH
-
 %token T_FUNC_DAYS
-
 %token T_FUNC_DECIMAL
-
 %token T_FUNC_DROP
-
 %token T_FUNC_ECMA_CEILING
-
 %token T_FUNC_ERF_PRECISE
-
 %token T_FUNC_ERFC_PRECISE
-
 %token T_FUNC_EXPAND
-
 %token T_FUNC_EXPON_DIST
-
 %token T_FUNC_F_DIST
-
 %token T_FUNC_F_DIST_RT
-
 %token T_FUNC_F_INV
-
 %token T_FUNC_F_INV_RT
-
 %token T_FUNC_F_TEST
-
 %token T_FUNC_FIELDVALUE
-
 %token T_FUNC_FILTERXML
-
 %token T_FUNC_FLOOR_MATH
-
 %token T_FUNC_FLOOR_PRECISE
-
 %token T_FUNC_FORECAST_ETS
-
 %token T_FUNC_FORECAST_ETS_CONFINT
-
 %token T_FUNC_FORECAST_ETS_SEASONALITY
-
 %token T_FUNC_FORECAST_ETS_STAT
-
 %token T_FUNC_FORECAST_LINEAR
-
 %token T_FUNC_FORMULATEXT
-
 %token T_FUNC_GAMMA
-
 %token T_FUNC_GAMMA_DIST
-
 %token T_FUNC_GAMMA_INV
-
 %token T_FUNC_GAMMALN_PRECISE
-
 %token T_FUNC_GAUSS
-
 %token T_FUNC_HSTACK
-
 %token T_FUNC_HYPGEOM_DIST
-
 %token T_FUNC_IFNA
-
 %token T_FUNC_IMCOSH
-
 %token T_FUNC_IMCOT
-
 %token T_FUNC_IMCSC
-
 %token T_FUNC_IMCSCH
-
 %token T_FUNC_IMSEC
-
 %token T_FUNC_IMSECH
-
 %token T_FUNC_IMSINH
-
 %token T_FUNC_IMTAN
-
 %token T_FUNC_ISFORMULA
-
 %token T_FUNC_ISO_CEILING
-
 %token T_FUNC_ISOMITTED
-
 %token T_FUNC_ISOWEEKNUM
-
 %token T_FUNC_LAMBDA
-
 %token T_FUNC_LET
-
 %token T_FUNC_LOGNORM_DIST
-
 %token T_FUNC_LOGNORM_INV
-
 %token T_FUNC_MAKEARRAY
-
 %token T_FUNC_MAP
-
 %token T_FUNC_MODE_MULT
-
 %token T_FUNC_MODE_SNGL
-
 %token T_FUNC_MUNIT
-
 %token T_FUNC_NEGBINOM_DIST
-
 %token T_FUNC_NETWORKDAYS_INTL
-
 %token T_FUNC_NORM_DIST
-
 %token T_FUNC_NORM_INV
-
 %token T_FUNC_NORM_S_DIST
-
 %token T_FUNC_NORM_S_INV
-
 %token T_FUNC_NUMBERVALUE
-
 %token T_FUNC_PDURATION
-
 %token T_FUNC_PERCENTILE_EXC
-
 %token T_FUNC_PERCENTILE_INC
-
 %token T_FUNC_PERCENTRANK_EXC
-
 %token T_FUNC_PERCENTRANK_INC
-
 %token T_FUNC_PERMUTATIONA
-
 %token T_FUNC_PHI
-
 %token T_FUNC_POISSON_DIST
-
 %token T_FUNC_PQSOURCE
-
 %token T_FUNC_PYTHON_STR
-
 %token T_FUNC_PYTHON_TYPE
-
 %token T_FUNC_PYTHON_TYPENAME
-
 %token T_FUNC_QUARTILE_EXC
-
 %token T_FUNC_QUARTILE_INC
-
 %token T_FUNC_QUERYSTRING
-
 %token T_FUNC_RANDARRAY
-
 %token T_FUNC_RANK_AVG
-
 %token T_FUNC_RANK_EQ
-
 %token T_FUNC_REDUCE
-
 %token T_FUNC_RRI
-
 %token T_FUNC_SCAN
-
 %token T_FUNC_SEC
-
 %token T_FUNC_SECH
-
 %token T_FUNC_SEQUENCE
-
 %token T_FUNC_SHEET
-
 %token T_FUNC_SHEETS
-
 %token T_FUNC_SKEW_P
-
 %token T_FUNC_SORTBY
-
 %token T_FUNC_STDEV_P
-
 %token T_FUNC_STDEV_S
-
 %token T_FUNC_T_DIST
-
 %token T_FUNC_T_DIST_2T
-
 %token T_FUNC_T_DIST_RT
-
 %token T_FUNC_T_INV
-
 %token T_FUNC_T_INV_2T
-
 %token T_FUNC_T_TEST
-
 %token T_FUNC_TAKE
-
 %token T_FUNC_TEXTAFTER
-
 %token T_FUNC_TEXTBEFORE
-
 %token T_FUNC_TEXTSPLIT
-
 %token T_FUNC_TOCOL
-
 %token T_FUNC_TOROW
-
 %token T_FUNC_UNICHAR
-
 %token T_FUNC_UNICODE
-
 %token T_FUNC_UNIQUE
-
 %token T_FUNC_VAR_P
-
 %token T_FUNC_VAR_S
-
 %token T_FUNC_VSTACK
-
 %token T_FUNC_WEBSERVICE
-
 %token T_FUNC_WEIBULL_DIST
-
 %token T_FUNC_WORKDAY_INTL
-
 %token T_FUNC_WRAPCOLS
-
 %token T_FUNC_WRAPROWS
-
 %token T_FUNC_XLOOKUP
-
 %token T_FUNC_XOR
-
 %token T_FUNC_Z_TEST
-
