@@ -23,7 +23,7 @@ namespace OpenLanguage.SpreadsheetML.Formula
             OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser =
                 new OpenLanguage.SpreadsheetML.Formula.Generated.Parser(scanner);
 
-            bool success;
+            bool success = false;
             try
             {
                 success = parser.Parse();
@@ -38,11 +38,16 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 );
             }
 
-            if (!success || parser.root == null)
+            if (!success)
             {
                 throw new System.InvalidOperationException(
                     "Failed to parse formula due to syntax errors."
                 );
+            }
+
+            if (parser.root == null)
+            {
+                throw new System.InvalidOperationException("Parser returned a null AST root.");
             }
 
             return parser.root;

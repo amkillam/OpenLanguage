@@ -167,71 +167,45 @@ public BangReferenceNode bangReferenceVal;
 
 %%
 
-formula: opt_whitespace opt_expression opt_whitespace
-        {
-        if ($2 != null) {
-            root = $2;
-            if (root is ExpressionNode exprRoot)
-            {
-            if ($1 != null) {
-                exprRoot.LeadingWhitespace.InsertRange(0, $1);
-            }
-              if ($3 != null) {
-                exprRoot.TrailingWhitespace.AddRange($3);
-                }
-            }
-            $$ = root;
-        }
-        } | opt_whitespace opt_solo_function opt_whitespace
-        {
-        if ($2 != null) {
-            root = $2;
-            if (root is ExpressionNode exprRoot)
-            {
-            if ($1 != null) {
-                exprRoot.LeadingWhitespace.InsertRange(0, $1);
-            }
-              if ($3 != null) {
-                exprRoot.TrailingWhitespace.AddRange($3);
-                }
-            }
+formula:
+       opt_expression    { $$ = $1; root = $$; }
+    |  opt_solo_function { $$ = $1; root = $$; }
+;
 
-         $$ = root;
-        }
-        }
-    ;
+opt_expression:
+      expression   { $$ = $1; }
+    | /* empty */  { $$ = null; }
+;
 
-opt_expression: /* empty */ { $$ = null; }
-    | expression { $$ = $1; }
-    ;
-
-opt_solo_function: /* empty */ { $$ = null; }
-    | solo_function { $$ = $1; }
-    ;
+opt_solo_function:
+      solo_function { $$ = $1; }
+    | /* empty */   { $$ = null; }
+;
 
 expression:
-    T_LPAREN expression T_RPAREN { $$ = new ParenthesizedExpressionNode($2); }
-    | expression T_PLUS  expression        { $$ = new AddNode($1, new PlusOperatorLiteralNode($2), $3); }
-    | expression T_MINUS  expression        { $$ = new SubtractNode($1, new MinusOperatorLiteralNode($2), $3); }
-    | expression T_ASTERISK expression     { $$ = new MultiplyNode($1, new AsteriskOperatorLiteralNode($2), $3); }
-    | expression T_SLASH expression        { $$ = new DivideNode($1, new SlashOperatorLiteralNode($2), $3); }
-    | expression T_CARET expression        { $$ = new PowerNode($1, new CaretOperatorLiteralNode($2), $3); }
-    | expression T_AMPERSAND expression    { $$ = new ConcatenateNode($1, new AmpersandOperatorLiteralNode($2), $3); }
-    | expression T_NE expression           { $$ = new NotEqualNode($1, new NotEqualOperatorLiteralNode($2), $3); }
-    | expression T_LE expression           { $$ = new LessThanOrEqualNode($1, new LessThanOrEqualOperatorLiteralNode($2), $3); }
-    | expression T_LT expression           { $$ = new LessThanNode($1, new LessThanOperatorLiteralNode($2), $3); }
-    | expression T_GE expression           { $$ = new GreaterThanOrEqualNode($1, new GreaterThanOrEqualOperatorLiteralNode($2), $3); }
-    | expression T_GT expression           { $$ = new GreaterThanNode($1, new GreaterThanOperatorLiteralNode($2), $3); }
-    | expression T_EQ expression           { $$ = new EqualNode($1, new EqualOperatorLiteralNode($2), $3); }
-    | expression T_COLON expression        { $$ = new RangeNode($1, new ColonNode($2), $3); }
-    | expression T_COMMA expression        { $$ = new UnionNode($1, new CommaNode($2), $3); }
-    | expression T_PERCENT %prec T_PERCENT                { $$ = new PercentNode(new PercentOperatorLiteralNode($2), $1); }
-    | expression T_HASH                                 { $$ = new DynamicNode(new HashOperatorLiteralNode($2), $1); }
-    | T_PLUS expression %prec UMINUS                      { $$ = new UnaryPlusNode(new PlusOperatorLiteralNode($1), $2); }
-    | T_MINUS expression %prec UMINUS                     { $$ = new UnaryMinusNode(new MinusOperatorLiteralNode($1), $2); }
-    | expression T_INTERSECTION expression { $$ = new IntersectionNode($1, new IntersectionOperatorLiteralNode($2), $3); }
-    | T_AT_SYMBOL expression %prec UMINUS { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
-    | primary { $$ = $1; }
+      T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
+    | expression T_PLUS expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
+    | expression T_MINUS expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
+    | expression T_ASTERISK expression         { $$ = new MultiplyNode($1, new AsteriskLiteralNode($2), $3); }
+    | expression T_SLASH expression            { $$ = new DivideNode($1, new SlashLiteralNode($2), $3); }
+    | expression T_CARET expression            { $$ = new PowerNode($1, new CaretLiteralNode($2), $3); }
+    | expression T_AMPERSAND expression        { $$ = new ConcatenateNode($1, new AmpersandLiteralNode($2), $3); }
+    | expression T_NE expression               { $$ = new NotEqualNode($1, new NotEqualLiteralNode($2), $3); }
+    | expression T_LE expression               { $$ = new LessThanOrEqualNode($1, new LessThanOrEqualLiteralNode($2), $3); }
+    | expression T_LT expression               { $$ = new LessThanNode($1, new LessThanLiteralNode($2), $3); }
+    | expression T_GE expression               { $$ = new GreaterThanOrEqualNode($1, new GreaterThanOrEqualLiteralNode($2), $3); }
+    | expression T_GT expression               { $$ = new GreaterThanNode($1, new GreaterThanLiteralNode($2), $3); }
+    | expression T_EQ expression               { $$ = new EqualNode($1, new EqualLiteralNode($2), $3); }
+    | expression T_COLON expression            { $$ = new RangeNode($1, new ColonNode($2), $3); }
+    | expression T_COMMA expression            { $$ = new UnionNode($1, new CommaNode($2), $3); }
+    | expression T_PERCENT %prec T_PERCENT     { $$ = new PercentNode(new PercentLiteralNode($2), $1); }
+    | expression T_HASH                        { $$ = new DynamicNode(new HashLiteralNode($2), $1); }
+    | T_PLUS expression %prec UMINUS           { $$ = new UnaryPlusNode(new PlusLiteralNode($1), $2); }
+    | T_MINUS expression %prec UMINUS          { $$ = new UnaryMinusNode(new MinusLiteralNode($1), $2); }
+    | expression T_INTERSECTION expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
+    | T_AT_SYMBOL expression %prec UMINUS      { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
+    | primary                                  { $$ = $1; }
+    | T_EQ expression                          { $$ = new EqualPrefixedNode(new EqualLiteralNode($1), $2); }
     | opt_whitespace expression opt_whitespace { $$ = $2; $$.LeadingWhitespace.InsertRange(0, $1); $$.TrailingWhitespace.AddRange($3); }
     ;
 

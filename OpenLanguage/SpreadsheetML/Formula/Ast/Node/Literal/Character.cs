@@ -89,9 +89,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     }
 
     // Operator literal nodes
-    public class PlusOperatorLiteralNode : CharacterLiteralNode
+    public class PlusLiteralNode : CharacterLiteralNode
     {
-        public PlusOperatorLiteralNode(
+        public PlusLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -99,9 +99,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinusOperatorLiteralNode : CharacterLiteralNode
+    public class MinusLiteralNode : CharacterLiteralNode
     {
-        public MinusOperatorLiteralNode(
+        public MinusLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -109,9 +109,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AsteriskOperatorLiteralNode : CharacterLiteralNode
+    public class AsteriskLiteralNode : CharacterLiteralNode
     {
-        public AsteriskOperatorLiteralNode(
+        public AsteriskLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -119,9 +119,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SlashOperatorLiteralNode : CharacterLiteralNode
+    public class SlashLiteralNode : CharacterLiteralNode
     {
-        public SlashOperatorLiteralNode(
+        public SlashLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -129,9 +129,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CaretOperatorLiteralNode : CharacterLiteralNode
+    public class CaretLiteralNode : CharacterLiteralNode
     {
-        public CaretOperatorLiteralNode(
+        public CaretLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -139,9 +139,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AmpersandOperatorLiteralNode : CharacterLiteralNode
+    public class AmpersandLiteralNode : CharacterLiteralNode
     {
-        public AmpersandOperatorLiteralNode(
+        public AmpersandLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -149,9 +149,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NotEqualOperatorLiteralNode : CharacterLiteralNode
+    public class NotEqualLiteralNode : CharacterLiteralNode
     {
-        public NotEqualOperatorLiteralNode(
+        public NotEqualLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -159,9 +159,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LessThanOrEqualOperatorLiteralNode : CharacterLiteralNode
+    public class LessThanOrEqualLiteralNode : CharacterLiteralNode
     {
-        public LessThanOrEqualOperatorLiteralNode(
+        public LessThanOrEqualLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -169,9 +169,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LessThanOperatorLiteralNode : CharacterLiteralNode
+    public class LessThanLiteralNode : CharacterLiteralNode
     {
-        public LessThanOperatorLiteralNode(
+        public LessThanLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -179,9 +179,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GreaterThanOrEqualOperatorLiteralNode : CharacterLiteralNode
+    public class GreaterThanOrEqualLiteralNode : CharacterLiteralNode
     {
-        public GreaterThanOrEqualOperatorLiteralNode(
+        public GreaterThanOrEqualLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -189,9 +189,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GreaterThanOperatorLiteralNode : CharacterLiteralNode
+    public class GreaterThanLiteralNode : CharacterLiteralNode
     {
-        public GreaterThanOperatorLiteralNode(
+        public GreaterThanLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -199,9 +199,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EqualOperatorLiteralNode : CharacterLiteralNode
+    public class EqualLiteralNode : CharacterLiteralNode
     {
-        public EqualOperatorLiteralNode(
+        public EqualLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -209,9 +209,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PercentOperatorLiteralNode : CharacterLiteralNode
+    public class PercentLiteralNode : CharacterLiteralNode
     {
-        public PercentOperatorLiteralNode(
+        public PercentLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -219,9 +219,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HashOperatorLiteralNode : CharacterLiteralNode
+    public class HashLiteralNode : CharacterLiteralNode
     {
-        public HashOperatorLiteralNode(
+        public HashLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -229,9 +229,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IntersectionOperatorLiteralNode : CharacterLiteralNode
+    public class IntersectionLiteralNode : CharacterLiteralNode
     {
-        public IntersectionOperatorLiteralNode(
+        public IntersectionLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
