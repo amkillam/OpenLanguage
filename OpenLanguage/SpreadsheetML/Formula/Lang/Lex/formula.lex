@@ -31,17 +31,17 @@
 
 <INITIAL>{
 
-    "<>"                { yylval.stringVal = yytext; return (int)Tokens.T_NE; }
-    ">="                { yylval.stringVal = yytext; return (int)Tokens.T_GE; }
-    "<="                { yylval.stringVal = yytext; return (int)Tokens.T_LE; }
+    "<>"                 { yylval.stringVal = yytext; return (int)Tokens.T_NE; }
+    ">="                 { yylval.stringVal = yytext; return (int)Tokens.T_GE; }
+    "<="                 { yylval.stringVal = yytext; return (int)Tokens.T_LE; }
 
 
-    "#All"             { return (int)Tokens.T_SR_ALL; }
-    "#Data"            { return (int)Tokens.T_SR_DATA; }
-    "#Headers"         { return (int)Tokens.T_SR_HEADERS; }
-    "#Totals"          { return (int)Tokens.T_SR_TOTALS; }
-    "#This Row"        { yylval.stringVal = yytext; return (int)Tokens.T_SR_THIS_ROW; }
-    "[]"               { return (int)Tokens.T_EMPTY_BRACKETS; }
+    "#All"               { return (int)Tokens.T_SR_ALL; }
+    "#Data"              { return (int)Tokens.T_SR_DATA; }
+    "#Headers"           { return (int)Tokens.T_SR_HEADERS; }
+    "#Totals"            { return (int)Tokens.T_SR_TOTALS; }
+    "#This Row"          { yylval.stringVal = yytext; return (int)Tokens.T_SR_THIS_ROW; }
+    "[]"                 { return (int)Tokens.T_EMPTY_BRACKETS; }
 
 
     "_xlfn\._xlws\."     { yylval.stringVal = yytext; return (int)Tokens.T_XLFN_XLWS_; }
@@ -50,27 +50,27 @@
     "xlop\."             { yylval.stringVal = yytext; return (int)Tokens.T_XLOP_; }
 
 
-    "#DIV/0!"           { yylval.stringVal = yytext; return (int)Tokens.T_DIV0_ERROR; }
-    "#N/A"              { yylval.stringVal = yytext; return (int)Tokens.T_NA_ERROR; }
-    "#NAME\?"           { yylval.stringVal = yytext; return (int)Tokens.T_NAME_ERROR; }
-    "#NULL!"            { yylval.stringVal = yytext; return (int)Tokens.T_NULL_ERROR; }
-    "#NUM!"             { yylval.stringVal = yytext; return (int)Tokens.T_NUM_ERROR; }
-    "#VALUE!"           { yylval.stringVal = yytext; return (int)Tokens.T_VALUE_ERROR; }
-    "#REF!"             { yylval.stringVal = yytext; return (int)Tokens.T_REF_ERROR; }
-    "#GETTING_DATA"     { yylval.stringVal = yytext; return (int)Tokens.T_GETTING_DATA_ERROR; }
-    "#SPILL!"           { yylval.stringVal = yytext; return (int)Tokens.T_SPILL_ERROR; }
-    "#CALC!"            { yylval.stringVal = yytext; return (int)Tokens.T_CALC_ERROR; }
-    "#BLOCKED!"         { yylval.stringVal = yytext; return (int)Tokens.T_BLOCKED_ERROR; }
-    "#BUSY!"            { yylval.stringVal = yytext; return (int)Tokens.T_BUSY_ERROR; }
-    "#CIRCULAR!"        { yylval.stringVal = yytext; return (int)Tokens.T_CIRCULAR_ERROR; }
-    "#CONNECT!"         { yylval.stringVal = yytext; return (int)Tokens.T_CONNECT_ERROR; }
-    "#EXTERNAL!"        { yylval.stringVal = yytext; return (int)Tokens.T_EXTERNAL_ERROR; }
-    "#FIELD!"           { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
-    "#PYTHON!"          { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
-    "#UNKNOWN!"         { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
+    "#DIV/0!"            { yylval.stringVal = yytext; return (int)Tokens.T_DIV0_ERROR; }
+    "#N/A"               { yylval.stringVal = yytext; return (int)Tokens.T_NA_ERROR; }
+    "#NAME\?"            { yylval.stringVal = yytext; return (int)Tokens.T_NAME_ERROR; }
+    "#NULL!"             { yylval.stringVal = yytext; return (int)Tokens.T_NULL_ERROR; }
+    "#NUM!"              { yylval.stringVal = yytext; return (int)Tokens.T_NUM_ERROR; }
+    "#VALUE!"            { yylval.stringVal = yytext; return (int)Tokens.T_VALUE_ERROR; }
+    "#REF!"              { yylval.stringVal = yytext; return (int)Tokens.T_REF_ERROR; }
+    "#GETTING_DATA"      { yylval.stringVal = yytext; return (int)Tokens.T_GETTING_DATA_ERROR; }
+    "#SPILL!"            { yylval.stringVal = yytext; return (int)Tokens.T_SPILL_ERROR; }
+    "#CALC!"             { yylval.stringVal = yytext; return (int)Tokens.T_CALC_ERROR; }
+    "#BLOCKED!"          { yylval.stringVal = yytext; return (int)Tokens.T_BLOCKED_ERROR; }
+    "#BUSY!"             { yylval.stringVal = yytext; return (int)Tokens.T_BUSY_ERROR; }
+    "#CIRCULAR!"         { yylval.stringVal = yytext; return (int)Tokens.T_CIRCULAR_ERROR; }
+    "#CONNECT!"          { yylval.stringVal = yytext; return (int)Tokens.T_CONNECT_ERROR; }
+    "#EXTERNAL!"         { yylval.stringVal = yytext; return (int)Tokens.T_EXTERNAL_ERROR; }
+    "#FIELD!"            { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
+    "#PYTHON!"           { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
+    "#UNKNOWN!"          { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
 
-    "TRUE"              { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
-    "FALSE"             { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
+    "TRUE"               { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
+    "FALSE"              { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
 
     #include "function/standard.lex"
 
@@ -82,30 +82,30 @@
 
     #include "function/command.lex"
 
-    \"                  { stringBuffer.Clear(); BEGIN(IN_STRING); }
-    \'                  { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
+    \"                   { stringBuffer.Clear(); BEGIN(IN_STRING); }
+    \'                   { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
 
-    "//".*             { /* skip single-line comment */ }
-    "/\*"              { BEGIN(IN_COMMENT); }
+    "//".*               { /* skip single-line comment */ }
+    "/\*"                { BEGIN(IN_COMMENT); }
 
-    \r\n             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // CRLF - usually seen as its own distinct newline sequence
-    [\n]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Line feed
-    [\r]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Carriage return
-    [\u2000-\u200A]    { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // General punctuation spaces: en quad to hair space
-    [\u202F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Narrow no-break space
-    [\u205F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Medium mathematical space
-    [\u3000]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Ideographic space
-    [\u200B]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Zero-width space
-    \s                  { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
-    [\u00A0]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
-    [\uFEFF]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Byte Order Mark treated as whitespace
+    \\r\\n               { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // CRLF - usually seen as its own distinct newline sequence
+    \\n                  { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Line feed
+    \\r                  { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Carriage return
+    [ \t]                { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    [\u2000-\u200A]      { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // General punctuation spaces: en quad to hair space
+    [\u202F]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Narrow no-break space
+    [\u205F]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Medium mathematical space
+    [\u3000]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Ideographic space
+    [\u200B]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Zero-width space
+    [\u00A0]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; }
+    [\uFEFF]             { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Byte Order Mark treated as whitespace
 
 
     [R](\[?[\+\-]?[1-9][0-9]{0,6}\])?[C](\[?[\+\-]?[1-9][0-9]{0,6}\])?    { BEGIN(IN_R1C1_CELL); yyless(0); }
     \$?[A-Z][A-Z]{0,2}\$?[1-9][0-9]{0,6}                                  { BEGIN(IN_A1_CELL); yyless(0); }
 
-    \$?[A-Z][A-Z]{0,2}:\$?[A-Z][A-Z]{0,2}                                                    { BEGIN(IN_A1_COLUMN_RANGE); yyless(0); }
-    \$?[1-9][0-9]{0,6}:\$?[1-9][0-9]{0,6}                                              { BEGIN(IN_A1_ROW_RANGE); yyless(0); }
+    \$?[A-Z][A-Z]{0,2}:\$?[A-Z][A-Z]{0,2}                                 { BEGIN(IN_A1_COLUMN_RANGE); yyless(0); }
+    \$?[1-9][0-9]{0,6}:\$?[1-9][0-9]{0,6}                                 { BEGIN(IN_A1_ROW_RANGE); yyless(0); }
 
 
 

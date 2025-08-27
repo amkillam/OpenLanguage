@@ -170,20 +170,22 @@ public BangReferenceNode bangReferenceVal;
 formula:
        opt_expression    { $$ = $1; root = $$; }
     |  opt_solo_function { $$ = $1; root = $$; }
-;
+    ;
 
 opt_expression:
       expression   { $$ = $1; }
     | /* empty */  { $$ = null; }
-;
+    ;
 
 opt_solo_function:
       solo_function { $$ = $1; }
     | /* empty */   { $$ = null; }
-;
+    ;
 
 expression:
-      T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
+      whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+    | expression whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
+    | T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
     | expression T_PLUS expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
     | expression T_MINUS expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
     | expression T_ASTERISK expression         { $$ = new MultiplyNode($1, new AsteriskLiteralNode($2), $3); }
@@ -204,9 +206,8 @@ expression:
     | T_MINUS expression %prec UMINUS          { $$ = new UnaryMinusNode(new MinusLiteralNode($1), $2); }
     | expression T_INTERSECTION expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
     | T_AT_SYMBOL expression %prec UMINUS      { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
-    | primary                                  { $$ = $1; }
     | T_EQ expression                          { $$ = new EqualPrefixedNode(new EqualLiteralNode($1), $2); }
-    | opt_whitespace expression opt_whitespace { $$ = $2; $$.LeadingWhitespace.InsertRange(0, $1); $$.TrailingWhitespace.AddRange($3); }
+    | primary                                  { $$ = $1; }
     ;
 
 primary: constant { $$ = $1; }
@@ -267,24 +268,21 @@ argument: expression
 
 
 
-constant: opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace { $$ = new NumericLiteralNode<double>($2, "D", $1, $3); }
-             | opt_whitespace T_LONG opt_whitespace { $$ = new NumericLiteralNode<long>($2, "D", $1, $3); }
-             | opt_whitespace T_STRING_CONSTANT opt_whitespace { $$ = new StringNode($2, $1, $3); }
-             | opt_whitespace T_TRUE opt_whitespace { $$ = new LogicalNode(true, $1, $3); }
-             | opt_whitespace T_FALSE opt_whitespace { $$ = new LogicalNode(false, $1, $3); }
-             | error_constant { $$ = $1; }
-             | array_constant { $$ = $1; };
+constant:
+        T_NUMERICAL_CONSTANT { $$ = new NumericLiteralNode<double>($1, "D"); }
+      | T_LONG               { $$ = new NumericLiteralNode<long>($1, "D"); }
+      | T_STRING_CONSTANT    { $$ = new StringNode($1); }
+      | T_TRUE               { $$ = new LogicalNode(true); }
+      | T_FALSE              { $$ = new LogicalNode(false); }
+      | error_constant       { $$ = $1; }
+      | array_constant       { $$ = $1; }
+      ;
 
 error_constant: T_DIV0_ERROR { $$ = new ErrorNode($1); } | T_NA_ERROR { $$ = new ErrorNode($1); } | T_NAME_ERROR { $$ = new ErrorNode($1); } |  T_NULL_ERROR { $$ = new ErrorNode($1); } |  T_NUM_ERROR { $$ = new ErrorNode($1); } |  T_VALUE_ERROR { $$ = new ErrorNode($1); } |  T_GETTING_DATA_ERROR { $$ = new ErrorNode($1); } | T_SPILL_ERROR { $$ = new ErrorNode($1); } | T_CALC_ERROR { $$ = new ErrorNode($1); } | T_BLOCKED_ERROR { $$ = new ErrorNode($1); } | T_BUSY_ERROR { $$ = new ErrorNode($1); } | T_CIRCULAR_ERROR { $$ = new ErrorNode($1); } | T_CONNECT_ERROR { $$ = new ErrorNode($1); } | T_EXTERNAL_ERROR { $$ = new ErrorNode($1); } | T_FIELD_ERROR { $$ = new ErrorNode($1); } | T_PYTHON_ERROR { $$ = new ErrorNode($1); } | T_UNKNOWN_ERROR { $$ = new ErrorNode($1); };
 
-ref_constant: opt_whitespace T_REF_ERROR opt_whitespace { $$ = new ErrorNode($2, $1, $3); }
-    ;
+ref_constant: opt_whitespace T_REF_ERROR opt_whitespace { $$ = new ErrorNode($2, $1, $3); };
 
-array_constant: T_LBRACE opt_whitespace constant_list_rows opt_whitespace T_RBRACE
-        {
-            $$ = new ArrayNode($3, $2, $4);
-        }
-    ;
+array_constant: T_LBRACE opt_whitespace constant_list_rows opt_whitespace T_RBRACE { $$ = new ArrayNode($3, $2, $4); };
 
 constant_list_rows: constant_list_row { $$ = new List<List<ExpressionNode>> { $1 }; }
     | constant_list_rows opt_whitespace T_SEMICOLON opt_whitespace constant_list_row
@@ -346,14 +344,18 @@ R1C1_row: R1C1_row_relative { $$ = $1; } | R1C1_row_absolute { $$ = $1; } | R1C1
 R1C1_cell: R1C1_row R1C1_column { $$ = new R1C1CellNode($1, $2); };
 A1_cell: A1_column A1_row { $$ = new A1CellNode($1, $2); };
 
-cell: R1C1_cell { $$ = $1; } | A1_cell { $$ = $1; };
+cell:
+      R1C1_cell { $$ = $1; }
+    | A1_cell { $$ = $1; }
+    ;
 cell_range :
-           A1_cell T_COLON  A1_cell { $$ = new CellRangeNode<A1CellNode, A1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, $3); }
-           | A1_cell T_COLON  R1C1_cell { $$ = new CellRangeNode<A1CellNode, R1C1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, $3); }
-           | R1C1_cell T_COLON A1_cell  { $$ = new CellRangeNode<R1C1CellNode, A1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, $3); }
-                       | R1C1_cell T_COLON  R1C1_cell { $$ = new CellRangeNode<R1C1CellNode, R1C1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, $3); }
-            | A1_column T_COLON A1_column { $$ = new RangeNode($1, new ColonNode($2, null, null), $3); }
-            | A1_row T_COLON A1_row { $$ = new RangeNode($1, new ColonNode($2, null, null), $3); };
+    A1_cell   T_COLON  A1_cell        { $$ = new CellRangeNode<A1CellNode, A1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
+  | A1_cell   T_COLON  R1C1_cell      { $$ = new CellRangeNode<A1CellNode, R1C1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
+  | R1C1_cell T_COLON  A1_cell        { $$ = new CellRangeNode<R1C1CellNode, A1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
+  | R1C1_cell T_COLON  R1C1_cell      { $$ = new CellRangeNode<R1C1CellNode, R1C1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
+  | A1_column T_COLON  A1_column      { $$ = new RangeNode($1, new ColonNode($2), $3); }
+  | A1_row    T_COLON  A1_row         { $$ = new RangeNode($1, new ColonNode($2), $3); }
+  ;
 
 
 
@@ -538,12 +540,14 @@ workbook_name_piece
     | whitespace { $$ = $1.ToString(); }
     ;
 
-whitespace: T_NEWLINE { $$ = new WhitespaceNode($1); }
-          | T_INTERSECTION { $$ = new WhitespaceNode($1); };
+whitespace:
+      T_NEWLINE      { $$ = new WhitespaceNode($1); }
+    | T_INTERSECTION { $$ = new WhitespaceNode($1); }
+    ;
 opt_whitespace:
-     opt_whitespace whitespace { $1.Add($2); $$ = $1; }
-    | whitespace { $$ = new List<Node>() { $1 }; }
-    | /* empty */ { $$ = new List<Node>(); }
+      opt_whitespace whitespace { $1.Add($2); $$ = $1; }
+    | whitespace                { $$ = new List<Node>() { $1 }; }
+    | /* empty */               { $$ = new List<Node>(); }
     ;
 
 standard_function_name:

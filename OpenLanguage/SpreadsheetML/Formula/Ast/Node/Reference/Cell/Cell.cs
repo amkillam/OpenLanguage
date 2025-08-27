@@ -89,8 +89,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public C Column { get; set; }
         public override int Precedence => Ast.Precedence.Primary;
 
-        public CellNode(R row, C column)
-            : base(null, null)
+        public CellNode(
+            R row,
+            C column,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
         {
             Row = row;
             Column = column;
@@ -160,7 +165,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         where LC : CellNode<LCR, LCRN, LCC, LCCN>
         where RC : CellNode<RCR, RCRN, RCC, RCCN>
     {
-        public CellRangeNode(LC left, RC right)
-            : base(left, new ColonNode(":"), right) { }
+        public CellRangeNode(
+            LC left,
+            ColonNode sep,
+            RC right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, sep, right, leadingWhitespace, trailingWhitespace) { }
     }
 }

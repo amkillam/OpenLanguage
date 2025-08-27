@@ -32,20 +32,6 @@ var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
 - `Parse(string formulaText)` - Parses a formula string and returns a Formula object
 - `TryParse(string formulaText)` - Attempts to parse, returns null on failure
 
-### Formula
-
-Represents a parsed formula with its original text and AST.
-
-```csharp
-public class Formula
-{
-    public string FormulaText { get; }      // Original formula text
-    public Node AstRoot { get; }            // Root node of the AST
-
-    public override string ToString()       // Reconstructs formula from AST
-}
-```
-
 ## Parser Implementation
 
 The formula parser is built using GPLEX/GPPG tools:

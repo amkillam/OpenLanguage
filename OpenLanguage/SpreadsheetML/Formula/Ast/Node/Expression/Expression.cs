@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +32,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         /// <summary>
         /// Gets the operator precedence for this expression node.
         /// </summary>
-        public abstract int Precedence { get; }
+        public abstract Int32 Precedence { get; }
 
         /// <summary>
         /// Renders the core content of the node without its own leading/trailing whitespace.
@@ -43,8 +44,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         /// Converts the AST node back into its string representation, including all captured whitespace.
         /// </summary>
         public sealed override string ToString() =>
-            string.Concat(LeadingWhitespace.Select(w => w.ToString()))
+            string.Concat(LeadingWhitespace.Select((Node w) => w.ToString()))
             + ToRawString()
-            + string.Concat(TrailingWhitespace.Select(w => w.ToString()));
+            + string.Concat(TrailingWhitespace.Select((Node w) => w.ToString()));
     }
 }

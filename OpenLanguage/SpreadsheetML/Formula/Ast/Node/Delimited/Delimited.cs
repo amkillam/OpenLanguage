@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -76,16 +73,28 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         where L : ExpressionNode
         where R : ExpressionNode
     {
-        public ColonDelimitedNodes(L left, ColonNode delimiter, R right)
-            : base(left, delimiter, right) { }
+        public ColonDelimitedNodes(
+            L left,
+            ColonNode delimiter,
+            R right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, delimiter, right, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class CommaDelimitedNodes<L, R> : CharacterDelimitedExpressionNodes<L, CommaNode, R>
         where L : ExpressionNode
         where R : ExpressionNode
     {
-        public CommaDelimitedNodes(L left, CommaNode delimiter, R right)
-            : base(left, delimiter, right) { }
+        public CommaDelimitedNodes(
+            L left,
+            CommaNode delimiter,
+            R right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, delimiter, right, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class SemicolonDelimitedNodes<L, R>
@@ -93,7 +102,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         where L : ExpressionNode
         where R : ExpressionNode
     {
-        public SemicolonDelimitedNodes(L left, SemicolonNode delimiter, R right)
-            : base(left, delimiter, right) { }
+        public SemicolonDelimitedNodes(
+            L left,
+            SemicolonNode delimiter,
+            R right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, delimiter, right, leadingWhitespace, trailingWhitespace) { }
     }
 }
