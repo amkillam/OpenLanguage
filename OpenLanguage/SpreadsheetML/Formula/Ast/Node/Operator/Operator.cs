@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
@@ -9,34 +8,47 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public ExpressionNode Operator { get; set; }
 
         protected UnaryOperatorNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
-            Operator = @operator;
+            Operator = op;
             Operand = operand;
         }
 
         public override IEnumerable<O> Children<O>()
         {
-            if (Operand is O o)
+            if (Operator is O operatorMatch)
             {
-                yield return o;
+                yield return operatorMatch;
             }
+            if (Operand is O operandMatch)
+            {
+                yield return operandMatch;
+            }
+            yield break;
         }
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
-            if (replacement is ExpressionNode expr && index == 0)
+            ExpressionNode? current = null;
+            if (replacement is ExpressionNode expr)
             {
-                ExpressionNode current = Operand;
-                Operand = expr;
-                return current;
+                if (index == 0)
+                {
+                    current = Operator;
+                    Operator = expr;
+                }
+                else if (index == 1)
+                {
+                    current = Operand;
+                    Operand = expr;
+                }
             }
-            return null;
+            return current;
         }
 
         public override string ToRawString() => Operator.ToString() + Operand.ToString();
@@ -50,7 +62,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         protected BinaryOperatorNode(
             ExpressionNode left,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode right,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -58,7 +70,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWhitespace, trailingWhitespace)
         {
             Left = left;
-            Operator = @operator;
+            Operator = op;
             Right = right;
         }
 
@@ -109,12 +121,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class UnaryPlusNode : UnaryOperatorNode
     {
         public UnaryPlusNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(@operator, operand, lws, tws) { }
+            : base(op, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
     }
@@ -122,27 +134,59 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class DynamicNode : UnaryOperatorNode
     {
         public DynamicNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(@operator, operand, lws, tws) { }
+            : base(op, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Operand is O operandMatch)
+            {
+                yield return operandMatch;
+            }
+            if (Operator is O operatorMatch)
+            {
+                yield return operatorMatch;
+            }
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            ExpressionNode? current = null;
+            if (replacement is ExpressionNode expr)
+            {
+                if (index == 0)
+                {
+                    current = Operand;
+                    Operand = expr;
+                }
+                else if (index == 1)
+                {
+                    current = Operator;
+                    Operator = expr;
+                }
+            }
+            return current;
+        }
     }
 
     public class UnaryMinusNode : UnaryOperatorNode
     {
         public UnaryMinusNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(@operator, operand, lws, tws) { }
+            : base(op, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
     }
@@ -150,29 +194,61 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class PercentNode : UnaryOperatorNode
     {
         public PercentNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(@operator, operand, lws, tws) { }
+            : base(op, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Percent;
 
         // Percent is a suffix operator: render operand then operator
         public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Operand is O operandMatch)
+            {
+                yield return operandMatch;
+            }
+            if (Operator is O operatorMatch)
+            {
+                yield return operatorMatch;
+            }
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            ExpressionNode? current = null;
+            if (replacement is ExpressionNode expr)
+            {
+                if (index == 0)
+                {
+                    current = Operand;
+                    Operand = expr;
+                }
+                else if (index == 1)
+                {
+                    current = Operator;
+                    Operator = expr;
+                }
+            }
+            return current;
+        }
     }
 
     public class AddNode : BinaryOperatorNode
     {
         public AddNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Additive;
     }
@@ -181,12 +257,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public SubtractNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Additive;
     }
@@ -195,12 +271,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public MultiplyNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Multiplicative;
     }
@@ -209,12 +285,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public DivideNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Multiplicative;
     }
@@ -223,12 +299,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public PowerNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Power;
     }
@@ -237,12 +313,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public ConcatenateNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Concat;
     }
@@ -251,12 +327,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public EqualNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -265,12 +341,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public NotEqualNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -279,12 +355,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public LessThanNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -293,12 +369,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public LessThanOrEqualNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -307,12 +383,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public GreaterThanNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -321,12 +397,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public GreaterThanOrEqualNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Comparison;
     }
@@ -335,12 +411,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public RangeNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Range;
     }
@@ -349,12 +425,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public IntersectionNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Intersection;
     }
@@ -362,43 +438,73 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class ImplicitIntersectionNode : UnaryOperatorNode
     {
         public ImplicitIntersectionNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(@operator, operand, leadingWhitespace, trailingWhitespace) { }
+            : base(op, operand, leadingWhitespace, trailingWhitespace) { }
 
         public override int Precedence => Ast.Precedence.Unary;
-
-        public override string ToRawString() => Operator.ToString() + Operand.ToString();
     }
 
     public class AtSuffixNode : UnaryOperatorNode
     {
         public AtSuffixNode(
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode operand,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(@operator, operand, lws, tws) { }
+            : base(op, operand, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Unary;
 
         public override string ToRawString() => Operand.ToString() + Operator.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Operand is O operandMatch)
+            {
+                yield return operandMatch;
+            }
+            if (Operator is O operatorMatch)
+            {
+                yield return operatorMatch;
+            }
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            ExpressionNode? current = null;
+            if (replacement is ExpressionNode expr)
+            {
+                if (index == 0)
+                {
+                    current = Operand;
+                    Operand = expr;
+                }
+                else if (index == 1)
+                {
+                    current = Operator;
+                    Operator = expr;
+                }
+            }
+            return current;
+        }
     }
 
     public class UnionNode : BinaryOperatorNode
     {
         public UnionNode(
             ExpressionNode l,
-            ExpressionNode @operator,
+            ExpressionNode op,
             ExpressionNode r,
             List<Node>? lws = null,
             List<Node>? tws = null
         )
-            : base(l, @operator, r, lws, tws) { }
+            : base(l, op, r, lws, tws) { }
 
         public override int Precedence => Ast.Precedence.Union;
     }

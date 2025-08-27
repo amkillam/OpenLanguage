@@ -10,17 +10,16 @@ This document demonstrates how to use the OpenLanguage SpreadsheetML Formula par
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Parse a simple arithmetic formula
-Formula formula = FormulaParser.Parse("=1+2*3");
-Console.WriteLine($"Original: {formula.FormulaText}");
-Console.WriteLine($"Parsed AST: {formula.AstRoot}");
+Ast.Node formula = FormulaParser.Parse("=1+2*3");
+Console.WriteLine($"Parsed AST: {formula}");
 
 // Parse cell references
-Formula cellRef = FormulaParser.Parse("=A1+B2");
-Console.WriteLine($"Cell reference formula: {cellRef.AstRoot}");
+Ast.Node cellRef = FormulaParser.Parse("=A1+B2");
+Console.WriteLine($"Cell reference formula: {cellRef}");
 
 // Parse function calls
-Formula func = FormulaParser.Parse("=SUM(A1:A10)");
-Console.WriteLine($"Function call: {func.AstRoot}");
+Ast.Node func = FormulaParser.Parse("=SUM(A1:A10)");
+Console.WriteLine($"Function call: {func}");
 ```
 
 ### Safe Parsing with TryParse
@@ -37,10 +36,10 @@ string[] testFormulas = {
 
 foreach (string formulaText in testFormulas)
 {
-    Formula? result = FormulaParser.TryParse(formulaText);
+    Ast.Node? result = FormulaParser.TryParse(formulaText);
     if (result != null)
     {
-        Console.WriteLine($"✓ Successfully parsed: {result.AstRoot}");
+        Console.WriteLine($"✓ Successfully parsed: {result}");
     }
     else
     {
@@ -57,15 +56,15 @@ foreach (string formulaText in testFormulas)
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Basic arithmetic
-Formula addition = FormulaParser.Parse("=10+5");
-Formula subtraction = FormulaParser.Parse("=10-5");
-Formula multiplication = FormulaParser.Parse("=10*5");
-Formula division = FormulaParser.Parse("=10/5");
-Formula exponentiation = FormulaParser.Parse("=2^3");
+Ast.Node addition = FormulaParser.Parse("=10+5");
+Ast.Node subtraction = FormulaParser.Parse("=10-5");
+Ast.Node multiplication = FormulaParser.Parse("=10*5");
+Ast.Node division = FormulaParser.Parse("=10/5");
+Ast.Node exponentiation = FormulaParser.Parse("=2^3");
 
 // Complex expressions with precedence
-Formula complex = FormulaParser.Parse("=(1+2)*3-4/2");
-Console.WriteLine($"Complex expression: {complex.AstRoot}");
+Ast.Node complex = FormulaParser.Parse("=(1+2)*3-4/2");
+Console.WriteLine($"Complex expression: {complex}");
 ```
 
 ### Cell References
@@ -74,18 +73,18 @@ Console.WriteLine($"Complex expression: {complex.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Relative references
-Formula relative = FormulaParser.Parse("=A1+B2");
+Ast.Node relative = FormulaParser.Parse("=A1+B2");
 
 // Absolute references
-Formula absolute = FormulaParser.Parse("=$A$1+$B$2");
+Ast.Node absolute = FormulaParser.Parse("=$A$1+$B$2");
 
 // Mixed references
-Formula mixed = FormulaParser.Parse("=$A1+B$2");
+Ast.Node mixed = FormulaParser.Parse("=$A1+B$2");
 
 // Range references
-Formula range = FormulaParser.Parse("=SUM(A1:B10)");
+Ast.Node range = FormulaParser.Parse("=SUM(A1:B10)");
 
-Console.WriteLine($"Range formula: {range.AstRoot}");
+Console.WriteLine($"Range formula: {range}");
 ```
 
 ### Function Calls
@@ -94,17 +93,17 @@ Console.WriteLine($"Range formula: {range.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Simple functions
-Formula sum = FormulaParser.Parse("=SUM(1,2,3,4,5)");
-Formula average = FormulaParser.Parse("=AVERAGE(A1:A10)");
-Formula count = FormulaParser.Parse("=COUNT(A1:A10)");
+Ast.Node sum = FormulaParser.Parse("=SUM(1,2,3,4,5)");
+Ast.Node average = FormulaParser.Parse("=AVERAGE(A1:A10)");
+Ast.Node count = FormulaParser.Parse("=COUNT(A1:A10)");
 
 // Nested functions
-Formula nested = FormulaParser.Parse("=IF(SUM(A1:A10)>0,AVERAGE(A1:A10),0)");
-Console.WriteLine($"Nested function: {nested.AstRoot}");
+Ast.Node nested = FormulaParser.Parse("=IF(SUM(A1:A10)>0,AVERAGE(A1:A10),0)");
+Console.WriteLine($"Nested function: {nested}");
 
 // Functions with string literals
-Formula vlookup = FormulaParser.Parse("=VLOOKUP(A1,Sheet2!A:B,2,FALSE)");
-Console.WriteLine($"VLOOKUP: {vlookup.AstRoot}");
+Ast.Node vlookup = FormulaParser.Parse("=VLOOKUP(A1,Sheet2!A:B,2,FALSE)");
+Console.WriteLine($"VLOOKUP: {vlookup}");
 ```
 
 ### Array Literals
@@ -113,15 +112,15 @@ Console.WriteLine($"VLOOKUP: {vlookup.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Horizontal array
-Formula horizontalArray = FormulaParser.Parse("={1,2,3,4}");
+Ast.Node horizontalArray = FormulaParser.Parse("={1,2,3,4}");
 
 // Vertical array
-Formula verticalArray = FormulaParser.Parse("={1;2;3;4}");
+Ast.Node verticalArray = FormulaParser.Parse("={1;2;3;4}");
 
 // 2D array
-Formula twoDArray = FormulaParser.Parse("={"Name","Age";"John",25;"Jane",30}");
+Ast.Node twoDArray = FormulaParser.Parse("={"Name","Age";"John",25;"Jane",30}");
 
-Console.WriteLine($"2D Array: {twoDArray.AstRoot}");
+Console.WriteLine($"2D Array: {twoDArray}");
 ```
 
 ### Logical Operations
@@ -130,16 +129,16 @@ Console.WriteLine($"2D Array: {twoDArray.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Comparison operations
-Formula comparison = FormulaParser.Parse("=A1>B1");
-Formula equality = FormulaParser.Parse("=A1=B1");
-Formula inequality = FormulaParser.Parse("=A1<>B1");
+Ast.Node comparison = FormulaParser.Parse("=A1>B1");
+Ast.Node equality = FormulaParser.Parse("=A1=B1");
+Ast.Node inequality = FormulaParser.Parse("=A1<>B1");
 
 // Logical functions
-Formula ifFunction = FormulaParser.Parse("=IF(A1>0,"Positive","Non-positive")");
-Formula and = FormulaParser.Parse("=AND(A1>0,B1<10)");
-Formula or = FormulaParser.Parse("=OR(A1>100,B1<0)");
+Ast.Node ifFunction = FormulaParser.Parse("=IF(A1>0,"Positive","Non-positive")");
+Ast.Node and = FormulaParser.Parse("=AND(A1>0,B1<10)");
+Ast.Node or = FormulaParser.Parse("=OR(A1>100,B1<0)");
 
-Console.WriteLine($"IF function: {ifFunction.AstRoot}");
+Console.WriteLine($"IF function: {ifFunction}");
 ```
 
 ## Advanced Examples
@@ -150,10 +149,10 @@ Console.WriteLine($"IF function: {ifFunction.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Named range references
-Formula namedRange = FormulaParser.Parse("=SUM(SalesData)");
-Formula namedRangeCalc = FormulaParser.Parse("=TotalRevenue/TotalCosts");
+Ast.Node namedRange = FormulaParser.Parse("=SUM(SalesData)");
+Ast.Node namedRangeCalc = FormulaParser.Parse("=TotalRevenue/TotalCosts");
 
-Console.WriteLine($"Named range calculation: {namedRangeCalc.AstRoot}");
+Console.WriteLine($"Named range calculation: {namedRangeCalc}");
 ```
 
 ### Table References (Excel Tables)
@@ -162,10 +161,10 @@ Console.WriteLine($"Named range calculation: {namedRangeCalc.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Structured table references
-Formula tableRef = FormulaParser.Parse("=Table1[@Column1]");
-Formula tableSum = FormulaParser.Parse("=SUM(Table1[Revenue])");
+Ast.Node tableRef = FormulaParser.Parse("=Table1[@Column1]");
+Ast.Node tableSum = FormulaParser.Parse("=SUM(Table1[Revenue])");
 
-Console.WriteLine($"Table reference: {tableRef.AstRoot}");
+Console.WriteLine($"Table reference: {tableRef}");
 ```
 
 ### Error Values
@@ -174,23 +173,23 @@ Console.WriteLine($"Table reference: {tableRef.AstRoot}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Excel error values
-Formula divByZero = FormulaParser.Parse("=#DIV/0!");
-Formula naError = FormulaParser.Parse("=#N/A");
-Formula valueError = FormulaParser.Parse("=#VALUE!");
+Ast.Node divByZero = FormulaParser.Parse("=#DIV/0!");
+Ast.Node naError = FormulaParser.Parse("=#N/A");
+Ast.Node valueError = FormulaParser.Parse("=#VALUE!");
 
-Console.WriteLine($"Error value: {valueError.AstRoot}");
+Console.WriteLine($"Error value: {valueError}");
 ```
 
 ## Modifying Parsed Formulas
 
-### Accessing AST Nodes
+### Accessing AST Ast.Nodes
 
 ```csharp
 using OpenLanguage.SpreadsheetML.Formula;
 using OpenLanguage.SpreadsheetML.Formula.Ast;
 
-Formula formula = FormulaParser.Parse("=A1+B1");
-Node rootNode = formula.AstRoot;
+Ast.Node formula = FormulaParser.Parse("=A1+B1");
+Ast.Node rootNode = formula;
 
 // The AST can be traversed and modified
 // Note: Specific node manipulation depends on the AST structure
@@ -204,16 +203,15 @@ Console.WriteLine($"Reconstructed: {rootNode}");
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Parse a formula
-Formula original = FormulaParser.Parse("=SUM(A1:A10)/COUNT(A1:A10)");
+Ast.Node original = FormulaParser.Parse("=SUM(A1:A10)/COUNT(A1:A10)");
 
 // The ToString() method reconstructs the formula from the AST
 string reconstructed = original.ToString();
-Console.WriteLine($"Original: {original.FormulaText}");
 Console.WriteLine($"Reconstructed: {reconstructed}");
 
 // Verify they're equivalent
-Formula reparsed = FormulaParser.Parse(reconstructed);
-Console.WriteLine($"Reparsed successfully: {reparsed.AstRoot}");
+Ast.Node reparsed = FormulaParser.Parse(reconstructed);
+Console.WriteLine($"Reparsed successfully: {reparsed}");
 ```
 
 ## Error Handling
@@ -235,8 +233,8 @@ foreach (string formula in invalidFormulas)
 {
     try
     {
-        Formula result = FormulaParser.Parse(formula);
-        Console.WriteLine($"Unexpectedly succeeded: {result.AstRoot}");
+        Ast.Node result = FormulaParser.Parse(formula);
+        Console.WriteLine($"Unexpectedly succeeded: {result}");
     }
     catch (InvalidOperationException ex)
     {
@@ -269,7 +267,7 @@ Stopwatch sw = Stopwatch.StartNew();
 
 foreach (string formulaText in formulas)
 {
-    Formula? result = FormulaParser.TryParse(formulaText);
+    Ast.Node? result = FormulaParser.TryParse(formulaText);
     if (result != null)
     {
         // Process the parsed formula

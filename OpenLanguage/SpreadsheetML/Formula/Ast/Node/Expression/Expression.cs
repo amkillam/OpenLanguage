@@ -42,11 +42,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         /// <summary>
         /// Converts the AST node back into its string representation, including all captured whitespace.
         /// </summary>
-        public sealed override string ToString()
-        {
-            string leadingWs = string.Concat(LeadingWhitespace.Select(w => w.ToString()));
-            string trailingWs = string.Concat(TrailingWhitespace.Select(w => w.ToString()));
-            return $"{leadingWs}{ToRawString()}{trailingWs}";
-        }
+        public sealed override string ToString() =>
+            string.Concat(LeadingWhitespace.Select(w => w.ToString()))
+            + ToRawString()
+            + string.Concat(TrailingWhitespace.Select(w => w.ToString()));
     }
 }

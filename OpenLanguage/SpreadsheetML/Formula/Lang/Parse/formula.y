@@ -141,7 +141,7 @@ public BangReferenceNode bangReferenceVal;
 %type <expressionVal>     external_cell_reference bang_reference
 %type <expressionVal>     function_call_head  argument
 %type <argParseResultVal> argument_list
-%type <expressionVal> Standard_function_name future_function_name worksheet_function_name macro_function_name command_function_name
+%type <expressionVal> standard_function_name future_function_name worksheet_function_name macro_function_name command_function_name
 %type <nodeListVal>       opt_whitespace
 %type <expressionVal>     opt_expression opt_solo_function
 %type <expressionVal>     keyword_list
@@ -232,7 +232,7 @@ expression:
     | expression T_INTERSECTION expression { $$ = new IntersectionNode($1, new IntersectionOperatorLiteralNode($2), $3); }
     | T_AT_SYMBOL expression %prec UMINUS { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
     | primary { $$ = $1; }
-    | opt_whitespace expression opt_whitespace { $$ = $2; $$.LeadingWhitespace.AddRange($1); $$.TrailingWhitespace.AddRange($3); }
+    | opt_whitespace expression opt_whitespace { $$ = $2; $$.LeadingWhitespace.InsertRange(0, $1); $$.TrailingWhitespace.AddRange($3); }
     ;
 
 primary: constant { $$ = $1; }
@@ -247,7 +247,7 @@ primary: constant { $$ = $1; }
     // | pivot_items { $$ = $1; }
     ;
 
-function_call_head: opt_whitespace Standard_function_name opt_whitespace { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
+function_call_head: opt_whitespace standard_function_name opt_whitespace { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
     | opt_whitespace future_function_name opt_whitespace { $$ = new BuiltInFutureFunctionNode($2, $1, $3); }
     | opt_whitespace macro_function_name opt_whitespace { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
     | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
@@ -264,8 +264,8 @@ function_call: opt_whitespace function_call_head T_LPAREN argument_list  T_RPARE
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
         {
             BuiltInWorksheetFunctionNode pyNode = new PyWorksheetFunctionNode($1, $4);
-            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, $6, $8);
-            NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, $10, $12);
+            NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, "D", $6, $8);
+            NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, "D", $10, $12);
 
             ArgumentParseResult result = $13;
             result.Arguments.Insert(0, arg2);
@@ -293,8 +293,8 @@ argument: expression
 
 
 
-constant: opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace { $$ = new NumericLiteralNode<double>($2, $1, $3); }
-             | opt_whitespace T_LONG opt_whitespace { $$ = new NumericLiteralNode<long>($2, $1, $3); }
+constant: opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace { $$ = new NumericLiteralNode<double>($2, "D", $1, $3); }
+             | opt_whitespace T_LONG opt_whitespace { $$ = new NumericLiteralNode<long>($2, "D", $1, $3); }
              | opt_whitespace T_STRING_CONSTANT opt_whitespace { $$ = new StringNode($2, $1, $3); }
              | opt_whitespace T_TRUE opt_whitespace { $$ = new LogicalNode(true, $1, $3); }
              | opt_whitespace T_FALSE opt_whitespace { $$ = new LogicalNode(false, $1, $3); }
@@ -337,8 +337,6 @@ constant_list_row: constant { $$ = new List<ExpressionNode> { $1 }; }
 cell_reference : external_cell_reference { $$ = $1; } | cell_range { $$ = $1; } | cell { $$ = $1; };
 name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
     {
-        // This logic is moved from the old function_call rule.
-        // $2 is a string, we need to wrap it in a NameNode.
         UserDefinedFunctionNode head = new UserDefinedFunctionNode(new NameNode($2), $1, $3);
         ArgumentParseResult result = $6;
 
@@ -416,10 +414,10 @@ cell_or_ref_constant : cell { $$ = $1; } | cell_range { $$ = $1; } | name { $$ =
 
 // pivot_item_index
 //     : name { $$ = $1; }
-//     | opt_whitespace T_PLUS opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new UnaryPlusNode(new NumericLiteralNode<long>($4), $3, $1, $5)); }
-//     | opt_whitespace T_MINUS opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new UnaryMinusNode(new NumericLiteralNode<long>($4), $3, $1, $5)); }
+//     | opt_whitespace T_PLUS opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new UnaryPlusNode(new NumericLiteralNode<long>($4, "D"), $3, $1, $5)); }
+//     | opt_whitespace T_MINUS opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new UnaryMinusNode(new NumericLiteralNode<long>($4, "D"), $3, $1, $5)); }
 //
-//     | opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new NumericLiteralNode<long>($2, $1, $3)); }
+//     | opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new NumericLiteralNode<long>($2, "D", $1, $3)); }
 //     ;
 
 opt_name:
@@ -574,7 +572,7 @@ opt_whitespace:
     | /* empty */ { $$ = new List<Node>(); }
     ;
 
-Standard_function_name:
+standard_function_name:
       T_FUNC_ABS { $$ = new AbsStandardFunctionNode(); }
     | T_FUNC_ACCRINT { $$ = new AccrIntStandardFunctionNode(); }
     | T_FUNC_ACCRINTM { $$ = new AccrIntMStandardFunctionNode(); }

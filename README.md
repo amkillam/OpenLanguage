@@ -54,8 +54,7 @@ using OpenLanguage.SpreadsheetML.Formula;
 var formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
 
 // Access the AST
-Console.WriteLine($"Original: {formula.FormulaText}");
-Console.WriteLine($"Reconstructed: {formula.AstRoot.ToString()}");
+Console.WriteLine($"Reconstructed: {formula.ToString()}");
 
 // Try parsing with error handling
 var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");

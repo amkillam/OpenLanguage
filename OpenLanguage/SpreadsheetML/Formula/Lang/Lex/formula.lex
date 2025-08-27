@@ -88,7 +88,9 @@
     "//".*             { /* skip single-line comment */ }
     "/\*"              { BEGIN(IN_COMMENT); }
 
-    [\r\n]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; }
+    \r\n             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // CRLF - usually seen as its own distinct newline sequence
+    [\n]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Line feed
+    [\r]             { yylval.stringVal = yytext; return (int)Tokens.T_NEWLINE; } // Carriage return
     [\u2000-\u200A]    { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // General punctuation spaces: en quad to hair space
     [\u202F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Narrow no-break space
     [\u205F]           { yylval.stringVal = yytext; return (int)Tokens.T_INTERSECTION; } // Medium mathematical space
@@ -110,7 +112,7 @@
 
     [0-9]+[A-Za-z_][A-Za-z0-9_]*                         { throw new System.FormatException("Invalid number format"); }
     [0-9]+\.[0-9]+\.[0-9]+                                { throw new System.FormatException("Invalid number format with multiple decimal points"); } // Invalid: 1.2.3
-    [0-9]+[Ee][\+\-][\s\r\n\t ]*                            { throw new System.FormatException("Incomplete scientific notation with sign"); }
+    [0-9]+[Ee][\+\-][^0-9]+                            { throw new System.FormatException("Incomplete scientific notation with sign"); }
     [0-9]+[Ee][\+\-]?([0-9]+)?[Ee][\+\-]?([0-9]+)?             { throw new System.FormatException("Invalid scientific notation with multiple exponents"); } // Invalid: 1E2E3
     \.[Ee][0-9]+                                         { throw new System.FormatException("Invalid decimal point without digits"); } // Invalid: .E5
     ([0-9]+(\.[0-9]*)|\.[0-9]+)([Ee][\+\-]?([0-9]+))?    { yylval.stringVal = yytext; return (int)Tokens.T_NUMERICAL_CONSTANT; }

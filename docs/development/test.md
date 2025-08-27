@@ -111,7 +111,7 @@ public void Parse_ValidFormula_ReturnsCorrectASTType(string formula, Type expect
     var result = FormulaParser.Parse(formula);
 
     // Assert
-    Assert.IsType(expectedType, result.AstRoot);
+    Assert.IsType(expectedType, result);
 }
 ```
 
@@ -127,10 +127,10 @@ Verify parsing and reconstruction fidelity:
 public void TestParseFunctionCall(string formulaString)
 {
     // Act
-    Formula formula = FormulaParser.Parse(formulaString);
+    Node formula = FormulaParser.Parse(formulaString);
 
     // Assert - Round-trip test
-    Assert.Equal(formulaString, formula.AstRoot.ToString());
+    Assert.Equal(formulaString, formula.ToString());
 }
 ```
 
@@ -152,8 +152,8 @@ The formula parser tests are organized into several categories:
 [InlineData("MyNamedRange")]           // Named range
 public void TestParseLiteralAndIdentifier(string formulaString)
 {
-    Formula formula = FormulaParser.Parse(formulaString);
-    Assert.Equal(formulaString, formula.AstRoot.ToString());
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
 }
 ```
 
@@ -170,8 +170,8 @@ public void TestParseLiteralAndIdentifier(string formulaString)
 [InlineData("A1:B2,C3:D4")]            // Range union
 public void TestParseBinaryOperation(string formulaString)
 {
-    Formula formula = FormulaParser.Parse(formulaString);
-    Assert.Equal(formulaString, formula.AstRoot.ToString());
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
 }
 ```
 
@@ -184,8 +184,8 @@ public void TestParseBinaryOperation(string formulaString)
 [InlineData("-A1:B2")]                 // Negative range
 public void TestParseUnaryOperation(string formulaString)
 {
-    Formula formula = FormulaParser.Parse(formulaString);
-    Assert.Equal(formulaString, formula.AstRoot.ToString());
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
 }
 ```
 
@@ -199,8 +199,8 @@ public void TestParseUnaryOperation(string formulaString)
 [InlineData("INDIRECT("A" & ROW())")]
 public void TestParseFunctionCall(string formulaString)
 {
-    Formula formula = FormulaParser.Parse(formulaString);
-    Assert.Equal(formulaString, formula.AstRoot.ToString());
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
 }
 ```
 
@@ -433,8 +433,8 @@ public void Parse_SimpleAddition_CreatesCorrectAST()
     var result = FormulaParser.Parse(formula);
 
     // Assert
-    Assert.IsType<BinaryOperatorNode>(result.AstRoot);
-    var binOp = (BinaryOperatorNode)result.AstRoot;
+    Assert.IsType<BinaryOperatorNode>(result);
+    var binOp = (BinaryOperatorNode)result;
     Assert.Equal("+", binOp.Operator);
 }
 ```
@@ -482,7 +482,7 @@ public static IEnumerable<object[]> FormulaTestCases()
 public void Parse_VariousFormulas_ReturnsCorrectASTType(string formula, Type expectedType)
 {
     var result = FormulaParser.Parse(formula);
-    Assert.IsType(expectedType, result.AstRoot);
+    Assert.IsType(expectedType, result);
 }
 ```
 
@@ -634,12 +634,12 @@ public void Parse_ComplexFormula_DebugExample()
 
     // Debug assertions
     Assert.NotNull(result);
-    Assert.NotNull(result.AstRoot);
+    Assert.NotNull(result);
 
     // Main assertion
-    Assert.IsType<BinaryOperatorNode>(result.AstRoot);
+    Assert.IsType<BinaryOperatorNode>(result);
 
-    var binOp = (BinaryOperatorNode)result.AstRoot;
+    var binOp = (BinaryOperatorNode)result;
     Assert.Equal("+", binOp.Operator);
 
     // Verify operands

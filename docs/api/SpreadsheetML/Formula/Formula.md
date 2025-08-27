@@ -136,7 +136,7 @@ The parsed AST can be modified and reconstructed:
 var formula = FormulaParser.Parse("=A1+B1");
 
 // Access the AST
-var astRoot = formula.AstRoot;
+var astRoot = formula;
 
 // Modify the AST (implementation-specific)
 // ...
@@ -163,7 +163,6 @@ using OpenLanguage.SpreadsheetML.Formula;
 
 // Parse a simple formula
 var formula = FormulaParser.Parse("=1+2*3");
-Console.WriteLine($"Original: {formula.FormulaText}");
 Console.WriteLine($"Reconstructed: {formula.ToString()}");
 
 // Parse with functions
@@ -193,7 +192,7 @@ else
 var formula = FormulaParser.Parse("=A1+B1");
 
 // The AstRoot property gives access to the parsed tree structure
-var root = formula.AstRoot;
+var root = formula;
 
 // Convert back to string representation
 var reconstructed = root.ToString();

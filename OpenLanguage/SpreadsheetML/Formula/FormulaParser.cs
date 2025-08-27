@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 
 namespace OpenLanguage.SpreadsheetML.Formula
 {
@@ -8,33 +7,14 @@ namespace OpenLanguage.SpreadsheetML.Formula
     /// </summary>
     public static class FormulaParser
     {
-        public static Formula Parse(string formulaText)
+        public static Ast.Node Parse(string formulaBody)
         {
-            if (string.IsNullOrWhiteSpace(formulaText))
+            if (string.IsNullOrWhiteSpace(formulaBody))
             {
                 throw new System.ArgumentException(
                     "Formula text cannot be null or empty.",
-                    nameof(formulaText)
+                    nameof(formulaBody)
                 );
-            }
-
-            int leadingEqualsCount = 0;
-            if (
-                !string.IsNullOrEmpty(formulaText)
-                && formulaText.Length > 0
-                && formulaText[0] == '='
-            )
-            {
-                // Only strip the initial formula indicator '='. Leave any additional leading '='
-                // characters in the input so the lexer/parser can recognise them as tokens.
-                leadingEqualsCount = 1;
-            }
-
-            string formulaBody = formulaText;
-            if (leadingEqualsCount > 0)
-            {
-                // Strip exactly one leading '=' before parsing
-                formulaBody = formulaText.Substring(leadingEqualsCount);
             }
 
             OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner =
@@ -65,15 +45,10 @@ namespace OpenLanguage.SpreadsheetML.Formula
                 );
             }
 
-            Ast.Node astRoot = parser.root;
-            // We only stripped the initial formula marker '=' above.
-            // Any additional '=' characters were left in formulaBody and parsed normally,
-            // therefore there is nothing to reinsert here.
-
-            return new Formula(formulaText, astRoot);
+            return parser.root;
         }
 
-        public static Formula? TryParse(string formulaText)
+        public static Ast.Node? TryParse(string formulaText)
         {
             try
             {

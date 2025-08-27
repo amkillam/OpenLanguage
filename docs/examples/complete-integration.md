@@ -359,7 +359,7 @@ public class DocumentTemplate
 
         try
         {
-            Formula personalizedFormula = FormulaParser.Parse(formulaText);
+            Ast.Node personalizedFormula = FormulaParser.Parse(formulaText);
             return $"Formula: {personalizedFormula} (Original: {formula})";
         }
         catch
@@ -521,16 +521,16 @@ public static class AdvancedFeatures
         {
             try
             {
-                Formula formula = FormulaParser.Parse(formulaText);
-                Console.WriteLine($"✓ Parsed: {formula.AstRoot}");
+                Ast.Node formula = FormulaParser.Parse(formulaText);
+                Console.WriteLine($"✓ Parsed: {formula}");
 
                 // Demonstrate formula reconstruction
                 string reconstructed = formula.ToString();
                 Console.WriteLine($"  Reconstructed: {reconstructed}");
 
                 // Verify reconstruction by re-parsing
-                Formula reparsed = FormulaParser.Parse(reconstructed);
-                Console.WriteLine($"  Re-parsed successfully: {reparsed.AstRoot}");
+                Ast.Node reparsed = FormulaParser.Parse(reconstructed);
+                Console.WriteLine($"  Re-parsed successfully: {reparsed}");
             }
             catch (Exception ex)
             {

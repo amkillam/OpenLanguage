@@ -18,10 +18,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string expectedAstString
         )
         {
-            Formula formula = FormulaParser.Parse(input);
+            Ast.Node formula = FormulaParser.Parse(input);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(expectedAstString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(expectedAstString, formula.ToString());
         }
 
         [Theory]
@@ -35,12 +35,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string expectedRight
         )
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
-            Assert.Equal(expectedLeft, ((Ast.BinaryOperatorNode)formula.AstRoot).Left.ToString());
-            Assert.Equal(expectedRight, ((Ast.BinaryOperatorNode)formula.AstRoot).Right.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
+            Assert.Equal(expectedLeft, ((Ast.BinaryOperatorNode)formula).Left.ToString());
+            Assert.Equal(expectedRight, ((Ast.BinaryOperatorNode)formula).Right.ToString());
             // Additional verification would require access to AST structure
         }
 
@@ -55,12 +55,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             int expectedArgCount
         )
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
-            Assert.NotNull(formula.AstRoot);
-            Ast.FunctionCallNode functionNode = (Ast.FunctionCallNode)formula.AstRoot;
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
+            Assert.NotNull(formula);
+            Ast.FunctionCallNode functionNode = (Ast.FunctionCallNode)formula;
             Assert.Equal(expectedArgCount, functionNode.Arguments.Count);
         }
 
@@ -71,10 +71,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("IFNA(VLOOKUP(A1,B:C,2,0),\"Not Found\")")] // NA handling function
         public void Parse_ErrorHandlingFunctions_ReturnsCorrectAST(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -84,10 +84,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("$XFD$1048576")] // Maximum absolute reference
         public void Parse_MaximumRangeReferences_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -99,10 +99,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("-2147483648")] // Minimum int32
         public void Parse_ExtremeNumericValues_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -113,10 +113,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("\"Unicode: \u03B1\u03B2\u03B3\"")] // Unicode string
         public void Parse_ComplexStringLiterals_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -127,10 +127,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("{\"A\",\"B\",\"C\";\"D\",\"E\",\"F\"}")] // String matrix
         public void Parse_ComplexArrayLiterals_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -141,10 +141,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("Sheet1!A1,Sheet2!B1")] // Cross-sheet union
         public void Parse_UnionReferences_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -153,10 +153,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("A:A 1:1")] // Column and row intersection
         public void Parse_IntersectionReferences_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -166,10 +166,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("1+(2+(3+(4+(5+(6+(7+(8+(9+10))))))))")] // Deep right nesting
         public void Parse_DeeplyNestedOperations_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -178,10 +178,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("SUMPRODUCT((A1:A10>0)*(B1:B10<100)*(C1:C10))")] // Multiple array conditions
         public void Parse_ArrayFormulasInFunctions_HandlesCorrectly(string formulaString)
         {
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Fact]
@@ -190,10 +190,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // Create a formula using all operator types
             string formulaString = "1+2-3*4/5^6%7=8<>9<10<=11>12>=13&\"text\"";
 
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Fact]
@@ -202,10 +202,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // Create a formula using all literal types
             string formulaString = "SUM(123,\"text\",TRUE,#N/A,A1,{1,2,3})";
 
-            Formula formula = FormulaParser.Parse(formulaString);
+            Ast.Node formula = FormulaParser.Parse(formulaString);
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(formulaString, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Fact]
@@ -215,13 +215,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string formulaText = "SUM(A1:A10)";
 
             // Act
-            Formula? result = FormulaParser.TryParse(formulaText);
+            Ast.Node? result = FormulaParser.TryParse(formulaText);
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(formulaText, result.FormulaText);
-            Assert.NotNull(result.AstRoot);
-            Assert.Equal(formulaText, result.AstRoot.ToString());
+            Assert.Equal(formulaText, result.ToString());
         }
 
         [Fact]
@@ -231,7 +229,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string invalidFormula = "SUM(A1,";
 
             // Act
-            Formula? result = FormulaParser.TryParse(invalidFormula);
+            Ast.Node? result = FormulaParser.TryParse(invalidFormula);
 
             // Assert
             Assert.Null(result);
@@ -289,10 +287,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // Some of these might be valid (like +A1), others should throw
             try
             {
-                Formula formula = FormulaParser.Parse(formulaString);
-                Assert.NotNull(formula.AstRoot);
+                Ast.Node formula = FormulaParser.Parse(formulaString);
+                Assert.NotNull(formula);
                 // If parsing succeeds, verify the result makes sense
-                Assert.NotNull(formula.AstRoot.ToString());
+                Assert.NotNull(formula.ToString());
             }
             catch (InvalidOperationException ex)
             {
@@ -332,14 +330,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             System.GC.Collect();
             long memoryBefore = System.GC.GetTotalMemory(false);
 
-            Formula formula = FormulaParser.Parse(largeFormula);
+            Ast.Node formula = FormulaParser.Parse(largeFormula);
 
             // Measure memory after
             long memoryAfter = System.GC.GetTotalMemory(false);
             long memoryUsed = memoryAfter - memoryBefore;
 
-            Assert.NotNull(formula.AstRoot);
-            Assert.Equal(largeFormula, formula.AstRoot.ToString());
+            Assert.NotNull(formula);
+            Assert.Equal(largeFormula, formula.ToString());
 
             // Memory usage should be reasonable (less than 10MB for this test)
             Assert.True(
@@ -372,9 +370,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             {
                 foreach (string formulaText in complexFormulas)
                 {
-                    Formula formula = FormulaParser.Parse(formulaText);
-                    Assert.NotNull(formula.AstRoot);
-                    Assert.Equal(formulaText, formula.AstRoot.ToString());
+                    Ast.Node formula = FormulaParser.Parse(formulaText);
+                    Assert.NotNull(formula);
+                    Assert.Equal(formulaText, formula.ToString());
                 }
             }
 
@@ -415,9 +413,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
                 {
                     for (int i = 0; i < 100; i++)
                     {
-                        Formula formula = FormulaParser.Parse(formulaText);
-                        Assert.NotNull(formula.AstRoot);
-                        Assert.Equal(formulaText, formula.AstRoot.ToString());
+                        Ast.Node formula = FormulaParser.Parse(formulaText);
+                        Assert.NotNull(formula);
+                        Assert.Equal(formulaText, formula.ToString());
                     }
                 }
             );

@@ -430,7 +430,7 @@ Common lexer problems:
 public void TestNewConstruct(string input, Type expectedType)
 {
     var formula = FormulaParser.Parse(input);
-    Assert.IsType(expectedType, formula.AstRoot);
+    Assert.IsType(expectedType, formula);
 }
 ```
 
@@ -444,7 +444,7 @@ public void TestComplexFormulaWithNewConstruct()
     var formula = FormulaParser.Parse(input);
 
     // Verify AST structure
-    Assert.IsType<FunctionCallNode>(formula.AstRoot);
+    Assert.IsType<FunctionCallNode>(formula);
     // ... additional assertions
 }
 ```
