@@ -584,7 +584,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 builder.Append(TableName.ToString());
             }
 
-            for (int i = 0; i < IntraTableReferences.Count - 1; i++)
+            bool hasIntraTableRefs = IntraTableReferences.Count > 0;
+            if (hasIntraTableRefs)
+            {
+                builder.Append("[");
+            }
+            for (System.Int32 i = 0; i < IntraTableReferences.Count - 1; i++)
             {
                 ExpressionNode intraTableRef = IntraTableReferences[i];
                 builder.Append(intraTableRef.ToString());
@@ -593,6 +598,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             }
 
             builder.Append(IntraTableReferences.Last().ToString());
+            if (hasIntraTableRefs)
+            {
+                builder.Append("]");
+            }
 
             return builder.ToString();
         }

@@ -6,13 +6,6 @@
 %using OpenLanguage.SpreadsheetML.Formula.Ast;
 %using System.Linq;
 
-%{
-    public class ArgumentParseResult
-    {
-        public List<ExpressionNode> Arguments { get; set; } = new List<ExpressionNode>();
-    }
-%}
-
 %union
 {
     public double doubleVal;
@@ -26,7 +19,6 @@
     public StructureColumn structureColumnVal;
     public List<ExpressionNode> expressionListVal;
     public List<Node> nodeListVal;
-    public Parser.ArgumentParseResult argParseResultVal;
     public List<List<ExpressionNode>> rowsVal;
 
     public A1RelativeColumnNode A1RelativeColumnVal;
@@ -95,8 +87,10 @@ public BangReferenceNode bangReferenceVal;
 %token T_SR_ALL T_SR_DATA T_SR_HEADERS T_SR_TOTALS
 
 %type <nodeVal>           formula whitespace
-%type <expressionVal>     expression primary constant error_constant ref_constant function_call solo_function
-%type <expressionVal>     cell_reference name_reference structure_reference inner_reference_item inner_reference
+%type <expressionVal>     expression primary constant error_constant ref_constant  solo_function
+%type <expressionVal>     function_call_head function_call argument
+%type <expressionListVal> argument_list
+%type <expressionVal>     cell_reference name_reference structure_reference inner_reference_item
 // %type <expressionVal>     pivot_item pivot_items pivot_item_index
 %type <structureColumnVal> structure_column
 %type <structureTotalsVal> structure_totals
@@ -106,7 +100,7 @@ public BangReferenceNode bangReferenceVal;
 %type <structureAllVal> structure_all
 %type <expressionVal> keyword
 %type <structureColumnRangeVal>    column_range
-%type <workbookIndexVal>  workbook_index
+%type <workbookIndexVal>  workbook_index opt_workbook_index
 %type <expressionVal> workbook_name
 %type <stringVal> workbook_name_text
 %type <stringVal> workbook_name_piece
@@ -132,19 +126,16 @@ public BangReferenceNode bangReferenceVal;
 %type <A1CellVal>         A1_cell
 %type <R1C1CellVal>       R1C1_cell
 
-%type <expressionVal>     array cell_or_ref_constant cell_range cell intra_table_reference
-%type <expressionVal>           name opt_name
+%type <expressionVal>     array cell_or_ref_constant cell_range cell
+%type <expressionVal>     name opt_name opt_inner_reference_item
 %type <rowsVal>           list_rows
-%type <expressionListVal> list_row inner_reference opt_inner_reference intra_table_reference_list
+%type <expressionListVal> list_row intra_table_reference_list intra_table_reference
 %type <expressionVal>     external_cell_reference sheet_range_reference single_sheet_reference
 %type <expressionVal>     cell_or_ref_constant single_sheet sheet_range
 %type <expressionVal>     external_cell_reference bang_reference
-%type <expressionVal>     function_call_head  argument
-%type <argParseResultVal> argument_list
 
 %type <nodeListVal>       opt_whitespace
 %type <expressionVal>     opt_expression opt_solo_function
-%type <expressionVal>     keyword_list
 
 %type <bangVal>           bang
 %type <bangReferenceVal>  bang_reference
@@ -190,6 +181,7 @@ opt_solo_function:
 expression:
     whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | expression whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | primary                                  { $$ = $1; }
   | T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
   | expression T_PLUS expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
   | expression T_MINUS expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
@@ -212,7 +204,6 @@ expression:
   | expression T_INTERSECTION expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
   | T_AT_SYMBOL expression %prec UMINUS      { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
   | T_EQ expression                          { $$ = new EqualPrefixedNode(new EqualLiteralNode($1), $2); }
-  | primary                                  { $$ = $1; }
   ;
 
 primary:
@@ -235,21 +226,32 @@ primary:
 #include "function/worksheet/nodes.inc"
 
 function_call_head:
-    opt_whitespace standard_function_name opt_whitespace
-      { $$ = new BuiltInStandardFunctionNode($2, $1, $3); }
-  | opt_whitespace future_function_name opt_whitespace
-      { $$ = new BuiltInFutureFunctionNode($2, $1, $3); }
-  | opt_whitespace macro_function_name opt_whitespace
-      { $$ = new BuiltInMacroFunctionNode($2, $1, $3); }
-  | opt_whitespace command_function_name opt_whitespace T_QUESTIONMARK opt_whitespace
-      { $$ = new BuiltInCommandFunctionNode($2, new QuestionMarkNode($4, $3, $5), $1, null); }
-  | opt_whitespace command_function_name opt_whitespace
-      { $$ = new BuiltInCommandFunctionNode($2, null, $1, $3); }
-  | opt_whitespace T_XLFN_XLWS_  worksheet_function_name opt_whitespace
-      { $$ = new BuiltInWorksheetFunctionNode($2, new BuiltInFunctionNode($3), $1, $4); }
+     whitespace function_call_head { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+   | function_call_head whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
+   | standard_function_name
+      { $$ = new BuiltInStandardFunctionNode($1); }
+   | future_function_name
+      { $$ = new BuiltInFutureFunctionNode($1); }
+   | macro_function_name
+      { $$ = new BuiltInMacroFunctionNode($1); }
+   | command_function_name T_QUESTIONMARK
+      { $$ = new BuiltInCommandFunctionNode($1, new QuestionMarkNode($2)); }
+   | command_function_name
+      { $$ = new BuiltInCommandFunctionNode($1); }
+      // This is technically required.
+      // Excel versions after Excel 2010 support useage of worksheet functions without the "_xlfn.xlws" prefix.
+      // The prefix is still required, however - Excel will insert this prefix automatically in Excel versions after 2010
+      // to ensure backwards compatibility, while showing the user the function name without the prefix.
+      //
+      // We will support both with and without the prefix to ensure maximum compatibility - especially for
+      // if this were to be used in a context where users are writing formulas directly.
+   | T_XLFN_XLWS_ worksheet_function_name
+      { $$ = new BuiltInWorksheetFunctionNode($1, new BuiltInFunctionNode($2)); }
+   | worksheet_function_name
+      { $$ = new BuiltInWorksheetFunctionNode(new BuiltInFunctionNode($1)); }
   ;
 
-function_call: function_call_head T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3.Arguments); };
+function_call: function_call_head T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3); };
 
 solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
       {
@@ -257,23 +259,19 @@ solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt
           NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, "D", $6, $8);
           NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, "D", $10, $12);
 
-          ArgumentParseResult result = $13;
-          result.Arguments.Insert(0, arg2);
-          result.Arguments.Insert(0, arg1);
+          List<ExpressionNode> result = $13;
+          result.Insert(0, arg2);
+          result.Insert(0, arg1);
 
-          FunctionCallNode funcCall = new FunctionCallNode(pyNode,  result.Arguments, $1, $16);
+          FunctionCallNode funcCall = new FunctionCallNode(pyNode,  result, $1, $16);
           $$ = funcCall;
       }
   ;
 
 argument_list:
-  argument_list opt_whitespace T_COMMA opt_whitespace argument
-      {
-          $$ = $1;
-          if ($5 != null) $$.Arguments.Add($5);
-      }
-  |     expression { $$ = new ArgumentParseResult(); if ($1 != null) $$.Arguments.Add($1); }
-  | /* empty */ { $$ = new ArgumentParseResult(); }
+    argument_list T_COMMA argument { $$ = $1; $$.Add($3); }
+  | expression                     { $$ = new List<ExpressionNode>() { $1 }; }
+  | /* empty */                    { $$ = new List<ExpressionNode>(); }
   ;
 
 argument:
@@ -326,13 +324,15 @@ list_row: expression { $$ = new List<ExpressionNode> { $1 }; }
       }
   ;
 
-cell_reference: external_cell_reference { $$ = $1; } | cell_range { $$ = $1; } | cell { $$ = $1; };
+cell_reference:
+              external_cell_reference { $$ = $1; }
+              | cell_range { $$ = $1; }
+              | cell { $$ = $1; };
 name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
   {
       UserDefinedFunctionNode head = new UserDefinedFunctionNode(new NameNode($2), $1, $3);
-      ArgumentParseResult result = $6;
 
-      $$ = new FunctionCallNode(head,  result.Arguments,  $1, $9);
+      $$ = new FunctionCallNode(head, $6, $1, $9);
   }
   | name
   {
@@ -340,8 +340,11 @@ name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespa
       $$ = $1;
   }
   ;
-name:  opt_whitespace T_AT_SYMBOL opt_whitespace T_IDENTIFIER opt_whitespace { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($2, $1, $3), new NamedRangeNode($4, null, null), null, $5); }
-      | opt_whitespace T_IDENTIFIER opt_whitespace { $$ = new NamedRangeNode($2, $1, $3); };
+name:
+        whitespace name                           { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+      | name whitespace                           { $$ = $1; $$.TrailingWhitespace.Add($2); }
+      | T_AT_SYMBOL opt_whitespace T_IDENTIFIER   { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($3), new NamedRangeNode($1, $2)); }
+      | T_IDENTIFIER                              { $$ = new NamedRangeNode($1); };
 
 A1_column_absolute: T_DOLLAR T_A1_COLUMN { $$ = new A1AbsoluteColumnNode($2); };
 A1_column_relative: T_A1_COLUMN { $$ = new A1RelativeColumnNode($1); };
@@ -366,16 +369,16 @@ A1_cell: A1_column A1_row { $$ = new A1CellNode($1, $2); };
 
 cell:
     R1C1_cell { $$ = $1; }
-  | A1_cell { $$ = $1; }
+  | A1_cell   { $$ = $1; }
   ;
 cell_range:
-  A1_cell   T_COLON  A1_cell        { $$ = new CellRangeNode<A1CellNode, A1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
-| A1_cell   T_COLON  R1C1_cell      { $$ = new CellRangeNode<A1CellNode, R1C1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
-| R1C1_cell T_COLON  A1_cell        { $$ = new CellRangeNode<R1C1CellNode, A1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
-| R1C1_cell T_COLON  R1C1_cell      { $$ = new CellRangeNode<R1C1CellNode, R1C1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
-| A1_column T_COLON  A1_column      { $$ = new RangeNode($1, new ColonNode($2), $3); }
-| A1_row    T_COLON  A1_row         { $$ = new RangeNode($1, new ColonNode($2), $3); }
-;
+    A1_cell   T_COLON  A1_cell        { $$ = new CellRangeNode<A1CellNode, A1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
+  | A1_cell   T_COLON  R1C1_cell      { $$ = new CellRangeNode<A1CellNode, R1C1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
+  | R1C1_cell T_COLON  A1_cell        { $$ = new CellRangeNode<R1C1CellNode, A1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
+  | R1C1_cell T_COLON  R1C1_cell      { $$ = new CellRangeNode<R1C1CellNode, R1C1CellNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode, Int64, R1C1RowNode, Int64, R1C1ColumnNode>($1, new ColonNode($2), $3); }
+  | A1_column T_COLON  A1_column      { $$ = new RangeNode($1, new ColonNode($2), $3); }
+  | A1_row    T_COLON  A1_row         { $$ = new RangeNode($1, new ColonNode($2), $3); }
+  ;
 
 
 
@@ -420,48 +423,47 @@ opt_name:
       name
       | /* empty */ { $$ = null; };
 
+opt_workbook_index:
+      workbook_index { $$ = $1; }
+      | /* empty */ { $$ = null; };
 
 structure_reference:
-    workbook_index opt_name intra_table_reference_list { $$ = new StructuredReferenceNode($1, $2, $3); }
-  |  opt_name intra_table_reference_list { $$ = new StructuredReferenceNode(null, $1, $2); }
-
-  | intra_table_reference_list { $$ = new StructuredReferenceNode(null, null, $1); }
+    whitespace structure_reference                                         { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | structure_reference whitespace                                         { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | opt_workbook_index opt_inner_reference_item intra_table_reference_list { $$ = new StructuredReferenceNode($1, $2, $3); }
+  | opt_workbook_index opt_inner_reference_item                            { $$ = new StructuredReferenceNode($1, $2, new List<ExpressionNode>()); }
   ;
 
-inner_reference_item: keyword_list { $$ = $1; }
-  | keyword { $$ = $1; }
-  | column_range { $$ = $1; }
-  | structure_column { $$ = $1; }
-  | name { $$ = $1; }
+opt_inner_reference_item:
+    inner_reference_item { $$ = $1; }
+  | /* empty */          { $$ = null; }
+  ;
+inner_reference_item:
+    whitespace inner_reference_item { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | inner_reference_item whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | keyword                         { $$ = $1; }
+  | column_range                    { $$ = $1; }
+  | structure_column                { $$ = $1; }
+  | name                            { $$ = $1; }
   // | inner_reference
   ;
 
-inner_reference
-:
-    inner_reference opt_whitespace T_COMMA opt_whitespace inner_reference_item
-      {
-          if ($1.LastOrDefault() is ExpressionNode last) last.TrailingWhitespace.AddRange($2);
-          if ($5 is ExpressionNode first) first.LeadingWhitespace.AddRange($4);
-          $1.Add($5);
-          $$ = $1;
-      }
-      | inner_reference_item
-      {
-          $$ = new List<ExpressionNode> { $1 };
-      }
-      | /* empty */ { $$ = new List<ExpressionNode>(); }
-  ;
-
-opt_inner_reference: inner_reference { $$ = $1; }
-                 | /* empty */ { $$ = new List<ExpressionNode>(); }
-                 ;
 
 intra_table_reference:
-   T_LBRACK opt_whitespace opt_inner_reference opt_whitespace T_RBRACK
-   {
-       $$ = new IntraTableIndexedReference($3, $2, $4);
-   }
- ;
+  intra_table_reference T_COMMA intra_table_reference
+  {
+      $1.AddRange($3);
+      $$ = $1;
+  }
+  | T_LBRACK intra_table_reference T_RBRACK
+  {
+      $$ = new List<ExpressionNode>() { new IntraTableIndexedReference($2) };
+  }
+  | inner_reference_item
+  {
+      $$ = new List<ExpressionNode> { $1 };
+  }
+  ;
 
 intra_table_reference_list:
     intra_table_reference
@@ -496,10 +498,13 @@ structure_this_row:
   ;
 
 structure_all: T_SR_ALL { $$ = new StructureAllNode(); };
-keyword: structure_all { $$ = $1; }| structure_data { $$ = $1; }| structure_headers { $$ = $1; }| structure_totals { $$ = $1; } | structure_this_row { $$ = $1; };
-keyword_list:
-     structure_all { $$ = $1; } | structure_data { $$ = $1; } | structure_headers { $$ = $1; } | structure_totals { $$ = $1; } | structure_this_row { $$ = $1; }
-   ;
+keyword:
+        structure_all      { $$ = $1; }
+      | structure_data     { $$ = $1; }
+      | structure_headers  { $$ = $1; }
+      | structure_totals   { $$ = $1; }
+      | structure_this_row { $$ = $1; }
+      ;
 
 column_range: structure_column T_COLON structure_column { $$ = new StructureColumnRange($1, $3); };
 structure_column: T_LBRACK opt_whitespace name opt_whitespace T_RBRACK

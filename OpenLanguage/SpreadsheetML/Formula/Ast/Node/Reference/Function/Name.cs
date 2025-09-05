@@ -131,7 +131,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public BuiltInCommandFunctionNode(
             ExpressionNode name,
-            QuestionMarkNode? qMarkNode,
+            QuestionMarkNode? qMarkNode = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -157,6 +157,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 leadingWs,
                 trailingWs
             ) { }
+
+        public BuiltInWorksheetFunctionNode(
+            BuiltInFunctionNode functionNode,
+            List<Node>? leadingWs = null,
+            List<Node>? trailingWs = null
+        )
+            : base(functionNode, leadingWs, trailingWs) { }
 
         public BuiltInWorksheetFunctionNode(
             string prefix,

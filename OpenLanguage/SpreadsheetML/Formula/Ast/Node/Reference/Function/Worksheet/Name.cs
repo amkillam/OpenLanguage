@@ -9,7 +9,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("_xlfn.XLWS."),
+                new NameNode("_xlfn.xlws."),
                 new BuiltInFunctionNode(new NameNode("FILTER")),
                 leadingWhitespace,
                 trailingWhitespace
@@ -23,7 +23,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("_xlfn.XLWS."),
+                new NameNode("_xlfn.xlws."),
                 new BuiltInFunctionNode(new NameNode("SORT")),
                 leadingWhitespace,
                 trailingWhitespace
@@ -37,7 +37,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("_xlfn.XLWS."),
+                new NameNode("_xlfn.xlws."),
                 new BuiltInFunctionNode(new NameNode("PY")),
                 leadingWhitespace,
                 trailingWhitespace
