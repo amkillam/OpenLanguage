@@ -43,16 +43,15 @@
     public A1CellNode A1CellVal;
     public R1C1CellNode R1C1CellVal;
 
-    public StructureTotalsNode structureTotalsVal;
-    public StructureDataNode structureDataVal;
-    public StructureHeadersNode structureHeadersVal;
-    public StructureThisRowNode structureThisRowVal;
-    public StructureAllNode structureAllVal;
+    public StructureTotalsReferenceNode structureTotalsVal;
+    public StructureDataReferenceNode structureDataVal;
+    public StructureHeadersReferenceNode structureHeadersVal;
+    public StructureThisRowReferenceNode structureThisRowVal;
+    public StructureAllReferenceNode structureAllVal;
 
     public NameNode nameVal;
-    public StructureKeywordNode structureKeywordVal;
     public WorkbookIndexNode workbookIndexVal;
-    public StructureThisRowColumnNode structureThisRowColumnVal;
+    public StructureThisRowColumnReferenceNode structureThisRowColumnVal;
     public StructureColumnRange structureColumnRangeVal;
 
 public BangNode bangVal;
@@ -90,7 +89,7 @@ public BangReferenceNode bangReferenceVal;
 %type <expressionVal>     expression primary constant error_constant ref_constant  solo_function
 %type <expressionVal>     function_call_head function_call argument
 %type <expressionListVal> argument_list
-%type <expressionVal>     cell_reference name_reference structure_reference inner_reference_item
+%type <expressionVal>     cell_reference name_reference structure_reference structure_reference_index structure_reference_index_primitive
 // %type <expressionVal>     pivot_item pivot_items pivot_item_index
 %type <structureColumnVal> structure_column
 %type <structureTotalsVal> structure_totals
@@ -98,9 +97,9 @@ public BangReferenceNode bangReferenceVal;
 %type <structureHeadersVal> structure_headers
 %type <expressionVal> structure_this_row
 %type <structureAllVal> structure_all
-%type <expressionVal> keyword
+%type <expressionVal> structure_reference
 %type <structureColumnRangeVal>    column_range
-%type <workbookIndexVal>  workbook_index opt_workbook_index
+%type <workbookIndexVal>  workbook_index
 %type <expressionVal> workbook_name
 %type <stringVal> workbook_name_text
 %type <stringVal> workbook_name_piece
@@ -127,16 +126,14 @@ public BangReferenceNode bangReferenceVal;
 %type <R1C1CellVal>       R1C1_cell
 
 %type <expressionVal>     array cell_or_ref_constant cell_range cell
-%type <expressionVal>     name opt_name opt_inner_reference_item
+%type <expressionVal>     name
 %type <rowsVal>           list_rows
-%type <expressionListVal> list_row intra_table_reference_list intra_table_reference
+%type <expressionListVal> list_row
 %type <expressionVal>     external_cell_reference sheet_range_reference single_sheet_reference
 %type <expressionVal>     cell_or_ref_constant single_sheet sheet_range
 %type <expressionVal>     external_cell_reference bang_reference
 
 %type <nodeListVal>       opt_whitespace
-%type <expressionVal>     opt_expression opt_solo_function
-
 %type <bangVal>           bang
 %type <bangReferenceVal>  bang_reference
 
@@ -164,24 +161,15 @@ public BangReferenceNode bangReferenceVal;
 %%
 
 formula:
-     opt_expression    { $$ = $1; root = $$; }
-  |  opt_solo_function { $$ = $1; root = $$; }
-  ;
-
-opt_expression:
-    expression   { $$ = $1; }
-  | /* empty */  { $$ = null; }
-  ;
-
-opt_solo_function:
-    solo_function { $$ = $1; }
-  | /* empty */   { $$ = null; }
+     expression    { $$ = $1; root = $$; }
+  |  solo_function { $$ = $1; root = $$; }
+  |  /* empty */   { $$ = null; root = null; }
   ;
 
 expression:
-    whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+    primary                                  { $$ = $1; }
+  | whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | expression whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | primary                                  { $$ = $1; }
   | T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
   | expression T_PLUS expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
   | expression T_MINUS expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
@@ -387,18 +375,18 @@ external_cell_reference: single_sheet_reference { $$ = $1; } | sheet_range_refer
 bang: opt_whitespace T_BANG opt_whitespace { $$ = new BangNode($2, $1, $3); };
 bang_reference: opt_whitespace bang cell_or_ref_constant opt_whitespace { $$ = new BangReferenceNode($2, $3, $1, $4); };
 
-sheet_range_reference: sheet_range bang_reference { $$ = new SheetReferenceNode($1, $2); };
+sheet_range_reference:   sheet_range  bang_reference  { $$ = new SheetReferenceNode($1, $2); };
 single_sheet_reference:  single_sheet bang_reference { $$ = new SheetReferenceNode($1, $2); };
 single_sheet:
-    workbook_index opt_whitespace T_IDENTIFIER { $$ = new SheetNode($1, $3, false, $2, null); }
-  | workbook_name opt_whitespace T_IDENTIFIER { $$ = new SheetNode($1, $3, false, $2, null); }
-  |                opt_whitespace T_IDENTIFIER { $$ = new SheetNode(null, $2, false, $1, null); }
+    workbook_index opt_whitespace T_IDENTIFIER         { $$ = new SheetNode($1, $3, false, $2, null); }
+  | workbook_name  opt_whitespace T_IDENTIFIER         { $$ = new SheetNode($1, $3, false, $2, null); }
+  | opt_whitespace T_IDENTIFIER                        { $$ = new SheetNode(null, $2, false, $1, null); }
   | opt_whitespace T_SHEET_NAME_SPECIAL opt_whitespace { $$ = new SheetNode(null, $2, true, $1, $3); }
   ;
 sheet_range:
     workbook_index opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode($1, $3, new ColonNode($5, $4, $6), $7, $2, null); }
-  | workbook_name opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode($1, $3, new ColonNode($5, $4, $6), $7, $2, null); }
-  |                opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER { $$ = new SheetRangeNode(null, $2, new ColonNode($4, $3, $5), $6, $1, null); }
+  | workbook_name opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER  { $$ = new SheetRangeNode($1, $3, new ColonNode($5, $4, $6), $7, $2, null); }
+  | opt_whitespace T_IDENTIFIER opt_whitespace T_COLON opt_whitespace T_IDENTIFIER                { $$ = new SheetRangeNode(null, $2, new ColonNode($4, $3, $5), $6, $1, null); }
   ;
 
 
@@ -419,86 +407,55 @@ cell_or_ref_constant: cell { $$ = $1; } | cell_range { $$ = $1; } | name { $$ = 
 //     | opt_whitespace T_LONG opt_whitespace { $$ = new PivotFieldOffset(new NumericLiteralNode<long>($2, "D", $1, $3)); }
 //     ;
 
-opt_name:
-      name
-      | /* empty */ { $$ = null; };
 
-opt_workbook_index:
-      workbook_index { $$ = $1; }
-      | /* empty */ { $$ = null; };
+
 
 structure_reference:
-    whitespace structure_reference                                         { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
-  | structure_reference whitespace                                         { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | opt_workbook_index opt_inner_reference_item intra_table_reference_list { $$ = new StructuredReferenceNode($1, $2, $3); }
-  | opt_workbook_index opt_inner_reference_item                            { $$ = new StructuredReferenceNode($1, $2, new List<ExpressionNode>()); }
+    structure_reference T_COMMA structure_reference                { $$ = new StructureReferenceIndicesUnion($1, new CommaNode($2), $3); }
+  | workbook_index structure_reference_index structure_reference   { $$ = new StructuredReferenceNode($1, $2, $3); }
+  | workbook_index structure_reference                             { $$ = new StructuredReferenceNode($1, null, $2); }
+  | structure_reference_index structure_reference                  { $$ = new StructuredReferenceNode(null, $1, $2); }
+  | structure_reference                                            { $$ = new StructuredReferenceNode(null, null, $1); }
+  | workbook_index structure_reference_index                       { $$ = new StructuredReferenceNode($1, $2, new List<ExpressionNode>()); }
+  | workbook_index                                                 { $$ = new StructuredReferenceNode($1, null, new List<ExpressionNode>()); }
+  | structure_reference_index                                      { $$ = new StructuredReferenceNode(null, $1, new List<ExpressionNode>()); }
   ;
 
-opt_inner_reference_item:
-    inner_reference_item { $$ = $1; }
-  | /* empty */          { $$ = null; }
-  ;
-inner_reference_item:
-    whitespace inner_reference_item { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
-  | inner_reference_item whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | keyword                         { $$ = $1; }
-  | column_range                    { $$ = $1; }
-  | structure_column                { $$ = $1; }
-  | name                            { $$ = $1; }
+structure_reference_index:
+    whitespace structure_reference_index { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | structure_reference_index whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | column_range                         { $$ = $1; }
+  | structure_column                     { $$ = $1; }
+  | name                                 { $$ = $1; }
+  | structure_reference_index_primitive  { $$ = $1; }
   // | inner_reference
   ;
 
 
-intra_table_reference:
-  intra_table_reference T_COMMA intra_table_reference
-  {
-      $1.AddRange($3);
-      $$ = $1;
-  }
-  | T_LBRACK intra_table_reference T_RBRACK
-  {
-      $$ = new List<ExpressionNode>() { new IntraTableIndexedReference($2) };
-  }
-  | inner_reference_item
-  {
-      $$ = new List<ExpressionNode> { $1 };
-  }
-  ;
 
-intra_table_reference_list:
-    intra_table_reference
-      {
-          $$ = new List<ExpressionNode> { $1 };
-      }
-  | intra_table_reference_list opt_whitespace intra_table_reference
-      {
-          if ($1.LastOrDefault() is ExpressionNode last) last.TrailingWhitespace.AddRange($2);
-          $1.Add($3);
-          $$ = $1;
-      }
-  ;
 
-structure_data: T_SR_DATA { $$ = new StructureDataNode(); };
-structure_headers: T_SR_HEADERS { $$ = new StructureHeadersNode(); };
-structure_totals: T_SR_TOTALS { $$ = new StructureTotalsNode(); };
+
+structure_data: T_SR_DATA { $$ = new StructureDataReferenceNode(); };
+structure_headers: T_SR_HEADERS { $$ = new StructureHeadersReferenceNode(); };
+structure_totals: T_SR_TOTALS { $$ = new StructureTotalsReferenceNode(); };
 
 structure_this_row:
     T_AT_SYMBOL opt_whitespace structure_column
   {
       AtSymbolLiteralNode atSymbol = new AtSymbolLiteralNode($1, null, $2);
-      $$ = new StructureThisRowByPrefixNode(atSymbol, $3);
+      $$ = new StructureThisRowByPrefixReferenceNode(atSymbol, $3);
   }
-  | T_AT_SYMBOL opt_whitespace name
+  | T_AT_SYMBOL opt_whitespace structure_column
   {
       AtSymbolLiteralNode atSymbol = new AtSymbolLiteralNode($1, null, $2);
-      $$ = new StructureThisRowByPrefixNode(atSymbol, $3);
+      $$ = new StructureThisRowByPrefixReferenceNode(atSymbol, $3);
   }
-  | T_SR_THIS_ROW { $$ = new StructureThisRowNode($1); }
-  | T_AT_SYMBOL { $$ = new StructureThisRowNode($1); }
+  | T_SR_THIS_ROW { $$ = new StructureThisRowReferenceNode($1); }
+  | T_AT_SYMBOL { $$ = new StructureThisRowReferenceNode($1); }
   ;
 
-structure_all: T_SR_ALL { $$ = new StructureAllNode(); };
-keyword:
+structure_all: T_SR_ALL { $$ = new StructureAllReferenceNode(); };
+structure_reference_index_primitive:
         structure_all      { $$ = $1; }
       | structure_data     { $$ = $1; }
       | structure_headers  { $$ = $1; }

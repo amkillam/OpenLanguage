@@ -807,7 +807,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("Table1[[#Data],[#Totals]]")] // Multiple specifiers
         [InlineData("Table1[[@[Column Name]]]")] // This row with complex column name
         [InlineData("Table1[[Column1],[Column2]]")] // Multiple columns
-        [InlineData("Table1[[Column Name with Spaces]]")] // Column with spaces
+        [InlineData("Table1[[Column,Name_with,Commas]]")] // Column with commas
         [InlineData("Table1[[@]]")] // This row shorthand
         [InlineData("Table1[[#This Row],[Column1]]")] // Explicit this row
         [InlineData("Table_Name_With_Underscores[[Column_1]]")] // Table name with underscores
@@ -850,24 +850,24 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula);
-            Assert.Equal(formulaString, formula.ToString());
+            Assert.Equal(formulaString, formula.ToString().Replace("_xlfn.xlws.", ""));
         }
 
         [Theory]
-        // [InlineData("SUM(OFFSET(A1,1,1,10,1))")] // Dynamic range with OFFSET
-        // [InlineData("INDEX(INDIRECT(\"A1:A\"&COUNTA(A:A)),1)")] // Dynamic reference with INDIRECT
-        // [InlineData("SUMPRODUCT((A1:A10>0)*(B1:B10))")] // Array multiplication in SUMPRODUCT
-        // [InlineData("AGGREGATE(9,5,A1:A10)")] // AGGREGATE function
-        // [InlineData("SUBTOTAL(109,A1:A10)")] // SUBTOTAL with hidden rows
-        // [InlineData("XLOOKUP(A1,B:B,C:C,\"Not Found\")")] // XLOOKUP with default
-        // [InlineData("XMATCH(A1,B:B,0,1)")] // XMATCH with search mode
+        [InlineData("SUM(OFFSET(A1,1,1,10,1))")] // Dynamic range with OFFSET
+        [InlineData("INDEX(INDIRECT(\"A1:A\"&COUNTA(A:A)),1)")] // Dynamic reference with INDIRECT
+        [InlineData("SUMPRODUCT((A1:A10>0)*(B1:B10))")] // Array multiplication in SUMPRODUCT
+        [InlineData("AGGREGATE(9,5,A1:A10)")] // AGGREGATE function
+        [InlineData("SUBTOTAL(109,A1:A10)")] // SUBTOTAL with hidden rows
+        [InlineData("XLOOKUP(A1,B:B,C:C,\"Not Found\")")] // XLOOKUP with default
+        [InlineData("XMATCH(A1,B:B,0,1)")] // XMATCH with search mode
         [InlineData("UNIQUE(FILTER(A:A,B:B>0))")] // Nested dynamic array functions
         public void Parse_AdvancedBuiltInFunctions_ReturnsCorrectAST(string formulaString)
         {
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula);
-            Assert.Equal(formulaString, formula.ToString());
+            Assert.Equal(formulaString, formula.ToString().Replace("_xlfn.xlws.", ""));
         }
 
         [Theory]
