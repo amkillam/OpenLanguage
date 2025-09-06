@@ -1143,6 +1143,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("PQSOURCE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class RegexExtractFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public RegexExtractFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("REGEXEXTRACT"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class RegexReplaceFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public RegexReplaceFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("REGEXREPLACE"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class RegexTestFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public RegexTestFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("REGEXTEST"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class PythonStrFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public PythonStrFutureFunctionNode(
@@ -1354,6 +1384,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("STDEV.S"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class StockHistoryFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public StockHistoryFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("STOCKHISTORY"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class TakeFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public TakeFutureFunctionNode(
@@ -1412,6 +1452,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TOROW"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class TranslateFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public TranslateFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("TRANSLATE"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class TrimRangeFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public TrimRangeFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("TRIMRANGE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class TDistFutureFunctionNode : BuiltInFutureFunctionNode
@@ -1504,6 +1564,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("UNIQUE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class ValueToTextFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public ValueToTextFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("VALUETOTEXT"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class VarPFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public VarPFutureFunctionNode(
@@ -1592,6 +1662,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("XLOOKUP"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class XMatchFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public XMatchFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("XMATCH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class XorFutureFunctionNode : BuiltInFutureFunctionNode

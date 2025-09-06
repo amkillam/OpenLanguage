@@ -110,7 +110,10 @@ future_function_name:
   | opt_xlfn T_FUNC_PHI { $ = new PhiFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_PIVOTBY { $ = new PivotByFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_POISSON_DIST { $$ = new PoissonDistFutureFunctionNode($1); }
-  | opt_xlfn T_FUNC_PQSOURCE { $$ = new PqsourceFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_PQSOURCE { $ = new PqsourceFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_REGEXEXTRACT { $ = new RegexExtractFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_REGEXREPLACE { $ = new RegexReplaceFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_REGEXTEST { $ = new RegexTestFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_PYTHON_STR { $$ = new PythonStrFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_PYTHON_TYPE { $$ = new PythonTypeFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_PYTHON_TYPENAME { $$ = new PythonTypenameFutureFunctionNode($1); }
@@ -131,13 +134,15 @@ future_function_name:
   | opt_xlfn T_FUNC_SKEW_P { $$ = new SkewPFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_SORTBY { $$ = new SortByFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_STDEV_P { $$ = new StDevPFutureFunctionNode($1); }
-  | opt_xlfn T_FUNC_STDEV_S { $$ = new StDevSFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_STDEV_S { $ = new StDevSFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_STOCKHISTORY { $ = new StockHistoryFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_TAKE { $$ = new TakeFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_TEXTAFTER { $$ = new TextAfterFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_TEXTBEFORE { $$ = new TextBeforeFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_TEXTSPLIT { $$ = new TextSplitFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_TOCOL { $$ = new ToColFutureFunctionNode($1); }
-  | opt_xlfn T_FUNC_TOROW { $$ = new ToRowFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_TOROW { $ = new ToRowFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_TRANSLATE { $ = new TranslateFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_T_DIST { $$ = new TDistFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_T_DIST_2T { $$ = new TDistTwoTFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_T_DIST_RT { $$ = new TDistRtFutureFunctionNode($1); }
@@ -146,7 +151,8 @@ future_function_name:
   | opt_xlfn T_FUNC_T_TEST { $$ = new TTestFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_UNICHAR { $$ = new UnicharFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_UNICODE { $$ = new UnicodeFutureFunctionNode($1); }
-  | opt_xlfn T_FUNC_UNIQUE { $$ = new UniqueFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_UNIQUE { $ = new UniqueFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_VALUETOTEXT { $ = new ValueToTextFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_VAR_P { $$ = new VarPFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_VAR_S { $$ = new VarSFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_VSTACK { $$ = new VStackFutureFunctionNode($1); }
@@ -155,7 +161,8 @@ future_function_name:
   | opt_xlfn T_FUNC_WORKDAY_INTL { $$ = new WorkdayIntlFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_WRAPCOLS { $$ = new WrapColsFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_WRAPROWS { $$ = new WrapRowsFutureFunctionNode($1); }
-  | opt_xlfn T_FUNC_XLOOKUP { $$ = new XLookupFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_XLOOKUP { $ = new XLookupFutureFunctionNode($1); }
+  | opt_xlfn T_FUNC_XMATCH { $ = new XMatchFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_XOR { $$ = new XorFutureFunctionNode($1); }
   | opt_xlfn T_FUNC_Z_TEST { $$ = new ZTestFutureFunctionNode($1); }
   ;
