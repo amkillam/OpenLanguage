@@ -42,6 +42,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("ARABIC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class ArrayToTextFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public ArrayToTextFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("ARRAYTOTEXT"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class BaseFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public BaseFutureFunctionNode(
@@ -365,6 +375,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("DAYS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class DetectLanguageFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public DetectLanguageFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("DETECTLANGUAGE"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class DecimalFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public DecimalFutureFunctionNode(
@@ -395,6 +415,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("ECMA.CEILING"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class EncodeUrlFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public EncodeUrlFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("ENCODEURL"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class ErfCPreciseFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public ErfCPreciseFutureFunctionNode(
@@ -403,6 +433,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ERFC.PRECISE"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class EuroConvertFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public EuroConvertFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("EUROCONVERT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class ErfPreciseFutureFunctionNode : BuiltInFutureFunctionNode
@@ -648,6 +688,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("GAUSS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class GroupByFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public GroupByFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("GROUPBY"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class HStackFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public HStackFutureFunctionNode(
@@ -666,6 +716,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("HYPGEOM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class ImageFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public ImageFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("IMAGE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class IfNaFutureFunctionNode : BuiltInFutureFunctionNode
@@ -786,6 +846,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ISOWEEKNUM"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class JisFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public JisFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("JIS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class IsOCeilingFutureFunctionNode : BuiltInFutureFunctionNode
@@ -969,6 +1039,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode("PDURATION"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class PercentOfFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public PercentOfFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("PERCENTOF"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class PercentileExcFutureFunctionNode : BuiltInFutureFunctionNode
     {
         public PercentileExcFutureFunctionNode(
@@ -1031,6 +1111,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PHI"), prefix, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class PivotByFutureFunctionNode : BuiltInFutureFunctionNode
+    {
+        public PivotByFutureFunctionNode(
+            NameNode? prefix = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode("PIVOTBY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class PoissonDistFutureFunctionNode : BuiltInFutureFunctionNode

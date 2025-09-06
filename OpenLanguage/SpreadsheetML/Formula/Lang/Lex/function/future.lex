@@ -3,6 +3,7 @@
 "ACOT" { return (int)Tokens.T_FUNC_ACOT; }
 "ACOTH" { return (int)Tokens.T_FUNC_ACOTH; }
 "ARABIC" { return (int)Tokens.T_FUNC_ARABIC; }
+"ARRAYTOTEXT" { return (int)Tokens.T_FUNC_ARRAYTOTEXT; }
 "BASE" { return (int)Tokens.T_FUNC_BASE; }
 "BETA.DIST" { return (int)Tokens.T_FUNC_BETA_DIST; }
 "BETA.INV" { return (int)Tokens.T_FUNC_BETA_INV; }
@@ -36,10 +37,13 @@
 "CSCH" { return (int)Tokens.T_FUNC_CSCH; }
 "DAYS" { return (int)Tokens.T_FUNC_DAYS; }
 "DECIMAL" { return (int)Tokens.T_FUNC_DECIMAL; }
+"DETECTLANGUAGE" { return (int)Tokens.T_FUNC_DETECTLANGUAGE; }
 "DROP" { return (int)Tokens.T_FUNC_DROP; }
 "ECMA.CEILING" { return (int)Tokens.T_FUNC_ECMA_CEILING; }
+"ENCODEURL" { return (int)Tokens.T_FUNC_ENCODEURL; }
 "ERF.PRECISE" { return (int)Tokens.T_FUNC_ERF_PRECISE; }
 "ERFC.PRECISE" { return (int)Tokens.T_FUNC_ERFC_PRECISE; }
+"EUROCONVERT" { return (int)Tokens.T_FUNC_EUROCONVERT; }
 "EXPAND" { return (int)Tokens.T_FUNC_EXPAND; }
 "EXPON.DIST" { return (int)Tokens.T_FUNC_EXPON_DIST; }
 "F.DIST" { return (int)Tokens.T_FUNC_F_DIST; }
@@ -62,8 +66,10 @@
 "GAMMA.INV" { return (int)Tokens.T_FUNC_GAMMA_INV; }
 "GAMMALN.PRECISE" { return (int)Tokens.T_FUNC_GAMMALN_PRECISE; }
 "GAUSS" { return (int)Tokens.T_FUNC_GAUSS; }
+"GROUPBY" { return (int)Tokens.T_FUNC_GROUPBY; }
 "HSTACK" { return (int)Tokens.T_FUNC_HSTACK; }
 "HYPGEOM.DIST" { return (int)Tokens.T_FUNC_HYPGEOM_DIST; }
+"IMAGE" { return (int)Tokens.T_FUNC_IMAGE; }
 "IFNA" { return (int)Tokens.T_FUNC_IFNA; }
 "IMCOSH" { return (int)Tokens.T_FUNC_IMCOSH; }
 "IMCOT" { return (int)Tokens.T_FUNC_IMCOT; }
@@ -77,6 +83,7 @@
 "ISO.CEILING" { return (int)Tokens.T_FUNC_ISO_CEILING; }
 "ISOMITTED" { return (int)Tokens.T_FUNC_ISOMITTED; }
 "ISOWEEKNUM" { return (int)Tokens.T_FUNC_ISOWEEKNUM; }
+"JIS" { return (int)Tokens.T_FUNC_JIS; }
 "LAMBDA" { return (int)Tokens.T_FUNC_LAMBDA; }
 "LET" { return (int)Tokens.T_FUNC_LET; }
 "LOGNORM.DIST" { return (int)Tokens.T_FUNC_LOGNORM_DIST; }
@@ -94,12 +101,14 @@
 "NORM.S.INV" { return (int)Tokens.T_FUNC_NORM_S_INV; }
 "NUMBERVALUE" { return (int)Tokens.T_FUNC_NUMBERVALUE; }
 "PDURATION" { return (int)Tokens.T_FUNC_PDURATION; }
+"PERCENTOF" { return (int)Tokens.T_FUNC_PERCENTOF; }
 "PERCENTILE.EXC" { return (int)Tokens.T_FUNC_PERCENTILE_EXC; }
 "PERCENTILE.INC" { return (int)Tokens.T_FUNC_PERCENTILE_INC; }
 "PERCENTRANK.EXC" { return (int)Tokens.T_FUNC_PERCENTRANK_EXC; }
 "PERCENTRANK.INC" { return (int)Tokens.T_FUNC_PERCENTRANK_INC; }
 "PERMUTATIONA" { return (int)Tokens.T_FUNC_PERMUTATIONA; }
 "PHI" { return (int)Tokens.T_FUNC_PHI; }
+"PIVOTBY" { return (int)Tokens.T_FUNC_PIVOTBY; }
 "POISSON.DIST" { return (int)Tokens.T_FUNC_POISSON_DIST; }
 "PQSOURCE" { return (int)Tokens.T_FUNC_PQSOURCE; }
 "PYTHON.STR" { return (int)Tokens.T_FUNC_PYTHON_STR; }
