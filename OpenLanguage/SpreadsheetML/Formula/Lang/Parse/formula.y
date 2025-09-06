@@ -70,7 +70,7 @@ public BangReferenceNode bangReferenceVal;
 
 
 
-%token<stringVal> T_XLFN_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
+%token<stringVal> T_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
 %token<stringVal> T_NUMERICAL_CONSTANT T_DOLLAR
 %token<longVal> T_LONG T_R1C1_ROW T_R1C1_COLUMN
 %token<ulongVal>  T_A1_ROW T_A1_COLUMN
@@ -86,10 +86,10 @@ public BangReferenceNode bangReferenceVal;
 %token T_SR_ALL T_SR_DATA T_SR_HEADERS T_SR_TOTALS
 
 %type <nodeVal>           formula whitespace
-%type <expressionVal>     expression primary constant error_constant ref_constant  solo_function
-%type <expressionVal>     function_call_head function_call argument
+%type <expressionVal>     expression primary constant error_constant ref_constant solo_function
+%type <expressionVal>     function_call_head builtin_function_call_head function_call argument
 %type <expressionListVal> argument_list
-%type <expressionVal>     cell_reference name_reference structure_reference structure_reference_index structure_reference_index_primitive
+%type <expressionVal>     cell_reference structure_reference structure_reference_index structure_reference_index_primitive
 // %type <expressionVal>     pivot_item pivot_items pivot_item_index
 %type <structureColumnVal> structure_column
 %type <structureTotalsVal> structure_totals
@@ -136,6 +136,8 @@ public BangReferenceNode bangReferenceVal;
 %type <nodeListVal>       opt_whitespace
 %type <bangVal>           bang
 %type <bangReferenceVal>  bang_reference
+%type <nameVal>           opt_xlfn opt_xlws xlfn xlws xlpm xlop
+
 
 #include "function/command/types.inc"
 #include "function/future/types.inc"
@@ -195,15 +197,15 @@ expression:
   ;
 
 primary:
-    constant            { $$ = $1; }
-  | ref_constant        { $$ = $1; }
-  | structure_reference { $$ = $1; }
-  | cell_reference      { $$ = $1; }
-  | A1_row              { $$ = $1; }
-  | A1_column           { $$ = $1; }
-  | function_call       { $$ = $1; }
-  | function_call_head  { $$ = $1; }
-  | name_reference      { $$ = $1; }
+    constant                    { $$ = $1; }
+  | ref_constant                { $$ = $1; }
+  | structure_reference         { $$ = $1; }
+  | cell_reference              { $$ = $1; }
+  | A1_row                      { $$ = $1; }
+  | A1_column                   { $$ = $1; }
+  | function_call               { $$ = $1; }
+  | builtin_function_call_head  { $$ = $1; }
+  | name                        { $$ = $1; }
   // | pivot_items         { $$ = $1; }
   ;
 
@@ -213,37 +215,36 @@ primary:
 #include "function/standard/nodes.inc"
 #include "function/worksheet/nodes.inc"
 
+xlpm: T_XLPM_ { $$ = new XlpmFunctionNode($1); };
+
+xlws: T_XLWS_ { $$ = new XlwsFunctionNode($1); };
+xlop: T_XLOP_ { $$ = new XlopFunctionNode($1); };
+xlfn: T_XLFN_ { $$ = new XlfnFunctionNode($1); };
+
+opt_xlws: xlws { $$ = $1; } | /* empty */ { $$ = null; };
+opt_xlfn: xlfn { $$ = $1; } | /* empty */ { $$ = null; };
+
+builtin_function_call_head:
+     whitespace builtin_function_call_head        { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+   | builtin_function_call_head whitespace        { $$ = $1; $$.TrailingWhitespace.Add($2); }
+   | standard_function_name                       { $$ = $1; }
+   | future_function_name                         { $$ = $1; }
+   | macro_function_name                          { $$ = $1; }
+   | command_function_name                        { $$ = $1; }
+   | worksheet_function_name                      { $$ = $1; }
+   ;
 function_call_head:
-     whitespace function_call_head { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
-   | function_call_head whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
-   | standard_function_name
-      { $$ = new BuiltInStandardFunctionNode($1); }
-   | future_function_name
-      { $$ = new BuiltInFutureFunctionNode($1); }
-   | macro_function_name
-      { $$ = new BuiltInMacroFunctionNode($1); }
-   | command_function_name T_QUESTIONMARK
-      { $$ = new BuiltInCommandFunctionNode($1, new QuestionMarkNode($2)); }
-   | command_function_name
-      { $$ = new BuiltInCommandFunctionNode($1); }
-      // This is technically required.
-      // Excel versions after Excel 2010 support useage of worksheet functions without the "_xlfn.xlws" prefix.
-      // The prefix is still required, however - Excel will insert this prefix automatically in Excel versions after 2010
-      // to ensure backwards compatibility, while showing the user the function name without the prefix.
-      //
-      // We will support both with and without the prefix to ensure maximum compatibility - especially for
-      // if this were to be used in a context where users are writing formulas directly.
-   | T_XLFN_XLWS_ worksheet_function_name
-      { $$ = new BuiltInWorksheetFunctionNode($1, new BuiltInFunctionNode($2)); }
-   | worksheet_function_name
-      { $$ = new BuiltInWorksheetFunctionNode(new BuiltInFunctionNode($1)); }
-  ;
+     whitespace function_call_head        { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+   | function_call_head whitespace        { $$ = $1; $$.TrailingWhitespace.Add($2); }
+   | builtin_function_call_head           { $$ = $1; }
+   | name                                 { $$ =  UserDefinedFunctionNode($1); }
+   ;
 
 function_call: function_call_head T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3); };
 
-solo_function: opt_whitespace T_XLFN_XLWS_ T_FUNC_PY opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
+solo_function: opt_whitespace py_function_name opt_whitespace T_LPAREN opt_whitespace T_LONG opt_whitespace T_COMMA opt_whitespace T_NUMERICAL_CONSTANT opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
       {
-          BuiltInWorksheetFunctionNode pyNode = new PyWorksheetFunctionNode($1, $4);
+          PyWorksheetFunctionNode pyNode = $2;
           NumericLiteralNode<long> arg1 = new NumericLiteralNode<long>($7, "D", $6, $8);
           NumericLiteralNode<double> arg2 = new NumericLiteralNode<double>($11, "D", $10, $12);
 
@@ -263,8 +264,10 @@ argument_list:
   ;
 
 argument:
-    expression { $$ = $1; }
-  | /* empty */ { $$ = new EmptyArgumentNode(); }
+    xlpm argument { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
+  | xlop argument { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
+  | expression    { $$ = $1; }
+  | /* empty */   { $$ = new EmptyArgumentNode(); }
   ;
 
 
@@ -277,10 +280,28 @@ constant:
     | T_TRUE               { $$ = new LogicalNode(true); }
     | T_FALSE              { $$ = new LogicalNode(false); }
     | error_constant       { $$ = $1; }
-    | array       { $$ = $1; }
+    | array                { $$ = $1; }
     ;
 
-error_constant: T_DIV0_ERROR { $$ = new ErrorNode($1); } | T_NA_ERROR { $$ = new ErrorNode($1); } | T_NAME_ERROR { $$ = new ErrorNode($1); } |  T_NULL_ERROR { $$ = new ErrorNode($1); } |  T_NUM_ERROR { $$ = new ErrorNode($1); } |  T_VALUE_ERROR { $$ = new ErrorNode($1); } |  T_GETTING_DATA_ERROR { $$ = new ErrorNode($1); } | T_SPILL_ERROR { $$ = new ErrorNode($1); } | T_CALC_ERROR { $$ = new ErrorNode($1); } | T_BLOCKED_ERROR { $$ = new ErrorNode($1); } | T_BUSY_ERROR { $$ = new ErrorNode($1); } | T_CIRCULAR_ERROR { $$ = new ErrorNode($1); } | T_CONNECT_ERROR { $$ = new ErrorNode($1); } | T_EXTERNAL_ERROR { $$ = new ErrorNode($1); } | T_FIELD_ERROR { $$ = new ErrorNode($1); } | T_PYTHON_ERROR { $$ = new ErrorNode($1); } | T_UNKNOWN_ERROR { $$ = new ErrorNode($1); };
+error_constant:
+      T_DIV0_ERROR         { $$ = new DivZeroErrorNode($1); }
+    | T_NA_ERROR           { $$ = new NAErrorNode($1); }
+    | T_NAME_ERROR         { $$ = new NameErrorNode($1); }
+    | T_NULL_ERROR         { $$ = new NullErrorNode($1); }
+    | T_NUM_ERROR          { $$ = new NumErrorNode($1); }
+    | T_VALUE_ERROR        { $$ = new ValueErrorNode($1); }
+    | T_GETTING_DATA_ERROR { $$ = new GettingDataErrorNode($1); }
+    | T_SPILL_ERROR        { $$ = new SpillErrorNode($1); }
+    | T_CALC_ERROR         { $$ = new CalcErrorNode($1); }
+    | T_BLOCKED_ERROR      { $$ = new BlockedErrorNode($1); }
+    | T_BUSY_ERROR         { $$ = new BusyErrorNode($1); }
+    | T_CIRCULAR_ERROR     { $$ = new CircularErrorNode($1); }
+    | T_CONNECT_ERROR      { $$ = new ConnectErrorNode($1); }
+    | T_EXTERNAL_ERROR     { $$ = new ExternalErrorNode($1); }
+    | T_FIELD_ERROR        { $$ = new FieldErrorNode($1); }
+    | T_PYTHON_ERROR       { $$ = new PythonErrorNode($1); }
+    | T_UNKNOWN_ERROR      { $$ = new UnknownErrorNode($1); }
+    ;
 
 ref_constant: opt_whitespace T_REF_ERROR opt_whitespace { $$ = new ErrorNode($2, $1, $3); };
 
@@ -316,18 +337,6 @@ cell_reference:
               external_cell_reference { $$ = $1; }
               | cell_range { $$ = $1; }
               | cell { $$ = $1; };
-name_reference: opt_whitespace T_IDENTIFIER opt_whitespace T_LPAREN opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
-  {
-      UserDefinedFunctionNode head = new UserDefinedFunctionNode(new NameNode($2), $1, $3);
-
-      $$ = new FunctionCallNode(head, $6, $1, $9);
-  }
-  | name
-  {
-      // This handles the case of a simple named range or variable.
-      $$ = $1;
-  }
-  ;
 name:
         whitespace name                           { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
       | name whitespace                           { $$ = $1; $$.TrailingWhitespace.Add($2); }

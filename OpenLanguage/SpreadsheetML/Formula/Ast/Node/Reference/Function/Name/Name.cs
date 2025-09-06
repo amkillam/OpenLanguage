@@ -55,18 +55,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BuiltInFunctionPrefixNode : NameNode
+    public class BuiltInFunctionNode : NameNode
     {
-        public BuiltInFunctionPrefixNode(
-            ExpressionNode prefix,
+        public BuiltInFunctionNode(
+            ExpressionNode name,
+            NameNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(prefix, leadingWhitespace, trailingWhitespace) { }
-    }
+            : base(
+                prefix == null
+                    ? name
+                    : new ConcatenatedNodes(new List<ExpressionNode>() { prefix, name }),
+                leadingWhitespace,
+                trailingWhitespace
+            ) { }
 
-    public class BuiltInFunctionNode : NameNode
-    {
         public BuiltInFunctionNode(
             ExpressionNode name,
             List<Node>? leadingWhitespace = null,
@@ -77,22 +81,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         // Expose the function identifier text as a string for tests and consumers.
         // This intentionally hides NameNode.Name (ExpressionNode) to provide a simple string name here.
         public new string Name => base.ToRawString();
-
-        public static BuiltInFunctionNode CreatePrefixed(
-            BuiltInFunctionPrefixNode prefix,
-            ExpressionNode name,
-            List<Node>? leadingWhitespace = null,
-            List<Node>? trailingWhitespace = null
-        )
-        {
-            ExpressionNode combinedName = new ConcatenatedNodes(
-                new List<ExpressionNode> { prefix, name },
-                leadingWhitespace,
-                trailingWhitespace
-            );
-
-            return new BuiltInFunctionNode(combinedName, leadingWhitespace, trailingWhitespace);
-        }
     }
 
     public class BuiltInStandardFunctionNode : BuiltInFunctionNode
@@ -109,10 +97,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         public BuiltInFutureFunctionNode(
             ExpressionNode name,
+            NameNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(name, leadingWhitespace, trailingWhitespace) { }
+            : base(name, prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
     public class BuiltInMacroFunctionNode : BuiltInFunctionNode
@@ -147,18 +136,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode
     {
         public BuiltInWorksheetFunctionNode(
-            NameNode prefix,
-            BuiltInFunctionNode functionNode,
-            List<Node>? leadingWs = null,
-            List<Node>? trailingWs = null
-        )
-            : base(
-                new ConcatenatedNodes(new List<ExpressionNode>() { prefix, functionNode }),
-                leadingWs,
-                trailingWs
-            ) { }
-
-        public BuiltInWorksheetFunctionNode(
             BuiltInFunctionNode functionNode,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
@@ -166,17 +143,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(functionNode, leadingWs, trailingWs) { }
 
         public BuiltInWorksheetFunctionNode(
-            string prefix,
             BuiltInFunctionNode functionNode,
+            NameNode? xlfnPrefix = null,
+            NameNode? xlwsPrefix = null,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
-            : base(
-                new ConcatenatedNodes(
-                    new List<ExpressionNode>() { new NameNode(prefix), functionNode }
-                ),
-                leadingWs,
-                trailingWs
-            ) { }
+            : base(functionNode, prefix, leadingWs, trailingWs) { }
     }
 }

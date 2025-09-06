@@ -1,1 +1,1 @@
-%type <expressionVal> worksheet_function_name
+%type <expressionVal> worksheet_function_name py_worksheet_function_name

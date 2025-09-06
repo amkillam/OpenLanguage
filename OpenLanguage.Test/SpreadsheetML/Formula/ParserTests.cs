@@ -850,7 +850,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula);
-            Assert.Equal(formulaString, formula.ToString().Replace("_xlfn.xlws.", ""));
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]
@@ -867,7 +867,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.NotNull(formula);
-            Assert.Equal(formulaString, formula.ToString().Replace("_xlfn.xlws.", ""));
+            Assert.Equal(formulaString, formula.ToString());
         }
 
         [Theory]

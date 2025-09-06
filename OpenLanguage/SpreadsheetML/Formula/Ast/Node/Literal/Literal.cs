@@ -121,31 +121,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override Node? ReplaceChild(Int32 index, Node replacement) => null;
     }
 
-    public class ErrorNode : ExpressionNode
-    {
-        public string ErrorType { get; set; }
-        public override int Precedence => Ast.Precedence.Primary;
-
-        public ErrorNode(
-            string errorType,
-            List<Node>? leadingWhitespace = null,
-            List<Node>? trailingWhitespace = null
-        )
-            : base(leadingWhitespace, trailingWhitespace)
-        {
-            ErrorType = errorType;
-        }
-
-        public override string ToRawString() => ErrorType;
-
-        public override IEnumerable<O> Children<O>()
-        {
-            yield break;
-        }
-
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
-    }
-
     public class EmptyArgumentNode : ExpressionNode
     {
         public override int Precedence => Ast.Precedence.Primary;
