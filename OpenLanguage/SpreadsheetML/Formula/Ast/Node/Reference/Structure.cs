@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public abstract class StructureReferenceNode : ExpressionNode
+    public abstract class StructuredReferenceKeywordNode : ExpressionNode
     {
-        protected StructureReferenceNode(
+        protected StructuredReferenceKeywordNode(
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
@@ -21,35 +21,35 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
-    public class StructureAllReferenceNode : StructureReferenceNode
+    public class StructureAllReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#All";
 
         public override string ToRawString() => Keyword;
     }
 
-    public class StructureDataReferenceNode : StructureReferenceNode
+    public class StructureDataReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Data";
 
         public override string ToRawString() => Keyword;
     }
 
-    public class StructureHeadersReferenceNode : StructureReferenceNode
+    public class StructureHeadersReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Headers";
 
         public override string ToRawString() => Keyword;
     }
 
-    public class StructureTotalsReferenceNode : StructureReferenceNode
+    public class StructureTotalsReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Totals";
 
         public override string ToRawString() => Keyword;
     }
 
-    public class StructureThisRowReferenceNode : StructureReferenceNode
+    public class StructureThisRowReferenceNode : StructuredReferenceKeywordNode
     {
         public string RawValue { get; }
 
@@ -199,10 +199,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
     public class StructureColumnRange : ExpressionNode
     {
-        public StructureColumn Start { get; set; }
-        public StructureColumn End { get; set; }
+        public ExpressionNode Start { get; set; }
+        public ExpressionNode End { get; set; }
 
-        public StructureColumnRange(StructureColumn start, StructureColumn end)
+        public StructureColumnRange(ExpressionNode start, ExpressionNode end)
         {
             Start = start;
             End = end;
@@ -226,7 +226,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
-            if (replacement is StructureColumn sc)
+            if (replacement is ExpressionNode sc)
             {
                 if (index == 0)
                 {
@@ -248,11 +248,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class StructureThisRowColumnReferenceNode : ExpressionNode
     {
         public StructureThisRowReferenceNode ThisRow { get; set; }
-        public StructureColumn Column { get; set; }
+        public ExpressionNode Column { get; set; }
 
         public StructureThisRowColumnReferenceNode(
             StructureThisRowReferenceNode thisRow,
-            StructureColumn column
+            ExpressionNode column
         )
         {
             ThisRow = thisRow;
@@ -283,7 +283,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 ThisRow = t;
                 return current;
             }
-            if (index == 1 && replacement is StructureColumn c)
+            if (index == 1 && replacement is ExpressionNode c)
             {
                 Node current = Column;
                 Column = c;
@@ -437,9 +437,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class ColumnIndexedKeyword : ExpressionNode
     {
         public ExpressionNode Keyword { get; set; }
-        public StructureColumn Column { get; set; }
+        public ExpressionNode Column { get; set; }
 
-        public ColumnIndexedKeyword(ExpressionNode keyword, StructureColumn column)
+        public ColumnIndexedKeyword(ExpressionNode keyword, ExpressionNode column)
         {
             Keyword = keyword;
             Column = column;
@@ -469,7 +469,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 Keyword = k;
                 return current;
             }
-            if (index == 1 && replacement is StructureColumn c)
+            if (index == 1 && replacement is ExpressionNode c)
             {
                 Node current = Column;
                 Column = c;
@@ -479,10 +479,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         }
     }
 
-    public class StructureReferenceIndicesUnion
+    public class StructuredReferenceIndicesUnion
         : CommaDelimitedNodes<ExpressionNode, ExpressionNode>
     {
-        public StructureReferenceIndicesUnion(
+        public StructuredReferenceIndicesUnion(
+            ExpressionNode left,
+            CommaNode delimiter,
+            ExpressionNode right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, delimiter, right, leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class StructuredReferenceUnion : CommaDelimitedNodes<ExpressionNode, ExpressionNode>
+    {
+        public StructuredReferenceUnion(
             ExpressionNode left,
             CommaNode delimiter,
             ExpressionNode right,
@@ -502,30 +514,30 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public StructuredReferenceNode(
             WorkbookIndexNode? workbook,
             ExpressionNode? tableName,
-            ExpressionNode? intraTableReference
+            ExpressionNode? tableIndex
         )
         {
             Workbook = workbook;
             TableName = tableName;
-            if (intraTableReference == null)
+            if (tableIndex == null)
             {
                 Indices = new List<ExpressionNode>();
             }
             else
             {
-                Indices = new List<ExpressionNode>() { intraTableReference };
+                Indices = new List<ExpressionNode>() { tableIndex };
             }
         }
 
         public StructuredReferenceNode(
             WorkbookIndexNode? workbook,
             ExpressionNode? tableName,
-            List<ExpressionNode>? intraTableReferences
+            List<ExpressionNode>? tableIndexs
         )
         {
             Workbook = workbook;
             TableName = tableName;
-            Indices = intraTableReferences ?? new List<ExpressionNode>();
+            Indices = tableIndexs ?? new List<ExpressionNode>();
         }
 
         public override int Precedence => Ast.Precedence.Primary;
@@ -542,15 +554,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 builder.Append(TableName.ToString());
             }
 
-            for (System.Int32 i = 0; i < Indices.Count - 1; i++)
+            if (Indices.Count > 0)
             {
-                ExpressionNode intraTableRef = Indices[i];
-                builder.Append(intraTableRef.ToString());
-                CommaNode delimiter = DelimiterNodes[i];
-                builder.Append(delimiter.ToString());
-            }
+                for (int i = 0; i < Indices.Count - 1; i++)
+                {
+                    ExpressionNode tableIndex = Indices[i];
+                    builder.Append(tableIndex.ToString());
+                    CommaNode delimiter = DelimiterNodes[i];
+                    builder.Append(delimiter.ToString());
+                }
 
-            builder.Append(Indices.Last().ToString());
+                builder.Append(Indices.Last().ToString());
+            }
 
             return builder.ToString();
         }
@@ -566,9 +581,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 yield return t;
             }
 
-            foreach (ExpressionNode intraTableRef in Indices)
+            foreach (ExpressionNode tableIndex in Indices)
             {
-                if (intraTableRef is O i)
+                if (tableIndex is O i)
                 {
                     yield return i;
                 }
@@ -614,6 +629,41 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 Indices[referenceOffset] = e;
             }
 
+            return current;
+        }
+    }
+
+    public class StructureAllRowsReferenceNode : ExpressionNode
+    {
+        public ExpressionNode Column { get; set; }
+
+        public StructureAllRowsReferenceNode(ExpressionNode column)
+        {
+            Column = column;
+        }
+
+        public override int Precedence => Ast.Precedence.Primary;
+
+        public override string ToRawString() => "[" + Column.ToString() + "]";
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Column is O c)
+            {
+                yield return c;
+            }
+
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            if (index == 0 && replacement is ExpressionNode c)
+            {
+                current = Column;
+                Column = c;
+            }
             return current;
         }
     }

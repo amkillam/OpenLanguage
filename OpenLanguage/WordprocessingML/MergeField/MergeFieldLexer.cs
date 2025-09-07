@@ -425,7 +425,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
             return null;
         }
 
-        private static readonly Dictionary<string, LanguageIdentifier> cultureMap = new Dictionary<
+        private static readonly Dictionary<string, LanguageIdentifier> _cultureMap = new Dictionary<
             string,
             LanguageIdentifier
         >(StringComparer.OrdinalIgnoreCase)
@@ -480,7 +480,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
         {
             if (!string.IsNullOrWhiteSpace(cultureName))
             {
-                if (cultureMap.TryGetValue(cultureName.Trim(), out LanguageIdentifier mappedId))
+                if (_cultureMap.TryGetValue(cultureName.Trim(), out LanguageIdentifier mappedId))
                 {
                     return mappedId;
                 }

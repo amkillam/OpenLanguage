@@ -35,7 +35,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ActivateNotesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -50,7 +51,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ActivatePrevCommandFunctionNode : BuiltInCommandFunctionNode
@@ -65,7 +67,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ActiveCellFontCommandFunctionNode : BuiltInCommandFunctionNode
@@ -80,7 +83,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AddinManagerCommandFunctionNode : BuiltInCommandFunctionNode
@@ -95,7 +99,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AddArrowCommandFunctionNode : BuiltInCommandFunctionNode
@@ -121,7 +126,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AddListItemCommandFunctionNode : BuiltInCommandFunctionNode
@@ -136,7 +142,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AddOverlayCommandFunctionNode : BuiltInCommandFunctionNode
@@ -162,7 +169,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AddToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -231,7 +239,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AppActivateMicrosoftCommandFunctionNode : BuiltInCommandFunctionNode
@@ -246,7 +255,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AppMaximizeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -261,7 +271,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AppMinimizeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -276,7 +287,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AppMoveCommandFunctionNode : BuiltInCommandFunctionNode
@@ -335,7 +347,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AssignToToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -350,7 +363,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AttachTextCommandFunctionNode : BuiltInCommandFunctionNode
@@ -376,7 +390,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AttributesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -413,7 +428,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class AxesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -458,7 +474,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CalculateDocumentCommandFunctionNode : BuiltInCommandFunctionNode
@@ -473,7 +490,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CalculateNowCommandFunctionNode : BuiltInCommandFunctionNode
@@ -488,7 +506,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CalculationCommandFunctionNode : BuiltInCommandFunctionNode
@@ -525,7 +544,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ChangeLinkCommandFunctionNode : BuiltInCommandFunctionNode
@@ -551,7 +571,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ChartTrendCommandFunctionNode : BuiltInCommandFunctionNode
@@ -577,7 +598,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CheckboxPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -592,7 +614,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ClearCommandFunctionNode : BuiltInCommandFunctionNode
@@ -617,7 +640,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ClearPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -632,7 +656,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ClearRoutingSlipCommandFunctionNode : BuiltInCommandFunctionNode
@@ -647,7 +672,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CloseCommandFunctionNode : BuiltInCommandFunctionNode
@@ -683,7 +709,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ColumnWidthCommandFunctionNode : BuiltInCommandFunctionNode
@@ -698,7 +725,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CombinationCommandFunctionNode : BuiltInCommandFunctionNode
@@ -735,7 +763,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CopyCommandFunctionNode : BuiltInCommandFunctionNode
@@ -771,7 +800,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CopyToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -797,7 +827,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CreatePublisherCommandFunctionNode : BuiltInCommandFunctionNode
@@ -812,7 +843,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CustomizeToolbarCommandFunctionNode : BuiltInCommandFunctionNode
@@ -827,7 +859,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class CutCommandFunctionNode : BuiltInCommandFunctionNode
@@ -874,7 +907,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DataFindPrevCommandFunctionNode : BuiltInCommandFunctionNode
@@ -889,7 +923,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DataFormCommandFunctionNode : BuiltInCommandFunctionNode
@@ -948,7 +983,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteArrowCommandFunctionNode : BuiltInCommandFunctionNode
@@ -963,7 +999,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteChartAutoFormatCommandFunctionNode : BuiltInCommandFunctionNode
@@ -978,7 +1015,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteFormatCommandFunctionNode : BuiltInCommandFunctionNode
@@ -993,7 +1031,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteNameCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1030,7 +1069,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteStyleCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1045,7 +1085,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DeleteToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1081,7 +1122,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class DisplayCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1117,7 +1159,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class EditionOptionsCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1132,7 +1175,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class EditColorCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1213,7 +1257,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class EnableTipwizardCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1228,7 +1273,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class EnterDataCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1276,7 +1322,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ExtractCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1388,7 +1435,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FilterShowAllCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1403,7 +1451,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FindFileCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1439,7 +1488,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatAutoCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1465,7 +1515,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatCharttypeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1480,7 +1531,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatFontCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1506,7 +1558,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatMainCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1543,7 +1596,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatOverlayCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1558,7 +1612,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatShapeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1573,7 +1628,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormatSizeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1620,7 +1676,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaFillCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1635,7 +1692,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaFindCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1650,7 +1708,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaFindNextCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1665,7 +1724,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaFindPrevCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1680,7 +1740,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaGotoCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1695,7 +1756,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FormulaReplaceCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1710,7 +1772,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FreezePanesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1725,7 +1788,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class FullCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1761,7 +1825,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DAreaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1776,7 +1841,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DBarCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1791,7 +1857,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DColumnCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1806,7 +1873,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DLineCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1821,7 +1889,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DPieCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1836,7 +1905,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class Gallery3DSurfaceCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1851,7 +1921,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryAreaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1866,7 +1937,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryBarCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1892,7 +1964,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryCustomCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1907,7 +1980,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryDoughnutCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1922,7 +1996,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryLineCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1937,7 +2012,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryPieCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1963,7 +2039,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GalleryScatterCommandFunctionNode : BuiltInCommandFunctionNode
@@ -1978,7 +2055,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class GoalSeekCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2025,7 +2103,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class HideallNotesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2040,7 +2119,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class HidecurrNoteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2055,7 +2135,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class HideDialogCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2132,7 +2213,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class InsertMapObjectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2147,7 +2229,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class InsertObjectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2162,7 +2245,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class InsertPictureCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2177,7 +2261,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class InsertTitleCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2192,7 +2277,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class JustifyCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2217,7 +2303,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class LayoutCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2285,7 +2372,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ListNamesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2311,7 +2399,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailAddMailerCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2326,7 +2415,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailDeleteMailerCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2341,7 +2431,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailEditMailerCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2356,7 +2447,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailForwardCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2371,7 +2463,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailLogOffCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2408,7 +2501,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailReplyCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2434,7 +2528,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MailSendMailerCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2449,7 +2544,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MainChartCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2475,7 +2571,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MenuEditorCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2501,7 +2598,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class MessageCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2590,7 +2688,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ObjectProtectionCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2605,7 +2704,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OnDataCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2630,7 +2730,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OnEntryCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2752,7 +2853,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsChartCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2767,7 +2869,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsEditCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2782,7 +2885,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsGeneralCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2797,7 +2901,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsListsAddCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2812,7 +2917,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsListsDeleteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2827,7 +2933,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsMeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2853,7 +2960,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsSaveCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2868,7 +2976,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsSpellCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2883,7 +2992,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsTransitionCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2898,7 +3008,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OptionsViewCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2913,7 +3024,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class OutlineCommandFunctionNode : BuiltInCommandFunctionNode
@@ -2948,7 +3060,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PageSetupCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3005,7 +3118,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PastePictureLinkCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3020,7 +3134,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PasteSpecialCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3035,7 +3150,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PasteToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3083,7 +3199,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotFieldCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3109,7 +3226,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotFieldPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3124,7 +3242,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotFieldUngroupCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3139,7 +3258,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotItemCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3165,7 +3285,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotRefreshCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3180,7 +3301,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotShowPagesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3195,7 +3317,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotTableChartCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3210,7 +3333,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PivotTableWizardCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3225,7 +3349,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PostDocumentCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3240,7 +3365,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PrecisionCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3287,7 +3413,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PrintPreviewCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3302,7 +3429,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PromoteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3327,7 +3455,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ProtectRevisionsCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3342,7 +3471,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class PushbuttonPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3357,7 +3487,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class QuitCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3382,7 +3513,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class RemovePageBreakCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3397,7 +3529,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class RenameObjectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3412,7 +3545,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ReplaceFontCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3427,7 +3561,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ResetToolCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3453,7 +3588,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class RouteDocumentCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3468,7 +3604,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class RoutingSlipCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3483,7 +3620,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class RowHeightCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3539,7 +3677,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SaveNewObjectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3554,7 +3693,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SaveWorkbookCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3569,7 +3709,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SaveWorkspaceCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3584,7 +3725,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScaleCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3609,7 +3751,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioCellsCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3624,7 +3767,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioDeleteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3639,7 +3783,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioEditCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3654,7 +3799,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioMergeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3669,7 +3815,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioShowCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3684,7 +3831,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioShowNextCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3699,7 +3847,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScenarioSummaryCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3714,7 +3863,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ScrollbarPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3729,7 +3879,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SelectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3765,7 +3916,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SelectEndCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3791,7 +3943,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SelectListItemCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3806,7 +3959,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SelectPlotAreaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3821,7 +3975,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SelectSpecialCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3836,7 +3991,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SendKeysCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3873,7 +4029,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SeriesAxesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3899,7 +4056,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SeriesXCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3936,7 +4094,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetCriteriaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3951,7 +4110,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetDatabaseCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3966,7 +4126,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetDialogDefaultCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3981,7 +4142,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetDialogFocusCommandFunctionNode : BuiltInCommandFunctionNode
@@ -3996,7 +4158,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetExtractCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4022,7 +4185,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetPageBreakCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4037,7 +4201,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetPreferredCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4052,7 +4217,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4067,7 +4233,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetPrintTitlesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4082,7 +4249,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SetUpdateStatusCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4097,7 +4265,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ShareCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4133,7 +4302,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ShortMenusCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4159,7 +4329,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ShowClipboardCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4174,7 +4345,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class ShowDetailCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4233,7 +4405,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SortSpecialCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4248,7 +4421,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SoundNoteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4306,7 +4480,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class StandardWidthCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4321,7 +4496,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class StyleCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4346,7 +4522,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SubtotalCreateCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4361,7 +4538,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SubtotalRemoveCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4376,7 +4554,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class SummaryInfoCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4391,7 +4570,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TableCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4427,7 +4607,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TracerClearCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4442,7 +4623,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TracerDisplayCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4457,7 +4639,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TracerErrorCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4472,7 +4655,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TracerNavigateCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4487,7 +4671,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class TraverseNotesCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4502,7 +4687,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class UndoCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4537,7 +4723,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class UnhideCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4562,7 +4749,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class UnlockedPrevCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4577,7 +4765,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class UnprotectRevisionsCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4592,7 +4781,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class UpdateLinkCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4629,7 +4819,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class VbaMakeAddinCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4644,7 +4835,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class VbaProcedureDefinitionCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4659,7 +4851,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class View3DCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4768,7 +4961,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WindowMinimizeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4783,7 +4977,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WindowMoveCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4809,7 +5004,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WindowSizeCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4835,7 +5031,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookAddCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4850,7 +5047,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookCopyCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4865,7 +5063,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookDeleteCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4880,7 +5079,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookHideCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4895,7 +5095,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookInsertCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4910,7 +5111,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookMoveCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4925,7 +5127,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookNameCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4940,7 +5143,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookNewCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4955,7 +5159,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookNextCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4970,7 +5175,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookOptionsCommandFunctionNode : BuiltInCommandFunctionNode
@@ -4985,7 +5191,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookPrevCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5000,7 +5207,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookProtectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5015,7 +5223,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookScrollCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5030,7 +5239,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookSelectCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5045,7 +5255,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookTabSplitCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5060,7 +5271,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkbookUnhideCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5075,7 +5287,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkgroupCommandFunctionNode : BuiltInCommandFunctionNode
@@ -5101,7 +5314,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
     public class WorkspaceCommandFunctionNode : BuiltInCommandFunctionNode

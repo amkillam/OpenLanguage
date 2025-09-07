@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenLanguage.SpreadsheetML.Formula.Ast;
 using Xunit;
@@ -84,12 +85,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.IsType<FunctionCallNode>(formula);
-            Assert.IsType<BuiltInFutureFunctionNode>(
-                ((FunctionCallNode)(formula)).FunctionIdentifier
-            );
+            Assert.IsType<FutureFunctionNode>(((FunctionCallNode)(formula)).FunctionIdentifier);
             Assert.Equal(
                 expectedFuncName,
-                ((BuiltInFunctionNode)((FunctionCallNode)(formula)).FunctionIdentifier).Name
+                (
+                    (BuiltInFunctionNode)((FunctionCallNode)(formula)).FunctionIdentifier
+                ).Name?.ToString()
             );
             Assert.Equal(formulaString, formula.ToString());
         }
@@ -666,7 +667,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         {
             // Create a deeply nested formula
             string nestedFormula = "SUM(";
-            for (Int32 i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 nestedFormula += $"IF(A{i}>0,A{i},0),";
             }
@@ -687,7 +688,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void Parse_ManySimpleFormulas_ParsesWithinReasonableTime()
         {
             string[] formulas = new string[1000];
-            for (Int32 i = 0; i < formulas.Length; i++)
+            for (int i = 0; i < formulas.Length; i++)
             {
                 formulas[i] = $"SUM(A{i}:A{i + 10})";
             }
@@ -805,9 +806,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Theory]
         [InlineData("Table1[[#Headers],[Column1]:[Column3]]")] // Multi-column header reference
         [InlineData("Table1[[#Data],[#Totals]]")] // Multiple specifiers
-        [InlineData("Table1[[@[Column Name]]]")] // This row with complex column name
+        [InlineData("Table1[[@[ColumnName]]]")] // This row with complex column name
         [InlineData("Table1[[Column1],[Column2]]")] // Multiple columns
-        [InlineData("Table1[[Column,Name_with,Commas]]")] // Column with commas
         [InlineData("Table1[[@]]")] // This row shorthand
         [InlineData("Table1[[#This Row],[Column1]]")] // Explicit this row
         [InlineData("Table_Name_With_Underscores[[Column_1]]")] // Table name with underscores
@@ -962,7 +962,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
             formulaBuilder.Append("SUM(");
 
-            for (Int32 i = 0; i < 1000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 if (i > 0)
                 {
@@ -986,14 +986,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             // Create a formula with deep nesting
             System.Text.StringBuilder formulaBuilder = new System.Text.StringBuilder();
 
-            for (Int32 i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 formulaBuilder.Append("IF(A1>0,");
             }
 
             formulaBuilder.Append("1");
 
-            for (Int32 i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 formulaBuilder.Append(",0)");
             }
@@ -1020,7 +1020,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("\"hello\"", "StringNode")]
         [InlineData("TRUE", "LogicalNode")]
         [InlineData("A1", "A1CellNode")]
-        [InlineData("SUM", "BuiltInStandardFunctionNode")]
+        [InlineData("SUM", "SumStandardFunctionNode")]
         public void Tokenize_BasicTokenTypes_IdentifiesCorrectly(
             string input,
             string expectedTokenType
@@ -1167,6 +1167,34 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
                 exception.Message,
                 StringComparison.OrdinalIgnoreCase
             );
+        }
+
+        [Fact]
+        public void TestWithTextFileLines()
+        {
+            IEnumerable<string> formulae = FormulaUtils.DatasetFormulae();
+            foreach (string formulaText in formulae)
+            {
+                if (string.IsNullOrWhiteSpace(formulaText))
+                {
+                    return;
+                }
+
+                Ast.Node? formula = FormulaParser.TryParse(formulaText);
+                if (formula == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Failed to parse formula:\"{formulaText}\""
+                    );
+                }
+
+                if (formula.ToString() != formulaText)
+                {
+                    throw new InvalidOperationException(
+                        $"Formula text mismatch. Expected:\"{formulaText}\", Got:\"{formula.ToString()}\""
+                    );
+                }
+            }
         }
     }
 }

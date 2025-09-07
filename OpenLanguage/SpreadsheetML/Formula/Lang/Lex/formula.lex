@@ -145,7 +145,7 @@
     "!" { yylval.stringVal = yytext; return (int)Tokens.T_BANG; }
     "$" { yylval.stringVal = yytext; return (int)Tokens.T_DOLLAR; }
     "#" { yylval.stringVal = yytext; return (int)Tokens.T_HASH; }
-    "?" { yylval.stringVal = yytext; return (int)Tokens.T_QUESTIONMARK; }
+    "?" { yylval.stringVal = yytext; return (int)Tokens.T_QUESTION_MARK; }
 
     .                   { }
 }

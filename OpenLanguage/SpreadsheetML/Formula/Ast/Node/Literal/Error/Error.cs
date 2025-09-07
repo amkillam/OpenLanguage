@@ -25,7 +25,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class DivZeroErrorNode : ErrorNode

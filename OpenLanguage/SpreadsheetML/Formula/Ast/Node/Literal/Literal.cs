@@ -68,7 +68,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class StringNode : ExpressionNode
@@ -93,7 +93,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class LogicalNode : ExpressionNode
@@ -118,7 +118,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class EmptyArgumentNode : ExpressionNode
@@ -138,7 +138,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class WhitespaceNode : Node
@@ -157,7 +157,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             yield break;
         }
 
-        public override Node? ReplaceChild(Int32 index, Node replacement) => null;
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     public class LeftBracketNode : CharacterLiteralNode

@@ -2,100 +2,100 @@ using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public class AcotFutureFunctionNode : BuiltInFutureFunctionNode
+    public class AcotFutureFunctionNode : FutureFunctionNode
     {
         public AcotFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ACOT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AcothFutureFunctionNode : BuiltInFutureFunctionNode
+    public class AcothFutureFunctionNode : FutureFunctionNode
     {
         public AcothFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ACOTH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AggregateFutureFunctionNode : BuiltInFutureFunctionNode
+    public class AggregateFutureFunctionNode : FutureFunctionNode
     {
         public AggregateFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("AGGREGATE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ArabicFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ArabicFutureFunctionNode : FutureFunctionNode
     {
         public ArabicFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ARABIC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ArrayToTextFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ArrayToTextFutureFunctionNode : FutureFunctionNode
     {
         public ArrayToTextFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ARRAYTOTEXT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BaseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BaseFutureFunctionNode : FutureFunctionNode
     {
         public BaseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BASE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BetaDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BetaDistFutureFunctionNode : FutureFunctionNode
     {
         public BetaDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BETA.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BetaInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BetaInvFutureFunctionNode : FutureFunctionNode
     {
         public BetaInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BETA.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinomDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BinomDistFutureFunctionNode : FutureFunctionNode
     {
         public BinomDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BINOM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinomDistRangeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BinomDistRangeFutureFunctionNode : FutureFunctionNode
     {
         public BinomDistRangeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -103,100 +103,100 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class BinomInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BinomInvFutureFunctionNode : FutureFunctionNode
     {
         public BinomInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BINOM.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BitAndFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BitAndFutureFunctionNode : FutureFunctionNode
     {
         public BitAndFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BITAND"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BitLShiftFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BitLShiftFutureFunctionNode : FutureFunctionNode
     {
         public BitLShiftFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BITLSHIFT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BitOrFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BitOrFutureFunctionNode : FutureFunctionNode
     {
         public BitOrFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BITOR"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BitRShiftFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BitRShiftFutureFunctionNode : FutureFunctionNode
     {
         public BitRShiftFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BITRSHIFT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BitXorFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BitXorFutureFunctionNode : FutureFunctionNode
     {
         public BitXorFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BITXOR"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BycolFutureFunctionNode : BuiltInFutureFunctionNode
+    public class BycolFutureFunctionNode : FutureFunctionNode
     {
         public BycolFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BYCOL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ByrowFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ByrowFutureFunctionNode : FutureFunctionNode
     {
         public ByrowFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("BYROW"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CeilingMathFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CeilingMathFutureFunctionNode : FutureFunctionNode
     {
         public CeilingMathFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CEILING.MATH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CeilingPreciseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CeilingPreciseFutureFunctionNode : FutureFunctionNode
     {
         public CeilingPreciseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -204,90 +204,90 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ChisqDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChisqDistFutureFunctionNode : FutureFunctionNode
     {
         public ChisqDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHISQ.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChisqDistRtFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChisqDistRtFutureFunctionNode : FutureFunctionNode
     {
         public ChisqDistRtFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHISQ.DIST.RT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChisqInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChisqInvFutureFunctionNode : FutureFunctionNode
     {
         public ChisqInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHISQ.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChisqInvRtFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChisqInvRtFutureFunctionNode : FutureFunctionNode
     {
         public ChisqInvRtFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHISQ.INV.RT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChisqTestFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChisqTestFutureFunctionNode : FutureFunctionNode
     {
         public ChisqTestFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHISQ.TEST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChooseColsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChooseColsFutureFunctionNode : FutureFunctionNode
     {
         public ChooseColsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHOOSECOLS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChooseRowsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ChooseRowsFutureFunctionNode : FutureFunctionNode
     {
         public ChooseRowsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CHOOSEROWS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CombinaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CombinaFutureFunctionNode : FutureFunctionNode
     {
         public CombinaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("COMBINA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ConfidenceNormFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ConfidenceNormFutureFunctionNode : FutureFunctionNode
     {
         public ConfidenceNormFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -295,240 +295,241 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ConfidenceTFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ConfidenceTFutureFunctionNode : FutureFunctionNode
     {
         public ConfidenceTFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CONFIDENCE.T"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CotFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CotFutureFunctionNode : FutureFunctionNode
     {
         public CotFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("COT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CothFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CothFutureFunctionNode : FutureFunctionNode
     {
         public CothFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("COTH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CovariancePFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CovariancePFutureFunctionNode : FutureFunctionNode
     {
         public CovariancePFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("COVARIANCE.P"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CovarianceSFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CovarianceSFutureFunctionNode : FutureFunctionNode
     {
         public CovarianceSFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("COVARIANCE.S"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CscFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CscFutureFunctionNode : FutureFunctionNode
     {
         public CscFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CSC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CschFutureFunctionNode : BuiltInFutureFunctionNode
+    public class CschFutureFunctionNode : FutureFunctionNode
     {
         public CschFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("CSCH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DaysFutureFunctionNode : BuiltInFutureFunctionNode
+    public class DaysFutureFunctionNode : FutureFunctionNode
     {
         public DaysFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("DAYS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DetectLanguageFutureFunctionNode : BuiltInFutureFunctionNode
+    public class DetectLanguageFutureFunctionNode : FutureFunctionNode
     {
         public DetectLanguageFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DETECTLANGUAGE"), prefix, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode("DETECTLANGUAGE"), prefix, leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class DecimalFutureFunctionNode : BuiltInFutureFunctionNode
+    public class DecimalFutureFunctionNode : FutureFunctionNode
     {
         public DecimalFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("DECIMAL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DropFutureFunctionNode : BuiltInFutureFunctionNode
+    public class DropFutureFunctionNode : FutureFunctionNode
     {
         public DropFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("DROP"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EcmaCeilingFutureFunctionNode : BuiltInFutureFunctionNode
+    public class EcmaCeilingFutureFunctionNode : FutureFunctionNode
     {
         public EcmaCeilingFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ECMA.CEILING"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EncodeUrlFutureFunctionNode : BuiltInFutureFunctionNode
+    public class EncodeUrlFutureFunctionNode : FutureFunctionNode
     {
         public EncodeUrlFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ENCODEURL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ErfCPreciseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ErfCPreciseFutureFunctionNode : FutureFunctionNode
     {
         public ErfCPreciseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ERFC.PRECISE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EuroConvertFutureFunctionNode : BuiltInFutureFunctionNode
+    public class EuroConvertFutureFunctionNode : FutureFunctionNode
     {
         public EuroConvertFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("EUROCONVERT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ErfPreciseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ErfPreciseFutureFunctionNode : FutureFunctionNode
     {
         public ErfPreciseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ERF.PRECISE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ExpandFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ExpandFutureFunctionNode : FutureFunctionNode
     {
         public ExpandFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("EXPAND"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ExponDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ExponDistFutureFunctionNode : FutureFunctionNode
     {
         public ExponDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("EXPON.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FieldValueFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FieldValueFutureFunctionNode : FutureFunctionNode
     {
         public FieldValueFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FIELDVALUE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FilterXmlFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FilterXmlFutureFunctionNode : FutureFunctionNode
     {
         public FilterXmlFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FILTERXML"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FloorMathFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FloorMathFutureFunctionNode : FutureFunctionNode
     {
         public FloorMathFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FLOOR.MATH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FloorPreciseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FloorPreciseFutureFunctionNode : FutureFunctionNode
     {
         public FloorPreciseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FLOOR.PRECISE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ForecastEtsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ForecastEtsFutureFunctionNode : FutureFunctionNode
     {
         public ForecastEtsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FORECAST.ETS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ForecastEtsConfIntFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ForecastEtsConfIntFutureFunctionNode : FutureFunctionNode
     {
         public ForecastEtsConfIntFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -537,13 +538,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
-    public class ForecastEtsSeasonalityFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ForecastEtsSeasonalityFutureFunctionNode : FutureFunctionNode
     {
         public ForecastEtsSeasonalityFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -552,13 +554,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            ) { }
+            )
+        { }
     }
 
-    public class ForecastEtsStatFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ForecastEtsStatFutureFunctionNode : FutureFunctionNode
     {
         public ForecastEtsStatFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -566,10 +569,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ForecastLinearFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ForecastLinearFutureFunctionNode : FutureFunctionNode
     {
         public ForecastLinearFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -577,80 +580,80 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaTextFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FormulaTextFutureFunctionNode : FutureFunctionNode
     {
         public FormulaTextFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("FORMULATEXT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FDistFutureFunctionNode : FutureFunctionNode
     {
         public FDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("F.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FDistRtFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FDistRtFutureFunctionNode : FutureFunctionNode
     {
         public FDistRtFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("F.DIST.RT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FInvFutureFunctionNode : FutureFunctionNode
     {
         public FInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("F.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FInvRtFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FInvRtFutureFunctionNode : FutureFunctionNode
     {
         public FInvRtFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("F.INV.RT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FTestFutureFunctionNode : BuiltInFutureFunctionNode
+    public class FTestFutureFunctionNode : FutureFunctionNode
     {
         public FTestFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("F.TEST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GammaFutureFunctionNode : FutureFunctionNode
     {
         public GammaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("GAMMA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaLnPreciseFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GammaLnPreciseFutureFunctionNode : FutureFunctionNode
     {
         public GammaLnPreciseFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -658,320 +661,320 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GammaDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GammaDistFutureFunctionNode : FutureFunctionNode
     {
         public GammaDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("GAMMA.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GammaInvFutureFunctionNode : FutureFunctionNode
     {
         public GammaInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("GAMMA.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GaussFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GaussFutureFunctionNode : FutureFunctionNode
     {
         public GaussFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("GAUSS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GroupByFutureFunctionNode : BuiltInFutureFunctionNode
+    public class GroupByFutureFunctionNode : FutureFunctionNode
     {
         public GroupByFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("GROUPBY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HStackFutureFunctionNode : BuiltInFutureFunctionNode
+    public class HStackFutureFunctionNode : FutureFunctionNode
     {
         public HStackFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("HSTACK"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HypGeomDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class HypGeomDistFutureFunctionNode : FutureFunctionNode
     {
         public HypGeomDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("HYPGEOM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImageFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImageFutureFunctionNode : FutureFunctionNode
     {
         public ImageFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMAGE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IfNaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class IfNaFutureFunctionNode : FutureFunctionNode
     {
         public IfNaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IFNA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImCoshFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImCoshFutureFunctionNode : FutureFunctionNode
     {
         public ImCoshFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMCOSH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImCotFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImCotFutureFunctionNode : FutureFunctionNode
     {
         public ImCotFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMCOT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImCscFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImCscFutureFunctionNode : FutureFunctionNode
     {
         public ImCscFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMCSC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImCschFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImCschFutureFunctionNode : FutureFunctionNode
     {
         public ImCschFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMCSCH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSecFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImSecFutureFunctionNode : FutureFunctionNode
     {
         public ImSecFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMSEC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSechFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImSechFutureFunctionNode : FutureFunctionNode
     {
         public ImSechFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMSECH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSinhFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImSinhFutureFunctionNode : FutureFunctionNode
     {
         public ImSinhFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMSINH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImTanFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ImTanFutureFunctionNode : FutureFunctionNode
     {
         public ImTanFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("IMTAN"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsFormulaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class IsFormulaFutureFunctionNode : FutureFunctionNode
     {
         public IsFormulaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ISFORMULA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsOmittedFutureFunctionNode : BuiltInFutureFunctionNode
+    public class IsOmittedFutureFunctionNode : FutureFunctionNode
     {
         public IsOmittedFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ISOMITTED"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsOWeekNumFutureFunctionNode : BuiltInFutureFunctionNode
+    public class IsOWeekNumFutureFunctionNode : FutureFunctionNode
     {
         public IsOWeekNumFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ISOWEEKNUM"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class JisFutureFunctionNode : BuiltInFutureFunctionNode
+    public class JisFutureFunctionNode : FutureFunctionNode
     {
         public JisFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("JIS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsOCeilingFutureFunctionNode : BuiltInFutureFunctionNode
+    public class IsOCeilingFutureFunctionNode : FutureFunctionNode
     {
         public IsOCeilingFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("ISO.CEILING"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LambdaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class LambdaFutureFunctionNode : FutureFunctionNode
     {
         public LambdaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("LAMBDA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LetFutureFunctionNode : BuiltInFutureFunctionNode
+    public class LetFutureFunctionNode : FutureFunctionNode
     {
         public LetFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("LET"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogNormDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class LogNormDistFutureFunctionNode : FutureFunctionNode
     {
         public LogNormDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("LOGNORM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogNormInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class LogNormInvFutureFunctionNode : FutureFunctionNode
     {
         public LogNormInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("LOGNORM.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MakeArrayFutureFunctionNode : BuiltInFutureFunctionNode
+    public class MakeArrayFutureFunctionNode : FutureFunctionNode
     {
         public MakeArrayFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("MAKEARRAY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MapFutureFunctionNode : BuiltInFutureFunctionNode
+    public class MapFutureFunctionNode : FutureFunctionNode
     {
         public MapFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("MAP"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ModeMultFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ModeMultFutureFunctionNode : FutureFunctionNode
     {
         public ModeMultFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("MODE.MULT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ModeSnglFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ModeSnglFutureFunctionNode : FutureFunctionNode
     {
         public ModeSnglFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("MODE.SNGL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MUnitFutureFunctionNode : BuiltInFutureFunctionNode
+    public class MUnitFutureFunctionNode : FutureFunctionNode
     {
         public MUnitFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("MUNIT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NegBinomDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NegBinomDistFutureFunctionNode : FutureFunctionNode
     {
         public NegBinomDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NEGBINOM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NetworkDaysIntlFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NetworkDaysIntlFutureFunctionNode : FutureFunctionNode
     {
         public NetworkDaysIntlFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -979,80 +982,80 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class NormDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NormDistFutureFunctionNode : FutureFunctionNode
     {
         public NormDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NORM.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NormInvFutureFunctionNode : FutureFunctionNode
     {
         public NormInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NORM.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormSDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NormSDistFutureFunctionNode : FutureFunctionNode
     {
         public NormSDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NORM.S.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormSInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NormSInvFutureFunctionNode : FutureFunctionNode
     {
         public NormSInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NORM.S.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NumberValueFutureFunctionNode : BuiltInFutureFunctionNode
+    public class NumberValueFutureFunctionNode : FutureFunctionNode
     {
         public NumberValueFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("NUMBERVALUE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PDurationFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PDurationFutureFunctionNode : FutureFunctionNode
     {
         public PDurationFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PDURATION"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PercentOfFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PercentOfFutureFunctionNode : FutureFunctionNode
     {
         public PercentOfFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PERCENTOF"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PercentileExcFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PercentileExcFutureFunctionNode : FutureFunctionNode
     {
         public PercentileExcFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -1060,10 +1063,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PercentileIncFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PercentileIncFutureFunctionNode : FutureFunctionNode
     {
         public PercentileIncFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -1071,10 +1074,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PercentRankExcFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PercentRankExcFutureFunctionNode : FutureFunctionNode
     {
         public PercentRankExcFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -1082,10 +1085,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PercentRankIncFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PercentRankIncFutureFunctionNode : FutureFunctionNode
     {
         public PercentRankIncFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -1093,110 +1096,110 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PermutationaFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PermutationaFutureFunctionNode : FutureFunctionNode
     {
         public PermutationaFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PERMUTATIONA"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PhiFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PhiFutureFunctionNode : FutureFunctionNode
     {
         public PhiFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PHI"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PivotByFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PivotByFutureFunctionNode : FutureFunctionNode
     {
         public PivotByFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PIVOTBY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PoissonDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PoissonDistFutureFunctionNode : FutureFunctionNode
     {
         public PoissonDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("POISSON.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PqsourceFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PqsourceFutureFunctionNode : FutureFunctionNode
     {
         public PqsourceFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PQSOURCE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RegexExtractFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RegexExtractFutureFunctionNode : FutureFunctionNode
     {
         public RegexExtractFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("REGEXEXTRACT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RegexReplaceFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RegexReplaceFutureFunctionNode : FutureFunctionNode
     {
         public RegexReplaceFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("REGEXREPLACE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RegexTestFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RegexTestFutureFunctionNode : FutureFunctionNode
     {
         public RegexTestFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("REGEXTEST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PythonStrFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PythonStrFutureFunctionNode : FutureFunctionNode
     {
         public PythonStrFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PYTHON.STR"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PythonTypeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PythonTypeFutureFunctionNode : FutureFunctionNode
     {
         public PythonTypeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("PYTHON.TYPE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PythonTypenameFutureFunctionNode : BuiltInFutureFunctionNode
+    public class PythonTypenameFutureFunctionNode : FutureFunctionNode
     {
         public PythonTypenameFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
@@ -1204,490 +1207,490 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class QuartileExcFutureFunctionNode : BuiltInFutureFunctionNode
+    public class QuartileExcFutureFunctionNode : FutureFunctionNode
     {
         public QuartileExcFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("QUARTILE.EXC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class QuartileIncFutureFunctionNode : BuiltInFutureFunctionNode
+    public class QuartileIncFutureFunctionNode : FutureFunctionNode
     {
         public QuartileIncFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("QUARTILE.INC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class QueryStringFutureFunctionNode : BuiltInFutureFunctionNode
+    public class QueryStringFutureFunctionNode : FutureFunctionNode
     {
         public QueryStringFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("QUERYSTRING"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RandArrayFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RandArrayFutureFunctionNode : FutureFunctionNode
     {
         public RandArrayFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("RANDARRAY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RankAvgFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RankAvgFutureFunctionNode : FutureFunctionNode
     {
         public RankAvgFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("RANK.AVG"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RankEqFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RankEqFutureFunctionNode : FutureFunctionNode
     {
         public RankEqFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("RANK.EQ"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ReduceFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ReduceFutureFunctionNode : FutureFunctionNode
     {
         public ReduceFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("REDUCE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RriFutureFunctionNode : BuiltInFutureFunctionNode
+    public class RriFutureFunctionNode : FutureFunctionNode
     {
         public RriFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("RRI"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ScanFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ScanFutureFunctionNode : FutureFunctionNode
     {
         public ScanFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SCAN"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SecFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SecFutureFunctionNode : FutureFunctionNode
     {
         public SecFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SEC"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SechFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SechFutureFunctionNode : FutureFunctionNode
     {
         public SechFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SECH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SequenceFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SequenceFutureFunctionNode : FutureFunctionNode
     {
         public SequenceFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SEQUENCE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SheetFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SheetFutureFunctionNode : FutureFunctionNode
     {
         public SheetFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SHEET"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SheetsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SheetsFutureFunctionNode : FutureFunctionNode
     {
         public SheetsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SHEETS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SkewPFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SkewPFutureFunctionNode : FutureFunctionNode
     {
         public SkewPFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SKEW.P"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SortByFutureFunctionNode : BuiltInFutureFunctionNode
+    public class SortByFutureFunctionNode : FutureFunctionNode
     {
         public SortByFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("SORTBY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StDevPFutureFunctionNode : BuiltInFutureFunctionNode
+    public class StDevPFutureFunctionNode : FutureFunctionNode
     {
         public StDevPFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("STDEV.P"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StDevSFutureFunctionNode : BuiltInFutureFunctionNode
+    public class StDevSFutureFunctionNode : FutureFunctionNode
     {
         public StDevSFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("STDEV.S"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StockHistoryFutureFunctionNode : BuiltInFutureFunctionNode
+    public class StockHistoryFutureFunctionNode : FutureFunctionNode
     {
         public StockHistoryFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("STOCKHISTORY"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TakeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TakeFutureFunctionNode : FutureFunctionNode
     {
         public TakeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TAKE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TextAfterFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TextAfterFutureFunctionNode : FutureFunctionNode
     {
         public TextAfterFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TEXTAFTER"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TextBeforeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TextBeforeFutureFunctionNode : FutureFunctionNode
     {
         public TextBeforeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TEXTBEFORE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TextSplitFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TextSplitFutureFunctionNode : FutureFunctionNode
     {
         public TextSplitFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TEXTSPLIT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ToColFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ToColFutureFunctionNode : FutureFunctionNode
     {
         public ToColFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TOCOL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ToRowFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ToRowFutureFunctionNode : FutureFunctionNode
     {
         public ToRowFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TOROW"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TranslateFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TranslateFutureFunctionNode : FutureFunctionNode
     {
         public TranslateFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TRANSLATE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TrimRangeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TrimRangeFutureFunctionNode : FutureFunctionNode
     {
         public TrimRangeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("TRIMRANGE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TDistFutureFunctionNode : FutureFunctionNode
     {
         public TDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TDistTwoTFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TDistTwoTFutureFunctionNode : FutureFunctionNode
     {
         public TDistTwoTFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.DIST.2T"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TDistRtFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TDistRtFutureFunctionNode : FutureFunctionNode
     {
         public TDistRtFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.DIST.RT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TInvFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TInvFutureFunctionNode : FutureFunctionNode
     {
         public TInvFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.INV"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TInvToTFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TInvToTFutureFunctionNode : FutureFunctionNode
     {
         public TInvToTFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.INV.2T"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TTestFutureFunctionNode : BuiltInFutureFunctionNode
+    public class TTestFutureFunctionNode : FutureFunctionNode
     {
         public TTestFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("T.TEST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UnicharFutureFunctionNode : BuiltInFutureFunctionNode
+    public class UnicharFutureFunctionNode : FutureFunctionNode
     {
         public UnicharFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("UNICHAR"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UnicodeFutureFunctionNode : BuiltInFutureFunctionNode
+    public class UnicodeFutureFunctionNode : FutureFunctionNode
     {
         public UnicodeFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("UNICODE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UniqueFutureFunctionNode : BuiltInFutureFunctionNode
+    public class UniqueFutureFunctionNode : FutureFunctionNode
     {
         public UniqueFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("UNIQUE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ValueToTextFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ValueToTextFutureFunctionNode : FutureFunctionNode
     {
         public ValueToTextFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("VALUETOTEXT"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarPFutureFunctionNode : BuiltInFutureFunctionNode
+    public class VarPFutureFunctionNode : FutureFunctionNode
     {
         public VarPFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("VAR.P"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarSFutureFunctionNode : BuiltInFutureFunctionNode
+    public class VarSFutureFunctionNode : FutureFunctionNode
     {
         public VarSFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("VAR.S"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VStackFutureFunctionNode : BuiltInFutureFunctionNode
+    public class VStackFutureFunctionNode : FutureFunctionNode
     {
         public VStackFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("VSTACK"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WebServiceFutureFunctionNode : BuiltInFutureFunctionNode
+    public class WebServiceFutureFunctionNode : FutureFunctionNode
     {
         public WebServiceFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("WEBSERVICE"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WeibullDistFutureFunctionNode : BuiltInFutureFunctionNode
+    public class WeibullDistFutureFunctionNode : FutureFunctionNode
     {
         public WeibullDistFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("WEIBULL.DIST"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WorkdayIntlFutureFunctionNode : BuiltInFutureFunctionNode
+    public class WorkdayIntlFutureFunctionNode : FutureFunctionNode
     {
         public WorkdayIntlFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("WORKDAY.INTL"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WrapColsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class WrapColsFutureFunctionNode : FutureFunctionNode
     {
         public WrapColsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("WRAPCOLS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WrapRowsFutureFunctionNode : BuiltInFutureFunctionNode
+    public class WrapRowsFutureFunctionNode : FutureFunctionNode
     {
         public WrapRowsFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("WRAPROWS"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class XLookupFutureFunctionNode : BuiltInFutureFunctionNode
+    public class XLookupFutureFunctionNode : FutureFunctionNode
     {
         public XLookupFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("XLOOKUP"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class XMatchFutureFunctionNode : BuiltInFutureFunctionNode
+    public class XMatchFutureFunctionNode : FutureFunctionNode
     {
         public XMatchFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("XMATCH"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class XorFutureFunctionNode : BuiltInFutureFunctionNode
+    public class XorFutureFunctionNode : FutureFunctionNode
     {
         public XorFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode("XOR"), prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ZTestFutureFunctionNode : BuiltInFutureFunctionNode
+    public class ZTestFutureFunctionNode : FutureFunctionNode
     {
         public ZTestFutureFunctionNode(
-            NameNode? prefix = null,
+            XlfnFunctionPrefixNode? prefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )

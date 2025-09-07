@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula
 {
@@ -7,19 +8,20 @@ namespace OpenLanguage.SpreadsheetML.Formula
     /// </summary>
     public static class FormulaParser
     {
-        public static Ast.Node Parse(string formulaBody)
+        public static Ast.Node Parse(IEnumerable<char> chars)
         {
-            if (string.IsNullOrWhiteSpace(formulaBody))
+            string formulaText = string.Concat(chars);
+            if (string.IsNullOrWhiteSpace(formulaText))
             {
                 throw new System.ArgumentException(
                     "Formula text cannot be null or empty.",
-                    nameof(formulaBody)
+                    nameof(formulaText)
                 );
             }
 
             OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner scanner =
                 new OpenLanguage.SpreadsheetML.Formula.Generated.FormulaScanner();
-            scanner.SetSource(formulaBody, 0);
+            scanner.SetSource(formulaText, 0);
             OpenLanguage.SpreadsheetML.Formula.Generated.Parser parser =
                 new OpenLanguage.SpreadsheetML.Formula.Generated.Parser(scanner);
 
@@ -53,8 +55,9 @@ namespace OpenLanguage.SpreadsheetML.Formula
             return parser.root;
         }
 
-        public static Ast.Node? TryParse(string formulaText)
+        public static Ast.Node? TryParse(IEnumerable<char> chars)
         {
+            string formulaText = string.Concat(chars);
             try
             {
                 return FormulaParser.Parse(formulaText);

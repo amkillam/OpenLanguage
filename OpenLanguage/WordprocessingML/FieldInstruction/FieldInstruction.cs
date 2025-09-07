@@ -33,29 +33,29 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             {
                 case "_top":
                 case "top":
-                {
-                    return FrameTarget.Top;
-                }
+                    {
+                        return FrameTarget.Top;
+                    }
                 case "_self":
                 case "self":
-                {
-                    return FrameTarget.Self;
-                }
+                    {
+                        return FrameTarget.Self;
+                    }
 
                 case "_blank":
                 case "blank":
-                {
-                    return FrameTarget.Blank;
-                }
+                    {
+                        return FrameTarget.Blank;
+                    }
                 case "_parent":
                 case "parent":
-                {
-                    return FrameTarget.Parent;
-                }
+                    {
+                        return FrameTarget.Parent;
+                    }
                 default:
-                {
-                    throw new ArgumentException($"Invalid frame target: {frameTargetText}");
-                }
+                    {
+                        throw new ArgumentException($"Invalid frame target: {frameTargetText}");
+                    }
             }
         }
 
