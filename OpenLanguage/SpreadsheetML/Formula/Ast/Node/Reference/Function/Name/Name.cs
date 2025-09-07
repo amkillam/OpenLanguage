@@ -45,6 +45,59 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override int Precedence => Ast.Precedence.Primary;
     }
 
+    public class ConcatenatedNodePair<L, R> : ExpressionNode
+        where L : ExpressionNode
+        where R : ExpressionNode
+    {
+        public L Left { get; set; }
+        public R Right { get; set; }
+
+        public ConcatenatedNodePair(
+            L left,
+            R right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Left = left;
+            Right = right;
+        }
+
+        public override string ToRawString() => Left.ToString() + Right.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Left is O l)
+            {
+                yield return l;
+            }
+            if (Right is O r)
+            {
+                yield return r;
+            }
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            if (index == 0 && replacement is L leftRep)
+            {
+                current = Left as Node;
+                Left = leftRep;
+            }
+            else if (index == 1 && replacement is R rightRep)
+            {
+                current = Right as Node;
+                Right = rightRep;
+            }
+            return current;
+        }
+
+        public override int Precedence => Ast.Precedence.Primary;
+    }
+
     public class UserDefinedFunctionNode : NameNode
     {
         public UserDefinedFunctionNode(

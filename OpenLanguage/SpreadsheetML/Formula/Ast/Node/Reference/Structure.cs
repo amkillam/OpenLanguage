@@ -504,21 +504,29 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(left, delimiter, right, leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class StructuredReferenceIntersection
+        : ConcatenatedNodePair<ExpressionNode, ExpressionNode>
+    {
+        public StructuredReferenceIntersection(
+            ExpressionNode left,
+            ExpressionNode right,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(left, right, leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class StructuredReferenceNode : ExpressionNode
     {
-        public WorkbookIndexNode? Workbook { get; set; }
-        public ExpressionNode? TableName { get; set; }
+        public ExpressionNode? SheetReference { get; set; }
         public List<ExpressionNode> Indices { get; set; } = new List<ExpressionNode>();
-        public List<CommaNode> DelimiterNodes { get; set; } = new List<CommaNode>();
 
         public StructuredReferenceNode(
-            WorkbookIndexNode? workbook,
-            ExpressionNode? tableName,
-            ExpressionNode? tableIndex
+            ExpressionNode? sheetReference = null,
+            ExpressionNode? tableIndex = null
         )
         {
-            Workbook = workbook;
-            TableName = tableName;
+            SheetReference = sheetReference;
             if (tableIndex == null)
             {
                 Indices = new List<ExpressionNode>();
@@ -530,53 +538,23 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         }
 
         public StructuredReferenceNode(
-            WorkbookIndexNode? workbook,
-            ExpressionNode? tableName,
-            List<ExpressionNode>? tableIndexs
+            ExpressionNode? sheetReference,
+            List<ExpressionNode>? tableIndices
         )
         {
-            Workbook = workbook;
-            TableName = tableName;
-            Indices = tableIndexs ?? new List<ExpressionNode>();
+            SheetReference = sheetReference;
+            Indices = tableIndices ?? new List<ExpressionNode>();
         }
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString()
-        {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            if (Workbook != null)
-            {
-                builder.Append(Workbook.ToString());
-            }
-            if (TableName != null)
-            {
-                builder.Append(TableName.ToString());
-            }
-
-            if (Indices.Count > 0)
-            {
-                for (int i = 0; i < Indices.Count - 1; i++)
-                {
-                    ExpressionNode tableIndex = Indices[i];
-                    builder.Append(tableIndex.ToString());
-                    CommaNode delimiter = DelimiterNodes[i];
-                    builder.Append(delimiter.ToString());
-                }
-
-                builder.Append(Indices.Last().ToString());
-            }
-
-            return builder.ToString();
-        }
+        public override string ToRawString() =>
+            (SheetReference?.ToString() ?? string.Empty)
+            + string.Concat(Indices.Select((ExpressionNode i) => i.ToString()));
 
         public override IEnumerable<O> Children<O>()
         {
-            if (Workbook is O w)
-            {
-                yield return w;
-            }
-            if (TableName is O t)
+            if (SheetReference is O t)
             {
                 yield return t;
             }
@@ -595,38 +573,23 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override Node? ReplaceChild(int index, Node replacement)
         {
             Node? current = null;
-            int nameNodeIdx = 0;
-            int referencesStartIdx = 0;
-            if (Workbook != null)
+            if (index == 0 && replacement is ExpressionNode t)
             {
-                if (index == 0 && replacement is WorkbookIndexNode w)
-                {
-                    current = Workbook;
-                    Workbook = w;
-                    return current;
-                }
-
-                nameNodeIdx++;
-                referencesStartIdx++;
+                current = SheetReference;
+                SheetReference = t;
             }
-
-            if (TableName != null)
+            else
             {
-                if (index == nameNodeIdx && replacement is ExpressionNode t)
+                int adjustedIndex = index - 1;
+                if (
+                    adjustedIndex >= 0
+                    && adjustedIndex < Indices.Count
+                    && replacement is ExpressionNode i
+                )
                 {
-                    current = TableName;
-                    TableName = t;
-                    return current;
+                    current = Indices[adjustedIndex];
+                    Indices[adjustedIndex] = i;
                 }
-                referencesStartIdx++;
-            }
-
-            int referenceOffset = referencesStartIdx + index;
-
-            if (referenceOffset < Indices.Count && replacement is ExpressionNode e)
-            {
-                current = Indices[referenceOffset];
-                Indices[referenceOffset] = e;
             }
 
             return current;
