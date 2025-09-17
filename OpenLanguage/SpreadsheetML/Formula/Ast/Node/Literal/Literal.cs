@@ -270,19 +270,22 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     public class LogicalNode : ExpressionNode
     {
         public bool Value { get; set; }
+        public string RawText { get; set; }
         public override int Precedence => Ast.Precedence.Primary;
 
         public LogicalNode(
             bool value,
+            string rawText,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
             Value = value;
+            RawText = rawText;
         }
 
-        public override string ToRawString() => Value ? "TRUE" : "FALSE";
+        public override string ToRawString() => RawText;
 
         public override IEnumerable<O> Children<O>()
         {

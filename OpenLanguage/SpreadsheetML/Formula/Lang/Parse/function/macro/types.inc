@@ -1,1 +1,1 @@
-%type <expressionVal> macro_function_name
+%type <macroFunctionVal> macro_function_name

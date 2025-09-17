@@ -1,1 +1,1 @@
-%type <expressionVal> standard_function_name
+%type <standardFunctionVal> standard_function_name

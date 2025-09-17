@@ -2,16 +2,17 @@ using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public class FilterWorksheetFunctionNode : BuiltInWorksheetFunctionNode
+    public class FilterWorksheetFunctionNode : WorksheetFunctionNode
     {
         public FilterWorksheetFunctionNode(
+            string? rawName = null,
             XlfnFunctionPrefixNode? xlfnPrefix = null,
             XlwsFunctionPrefixNode? xlwsPrefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FILTER"),
+                new NameNode(rawName ?? "FILTER"),
                 xlfnPrefix,
                 xlwsPrefix,
                 leadingWhitespace,
@@ -20,16 +21,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SortWorksheetFunctionNode : BuiltInWorksheetFunctionNode
+    public class SortWorksheetFunctionNode : WorksheetFunctionNode
     {
         public SortWorksheetFunctionNode(
+            string? rawName = null,
             XlfnFunctionPrefixNode? xlfnPrefix = null,
             XlwsFunctionPrefixNode? xlwsPrefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SORT"),
+                new NameNode(rawName ?? "SORT"),
                 xlfnPrefix,
                 xlwsPrefix,
                 leadingWhitespace,
@@ -38,16 +40,17 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PyFunctionNode : BuiltInWorksheetFunctionNode
+    public class PyFunctionNode : WorksheetFunctionNode
     {
         public PyFunctionNode(
+            string? rawName = null,
             XlfnFunctionPrefixNode? xlfnPrefix = null,
             XlwsFunctionPrefixNode? xlwsPrefix = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PY"),
+                new NameNode(rawName ?? "PY"),
                 xlfnPrefix,
                 xlwsPrefix,
                 leadingWhitespace,

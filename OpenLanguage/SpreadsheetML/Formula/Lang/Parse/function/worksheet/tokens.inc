@@ -1,3 +1,3 @@
-%token T_FUNC_FILTER
-%token T_FUNC_PY
-%token T_FUNC_SORT
+%token<stringVal> T_FUNC_FILTER
+%token<stringVal> T_FUNC_PY
+%token<stringVal> T_FUNC_SORT

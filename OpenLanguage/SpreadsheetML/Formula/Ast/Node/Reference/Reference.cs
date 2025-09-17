@@ -194,7 +194,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     /// </summary>
     public class SheetNode : ExpressionNode
     {
-        public ExpressionNode? WorkbookIndex { get; set; }
+        public ExpressionNode? WorkbookReference { get; set; }
         public ExpressionNode? SheetName { get; set; }
 
         public SheetNode(
@@ -205,18 +205,19 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(leadingWs, trailingWs)
         {
-            WorkbookIndex = workbookIndex;
+            WorkbookReference = workbookIndex;
             SheetName = sheetName;
         }
 
         public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() =>
-            (WorkbookIndex?.ToString() ?? string.Empty) + (SheetName?.ToString() ?? string.Empty);
+            (WorkbookReference?.ToString() ?? string.Empty)
+            + (SheetName?.ToString() ?? string.Empty);
 
         public override IEnumerable<O> Children<O>()
         {
-            if (WorkbookIndex is O o)
+            if (WorkbookReference is O o)
             {
                 yield return o;
             }
@@ -233,8 +234,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Node? current = null;
             if (index == 0 && replacement is ExpressionNode expr)
             {
-                current = WorkbookIndex;
-                WorkbookIndex = expr;
+                current = WorkbookReference;
+                WorkbookReference = expr;
             }
             else if (index == 1 && replacement is ExpressionNode expr2)
             {
@@ -313,16 +314,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     }
 
     /// <summary>
-    /// Represents a workbook index, e.g., "[1]".
+    /// Represents a workbook index, e.g., "[1]" or "[MyWorkbook.xlsx]".
     /// </summary>
-    public class WorkbookIndexNode : ExpressionNode
+    public class WorkbookReferenceNode : ExpressionNode
     {
-        public NumericLiteralNode<long> Index { get; set; }
+        public ExpressionNode? Index { get; set; } = null;
         public LeftBracketNode OpenBracket { get; set; }
         public RightBracketNode CloseBracket { get; set; }
 
-        public WorkbookIndexNode(
-            NumericLiteralNode<long> index,
+        public WorkbookReferenceNode(
+            ExpressionNode? index,
             LeftBracketNode openBracket,
             RightBracketNode closeBracket,
             List<Node>? leadingWs = null,
@@ -338,7 +339,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override int Precedence => Ast.Precedence.Primary;
 
         public override string ToRawString() =>
-            OpenBracket.ToString() + Index.ToString() + CloseBracket.ToString();
+            OpenBracket.ToString() + (Index?.ToString() ?? string.Empty) + CloseBracket.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -364,10 +365,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 current = OpenBracket;
                 OpenBracket = lbn;
             }
-            else if (index == 1 && replacement is NumericLiteralNode<long> nln)
+            else if (index == 1 && replacement is ExpressionNode expr)
             {
                 current = Index;
-                Index = nln;
+                Index = expr;
             }
             else if (index == 2 && replacement is RightBracketNode rbn)
             {

@@ -1,168 +1,168 @@
 /* Future Function Keywords */
-"AGGREGATE" { return (int)Tokens.T_FUNC_AGGREGATE; }
-"ACOT" { return (int)Tokens.T_FUNC_ACOT; }
-"ACOTH" { return (int)Tokens.T_FUNC_ACOTH; }
-"ARABIC" { return (int)Tokens.T_FUNC_ARABIC; }
-"ARRAYTOTEXT" { return (int)Tokens.T_FUNC_ARRAYTOTEXT; }
-"BASE" { return (int)Tokens.T_FUNC_BASE; }
-"BETA.DIST" { return (int)Tokens.T_FUNC_BETA_DIST; }
-"BETA.INV" { return (int)Tokens.T_FUNC_BETA_INV; }
-"BINOM.DIST" { return (int)Tokens.T_FUNC_BINOM_DIST; }
-"BINOM.DIST.RANGE" { return (int)Tokens.T_FUNC_BINOM_DIST_RANGE; }
-"BINOM.INV" { return (int)Tokens.T_FUNC_BINOM_INV; }
-"BITAND" { return (int)Tokens.T_FUNC_BITAND; }
-"BITLSHIFT" { return (int)Tokens.T_FUNC_BITLSHIFT; }
-"BITOR" { return (int)Tokens.T_FUNC_BITOR; }
-"BITRSHIFT" { return (int)Tokens.T_FUNC_BITRSHIFT; }
-"BITXOR" { return (int)Tokens.T_FUNC_BITXOR; }
-"BYCOL" { return (int)Tokens.T_FUNC_BYCOL; }
-"BYROW" { return (int)Tokens.T_FUNC_BYROW; }
-"CEILING.MATH" { return (int)Tokens.T_FUNC_CEILING_MATH; }
-"CEILING.PRECISE" { return (int)Tokens.T_FUNC_CEILING_PRECISE; }
-"CHISQ.DIST" { return (int)Tokens.T_FUNC_CHISQ_DIST; }
-"CHISQ.DIST.RT" { return (int)Tokens.T_FUNC_CHISQ_DIST_RT; }
-"CHISQ.INV" { return (int)Tokens.T_FUNC_CHISQ_INV; }
-"CHISQ.INV.RT" { return (int)Tokens.T_FUNC_CHISQ_INV_RT; }
-"CHISQ.TEST" { return (int)Tokens.T_FUNC_CHISQ_TEST; }
-"CHOOSECOLS" { return (int)Tokens.T_FUNC_CHOOSECOLS; }
-"CHOOSEROWS" { return (int)Tokens.T_FUNC_CHOOSEROWS; }
-"COMBINA" { return (int)Tokens.T_FUNC_COMBINA; }
-"CONFIDENCE.NORM" { return (int)Tokens.T_FUNC_CONFIDENCE_NORM; }
-"CONFIDENCE.T" { return (int)Tokens.T_FUNC_CONFIDENCE_T; }
-"COT" { return (int)Tokens.T_FUNC_COT; }
-"COTH" { return (int)Tokens.T_FUNC_COTH; }
-"COVARIANCE.P" { return (int)Tokens.T_FUNC_COVARIANCE_P; }
-"COVARIANCE.S" { return (int)Tokens.T_FUNC_COVARIANCE_S; }
-"CSC" { return (int)Tokens.T_FUNC_CSC; }
-"CSCH" { return (int)Tokens.T_FUNC_CSCH; }
-"DAYS" { return (int)Tokens.T_FUNC_DAYS; }
-"DECIMAL" { return (int)Tokens.T_FUNC_DECIMAL; }
-"DETECTLANGUAGE" { return (int)Tokens.T_FUNC_DETECTLANGUAGE; }
-"DROP" { return (int)Tokens.T_FUNC_DROP; }
-"ECMA.CEILING" { return (int)Tokens.T_FUNC_ECMA_CEILING; }
-"ENCODEURL" { return (int)Tokens.T_FUNC_ENCODEURL; }
-"ERF.PRECISE" { return (int)Tokens.T_FUNC_ERF_PRECISE; }
-"ERFC.PRECISE" { return (int)Tokens.T_FUNC_ERFC_PRECISE; }
-"EUROCONVERT" { return (int)Tokens.T_FUNC_EUROCONVERT; }
-"EXPAND" { return (int)Tokens.T_FUNC_EXPAND; }
-"EXPON.DIST" { return (int)Tokens.T_FUNC_EXPON_DIST; }
-"F.DIST" { return (int)Tokens.T_FUNC_F_DIST; }
-"F.DIST.RT" { return (int)Tokens.T_FUNC_F_DIST_RT; }
-"F.INV" { return (int)Tokens.T_FUNC_F_INV; }
-"F.INV.RT" { return (int)Tokens.T_FUNC_F_INV_RT; }
-"F.TEST" { return (int)Tokens.T_FUNC_F_TEST; }
-"FIELDVALUE" { return (int)Tokens.T_FUNC_FIELDVALUE; }
-"FILTERXML" { return (int)Tokens.T_FUNC_FILTERXML; }
-"FLOOR.MATH" { return (int)Tokens.T_FUNC_FLOOR_MATH; }
-"FLOOR.PRECISE" { return (int)Tokens.T_FUNC_FLOOR_PRECISE; }
-"FORECAST.ETS" { return (int)Tokens.T_FUNC_FORECAST_ETS; }
-"FORECAST.ETS.CONFINT" { return (int)Tokens.T_FUNC_FORECAST_ETS_CONFINT; }
-"FORECAST.ETS.SEASONALITY" { return (int)Tokens.T_FUNC_FORECAST_ETS_SEASONALITY; }
-"FORECAST.ETS.STAT" { return (int)Tokens.T_FUNC_FORECAST_ETS_STAT; }
-"FORECAST.LINEAR" { return (int)Tokens.T_FUNC_FORECAST_LINEAR; }
-"FORMULATEXT" { return (int)Tokens.T_FUNC_FORMULATEXT; }
-"GAMMA" { return (int)Tokens.T_FUNC_GAMMA; }
-"GAMMA.DIST" { return (int)Tokens.T_FUNC_GAMMA_DIST; }
-"GAMMA.INV" { return (int)Tokens.T_FUNC_GAMMA_INV; }
-"GAMMALN.PRECISE" { return (int)Tokens.T_FUNC_GAMMALN_PRECISE; }
-"GAUSS" { return (int)Tokens.T_FUNC_GAUSS; }
-"GROUPBY" { return (int)Tokens.T_FUNC_GROUPBY; }
-"HSTACK" { return (int)Tokens.T_FUNC_HSTACK; }
-"HYPGEOM.DIST" { return (int)Tokens.T_FUNC_HYPGEOM_DIST; }
-"IMAGE" { return (int)Tokens.T_FUNC_IMAGE; }
-"IFNA" { return (int)Tokens.T_FUNC_IFNA; }
-"IMCOSH" { return (int)Tokens.T_FUNC_IMCOSH; }
-"IMCOT" { return (int)Tokens.T_FUNC_IMCOT; }
-"IMCSC" { return (int)Tokens.T_FUNC_IMCSC; }
-"IMCSCH" { return (int)Tokens.T_FUNC_IMCSCH; }
-"IMSEC" { return (int)Tokens.T_FUNC_IMSEC; }
-"IMSECH" { return (int)Tokens.T_FUNC_IMSECH; }
-"IMSINH" { return (int)Tokens.T_FUNC_IMSINH; }
-"IMTAN" { return (int)Tokens.T_FUNC_IMTAN; }
-"ISFORMULA" { return (int)Tokens.T_FUNC_ISFORMULA; }
-"ISO.CEILING" { return (int)Tokens.T_FUNC_ISO_CEILING; }
-"ISOMITTED" { return (int)Tokens.T_FUNC_ISOMITTED; }
-"ISOWEEKNUM" { return (int)Tokens.T_FUNC_ISOWEEKNUM; }
-"JIS" { return (int)Tokens.T_FUNC_JIS; }
-"LAMBDA" { return (int)Tokens.T_FUNC_LAMBDA; }
-"LET" { return (int)Tokens.T_FUNC_LET; }
-"LOGNORM.DIST" { return (int)Tokens.T_FUNC_LOGNORM_DIST; }
-"LOGNORM.INV" { return (int)Tokens.T_FUNC_LOGNORM_INV; }
-"MAKEARRAY" { return (int)Tokens.T_FUNC_MAKEARRAY; }
-"MAP" { return (int)Tokens.T_FUNC_MAP; }
-"MODE.MULT" { return (int)Tokens.T_FUNC_MODE_MULT; }
-"MODE.SNGL" { return (int)Tokens.T_FUNC_MODE_SNGL; }
-"MUNIT" { return (int)Tokens.T_FUNC_MUNIT; }
-"NEGBINOM.DIST" { return (int)Tokens.T_FUNC_NEGBINOM_DIST; }
-"NETWORKDAYS.INTL" { return (int)Tokens.T_FUNC_NETWORKDAYS_INTL; }
-"NORM.DIST" { return (int)Tokens.T_FUNC_NORM_DIST; }
-"NORM.INV" { return (int)Tokens.T_FUNC_NORM_INV; }
-"NORM.S.DIST" { return (int)Tokens.T_FUNC_NORM_S_DIST; }
-"NORM.S.INV" { return (int)Tokens.T_FUNC_NORM_S_INV; }
-"NUMBERVALUE" { return (int)Tokens.T_FUNC_NUMBERVALUE; }
-"PDURATION" { return (int)Tokens.T_FUNC_PDURATION; }
-"PERCENTOF" { return (int)Tokens.T_FUNC_PERCENTOF; }
-"PERCENTILE.EXC" { return (int)Tokens.T_FUNC_PERCENTILE_EXC; }
-"PERCENTILE.INC" { return (int)Tokens.T_FUNC_PERCENTILE_INC; }
-"PERCENTRANK.EXC" { return (int)Tokens.T_FUNC_PERCENTRANK_EXC; }
-"PERCENTRANK.INC" { return (int)Tokens.T_FUNC_PERCENTRANK_INC; }
-"PERMUTATIONA" { return (int)Tokens.T_FUNC_PERMUTATIONA; }
-"PHI" { return (int)Tokens.T_FUNC_PHI; }
-"PIVOTBY" { return (int)Tokens.T_FUNC_PIVOTBY; }
-"POISSON.DIST" { return (int)Tokens.T_FUNC_POISSON_DIST; }
-"PQSOURCE" { return (int)Tokens.T_FUNC_PQSOURCE; }
-"REGEXEXTRACT" { return (int)Tokens.T_FUNC_REGEXEXTRACT; }
-"REGEXREPLACE" { return (int)Tokens.T_FUNC_REGEXREPLACE; }
-"REGEXTEST" { return (int)Tokens.T_FUNC_REGEXTEST; }
-"PYTHON.STR" { return (int)Tokens.T_FUNC_PYTHON_STR; }
-"PYTHON.TYPE" { return (int)Tokens.T_FUNC_PYTHON_TYPE; }
-"PYTHON.TYPENAME" { return (int)Tokens.T_FUNC_PYTHON_TYPENAME; }
-"QUARTILE.EXC" { return (int)Tokens.T_FUNC_QUARTILE_EXC; }
-"QUARTILE.INC" { return (int)Tokens.T_FUNC_QUARTILE_INC; }
-"QUERYSTRING" { return (int)Tokens.T_FUNC_QUERYSTRING; }
-"RANDARRAY" { return (int)Tokens.T_FUNC_RANDARRAY; }
-"RANK.AVG" { return (int)Tokens.T_FUNC_RANK_AVG; }
-"RANK.EQ" { return (int)Tokens.T_FUNC_RANK_EQ; }
-"REDUCE" { return (int)Tokens.T_FUNC_REDUCE; }
-"RRI" { return (int)Tokens.T_FUNC_RRI; }
-"SCAN" { return (int)Tokens.T_FUNC_SCAN; }
-"SEC" { return (int)Tokens.T_FUNC_SEC; }
-"SECH" { return (int)Tokens.T_FUNC_SECH; }
-"SEQUENCE" { return (int)Tokens.T_FUNC_SEQUENCE; }
-"SHEET" { return (int)Tokens.T_FUNC_SHEET; }
-"SHEETS" { return (int)Tokens.T_FUNC_SHEETS; }
-"SKEW.P" { return (int)Tokens.T_FUNC_SKEW_P; }
-"SORTBY" { return (int)Tokens.T_FUNC_SORTBY; }
-"STDEV.P" { return (int)Tokens.T_FUNC_STDEV_P; }
-"STDEV.S" { return (int)Tokens.T_FUNC_STDEV_S; }
-"STOCKHISTORY" { return (int)Tokens.T_FUNC_STOCKHISTORY; }
-"T.DIST" { return (int)Tokens.T_FUNC_T_DIST; }
-"T.DIST.2T" { return (int)Tokens.T_FUNC_T_DIST_2T; }
-"T.DIST.RT" { return (int)Tokens.T_FUNC_T_DIST_RT; }
-"T.INV" { return (int)Tokens.T_FUNC_T_INV; }
-"T.INV.2T" { return (int)Tokens.T_FUNC_T_INV_2T; }
-"T_TEST" { return (int)Tokens.T_FUNC_T_TEST; }
-"TAKE" { return (int)Tokens.T_FUNC_TAKE; }
-"TEXTAFTER" { return (int)Tokens.T_FUNC_TEXTAFTER; }
-"TEXTBEFORE" { return (int)Tokens.T_FUNC_TEXTBEFORE; }
-"TEXTSPLIT" { return (int)Tokens.T_FUNC_TEXTSPLIT; }
-"TOCOL" { return (int)Tokens.T_FUNC_TOCOL; }
-"TOROW" { return (int)Tokens.T_FUNC_TOROW; }
-"TRANSLATE" { return (int)Tokens.T_FUNC_TRANSLATE; }
-"TRIMRANGE" { return (int)Tokens.T_FUNC_TRIMRANGE; }
-"UNICHAR" { return (int)Tokens.T_FUNC_UNICHAR; }
-"UNICODE" { return (int)Tokens.T_FUNC_UNICODE; }
-"UNIQUE" { return (int)Tokens.T_FUNC_UNIQUE; }
-"VALUETOTEXT" { return (int)Tokens.T_FUNC_VALUETOTEXT; }
-"VAR.P" { return (int)Tokens.T_FUNC_VAR_P; }
-"VAR.S" { return (int)Tokens.T_FUNC_VAR_S; }
-"VSTACK" { return (int)Tokens.T_FUNC_VSTACK; }
-"WEBSERVICE" { return (int)Tokens.T_FUNC_WEBSERVICE; }
-"WEIBULL.DIST" { return (int)Tokens.T_FUNC_WEIBULL_DIST; }
-"WORKDAY.INTL" { return (int)Tokens.T_FUNC_WORKDAY_INTL; }
-"WRAPCOLS" { return (int)Tokens.T_FUNC_WRAPCOLS; }
-"WRAPROWS" { return (int)Tokens.T_FUNC_WRAPROWS; }
-"XLOOKUP" { return (int)Tokens.T_FUNC_XLOOKUP; }
-"XMATCH" { return (int)Tokens.T_FUNC_XMATCH; }
-"XOR" { return (int)Tokens.T_FUNC_XOR; }
-"Z.TEST" { return (int)Tokens.T_FUNC_Z_TEST; }
+[aA][gG][gG][rR][eE][gG][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AGGREGATE; }
+[aA][cC][oO][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACOT; }
+[aA][cC][oO][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACOTH; }
+[aA][rR][aA][bB][iI][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ARABIC; }
+[aA][rR][rR][aA][yY][tT][oO][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ARRAYTOTEXT; }
+[bB][aA][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BASE; }
+[bB][eE][tT][aA]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BETA_DIST; }
+[bB][eE][tT][aA]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BETA_INV; }
+[bB][iI][nN][oO][mM]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BINOM_DIST; }
+[bB][iI][nN][oO][mM]"."[dD][iI][sS][tT]"."[rR][aA][nN][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BINOM_DIST_RANGE; }
+[bB][iI][nN][oO][mM]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BINOM_INV; }
+[bB][iI][tT][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BITAND; }
+[bB][iI][tT][lL][sS][hH][iI][fF][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BITLSHIFT; }
+[bB][iI][tT][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BITOR; }
+[bB][iI][tT][rR][sS][hH][iI][fF][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BITRSHIFT; }
+[bB][iI][tT][xX][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BITXOR; }
+[bB][yY][cC][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BYCOL; }
+[bB][yY][rR][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BYROW; }
+[cC][eE][iI][lL][iI][nN][gG]"."[mM][aA][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CEILING_MATH; }
+[cC][eE][iI][lL][iI][nN][gG]"."[pP][rR][eE][cC][iI][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CEILING_PRECISE; }
+[cC][hH][iI][sS][qQ]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHISQ_DIST; }
+[cC][hH][iI][sS][qQ]"."[dD][iI][sS][tT]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHISQ_DIST_RT; }
+[cC][hH][iI][sS][qQ]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHISQ_INV; }
+[cC][hH][iI][sS][qQ]"."[iI][nN][vV]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHISQ_INV_RT; }
+[cC][hH][iI][sS][qQ]"."[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHISQ_TEST; }
+[cC][hH][oO][oO][sS][eE][cC][oO][lL][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHOOSECOLS; }
+[cC][hH][oO][oO][sS][eE][rR][oO][wW][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHOOSEROWS; }
+[cC][oO][mM][bB][iI][nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COMBINA; }
+[cC][oO][nN][fF][iI][dD][eE][nN][cC][eE]"."[nN][oO][rR][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONFIDENCE_NORM; }
+[cC][oO][nN][fF][iI][dD][eE][nN][cC][eE]"."[tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONFIDENCE_T; }
+[cC][oO][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COT; }
+[cC][oO][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COTH; }
+[cC][oO][vV][aA][rR][iI][aA][nN][cC][eE]"."[pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COVARIANCE_P; }
+[cC][oO][vV][aA][rR][iI][aA][nN][cC][eE]"."[sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COVARIANCE_S; }
+[cC][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CSC; }
+[cC][sS][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CSCH; }
+[dD][aA][yY][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DAYS; }
+[dD][eE][cC][iI][mM][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DECIMAL; }
+[dD][eE][tT][eE][cC][tT][lL][aA][nN][gG][uU][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DETECTLANGUAGE; }
+[dD][rR][oO][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DROP; }
+[eE][cC][mM][aA]"."[cC][eE][iI][lL][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ECMA_CEILING; }
+[eE][nN][cC][oO][dD][eE][uU][rR][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENCODEURL; }
+[eE][rR][fF]"."[pP][rR][eE][cC][iI][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERF_PRECISE; }
+[eE][rR][fF][cC]"."[pP][rR][eE][cC][iI][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERFC_PRECISE; }
+[eE][uU][rR][oO][cC][oO][nN][vV][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EUROCONVERT; }
+[eE][xX][pP][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXPAND; }
+[eE][xX][pP][oO][nN]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXPON_DIST; }
+[fF]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_F_DIST; }
+[fF]"."[dD][iI][sS][tT]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_F_DIST_RT; }
+[fF]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_F_INV; }
+[fF]"."[iI][nN][vV]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_F_INV_RT; }
+[fF]"."[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_F_TEST; }
+[fF][iI][eE][lL][dD][vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FIELDVALUE; }
+[fF][iI][lL][tT][eE][rR][xX][mM][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILTERXML; }
+[fF][lL][oO][oO][rR]"."[mM][aA][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FLOOR_MATH; }
+[fF][lL][oO][oO][rR]"."[pP][rR][eE][cC][iI][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FLOOR_PRECISE; }
+[fF][oO][rR][eE][cC][aA][sS][tT]"."[eE][tT][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST_ETS; }
+[fF][oO][rR][eE][cC][aA][sS][tT]"."[eE][tT][sS]"."[cC][oO][nN][fF][iI][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST_ETS_CONFINT; }
+[fF][oO][rR][eE][cC][aA][sS][tT]"."[eE][tT][sS]"."[sS][eE][aA][sS][oO][nN][aA][lL][iI][tT][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST_ETS_SEASONALITY; }
+[fF][oO][rR][eE][cC][aA][sS][tT]"."[eE][tT][sS]"."[sS][tT][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST_ETS_STAT; }
+[fF][oO][rR][eE][cC][aA][sS][tT]"."[lL][iI][nN][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST_LINEAR; }
+[fF][oO][rR][mM][uU][lL][aA][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULATEXT; }
+[gG][aA][mM][mM][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMA; }
+[gG][aA][mM][mM][aA]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMA_DIST; }
+[gG][aA][mM][mM][aA]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMA_INV; }
+[gG][aA][mM][mM][aA][lL][nN]"."[pP][rR][eE][cC][iI][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMALN_PRECISE; }
+[gG][aA][uU][sS][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAUSS; }
+[gG][rR][oO][uU][pP][bB][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GROUPBY; }
+[hH][sS][tT][aA][cC][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HSTACK; }
+[hH][yY][pP][gG][eE][oO][mM]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HYPGEOM_DIST; }
+[iI][mM][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMAGE; }
+[iI][fF][nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IFNA; }
+[iI][mM][cC][oO][sS][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCOSH; }
+[iI][mM][cC][oO][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCOT; }
+[iI][mM][cC][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCSC; }
+[iI][mM][cC][sS][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCSCH; }
+[iI][mM][sS][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSEC; }
+[iI][mM][sS][eE][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSECH; }
+[iI][mM][sS][iI][nN][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSINH; }
+[iI][mM][tT][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMTAN; }
+[iI][sS][fF][oO][rR][mM][uU][lL][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISFORMULA; }
+[iI][sS][oO]"."[cC][eE][iI][lL][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISO_CEILING; }
+[iI][sS][oO][mM][iI][tT][tT][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISOMITTED; }
+[iI][sS][oO][wW][eE][eE][kK][nN][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISOWEEKNUM; }
+[jJ][iI][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_JIS; }
+[lL][aA][mM][bB][dD][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LAMBDA; }
+[lL][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LET; }
+[lL][oO][gG][nN][oO][rR][mM]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOGNORM_DIST; }
+[lL][oO][gG][nN][oO][rR][mM]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOGNORM_INV; }
+[mM][aA][kK][eE][aA][rR][rR][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAKEARRAY; }
+[mM][aA][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAP; }
+[mM][oO][dD][eE]"."[mM][uU][lL][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MODE_MULT; }
+[mM][oO][dD][eE]"."[sS][nN][gG][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MODE_SNGL; }
+[mM][uU][nN][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MUNIT; }
+[nN][eE][gG][bB][iI][nN][oO][mM]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEGBINOM_DIST; }
+[nN][eE][tT][wW][oO][rR][kK][dD][aA][yY][sS]"."[iI][nN][tT][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NETWORKDAYS_INTL; }
+[nN][oO][rR][mM]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORM_DIST; }
+[nN][oO][rR][mM]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORM_INV; }
+[nN][oO][rR][mM]"."[sS]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORM_S_DIST; }
+[nN][oO][rR][mM]"."[sS]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORM_S_INV; }
+[nN][uU][mM][bB][eE][rR][vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NUMBERVALUE; }
+[pP][dD][uU][rR][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PDURATION; }
+[pP][eE][rR][cC][eE][nN][tT][oO][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTOF; }
+[pP][eE][rR][cC][eE][nN][tT][iI][lL][eE]"."[eE][xX][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTILE_EXC; }
+[pP][eE][rR][cC][eE][nN][tT][iI][lL][eE]"."[iI][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTILE_INC; }
+[pP][eE][rR][cC][eE][nN][tT][rR][aA][nN][kK]"."[eE][xX][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTRANK_EXC; }
+[pP][eE][rR][cC][eE][nN][tT][rR][aA][nN][kK]"."[iI][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTRANK_INC; }
+[pP][eE][rR][mM][uU][tT][aA][tT][iI][oO][nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERMUTATIONA; }
+[pP][hH][iI] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PHI; }
+[pP][iI][vV][oO][tT][bB][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOTBY; }
+[pP][oO][iI][sS][sS][oO][nN]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_POISSON_DIST; }
+[pP][qQ][sS][oO][uU][rR][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PQSOURCE; }
+[rR][eE][gG][eE][xX][eE][xX][tT][rR][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REGEXEXTRACT; }
+[rR][eE][gG][eE][xX][rR][eE][pP][lL][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REGEXREPLACE; }
+[rR][eE][gG][eE][xX][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REGEXTEST; }
+[pP][yY][tT][hH][oO][nN]"."[sS][tT][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PYTHON_STR; }
+[pP][yY][tT][hH][oO][nN]"."[tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PYTHON_TYPE; }
+[pP][yY][tT][hH][oO][nN]"."[tT][yY][pP][eE][nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PYTHON_TYPENAME; }
+[qQ][uU][aA][rR][tT][iI][lL][eE]"."[eE][xX][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUARTILE_EXC; }
+[qQ][uU][aA][rR][tT][iI][lL][eE]"."[iI][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUARTILE_INC; }
+[qQ][uU][eE][rR][yY][sS][tT][rR][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUERYSTRING; }
+[rR][aA][nN][dD][aA][rR][rR][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RANDARRAY; }
+[rR][aA][nN][kK]"."[aA][vV][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RANK_AVG; }
+[rR][aA][nN][kK]"."[eE][qQ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RANK_EQ; }
+[rR][eE][dD][uU][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REDUCE; }
+[rR][rR][iI] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RRI; }
+[sS][cC][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCAN; }
+[sS][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEC; }
+[sS][eE][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SECH; }
+[sS][eE][qQ][uU][eE][nN][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEQUENCE; }
+[sS][hH][eE][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHEET; }
+[sS][hH][eE][eE][tT][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHEETS; }
+[sS][kK][eE][wW]"."[pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SKEW_P; }
+[sS][oO][rR][tT][bB][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SORTBY; }
+[sS][tT][dD][eE][vV]"."[pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEV_P; }
+[sS][tT][dD][eE][vV]"."[sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEV_S; }
+[sS][tT][oO][cC][kK][hH][iI][sS][tT][oO][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STOCKHISTORY; }
+[tT]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_DIST; }
+[tT]"."[dD][iI][sS][tT]".2"[tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_DIST_2T; }
+[tT]"."[dD][iI][sS][tT]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_DIST_RT; }
+[tT]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_INV; }
+[tT]"."[iI][nN][vV]".2"[tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_INV_2T; }
+[tT]"_"[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_TEST; }
+[tT][aA][kK][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TAKE; }
+[tT][eE][xX][tT][aA][fF][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTAFTER; }
+[tT][eE][xX][tT][bB][eE][fF][oO][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTBEFORE; }
+[tT][eE][xX][tT][sS][pP][lL][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTSPLIT; }
+[tT][oO][cC][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TOCOL; }
+[tT][oO][rR][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TOROW; }
+[tT][rR][aA][nN][sS][lL][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRANSLATE; }
+[tT][rR][iI][mM][rR][aA][nN][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRIMRANGE; }
+[uU][nN][iI][cC][hH][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNICHAR; }
+[uU][nN][iI][cC][oO][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNICODE; }
+[uU][nN][iI][qQ][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNIQUE; }
+[vV][aA][lL][uU][eE][tT][oO][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VALUETOTEXT; }
+[vV][aA][rR]"."[pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VAR_P; }
+[vV][aA][rR]"."[sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VAR_S; }
+[vV][sS][tT][aA][cC][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VSTACK; }
+[wW][eE][bB][sS][eE][rR][vV][iI][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEBSERVICE; }
+[wW][eE][iI][bB][uU][lL][lL]"."[dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEIBULL_DIST; }
+[wW][oO][rR][kK][dD][aA][yY]"."[iI][nN][tT][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKDAY_INTL; }
+[wW][rR][aA][pP][cC][oO][lL][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WRAPCOLS; }
+[wW][rR][aA][pP][rR][oO][wW][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WRAPROWS; }
+[xX][lL][oO][oO][kK][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_XLOOKUP; }
+[xX][mM][aA][tT][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_XMATCH; }
+[xX][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_XOR; }
+[zZ]"."[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_Z_TEST; }

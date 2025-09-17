@@ -133,9 +133,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BuiltInStandardFunctionNode : BuiltInFunctionNode
+    public class StandardFunctionNode : BuiltInFunctionNode
     {
-        public BuiltInStandardFunctionNode(
+        public StandardFunctionNode(
             ExpressionNode name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -154,9 +154,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, prefix, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BuiltInMacroFunctionNode : BuiltInFunctionNode
+    public class MacroFunctionNode : BuiltInFunctionNode
     {
-        public BuiltInMacroFunctionNode(
+        public MacroFunctionNode(
             ExpressionNode name,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
@@ -164,11 +164,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(name, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BuiltInCommandFunctionNode : BuiltInFunctionNode
+    public class CommandFunctionNode : BuiltInFunctionNode
     {
         public QuestionMarkNode? QuestionMark { get; set; }
 
-        public BuiltInCommandFunctionNode(
+        public CommandFunctionNode(
             ExpressionNode name,
             QuestionMarkNode? qMarkNode = null,
             List<Node>? leadingWhitespace = null,
@@ -183,16 +183,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             (base.ToRawString() + (QuestionMark?.ToString() ?? string.Empty));
     }
 
-    public class BuiltInWorksheetFunctionNode : BuiltInFunctionNode
+    public class WorksheetFunctionNode : BuiltInFunctionNode
     {
-        public BuiltInWorksheetFunctionNode(
+        public WorksheetFunctionNode(
             NameNode name,
             List<Node>? leadingWs = null,
             List<Node>? trailingWs = null
         )
             : base(name, leadingWs, trailingWs) { }
 
-        public BuiltInWorksheetFunctionNode(
+        public WorksheetFunctionNode(
             NameNode name,
             XlfnFunctionPrefixNode? xlfnPrefix = null,
             XlwsFunctionPrefixNode? xlwsPrefix = null,

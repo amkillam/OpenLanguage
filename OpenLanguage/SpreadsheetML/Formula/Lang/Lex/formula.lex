@@ -12,7 +12,7 @@
 
 
 %x IN_STRING
-%x IN_QUOTED_SHEET_NAME
+%x IN_SPECIAL_SHEET_REFERENCE
 %x IN_A1_CELL
 %x IN_R1C1_CELL
 %x IN_R1C1_COLUMN
@@ -36,41 +36,40 @@
     "<="                                                                              { yylval.stringVal = yytext; return (int)Tokens.T_LE; }
 
 
-    "#All"                                                                            { return (int)Tokens.T_SR_ALL; }
-    "#Data"                                                                           { return (int)Tokens.T_SR_DATA; }
-    "#Headers"                                                                        { return (int)Tokens.T_SR_HEADERS; }
-    "#Totals"                                                                         { return (int)Tokens.T_SR_TOTALS; }
-    "#This Row"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_SR_THIS_ROW; }
-    "[]"                                                                              { return (int)Tokens.T_EMPTY_BRACKETS; }
 
+    "#"[aA][lL][lL]                                                                            { yylval.stringVal = yytext; return (int)Tokens.T_SR_ALL; }
+    "#"[dD][aA][tT][aA]                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_SR_DATA; }
+    "#"[hH][eE][aA][dD][eE][rR][sS]                                                                        { yylval.stringVal = yytext; return (int)Tokens.T_SR_HEADERS; }
+    "#"[tT][oO][tT][aA][lL][sS]                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_SR_TOTALS; }
+    "#"[tT][hH][iI][sS]" "[rR][oO][wW]                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_SR_THIS_ROW; }
+    "[]"                                                                              { yylval.stringVal = yytext; return (int)Tokens.T_EMPTY_BRACKETS; }
 
-    "_xlws\."                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_XLWS_; }
-    "_xlfn\."                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_XLFN_; }
-    "xlpm\."                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_XLPM_; }
-    "xlop\."                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_XLOP_; }
+    "_"[xX][lL][wW][sS]"."                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_XLWS_; }
+    "_"[xX][lL][fF][nN]"."                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_XLFN_; }
+    [xX][lL][pP][mM]"."                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_XLPM_; }
+    [xX][lL][oO][pP]"."                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_XLOP_; }
 
+    "#"[dD][iI][vV]"/0!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_DIV0_ERROR; }
+    "#"[nN]"/"[aA]                                                                            { yylval.stringVal = yytext; return (int)Tokens.T_NA_ERROR; }
+    "#"[nN][aA][mM][eE]"?"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_NAME_ERROR; }
+    "#"[nN][uU][lL][lL]"!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_NULL_ERROR; }
+    "#"[nN][uU][mM]"!"                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_NUM_ERROR; }
+    "#"[vV][aA][lL][uU][eE]"!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_VALUE_ERROR; }
+    "#"[rR][eE][fF]"!"                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_REF_ERROR; }
+    "#"[gG][eE][tT][tT][iI][nN][gG]"_"[dD][aA][tT][aA]                                                                   { yylval.stringVal = yytext; return (int)Tokens.T_GETTING_DATA_ERROR; }
+    "#"[sS][pP][iI][lL][lL]"!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_SPILL_ERROR; }
+    "#"[cC][aA][lL][cC]"!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_CALC_ERROR; }
+    "#"[bB][lL][oO][cC][kK][eE][dD]"!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_BLOCKED_ERROR; }
+    "#"[bB][uU][sS][yY]"!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_BUSY_ERROR; }
+    "#"[cC][iI][rR][cC][uU][lL][aA][rR]"!"                                                                      { yylval.stringVal = yytext; return (int)Tokens.T_CIRCULAR_ERROR; }
+    "#"[cC][oO][nN][nN][eE][cC][tT]"!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_CONNECT_ERROR; }
+    "#"[eE][xX][tT][eE][rR][nN][aA][lL]"!"                                                                      { yylval.stringVal = yytext; return (int)Tokens.T_EXTERNAL_ERROR; }
+    "#"[fF][iI][eE][lL][dD]"!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
+    "#"[pP][yY][tT][hH][oO][nN]"!"                                                                        { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
+    "#"[uU][nN][kK][nN][oO][wW][nN]"!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
+    [tT][rR][uU][eE]                                                                            { yylval.stringVal = yytext; return (int)Tokens.T_TRUE; }
+    [fF][aA][lL][sS][eE]                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_FALSE; }
 
-    "#DIV/0!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_DIV0_ERROR; }
-    "#N/A"                                                                            { yylval.stringVal = yytext; return (int)Tokens.T_NA_ERROR; }
-    "#NAME\?"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_NAME_ERROR; }
-    "#NULL!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_NULL_ERROR; }
-    "#NUM!"                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_NUM_ERROR; }
-    "#VALUE!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_VALUE_ERROR; }
-    "#REF!"                                                                           { yylval.stringVal = yytext; return (int)Tokens.T_REF_ERROR; }
-    "#GETTING_DATA"                                                                   { yylval.stringVal = yytext; return (int)Tokens.T_GETTING_DATA_ERROR; }
-    "#SPILL!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_SPILL_ERROR; }
-    "#CALC!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_CALC_ERROR; }
-    "#BLOCKED!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_BLOCKED_ERROR; }
-    "#BUSY!"                                                                          { yylval.stringVal = yytext; return (int)Tokens.T_BUSY_ERROR; }
-    "#CIRCULAR!"                                                                      { yylval.stringVal = yytext; return (int)Tokens.T_CIRCULAR_ERROR; }
-    "#CONNECT!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_CONNECT_ERROR; }
-    "#EXTERNAL!"                                                                      { yylval.stringVal = yytext; return (int)Tokens.T_EXTERNAL_ERROR; }
-    "#FIELD!"                                                                         { yylval.stringVal = yytext; return (int)Tokens.T_FIELD_ERROR; }
-    "#PYTHON!"                                                                        { yylval.stringVal = yytext; return (int)Tokens.T_PYTHON_ERROR; }
-    "#UNKNOWN!"                                                                       { yylval.stringVal = yytext; return (int)Tokens.T_UNKNOWN_ERROR; }
-
-    "TRUE"                                                                            { yylval.boolVal = true; return (int)Tokens.T_TRUE; }
-    "FALSE"                                                                           { yylval.boolVal = false; return (int)Tokens.T_FALSE; }
 
     #include "function/standard.lex"
 
@@ -83,7 +82,7 @@
     #include "function/command.lex"
 
     \"                                                                                { stringBuffer.Clear(); BEGIN(IN_STRING); }
-    \'                                                                                { stringBuffer.Clear(); BEGIN(IN_QUOTED_SHEET_NAME); }
+    \'                                                                                { stringBuffer.Clear(); BEGIN(IN_SPECIAL_SHEET_REFERENCE); }
 
     "//".*                                                                            { /* skip single-line comment */ }
     "/\*"                                                                             { BEGIN(IN_COMMENT); }
@@ -251,7 +250,7 @@
 }
 <IN_STRING><<EOF>>       { throw new System.FormatException("Unterminated string"); }
 
-<IN_QUOTED_SHEET_NAME>{
+<IN_SPECIAL_SHEET_REFERENCE>{
     \'\'                  { stringBuffer.Append("'"); }
     \'                    { BEGIN(INITIAL); yylval.stringVal = stringBuffer.ToString(); return (int)Tokens.T_SHEET_NAME_SPECIAL; }
     [^\']+                { stringBuffer.Append(yytext); }

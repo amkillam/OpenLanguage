@@ -1,1 +1,1 @@
-%type <expressionVal> command_function_name
+%type <commandFunctionVal> command_function_name

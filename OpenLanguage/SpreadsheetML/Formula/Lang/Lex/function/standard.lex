@@ -1,370 +1,370 @@
 /* Standard Function Keywords */
-"ABS" { return (int)Tokens.T_FUNC_ABS; }
-"ACCRINT" { return (int)Tokens.T_FUNC_ACCRINT; }
-"ACCRINTM" { return (int)Tokens.T_FUNC_ACCRINTM; }
-"ACOS" { return (int)Tokens.T_FUNC_ACOS; }
-"ACOSH" { return (int)Tokens.T_FUNC_ACOSH; }
-"ADDRESS" { return (int)Tokens.T_FUNC_ADDRESS; }
-"AMORDEGRC" { return (int)Tokens.T_FUNC_AMORDEGRC; }
-"AMORLINC" { return (int)Tokens.T_FUNC_AMORLINC; }
-"AND" { return (int)Tokens.T_FUNC_AND; }
-"AREAS" { return (int)Tokens.T_FUNC_AREAS; }
-"ASC" { return (int)Tokens.T_FUNC_ASC; }
-"ASIN" { return (int)Tokens.T_FUNC_ASIN; }
-"ASINH" { return (int)Tokens.T_FUNC_ASINH; }
-"ATAN" { return (int)Tokens.T_FUNC_ATAN; }
-"ATAN2" { return (int)Tokens.T_FUNC_ATAN2; }
-"ATANH" { return (int)Tokens.T_FUNC_ATANH; }
-"AVEDEV" { return (int)Tokens.T_FUNC_AVEDEV; }
-"AVERAGE" { return (int)Tokens.T_FUNC_AVERAGE; }
-"AVERAGEA" { return (int)Tokens.T_FUNC_AVERAGEA; }
-"AVERAGEIF" { return (int)Tokens.T_FUNC_AVERAGEIF; }
-"AVERAGEIFS" { return (int)Tokens.T_FUNC_AVERAGEIFS; }
-"BAHTTEXT" { return (int)Tokens.T_FUNC_BAHTTEXT; }
-"BESSELI" { return (int)Tokens.T_FUNC_BESSELI; }
-"BESSELJ" { return (int)Tokens.T_FUNC_BESSELJ; }
-"BESSELK" { return (int)Tokens.T_FUNC_BESSELK; }
-"BESSELY" { return (int)Tokens.T_FUNC_BESSELY; }
-"BETADIST" { return (int)Tokens.T_FUNC_BETADIST; }
-"BETAINV" { return (int)Tokens.T_FUNC_BETAINV; }
-"BIN2DEC" { return (int)Tokens.T_FUNC_BIN2DEC; }
-"BIN2HEX" { return (int)Tokens.T_FUNC_BIN2HEX; }
-"BIN2OCT" { return (int)Tokens.T_FUNC_BIN2OCT; }
-"BINOMDIST" { return (int)Tokens.T_FUNC_BINOMDIST; }
-"CEILING" { return (int)Tokens.T_FUNC_CEILING; }
-"CELL" { return (int)Tokens.T_FUNC_CELL; }
-"CHAR" { return (int)Tokens.T_FUNC_CHAR; }
-"CHIDIST" { return (int)Tokens.T_FUNC_CHIDIST; }
-"CHIINV" { return (int)Tokens.T_FUNC_CHIINV; }
-"CHITEST" { return (int)Tokens.T_FUNC_CHITEST; }
-"CHOOSE" { return (int)Tokens.T_FUNC_CHOOSE; }
-"CLEAN" { return (int)Tokens.T_FUNC_CLEAN; }
-"CODE" { return (int)Tokens.T_FUNC_CODE; }
-"COLUMN" { return (int)Tokens.T_FUNC_COLUMN; }
-"COLUMNS" { return (int)Tokens.T_FUNC_COLUMNS; }
-"COMBIN" { return (int)Tokens.T_FUNC_COMBIN; }
-"COMPLEX" { return (int)Tokens.T_FUNC_COMPLEX; }
-"CONCAT" { return (int)Tokens.T_FUNC_CONCAT; }
-"CONCATENATE" { return (int)Tokens.T_FUNC_CONCATENATE; }
-"CONFIDENCE" { return (int)Tokens.T_FUNC_CONFIDENCE; }
-"CONVERT" { return (int)Tokens.T_FUNC_CONVERT; }
-"CORREL" { return (int)Tokens.T_FUNC_CORREL; }
-"COS" { return (int)Tokens.T_FUNC_COS; }
-"COSH" { return (int)Tokens.T_FUNC_COSH; }
-"COUNT" { return (int)Tokens.T_FUNC_COUNT; }
-"COUNTA" { return (int)Tokens.T_FUNC_COUNTA; }
-"COUNTBLANK" { return (int)Tokens.T_FUNC_COUNTBLANK; }
-"COUNTIF" { return (int)Tokens.T_FUNC_COUNTIF; }
-"COUNTIFS" { return (int)Tokens.T_FUNC_COUNTIFS; }
-"COUPDAYBS" { return (int)Tokens.T_FUNC_COUPDAYBS; }
-"COUPDAYS" { return (int)Tokens.T_FUNC_COUPDAYS; }
-"COUPDAYSNC" { return (int)Tokens.T_FUNC_COUPDAYSNC; }
-"COUPNCD" { return (int)Tokens.T_FUNC_COUPNCD; }
-"COUPNUM" { return (int)Tokens.T_FUNC_COUPNUM; }
-"COUPPCD" { return (int)Tokens.T_FUNC_COUPPCD; }
-"COVAR" { return (int)Tokens.T_FUNC_COVAR; }
-"CRITBINOM" { return (int)Tokens.T_FUNC_CRITBINOM; }
-"CUBEKPIMEMBER" { return (int)Tokens.T_FUNC_CUBEKPIMEMBER; }
-"CUBEMEMBER" { return (int)Tokens.T_FUNC_CUBEMEMBER; }
-"CUBEMEMBERPROPERTY" { return (int)Tokens.T_FUNC_CUBEMEMBERPROPERTY; }
-"CUBERANKEDMEMBER" { return (int)Tokens.T_FUNC_CUBERANKEDMEMBER; }
-"CUBESET" { return (int)Tokens.T_FUNC_CUBESET; }
-"CUBESETCOUNT" { return (int)Tokens.T_FUNC_CUBESETCOUNT; }
-"CUBEVALUE" { return (int)Tokens.T_FUNC_CUBEVALUE; }
-"CUMIPMT" { return (int)Tokens.T_FUNC_CUMIPMT; }
-"CUMPRINC" { return (int)Tokens.T_FUNC_CUMPRINC; }
-"DATE" { return (int)Tokens.T_FUNC_DATE; }
-"DATEDIF" { return (int)Tokens.T_FUNC_DATEDIF; }
-"DATESTRING" { return (int)Tokens.T_FUNC_DATESTRING; }
-"DATEVALUE" { return (int)Tokens.T_FUNC_DATEVALUE; }
-"DAVERAGE" { return (int)Tokens.T_FUNC_DAVERAGE; }
-"DAY" { return (int)Tokens.T_FUNC_DAY; }
-"DAYS360" { return (int)Tokens.T_FUNC_DAYS360; }
-"DB" { return (int)Tokens.T_FUNC_DB; }
-"DBCS" { return (int)Tokens.T_FUNC_DBCS; }
-"DCOUNT" { return (int)Tokens.T_FUNC_DCOUNT; }
-"DCOUNTA" { return (int)Tokens.T_FUNC_DCOUNTA; }
-"DDB" { return (int)Tokens.T_FUNC_DDB; }
-"DEC2BIN" { return (int)Tokens.T_FUNC_DEC2BIN; }
-"DEC2HEX" { return (int)Tokens.T_FUNC_DEC2HEX; }
-"DEC2OCT" { return (int)Tokens.T_FUNC_DEC2OCT; }
-"DEGREES" { return (int)Tokens.T_FUNC_DEGREES; }
-"DELTA" { return (int)Tokens.T_FUNC_DELTA; }
-"DEVSQ" { return (int)Tokens.T_FUNC_DEVSQ; }
-"DGET" { return (int)Tokens.T_FUNC_DGET; }
-"DISC" { return (int)Tokens.T_FUNC_DISC; }
-"DMAX" { return (int)Tokens.T_FUNC_DMAX; }
-"DMIN" { return (int)Tokens.T_FUNC_DMIN; }
-"DOLLAR" { return (int)Tokens.T_FUNC_DOLLAR; }
-"DOLLARDE" { return (int)Tokens.T_FUNC_DOLLARDE; }
-"DOLLARFR" { return (int)Tokens.T_FUNC_DOLLARFR; }
-"DPRODUCT" { return (int)Tokens.T_FUNC_DPRODUCT; }
-"DSTDEV" { return (int)Tokens.T_FUNC_DSTDEV; }
-"DSTDEVP" { return (int)Tokens.T_FUNC_DSTDEVP; }
-"DSUM" { return (int)Tokens.T_FUNC_DSUM; }
-"DURATION" { return (int)Tokens.T_FUNC_DURATION; }
-"DVAR" { return (int)Tokens.T_FUNC_DVAR; }
-"DVARP" { return (int)Tokens.T_FUNC_DVARP; }
-"EDATE" { return (int)Tokens.T_FUNC_EDATE; }
-"EFFECT" { return (int)Tokens.T_FUNC_EFFECT; }
-"EOMONTH" { return (int)Tokens.T_FUNC_EOMONTH; }
-"ERF" { return (int)Tokens.T_FUNC_ERF; }
-"ERFC" { return (int)Tokens.T_FUNC_ERFC; }
-"ERROR.TYPE" { return (int)Tokens.T_FUNC_ERROR_TYPE; }
-"EVEN" { return (int)Tokens.T_FUNC_EVEN; }
-"EXACT" { return (int)Tokens.T_FUNC_EXACT; }
-"EXP" { return (int)Tokens.T_FUNC_EXP; }
-"EXPONDIST" { return (int)Tokens.T_FUNC_EXPONDIST; }
-"FACT" { return (int)Tokens.T_FUNC_FACT; }
-"FACTDOUBLE" { return (int)Tokens.T_FUNC_FACTDOUBLE; }
-"FDIST" { return (int)Tokens.T_FUNC_FDIST; }
-"FIND" { return (int)Tokens.T_FUNC_FIND; }
-"FINDB" { return (int)Tokens.T_FUNC_FINDB; }
-"FINV" { return (int)Tokens.T_FUNC_FINV; }
-"FISHER" { return (int)Tokens.T_FUNC_FISHER; }
-"FISHERINV" { return (int)Tokens.T_FUNC_FISHERINV; }
-"FIXED" { return (int)Tokens.T_FUNC_FIXED; }
-"FLOOR" { return (int)Tokens.T_FUNC_FLOOR; }
-"FORECAST" { return (int)Tokens.T_FUNC_FORECAST; }
-"FREQUENCY" { return (int)Tokens.T_FUNC_FREQUENCY; }
-"FTEST" { return (int)Tokens.T_FUNC_FTEST; }
-"FV" { return (int)Tokens.T_FUNC_FV; }
-"FVSCHEDULE" { return (int)Tokens.T_FUNC_FVSCHEDULE; }
-"GAMMADIST" { return (int)Tokens.T_FUNC_GAMMADIST; }
-"GAMMAINV" { return (int)Tokens.T_FUNC_GAMMAINV; }
-"GAMMALN" { return (int)Tokens.T_FUNC_GAMMALN; }
-"GCD" { return (int)Tokens.T_FUNC_GCD; }
-"GEOMEAN" { return (int)Tokens.T_FUNC_GEOMEAN; }
-"GESTEP" { return (int)Tokens.T_FUNC_GESTEP; }
-"GETPIVOTDATA" { return (int)Tokens.T_FUNC_GETPIVOTDATA; }
-"GROWTH" { return (int)Tokens.T_FUNC_GROWTH; }
-"HARMEAN" { return (int)Tokens.T_FUNC_HARMEAN; }
-"HEX2BIN" { return (int)Tokens.T_FUNC_HEX2BIN; }
-"HEX2DEC" { return (int)Tokens.T_FUNC_HEX2DEC; }
-"HEX2OCT" { return (int)Tokens.T_FUNC_HEX2OCT; }
-"HLOOKUP" { return (int)Tokens.T_FUNC_HLOOKUP; }
-"HOUR" { return (int)Tokens.T_FUNC_HOUR; }
-"HYPERLINK" { return (int)Tokens.T_FUNC_HYPERLINK; }
-"HYPGEOMDIST" { return (int)Tokens.T_FUNC_HYPGEOMDIST; }
-"IF" { return (int)Tokens.T_FUNC_IF; }
-"IFERROR" { return (int)Tokens.T_FUNC_IFERROR; }
-"IFS" { return (int)Tokens.T_FUNC_IFS; }
-"IMABS" { return (int)Tokens.T_FUNC_IMABS; }
-"IMAGINARY" { return (int)Tokens.T_FUNC_IMAGINARY; }
-"IMARGUMENT" { return (int)Tokens.T_FUNC_IMARGUMENT; }
-"IMCONJUGATE" { return (int)Tokens.T_FUNC_IMCONJUGATE; }
-"IMCOS" { return (int)Tokens.T_FUNC_IMCOS; }
-"IMDIV" { return (int)Tokens.T_FUNC_IMDIV; }
-"IMEXP" { return (int)Tokens.T_FUNC_IMEXP; }
-"IMLN" { return (int)Tokens.T_FUNC_IMLN; }
-"IMLOG10" { return (int)Tokens.T_FUNC_IMLOG10; }
-"IMLOG2" { return (int)Tokens.T_FUNC_IMLOG2; }
-"IMPOWER" { return (int)Tokens.T_FUNC_IMPOWER; }
-"IMPRODUCT" { return (int)Tokens.T_FUNC_IMPRODUCT; }
-"IMREAL" { return (int)Tokens.T_FUNC_IMREAL; }
-"IMSIN" { return (int)Tokens.T_FUNC_IMSIN; }
-"IMSQRT" { return (int)Tokens.T_FUNC_IMSQRT; }
-"IMSUB" { return (int)Tokens.T_FUNC_IMSUB; }
-"IMSUM" { return (int)Tokens.T_FUNC_IMSUM; }
-"INDEX" { return (int)Tokens.T_FUNC_INDEX; }
-"INDIRECT" { return (int)Tokens.T_FUNC_INDIRECT; }
-"INFO" { return (int)Tokens.T_FUNC_INFO; }
-"INT" { return (int)Tokens.T_FUNC_INT; }
-"INTERCEPT" { return (int)Tokens.T_FUNC_INTERCEPT; }
-"INTRATE" { return (int)Tokens.T_FUNC_INTRATE; }
-"IPMT" { return (int)Tokens.T_FUNC_IPMT; }
-"IRR" { return (int)Tokens.T_FUNC_IRR; }
-"ISBLANK" { return (int)Tokens.T_FUNC_ISBLANK; }
-"ISERR" { return (int)Tokens.T_FUNC_ISERR; }
-"ISERROR" { return (int)Tokens.T_FUNC_ISERROR; }
-"ISEVEN" { return (int)Tokens.T_FUNC_ISEVEN; }
-"ISLOGICAL" { return (int)Tokens.T_FUNC_ISLOGICAL; }
-"ISNA" { return (int)Tokens.T_FUNC_ISNA; }
-"ISNONTEXT" { return (int)Tokens.T_FUNC_ISNONTEXT; }
-"ISNUMBER" { return (int)Tokens.T_FUNC_ISNUMBER; }
-"ISODD" { return (int)Tokens.T_FUNC_ISODD; }
-"ISPMT" { return (int)Tokens.T_FUNC_ISPMT; }
-"ISREF" { return (int)Tokens.T_FUNC_ISREF; }
-"ISTEXT" { return (int)Tokens.T_FUNC_ISTEXT; }
-"ISTHAIDIGIT" { return (int)Tokens.T_FUNC_ISTHAIDIGIT; }
-"KURT" { return (int)Tokens.T_FUNC_KURT; }
-"LARGE" { return (int)Tokens.T_FUNC_LARGE; }
-"LCM" { return (int)Tokens.T_FUNC_LCM; }
-"LEFT" { return (int)Tokens.T_FUNC_LEFT; }
-"LEFTB" { return (int)Tokens.T_FUNC_LEFTB; }
-"LEN" { return (int)Tokens.T_FUNC_LEN; }
-"LENB" { return (int)Tokens.T_FUNC_LENB; }
-"LINEST" { return (int)Tokens.T_FUNC_LINEST; }
-"LN" { return (int)Tokens.T_FUNC_LN; }
-"LOG" { return (int)Tokens.T_FUNC_LOG; }
-"LOG10" { return (int)Tokens.T_FUNC_LOG10; }
-"LOGEST" { return (int)Tokens.T_FUNC_LOGEST; }
-"LOGINV" { return (int)Tokens.T_FUNC_LOGINV; }
-"LOGNORMDIST" { return (int)Tokens.T_FUNC_LOGNORMDIST; }
-"LOOKUP" { return (int)Tokens.T_FUNC_LOOKUP; }
-"LOWER" { return (int)Tokens.T_FUNC_LOWER; }
-"MATCH" { return (int)Tokens.T_FUNC_MATCH; }
-"MAX" { return (int)Tokens.T_FUNC_MAX; }
-"MAXA" { return (int)Tokens.T_FUNC_MAXA; }
-"MAXIFS" { return (int)Tokens.T_FUNC_MAXIFS; }
-"MDETERM" { return (int)Tokens.T_FUNC_MDETERM; }
-"MDURATION" { return (int)Tokens.T_FUNC_MDURATION; }
-"MEDIAN" { return (int)Tokens.T_FUNC_MEDIAN; }
-"MID" { return (int)Tokens.T_FUNC_MID; }
-"MIDB" { return (int)Tokens.T_FUNC_MIDB; }
-"MIN" { return (int)Tokens.T_FUNC_MIN; }
-"MINA" { return (int)Tokens.T_FUNC_MINA; }
-"MINIFS" { return (int)Tokens.T_FUNC_MINIFS; }
-"MINUTE" { return (int)Tokens.T_FUNC_MINUTE; }
-"MINVERSE" { return (int)Tokens.T_FUNC_MINVERSE; }
-"MIRR" { return (int)Tokens.T_FUNC_MIRR; }
-"MMULT" { return (int)Tokens.T_FUNC_MMULT; }
-"MOD" { return (int)Tokens.T_FUNC_MOD; }
-"MODE" { return (int)Tokens.T_FUNC_MODE; }
-"MONTH" { return (int)Tokens.T_FUNC_MONTH; }
-"MROUND" { return (int)Tokens.T_FUNC_MROUND; }
-"MULTINOMIAL" { return (int)Tokens.T_FUNC_MULTINOMIAL; }
-"N" { return (int)Tokens.T_FUNC_N; }
-"NA" { return (int)Tokens.T_FUNC_NA; }
-"NEGBINOMDIST" { return (int)Tokens.T_FUNC_NEGBINOMDIST; }
-"NETWORKDAYS" { return (int)Tokens.T_FUNC_NETWORKDAYS; }
-"NOMINAL" { return (int)Tokens.T_FUNC_NOMINAL; }
-"NORMDIST" { return (int)Tokens.T_FUNC_NORMDIST; }
-"NORMINV" { return (int)Tokens.T_FUNC_NORMINV; }
-"NORMSDIST" { return (int)Tokens.T_FUNC_NORMSDIST; }
-"NORMSINV" { return (int)Tokens.T_FUNC_NORMSINV; }
-"NOT" { return (int)Tokens.T_FUNC_NOT; }
-"NOW" { return (int)Tokens.T_FUNC_NOW; }
-"NPER" { return (int)Tokens.T_FUNC_NPER; }
-"NPV" { return (int)Tokens.T_FUNC_NPV; }
-"NUMBERSTRING" { return (int)Tokens.T_FUNC_NUMBERSTRING; }
-"OCT2BIN" { return (int)Tokens.T_FUNC_OCT2BIN; }
-"OCT2DEC" { return (int)Tokens.T_FUNC_OCT2DEC; }
-"OCT2HEX" { return (int)Tokens.T_FUNC_OCT2HEX; }
-"ODD" { return (int)Tokens.T_FUNC_ODD; }
-"ODDFPRICE" { return (int)Tokens.T_FUNC_ODDFPRICE; }
-"ODDFYIELD" { return (int)Tokens.T_FUNC_ODDFYIELD; }
-"ODDLPRICE" { return (int)Tokens.T_FUNC_ODDLPRICE; }
-"ODDLYIELD" { return (int)Tokens.T_FUNC_ODDLYIELD; }
-"OFFSET" { return (int)Tokens.T_FUNC_OFFSET; }
-"OR" { return (int)Tokens.T_FUNC_OR; }
-"PEARSON" { return (int)Tokens.T_FUNC_PEARSON; }
-"PERCENTILE" { return (int)Tokens.T_FUNC_PERCENTILE; }
-"PERCENTRANK" { return (int)Tokens.T_FUNC_PERCENTRANK; }
-"PERMUT" { return (int)Tokens.T_FUNC_PERMUT; }
-"PHONETIC" { return (int)Tokens.T_FUNC_PHONETIC; }
-"PI" { return (int)Tokens.T_FUNC_PI; }
-"PMT" { return (int)Tokens.T_FUNC_PMT; }
-"POISSON" { return (int)Tokens.T_FUNC_POISSON; }
-"POWER" { return (int)Tokens.T_FUNC_POWER; }
-"PPMT" { return (int)Tokens.T_FUNC_PPMT; }
-"PRICE" { return (int)Tokens.T_FUNC_PRICE; }
-"PRICEDISC" { return (int)Tokens.T_FUNC_PRICEDISC; }
-"PRICEMAT" { return (int)Tokens.T_FUNC_PRICEMAT; }
-"PROB" { return (int)Tokens.T_FUNC_PROB; }
-"PRODUCT" { return (int)Tokens.T_FUNC_PRODUCT; }
-"PROPER" { return (int)Tokens.T_FUNC_PROPER; }
-"PV" { return (int)Tokens.T_FUNC_PV; }
-"QUARTILE" { return (int)Tokens.T_FUNC_QUARTILE; }
-"QUOTIENT" { return (int)Tokens.T_FUNC_QUOTIENT; }
-"RADIANS" { return (int)Tokens.T_FUNC_RADIANS; }
-"RAND" { return (int)Tokens.T_FUNC_RAND; }
-"RANDBETWEEN" { return (int)Tokens.T_FUNC_RANDBETWEEN; }
-"RANK" { return (int)Tokens.T_FUNC_RANK; }
-"RATE" { return (int)Tokens.T_FUNC_RATE; }
-"RECEIVED" { return (int)Tokens.T_FUNC_RECEIVED; }
-"REPLACE" { return (int)Tokens.T_FUNC_REPLACE; }
-"REPLACEB" { return (int)Tokens.T_FUNC_REPLACEB; }
-"REPT" { return (int)Tokens.T_FUNC_REPT; }
-"RIGHT" { return (int)Tokens.T_FUNC_RIGHT; }
-"RIGHTB" { return (int)Tokens.T_FUNC_RIGHTB; }
-"ROMAN" { return (int)Tokens.T_FUNC_ROMAN; }
-"ROUND" { return (int)Tokens.T_FUNC_ROUND; }
-"ROUNDBAHTDOWN" { return (int)Tokens.T_FUNC_ROUNDBAHTDOWN; }
-"ROUNDBAHTUP" { return (int)Tokens.T_FUNC_ROUNDBAHTUP; }
-"ROUNDDOWN" { return (int)Tokens.T_FUNC_ROUNDDOWN; }
-"ROUNDUP" { return (int)Tokens.T_FUNC_ROUNDUP; }
-"ROW" { return (int)Tokens.T_FUNC_ROW; }
-"ROWS" { return (int)Tokens.T_FUNC_ROWS; }
-"RSQ" { return (int)Tokens.T_FUNC_RSQ; }
-"RTD" { return (int)Tokens.T_FUNC_RTD; }
-"SEARCH" { return (int)Tokens.T_FUNC_SEARCH; }
-"SEARCHB" { return (int)Tokens.T_FUNC_SEARCHB; }
-"SECOND" { return (int)Tokens.T_FUNC_SECOND; }
-"SERIES" { return (int)Tokens.T_FUNC_SERIES; }
-"SERIESSUM" { return (int)Tokens.T_FUNC_SERIESSUM; }
-"SIGN" { return (int)Tokens.T_FUNC_SIGN; }
-"SIN" { return (int)Tokens.T_FUNC_SIN; }
-"SINH" { return (int)Tokens.T_FUNC_SINH; }
-"SKEW" { return (int)Tokens.T_FUNC_SKEW; }
-"SLN" { return (int)Tokens.T_FUNC_SLN; }
-"SLOPE" { return (int)Tokens.T_FUNC_SLOPE; }
-"SMALL" { return (int)Tokens.T_FUNC_SMALL; }
-"SQRT" { return (int)Tokens.T_FUNC_SQRT; }
-"SQRTPI" { return (int)Tokens.T_FUNC_SQRTPI; }
-"STANDARDIZE" { return (int)Tokens.T_FUNC_STANDARDIZE; }
-"STDEV" { return (int)Tokens.T_FUNC_STDEV; }
-"STDEVA" { return (int)Tokens.T_FUNC_STDEVA; }
-"STDEVP" { return (int)Tokens.T_FUNC_STDEVP; }
-"STDEVPA" { return (int)Tokens.T_FUNC_STDEVPA; }
-"STEYX" { return (int)Tokens.T_FUNC_STEYX; }
-"SUBSTITUTE" { return (int)Tokens.T_FUNC_SUBSTITUTE; }
-"SUBTOTAL" { return (int)Tokens.T_FUNC_SUBTOTAL; }
-"SUM" { return (int)Tokens.T_FUNC_SUM; }
-"SUMIF" { return (int)Tokens.T_FUNC_SUMIF; }
-"SUMIFS" { return (int)Tokens.T_FUNC_SUMIFS; }
-"SUMPRODUCT" { return (int)Tokens.T_FUNC_SUMPRODUCT; }
-"SUMSQ" { return (int)Tokens.T_FUNC_SUMSQ; }
-"SUMX2MY2" { return (int)Tokens.T_FUNC_SUMX2MY2; }
-"SUMX2PY2" { return (int)Tokens.T_FUNC_SUMX2PY2; }
-"SUMXMY2" { return (int)Tokens.T_FUNC_SUMXMY2; }
-"SWITCH" { return (int)Tokens.T_FUNC_SWITCH; }
-"SYD" { return (int)Tokens.T_FUNC_SYD; }
-"T" { return (int)Tokens.T_FUNC_T; }
-"TAN" { return (int)Tokens.T_FUNC_TAN; }
-"TANH" { return (int)Tokens.T_FUNC_TANH; }
-"TBILLEQ" { return (int)Tokens.T_FUNC_TBILLEQ; }
-"TBILLPRICE" { return (int)Tokens.T_FUNC_TBILLPRICE; }
-"TBILLYIELD" { return (int)Tokens.T_FUNC_TBILLYIELD; }
-"TDIST" { return (int)Tokens.T_FUNC_TDIST; }
-"TEXT" { return (int)Tokens.T_FUNC_TEXT; }
-"TEXTJOIN" { return (int)Tokens.T_FUNC_TEXTJOIN; }
-"THAIDAYOFWEEK" { return (int)Tokens.T_FUNC_THAIDAYOFWEEK; }
-"THAIDIGIT" { return (int)Tokens.T_FUNC_THAIDIGIT; }
-"THAIMONTHOFYEAR" { return (int)Tokens.T_FUNC_THAIMONTHOFYEAR; }
-"THAINUMSOUND" { return (int)Tokens.T_FUNC_THAINUMSOUND; }
-"THAINUMSTRING" { return (int)Tokens.T_FUNC_THAINUMSTRING; }
-"THAISTRINGLENGTH" { return (int)Tokens.T_FUNC_THAISTRINGLENGTH; }
-"THAIYEAR" { return (int)Tokens.T_FUNC_THAIYEAR; }
-"TIME" { return (int)Tokens.T_FUNC_TIME; }
-"TIMEVALUE" { return (int)Tokens.T_FUNC_TIMEVALUE; }
-"TINV" { return (int)Tokens.T_FUNC_TINV; }
-"TODAY" { return (int)Tokens.T_FUNC_TODAY; }
-"TRANSPOSE" { return (int)Tokens.T_FUNC_TRANSPOSE; }
-"TREND" { return (int)Tokens.T_FUNC_TREND; }
-"TRIM" { return (int)Tokens.T_FUNC_TRIM; }
-"TRIMMEAN" { return (int)Tokens.T_FUNC_TRIMMEAN; }
-"TRUNC" { return (int)Tokens.T_FUNC_TRUNC; }
-"TTEST" { return (int)Tokens.T_FUNC_TTEST; }
-"TYPE" { return (int)Tokens.T_FUNC_TYPE; }
-"UPPER" { return (int)Tokens.T_FUNC_UPPER; }
-"USDOLLAR" { return (int)Tokens.T_FUNC_USDOLLAR; }
-"VALUE" { return (int)Tokens.T_FUNC_VALUE; }
-"VAR" { return (int)Tokens.T_FUNC_VAR; }
-"VARA" { return (int)Tokens.T_FUNC_VARA; }
-"VARP" { return (int)Tokens.T_FUNC_VARP; }
-"VARPA" { return (int)Tokens.T_FUNC_VARPA; }
-"VDB" { return (int)Tokens.T_FUNC_VDB; }
-"VLOOKUP" { return (int)Tokens.T_FUNC_VLOOKUP; }
-"WEEKDAY" { return (int)Tokens.T_FUNC_WEEKDAY; }
-"WEEKNUM" { return (int)Tokens.T_FUNC_WEEKNUM; }
-"WEIBULL" { return (int)Tokens.T_FUNC_WEIBULL; }
-"WORKDAY" { return (int)Tokens.T_FUNC_WORKDAY; }
-"XIRR" { return (int)Tokens.T_FUNC_XIRR; }
-"XNPV" { return (int)Tokens.T_FUNC_XNPV; }
-"YEAR" { return (int)Tokens.T_FUNC_YEAR; }
-"YEARFRAC" { return (int)Tokens.T_FUNC_YEARFRAC; }
-"YIELD" { return (int)Tokens.T_FUNC_YIELD; }
-"YIELDDISC" { return (int)Tokens.T_FUNC_YIELDDISC; }
-"YIELDMAT" { return (int)Tokens.T_FUNC_YIELDMAT; }
-"ZTEST" { return (int)Tokens.T_FUNC_ZTEST; }
+[aA][bB][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ABS; }
+[aA][cC][cC][rR][iI][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACCRINT; }
+[aA][cC][cC][rR][iI][nN][tT][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACCRINTM; }
+[aA][cC][oO][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACOS; }
+[aA][cC][oO][sS][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACOSH; }
+[aA][dD][dD][rR][eE][sS][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADDRESS; }
+[aA][mM][oO][rR][dD][eE][gG][rR][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AMORDEGRC; }
+[aA][mM][oO][rR][lL][iI][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AMORLINC; }
+[aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AND; }
+[aA][rR][eE][aA][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AREAS; }
+[aA][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ASC; }
+[aA][sS][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ASIN; }
+[aA][sS][iI][nN][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ASINH; }
+[aA][tT][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATAN; }
+[aA][tT][aA][nN]"2" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATAN2; }
+[aA][tT][aA][nN][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATANH; }
+[aA][vV][eE][dD][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AVEDEV; }
+[aA][vV][eE][rR][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AVERAGE; }
+[aA][vV][eE][rR][aA][gG][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AVERAGEA; }
+[aA][vV][eE][rR][aA][gG][eE][iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AVERAGEIF; }
+[aA][vV][eE][rR][aA][gG][eE][iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AVERAGEIFS; }
+[bB][aA][hH][tT][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BAHTTEXT; }
+[bB][eE][sS][sS][eE][lL][iI] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BESSELI; }
+[bB][eE][sS][sS][eE][lL][jJ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BESSELJ; }
+[bB][eE][sS][sS][eE][lL][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BESSELK; }
+[bB][eE][sS][sS][eE][lL][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BESSELY; }
+[bB][eE][tT][aA][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BETADIST; }
+[bB][eE][tT][aA][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BETAINV; }
+[bB][iI][nN]"2"[dD][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BIN2DEC; }
+[bB][iI][nN]"2"[hH][eE][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BIN2HEX; }
+[bB][iI][nN]"2"[oO][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BIN2OCT; }
+[bB][iI][nN][oO][mM][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BINOMDIST; }
+[cC][eE][iI][lL][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CEILING; }
+[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CELL; }
+[cC][hH][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHAR; }
+[cC][hH][iI][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHIDIST; }
+[cC][hH][iI][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHIINV; }
+[cC][hH][iI][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHITEST; }
+[cC][hH][oO][oO][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHOOSE; }
+[cC][lL][eE][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLEAN; }
+[cC][oO][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CODE; }
+[cC][oO][lL][uU][mM][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COLUMN; }
+[cC][oO][lL][uU][mM][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COLUMNS; }
+[cC][oO][mM][bB][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COMBIN; }
+[cC][oO][mM][pP][lL][eE][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COMPLEX; }
+[cC][oO][nN][cC][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONCAT; }
+[cC][oO][nN][cC][aA][tT][eE][nN][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONCATENATE; }
+[cC][oO][nN][fF][iI][dD][eE][nN][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONFIDENCE; }
+[cC][oO][nN][vV][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONVERT; }
+[cC][oO][rR][rR][eE][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CORREL; }
+[cC][oO][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COS; }
+[cC][oO][sS][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COSH; }
+[cC][oO][uU][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUNT; }
+[cC][oO][uU][nN][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUNTA; }
+[cC][oO][uU][nN][tT][bB][lL][aA][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUNTBLANK; }
+[cC][oO][uU][nN][tT][iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUNTIF; }
+[cC][oO][uU][nN][tT][iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUNTIFS; }
+[cC][oO][uU][pP][dD][aA][yY][bB][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPDAYBS; }
+[cC][oO][uU][pP][dD][aA][yY][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPDAYS; }
+[cC][oO][uU][pP][dD][aA][yY][sS][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPDAYSNC; }
+[cC][oO][uU][pP][nN][cC][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPNCD; }
+[cC][oO][uU][pP][nN][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPNUM; }
+[cC][oO][uU][pP][pP][cC][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COUPPCD; }
+[cC][oO][vV][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COVAR; }
+[cC][rR][iI][tT][bB][iI][nN][oO][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CRITBINOM; }
+[cC][uU][bB][eE][kK][pP][iI][mM][eE][mM][bB][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBEKPIMEMBER; }
+[cC][uU][bB][eE][mM][eE][mM][bB][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBEMEMBER; }
+[cC][uU][bB][eE][mM][eE][mM][bB][eE][rR][pP][rR][oO][pP][eE][rR][tT][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBEMEMBERPROPERTY; }
+[cC][uU][bB][eE][rR][aA][nN][kK][eE][dD][mM][eE][mM][bB][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBERANKEDMEMBER; }
+[cC][uU][bB][eE][sS][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBESET; }
+[cC][uU][bB][eE][sS][eE][tT][cC][oO][uU][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBESETCOUNT; }
+[cC][uU][bB][eE][vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUBEVALUE; }
+[cC][uU][mM][iI][pP][mM][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUMIPMT; }
+[cC][uU][mM][pP][rR][iI][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUMPRINC; }
+[dD][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATE; }
+[dD][aA][tT][eE][dD][iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATEDIF; }
+[dD][aA][tT][eE][sS][tT][rR][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATESTRING; }
+[dD][aA][tT][eE][vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATEVALUE; }
+[dD][aA][vV][eE][rR][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DAVERAGE; }
+[dD][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DAY; }
+[dD][aA][yY][sS]"360" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DAYS360; }
+[dD][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DB; }
+[dD][bB][cC][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DBCS; }
+[dD][cC][oO][uU][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DCOUNT; }
+[dD][cC][oO][uU][nN][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DCOUNTA; }
+[dD][dD][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DDB; }
+[dD][eE][cC]"2"[bB][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEC2BIN; }
+[dD][eE][cC]"2"[hH][eE][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEC2HEX; }
+[dD][eE][cC]"2"[oO][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEC2OCT; }
+[dD][eE][gG][rR][eE][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEGREES; }
+[dD][eE][lL][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELTA; }
+[dD][eE][vV][sS][qQ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEVSQ; }
+[dD][gG][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DGET; }
+[dD][iI][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DISC; }
+[dD][mM][aA][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DMAX; }
+[dD][mM][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DMIN; }
+[dD][oO][lL][lL][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DOLLAR; }
+[dD][oO][lL][lL][aA][rR][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DOLLARDE; }
+[dD][oO][lL][lL][aA][rR][fF][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DOLLARFR; }
+[dD][pP][rR][oO][dD][uU][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DPRODUCT; }
+[dD][sS][tT][dD][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DSTDEV; }
+[dD][sS][tT][dD][eE][vV][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DSTDEVP; }
+[dD][sS][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DSUM; }
+[dD][uU][rR][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DURATION; }
+[dD][vV][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DVAR; }
+[dD][vV][aA][rR][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DVARP; }
+[eE][dD][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDATE; }
+[eE][fF][fF][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EFFECT; }
+[eE][oO][mM][oO][nN][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EOMONTH; }
+[eE][rR][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERF; }
+[eE][rR][fF][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERFC; }
+[eE][rR][rR][oO][rR]"."[tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERROR_TYPE; }
+[eE][vV][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EVEN; }
+[eE][xX][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXACT; }
+[eE][xX][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXP; }
+[eE][xX][pP][oO][nN][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXPONDIST; }
+[fF][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FACT; }
+[fF][aA][cC][tT][dD][oO][uU][bB][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FACTDOUBLE; }
+[fF][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FDIST; }
+[fF][iI][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FIND; }
+[fF][iI][nN][dD][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FINDB; }
+[fF][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FINV; }
+[fF][iI][sS][hH][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FISHER; }
+[fF][iI][sS][hH][eE][rR][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FISHERINV; }
+[fF][iI][xX][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FIXED; }
+[fF][lL][oO][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FLOOR; }
+[fF][oO][rR][eE][cC][aA][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORECAST; }
+[fF][rR][eE][qQ][uU][eE][nN][cC][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FREQUENCY; }
+[fF][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FTEST; }
+[fF][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FV; }
+[fF][vV][sS][cC][hH][eE][dD][uU][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FVSCHEDULE; }
+[gG][aA][mM][mM][aA][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMADIST; }
+[gG][aA][mM][mM][aA][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMAINV; }
+[gG][aA][mM][mM][aA][lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GAMMALN; }
+[gG][cC][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GCD; }
+[gG][eE][oO][mM][eE][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GEOMEAN; }
+[gG][eE][sS][tT][eE][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GESTEP; }
+[gG][eE][tT][pP][iI][vV][oO][tT][dD][aA][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GETPIVOTDATA; }
+[gG][rR][oO][wW][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GROWTH; }
+[hH][aA][rR][mM][eE][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HARMEAN; }
+[hH][eE][xX]"2"[bB][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HEX2BIN; }
+[hH][eE][xX]"2"[dD][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HEX2DEC; }
+[hH][eE][xX]"2"[oO][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HEX2OCT; }
+[hH][lL][oO][oO][kK][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HLOOKUP; }
+[hH][oO][uU][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HOUR; }
+[hH][yY][pP][eE][rR][lL][iI][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HYPERLINK; }
+[hH][yY][pP][gG][eE][oO][mM][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HYPGEOMDIST; }
+[iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IF; }
+[iI][fF][eE][rR][rR][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IFERROR; }
+[iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IFS; }
+[iI][mM][aA][bB][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMABS; }
+[iI][mM][aA][gG][iI][nN][aA][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMAGINARY; }
+[iI][mM][aA][rR][gG][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMARGUMENT; }
+[iI][mM][cC][oO][nN][jJ][uU][gG][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCONJUGATE; }
+[iI][mM][cC][oO][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMCOS; }
+[iI][mM][dD][iI][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMDIV; }
+[iI][mM][eE][xX][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMEXP; }
+[iI][mM][lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMLN; }
+[iI][mM][lL][oO][gG]"10" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMLOG10; }
+[iI][mM][lL][oO][gG]"2" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMLOG2; }
+[iI][mM][pP][oO][wW][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMPOWER; }
+[iI][mM][pP][rR][oO][dD][uU][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMPRODUCT; }
+[iI][mM][rR][eE][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMREAL; }
+[iI][mM][sS][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSIN; }
+[iI][mM][sS][qQ][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSQRT; }
+[iI][mM][sS][uU][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSUB; }
+[iI][mM][sS][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IMSUM; }
+[iI][nN][dD][eE][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INDEX; }
+[iI][nN][dD][iI][rR][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INDIRECT; }
+[iI][nN][fF][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INFO; }
+[iI][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INT; }
+[iI][nN][tT][eE][rR][cC][eE][pP][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INTERCEPT; }
+[iI][nN][tT][rR][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INTRATE; }
+[iI][pP][mM][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IPMT; }
+[iI][rR][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_IRR; }
+[iI][sS][bB][lL][aA][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISBLANK; }
+[iI][sS][eE][rR][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISERR; }
+[iI][sS][eE][rR][rR][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISERROR; }
+[iI][sS][eE][vV][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISEVEN; }
+[iI][sS][lL][oO][gG][iI][cC][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISLOGICAL; }
+[iI][sS][nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISNA; }
+[iI][sS][nN][oO][nN][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISNONTEXT; }
+[iI][sS][nN][uU][mM][bB][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISNUMBER; }
+[iI][sS][oO][dD][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISODD; }
+[iI][sS][pP][mM][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISPMT; }
+[iI][sS][rR][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISREF; }
+[iI][sS][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISTEXT; }
+[iI][sS][tT][hH][aA][iI][dD][iI][gG][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ISTHAIDIGIT; }
+[kK][uU][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_KURT; }
+[lL][aA][rR][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LARGE; }
+[lL][cC][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LCM; }
+[lL][eE][fF][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LEFT; }
+[lL][eE][fF][tT][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LEFTB; }
+[lL][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LEN; }
+[lL][eE][nN][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LENB; }
+[lL][iI][nN][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LINEST; }
+[lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LN; }
+[lL][oO][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOG; }
+[lL][oO][gG]"10" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOG10; }
+[lL][oO][gG][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOGEST; }
+[lL][oO][gG][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOGINV; }
+[lL][oO][gG][nN][oO][rR][mM][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOGNORMDIST; }
+[lL][oO][oO][kK][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOOKUP; }
+[lL][oO][wW][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LOWER; }
+[mM][aA][tT][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MATCH; }
+[mM][aA][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAX; }
+[mM][aA][xX][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAXA; }
+[mM][aA][xX][iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAXIFS; }
+[mM][dD][eE][tT][eE][rR][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MDETERM; }
+[mM][dD][uU][rR][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MDURATION; }
+[mM][eE][dD][iI][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MEDIAN; }
+[mM][iI][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MID; }
+[mM][iI][dD][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MIDB; }
+[mM][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MIN; }
+[mM][iI][nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MINA; }
+[mM][iI][nN][iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MINIFS; }
+[mM][iI][nN][uU][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MINUTE; }
+[mM][iI][nN][vV][eE][rR][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MINVERSE; }
+[mM][iI][rR][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MIRR; }
+[mM][mM][uU][lL][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MMULT; }
+[mM][oO][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MOD; }
+[mM][oO][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MODE; }
+[mM][oO][nN][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MONTH; }
+[mM][rR][oO][uU][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MROUND; }
+[mM][uU][lL][tT][iI][nN][oO][mM][iI][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MULTINOMIAL; }
+[nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_N; }
+[nN][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NA; }
+[nN][eE][gG][bB][iI][nN][oO][mM][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEGBINOMDIST; }
+[nN][eE][tT][wW][oO][rR][kK][dD][aA][yY][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NETWORKDAYS; }
+[nN][oO][mM][iI][nN][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NOMINAL; }
+[nN][oO][rR][mM][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORMDIST; }
+[nN][oO][rR][mM][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORMINV; }
+[nN][oO][rR][mM][sS][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORMSDIST; }
+[nN][oO][rR][mM][sS][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORMSINV; }
+[nN][oO][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NOT; }
+[nN][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NOW; }
+[nN][pP][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NPER; }
+[nN][pP][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NPV; }
+[nN][uU][mM][bB][eE][rR][sS][tT][rR][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NUMBERSTRING; }
+[oO][cC][tT]"2"[bB][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OCT2BIN; }
+[oO][cC][tT]"2"[dD][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OCT2DEC; }
+[oO][cC][tT]"2"[hH][eE][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OCT2HEX; }
+[oO][dD][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ODD; }
+[oO][dD][dD][fF][pP][rR][iI][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ODDFPRICE; }
+[oO][dD][dD][fF][yY][iI][eE][lL][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ODDFYIELD; }
+[oO][dD][dD][lL][pP][rR][iI][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ODDLPRICE; }
+[oO][dD][dD][lL][yY][iI][eE][lL][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ODDLYIELD; }
+[oO][fF][fF][sS][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OFFSET; }
+[oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OR; }
+[pP][eE][aA][rR][sS][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PEARSON; }
+[pP][eE][rR][cC][eE][nN][tT][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTILE; }
+[pP][eE][rR][cC][eE][nN][tT][rR][aA][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERCENTRANK; }
+[pP][eE][rR][mM][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PERMUT; }
+[pP][hH][oO][nN][eE][tT][iI][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PHONETIC; }
+[pP][iI] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PI; }
+[pP][mM][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PMT; }
+[pP][oO][iI][sS][sS][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_POISSON; }
+[pP][oO][wW][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_POWER; }
+[pP][pP][mM][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PPMT; }
+[pP][rR][iI][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRICE; }
+[pP][rR][iI][cC][eE][dD][iI][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRICEDISC; }
+[pP][rR][iI][cC][eE][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRICEMAT; }
+[pP][rR][oO][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PROB; }
+[pP][rR][oO][dD][uU][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRODUCT; }
+[pP][rR][oO][pP][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PROPER; }
+[pP][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PV; }
+[qQ][uU][aA][rR][tT][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUARTILE; }
+[qQ][uU][oO][tT][iI][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUOTIENT; }
+[rR][aA][dD][iI][aA][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RADIANS; }
+[rR][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RAND; }
+[rR][aA][nN][dD][bB][eE][tT][wW][eE][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RANDBETWEEN; }
+[rR][aA][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RANK; }
+[rR][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RATE; }
+[rR][eE][cC][eE][iI][vV][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RECEIVED; }
+[rR][eE][pP][lL][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REPLACE; }
+[rR][eE][pP][lL][aA][cC][eE][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REPLACEB; }
+[rR][eE][pP][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REPT; }
+[rR][iI][gG][hH][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RIGHT; }
+[rR][iI][gG][hH][tT][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RIGHTB; }
+[rR][oO][mM][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROMAN; }
+[rR][oO][uU][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUND; }
+[rR][oO][uU][nN][dD][bB][aA][hH][tT][dD][oO][wW][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUNDBAHTDOWN; }
+[rR][oO][uU][nN][dD][bB][aA][hH][tT][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUNDBAHTUP; }
+[rR][oO][uU][nN][dD][dD][oO][wW][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUNDDOWN; }
+[rR][oO][uU][nN][dD][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUNDUP; }
+[rR][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROW; }
+[rR][oO][wW][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROWS; }
+[rR][sS][qQ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RSQ; }
+[rR][tT][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RTD; }
+[sS][eE][aA][rR][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEARCH; }
+[sS][eE][aA][rR][cC][hH][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEARCHB; }
+[sS][eE][cC][oO][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SECOND; }
+[sS][eE][rR][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIES; }
+[sS][eE][rR][iI][eE][sS][sS][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIESSUM; }
+[sS][iI][gG][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SIGN; }
+[sS][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SIN; }
+[sS][iI][nN][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SINH; }
+[sS][kK][eE][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SKEW; }
+[sS][lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SLN; }
+[sS][lL][oO][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SLOPE; }
+[sS][mM][aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SMALL; }
+[sS][qQ][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SQRT; }
+[sS][qQ][rR][tT][pP][iI] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SQRTPI; }
+[sS][tT][aA][nN][dD][aA][rR][dD][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STANDARDIZE; }
+[sS][tT][dD][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEV; }
+[sS][tT][dD][eE][vV][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEVA; }
+[sS][tT][dD][eE][vV][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEVP; }
+[sS][tT][dD][eE][vV][pP][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STDEVPA; }
+[sS][tT][eE][yY][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STEYX; }
+[sS][uU][bB][sS][tT][iI][tT][uU][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUBSTITUTE; }
+[sS][uU][bB][tT][oO][tT][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUBTOTAL; }
+[sS][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUM; }
+[sS][uU][mM][iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMIF; }
+[sS][uU][mM][iI][fF][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMIFS; }
+[sS][uU][mM][pP][rR][oO][dD][uU][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMPRODUCT; }
+[sS][uU][mM][sS][qQ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMSQ; }
+[sS][uU][mM][xX]"2"[mM][yY]"2" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMX2MY2; }
+[sS][uU][mM][xX]"2"[pP][yY]"2" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMX2PY2; }
+[sS][uU][mM][xX][mM][yY]"2" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMXMY2; }
+[sS][wW][iI][tT][cC][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SWITCH; }
+[sS][yY][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SYD; }
+[tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T; }
+[tT][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TAN; }
+[tT][aA][nN][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TANH; }
+[tT][bB][iI][lL][lL][eE][qQ] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TBILLEQ; }
+[tT][bB][iI][lL][lL][pP][rR][iI][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TBILLPRICE; }
+[tT][bB][iI][lL][lL][yY][iI][eE][lL][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TBILLYIELD; }
+[tT][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TDIST; }
+[tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXT; }
+[tT][eE][xX][tT][jJ][oO][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTJOIN; }
+[tT][hH][aA][iI][dD][aA][yY][oO][fF][wW][eE][eE][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAIDAYOFWEEK; }
+[tT][hH][aA][iI][dD][iI][gG][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAIDIGIT; }
+[tT][hH][aA][iI][mM][oO][nN][tT][hH][oO][fF][yY][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAIMONTHOFYEAR; }
+[tT][hH][aA][iI][nN][uU][mM][sS][oO][uU][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAINUMSOUND; }
+[tT][hH][aA][iI][nN][uU][mM][sS][tT][rR][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAINUMSTRING; }
+[tT][hH][aA][iI][sS][tT][rR][iI][nN][gG][lL][eE][nN][gG][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAISTRINGLENGTH; }
+[tT][hH][aA][iI][yY][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_THAIYEAR; }
+[tT][iI][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TIME; }
+[tT][iI][mM][eE][vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TIMEVALUE; }
+[tT][iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TINV; }
+[tT][oO][dD][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TODAY; }
+[tT][rR][aA][nN][sS][pP][oO][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRANSPOSE; }
+[tT][rR][eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TREND; }
+[tT][rR][iI][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRIM; }
+[tT][rR][iI][mM][mM][eE][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRIMMEAN; }
+[tT][rR][uU][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRUNC; }
+[tT][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TTEST; }
+[tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TYPE; }
+[uU][pP][pP][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UPPER; }
+[uU][sS][dD][oO][lL][lL][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_USDOLLAR; }
+[vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VALUE; }
+[vV][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VAR; }
+[vV][aA][rR][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VARA; }
+[vV][aA][rR][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VARP; }
+[vV][aA][rR][pP][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VARPA; }
+[vV][dD][bB] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VDB; }
+[vV][lL][oO][oO][kK][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VLOOKUP; }
+[wW][eE][eE][kK][dD][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEEKDAY; }
+[wW][eE][eE][kK][nN][uU][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEEKNUM; }
+[wW][eE][iI][bB][uU][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEIBULL; }
+[wW][oO][rR][kK][dD][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKDAY; }
+[xX][iI][rR][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_XIRR; }
+[xX][nN][pP][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_XNPV; }
+[yY][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_YEAR; }
+[yY][eE][aA][rR][fF][rR][aA][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_YEARFRAC; }
+[yY][iI][eE][lL][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_YIELD; }
+[yY][iI][eE][lL][dD][dD][iI][sS][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_YIELDDISC; }
+[yY][iI][eE][lL][dD][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_YIELDMAT; }
+[zZ][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ZTEST; }

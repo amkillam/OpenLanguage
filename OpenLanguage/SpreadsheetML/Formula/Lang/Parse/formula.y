@@ -60,14 +60,21 @@
     public XlwsFunctionPrefixNode xlwsVal;
     public XlfnFunctionPrefixNode xlfnVal;
 
-    public WorkbookIndexNode workbookIndexVal;
+    public WorkbookReferenceNode workbookIndexVal;
     public StructureThisRowColumnReferenceNode structureThisRowColumnVal;
     public StructureColumnRange structureColumnRangeVal;
 
+
+    public StandardFunctionNode standardFunctionVal;
+    public FutureFunctionNode futureFunctionVal;
+    public MacroFunctionNode macroFunctionVal;
+    public CommandFunctionNode commandFunctionVal;
+    public WorksheetFunctionNode worksheetFunctionVal;
+
     public PyFunctionNode pyWorksheetFunctionVal;
 
-public BangNode bangVal;
-public BangReferenceNode bangReferenceVal;
+    public BangNode bangVal;
+    public BangReferenceNode bangReferenceVal;
 
 }
 
@@ -94,7 +101,7 @@ public BangReferenceNode bangReferenceVal;
 %token<stringVal> T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_HASH
 %token<stringVal> T_EQ T_NE T_LT T_LE T_GT T_GE
 %token<stringVal> T_LPAREN T_RPAREN T_LBRACE T_RBRACE T_COMMA T_COLON T_SEMICOLON
-%token T_TRUE T_FALSE T_EMPTY_BRACKETS
+%token<stringVal> T_TRUE T_FALSE T_EMPTY_BRACKETS
 %token T_SR_ALL T_SR_DATA T_SR_HEADERS T_SR_TOTALS
 
 %type <nodeVal>           formula whitespace
@@ -110,7 +117,7 @@ public BangReferenceNode bangReferenceVal;
 %type <structureAllVal> structured_all
 %type <expressionVal> structured_reference
 %type <structureColumnRangeVal>    column_range
-%type <workbookIndexVal>  workbook_index
+%type <workbookIndexVal>  workbook_reference
 
 %type <A1RelativeColumnVal>       A1_column_relative
 %type <A1RelativeRowVal>          A1_row_relative
@@ -297,8 +304,8 @@ constant:
     floating_point_constant    { $$ = $1; }
   | integer_constant           { $$ = $1; }
   | T_STRING_CONSTANT          { $$ = new StringNode($1); }
-  | T_TRUE                     { $$ = new LogicalNode(true); }
-  | T_FALSE                    { $$ = new LogicalNode(false); }
+  | T_TRUE                     { $$ = new LogicalNode(true, $1); }
+  | T_FALSE                    { $$ = new LogicalNode(false, $1); }
   | error_constant             { $$ = $1; }
   | array                      { $$ = $1; }
   ;
@@ -417,11 +424,12 @@ sheet_bang_reference:
   sheet_reference bang_reference { $$ = new SheetReferenceNode($1, $2); }
   ;
 sheet_reference:
-    whitespace sheet_reference           { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
-  | sheet_reference whitespace           { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | workbook_index name                  { $$ = new SheetNode($1, $2); }
-  | name                                 { $$ = new SheetNode(null, $1); }
-  | workbook_index                       { $$ = new SheetNode($1); }
+    T_SINGLE_QUOTE sheet_reference T_SINGLE_QUOTE { $$ = new QuotedSheetNode($2, $1, $3); }
+  | whitespace sheet_reference                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | sheet_reference whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | workbook_reference name                       { $$ = new SheetNode($1, $2); }
+  | name                                          { $$ = new SheetNode(null, $1); }
+  | workbook_reference                            { $$ = new SheetNode($1); }
   ;
 sheet_range:
   sheet_reference T_COLON sheet_reference { $$ = new SheetRangeNode($1, new ColonNode($2), $3); }
@@ -495,12 +503,13 @@ structured_reference_index_primitive:
 
 column_range: structured_reference_index T_COLON structured_reference_index { $$ = new StructureColumnRange($1, $3); };
 
-workbook_index: T_LBRACK opt_whitespace integer_constant opt_whitespace T_RBRACK
-  {
-      LeftBracketNode openBracket = new LeftBracketNode($1, null, $2);
-      RightBracketNode closeBracket = new RightBracketNode($5, $4, null);
-      $$ = new WorkbookIndexNode($3, openBracket, closeBracket);
-  }
+workbook_reference:
+    T_LBRACK opt_whitespace integer_constant opt_whitespace T_RBRACK
+      { $$ = new WorkbookReferenceNode($3, new LeftBracketNode($1, null, $2), new RightBracketNode($5, $4, null)); }
+  | T_LBRACK opt_whitespace name opt_whitespace T_RBRACK
+      { $$ = new WorkbookReferenceNode($3, new LeftBracketNode($1, null, $2), new RightBracketNode($5, $4, null)); }
+  | T_LBRACK opt_whitespace T_RBRACK
+      { $$ = new WorkbookReferenceNode(null, new LeftBracketNode($1, null, $2), new RightBracketNode($3)); }
   ;
 
 

@@ -2,3324 +2,3733 @@ using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public class AbsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AbsStandardFunctionNode : StandardFunctionNode
     {
         public AbsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ABS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ABS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AccrIntStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AccrIntStandardFunctionNode : StandardFunctionNode
     {
         public AccrIntStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ACCRINT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ACCRINT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AccrIntMStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AccrIntMStandardFunctionNode : StandardFunctionNode
     {
         public AccrIntMStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ACCRINTM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ACCRINTM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AcosStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AcosStandardFunctionNode : StandardFunctionNode
     {
         public AcosStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ACOS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ACOS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AcoshStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AcoshStandardFunctionNode : StandardFunctionNode
     {
         public AcoshStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ACOSH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ACOSH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AddressStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AddressStandardFunctionNode : StandardFunctionNode
     {
         public AddressStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ADDRESS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ADDRESS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AmorDegrCStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AmorDegrCStandardFunctionNode : StandardFunctionNode
     {
         public AmorDegrCStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AMORDEGRC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AMORDEGRC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AmorLinCStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AmorLinCStandardFunctionNode : StandardFunctionNode
     {
         public AmorLinCStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AMORLINC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AMORLINC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AndStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AndStandardFunctionNode : StandardFunctionNode
     {
         public AndStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AreasStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AreasStandardFunctionNode : StandardFunctionNode
     {
         public AreasStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AREAS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AREAS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AscStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AscStandardFunctionNode : StandardFunctionNode
     {
         public AscStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ASC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ASC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AsinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AsinStandardFunctionNode : StandardFunctionNode
     {
         public AsinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ASIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ASIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AsinhStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AsinhStandardFunctionNode : StandardFunctionNode
     {
         public AsinhStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ASINH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ASINH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AtanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AtanStandardFunctionNode : StandardFunctionNode
     {
         public AtanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ATAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ATAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AtanToStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AtanToStandardFunctionNode : StandardFunctionNode
     {
         public AtanToStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ATAN2"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ATAN2"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AtanhStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AtanhStandardFunctionNode : StandardFunctionNode
     {
         public AtanhStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ATANH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ATANH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AveDevStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AveDevStandardFunctionNode : StandardFunctionNode
     {
         public AveDevStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AVEDEV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AVEDEV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AverageStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AverageStandardFunctionNode : StandardFunctionNode
     {
         public AverageStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AVERAGE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AVERAGE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AverageAStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AverageAStandardFunctionNode : StandardFunctionNode
     {
         public AverageAStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AVERAGEA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AVERAGEA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AverageIfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AverageIfStandardFunctionNode : StandardFunctionNode
     {
         public AverageIfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AVERAGEIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AVERAGEIF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AverageIfsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class AverageIfsStandardFunctionNode : StandardFunctionNode
     {
         public AverageIfsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AVERAGEIFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AVERAGEIFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BahtTextStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BahtTextStandardFunctionNode : StandardFunctionNode
     {
         public BahtTextStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BAHTTEXT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BAHTTEXT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BesseliStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BesseliStandardFunctionNode : StandardFunctionNode
     {
         public BesseliStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BESSELI"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BESSELI"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BesseljStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BesseljStandardFunctionNode : StandardFunctionNode
     {
         public BesseljStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BESSELJ"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BESSELJ"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BesselkStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BesselkStandardFunctionNode : StandardFunctionNode
     {
         public BesselkStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BESSELK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BESSELK"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BesselyStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BesselyStandardFunctionNode : StandardFunctionNode
     {
         public BesselyStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BESSELY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BESSELY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BetaDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BetaDistStandardFunctionNode : StandardFunctionNode
     {
         public BetaDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BETADIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BETADIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BetaInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BetaInvStandardFunctionNode : StandardFunctionNode
     {
         public BetaInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BETAINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BETAINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinToDecStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BinToDecStandardFunctionNode : StandardFunctionNode
     {
         public BinToDecStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BIN2DEC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BIN2DEC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinToHexStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BinToHexStandardFunctionNode : StandardFunctionNode
     {
         public BinToHexStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BIN2HEX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BIN2HEX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinToOctStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BinToOctStandardFunctionNode : StandardFunctionNode
     {
         public BinToOctStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BIN2OCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BIN2OCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BinomDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class BinomDistStandardFunctionNode : StandardFunctionNode
     {
         public BinomDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BINOMDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BINOMDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CeilingStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CeilingStandardFunctionNode : StandardFunctionNode
     {
         public CeilingStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CEILING"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CEILING"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CellStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CellStandardFunctionNode : StandardFunctionNode
     {
         public CellStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CELL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CELL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CharStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CharStandardFunctionNode : StandardFunctionNode
     {
         public CharStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CHAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChiDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ChiDistStandardFunctionNode : StandardFunctionNode
     {
         public ChiDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHIDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CHIDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChiInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ChiInvStandardFunctionNode : StandardFunctionNode
     {
         public ChiInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHIINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CHIINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChiTestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ChiTestStandardFunctionNode : StandardFunctionNode
     {
         public ChiTestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHITEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CHITEST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ChooseStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ChooseStandardFunctionNode : StandardFunctionNode
     {
         public ChooseStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHOOSE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CHOOSE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CleanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CleanStandardFunctionNode : StandardFunctionNode
     {
         public CleanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CLEAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CLEAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CodeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CodeStandardFunctionNode : StandardFunctionNode
     {
         public CodeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CODE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CODE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ColumnStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ColumnStandardFunctionNode : StandardFunctionNode
     {
         public ColumnStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COLUMN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COLUMN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ColumnsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ColumnsStandardFunctionNode : StandardFunctionNode
     {
         public ColumnsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COLUMNS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COLUMNS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CombinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CombinStandardFunctionNode : StandardFunctionNode
     {
         public CombinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COMBIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COMBIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ComplexStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ComplexStandardFunctionNode : StandardFunctionNode
     {
         public ComplexStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COMPLEX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COMPLEX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ConcatStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ConcatStandardFunctionNode : StandardFunctionNode
     {
         public ConcatStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CONCAT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CONCAT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ConcatenateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ConcatenateStandardFunctionNode : StandardFunctionNode
     {
         public ConcatenateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CONCATENATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CONCATENATE"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class ConfidenceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ConfidenceStandardFunctionNode : StandardFunctionNode
     {
         public ConfidenceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CONFIDENCE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CONFIDENCE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ConvertStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ConvertStandardFunctionNode : StandardFunctionNode
     {
         public ConvertStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CONVERT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CONVERT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CorrelStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CorrelStandardFunctionNode : StandardFunctionNode
     {
         public CorrelStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CORREL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CORREL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CosStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CosStandardFunctionNode : StandardFunctionNode
     {
         public CosStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoshStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoshStandardFunctionNode : StandardFunctionNode
     {
         public CoshStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COSH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COSH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CountStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CountStandardFunctionNode : StandardFunctionNode
     {
         public CountStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUNT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUNT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CountAStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CountAStandardFunctionNode : StandardFunctionNode
     {
         public CountAStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUNTA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUNTA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CountBlankStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CountBlankStandardFunctionNode : StandardFunctionNode
     {
         public CountBlankStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUNTBLANK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUNTBLANK"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CountIfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CountIfStandardFunctionNode : StandardFunctionNode
     {
         public CountIfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUNTIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUNTIF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CountIfsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CountIfsStandardFunctionNode : StandardFunctionNode
     {
         public CountIfsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUNTIFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUNTIFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupDayBsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupDayBsStandardFunctionNode : StandardFunctionNode
     {
         public CoupDayBsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPDAYBS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPDAYBS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupDaysStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupDaysStandardFunctionNode : StandardFunctionNode
     {
         public CoupDaysStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPDAYS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPDAYS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupDaysNcStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupDaysNcStandardFunctionNode : StandardFunctionNode
     {
         public CoupDaysNcStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPDAYSNC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPDAYSNC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupNcdStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupNcdStandardFunctionNode : StandardFunctionNode
     {
         public CoupNcdStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPNCD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPNCD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupNumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupNumStandardFunctionNode : StandardFunctionNode
     {
         public CoupNumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPNUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPNUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CoupPcdStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CoupPcdStandardFunctionNode : StandardFunctionNode
     {
         public CoupPcdStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COUPPCD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COUPPCD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CovarStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CovarStandardFunctionNode : StandardFunctionNode
     {
         public CovarStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COVAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COVAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CritBinomStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CritBinomStandardFunctionNode : StandardFunctionNode
     {
         public CritBinomStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CRITBINOM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CRITBINOM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CubeKpimemberStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeKpimemberStandardFunctionNode : StandardFunctionNode
     {
         public CubeKpimemberStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBEKPIMEMBER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUBEKPIMEMBER"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class CubeMemberStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeMemberStandardFunctionNode : StandardFunctionNode
     {
         public CubeMemberStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBEMEMBER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUBEMEMBER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CubeMemberpropertyStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeMemberpropertyStandardFunctionNode : StandardFunctionNode
     {
         public CubeMemberpropertyStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBEMEMBERPROPERTY"), leadingWhitespace, trailingWhitespace) { }
+            : base(
+                new NameNode(rawName ?? "CUBEMEMBERPROPERTY"),
+                leadingWhitespace,
+                trailingWhitespace
+            )
+        { }
     }
 
-    public class CubeRankedmemberStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeRankedmemberStandardFunctionNode : StandardFunctionNode
     {
         public CubeRankedmemberStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBERANKEDMEMBER"), leadingWhitespace, trailingWhitespace) { }
+            : base(
+                new NameNode(rawName ?? "CUBERANKEDMEMBER"),
+                leadingWhitespace,
+                trailingWhitespace
+            )
+        { }
     }
 
-    public class CubeSetStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeSetStandardFunctionNode : StandardFunctionNode
     {
         public CubeSetStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBESET"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUBESET"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CubeSetcountStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeSetcountStandardFunctionNode : StandardFunctionNode
     {
         public CubeSetcountStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBESETCOUNT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUBESETCOUNT"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class CubeValueStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CubeValueStandardFunctionNode : StandardFunctionNode
     {
         public CubeValueStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUBEVALUE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUBEVALUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CumIpmtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CumIpmtStandardFunctionNode : StandardFunctionNode
     {
         public CumIpmtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUMIPMT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUMIPMT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CumPrIncStandardFunctionNode : BuiltInStandardFunctionNode
+    public class CumPrIncStandardFunctionNode : StandardFunctionNode
     {
         public CumPrIncStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUMPRINC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUMPRINC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DateStandardFunctionNode : StandardFunctionNode
     {
         public DateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DATE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DatedIfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DatedIfStandardFunctionNode : StandardFunctionNode
     {
         public DatedIfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATEDIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DATEDIF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DateStringStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DateStringStandardFunctionNode : StandardFunctionNode
     {
         public DateStringStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATESTRING"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DATESTRING"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DateValueStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DateValueStandardFunctionNode : StandardFunctionNode
     {
         public DateValueStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATEVALUE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DATEVALUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DAverageStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DAverageStandardFunctionNode : StandardFunctionNode
     {
         public DAverageStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DAVERAGE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DAVERAGE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DayStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DayStandardFunctionNode : StandardFunctionNode
     {
         public DayStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DAY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DAY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class Days360StandardFunctionNode : BuiltInStandardFunctionNode
+    public class Days360StandardFunctionNode : StandardFunctionNode
     {
         public Days360StandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DAYS360"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DAYS360"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DBStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DBStandardFunctionNode : StandardFunctionNode
     {
         public DBStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DBCSStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DBCSStandardFunctionNode : StandardFunctionNode
     {
         public DBCSStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DBCS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DBCS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DCountStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DCountStandardFunctionNode : StandardFunctionNode
     {
         public DCountStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DCOUNT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DCOUNT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DCountAStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DCountAStandardFunctionNode : StandardFunctionNode
     {
         public DCountAStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DCOUNTA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DCOUNTA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DDBStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DDBStandardFunctionNode : StandardFunctionNode
     {
         public DDBStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DDB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DDB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DecToBinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DecToBinStandardFunctionNode : StandardFunctionNode
     {
         public DecToBinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEC2BIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEC2BIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DecToHexStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DecToHexStandardFunctionNode : StandardFunctionNode
     {
         public DecToHexStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEC2HEX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEC2HEX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DecToOctStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DecToOctStandardFunctionNode : StandardFunctionNode
     {
         public DecToOctStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEC2OCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEC2OCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DegreesStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DegreesStandardFunctionNode : StandardFunctionNode
     {
         public DegreesStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEGREES"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEGREES"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DeltaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DeltaStandardFunctionNode : StandardFunctionNode
     {
         public DeltaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DELTA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DELTA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DevSqStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DevSqStandardFunctionNode : StandardFunctionNode
     {
         public DevSqStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEVSQ"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEVSQ"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DGetStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DGetStandardFunctionNode : StandardFunctionNode
     {
         public DGetStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DGET"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DGET"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DiscStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DiscStandardFunctionNode : StandardFunctionNode
     {
         public DiscStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DISC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DISC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DMaxStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DMaxStandardFunctionNode : StandardFunctionNode
     {
         public DMaxStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DMAX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DMAX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DMinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DMinStandardFunctionNode : StandardFunctionNode
     {
         public DMinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DMIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DMIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DollarStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DollarStandardFunctionNode : StandardFunctionNode
     {
         public DollarStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DOLLAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DOLLAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DollarDeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DollarDeStandardFunctionNode : StandardFunctionNode
     {
         public DollarDeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DOLLARDE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DOLLARDE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DollarFrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DollarFrStandardFunctionNode : StandardFunctionNode
     {
         public DollarFrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DOLLARFR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DOLLARFR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DProductStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DProductStandardFunctionNode : StandardFunctionNode
     {
         public DProductStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DPRODUCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DPRODUCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DStdDevStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DStdDevStandardFunctionNode : StandardFunctionNode
     {
         public DStdDevStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DSTDEV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DSTDEV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DStdDevPStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DStdDevPStandardFunctionNode : StandardFunctionNode
     {
         public DStdDevPStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DSTDEVP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DSTDEVP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DSumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DSumStandardFunctionNode : StandardFunctionNode
     {
         public DSumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DSUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DSUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DurationStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DurationStandardFunctionNode : StandardFunctionNode
     {
         public DurationStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DURATION"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DURATION"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DVarStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DVarStandardFunctionNode : StandardFunctionNode
     {
         public DVarStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DVAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DVAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DVarPStandardFunctionNode : BuiltInStandardFunctionNode
+    public class DVarPStandardFunctionNode : StandardFunctionNode
     {
         public DVarPStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DVARP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DVARP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EDateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class EDateStandardFunctionNode : StandardFunctionNode
     {
         public EDateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EDATE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EffectStandardFunctionNode : BuiltInStandardFunctionNode
+    public class EffectStandardFunctionNode : StandardFunctionNode
     {
         public EffectStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EFFECT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EFFECT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EOMonthStandardFunctionNode : BuiltInStandardFunctionNode
+    public class EOMonthStandardFunctionNode : StandardFunctionNode
     {
         public EOMonthStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EOMONTH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EOMONTH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ErfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ErfStandardFunctionNode : StandardFunctionNode
     {
         public ErfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ERF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ERF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ErfCStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ErfCStandardFunctionNode : StandardFunctionNode
     {
         public ErfCStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ERFC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ERFC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ErrorTypeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ErrorTypeStandardFunctionNode : StandardFunctionNode
     {
         public ErrorTypeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ERROR.TYPE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ERROR.TYPE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class EvenStandardFunctionNode : BuiltInStandardFunctionNode
+    public class EvenStandardFunctionNode : StandardFunctionNode
     {
         public EvenStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EVEN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EVEN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ExactStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ExactStandardFunctionNode : StandardFunctionNode
     {
         public ExactStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EXACT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EXACT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ExpStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ExpStandardFunctionNode : StandardFunctionNode
     {
         public ExpStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EXP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EXP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ExponDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ExponDistStandardFunctionNode : StandardFunctionNode
     {
         public ExponDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EXPONDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EXPONDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FactStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FactStandardFunctionNode : StandardFunctionNode
     {
         public FactStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FACT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FACT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FactDoubleStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FactDoubleStandardFunctionNode : StandardFunctionNode
     {
         public FactDoubleStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FACTDOUBLE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FACTDOUBLE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FDistStandardFunctionNode : StandardFunctionNode
     {
         public FDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FindStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FindStandardFunctionNode : StandardFunctionNode
     {
         public FindStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FIND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FIND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FindBStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FindBStandardFunctionNode : StandardFunctionNode
     {
         public FindBStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FINDB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FINDB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FInvStandardFunctionNode : StandardFunctionNode
     {
         public FInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FisherStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FisherStandardFunctionNode : StandardFunctionNode
     {
         public FisherStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FISHER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FISHER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FisherInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FisherInvStandardFunctionNode : StandardFunctionNode
     {
         public FisherInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FISHERINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FISHERINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FixedStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FixedStandardFunctionNode : StandardFunctionNode
     {
         public FixedStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FIXED"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FIXED"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FloorStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FloorStandardFunctionNode : StandardFunctionNode
     {
         public FloorStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FLOOR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FLOOR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ForecastStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ForecastStandardFunctionNode : StandardFunctionNode
     {
         public ForecastStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORECAST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FORECAST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FrequencyStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FrequencyStandardFunctionNode : StandardFunctionNode
     {
         public FrequencyStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FREQUENCY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FREQUENCY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FTestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FTestStandardFunctionNode : StandardFunctionNode
     {
         public FTestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FTEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FTEST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FvStandardFunctionNode : StandardFunctionNode
     {
         public FvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FvScheduleStandardFunctionNode : BuiltInStandardFunctionNode
+    public class FvScheduleStandardFunctionNode : StandardFunctionNode
     {
         public FvScheduleStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FVSCHEDULE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FVSCHEDULE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GammaDistStandardFunctionNode : StandardFunctionNode
     {
         public GammaDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GAMMADIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GAMMADIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GammaInvStandardFunctionNode : StandardFunctionNode
     {
         public GammaInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GAMMAINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GAMMAINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GammaLnStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GammaLnStandardFunctionNode : StandardFunctionNode
     {
         public GammaLnStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GAMMALN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GAMMALN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GcdStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GcdStandardFunctionNode : StandardFunctionNode
     {
         public GcdStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GCD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GCD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GeoMeanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GeoMeanStandardFunctionNode : StandardFunctionNode
     {
         public GeoMeanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GEOMEAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GEOMEAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GeStepStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GeStepStandardFunctionNode : StandardFunctionNode
     {
         public GeStepStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GESTEP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GESTEP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class GetPivotDataStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GetPivotDataStandardFunctionNode : StandardFunctionNode
     {
         public GetPivotDataStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GETPIVOTDATA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GETPIVOTDATA"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class GrowthStandardFunctionNode : BuiltInStandardFunctionNode
+    public class GrowthStandardFunctionNode : StandardFunctionNode
     {
         public GrowthStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GROWTH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GROWTH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HarMeanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HarMeanStandardFunctionNode : StandardFunctionNode
     {
         public HarMeanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HARMEAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HARMEAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HexToBinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HexToBinStandardFunctionNode : StandardFunctionNode
     {
         public HexToBinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HEX2BIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HEX2BIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HexToDecStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HexToDecStandardFunctionNode : StandardFunctionNode
     {
         public HexToDecStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HEX2DEC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HEX2DEC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HexToOctStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HexToOctStandardFunctionNode : StandardFunctionNode
     {
         public HexToOctStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HEX2OCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HEX2OCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HLookupStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HLookupStandardFunctionNode : StandardFunctionNode
     {
         public HLookupStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HLOOKUP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HLOOKUP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HourStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HourStandardFunctionNode : StandardFunctionNode
     {
         public HourStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HOUR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HOUR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HyperlinkStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HyperlinkStandardFunctionNode : StandardFunctionNode
     {
         public HyperlinkStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HYPERLINK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HYPERLINK"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HypGeomDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class HypGeomDistStandardFunctionNode : StandardFunctionNode
     {
         public HypGeomDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HYPGEOMDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HYPGEOMDIST"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class IfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IfStandardFunctionNode : StandardFunctionNode
     {
         public IfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IfErrorStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IfErrorStandardFunctionNode : StandardFunctionNode
     {
         public IfErrorStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IFERROR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IFERROR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IfsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IfsStandardFunctionNode : StandardFunctionNode
     {
         public IfsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImAbsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImAbsStandardFunctionNode : StandardFunctionNode
     {
         public ImAbsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMABS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMABS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImAginaryStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImAginaryStandardFunctionNode : StandardFunctionNode
     {
         public ImAginaryStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMAGINARY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMAGINARY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImArgumentStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImArgumentStandardFunctionNode : StandardFunctionNode
     {
         public ImArgumentStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMARGUMENT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMARGUMENT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImConjugateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImConjugateStandardFunctionNode : StandardFunctionNode
     {
         public ImConjugateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMCONJUGATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMCONJUGATE"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class ImCosStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImCosStandardFunctionNode : StandardFunctionNode
     {
         public ImCosStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMCOS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMCOS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImDivStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImDivStandardFunctionNode : StandardFunctionNode
     {
         public ImDivStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMDIV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMDIV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImExpStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImExpStandardFunctionNode : StandardFunctionNode
     {
         public ImExpStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMEXP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMEXP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImLnStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImLnStandardFunctionNode : StandardFunctionNode
     {
         public ImLnStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMLN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMLN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImLog10StandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImLog10StandardFunctionNode : StandardFunctionNode
     {
         public ImLog10StandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMLOG10"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMLOG10"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImLogToStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImLogToStandardFunctionNode : StandardFunctionNode
     {
         public ImLogToStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMLOG2"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMLOG2"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImPowerStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImPowerStandardFunctionNode : StandardFunctionNode
     {
         public ImPowerStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMPOWER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMPOWER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImProductStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImProductStandardFunctionNode : StandardFunctionNode
     {
         public ImProductStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMPRODUCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMPRODUCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImRealStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImRealStandardFunctionNode : StandardFunctionNode
     {
         public ImRealStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMREAL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMREAL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImSinStandardFunctionNode : StandardFunctionNode
     {
         public ImSinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMSIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMSIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSqrtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImSqrtStandardFunctionNode : StandardFunctionNode
     {
         public ImSqrtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMSQRT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMSQRT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSubStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImSubStandardFunctionNode : StandardFunctionNode
     {
         public ImSubStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMSUB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMSUB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ImSumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ImSumStandardFunctionNode : StandardFunctionNode
     {
         public ImSumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IMSUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IMSUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IndexStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IndexStandardFunctionNode : StandardFunctionNode
     {
         public IndexStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INDEX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INDEX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IndirectStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IndirectStandardFunctionNode : StandardFunctionNode
     {
         public IndirectStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INDIRECT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INDIRECT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class InfoStandardFunctionNode : BuiltInStandardFunctionNode
+    public class InfoStandardFunctionNode : StandardFunctionNode
     {
         public InfoStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INFO"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INFO"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IntStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IntStandardFunctionNode : StandardFunctionNode
     {
         public IntStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class InterceptStandardFunctionNode : BuiltInStandardFunctionNode
+    public class InterceptStandardFunctionNode : StandardFunctionNode
     {
         public InterceptStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INTERCEPT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INTERCEPT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IntrateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IntrateStandardFunctionNode : StandardFunctionNode
     {
         public IntrateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INTRATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INTRATE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IpmtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IpmtStandardFunctionNode : StandardFunctionNode
     {
         public IpmtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IPMT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IPMT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IrrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IrrStandardFunctionNode : StandardFunctionNode
     {
         public IrrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("IRR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "IRR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsBlankStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsBlankStandardFunctionNode : StandardFunctionNode
     {
         public IsBlankStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISBLANK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISBLANK"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsErrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsErrStandardFunctionNode : StandardFunctionNode
     {
         public IsErrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISERR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISERR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsErrorStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsErrorStandardFunctionNode : StandardFunctionNode
     {
         public IsErrorStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISERROR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISERROR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsEvenStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsEvenStandardFunctionNode : StandardFunctionNode
     {
         public IsEvenStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISEVEN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISEVEN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsLogicalStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsLogicalStandardFunctionNode : StandardFunctionNode
     {
         public IsLogicalStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISLOGICAL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISLOGICAL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsNaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsNaStandardFunctionNode : StandardFunctionNode
     {
         public IsNaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISNA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISNA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsNontextStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsNontextStandardFunctionNode : StandardFunctionNode
     {
         public IsNontextStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISNONTEXT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISNONTEXT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsNumberStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsNumberStandardFunctionNode : StandardFunctionNode
     {
         public IsNumberStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISNUMBER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISNUMBER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsOddStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsOddStandardFunctionNode : StandardFunctionNode
     {
         public IsOddStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISODD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISODD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsPmtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsPmtStandardFunctionNode : StandardFunctionNode
     {
         public IsPmtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISPMT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISPMT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsRefStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsRefStandardFunctionNode : StandardFunctionNode
     {
         public IsRefStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISREF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISREF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsTextStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsTextStandardFunctionNode : StandardFunctionNode
     {
         public IsTextStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISTEXT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISTEXT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class IsThaiDigitStandardFunctionNode : BuiltInStandardFunctionNode
+    public class IsThaiDigitStandardFunctionNode : StandardFunctionNode
     {
         public IsThaiDigitStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ISTHAIDIGIT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ISTHAIDIGIT"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class KurtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class KurtStandardFunctionNode : StandardFunctionNode
     {
         public KurtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("KURT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "KURT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LargeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LargeStandardFunctionNode : StandardFunctionNode
     {
         public LargeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LARGE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LARGE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LcmStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LcmStandardFunctionNode : StandardFunctionNode
     {
         public LcmStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LCM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LCM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LeftStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LeftStandardFunctionNode : StandardFunctionNode
     {
         public LeftStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LEFT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LEFT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LeftbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LeftbStandardFunctionNode : StandardFunctionNode
     {
         public LeftbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LEFTB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LEFTB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LenStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LenStandardFunctionNode : StandardFunctionNode
     {
         public LenStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LEN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LEN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LenbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LenbStandardFunctionNode : StandardFunctionNode
     {
         public LenbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LENB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LENB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LinestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LinestStandardFunctionNode : StandardFunctionNode
     {
         public LinestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LINEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LINEST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LnStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LnStandardFunctionNode : StandardFunctionNode
     {
         public LnStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LogStandardFunctionNode : StandardFunctionNode
     {
         public LogStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOG"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOG"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class Log10StandardFunctionNode : BuiltInStandardFunctionNode
+    public class Log10StandardFunctionNode : StandardFunctionNode
     {
         public Log10StandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOG10"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOG10"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LogestStandardFunctionNode : StandardFunctionNode
     {
         public LogestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOGEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOGEST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LogInvStandardFunctionNode : StandardFunctionNode
     {
         public LogInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOGINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOGINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LogNormDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LogNormDistStandardFunctionNode : StandardFunctionNode
     {
         public LogNormDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOGNORMDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOGNORMDIST"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class LookupStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LookupStandardFunctionNode : StandardFunctionNode
     {
         public LookupStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOOKUP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOOKUP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LowerStandardFunctionNode : BuiltInStandardFunctionNode
+    public class LowerStandardFunctionNode : StandardFunctionNode
     {
         public LowerStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LOWER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LOWER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MatchStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MatchStandardFunctionNode : StandardFunctionNode
     {
         public MatchStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MATCH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MATCH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MaxStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MaxStandardFunctionNode : StandardFunctionNode
     {
         public MaxStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MAX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MaxaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MaxaStandardFunctionNode : StandardFunctionNode
     {
         public MaxaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAXA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MAXA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MaxifsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MaxifsStandardFunctionNode : StandardFunctionNode
     {
         public MaxifsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAXIFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MAXIFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MdetermStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MdetermStandardFunctionNode : StandardFunctionNode
     {
         public MdetermStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MDETERM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MDETERM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MdurationStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MdurationStandardFunctionNode : StandardFunctionNode
     {
         public MdurationStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MDURATION"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MDURATION"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MedianStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MedianStandardFunctionNode : StandardFunctionNode
     {
         public MedianStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MEDIAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MEDIAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MidStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MidStandardFunctionNode : StandardFunctionNode
     {
         public MidStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MID"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MID"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MidbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MidbStandardFunctionNode : StandardFunctionNode
     {
         public MidbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MIDB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MIDB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MinStandardFunctionNode : StandardFunctionNode
     {
         public MinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MinaStandardFunctionNode : StandardFunctionNode
     {
         public MinaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MINA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MINA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinifsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MinifsStandardFunctionNode : StandardFunctionNode
     {
         public MinifsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MINIFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MINIFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinuteStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MinuteStandardFunctionNode : StandardFunctionNode
     {
         public MinuteStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MINUTE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MINUTE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MinverseStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MinverseStandardFunctionNode : StandardFunctionNode
     {
         public MinverseStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MINVERSE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MINVERSE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MirrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MirrStandardFunctionNode : StandardFunctionNode
     {
         public MirrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MIRR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MIRR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MmultStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MmultStandardFunctionNode : StandardFunctionNode
     {
         public MmultStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MMULT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MMULT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ModStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ModStandardFunctionNode : StandardFunctionNode
     {
         public ModStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MOD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MOD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ModeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ModeStandardFunctionNode : StandardFunctionNode
     {
         public ModeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MODE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MODE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MonthStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MonthStandardFunctionNode : StandardFunctionNode
     {
         public MonthStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MONTH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MONTH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MroundStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MroundStandardFunctionNode : StandardFunctionNode
     {
         public MroundStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MROUND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MROUND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MultinomialStandardFunctionNode : BuiltInStandardFunctionNode
+    public class MultinomialStandardFunctionNode : StandardFunctionNode
     {
         public MultinomialStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MULTINOMIAL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MULTINOMIAL"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class NStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NStandardFunctionNode : StandardFunctionNode
     {
         public NStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("N"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "N"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NaStandardFunctionNode : StandardFunctionNode
     {
         public NaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NegBinomDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NegBinomDistStandardFunctionNode : StandardFunctionNode
     {
         public NegBinomDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NEGBINOMDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NEGBINOMDIST"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class NetworkDaysStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NetworkDaysStandardFunctionNode : StandardFunctionNode
     {
         public NetworkDaysStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NETWORKDAYS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NETWORKDAYS"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class NominalStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NominalStandardFunctionNode : StandardFunctionNode
     {
         public NominalStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NOMINAL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NOMINAL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NormDistStandardFunctionNode : StandardFunctionNode
     {
         public NormDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NORMDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NORMDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NormInvStandardFunctionNode : StandardFunctionNode
     {
         public NormInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NORMINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NORMINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormsDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NormsDistStandardFunctionNode : StandardFunctionNode
     {
         public NormsDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NORMSDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NORMSDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NormsInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NormsInvStandardFunctionNode : StandardFunctionNode
     {
         public NormsInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NORMSINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NORMSINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NotStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NotStandardFunctionNode : StandardFunctionNode
     {
         public NotStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NOT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NOT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NowStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NowStandardFunctionNode : StandardFunctionNode
     {
         public NowStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NOW"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NOW"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NperStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NperStandardFunctionNode : StandardFunctionNode
     {
         public NperStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NPER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NPER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NpvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NpvStandardFunctionNode : StandardFunctionNode
     {
         public NpvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NPV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NPV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NumberStringStandardFunctionNode : BuiltInStandardFunctionNode
+    public class NumberStringStandardFunctionNode : StandardFunctionNode
     {
         public NumberStringStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NUMBERSTRING"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NUMBERSTRING"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class OctToBinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OctToBinStandardFunctionNode : StandardFunctionNode
     {
         public OctToBinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OCT2BIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OCT2BIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OctToDecStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OctToDecStandardFunctionNode : StandardFunctionNode
     {
         public OctToDecStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OCT2DEC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OCT2DEC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OctToHexStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OctToHexStandardFunctionNode : StandardFunctionNode
     {
         public OctToHexStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OCT2HEX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OCT2HEX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OddStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OddStandardFunctionNode : StandardFunctionNode
     {
         public OddStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ODD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ODD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OddFPriceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OddFPriceStandardFunctionNode : StandardFunctionNode
     {
         public OddFPriceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ODDFPRICE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ODDFPRICE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OddFYieldStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OddFYieldStandardFunctionNode : StandardFunctionNode
     {
         public OddFYieldStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ODDFYIELD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ODDFYIELD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OddLPriceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OddLPriceStandardFunctionNode : StandardFunctionNode
     {
         public OddLPriceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ODDLPRICE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ODDLPRICE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OddLYieldStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OddLYieldStandardFunctionNode : StandardFunctionNode
     {
         public OddLYieldStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ODDLYIELD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ODDLYIELD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OffsetStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OffsetStandardFunctionNode : StandardFunctionNode
     {
         public OffsetStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OFFSET"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OFFSET"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class OrStandardFunctionNode : StandardFunctionNode
     {
         public OrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PearsonStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PearsonStandardFunctionNode : StandardFunctionNode
     {
         public PearsonStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PEARSON"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PEARSON"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PercentileStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PercentileStandardFunctionNode : StandardFunctionNode
     {
         public PercentileStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PERCENTILE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PERCENTILE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PercentRankStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PercentRankStandardFunctionNode : StandardFunctionNode
     {
         public PercentRankStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PERCENTRANK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PERCENTRANK"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class PermutStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PermutStandardFunctionNode : StandardFunctionNode
     {
         public PermutStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PERMUT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PERMUT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PhoneticStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PhoneticStandardFunctionNode : StandardFunctionNode
     {
         public PhoneticStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PHONETIC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PHONETIC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PiStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PiStandardFunctionNode : StandardFunctionNode
     {
         public PiStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PI"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PI"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PmtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PmtStandardFunctionNode : StandardFunctionNode
     {
         public PmtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PMT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PMT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PoissonStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PoissonStandardFunctionNode : StandardFunctionNode
     {
         public PoissonStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("POISSON"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "POISSON"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PowerStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PowerStandardFunctionNode : StandardFunctionNode
     {
         public PowerStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("POWER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "POWER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PpmtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PpmtStandardFunctionNode : StandardFunctionNode
     {
         public PpmtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PPMT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PPMT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PriceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PriceStandardFunctionNode : StandardFunctionNode
     {
         public PriceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRICE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRICE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PricediscStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PricediscStandardFunctionNode : StandardFunctionNode
     {
         public PricediscStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRICEDISC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRICEDISC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PricematStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PricematStandardFunctionNode : StandardFunctionNode
     {
         public PricematStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRICEMAT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRICEMAT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ProbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ProbStandardFunctionNode : StandardFunctionNode
     {
         public ProbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PROB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PROB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ProductStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ProductStandardFunctionNode : StandardFunctionNode
     {
         public ProductStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRODUCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRODUCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ProperStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ProperStandardFunctionNode : StandardFunctionNode
     {
         public ProperStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PROPER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PROPER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class PvStandardFunctionNode : StandardFunctionNode
     {
         public PvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class QuartileStandardFunctionNode : BuiltInStandardFunctionNode
+    public class QuartileStandardFunctionNode : StandardFunctionNode
     {
         public QuartileStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("QUARTILE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "QUARTILE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class QuotientStandardFunctionNode : BuiltInStandardFunctionNode
+    public class QuotientStandardFunctionNode : StandardFunctionNode
     {
         public QuotientStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("QUOTIENT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "QUOTIENT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RadiansStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RadiansStandardFunctionNode : StandardFunctionNode
     {
         public RadiansStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RADIANS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RADIANS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RandStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RandStandardFunctionNode : StandardFunctionNode
     {
         public RandStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RAND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RAND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RandbetweenStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RandbetweenStandardFunctionNode : StandardFunctionNode
     {
         public RandbetweenStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RANDBETWEEN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RANDBETWEEN"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class RankStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RankStandardFunctionNode : StandardFunctionNode
     {
         public RankStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RANK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RANK"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RateStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RateStandardFunctionNode : StandardFunctionNode
     {
         public RateStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RATE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RATE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ReceivedStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ReceivedStandardFunctionNode : StandardFunctionNode
     {
         public ReceivedStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RECEIVED"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RECEIVED"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ReplaceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ReplaceStandardFunctionNode : StandardFunctionNode
     {
         public ReplaceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("REPLACE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "REPLACE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ReplacebStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ReplacebStandardFunctionNode : StandardFunctionNode
     {
         public ReplacebStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("REPLACEB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "REPLACEB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ReptStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ReptStandardFunctionNode : StandardFunctionNode
     {
         public ReptStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("REPT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "REPT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RightStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RightStandardFunctionNode : StandardFunctionNode
     {
         public RightStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RIGHT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RIGHT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RightBStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RightBStandardFunctionNode : StandardFunctionNode
     {
         public RightBStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RIGHTB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RIGHTB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RomanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RomanStandardFunctionNode : StandardFunctionNode
     {
         public RomanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROMAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROMAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RoundStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RoundStandardFunctionNode : StandardFunctionNode
     {
         public RoundStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROUND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROUND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RoundBahtDownStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RoundBahtDownStandardFunctionNode : StandardFunctionNode
     {
         public RoundBahtDownStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROUNDBAHTDOWN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROUNDBAHTDOWN"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class RoundBahtUpStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RoundBahtUpStandardFunctionNode : StandardFunctionNode
     {
         public RoundBahtUpStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROUNDBAHTUP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROUNDBAHTUP"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class RoundDownStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RoundDownStandardFunctionNode : StandardFunctionNode
     {
         public RoundDownStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROUNDDOWN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROUNDDOWN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RoundUpStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RoundUpStandardFunctionNode : StandardFunctionNode
     {
         public RoundUpStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROUNDUP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROUNDUP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RowStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RowStandardFunctionNode : StandardFunctionNode
     {
         public RowStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROW"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROW"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RowsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RowsStandardFunctionNode : StandardFunctionNode
     {
         public RowsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROWS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ROWS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RsqStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RsqStandardFunctionNode : StandardFunctionNode
     {
         public RsqStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RSQ"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RSQ"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RtdStandardFunctionNode : BuiltInStandardFunctionNode
+    public class RtdStandardFunctionNode : StandardFunctionNode
     {
         public RtdStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RTD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RTD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SearchStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SearchStandardFunctionNode : StandardFunctionNode
     {
         public SearchStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SEARCH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SEARCH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SearchbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SearchbStandardFunctionNode : StandardFunctionNode
     {
         public SearchbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SEARCHB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SEARCHB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SecondStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SecondStandardFunctionNode : StandardFunctionNode
     {
         public SecondStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SECOND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SECOND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SeriesStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SeriesStandardFunctionNode : StandardFunctionNode
     {
         public SeriesStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SERIES"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SERIES"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SeriessumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SeriessumStandardFunctionNode : StandardFunctionNode
     {
         public SeriessumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SERIESSUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SERIESSUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SignStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SignStandardFunctionNode : StandardFunctionNode
     {
         public SignStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SIGN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SIGN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SinStandardFunctionNode : StandardFunctionNode
     {
         public SinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SinhStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SinhStandardFunctionNode : StandardFunctionNode
     {
         public SinhStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SINH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SINH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SkewStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SkewStandardFunctionNode : StandardFunctionNode
     {
         public SkewStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SKEW"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SKEW"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SlnStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SlnStandardFunctionNode : StandardFunctionNode
     {
         public SlnStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SLN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SLN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SlopeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SlopeStandardFunctionNode : StandardFunctionNode
     {
         public SlopeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SLOPE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SLOPE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SmallStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SmallStandardFunctionNode : StandardFunctionNode
     {
         public SmallStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SMALL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SMALL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SqrtStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SqrtStandardFunctionNode : StandardFunctionNode
     {
         public SqrtStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SQRT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SQRT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SqrtpiStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SqrtpiStandardFunctionNode : StandardFunctionNode
     {
         public SqrtpiStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SQRTPI"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SQRTPI"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StandardizeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class StandardizeStandardFunctionNode : StandardFunctionNode
     {
         public StandardizeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STANDARDIZE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STANDARDIZE"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class StDevStandardFunctionNode : BuiltInStandardFunctionNode
+    public class StDevStandardFunctionNode : StandardFunctionNode
     {
         public StDevStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STDEV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STDEV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StDevAStandardFunctionNode : BuiltInStandardFunctionNode
+    public class StDevAStandardFunctionNode : StandardFunctionNode
     {
         public StDevAStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STDEVA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STDEVA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StDevPStandardFunctionNode : BuiltInStandardFunctionNode
+    public class StDevPStandardFunctionNode : StandardFunctionNode
     {
         public StDevPStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STDEVP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STDEVP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StDevPaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class StDevPaStandardFunctionNode : StandardFunctionNode
     {
         public StDevPaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STDEVPA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STDEVPA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SteyxStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SteyxStandardFunctionNode : StandardFunctionNode
     {
         public SteyxStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STEYX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STEYX"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SubstituteStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SubstituteStandardFunctionNode : StandardFunctionNode
     {
         public SubstituteStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUBSTITUTE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUBSTITUTE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SubtotalStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SubtotalStandardFunctionNode : StandardFunctionNode
     {
         public SubtotalStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUBTOTAL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUBTOTAL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumStandardFunctionNode : StandardFunctionNode
     {
         public SumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumIfStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumIfStandardFunctionNode : StandardFunctionNode
     {
         public SumIfStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMIF"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumIfsStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumIfsStandardFunctionNode : StandardFunctionNode
     {
         public SumIfsStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMIFS"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMIFS"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumProductStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumProductStandardFunctionNode : StandardFunctionNode
     {
         public SumProductStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMPRODUCT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMPRODUCT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumSqStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumSqStandardFunctionNode : StandardFunctionNode
     {
         public SumSqStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMSQ"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMSQ"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumXToMyToStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumXToMyToStandardFunctionNode : StandardFunctionNode
     {
         public SumXToMyToStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMX2MY2"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMX2MY2"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumXToPyToStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumXToPyToStandardFunctionNode : StandardFunctionNode
     {
         public SumXToPyToStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMX2PY2"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMX2PY2"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SumXMyToStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SumXMyToStandardFunctionNode : StandardFunctionNode
     {
         public SumXMyToStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SUMXMY2"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SUMXMY2"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SwitchStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SwitchStandardFunctionNode : StandardFunctionNode
     {
         public SwitchStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SWITCH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SWITCH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SydStandardFunctionNode : BuiltInStandardFunctionNode
+    public class SydStandardFunctionNode : StandardFunctionNode
     {
         public SydStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SYD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SYD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TStandardFunctionNode : StandardFunctionNode
     {
         public TStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("T"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "T"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TanStandardFunctionNode : StandardFunctionNode
     {
         public TanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TanhStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TanhStandardFunctionNode : StandardFunctionNode
     {
         public TanhStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TANH"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TANH"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TBillEqStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TBillEqStandardFunctionNode : StandardFunctionNode
     {
         public TBillEqStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TBILLEQ"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TBILLEQ"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TBillPriceStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TBillPriceStandardFunctionNode : StandardFunctionNode
     {
         public TBillPriceStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TBILLPRICE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TBILLPRICE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TBillYieldStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TBillYieldStandardFunctionNode : StandardFunctionNode
     {
         public TBillYieldStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TBILLYIELD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TBILLYIELD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TDistStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TDistStandardFunctionNode : StandardFunctionNode
     {
         public TDistStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TDIST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TDIST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TextStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TextStandardFunctionNode : StandardFunctionNode
     {
         public TextStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TEXT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TEXT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TextJoinStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TextJoinStandardFunctionNode : StandardFunctionNode
     {
         public TextJoinStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TEXTJOIN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TEXTJOIN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ThaiDayOfWeekStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiDayOfWeekStandardFunctionNode : StandardFunctionNode
     {
         public ThaiDayOfWeekStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAIDAYOFWEEK"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "THAIDAYOFWEEK"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class ThaiDigitStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiDigitStandardFunctionNode : StandardFunctionNode
     {
         public ThaiDigitStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAIDIGIT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "THAIDIGIT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ThaiMonthOfYearStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiMonthOfYearStandardFunctionNode : StandardFunctionNode
     {
         public ThaiMonthOfYearStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAIMONTHOfYear"), leadingWhitespace, trailingWhitespace) { }
+            : base(
+                new NameNode(rawName ?? "THAIMONTHOfYear"),
+                leadingWhitespace,
+                trailingWhitespace
+            )
+        { }
     }
 
-    public class ThaiNumSoundStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiNumSoundStandardFunctionNode : StandardFunctionNode
     {
         public ThaiNumSoundStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAINUMSOUND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "THAINUMSOUND"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class ThaiNumStringStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiNumStringStandardFunctionNode : StandardFunctionNode
     {
         public ThaiNumStringStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAINUMSTRING"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "THAINUMSTRING"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
-    public class ThaiStringLengthStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiStringLengthStandardFunctionNode : StandardFunctionNode
     {
         public ThaiStringLengthStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAISTRINGLENGTH"), leadingWhitespace, trailingWhitespace) { }
+            : base(
+                new NameNode(rawName ?? "THAISTRINGLENGTH"),
+                leadingWhitespace,
+                trailingWhitespace
+            )
+        { }
     }
 
-    public class ThaiYearStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ThaiYearStandardFunctionNode : StandardFunctionNode
     {
         public ThaiYearStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("THAIYEAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "THAIYEAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TimeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TimeStandardFunctionNode : StandardFunctionNode
     {
         public TimeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TIME"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TIME"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TimeValueStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TimeValueStandardFunctionNode : StandardFunctionNode
     {
         public TimeValueStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TIMEVALUE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TIMEVALUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TInvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TInvStandardFunctionNode : StandardFunctionNode
     {
         public TInvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TINV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TINV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TodayStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TodayStandardFunctionNode : StandardFunctionNode
     {
         public TodayStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TODAY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TODAY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TransposeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TransposeStandardFunctionNode : StandardFunctionNode
     {
         public TransposeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TRANSPOSE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TRANSPOSE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TrendStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TrendStandardFunctionNode : StandardFunctionNode
     {
         public TrendStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TREND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TREND"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TrimStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TrimStandardFunctionNode : StandardFunctionNode
     {
         public TrimStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TRIM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TRIM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TrimMeanStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TrimMeanStandardFunctionNode : StandardFunctionNode
     {
         public TrimMeanStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TRIMMEAN"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TRIMMEAN"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TruncStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TruncStandardFunctionNode : StandardFunctionNode
     {
         public TruncStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TRUNC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TRUNC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TTestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TTestStandardFunctionNode : StandardFunctionNode
     {
         public TTestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TTEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TTEST"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TypeStandardFunctionNode : BuiltInStandardFunctionNode
+    public class TypeStandardFunctionNode : StandardFunctionNode
     {
         public TypeStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TYPE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TYPE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UpperStandardFunctionNode : BuiltInStandardFunctionNode
+    public class UpperStandardFunctionNode : StandardFunctionNode
     {
         public UpperStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("UPPER"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "UPPER"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UsDollarStandardFunctionNode : BuiltInStandardFunctionNode
+    public class UsDollarStandardFunctionNode : StandardFunctionNode
     {
         public UsDollarStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("USDOLLAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "USDOLLAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ValueStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ValueStandardFunctionNode : StandardFunctionNode
     {
         public ValueStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VALUE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VALUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VarStandardFunctionNode : StandardFunctionNode
     {
         public VarStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarAStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VarAStandardFunctionNode : StandardFunctionNode
     {
         public VarAStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VARA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VARA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarPStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VarPStandardFunctionNode : StandardFunctionNode
     {
         public VarPStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VARP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VARP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VarPaStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VarPaStandardFunctionNode : StandardFunctionNode
     {
         public VarPaStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VARPA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VARPA"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VdbStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VdbStandardFunctionNode : StandardFunctionNode
     {
         public VdbStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VDB"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VDB"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VLookupStandardFunctionNode : BuiltInStandardFunctionNode
+    public class VLookupStandardFunctionNode : StandardFunctionNode
     {
         public VLookupStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VLOOKUP"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VLOOKUP"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WeekdayStandardFunctionNode : BuiltInStandardFunctionNode
+    public class WeekdayStandardFunctionNode : StandardFunctionNode
     {
         public WeekdayStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WEEKDAY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "WEEKDAY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WeekNumStandardFunctionNode : BuiltInStandardFunctionNode
+    public class WeekNumStandardFunctionNode : StandardFunctionNode
     {
         public WeekNumStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WEEKNUM"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "WEEKNUM"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WeibullStandardFunctionNode : BuiltInStandardFunctionNode
+    public class WeibullStandardFunctionNode : StandardFunctionNode
     {
         public WeibullStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WEIBULL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "WEIBULL"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WorkdayStandardFunctionNode : BuiltInStandardFunctionNode
+    public class WorkdayStandardFunctionNode : StandardFunctionNode
     {
         public WorkdayStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WORKDAY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "WORKDAY"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class XirrStandardFunctionNode : BuiltInStandardFunctionNode
+    public class XirrStandardFunctionNode : StandardFunctionNode
     {
         public XirrStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("XIRR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "XIRR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class XnpvStandardFunctionNode : BuiltInStandardFunctionNode
+    public class XnpvStandardFunctionNode : StandardFunctionNode
     {
         public XnpvStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("XNPV"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "XNPV"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class YearStandardFunctionNode : BuiltInStandardFunctionNode
+    public class YearStandardFunctionNode : StandardFunctionNode
     {
         public YearStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("YEAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "YEAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class YearFracStandardFunctionNode : BuiltInStandardFunctionNode
+    public class YearFracStandardFunctionNode : StandardFunctionNode
     {
         public YearFracStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("YEARFRAC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "YEARFRAC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class YieldStandardFunctionNode : BuiltInStandardFunctionNode
+    public class YieldStandardFunctionNode : StandardFunctionNode
     {
         public YieldStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("YIELD"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "YIELD"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class YieldDiscStandardFunctionNode : BuiltInStandardFunctionNode
+    public class YieldDiscStandardFunctionNode : StandardFunctionNode
     {
         public YieldDiscStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("YIELDDISC"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "YIELDDISC"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class YieldMatStandardFunctionNode : BuiltInStandardFunctionNode
+    public class YieldMatStandardFunctionNode : StandardFunctionNode
     {
         public YieldMatStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("YIELDMAT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "YIELDMAT"), leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ZTestStandardFunctionNode : BuiltInStandardFunctionNode
+    public class ZTestStandardFunctionNode : StandardFunctionNode
     {
         public ZTestStandardFunctionNode(
+            string? rawName = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ZTEST"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ZTEST"), leadingWhitespace, trailingWhitespace) { }
     }
 }

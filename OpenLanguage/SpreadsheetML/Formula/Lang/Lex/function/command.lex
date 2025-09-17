@@ -1,394 +1,394 @@
 /* Command Function Keywords */
-"A1.R1C1" { return (int)Tokens.T_FUNC_A1_R1C1; }
-"ACTIVATE" { return (int)Tokens.T_FUNC_ACTIVATE; }
-"ACTIVATE.NEXT" { return (int)Tokens.T_FUNC_ACTIVATE_NEXT; }
-"ACTIVATE.NOTES" { return (int)Tokens.T_FUNC_ACTIVATE_NOTES; }
-"ACTIVATE.PREV" { return (int)Tokens.T_FUNC_ACTIVATE_PREV; }
-"ACTIVE.CELL.FONT" { return (int)Tokens.T_FUNC_ACTIVE_CELL_FONT; }
-"ADD.ARROW" { return (int)Tokens.T_FUNC_ADD_ARROW; }
-"ADD.CHART.AUTOFORMAT" { return (int)Tokens.T_FUNC_ADD_CHART_AUTOFORMAT; }
-"ADD.LIST.ITEM" { return (int)Tokens.T_FUNC_ADD_LIST_ITEM; }
-"ADD.OVERLAY" { return (int)Tokens.T_FUNC_ADD_OVERLAY; }
-"ADD.PRINT.AREA" { return (int)Tokens.T_FUNC_ADD_PRINT_AREA; }
-"ADD.TOOL" { return (int)Tokens.T_FUNC_ADD_TOOL; }
-"ADDIN.MANAGER" { return (int)Tokens.T_FUNC_ADDIN_MANAGER; }
-"ALERT" { return (int)Tokens.T_FUNC_ALERT; }
-"ALIGNMENT" { return (int)Tokens.T_FUNC_ALIGNMENT; }
-"APP.ACTIVATE" { return (int)Tokens.T_FUNC_APP_ACTIVATE; }
-"APP.ACTIVATE.MICROSOFT" { return (int)Tokens.T_FUNC_APP_ACTIVATE_MICROSOFT; }
-"APP.MAXIMIZE" { return (int)Tokens.T_FUNC_APP_MAXIMIZE; }
-"APP.MINIMIZE" { return (int)Tokens.T_FUNC_APP_MINIMIZE; }
-"APP.MOVE" { return (int)Tokens.T_FUNC_APP_MOVE; }
-"APP.RESTORE" { return (int)Tokens.T_FUNC_APP_RESTORE; }
-"APP.SIZE" { return (int)Tokens.T_FUNC_APP_SIZE; }
-"APPLY.NAMES" { return (int)Tokens.T_FUNC_APPLY_NAMES; }
-"APPLY.STYLE" { return (int)Tokens.T_FUNC_APPLY_STYLE; }
-"ARRANGE.ALL" { return (int)Tokens.T_FUNC_ARRANGE_ALL; }
-"ASSIGN.TO.OBJECT" { return (int)Tokens.T_FUNC_ASSIGN_TO_OBJECT; }
-"ASSIGN.TO.TOOL" { return (int)Tokens.T_FUNC_ASSIGN_TO_TOOL; }
-"ATTACH.TEXT" { return (int)Tokens.T_FUNC_ATTACH_TEXT; }
-"ATTACH.TOOLBARS" { return (int)Tokens.T_FUNC_ATTACH_TOOLBARS; }
-"ATTRIBUTES" { return (int)Tokens.T_FUNC_ATTRIBUTES; }
-"AUTO.OUTLINE" { return (int)Tokens.T_FUNC_AUTO_OUTLINE; }
-"AUTOCORRECT" { return (int)Tokens.T_FUNC_AUTOCORRECT; }
-"AXES" { return (int)Tokens.T_FUNC_AXES; }
-"BEEP" { return (int)Tokens.T_FUNC_BEEP; }
-"BORDER" { return (int)Tokens.T_FUNC_BORDER; }
-"BRING.TO.FRONT" { return (int)Tokens.T_FUNC_BRING_TO_FRONT; }
-"CALCULATE.DOCUMENT" { return (int)Tokens.T_FUNC_CALCULATE_DOCUMENT; }
-"CALCULATE.NOW" { return (int)Tokens.T_FUNC_CALCULATE_NOW; }
-"CALCULATION" { return (int)Tokens.T_FUNC_CALCULATION; }
-"CANCEL.COPY" { return (int)Tokens.T_FUNC_CANCEL_COPY; }
-"CELL.PROTECTION" { return (int)Tokens.T_FUNC_CELL_PROTECTION; }
-"CHANGE.LINK" { return (int)Tokens.T_FUNC_CHANGE_LINK; }
-"CHART.ADD.DATA" { return (int)Tokens.T_FUNC_CHART_ADD_DATA; }
-"CHART.TREND" { return (int)Tokens.T_FUNC_CHART_TREND; }
-"CHART.WIZARD" { return (int)Tokens.T_FUNC_CHART_WIZARD; }
-"CHECKBOX.PROPERTIES" { return (int)Tokens.T_FUNC_CHECKBOX_PROPERTIES; }
-"CLEAR" { return (int)Tokens.T_FUNC_CLEAR; }
-"CLEAR.OUTLINE" { return (int)Tokens.T_FUNC_CLEAR_OUTLINE; }
-"CLEAR.PRINT.AREA" { return (int)Tokens.T_FUNC_CLEAR_PRINT_AREA; }
-"CLEAR.ROUTING.SLIP" { return (int)Tokens.T_FUNC_CLEAR_ROUTING_SLIP; }
-"CLOSE" { return (int)Tokens.T_FUNC_CLOSE; }
-"CLOSE.ALL" { return (int)Tokens.T_FUNC_CLOSE_ALL; }
-"COLOR.PALETTE" { return (int)Tokens.T_FUNC_COLOR_PALETTE; }
-"COLUMN.WIDTH" { return (int)Tokens.T_FUNC_COLUMN_WIDTH; }
-"COMBINATION" { return (int)Tokens.T_FUNC_COMBINATION; }
-"CONSOLIDATE" { return (int)Tokens.T_FUNC_CONSOLIDATE; }
-"CONSTRAIN.NUMERIC" { return (int)Tokens.T_FUNC_CONSTRAIN_NUMERIC; }
-"COPY" { return (int)Tokens.T_FUNC_COPY; }
-"COPY.CHART" { return (int)Tokens.T_FUNC_COPY_CHART; }
-"COPY.PICTURE" { return (int)Tokens.T_FUNC_COPY_PICTURE; }
-"COPY.TOOL" { return (int)Tokens.T_FUNC_COPY_TOOL; }
-"CREATE.NAMES" { return (int)Tokens.T_FUNC_CREATE_NAMES; }
-"CREATE.PUBLISHER" { return (int)Tokens.T_FUNC_CREATE_PUBLISHER; }
-"CUSTOMIZE.TOOLBAR" { return (int)Tokens.T_FUNC_CUSTOMIZE_TOOLBAR; }
-"CUT" { return (int)Tokens.T_FUNC_CUT; }
-"DATA.DELETE" { return (int)Tokens.T_FUNC_DATA_DELETE; }
-"DATA.FIND" { return (int)Tokens.T_FUNC_DATA_FIND; }
-"DATA.FIND.NEXT" { return (int)Tokens.T_FUNC_DATA_FIND_NEXT; }
-"DATA.FIND.PREV" { return (int)Tokens.T_FUNC_DATA_FIND_PREV; }
-"DATA.FORM" { return (int)Tokens.T_FUNC_DATA_FORM; }
-"DATA.LABEL" { return (int)Tokens.T_FUNC_DATA_LABEL; }
-"DATA.SERIES" { return (int)Tokens.T_FUNC_DATA_SERIES; }
-"DEFINE.NAME" { return (int)Tokens.T_FUNC_DEFINE_NAME; }
-"DEFINE.STYLE" { return (int)Tokens.T_FUNC_DEFINE_STYLE; }
-"DELETE.ARROW" { return (int)Tokens.T_FUNC_DELETE_ARROW; }
-"DELETE.CHART.AUTOFORMAT" { return (int)Tokens.T_FUNC_DELETE_CHART_AUTOFORMAT; }
-"DELETE.FORMAT" { return (int)Tokens.T_FUNC_DELETE_FORMAT; }
-"DELETE.NAME" { return (int)Tokens.T_FUNC_DELETE_NAME; }
-"DELETE.NOTE" { return (int)Tokens.T_FUNC_DELETE_NOTE; }
-"DELETE.OVERLAY" { return (int)Tokens.T_FUNC_DELETE_OVERLAY; }
-"DELETE.STYLE" { return (int)Tokens.T_FUNC_DELETE_STYLE; }
-"DELETE.TOOL" { return (int)Tokens.T_FUNC_DELETE_TOOL; }
-"DEMOTE" { return (int)Tokens.T_FUNC_DEMOTE; }
-"DISABLE.INPUT" { return (int)Tokens.T_FUNC_DISABLE_INPUT; }
-"DISPLAY" { return (int)Tokens.T_FUNC_DISPLAY; }
-"DUPLICATE" { return (int)Tokens.T_FUNC_DUPLICATE; }
-"EDIT.COLOR" { return (int)Tokens.T_FUNC_EDIT_COLOR; }
-"EDIT.DELETE" { return (int)Tokens.T_FUNC_EDIT_DELETE; }
-"EDIT.OBJECT" { return (int)Tokens.T_FUNC_EDIT_OBJECT; }
-"EDIT.REPEAT" { return (int)Tokens.T_FUNC_EDIT_REPEAT; }
-"EDIT.SERIES" { return (int)Tokens.T_FUNC_EDIT_SERIES; }
-"EDIT.TOOL" { return (int)Tokens.T_FUNC_EDIT_TOOL; }
-"EDITBOX.PROPERTIES" { return (int)Tokens.T_FUNC_EDITBOX_PROPERTIES; }
-"EDITION.OPTIONS" { return (int)Tokens.T_FUNC_EDITION_OPTIONS; }
-"ENABLE.OBJECT" { return (int)Tokens.T_FUNC_ENABLE_OBJECT; }
-"ENABLE.TIPWIZARD" { return (int)Tokens.T_FUNC_ENABLE_TIPWIZARD; }
-"ENTER.DATA" { return (int)Tokens.T_FUNC_ENTER_DATA; }
-"ERRORBAR.X" { return (int)Tokens.T_FUNC_ERRORBAR_X; }
-"ERRORBAR.Y" { return (int)Tokens.T_FUNC_ERRORBAR_Y; }
-"EXTEND.POLYGON" { return (int)Tokens.T_FUNC_EXTEND_POLYGON; }
-"EXTRACT" { return (int)Tokens.T_FUNC_EXTRACT; }
-"FILE.CLOSE" { return (int)Tokens.T_FUNC_FILE_CLOSE; }
-"FILE.DELETE" { return (int)Tokens.T_FUNC_FILE_DELETE; }
-"FILL.AUTO" { return (int)Tokens.T_FUNC_FILL_AUTO; }
-"FILL.DOWN" { return (int)Tokens.T_FUNC_FILL_DOWN; }
-"FILL.GROUP" { return (int)Tokens.T_FUNC_FILL_GROUP; }
-"FILL.LEFT" { return (int)Tokens.T_FUNC_FILL_LEFT; }
-"FILL.RIGHT" { return (int)Tokens.T_FUNC_FILL_RIGHT; }
-"FILL.UP" { return (int)Tokens.T_FUNC_FILL_UP; }
-"FILTER.ADVANCED" { return (int)Tokens.T_FUNC_FILTER_ADVANCED; }
-"FILTER.SHOW.ALL" { return (int)Tokens.T_FUNC_FILTER_SHOW_ALL; }
-"FIND.FILE" { return (int)Tokens.T_FUNC_FIND_FILE; }
-"FONT" { return (int)Tokens.T_FUNC_FONT; }
-"FONT.PROPERTIES" { return (int)Tokens.T_FUNC_FONT_PROPERTIES; }
-"FORMAT.AUTO" { return (int)Tokens.T_FUNC_FORMAT_AUTO; }
-"FORMAT.CHART" { return (int)Tokens.T_FUNC_FORMAT_CHART; }
-"FORMAT.CHARTTYPE" { return (int)Tokens.T_FUNC_FORMAT_CHARTTYPE; }
-"FORMAT.FONT" { return (int)Tokens.T_FUNC_FORMAT_FONT; }
-"FORMAT.LEGEND" { return (int)Tokens.T_FUNC_FORMAT_LEGEND; }
-"FORMAT.MAIN" { return (int)Tokens.T_FUNC_FORMAT_MAIN; }
-"FORMAT.MOVE" { return (int)Tokens.T_FUNC_FORMAT_MOVE; }
-"FORMAT.NUMBER" { return (int)Tokens.T_FUNC_FORMAT_NUMBER; }
-"FORMAT.OVERLAY" { return (int)Tokens.T_FUNC_FORMAT_OVERLAY; }
-"FORMAT.SHAPE" { return (int)Tokens.T_FUNC_FORMAT_SHAPE; }
-"FORMAT.SIZE" { return (int)Tokens.T_FUNC_FORMAT_SIZE; }
-"FORMAT.TEXT" { return (int)Tokens.T_FUNC_FORMAT_TEXT; }
-"FORMULA" { return (int)Tokens.T_FUNC_FORMULA; }
-"FORMULA.ARRAY" { return (int)Tokens.T_FUNC_FORMULA_ARRAY; }
-"FORMULA.FILL" { return (int)Tokens.T_FUNC_FORMULA_FILL; }
-"FORMULA.FIND" { return (int)Tokens.T_FUNC_FORMULA_FIND; }
-"FORMULA.FIND.NEXT" { return (int)Tokens.T_FUNC_FORMULA_FIND_NEXT; }
-"FORMULA.FIND.PREV" { return (int)Tokens.T_FUNC_FORMULA_FIND_PREV; }
-"FORMULA.GOTO" { return (int)Tokens.T_FUNC_FORMULA_GOTO; }
-"FORMULA.REPLACE" { return (int)Tokens.T_FUNC_FORMULA_REPLACE; }
-"FREEZE.PANES" { return (int)Tokens.T_FUNC_FREEZE_PANES; }
-"FULL" { return (int)Tokens.T_FUNC_FULL; }
-"FULL.SCREEN" { return (int)Tokens.T_FUNC_FULL_SCREEN; }
-"FUNCTION.WIZARD" { return (int)Tokens.T_FUNC_FUNCTION_WIZARD; }
-"GALLERY.3D.AREA" { return (int)Tokens.T_FUNC_GALLERY_3D_AREA; }
-"GALLERY.3D.BAR" { return (int)Tokens.T_FUNC_GALLERY_3D_BAR; }
-"GALLERY.3D.COLUMN" { return (int)Tokens.T_FUNC_GALLERY_3D_COLUMN; }
-"GALLERY.3D.LINE" { return (int)Tokens.T_FUNC_GALLERY_3D_LINE; }
-"GALLERY.3D.PIE" { return (int)Tokens.T_FUNC_GALLERY_3D_PIE; }
-"GALLERY.3D.SURFACE" { return (int)Tokens.T_FUNC_GALLERY_3D_SURFACE; }
-"GALLERY.AREA" { return (int)Tokens.T_FUNC_GALLERY_AREA; }
-"GALLERY.BAR" { return (int)Tokens.T_FUNC_GALLERY_BAR; }
-"GALLERY.COLUMN" { return (int)Tokens.T_FUNC_GALLERY_COLUMN; }
-"GALLERY.CUSTOM" { return (int)Tokens.T_FUNC_GALLERY_CUSTOM; }
-"GALLERY.DOUGHNUT" { return (int)Tokens.T_FUNC_GALLERY_DOUGHNUT; }
-"GALLERY.LINE" { return (int)Tokens.T_FUNC_GALLERY_LINE; }
-"GALLERY.PIE" { return (int)Tokens.T_FUNC_GALLERY_PIE; }
-"GALLERY.RADAR" { return (int)Tokens.T_FUNC_GALLERY_RADAR; }
-"GALLERY.SCATTER" { return (int)Tokens.T_FUNC_GALLERY_SCATTER; }
-"GOAL.SEEK" { return (int)Tokens.T_FUNC_GOAL_SEEK; }
-"GRIDLINES" { return (int)Tokens.T_FUNC_GRIDLINES; }
-"HIDE" { return (int)Tokens.T_FUNC_HIDE; }
-"HIDE.DIALOG" { return (int)Tokens.T_FUNC_HIDE_DIALOG; }
-"HIDE.OBJECT" { return (int)Tokens.T_FUNC_HIDE_OBJECT; }
-"HIDEALL.INKANNOTS" { return (int)Tokens.T_FUNC_HIDEALL_INKANNOTS; }
-"HIDEALL.NOTES" { return (int)Tokens.T_FUNC_HIDEALL_NOTES; }
-"HIDECURR.NOTE" { return (int)Tokens.T_FUNC_HIDECURR_NOTE; }
-"HLINE" { return (int)Tokens.T_FUNC_HLINE; }
-"HPAGE" { return (int)Tokens.T_FUNC_HPAGE; }
-"HSCROLL" { return (int)Tokens.T_FUNC_HSCROLL; }
-"INSERT" { return (int)Tokens.T_FUNC_INSERT; }
-"INSERT.MAP.OBJECT" { return (int)Tokens.T_FUNC_INSERT_MAP_OBJECT; }
-"INSERT.OBJECT" { return (int)Tokens.T_FUNC_INSERT_OBJECT; }
-"INSERT.PICTURE" { return (int)Tokens.T_FUNC_INSERT_PICTURE; }
-"INSERT.TITLE" { return (int)Tokens.T_FUNC_INSERT_TITLE; }
-"INSERTDATATABLE" { return (int)Tokens.T_FUNC_INSERTDATATABLE; }
-"JUSTIFY" { return (int)Tokens.T_FUNC_JUSTIFY; }
-"LABEL.PROPERTIES" { return (int)Tokens.T_FUNC_LABEL_PROPERTIES; }
-"LAYOUT" { return (int)Tokens.T_FUNC_LAYOUT; }
-"LEGEND" { return (int)Tokens.T_FUNC_LEGEND; }
-"LINE.PRINT" { return (int)Tokens.T_FUNC_LINE_PRINT; }
-"LINK.COMBO" { return (int)Tokens.T_FUNC_LINK_COMBO; }
-"LINK.FORMAT" { return (int)Tokens.T_FUNC_LINK_FORMAT; }
-"LIST.NAMES" { return (int)Tokens.T_FUNC_LIST_NAMES; }
-"LISTBOX.PROPERTIES" { return (int)Tokens.T_FUNC_LISTBOX_PROPERTIES; }
-"MACRO.OPTIONS" { return (int)Tokens.T_FUNC_MACRO_OPTIONS; }
-"MAIL.ADD.MAILER" { return (int)Tokens.T_FUNC_MAIL_ADD_MAILER; }
-"MAIL.DELETE.MAILER" { return (int)Tokens.T_FUNC_MAIL_DELETE_MAILER; }
-"MAIL.EDIT.MAILER" { return (int)Tokens.T_FUNC_MAIL_EDIT_MAILER; }
-"MAIL.FORWARD" { return (int)Tokens.T_FUNC_MAIL_FORWARD; }
-"MAIL.LOGOFF" { return (int)Tokens.T_FUNC_MAIL_LOGOFF; }
-"MAIL.LOGON" { return (int)Tokens.T_FUNC_MAIL_LOGON; }
-"MAIL.NEXT.LETTER" { return (int)Tokens.T_FUNC_MAIL_NEXT_LETTER; }
-"MAIL.REPLY" { return (int)Tokens.T_FUNC_MAIL_REPLY; }
-"MAIL.REPLY.ALL" { return (int)Tokens.T_FUNC_MAIL_REPLY_ALL; }
-"MAIL.SEND.MAILER" { return (int)Tokens.T_FUNC_MAIL_SEND_MAILER; }
-"MAIN.CHART" { return (int)Tokens.T_FUNC_MAIN_CHART; }
-"MAIN.CHART.TYPE" { return (int)Tokens.T_FUNC_MAIN_CHART_TYPE; }
-"MENU.EDITOR" { return (int)Tokens.T_FUNC_MENU_EDITOR; }
-"MERGE.STYLES" { return (int)Tokens.T_FUNC_MERGE_STYLES; }
-"MESSAGE" { return (int)Tokens.T_FUNC_MESSAGE; }
-"MOVE.BRK" { return (int)Tokens.T_FUNC_MOVE_BRK; }
-"MOVE.TOOL" { return (int)Tokens.T_FUNC_MOVE_TOOL; }
-"NEW" { return (int)Tokens.T_FUNC_NEW; }
-"NEW.WINDOW" { return (int)Tokens.T_FUNC_NEW_WINDOW; }
-"NEWWEBQUERY" { return (int)Tokens.T_FUNC_NEWWEBQUERY; }
-"NORMAL" { return (int)Tokens.T_FUNC_NORMAL; }
-"OBJECT.PROPERTIES" { return (int)Tokens.T_FUNC_OBJECT_PROPERTIES; }
-"OBJECT.PROTECTION" { return (int)Tokens.T_FUNC_OBJECT_PROTECTION; }
-"ON.DATA" { return (int)Tokens.T_FUNC_ON_DATA; }
-"ON.DOUBLECLICK" { return (int)Tokens.T_FUNC_ON_DOUBLECLICK; }
-"ON.ENTRY" { return (int)Tokens.T_FUNC_ON_ENTRY; }
-"ON.KEY" { return (int)Tokens.T_FUNC_ON_KEY; }
-"ON.RECALC" { return (int)Tokens.T_FUNC_ON_RECALC; }
-"ON.SHEET" { return (int)Tokens.T_FUNC_ON_SHEET; }
-"ON.TIME" { return (int)Tokens.T_FUNC_ON_TIME; }
-"ON.WINDOW" { return (int)Tokens.T_FUNC_ON_WINDOW; }
-"OPEN" { return (int)Tokens.T_FUNC_OPEN; }
-"OPEN.LINKS" { return (int)Tokens.T_FUNC_OPEN_LINKS; }
-"OPEN.MAIL" { return (int)Tokens.T_FUNC_OPEN_MAIL; }
-"OPEN.TEXT" { return (int)Tokens.T_FUNC_OPEN_TEXT; }
-"OPTIONS.CALCULATION" { return (int)Tokens.T_FUNC_OPTIONS_CALCULATION; }
-"OPTIONS.CHART" { return (int)Tokens.T_FUNC_OPTIONS_CHART; }
-"OPTIONS.EDIT" { return (int)Tokens.T_FUNC_OPTIONS_EDIT; }
-"OPTIONS.GENERAL" { return (int)Tokens.T_FUNC_OPTIONS_GENERAL; }
-"OPTIONS.LISTS.ADD" { return (int)Tokens.T_FUNC_OPTIONS_LISTS_ADD; }
-"OPTIONS.LISTS.DELETE" { return (int)Tokens.T_FUNC_OPTIONS_LISTS_DELETE; }
-"OPTIONS.ME" { return (int)Tokens.T_FUNC_OPTIONS_ME; }
-"OPTIONS.MENONO" { return (int)Tokens.T_FUNC_OPTIONS_MENONO; }
-"OPTIONS.SAVE" { return (int)Tokens.T_FUNC_OPTIONS_SAVE; }
-"OPTIONS.SPELL" { return (int)Tokens.T_FUNC_OPTIONS_SPELL; }
-"OPTIONS.TRANSITION" { return (int)Tokens.T_FUNC_OPTIONS_TRANSITION; }
-"OPTIONS.VIEW" { return (int)Tokens.T_FUNC_OPTIONS_VIEW; }
-"OUTLINE" { return (int)Tokens.T_FUNC_OUTLINE; }
-"OVERLAY" { return (int)Tokens.T_FUNC_OVERLAY; }
-"OVERLAY.CHART.TYPE" { return (int)Tokens.T_FUNC_OVERLAY_CHART_TYPE; }
-"PAGE.SETUP" { return (int)Tokens.T_FUNC_PAGE_SETUP; }
-"PARSE" { return (int)Tokens.T_FUNC_PARSE; }
-"PASTE" { return (int)Tokens.T_FUNC_PASTE; }
-"PASTE.LINK" { return (int)Tokens.T_FUNC_PASTE_LINK; }
-"PASTE.PICTURE" { return (int)Tokens.T_FUNC_PASTE_PICTURE; }
-"PASTE.PICTURE.LINK" { return (int)Tokens.T_FUNC_PASTE_PICTURE_LINK; }
-"PASTE.SPECIAL" { return (int)Tokens.T_FUNC_PASTE_SPECIAL; }
-"PASTE.TOOL" { return (int)Tokens.T_FUNC_PASTE_TOOL; }
-"PATTERNS" { return (int)Tokens.T_FUNC_PATTERNS; }
-"PICKLIST" { return (int)Tokens.T_FUNC_PICKLIST; }
-"PIVOT.ADD.FIELDS" { return (int)Tokens.T_FUNC_PIVOT_ADD_FIELDS; }
-"PIVOT.FIELD" { return (int)Tokens.T_FUNC_PIVOT_FIELD; }
-"PIVOT.FIELD.GROUP" { return (int)Tokens.T_FUNC_PIVOT_FIELD_GROUP; }
-"PIVOT.FIELD.PROPERTIES" { return (int)Tokens.T_FUNC_PIVOT_FIELD_PROPERTIES; }
-"PIVOT.FIELD.UNGROUP" { return (int)Tokens.T_FUNC_PIVOT_FIELD_UNGROUP; }
-"PIVOT.ITEM" { return (int)Tokens.T_FUNC_PIVOT_ITEM; }
-"PIVOT.ITEM.PROPERTIES" { return (int)Tokens.T_FUNC_PIVOT_ITEM_PROPERTIES; }
-"PIVOT.REFRESH" { return (int)Tokens.T_FUNC_PIVOT_REFRESH; }
-"PIVOT.SHOW.PAGES" { return (int)Tokens.T_FUNC_PIVOT_SHOW_PAGES; }
-"PIVOT.TABLE.CHART" { return (int)Tokens.T_FUNC_PIVOT_TABLE_CHART; }
-"PIVOT.TABLE.WIZARD" { return (int)Tokens.T_FUNC_PIVOT_TABLE_WIZARD; }
-"POST.DOCUMENT" { return (int)Tokens.T_FUNC_POST_DOCUMENT; }
-"PRECISION" { return (int)Tokens.T_FUNC_PRECISION; }
-"PREFERRED" { return (int)Tokens.T_FUNC_PREFERRED; }
-"PRINT" { return (int)Tokens.T_FUNC_PRINT; }
-"PRINT.PREVIEW" { return (int)Tokens.T_FUNC_PRINT_PREVIEW; }
-"PRINTER.SETUP" { return (int)Tokens.T_FUNC_PRINTER_SETUP; }
-"PROMOTE" { return (int)Tokens.T_FUNC_PROMOTE; }
-"PROTECT.DOCUMENT" { return (int)Tokens.T_FUNC_PROTECT_DOCUMENT; }
-"PROTECT.REVISIONS" { return (int)Tokens.T_FUNC_PROTECT_REVISIONS; }
-"PUSHBUTTON.PROPERTIES" { return (int)Tokens.T_FUNC_PUSHBUTTON_PROPERTIES; }
-"QUIT" { return (int)Tokens.T_FUNC_QUIT; }
-"REMOVE.LIST.ITEM" { return (int)Tokens.T_FUNC_REMOVE_LIST_ITEM; }
-"REMOVE.PAGE.BREAK" { return (int)Tokens.T_FUNC_REMOVE_PAGE_BREAK; }
-"RENAME.OBJECT" { return (int)Tokens.T_FUNC_RENAME_OBJECT; }
-"REPLACE.FONT" { return (int)Tokens.T_FUNC_REPLACE_FONT; }
-"RESET.TOOL" { return (int)Tokens.T_FUNC_RESET_TOOL; }
-"RM.PRINT.AREA" { return (int)Tokens.T_FUNC_RM_PRINT_AREA; }
-"ROUTE.DOCUMENT" { return (int)Tokens.T_FUNC_ROUTE_DOCUMENT; }
-"ROUTING.SLIP" { return (int)Tokens.T_FUNC_ROUTING_SLIP; }
-"ROW.HEIGHT" { return (int)Tokens.T_FUNC_ROW_HEIGHT; }
-"RUN" { return (int)Tokens.T_FUNC_RUN; }
-"SAVE" { return (int)Tokens.T_FUNC_SAVE; }
-"SAVE.AS" { return (int)Tokens.T_FUNC_SAVE_AS; }
-"SAVE.COPY.AS" { return (int)Tokens.T_FUNC_SAVE_COPY_AS; }
-"SAVE.NEW.OBJECT" { return (int)Tokens.T_FUNC_SAVE_NEW_OBJECT; }
-"SAVE.WORKBOOK" { return (int)Tokens.T_FUNC_SAVE_WORKBOOK; }
-"SAVE.WORKSPACE" { return (int)Tokens.T_FUNC_SAVE_WORKSPACE; }
-"SCALE" { return (int)Tokens.T_FUNC_SCALE; }
-"SCENARIO.ADD" { return (int)Tokens.T_FUNC_SCENARIO_ADD; }
-"SCENARIO.CELLS" { return (int)Tokens.T_FUNC_SCENARIO_CELLS; }
-"SCENARIO.DELETE" { return (int)Tokens.T_FUNC_SCENARIO_DELETE; }
-"SCENARIO.EDIT" { return (int)Tokens.T_FUNC_SCENARIO_EDIT; }
-"SCENARIO.MERGE" { return (int)Tokens.T_FUNC_SCENARIO_MERGE; }
-"SCENARIO.SHOW" { return (int)Tokens.T_FUNC_SCENARIO_SHOW; }
-"SCENARIO.SHOW.NEXT" { return (int)Tokens.T_FUNC_SCENARIO_SHOW_NEXT; }
-"SCENARIO.SUMMARY" { return (int)Tokens.T_FUNC_SCENARIO_SUMMARY; }
-"SCROLLBAR.PROPERTIES" { return (int)Tokens.T_FUNC_SCROLLBAR_PROPERTIES; }
-"SELECT" { return (int)Tokens.T_FUNC_SELECT; }
-"SELECT.ALL" { return (int)Tokens.T_FUNC_SELECT_ALL; }
-"SELECT.CHART" { return (int)Tokens.T_FUNC_SELECT_CHART; }
-"SELECT.END" { return (int)Tokens.T_FUNC_SELECT_END; }
-"SELECT.LAST.CELL" { return (int)Tokens.T_FUNC_SELECT_LAST_CELL; }
-"SELECT.LIST.ITEM" { return (int)Tokens.T_FUNC_SELECT_LIST_ITEM; }
-"SELECT.PLOT.AREA" { return (int)Tokens.T_FUNC_SELECT_PLOT_AREA; }
-"SELECT.SPECIAL" { return (int)Tokens.T_FUNC_SELECT_SPECIAL; }
-"SEND.KEYS" { return (int)Tokens.T_FUNC_SEND_KEYS; }
-"SEND.MAIL" { return (int)Tokens.T_FUNC_SEND_MAIL; }
-"SEND.TO.BACK" { return (int)Tokens.T_FUNC_SEND_TO_BACK; }
-"SERIES.AXES" { return (int)Tokens.T_FUNC_SERIES_AXES; }
-"SERIES.ORDER" { return (int)Tokens.T_FUNC_SERIES_ORDER; }
-"SERIES.X" { return (int)Tokens.T_FUNC_SERIES_X; }
-"SERIES.Y" { return (int)Tokens.T_FUNC_SERIES_Y; }
-"SET.CONTROL.VALUE" { return (int)Tokens.T_FUNC_SET_CONTROL_VALUE; }
-"SET.CRITERIA" { return (int)Tokens.T_FUNC_SET_CRITERIA; }
-"SET.DATABASE" { return (int)Tokens.T_FUNC_SET_DATABASE; }
-"SET.DIALOG.DEFAULT" { return (int)Tokens.T_FUNC_SET_DIALOG_DEFAULT; }
-"SET.DIALOG.FOCUS" { return (int)Tokens.T_FUNC_SET_DIALOG_FOCUS; }
-"SET.EXTRACT" { return (int)Tokens.T_FUNC_SET_EXTRACT; }
-"SET.LIST.ITEM" { return (int)Tokens.T_FUNC_SET_LIST_ITEM; }
-"SET.PAGE.BREAK" { return (int)Tokens.T_FUNC_SET_PAGE_BREAK; }
-"SET.PREFERRED" { return (int)Tokens.T_FUNC_SET_PREFERRED; }
-"SET.PRINT.AREA" { return (int)Tokens.T_FUNC_SET_PRINT_AREA; }
-"SET.PRINT.TITLES" { return (int)Tokens.T_FUNC_SET_PRINT_TITLES; }
-"SET.UPDATE.STATUS" { return (int)Tokens.T_FUNC_SET_UPDATE_STATUS; }
-"SHARE" { return (int)Tokens.T_FUNC_SHARE; }
-"SHARE.NAME" { return (int)Tokens.T_FUNC_SHARE_NAME; }
-"SHEET.BACKGROUND" { return (int)Tokens.T_FUNC_SHEET_BACKGROUND; }
-"SHORT.MENUS" { return (int)Tokens.T_FUNC_SHORT_MENUS; }
-"SHOW.ACTIVE.CELL" { return (int)Tokens.T_FUNC_SHOW_ACTIVE_CELL; }
-"SHOW.CLIPBOARD" { return (int)Tokens.T_FUNC_SHOW_CLIPBOARD; }
-"SHOW.DETAIL" { return (int)Tokens.T_FUNC_SHOW_DETAIL; }
-"SHOW.DIALOG" { return (int)Tokens.T_FUNC_SHOW_DIALOG; }
-"SHOW.INFO" { return (int)Tokens.T_FUNC_SHOW_INFO; }
-"SHOW.LEVELS" { return (int)Tokens.T_FUNC_SHOW_LEVELS; }
-"SHOW.TOOLBAR" { return (int)Tokens.T_FUNC_SHOW_TOOLBAR; }
-"SORT.SPECIAL" { return (int)Tokens.T_FUNC_SORT_SPECIAL; }
-"SOUND.NOTE" { return (int)Tokens.T_FUNC_SOUND_NOTE; }
-"SOUND.PLAY" { return (int)Tokens.T_FUNC_SOUND_PLAY; }
-"SPELLING" { return (int)Tokens.T_FUNC_SPELLING; }
-"SPLIT" { return (int)Tokens.T_FUNC_SPLIT; }
-"STANDARD.FONT" { return (int)Tokens.T_FUNC_STANDARD_FONT; }
-"STANDARD.WIDTH" { return (int)Tokens.T_FUNC_STANDARD_WIDTH; }
-"STYLE" { return (int)Tokens.T_FUNC_STYLE; }
-"SUBSCRIBE.TO" { return (int)Tokens.T_FUNC_SUBSCRIBE_TO; }
-"SUBTOTAL.CREATE" { return (int)Tokens.T_FUNC_SUBTOTAL_CREATE; }
-"SUBTOTAL.REMOVE" { return (int)Tokens.T_FUNC_SUBTOTAL_REMOVE; }
-"SUMMARY.INFO" { return (int)Tokens.T_FUNC_SUMMARY_INFO; }
-"TAB.ORDER" { return (int)Tokens.T_FUNC_TAB_ORDER; }
-"TABLE" { return (int)Tokens.T_FUNC_TABLE; }
-"TEXT.TO.COLUMNS" { return (int)Tokens.T_FUNC_TEXT_TO_COLUMNS; }
-"TRACER.CLEAR" { return (int)Tokens.T_FUNC_TRACER_CLEAR; }
-"TRACER.DISPLAY" { return (int)Tokens.T_FUNC_TRACER_DISPLAY; }
-"TRACER.ERROR" { return (int)Tokens.T_FUNC_TRACER_ERROR; }
-"TRACER.NAVIGATE" { return (int)Tokens.T_FUNC_TRACER_NAVIGATE; }
-"TRAVERSE.NOTES" { return (int)Tokens.T_FUNC_TRAVERSE_NOTES; }
-"UNDO" { return (int)Tokens.T_FUNC_UNDO; }
-"UNGROUP" { return (int)Tokens.T_FUNC_UNGROUP; }
-"UNGROUP.SHEETS" { return (int)Tokens.T_FUNC_UNGROUP_SHEETS; }
-"UNHIDE" { return (int)Tokens.T_FUNC_UNHIDE; }
-"UNLOCKED.NEXT" { return (int)Tokens.T_FUNC_UNLOCKED_NEXT; }
-"UNLOCKED.PREV" { return (int)Tokens.T_FUNC_UNLOCKED_PREV; }
-"UNPROTECT.REVISIONS" { return (int)Tokens.T_FUNC_UNPROTECT_REVISIONS; }
-"UPDATE.LINK" { return (int)Tokens.T_FUNC_UPDATE_LINK; }
-"VBA.INSERT.FILE" { return (int)Tokens.T_FUNC_VBA_INSERT_FILE; }
-"VBA.MAKE.ADDIN" { return (int)Tokens.T_FUNC_VBA_MAKE_ADDIN; }
-"VBA.PROCEDURE.DEFINITION" { return (int)Tokens.T_FUNC_VBA_PROCEDURE_DEFINITION; }
-"VBAACTIVATE" { return (int)Tokens.T_FUNC_VBAACTIVATE; }
-"VIEW.3D" { return (int)Tokens.T_FUNC_VIEW_3D; }
-"VIEW.DEFINE" { return (int)Tokens.T_FUNC_VIEW_DEFINE; }
-"VIEW.DELETE" { return (int)Tokens.T_FUNC_VIEW_DELETE; }
-"VIEW.SHOW" { return (int)Tokens.T_FUNC_VIEW_SHOW; }
-"VLINE" { return (int)Tokens.T_FUNC_VLINE; }
-"VPAGE" { return (int)Tokens.T_FUNC_VPAGE; }
-"VSCROLL" { return (int)Tokens.T_FUNC_VSCROLL; }
-"WAIT" { return (int)Tokens.T_FUNC_WAIT; }
-"WEB.PUBLISH" { return (int)Tokens.T_FUNC_WEB_PUBLISH; }
-"WINDOW.MAXIMIZE" { return (int)Tokens.T_FUNC_WINDOW_MAXIMIZE; }
-"WINDOW.MINIMIZE" { return (int)Tokens.T_FUNC_WINDOW_MINIMIZE; }
-"WINDOW.MOVE" { return (int)Tokens.T_FUNC_WINDOW_MOVE; }
-"WINDOW.RESTORE" { return (int)Tokens.T_FUNC_WINDOW_RESTORE; }
-"WINDOW.SIZE" { return (int)Tokens.T_FUNC_WINDOW_SIZE; }
-"WORKBOOK.ACTIVATE" { return (int)Tokens.T_FUNC_WORKBOOK_ACTIVATE; }
-"WORKBOOK.ADD" { return (int)Tokens.T_FUNC_WORKBOOK_ADD; }
-"WORKBOOK.COPY" { return (int)Tokens.T_FUNC_WORKBOOK_COPY; }
-"WORKBOOK.DELETE" { return (int)Tokens.T_FUNC_WORKBOOK_DELETE; }
-"WORKBOOK.HIDE" { return (int)Tokens.T_FUNC_WORKBOOK_HIDE; }
-"WORKBOOK.INSERT" { return (int)Tokens.T_FUNC_WORKBOOK_INSERT; }
-"WORKBOOK.MOVE" { return (int)Tokens.T_FUNC_WORKBOOK_MOVE; }
-"WORKBOOK.NAME" { return (int)Tokens.T_FUNC_WORKBOOK_NAME; }
-"WORKBOOK.NEW" { return (int)Tokens.T_FUNC_WORKBOOK_NEW; }
-"WORKBOOK.NEXT" { return (int)Tokens.T_FUNC_WORKBOOK_NEXT; }
-"WORKBOOK.OPTIONS" { return (int)Tokens.T_FUNC_WORKBOOK_OPTIONS; }
-"WORKBOOK.PREV" { return (int)Tokens.T_FUNC_WORKBOOK_PREV; }
-"WORKBOOK.PROTECT" { return (int)Tokens.T_FUNC_WORKBOOK_PROTECT; }
-"WORKBOOK.SCROLL" { return (int)Tokens.T_FUNC_WORKBOOK_SCROLL; }
-"WORKBOOK.SELECT" { return (int)Tokens.T_FUNC_WORKBOOK_SELECT; }
-"WORKBOOK.TAB.SPLIT" { return (int)Tokens.T_FUNC_WORKBOOK_TAB_SPLIT; }
-"WORKBOOK.UNHIDE" { return (int)Tokens.T_FUNC_WORKBOOK_UNHIDE; }
-"WORKGROUP" { return (int)Tokens.T_FUNC_WORKGROUP; }
-"WORKGROUP.OPTIONS" { return (int)Tokens.T_FUNC_WORKGROUP_OPTIONS; }
-"WORKSPACE" { return (int)Tokens.T_FUNC_WORKSPACE; }
-"ZOOM" { return (int)Tokens.T_FUNC_ZOOM; }
+[aA]"1."[rR]"1"[cC]"1" { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_A1_R1C1; }
+[aA][cC][tT][iI][vV][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVATE; }
+[aA][cC][tT][iI][vV][aA][tT][eE]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVATE_NEXT; }
+[aA][cC][tT][iI][vV][aA][tT][eE]"."[nN][oO][tT][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVATE_NOTES; }
+[aA][cC][tT][iI][vV][aA][tT][eE]"."[pP][rR][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVATE_PREV; }
+[aA][cC][tT][iI][vV][eE]"."[cC][eE][lL][lL]"."[fF][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVE_CELL_FONT; }
+[aA][dD][dD]"."[aA][rR][rR][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_ARROW; }
+[aA][dD][dD]"."[cC][hH][aA][rR][tT]"."[aA][uU][tT][oO][fF][oO][rR][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_CHART_AUTOFORMAT; }
+[aA][dD][dD]"."[lL][iI][sS][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_LIST_ITEM; }
+[aA][dD][dD]"."[oO][vV][eE][rR][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_OVERLAY; }
+[aA][dD][dD]"."[pP][rR][iI][nN][tT]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_PRINT_AREA; }
+[aA][dD][dD]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_TOOL; }
+[aA][dD][dD][iI][nN]"."[mM][aA][nN][aA][gG][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADDIN_MANAGER; }
+[aA][lL][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ALERT; }
+[aA][lL][iI][gG][nN][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ALIGNMENT; }
+[aA][pP][pP]"."[aA][cC][tT][iI][vV][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_ACTIVATE; }
+[aA][pP][pP]"."[aA][cC][tT][iI][vV][aA][tT][eE]"."[mM][iI][cC][rR][oO][sS][oO][fF][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_ACTIVATE_MICROSOFT; }
+[aA][pP][pP]"."[mM][aA][xX][iI][mM][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_MAXIMIZE; }
+[aA][pP][pP]"."[mM][iI][nN][iI][mM][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_MINIMIZE; }
+[aA][pP][pP]"."[mM][oO][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_MOVE; }
+[aA][pP][pP]"."[rR][eE][sS][tT][oO][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_RESTORE; }
+[aA][pP][pP]"."[sS][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_SIZE; }
+[aA][pP][pP][lL][yY]"."[nN][aA][mM][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APPLY_NAMES; }
+[aA][pP][pP][lL][yY]"."[sS][tT][yY][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APPLY_STYLE; }
+[aA][rR][rR][aA][nN][gG][eE]"."[aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ARRANGE_ALL; }
+[aA][sS][sS][iI][gG][nN]"."[tT][oO]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ASSIGN_TO_OBJECT; }
+[aA][sS][sS][iI][gG][nN]"."[tT][oO]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ASSIGN_TO_TOOL; }
+[aA][tT][tT][aA][cC][hH]"."[tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATTACH_TEXT; }
+[aA][tT][tT][aA][cC][hH]"."[tT][oO][oO][lL][bB][aA][rR][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATTACH_TOOLBARS; }
+[aA][tT][tT][rR][iI][bB][uU][tT][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ATTRIBUTES; }
+[aA][uU][tT][oO]"."[oO][uU][tT][lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AUTO_OUTLINE; }
+[aA][uU][tT][oO][cC][oO][rR][rR][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AUTOCORRECT; }
+[aA][xX][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_AXES; }
+[bB][eE][eE][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BEEP; }
+[bB][oO][rR][dD][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BORDER; }
+[bB][rR][iI][nN][gG]"."[tT][oO]"."[fF][rR][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BRING_TO_FRONT; }
+[cC][aA][lL][cC][uU][lL][aA][tT][eE]"."[dD][oO][cC][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CALCULATE_DOCUMENT; }
+[cC][aA][lL][cC][uU][lL][aA][tT][eE]"."[nN][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CALCULATE_NOW; }
+[cC][aA][lL][cC][uU][lL][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CALCULATION; }
+[cC][aA][nN][cC][eE][lL]"."[cC][oO][pP][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CANCEL_COPY; }
+[cC][eE][lL][lL]"."[pP][rR][oO][tT][eE][cC][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CELL_PROTECTION; }
+[cC][hH][aA][nN][gG][eE]"."[lL][iI][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHANGE_LINK; }
+[cC][hH][aA][rR][tT]"."[aA][dD][dD]"."[dD][aA][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHART_ADD_DATA; }
+[cC][hH][aA][rR][tT]"."[tT][rR][eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHART_TREND; }
+[cC][hH][aA][rR][tT]"."[wW][iI][zZ][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHART_WIZARD; }
+[cC][hH][eE][cC][kK][bB][oO][xX]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHECKBOX_PROPERTIES; }
+[cC][lL][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLEAR; }
+[cC][lL][eE][aA][rR]"."[oO][uU][tT][lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLEAR_OUTLINE; }
+[cC][lL][eE][aA][rR]"."[pP][rR][iI][nN][tT]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLEAR_PRINT_AREA; }
+[cC][lL][eE][aA][rR]"."[rR][oO][uU][tT][iI][nN][gG]"."[sS][lL][iI][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLEAR_ROUTING_SLIP; }
+[cC][lL][oO][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLOSE; }
+[cC][lL][oO][sS][eE]"."[aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CLOSE_ALL; }
+[cC][oO][lL][oO][rR]"."[pP][aA][lL][eE][tT][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COLOR_PALETTE; }
+[cC][oO][lL][uU][mM][nN]"."[wW][iI][dD][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COLUMN_WIDTH; }
+[cC][oO][mM][bB][iI][nN][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COMBINATION; }
+[cC][oO][nN][sS][oO][lL][iI][dD][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONSOLIDATE; }
+[cC][oO][nN][sS][tT][rR][aA][iI][nN]"."[nN][uU][mM][eE][rR][iI][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CONSTRAIN_NUMERIC; }
+[cC][oO][pP][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COPY; }
+[cC][oO][pP][yY]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COPY_CHART; }
+[cC][oO][pP][yY]"."[pP][iI][cC][tT][uU][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COPY_PICTURE; }
+[cC][oO][pP][yY]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_COPY_TOOL; }
+[cC][rR][eE][aA][tT][eE]"."[nN][aA][mM][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CREATE_NAMES; }
+[cC][rR][eE][aA][tT][eE]"."[pP][uU][bB][lL][iI][sS][hH][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CREATE_PUBLISHER; }
+[cC][uU][sS][tT][oO][mM][iI][zZ][eE]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUSTOMIZE_TOOLBAR; }
+[cC][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUT; }
+[dD][aA][tT][aA]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_DELETE; }
+[dD][aA][tT][aA]"."[fF][iI][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_FIND; }
+[dD][aA][tT][aA]"."[fF][iI][nN][dD]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_FIND_NEXT; }
+[dD][aA][tT][aA]"."[fF][iI][nN][dD]"."[pP][rR][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_FIND_PREV; }
+[dD][aA][tT][aA]"."[fF][oO][rR][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_FORM; }
+[dD][aA][tT][aA]"."[lL][aA][bB][eE][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_LABEL; }
+[dD][aA][tT][aA]"."[sS][eE][rR][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DATA_SERIES; }
+[dD][eE][fF][iI][nN][eE]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEFINE_NAME; }
+[dD][eE][fF][iI][nN][eE]"."[sS][tT][yY][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEFINE_STYLE; }
+[dD][eE][lL][eE][tT][eE]"."[aA][rR][rR][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_ARROW; }
+[dD][eE][lL][eE][tT][eE]"."[cC][hH][aA][rR][tT]"."[aA][uU][tT][oO][fF][oO][rR][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_CHART_AUTOFORMAT; }
+[dD][eE][lL][eE][tT][eE]"."[fF][oO][rR][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_FORMAT; }
+[dD][eE][lL][eE][tT][eE]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_NAME; }
+[dD][eE][lL][eE][tT][eE]"."[nN][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_NOTE; }
+[dD][eE][lL][eE][tT][eE]"."[oO][vV][eE][rR][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_OVERLAY; }
+[dD][eE][lL][eE][tT][eE]"."[sS][tT][yY][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_STYLE; }
+[dD][eE][lL][eE][tT][eE]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_TOOL; }
+[dD][eE][mM][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEMOTE; }
+[dD][iI][sS][aA][bB][lL][eE]"."[iI][nN][pP][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DISABLE_INPUT; }
+[dD][iI][sS][pP][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DISPLAY; }
+[dD][uU][pP][lL][iI][cC][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DUPLICATE; }
+[eE][dD][iI][tT]"."[cC][oO][lL][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_COLOR; }
+[eE][dD][iI][tT]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_DELETE; }
+[eE][dD][iI][tT]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_OBJECT; }
+[eE][dD][iI][tT]"."[rR][eE][pP][eE][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_REPEAT; }
+[eE][dD][iI][tT]"."[sS][eE][rR][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_SERIES; }
+[eE][dD][iI][tT]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDIT_TOOL; }
+[eE][dD][iI][tT][bB][oO][xX]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDITBOX_PROPERTIES; }
+[eE][dD][iI][tT][iI][oO][nN]"."[oO][pP][tT][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EDITION_OPTIONS; }
+[eE][nN][aA][bB][lL][eE]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENABLE_OBJECT; }
+[eE][nN][aA][bB][lL][eE]"."[tT][iI][pP][wW][iI][zZ][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENABLE_TIPWIZARD; }
+[eE][nN][tT][eE][rR]"."[dD][aA][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENTER_DATA; }
+[eE][rR][rR][oO][rR][bB][aA][rR]"."[xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERRORBAR_X; }
+[eE][rR][rR][oO][rR][bB][aA][rR]"."[yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERRORBAR_Y; }
+[eE][xX][tT][eE][nN][dD]"."[pP][oO][lL][yY][gG][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXTEND_POLYGON; }
+[eE][xX][tT][rR][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXTRACT; }
+[fF][iI][lL][eE]"."[cC][lL][oO][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILE_CLOSE; }
+[fF][iI][lL][eE]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILE_DELETE; }
+[fF][iI][lL][lL]"."[aA][uU][tT][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_AUTO; }
+[fF][iI][lL][lL]"."[dD][oO][wW][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_DOWN; }
+[fF][iI][lL][lL]"."[gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_GROUP; }
+[fF][iI][lL][lL]"."[lL][eE][fF][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_LEFT; }
+[fF][iI][lL][lL]"."[rR][iI][gG][hH][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_RIGHT; }
+[fF][iI][lL][lL]"."[uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILL_UP; }
+[fF][iI][lL][tT][eE][rR]"."[aA][dD][vV][aA][nN][cC][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILTER_ADVANCED; }
+[fF][iI][lL][tT][eE][rR]"."[sS][hH][oO][wW]"."[aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILTER_SHOW_ALL; }
+[fF][iI][nN][dD]"."[fF][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FIND_FILE; }
+[fF][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FONT; }
+[fF][oO][nN][tT]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FONT_PROPERTIES; }
+[fF][oO][rR][mM][aA][tT]"."[aA][uU][tT][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_AUTO; }
+[fF][oO][rR][mM][aA][tT]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_CHART; }
+[fF][oO][rR][mM][aA][tT]"."[cC][hH][aA][rR][tT][tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_CHARTTYPE; }
+[fF][oO][rR][mM][aA][tT]"."[fF][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_FONT; }
+[fF][oO][rR][mM][aA][tT]"."[lL][eE][gG][eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_LEGEND; }
+[fF][oO][rR][mM][aA][tT]"."[mM][aA][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_MAIN; }
+[fF][oO][rR][mM][aA][tT]"."[mM][oO][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_MOVE; }
+[fF][oO][rR][mM][aA][tT]"."[nN][uU][mM][bB][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_NUMBER; }
+[fF][oO][rR][mM][aA][tT]"."[oO][vV][eE][rR][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_OVERLAY; }
+[fF][oO][rR][mM][aA][tT]"."[sS][hH][aA][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_SHAPE; }
+[fF][oO][rR][mM][aA][tT]"."[sS][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_SIZE; }
+[fF][oO][rR][mM][aA][tT]"."[tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMAT_TEXT; }
+[fF][oO][rR][mM][uU][lL][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA; }
+[fF][oO][rR][mM][uU][lL][aA]"."[aA][rR][rR][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_ARRAY; }
+[fF][oO][rR][mM][uU][lL][aA]"."[fF][iI][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_FILL; }
+[fF][oO][rR][mM][uU][lL][aA]"."[fF][iI][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_FIND; }
+[fF][oO][rR][mM][uU][lL][aA]"."[fF][iI][nN][dD]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_FIND_NEXT; }
+[fF][oO][rR][mM][uU][lL][aA]"."[fF][iI][nN][dD]"."[pP][rR][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_FIND_PREV; }
+[fF][oO][rR][mM][uU][lL][aA]"."[gG][oO][tT][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_GOTO; }
+[fF][oO][rR][mM][uU][lL][aA]"."[rR][eE][pP][lL][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_REPLACE; }
+[fF][rR][eE][eE][zZ][eE]"."[pP][aA][nN][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FREEZE_PANES; }
+[fF][uU][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FULL; }
+[fF][uU][lL][lL]"."[sS][cC][rR][eE][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FULL_SCREEN; }
+[fF][uU][nN][cC][tT][iI][oO][nN]"."[wW][iI][zZ][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FUNCTION_WIZARD; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_AREA; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_BAR; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[cC][oO][lL][uU][mM][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_COLUMN; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_LINE; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[pP][iI][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_PIE; }
+[gG][aA][lL][lL][eE][rR][yY]".3"[dD]"."[sS][uU][rR][fF][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_3D_SURFACE; }
+[gG][aA][lL][lL][eE][rR][yY]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_AREA; }
+[gG][aA][lL][lL][eE][rR][yY]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_BAR; }
+[gG][aA][lL][lL][eE][rR][yY]"."[cC][oO][lL][uU][mM][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_COLUMN; }
+[gG][aA][lL][lL][eE][rR][yY]"."[cC][uU][sS][tT][oO][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_CUSTOM; }
+[gG][aA][lL][lL][eE][rR][yY]"."[dD][oO][uU][gG][hH][nN][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_DOUGHNUT; }
+[gG][aA][lL][lL][eE][rR][yY]"."[lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_LINE; }
+[gG][aA][lL][lL][eE][rR][yY]"."[pP][iI][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_PIE; }
+[gG][aA][lL][lL][eE][rR][yY]"."[rR][aA][dD][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_RADAR; }
+[gG][aA][lL][lL][eE][rR][yY]"."[sS][cC][aA][tT][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GALLERY_SCATTER; }
+[gG][oO][aA][lL]"."[sS][eE][eE][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GOAL_SEEK; }
+[gG][rR][iI][dD][lL][iI][nN][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GRIDLINES; }
+[hH][iI][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDE; }
+[hH][iI][dD][eE]"."[dD][iI][aA][lL][oO][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDE_DIALOG; }
+[hH][iI][dD][eE]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDE_OBJECT; }
+[hH][iI][dD][eE][aA][lL][lL]"."[iI][nN][kK][aA][nN][nN][oO][tT][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDEALL_INKANNOTS; }
+[hH][iI][dD][eE][aA][lL][lL]"."[nN][oO][tT][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDEALL_NOTES; }
+[hH][iI][dD][eE][cC][uU][rR][rR]"."[nN][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HIDECURR_NOTE; }
+[hH][lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HLINE; }
+[hH][pP][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HPAGE; }
+[hH][sS][cC][rR][oO][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HSCROLL; }
+[iI][nN][sS][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERT; }
+[iI][nN][sS][eE][rR][tT]"."[mM][aA][pP]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERT_MAP_OBJECT; }
+[iI][nN][sS][eE][rR][tT]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERT_OBJECT; }
+[iI][nN][sS][eE][rR][tT]"."[pP][iI][cC][tT][uU][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERT_PICTURE; }
+[iI][nN][sS][eE][rR][tT]"."[tT][iI][tT][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERT_TITLE; }
+[iI][nN][sS][eE][rR][tT][dD][aA][tT][aA][tT][aA][bB][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INSERTDATATABLE; }
+[jJ][uU][sS][tT][iI][fF][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_JUSTIFY; }
+[lL][aA][bB][eE][lL]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LABEL_PROPERTIES; }
+[lL][aA][yY][oO][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LAYOUT; }
+[lL][eE][gG][eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LEGEND; }
+[lL][iI][nN][eE]"."[pP][rR][iI][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LINE_PRINT; }
+[lL][iI][nN][kK]"."[cC][oO][mM][bB][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LINK_COMBO; }
+[lL][iI][nN][kK]"."[fF][oO][rR][mM][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LINK_FORMAT; }
+[lL][iI][sS][tT]"."[nN][aA][mM][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LIST_NAMES; }
+[lL][iI][sS][tT][bB][oO][xX]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LISTBOX_PROPERTIES; }
+[mM][aA][cC][rR][oO]"."[oO][pP][tT][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MACRO_OPTIONS; }
+[mM][aA][iI][lL]"."[aA][dD][dD]"."[mM][aA][iI][lL][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_ADD_MAILER; }
+[mM][aA][iI][lL]"."[dD][eE][lL][eE][tT][eE]"."[mM][aA][iI][lL][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_DELETE_MAILER; }
+[mM][aA][iI][lL]"."[eE][dD][iI][tT]"."[mM][aA][iI][lL][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_EDIT_MAILER; }
+[mM][aA][iI][lL]"."[fF][oO][rR][wW][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_FORWARD; }
+[mM][aA][iI][lL]"."[lL][oO][gG][oO][fF][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_LOGOFF; }
+[mM][aA][iI][lL]"."[lL][oO][gG][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_LOGON; }
+[mM][aA][iI][lL]"."[nN][eE][xX][tT]"."[lL][eE][tT][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_NEXT_LETTER; }
+[mM][aA][iI][lL]"."[rR][eE][pP][lL][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_REPLY; }
+[mM][aA][iI][lL]"."[rR][eE][pP][lL][yY]"."[aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_REPLY_ALL; }
+[mM][aA][iI][lL]"."[sS][eE][nN][dD]"."[mM][aA][iI][lL][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIL_SEND_MAILER; }
+[mM][aA][iI][nN]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIN_CHART; }
+[mM][aA][iI][nN]"."[cC][hH][aA][rR][tT]"."[tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MAIN_CHART_TYPE; }
+[mM][eE][nN][uU]"."[eE][dD][iI][tT][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MENU_EDITOR; }
+[mM][eE][rR][gG][eE]"."[sS][tT][yY][lL][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MERGE_STYLES; }
+[mM][eE][sS][sS][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MESSAGE; }
+[mM][oO][vV][eE]"."[bB][rR][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MOVE_BRK; }
+[mM][oO][vV][eE]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MOVE_TOOL; }
+[nN][eE][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEW; }
+[nN][eE][wW]"."[wW][iI][nN][dD][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEW_WINDOW; }
+[nN][eE][wW][wW][eE][bB][qQ][uU][eE][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEWWEBQUERY; }
+[nN][oO][rR][mM][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NORMAL; }
+[oO][bB][jJ][eE][cC][tT]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OBJECT_PROPERTIES; }
+[oO][bB][jJ][eE][cC][tT]"."[pP][rR][oO][tT][eE][cC][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OBJECT_PROTECTION; }
+[oO][nN]"."[dD][aA][tT][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_DATA; }
+[oO][nN]"."[dD][oO][uU][bB][lL][eE][cC][lL][iI][cC][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_DOUBLECLICK; }
+[oO][nN]"."[eE][nN][tT][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_ENTRY; }
+[oO][nN]"."[kK][eE][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_KEY; }
+[oO][nN]"."[rR][eE][cC][aA][lL][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_RECALC; }
+[oO][nN]"."[sS][hH][eE][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_SHEET; }
+[oO][nN]"."[tT][iI][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_TIME; }
+[oO][nN]"."[wW][iI][nN][dD][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ON_WINDOW; }
+[oO][pP][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPEN; }
+[oO][pP][eE][nN]"."[lL][iI][nN][kK][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPEN_LINKS; }
+[oO][pP][eE][nN]"."[mM][aA][iI][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPEN_MAIL; }
+[oO][pP][eE][nN]"."[tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPEN_TEXT; }
+[oO][pP][tT][iI][oO][nN][sS]"."[cC][aA][lL][cC][uU][lL][aA][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_CALCULATION; }
+[oO][pP][tT][iI][oO][nN][sS]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_CHART; }
+[oO][pP][tT][iI][oO][nN][sS]"."[eE][dD][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_EDIT; }
+[oO][pP][tT][iI][oO][nN][sS]"."[gG][eE][nN][eE][rR][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_GENERAL; }
+[oO][pP][tT][iI][oO][nN][sS]"."[lL][iI][sS][tT][sS]"."[aA][dD][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_LISTS_ADD; }
+[oO][pP][tT][iI][oO][nN][sS]"."[lL][iI][sS][tT][sS]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_LISTS_DELETE; }
+[oO][pP][tT][iI][oO][nN][sS]"."[mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_ME; }
+[oO][pP][tT][iI][oO][nN][sS]"."[mM][eE][nN][oO][nN][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_MENONO; }
+[oO][pP][tT][iI][oO][nN][sS]"."[sS][aA][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_SAVE; }
+[oO][pP][tT][iI][oO][nN][sS]"."[sS][pP][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_SPELL; }
+[oO][pP][tT][iI][oO][nN][sS]"."[tT][rR][aA][nN][sS][iI][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_TRANSITION; }
+[oO][pP][tT][iI][oO][nN][sS]"."[vV][iI][eE][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_VIEW; }
+[oO][uU][tT][lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OUTLINE; }
+[oO][vV][eE][rR][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OVERLAY; }
+[oO][vV][eE][rR][lL][aA][yY]"."[cC][hH][aA][rR][tT]"."[tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OVERLAY_CHART_TYPE; }
+[pP][aA][gG][eE]"."[sS][eE][tT][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PAGE_SETUP; }
+[pP][aA][rR][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PARSE; }
+[pP][aA][sS][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE; }
+[pP][aA][sS][tT][eE]"."[lL][iI][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE_LINK; }
+[pP][aA][sS][tT][eE]"."[pP][iI][cC][tT][uU][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE_PICTURE; }
+[pP][aA][sS][tT][eE]"."[pP][iI][cC][tT][uU][rR][eE]"."[lL][iI][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE_PICTURE_LINK; }
+[pP][aA][sS][tT][eE]"."[sS][pP][eE][cC][iI][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE_SPECIAL; }
+[pP][aA][sS][tT][eE]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PASTE_TOOL; }
+[pP][aA][tT][tT][eE][rR][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PATTERNS; }
+[pP][iI][cC][kK][lL][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PICKLIST; }
+[pP][iI][vV][oO][tT]"."[aA][dD][dD]"."[fF][iI][eE][lL][dD][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_ADD_FIELDS; }
+[pP][iI][vV][oO][tT]"."[fF][iI][eE][lL][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_FIELD; }
+[pP][iI][vV][oO][tT]"."[fF][iI][eE][lL][dD]"."[gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_FIELD_GROUP; }
+[pP][iI][vV][oO][tT]"."[fF][iI][eE][lL][dD]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_FIELD_PROPERTIES; }
+[pP][iI][vV][oO][tT]"."[fF][iI][eE][lL][dD]"."[uU][nN][gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_FIELD_UNGROUP; }
+[pP][iI][vV][oO][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_ITEM; }
+[pP][iI][vV][oO][tT]"."[iI][tT][eE][mM]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_ITEM_PROPERTIES; }
+[pP][iI][vV][oO][tT]"."[rR][eE][fF][rR][eE][sS][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_REFRESH; }
+[pP][iI][vV][oO][tT]"."[sS][hH][oO][wW]"."[pP][aA][gG][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_SHOW_PAGES; }
+[pP][iI][vV][oO][tT]"."[tT][aA][bB][lL][eE]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_TABLE_CHART; }
+[pP][iI][vV][oO][tT]"."[tT][aA][bB][lL][eE]"."[wW][iI][zZ][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PIVOT_TABLE_WIZARD; }
+[pP][oO][sS][tT]"."[dD][oO][cC][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_POST_DOCUMENT; }
+[pP][rR][eE][cC][iI][sS][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRECISION; }
+[pP][rR][eE][fF][eE][rR][rR][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PREFERRED; }
+[pP][rR][iI][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRINT; }
+[pP][rR][iI][nN][tT]"."[pP][rR][eE][vV][iI][eE][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRINT_PREVIEW; }
+[pP][rR][iI][nN][tT][eE][rR]"."[sS][eE][tT][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRINTER_SETUP; }
+[pP][rR][oO][mM][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PROMOTE; }
+[pP][rR][oO][tT][eE][cC][tT]"."[dD][oO][cC][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PROTECT_DOCUMENT; }
+[pP][rR][oO][tT][eE][cC][tT]"."[rR][eE][vV][iI][sS][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PROTECT_REVISIONS; }
+[pP][uU][sS][hH][bB][uU][tT][tT][oO][nN]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PUSHBUTTON_PROPERTIES; }
+[qQ][uU][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_QUIT; }
+[rR][eE][mM][oO][vV][eE]"."[lL][iI][sS][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REMOVE_LIST_ITEM; }
+[rR][eE][mM][oO][vV][eE]"."[pP][aA][gG][eE]"."[bB][rR][eE][aA][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REMOVE_PAGE_BREAK; }
+[rR][eE][nN][aA][mM][eE]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RENAME_OBJECT; }
+[rR][eE][pP][lL][aA][cC][eE]"."[fF][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REPLACE_FONT; }
+[rR][eE][sS][eE][tT]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RESET_TOOL; }
+[rR][mM]"."[pP][rR][iI][nN][tT]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RM_PRINT_AREA; }
+[rR][oO][uU][tT][eE]"."[dD][oO][cC][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUTE_DOCUMENT; }
+[rR][oO][uU][tT][iI][nN][gG]"."[sS][lL][iI][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROUTING_SLIP; }
+[rR][oO][wW]"."[hH][eE][iI][gG][hH][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ROW_HEIGHT; }
+[rR][uU][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RUN; }
+[sS][aA][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE; }
+[sS][aA][vV][eE]"."[aA][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_AS; }
+[sS][aA][vV][eE]"."[cC][oO][pP][yY]"."[aA][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_COPY_AS; }
+[sS][aA][vV][eE]"."[nN][eE][wW]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_NEW_OBJECT; }
+[sS][aA][vV][eE]"."[wW][oO][rR][kK][bB][oO][oO][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_WORKBOOK; }
+[sS][aA][vV][eE]"."[wW][oO][rR][kK][sS][pP][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_WORKSPACE; }
+[sS][cC][aA][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCALE; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[aA][dD][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_ADD; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[cC][eE][lL][lL][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_CELLS; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_DELETE; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[eE][dD][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_EDIT; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[mM][eE][rR][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_MERGE; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[sS][hH][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_SHOW; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[sS][hH][oO][wW]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_SHOW_NEXT; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[sS][uU][mM][mM][aA][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_SUMMARY; }
+[sS][cC][rR][oO][lL][lL][bB][aA][rR]"."[pP][rR][oO][pP][eE][rR][tT][iI][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCROLLBAR_PROPERTIES; }
+[sS][eE][lL][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT; }
+[sS][eE][lL][eE][cC][tT]"."[aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_ALL; }
+[sS][eE][lL][eE][cC][tT]"."[cC][hH][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_CHART; }
+[sS][eE][lL][eE][cC][tT]"."[eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_END; }
+[sS][eE][lL][eE][cC][tT]"."[lL][aA][sS][tT]"."[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_LAST_CELL; }
+[sS][eE][lL][eE][cC][tT]"."[lL][iI][sS][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_LIST_ITEM; }
+[sS][eE][lL][eE][cC][tT]"."[pP][lL][oO][tT]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_PLOT_AREA; }
+[sS][eE][lL][eE][cC][tT]"."[sS][pP][eE][cC][iI][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECT_SPECIAL; }
+[sS][eE][nN][dD]"."[kK][eE][yY][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEND_KEYS; }
+[sS][eE][nN][dD]"."[mM][aA][iI][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEND_MAIL; }
+[sS][eE][nN][dD]"."[tT][oO]"."[bB][aA][cC][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SEND_TO_BACK; }
+[sS][eE][rR][iI][eE][sS]"."[aA][xX][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIES_AXES; }
+[sS][eE][rR][iI][eE][sS]"."[oO][rR][dD][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIES_ORDER; }
+[sS][eE][rR][iI][eE][sS]"."[xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIES_X; }
+[sS][eE][rR][iI][eE][sS]"."[yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SERIES_Y; }
+[sS][eE][tT]"."[cC][oO][nN][tT][rR][oO][lL]"."[vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_CONTROL_VALUE; }
+[sS][eE][tT]"."[cC][rR][iI][tT][eE][rR][iI][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_CRITERIA; }
+[sS][eE][tT]"."[dD][aA][tT][aA][bB][aA][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_DATABASE; }
+[sS][eE][tT]"."[dD][iI][aA][lL][oO][gG]"."[dD][eE][fF][aA][uU][lL][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_DIALOG_DEFAULT; }
+[sS][eE][tT]"."[dD][iI][aA][lL][oO][gG]"."[fF][oO][cC][uU][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_DIALOG_FOCUS; }
+[sS][eE][tT]"."[eE][xX][tT][rR][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_EXTRACT; }
+[sS][eE][tT]"."[lL][iI][sS][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_LIST_ITEM; }
+[sS][eE][tT]"."[pP][aA][gG][eE]"."[bB][rR][eE][aA][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_PAGE_BREAK; }
+[sS][eE][tT]"."[pP][rR][eE][fF][eE][rR][rR][eE][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_PREFERRED; }
+[sS][eE][tT]"."[pP][rR][iI][nN][tT]"."[aA][rR][eE][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_PRINT_AREA; }
+[sS][eE][tT]"."[pP][rR][iI][nN][tT]"."[tT][iI][tT][lL][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_PRINT_TITLES; }
+[sS][eE][tT]"."[uU][pP][dD][aA][tT][eE]"."[sS][tT][aA][tT][uU][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_UPDATE_STATUS; }
+[sS][hH][aA][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHARE; }
+[sS][hH][aA][rR][eE]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHARE_NAME; }
+[sS][hH][eE][eE][tT]"."[bB][aA][cC][kK][gG][rR][oO][uU][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHEET_BACKGROUND; }
+[sS][hH][oO][rR][tT]"."[mM][eE][nN][uU][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHORT_MENUS; }
+[sS][hH][oO][wW]"."[aA][cC][tT][iI][vV][eE]"."[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_ACTIVE_CELL; }
+[sS][hH][oO][wW]"."[cC][lL][iI][pP][bB][oO][aA][rR][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_CLIPBOARD; }
+[sS][hH][oO][wW]"."[dD][eE][tT][aA][iI][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_DETAIL; }
+[sS][hH][oO][wW]"."[dD][iI][aA][lL][oO][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_DIALOG; }
+[sS][hH][oO][wW]"."[iI][nN][fF][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_INFO; }
+[sS][hH][oO][wW]"."[lL][eE][vV][eE][lL][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_LEVELS; }
+[sS][hH][oO][wW]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_TOOLBAR; }
+[sS][oO][rR][tT]"."[sS][pP][eE][cC][iI][aA][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SORT_SPECIAL; }
+[sS][oO][uU][nN][dD]"."[nN][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SOUND_NOTE; }
+[sS][oO][uU][nN][dD]"."[pP][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SOUND_PLAY; }
+[sS][pP][eE][lL][lL][iI][nN][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SPELLING; }
+[sS][pP][lL][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SPLIT; }
+[sS][tT][aA][nN][dD][aA][rR][dD]"."[fF][oO][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STANDARD_FONT; }
+[sS][tT][aA][nN][dD][aA][rR][dD]"."[wW][iI][dD][tT][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STANDARD_WIDTH; }
+[sS][tT][yY][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STYLE; }
+[sS][uU][bB][sS][cC][rR][iI][bB][eE]"."[tT][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUBSCRIBE_TO; }
+[sS][uU][bB][tT][oO][tT][aA][lL]"."[cC][rR][eE][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUBTOTAL_CREATE; }
+[sS][uU][bB][tT][oO][tT][aA][lL]"."[rR][eE][mM][oO][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUBTOTAL_REMOVE; }
+[sS][uU][mM][mM][aA][rR][yY]"."[iI][nN][fF][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SUMMARY_INFO; }
+[tT][aA][bB]"."[oO][rR][dD][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TAB_ORDER; }
+[tT][aA][bB][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TABLE; }
+[tT][eE][xX][tT]"."[tT][oO]"."[cC][oO][lL][uU][mM][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXT_TO_COLUMNS; }
+[tT][rR][aA][cC][eE][rR]"."[cC][lL][eE][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRACER_CLEAR; }
+[tT][rR][aA][cC][eE][rR]"."[dD][iI][sS][pP][lL][aA][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRACER_DISPLAY; }
+[tT][rR][aA][cC][eE][rR]"."[eE][rR][rR][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRACER_ERROR; }
+[tT][rR][aA][cC][eE][rR]"."[nN][aA][vV][iI][gG][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRACER_NAVIGATE; }
+[tT][rR][aA][vV][eE][rR][sS][eE]"."[nN][oO][tT][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRAVERSE_NOTES; }
+[uU][nN][dD][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNDO; }
+[uU][nN][gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNGROUP; }
+[uU][nN][gG][rR][oO][uU][pP]"."[sS][hH][eE][eE][tT][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNGROUP_SHEETS; }
+[uU][nN][hH][iI][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNHIDE; }
+[uU][nN][lL][oO][cC][kK][eE][dD]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNLOCKED_NEXT; }
+[uU][nN][lL][oO][cC][kK][eE][dD]"."[pP][rR][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNLOCKED_PREV; }
+[uU][nN][pP][rR][oO][tT][eE][cC][tT]"."[rR][eE][vV][iI][sS][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNPROTECT_REVISIONS; }
+[uU][pP][dD][aA][tT][eE]"."[lL][iI][nN][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UPDATE_LINK; }
+[vV][bB][aA]"."[iI][nN][sS][eE][rR][tT]"."[fF][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VBA_INSERT_FILE; }
+[vV][bB][aA]"."[mM][aA][kK][eE]"."[aA][dD][dD][iI][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VBA_MAKE_ADDIN; }
+[vV][bB][aA]"."[pP][rR][oO][cC][eE][dD][uU][rR][eE]"."[dD][eE][fF][iI][nN][iI][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VBA_PROCEDURE_DEFINITION; }
+[vV][bB][aA][aA][cC][tT][iI][vV][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VBAACTIVATE; }
+[vV][iI][eE][wW]".3"[dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VIEW_3D; }
+[vV][iI][eE][wW]"."[dD][eE][fF][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VIEW_DEFINE; }
+[vV][iI][eE][wW]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VIEW_DELETE; }
+[vV][iI][eE][wW]"."[sS][hH][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VIEW_SHOW; }
+[vV][lL][iI][nN][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VLINE; }
+[vV][pP][aA][gG][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VPAGE; }
+[vV][sS][cC][rR][oO][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VSCROLL; }
+[wW][aA][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WAIT; }
+[wW][eE][bB]"."[pP][uU][bB][lL][iI][sS][hH] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WEB_PUBLISH; }
+[wW][iI][nN][dD][oO][wW]"."[mM][aA][xX][iI][mM][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_MAXIMIZE; }
+[wW][iI][nN][dD][oO][wW]"."[mM][iI][nN][iI][mM][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_MINIMIZE; }
+[wW][iI][nN][dD][oO][wW]"."[mM][oO][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_MOVE; }
+[wW][iI][nN][dD][oO][wW]"."[rR][eE][sS][tT][oO][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_RESTORE; }
+[wW][iI][nN][dD][oO][wW]"."[sS][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_SIZE; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[aA][cC][tT][iI][vV][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_ACTIVATE; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[aA][dD][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_ADD; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[cC][oO][pP][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_COPY; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[dD][eE][lL][eE][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_DELETE; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[hH][iI][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_HIDE; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[iI][nN][sS][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_INSERT; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[mM][oO][vV][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_MOVE; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_NAME; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[nN][eE][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_NEW; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_NEXT; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[oO][pP][tT][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_OPTIONS; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[pP][rR][eE][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_PREV; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[pP][rR][oO][tT][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_PROTECT; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[sS][cC][rR][oO][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_SCROLL; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[sS][eE][lL][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_SELECT; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[tT][aA][bB]"."[sS][pP][lL][iI][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_TAB_SPLIT; }
+[wW][oO][rR][kK][bB][oO][oO][kK]"."[uU][nN][hH][iI][dD][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKBOOK_UNHIDE; }
+[wW][oO][rR][kK][gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKGROUP; }
+[wW][oO][rR][kK][gG][rR][oO][uU][pP]"."[oO][pP][tT][iI][oO][nN][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKGROUP_OPTIONS; }
+[wW][oO][rR][kK][sS][pP][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WORKSPACE; }
+[zZ][oO][oO][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ZOOM; }

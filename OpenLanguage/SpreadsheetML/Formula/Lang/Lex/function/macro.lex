@@ -1,109 +1,111 @@
 /* Macro Function Keywords */
-"ABSREF" { return (int)Tokens.T_FUNC_ABSREF; }
-"ACTIVE.CELL" { return (int)Tokens.T_FUNC_ACTIVE_CELL; }
-"ADD.BAR" { return (int)Tokens.T_FUNC_ADD_BAR; }
-"ADD.COMMAND" { return (int)Tokens.T_FUNC_ADD_COMMAND; }
-"ADD.MENU" { return (int)Tokens.T_FUNC_ADD_MENU; }
-"ADD.TOOLBAR" { return (int)Tokens.T_FUNC_ADD_TOOLBAR; }
-"APP.TITLE" { return (int)Tokens.T_FUNC_APP_TITLE; }
-"ARGUMENT" { return (int)Tokens.T_FUNC_ARGUMENT; }
-"BREAK" { return (int)Tokens.T_FUNC_BREAK; }
-"CALL" { return (int)Tokens.T_FUNC_CALL; }
-"CALLER" { return (int)Tokens.T_FUNC_CALLER; }
-"CANCEL.KEY" { return (int)Tokens.T_FUNC_CANCEL_KEY; }
-"CHECK.COMMAND" { return (int)Tokens.T_FUNC_CHECK_COMMAND; }
-"CREATE.OBJECT" { return (int)Tokens.T_FUNC_CREATE_OBJECT; }
-"CUSTOM.REPEAT" { return (int)Tokens.T_FUNC_CUSTOM_REPEAT; }
-"CUSTOM.UNDO" { return (int)Tokens.T_FUNC_CUSTOM_UNDO; }
-"DELETE.BAR" { return (int)Tokens.T_FUNC_DELETE_BAR; }
-"DELETE.COMMAND" { return (int)Tokens.T_FUNC_DELETE_COMMAND; }
-"DELETE.MENU" { return (int)Tokens.T_FUNC_DELETE_MENU; }
-"DELETE.TOOLBAR" { return (int)Tokens.T_FUNC_DELETE_TOOLBAR; }
-"DEREF" { return (int)Tokens.T_FUNC_DEREF; }
-"DIALOG.BOX" { return (int)Tokens.T_FUNC_DIALOG_BOX; }
-"DIRECTORY" { return (int)Tokens.T_FUNC_DIRECTORY; }
-"DOCUMENTS" { return (int)Tokens.T_FUNC_DOCUMENTS; }
-"ECHO" { return (int)Tokens.T_FUNC_ECHO; }
-"ELSE" { return (int)Tokens.T_FUNC_ELSE; }
-"ELSE.IF" { return (int)Tokens.T_FUNC_ELSE_IF; }
-"ENABLE.COMMAND" { return (int)Tokens.T_FUNC_ENABLE_COMMAND; }
-"ENABLE.TOOL" { return (int)Tokens.T_FUNC_ENABLE_TOOL; }
-"END.IF" { return (int)Tokens.T_FUNC_END_IF; }
-"ERROR" { return (int)Tokens.T_FUNC_ERROR; }
-"EVALUATE" { return (int)Tokens.T_FUNC_EVALUATE; }
-"EXEC" { return (int)Tokens.T_FUNC_EXEC; }
-"EXECUTE" { return (int)Tokens.T_FUNC_EXECUTE; }
-"FCLOSE" { return (int)Tokens.T_FUNC_FCLOSE; }
-"FILES" { return (int)Tokens.T_FUNC_FILES; }
-"FOPEN" { return (int)Tokens.T_FUNC_FOPEN; }
-"FOR" { return (int)Tokens.T_FUNC_FOR; }
-"FOR.CELL" { return (int)Tokens.T_FUNC_FOR_CELL; }
-"FORMULA.CONVERT" { return (int)Tokens.T_FUNC_FORMULA_CONVERT; }
-"FPOS" { return (int)Tokens.T_FUNC_FPOS; }
-"FREAD" { return (int)Tokens.T_FUNC_FREAD; }
-"FREADLN" { return (int)Tokens.T_FUNC_FREADLN; }
-"FSIZE" { return (int)Tokens.T_FUNC_FSIZE; }
-"FWRITE" { return (int)Tokens.T_FUNC_FWRITE; }
-"FWRITELN" { return (int)Tokens.T_FUNC_FWRITELN; }
-"GET.BAR" { return (int)Tokens.T_FUNC_GET_BAR; }
-"GET.CELL" { return (int)Tokens.T_FUNC_GET_CELL; }
-"GET.CHART.ITEM" { return (int)Tokens.T_FUNC_GET_CHART_ITEM; }
-"GET.DEF" { return (int)Tokens.T_FUNC_GET_DEF; }
-"GET.DOCUMENT" { return (int)Tokens.T_FUNC_GET_DOCUMENT; }
-"GET.FORMULA" { return (int)Tokens.T_FUNC_GET_FORMULA; }
-"GET.LINK.INFO" { return (int)Tokens.T_FUNC_GET_LINK_INFO; }
-"GET.MOVIE" { return (int)Tokens.T_FUNC_GET_MOVIE; }
-"GET.NAME" { return (int)Tokens.T_FUNC_GET_NAME; }
-"GET.NOTE" { return (int)Tokens.T_FUNC_GET_NOTE; }
-"GET.OBJECT" { return (int)Tokens.T_FUNC_GET_OBJECT; }
-"GET.TOOL" { return (int)Tokens.T_FUNC_GET_TOOL; }
-"GET.TOOLBAR" { return (int)Tokens.T_FUNC_GET_TOOLBAR; }
-"GET.WINDOW" { return (int)Tokens.T_FUNC_GET_WINDOW; }
-"GET.WORKBOOK" { return (int)Tokens.T_FUNC_GET_WORKBOOK; }
-"GET.WORKSPACE" { return (int)Tokens.T_FUNC_GET_WORKSPACE; }
-"GOTO" { return (int)Tokens.T_FUNC_GOTO; }
-"GROUP" { return (int)Tokens.T_FUNC_GROUP; }
-"HALT" { return (int)Tokens.T_FUNC_HALT; }
-"HELP" { return (int)Tokens.T_FUNC_HELP; }
-"INITIATE" { return (int)Tokens.T_FUNC_INITIATE; }
-"INPUT" { return (int)Tokens.T_FUNC_INPUT; }
-"LAST.ERROR" { return (int)Tokens.T_FUNC_LAST_ERROR; }
-"LINKS" { return (int)Tokens.T_FUNC_LINKS; }
-"MOVIE.COMMAND" { return (int)Tokens.T_FUNC_MOVIE_COMMAND; }
-"NAMES" { return (int)Tokens.T_FUNC_NAMES; }
-"NEXT" { return (int)Tokens.T_FUNC_NEXT; }
-"NOTE" { return (int)Tokens.T_FUNC_NOTE; }
-"OPEN.DIALOG" { return (int)Tokens.T_FUNC_OPEN_DIALOG; }
-"OPTIONS.LISTS.GET" { return (int)Tokens.T_FUNC_OPTIONS_LISTS_GET; }
-"PAUSE" { return (int)Tokens.T_FUNC_PAUSE; }
-"POKE" { return (int)Tokens.T_FUNC_POKE; }
-"PRESS.TOOL" { return (int)Tokens.T_FUNC_PRESS_TOOL; }
-"REFTEXT" { return (int)Tokens.T_FUNC_REFTEXT; }
-"REGISTER" { return (int)Tokens.T_FUNC_REGISTER; }
-"REGISTER.ID" { return (int)Tokens.T_FUNC_REGISTER_ID; }
-"RELREF" { return (int)Tokens.T_FUNC_RELREF; }
-"RENAME.COMMAND" { return (int)Tokens.T_FUNC_RENAME_COMMAND; }
-"REQUEST" { return (int)Tokens.T_FUNC_REQUEST; }
-"RESET.TOOLBAR" { return (int)Tokens.T_FUNC_RESET_TOOLBAR; }
-"RESTART" { return (int)Tokens.T_FUNC_RESTART; }
-"RESULT" { return (int)Tokens.T_FUNC_RESULT; }
-"RESUME" { return (int)Tokens.T_FUNC_RESUME; }
-"RETURN" { return (int)Tokens.T_FUNC_RETURN; }
-"SAVE.DIALOG" { return (int)Tokens.T_FUNC_SAVE_DIALOG; }
-"SAVE.TOOLBAR" { return (int)Tokens.T_FUNC_SAVE_TOOLBAR; }
-"SCENARIO.GET" { return (int)Tokens.T_FUNC_SCENARIO_GET; }
-"SELECTION" { return (int)Tokens.T_FUNC_SELECTION; }
-"SET.NAME" { return (int)Tokens.T_FUNC_SET_NAME; }
-"SET.VALUE" { return (int)Tokens.T_FUNC_SET_VALUE; }
-"SHOW.BAR" { return (int)Tokens.T_FUNC_SHOW_BAR; }
-"SPELLING.CHECK" { return (int)Tokens.T_FUNC_SPELLING_CHECK; }
-"STEP" { return (int)Tokens.T_FUNC_STEP; }
-"TERMINATE" { return (int)Tokens.T_FUNC_TERMINATE; }
-"TEXT.BOX" { return (int)Tokens.T_FUNC_TEXT_BOX; }
-"TEXTREF" { return (int)Tokens.T_FUNC_TEXTREF; }
-"UNREGISTER" { return (int)Tokens.T_FUNC_UNREGISTER; }
-"VIEW.GET" { return (int)Tokens.T_FUNC_VIEW_GET; }
-"VOLATILE" { return (int)Tokens.T_FUNC_VOLATILE; }
-"WHILE" { return (int)Tokens.T_FUNC_WHILE; }
-"WINDOW.TITLE" { return (int)Tokens.T_FUNC_WINDOW_TITLE; }
-"WINDOWS" { return (int)Tokens.T_FUNC_WINDOWS; }
+
+[aA][bB][sS][rR][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ABSREF; }
+[aA][cC][tT][iI][vV][eE]"."[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ACTIVE_CELL; }
+[aA][dD][dD]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_BAR; }
+[aA][dD][dD]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_COMMAND; }
+[aA][dD][dD]"."[mM][eE][nN][uU] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_MENU; }
+[aA][dD][dD]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ADD_TOOLBAR; }
+[aA][pP][pP]"."[tT][iI][tT][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_APP_TITLE; }
+[aA][rR][gG][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ARGUMENT; }
+[bB][rR][eE][aA][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_BREAK; }
+[cC][aA][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CALL; }
+[cC][aA][lL][lL][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CALLER; }
+[cC][aA][nN][cC][eE][lL]"."[kK][eE][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CANCEL_KEY; }
+[cC][hH][eE][cC][kK]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CHECK_COMMAND; }
+[cC][rR][eE][aA][tT][eE]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CREATE_OBJECT; }
+[cC][uU][sS][tT][oO][mM]"."[rR][eE][pP][eE][aA][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUSTOM_REPEAT; }
+[cC][uU][sS][tT][oO][mM]"."[uU][nN][dD][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_CUSTOM_UNDO; }
+[dD][eE][lL][eE][tT][eE]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_BAR; }
+[dD][eE][lL][eE][tT][eE]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_COMMAND; }
+[dD][eE][lL][eE][tT][eE]"."[mM][eE][nN][uU] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_MENU; }
+[dD][eE][lL][eE][tT][eE]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DELETE_TOOLBAR; }
+[dD][eE][rR][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DEREF; }
+[dD][iI][aA][lL][oO][gG]"."[bB][oO][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DIALOG_BOX; }
+[dD][iI][rR][eE][cC][tT][oO][rR][yY] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DIRECTORY; }
+[dD][oO][cC][uU][mM][eE][nN][tT][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_DOCUMENTS; }
+[eE][cC][hH][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ECHO; }
+[eE][lL][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ELSE; }
+[eE][lL][sS][eE]"."[iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ELSE_IF; }
+[eE][nN][aA][bB][lL][eE]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENABLE_COMMAND; }
+[eE][nN][aA][bB][lL][eE]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ENABLE_TOOL; }
+[eE][nN][dD]"."[iI][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_END_IF; }
+[eE][rR][rR][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_ERROR; }
+[eE][vV][aA][lL][uU][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EVALUATE; }
+[eE][xX][eE][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXEC; }
+[eE][xX][eE][cC][uU][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXECUTE; }
+[fF][cC][lL][oO][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FCLOSE; }
+[fF][iI][lL][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FILES; }
+[fF][oO][pP][eE][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FOPEN; }
+[fF][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FOR; }
+[fF][oO][rR]"."[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FOR_CELL; }
+[fF][oO][rR][mM][uU][lL][aA]"."[cC][oO][nN][vV][eE][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FORMULA_CONVERT; }
+[fF][pP][oO][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FPOS; }
+[fF][rR][eE][aA][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FREAD; }
+[fF][rR][eE][aA][dD][lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FREADLN; }
+[fF][sS][iI][zZ][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FSIZE; }
+[fF][wW][rR][iI][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FWRITE; }
+[fF][wW][rR][iI][tT][eE][lL][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FWRITELN; }
+[gG][eE][tT]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_BAR; }
+[gG][eE][tT]"."[cC][eE][lL][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_CELL; }
+[gG][eE][tT]"."[cC][hH][aA][rR][tT]"."[iI][tT][eE][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_CHART_ITEM; }
+[gG][eE][tT]"."[dD][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_DEF; }
+[gG][eE][tT]"."[dD][oO][cC][uU][mM][eE][nN][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_DOCUMENT; }
+[gG][eE][tT]"."[fF][oO][rR][mM][uU][lL][aA] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_FORMULA; }
+[gG][eE][tT]"."[lL][iI][nN][kK]"."[iI][nN][fF][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_LINK_INFO; }
+[gG][eE][tT]"."[mM][oO][vV][iI][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_MOVIE; }
+[gG][eE][tT]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_NAME; }
+[gG][eE][tT]"."[nN][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_NOTE; }
+[gG][eE][tT]"."[oO][bB][jJ][eE][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_OBJECT; }
+[gG][eE][tT]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_TOOL; }
+[gG][eE][tT]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_TOOLBAR; }
+[gG][eE][tT]"."[wW][iI][nN][dD][oO][wW] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_WINDOW; }
+[gG][eE][tT]"."[wW][oO][rR][kK][bB][oO][oO][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_WORKBOOK; }
+[gG][eE][tT]"."[wW][oO][rR][kK][sS][pP][aA][cC][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GET_WORKSPACE; }
+[gG][oO][tT][oO] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GOTO; }
+[gG][rR][oO][uU][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_GROUP; }
+[hH][aA][lL][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HALT; }
+[hH][eE][lL][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_HELP; }
+[iI][nN][iI][tT][iI][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INITIATE; }
+[iI][nN][pP][uU][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_INPUT; }
+[lL][aA][sS][tT]"."[eE][rR][rR][oO][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LAST_ERROR; }
+[lL][iI][nN][kK][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_LINKS; }
+[mM][oO][vV][iI][eE]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_MOVIE_COMMAND; }
+[nN][aA][mM][eE][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NAMES; }
+[nN][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NEXT; }
+[nN][oO][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_NOTE; }
+[oO][pP][eE][nN]"."[dD][iI][aA][lL][oO][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPEN_DIALOG; }
+[oO][pP][tT][iI][oO][nN][sS]"."[lL][iI][sS][tT][sS]"."[gG][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_OPTIONS_LISTS_GET; }
+[pP][aA][uU][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PAUSE; }
+[pP][oO][kK][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_POKE; }
+[pP][rR][eE][sS][sS]"."[tT][oO][oO][lL] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_PRESS_TOOL; }
+[rR][eE][fF][tT][eE][xX][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REFTEXT; }
+[rR][eE][gG][iI][sS][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REGISTER; }
+[rR][eE][gG][iI][sS][tT][eE][rR]"."[iI][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REGISTER_ID; }
+[rR][eE][lL][rR][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RELREF; }
+[rR][eE][nN][aA][mM][eE]"."[cC][oO][mM][mM][aA][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RENAME_COMMAND; }
+[rR][eE][qQ][uU][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_REQUEST; }
+[rR][eE][sS][eE][tT]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RESET_TOOLBAR; }
+[rR][eE][sS][tT][aA][rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RESTART; }
+[rR][eE][sS][uU][lL][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RESULT; }
+[rR][eE][sS][uU][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RESUME; }
+[rR][eE][tT][uU][rR][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_RETURN; }
+[sS][aA][vV][eE]"."[dD][iI][aA][lL][oO][gG] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_DIALOG; }
+[sS][aA][vV][eE]"."[tT][oO][oO][lL][bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SAVE_TOOLBAR; }
+[sS][cC][eE][nN][aA][rR][iI][oO]"."[gG][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SCENARIO_GET; }
+[sS][eE][lL][eE][cC][tT][iI][oO][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SELECTION; }
+[sS][eE][tT]"."[nN][aA][mM][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_NAME; }
+[sS][eE][tT]"."[vV][aA][lL][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SET_VALUE; }
+[sS][hH][oO][wW]"."[bB][aA][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SHOW_BAR; }
+[sS][pP][eE][lL][lL][iI][nN][gG]"."[cC][hH][eE][cC][kK] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_SPELLING_CHECK; }
+[sS][tT][eE][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_STEP; }
+[tT][eE][rR][mM][iI][nN][aA][tT][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TERMINATE; }
+[tT][eE][xX][tT]"."[bB][oO][xX] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXT_BOX; }
+[tT][eE][xX][tT][rR][eE][fF] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTREF; }
+[uU][nN][rR][eE][gG][iI][sS][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_UNREGISTER; }
+[vV][iI][eE][wW]"."[gG][eE][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VIEW_GET; }
+[vV][oO][lL][aA][tT][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_VOLATILE; }
+[wW][hH][iI][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WHILE; }
+[wW][iI][nN][dD][oO][wW]"."[tT][iI][tT][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOW_TITLE; }
+[wW][iI][nN][dD][oO][wW][sS] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_WINDOWS; }
+

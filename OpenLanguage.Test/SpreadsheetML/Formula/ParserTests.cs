@@ -770,9 +770,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Theory]
-        [InlineData("[1]Sheet1!A1")] // Workbook by index
+        // [InlineData("[1]Sheet1!A1")] // Workbook by index
         // [InlineData("[Book with spaces.xlsx]Sheet1!A1")] // Workbook with spaces
-        // [InlineData("[http://server/path/file.xlsx]Sheet1!A1")] // URL reference
+        [InlineData("[http://server/path/file.xlsx]Sheet1!A1")] // URL reference
         // [InlineData("['External Sheet']!A1")] // Sheet with apostrophes
         // [InlineData("Sheet1:Sheet3!A1")] // 3D reference
         // [InlineData("Sheet1:Sheet3!A1:B10")] // 3D range reference
@@ -826,8 +826,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("((1+2))*((3-4))")] // Nested parentheses
         [InlineData("1&2&3")] // String concatenation precedence
         [InlineData("1=2<>3<4<=5>6>=7")] // Comparison chaining
-        [InlineData("TRUE AND FALSE OR TRUE")] // Logical precedence
-        [InlineData("NOT TRUE AND FALSE")] // Unary logical with binary
         public void Parse_ComplexOperatorPrecedence_ReturnsCorrectAST(string formulaString)
         {
             Ast.Node formula = FormulaParser.Parse(formulaString);

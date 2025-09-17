@@ -2,36 +2,36 @@ using System.Collections.Generic;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
-    public class A1R1C1CommandFunctionNode : BuiltInCommandFunctionNode
+    public class A1R1C1CommandFunctionNode : CommandFunctionNode
     {
         public A1R1C1CommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("A1.R1C1"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "A1.R1C1"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ActivateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ActivateCommandFunctionNode : CommandFunctionNode
     {
         public ActivateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ACTIVATE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ACTIVATE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ActivateNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ActivateNextCommandFunctionNode : CommandFunctionNode
     {
         public ActivateNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ACTIVATE.NEXT"),
+                new NameNode(rawName ?? "ACTIVATE.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -39,15 +39,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ActivateNotesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ActivateNotesCommandFunctionNode : CommandFunctionNode
     {
         public ActivateNotesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ACTIVATE.NOTES"),
+                new NameNode(rawName ?? "ACTIVATE.NOTES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -55,15 +55,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ActivatePrevCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ActivatePrevCommandFunctionNode : CommandFunctionNode
     {
         public ActivatePrevCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ACTIVATE.PREV"),
+                new NameNode(rawName ?? "ACTIVATE.PREV"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -71,15 +71,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ActiveCellFontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ActiveCellFontCommandFunctionNode : CommandFunctionNode
     {
         public ActiveCellFontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ACTIVE.CELL.FONT"),
+                new NameNode(rawName ?? "ACTIVE.CELL.FONT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -87,15 +87,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AddinManagerCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddinManagerCommandFunctionNode : CommandFunctionNode
     {
         public AddinManagerCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ADDIN.MANAGER"),
+                new NameNode(rawName ?? "ADDIN.MANAGER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -103,26 +103,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AddArrowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddArrowCommandFunctionNode : CommandFunctionNode
     {
         public AddArrowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ADD.ARROW"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ADD.ARROW"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AddChartAutoFormatCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddChartAutoFormatCommandFunctionNode : CommandFunctionNode
     {
         public AddChartAutoFormatCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ADD.CHART.AUTOFORMAT"),
+                new NameNode(rawName ?? "ADD.CHART.AUTOFORMAT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -130,15 +130,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AddListItemCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddListItemCommandFunctionNode : CommandFunctionNode
     {
         public AddListItemCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ADD.LIST.ITEM"),
+                new NameNode(rawName ?? "ADD.LIST.ITEM"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -146,26 +146,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AddOverlayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddOverlayCommandFunctionNode : CommandFunctionNode
     {
         public AddOverlayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ADD.OVERLAY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ADD.OVERLAY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AddPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddPrintAreaCommandFunctionNode : CommandFunctionNode
     {
         public AddPrintAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ADD.PRINT.AREA"),
+                new NameNode(rawName ?? "ADD.PRINT.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -173,69 +173,69 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AddToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AddToolCommandFunctionNode : CommandFunctionNode
     {
         public AddToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ADD.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ADD.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AlertCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AlertCommandFunctionNode : CommandFunctionNode
     {
         public AlertCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ALERT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ALERT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class AlignmentCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AlignmentCommandFunctionNode : CommandFunctionNode
     {
         public AlignmentCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ALIGNMENT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ALIGNMENT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ApplyNamesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ApplyNamesCommandFunctionNode : CommandFunctionNode
     {
         public ApplyNamesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("APPLY.NAMES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "APPLY.NAMES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ApplyStyleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ApplyStyleCommandFunctionNode : CommandFunctionNode
     {
         public ApplyStyleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("APPLY.STYLE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "APPLY.STYLE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AppActivateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppActivateCommandFunctionNode : CommandFunctionNode
     {
         public AppActivateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("APP.ACTIVATE"),
+                new NameNode(rawName ?? "APP.ACTIVATE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -243,15 +243,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AppActivateMicrosoftCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppActivateMicrosoftCommandFunctionNode : CommandFunctionNode
     {
         public AppActivateMicrosoftCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("APP.ACTIVATE.MICROSOFT"),
+                new NameNode(rawName ?? "APP.ACTIVATE.MICROSOFT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -259,15 +259,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AppMaximizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppMaximizeCommandFunctionNode : CommandFunctionNode
     {
         public AppMaximizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("APP.MAXIMIZE"),
+                new NameNode(rawName ?? "APP.MAXIMIZE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -275,15 +275,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AppMinimizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppMinimizeCommandFunctionNode : CommandFunctionNode
     {
         public AppMinimizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("APP.MINIMIZE"),
+                new NameNode(rawName ?? "APP.MINIMIZE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -291,59 +291,59 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AppMoveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppMoveCommandFunctionNode : CommandFunctionNode
     {
         public AppMoveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("APP.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "APP.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AppRestoreCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppRestoreCommandFunctionNode : CommandFunctionNode
     {
         public AppRestoreCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("APP.RESTORE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "APP.RESTORE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AppSizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AppSizeCommandFunctionNode : CommandFunctionNode
     {
         public AppSizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("APP.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "APP.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ArrangeAllCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ArrangeAllCommandFunctionNode : CommandFunctionNode
     {
         public ArrangeAllCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ARRANGE.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ARRANGE.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AssignToObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AssignToObjectCommandFunctionNode : CommandFunctionNode
     {
         public AssignToObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ASSIGN.TO.OBJECT"),
+                new NameNode(rawName ?? "ASSIGN.TO.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -351,15 +351,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AssignToToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AssignToToolCommandFunctionNode : CommandFunctionNode
     {
         public AssignToToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ASSIGN.TO.TOOL"),
+                new NameNode(rawName ?? "ASSIGN.TO.TOOL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -367,26 +367,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AttachTextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AttachTextCommandFunctionNode : CommandFunctionNode
     {
         public AttachTextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ATTACH.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ATTACH.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AttachToolbarsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AttachToolbarsCommandFunctionNode : CommandFunctionNode
     {
         public AttachToolbarsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ATTACH.TOOLBARS"),
+                new NameNode(rawName ?? "ATTACH.TOOLBARS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -394,37 +394,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AttributesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AttributesCommandFunctionNode : CommandFunctionNode
     {
         public AttributesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ATTRIBUTES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ATTRIBUTES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AutocorrectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AutocorrectCommandFunctionNode : CommandFunctionNode
     {
         public AutocorrectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AUTOCORRECT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "AUTOCORRECT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class AutoOutlineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AutoOutlineCommandFunctionNode : CommandFunctionNode
     {
         public AutoOutlineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("AUTO.OUTLINE"),
+                new NameNode(rawName ?? "AUTO.OUTLINE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -432,45 +432,45 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class AxesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class AxesCommandFunctionNode : CommandFunctionNode
     {
         public AxesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("AXES"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "AXES"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BeepCommandFunctionNode : BuiltInCommandFunctionNode
+    public class BeepCommandFunctionNode : CommandFunctionNode
     {
         public BeepCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BEEP"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BEEP"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BorderCommandFunctionNode : BuiltInCommandFunctionNode
+    public class BorderCommandFunctionNode : CommandFunctionNode
     {
         public BorderCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("BORDER"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "BORDER"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class BringToFrontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class BringToFrontCommandFunctionNode : CommandFunctionNode
     {
         public BringToFrontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("BRING.TO.FRONT"),
+                new NameNode(rawName ?? "BRING.TO.FRONT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -478,15 +478,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CalculateDocumentCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CalculateDocumentCommandFunctionNode : CommandFunctionNode
     {
         public CalculateDocumentCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CALCULATE.DOCUMENT"),
+                new NameNode(rawName ?? "CALCULATE.DOCUMENT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -494,15 +494,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CalculateNowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CalculateNowCommandFunctionNode : CommandFunctionNode
     {
         public CalculateNowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CALCULATE.NOW"),
+                new NameNode(rawName ?? "CALCULATE.NOW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -510,37 +510,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CalculationCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CalculationCommandFunctionNode : CommandFunctionNode
     {
         public CalculationCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CALCULATION"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CALCULATION"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class CancelCopyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CancelCopyCommandFunctionNode : CommandFunctionNode
     {
         public CancelCopyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CANCEL.COPY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CANCEL.COPY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class CellProtectionCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CellProtectionCommandFunctionNode : CommandFunctionNode
     {
         public CellProtectionCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CELL.PROTECTION"),
+                new NameNode(rawName ?? "CELL.PROTECTION"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -548,26 +548,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ChangeLinkCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ChangeLinkCommandFunctionNode : CommandFunctionNode
     {
         public ChangeLinkCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHANGE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CHANGE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ChartAddDataCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ChartAddDataCommandFunctionNode : CommandFunctionNode
     {
         public ChartAddDataCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CHART.ADD.DATA"),
+                new NameNode(rawName ?? "CHART.ADD.DATA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -575,26 +575,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ChartTrendCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ChartTrendCommandFunctionNode : CommandFunctionNode
     {
         public ChartTrendCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CHART.TREND"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CHART.TREND"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ChartWizardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ChartWizardCommandFunctionNode : CommandFunctionNode
     {
         public ChartWizardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CHART.WIZARD"),
+                new NameNode(rawName ?? "CHART.WIZARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -602,15 +602,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CheckboxPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CheckboxPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public CheckboxPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CHECKBOX.PROPERTIES"),
+                new NameNode(rawName ?? "CHECKBOX.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -618,25 +618,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ClearCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ClearCommandFunctionNode : CommandFunctionNode
     {
         public ClearCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CLEAR"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CLEAR"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ClearOutlineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ClearOutlineCommandFunctionNode : CommandFunctionNode
     {
         public ClearOutlineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CLEAR.OUTLINE"),
+                new NameNode(rawName ?? "CLEAR.OUTLINE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -644,15 +644,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ClearPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ClearPrintAreaCommandFunctionNode : CommandFunctionNode
     {
         public ClearPrintAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CLEAR.PRINT.AREA"),
+                new NameNode(rawName ?? "CLEAR.PRINT.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -660,15 +660,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ClearRoutingSlipCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ClearRoutingSlipCommandFunctionNode : CommandFunctionNode
     {
         public ClearRoutingSlipCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CLEAR.ROUTING.SLIP"),
+                new NameNode(rawName ?? "CLEAR.ROUTING.SLIP"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -676,36 +676,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CloseCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CloseCommandFunctionNode : CommandFunctionNode
     {
         public CloseCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CLOSE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CLOSE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CloseAllCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CloseAllCommandFunctionNode : CommandFunctionNode
     {
         public CloseAllCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CLOSE.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CLOSE.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ColorPaletteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ColorPaletteCommandFunctionNode : CommandFunctionNode
     {
         public ColorPaletteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("COLOR.PALETTE"),
+                new NameNode(rawName ?? "COLOR.PALETTE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -713,15 +713,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ColumnWidthCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ColumnWidthCommandFunctionNode : CommandFunctionNode
     {
         public ColumnWidthCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("COLUMN.WIDTH"),
+                new NameNode(rawName ?? "COLUMN.WIDTH"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -729,37 +729,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CombinationCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CombinationCommandFunctionNode : CommandFunctionNode
     {
         public CombinationCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COMBINATION"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "COMBINATION"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ConsolidateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ConsolidateCommandFunctionNode : CommandFunctionNode
     {
         public ConsolidateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CONSOLIDATE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CONSOLIDATE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ConstrainNumericCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ConstrainNumericCommandFunctionNode : CommandFunctionNode
     {
         public ConstrainNumericCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CONSTRAIN.NUMERIC"),
+                new NameNode(rawName ?? "CONSTRAIN.NUMERIC"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -767,36 +767,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CopyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CopyCommandFunctionNode : CommandFunctionNode
     {
         public CopyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COPY"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "COPY"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class CopyChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CopyChartCommandFunctionNode : CommandFunctionNode
     {
         public CopyChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COPY.CHART"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "COPY.CHART"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class CopyPictureCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CopyPictureCommandFunctionNode : CommandFunctionNode
     {
         public CopyPictureCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("COPY.PICTURE"),
+                new NameNode(rawName ?? "COPY.PICTURE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -804,26 +804,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CopyToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CopyToolCommandFunctionNode : CommandFunctionNode
     {
         public CopyToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("COPY.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "COPY.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class CreateNamesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CreateNamesCommandFunctionNode : CommandFunctionNode
     {
         public CreateNamesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CREATE.NAMES"),
+                new NameNode(rawName ?? "CREATE.NAMES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -831,15 +831,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CreatePublisherCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CreatePublisherCommandFunctionNode : CommandFunctionNode
     {
         public CreatePublisherCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CREATE.PUBLISHER"),
+                new NameNode(rawName ?? "CREATE.PUBLISHER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -847,15 +847,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CustomizeToolbarCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CustomizeToolbarCommandFunctionNode : CommandFunctionNode
     {
         public CustomizeToolbarCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("CUSTOMIZE.TOOLBAR"),
+                new NameNode(rawName ?? "CUSTOMIZE.TOOLBAR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -863,47 +863,47 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class CutCommandFunctionNode : BuiltInCommandFunctionNode
+    public class CutCommandFunctionNode : CommandFunctionNode
     {
         public CutCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("CUT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DataDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataDeleteCommandFunctionNode : CommandFunctionNode
     {
         public DataDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATA.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DATA.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DataFindCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataFindCommandFunctionNode : CommandFunctionNode
     {
         public DataFindCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATA.FIND"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DATA.FIND"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DataFindNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataFindNextCommandFunctionNode : CommandFunctionNode
     {
         public DataFindNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DATA.FIND.NEXT"),
+                new NameNode(rawName ?? "DATA.FIND.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -911,15 +911,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DataFindPrevCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataFindPrevCommandFunctionNode : CommandFunctionNode
     {
         public DataFindPrevCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DATA.FIND.PREV"),
+                new NameNode(rawName ?? "DATA.FIND.PREV"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -927,59 +927,59 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DataFormCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataFormCommandFunctionNode : CommandFunctionNode
     {
         public DataFormCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATA.FORM"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DATA.FORM"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DataLabelCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataLabelCommandFunctionNode : CommandFunctionNode
     {
         public DataLabelCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATA.LABEL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DATA.LABEL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DataSeriesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DataSeriesCommandFunctionNode : CommandFunctionNode
     {
         public DataSeriesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DATA.SERIES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DATA.SERIES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DefineNameCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DefineNameCommandFunctionNode : CommandFunctionNode
     {
         public DefineNameCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEFINE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DEFINE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DefineStyleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DefineStyleCommandFunctionNode : CommandFunctionNode
     {
         public DefineStyleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DEFINE.STYLE"),
+                new NameNode(rawName ?? "DEFINE.STYLE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -987,15 +987,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteArrowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteArrowCommandFunctionNode : CommandFunctionNode
     {
         public DeleteArrowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DELETE.ARROW"),
+                new NameNode(rawName ?? "DELETE.ARROW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1003,15 +1003,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteChartAutoFormatCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteChartAutoFormatCommandFunctionNode : CommandFunctionNode
     {
         public DeleteChartAutoFormatCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DELETE.CHART.AUTOFORMAT"),
+                new NameNode(rawName ?? "DELETE.CHART.AUTOFORMAT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1019,15 +1019,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteFormatCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteFormatCommandFunctionNode : CommandFunctionNode
     {
         public DeleteFormatCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DELETE.FORMAT"),
+                new NameNode(rawName ?? "DELETE.FORMAT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1035,37 +1035,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteNameCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteNameCommandFunctionNode : CommandFunctionNode
     {
         public DeleteNameCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DELETE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DELETE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DeleteNoteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteNoteCommandFunctionNode : CommandFunctionNode
     {
         public DeleteNoteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DELETE.NOTE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DELETE.NOTE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DeleteOverlayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteOverlayCommandFunctionNode : CommandFunctionNode
     {
         public DeleteOverlayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DELETE.OVERLAY"),
+                new NameNode(rawName ?? "DELETE.OVERLAY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1073,15 +1073,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteStyleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteStyleCommandFunctionNode : CommandFunctionNode
     {
         public DeleteStyleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DELETE.STYLE"),
+                new NameNode(rawName ?? "DELETE.STYLE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1089,36 +1089,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DeleteToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DeleteToolCommandFunctionNode : CommandFunctionNode
     {
         public DeleteToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DELETE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DELETE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class DemoteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DemoteCommandFunctionNode : CommandFunctionNode
     {
         public DemoteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DEMOTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DEMOTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DisableInputCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DisableInputCommandFunctionNode : CommandFunctionNode
     {
         public DisableInputCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("DISABLE.INPUT"),
+                new NameNode(rawName ?? "DISABLE.INPUT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1126,36 +1126,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class DisplayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DisplayCommandFunctionNode : CommandFunctionNode
     {
         public DisplayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DISPLAY"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DISPLAY"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class DuplicateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class DuplicateCommandFunctionNode : CommandFunctionNode
     {
         public DuplicateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("DUPLICATE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DUPLICATE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditboxPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditboxPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public EditboxPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("EDITBOX.PROPERTIES"),
+                new NameNode(rawName ?? "EDITBOX.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1163,15 +1163,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class EditionOptionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditionOptionsCommandFunctionNode : CommandFunctionNode
     {
         public EditionOptionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("EDITION.OPTIONS"),
+                new NameNode(rawName ?? "EDITION.OPTIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1179,81 +1179,81 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class EditColorCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditColorCommandFunctionNode : CommandFunctionNode
     {
         public EditColorCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.COLOR"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.COLOR"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditDeleteCommandFunctionNode : CommandFunctionNode
     {
         public EditDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditObjectCommandFunctionNode : CommandFunctionNode
     {
         public EditObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.OBJECT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.OBJECT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditRepeatCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditRepeatCommandFunctionNode : CommandFunctionNode
     {
         public EditRepeatCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.REPEAT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.REPEAT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditSeriesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditSeriesCommandFunctionNode : CommandFunctionNode
     {
         public EditSeriesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.SERIES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.SERIES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EditToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EditToolCommandFunctionNode : CommandFunctionNode
     {
         public EditToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EDIT.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "EDIT.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class EnableObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EnableObjectCommandFunctionNode : CommandFunctionNode
     {
         public EnableObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ENABLE.OBJECT"),
+                new NameNode(rawName ?? "ENABLE.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1261,15 +1261,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class EnableTipwizardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EnableTipwizardCommandFunctionNode : CommandFunctionNode
     {
         public EnableTipwizardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ENABLE.TIPWIZARD"),
+                new NameNode(rawName ?? "ENABLE.TIPWIZARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1277,48 +1277,48 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class EnterDataCommandFunctionNode : BuiltInCommandFunctionNode
+    public class EnterDataCommandFunctionNode : CommandFunctionNode
     {
         public EnterDataCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ENTER.DATA"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ENTER.DATA"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ErrorbarXCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ErrorbarXCommandFunctionNode : CommandFunctionNode
     {
         public ErrorbarXCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ERRORBAR.X"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ERRORBAR.X"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ErrorbarYCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ErrorbarYCommandFunctionNode : CommandFunctionNode
     {
         public ErrorbarYCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ERRORBAR.Y"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ERRORBAR.Y"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ExtendPolygonCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ExtendPolygonCommandFunctionNode : CommandFunctionNode
     {
         public ExtendPolygonCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("EXTEND.POLYGON"),
+                new NameNode(rawName ?? "EXTEND.POLYGON"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1326,112 +1326,112 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ExtractCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ExtractCommandFunctionNode : CommandFunctionNode
     {
         public ExtractCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("EXTRACT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "EXTRACT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FileCloseCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FileCloseCommandFunctionNode : CommandFunctionNode
     {
         public FileCloseCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILE.CLOSE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILE.CLOSE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FileDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FileDeleteCommandFunctionNode : CommandFunctionNode
     {
         public FileDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILE.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILE.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillAutoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillAutoCommandFunctionNode : CommandFunctionNode
     {
         public FillAutoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.AUTO"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILL.AUTO"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillDownCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillDownCommandFunctionNode : CommandFunctionNode
     {
         public FillDownCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.DOWN"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILL.DOWN"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillGroupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillGroupCommandFunctionNode : CommandFunctionNode
     {
         public FillGroupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.GROUP"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILL.GROUP"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillLeftCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillLeftCommandFunctionNode : CommandFunctionNode
     {
         public FillLeftCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.LEFT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILL.LEFT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillRightCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillRightCommandFunctionNode : CommandFunctionNode
     {
         public FillRightCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.RIGHT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FILL.RIGHT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FillUpCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FillUpCommandFunctionNode : CommandFunctionNode
     {
         public FillUpCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FILL.UP"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FILL.UP"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FilterAdvancedCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FilterAdvancedCommandFunctionNode : CommandFunctionNode
     {
         public FilterAdvancedCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FILTER.ADVANCED"),
+                new NameNode(rawName ?? "FILTER.ADVANCED"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1439,15 +1439,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FilterShowAllCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FilterShowAllCommandFunctionNode : CommandFunctionNode
     {
         public FilterShowAllCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FILTER.SHOW.ALL"),
+                new NameNode(rawName ?? "FILTER.SHOW.ALL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1455,36 +1455,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FindFileCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FindFileCommandFunctionNode : CommandFunctionNode
     {
         public FindFileCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FIND.FILE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FIND.FILE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FontCommandFunctionNode : CommandFunctionNode
     {
         public FontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FONT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FONT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FontPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FontPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public FontPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FONT.PROPERTIES"),
+                new NameNode(rawName ?? "FONT.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1492,26 +1492,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatAutoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatAutoCommandFunctionNode : CommandFunctionNode
     {
         public FormatAutoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.AUTO"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.AUTO"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormatChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatChartCommandFunctionNode : CommandFunctionNode
     {
         public FormatChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.CHART"),
+                new NameNode(rawName ?? "FORMAT.CHART"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1519,15 +1519,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatCharttypeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatCharttypeCommandFunctionNode : CommandFunctionNode
     {
         public FormatCharttypeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.CHARTTYPE"),
+                new NameNode(rawName ?? "FORMAT.CHARTTYPE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1535,26 +1535,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatFontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatFontCommandFunctionNode : CommandFunctionNode
     {
         public FormatFontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.FONT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.FONT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormatLegendCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatLegendCommandFunctionNode : CommandFunctionNode
     {
         public FormatLegendCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.LEGEND"),
+                new NameNode(rawName ?? "FORMAT.LEGEND"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1562,37 +1562,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatMainCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatMainCommandFunctionNode : CommandFunctionNode
     {
         public FormatMainCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.MAIN"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.MAIN"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormatMoveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatMoveCommandFunctionNode : CommandFunctionNode
     {
         public FormatMoveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormatNumberCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatNumberCommandFunctionNode : CommandFunctionNode
     {
         public FormatNumberCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.NUMBER"),
+                new NameNode(rawName ?? "FORMAT.NUMBER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1600,15 +1600,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatOverlayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatOverlayCommandFunctionNode : CommandFunctionNode
     {
         public FormatOverlayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.OVERLAY"),
+                new NameNode(rawName ?? "FORMAT.OVERLAY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1616,15 +1616,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatShapeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatShapeCommandFunctionNode : CommandFunctionNode
     {
         public FormatShapeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMAT.SHAPE"),
+                new NameNode(rawName ?? "FORMAT.SHAPE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1632,47 +1632,47 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormatSizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatSizeCommandFunctionNode : CommandFunctionNode
     {
         public FormatSizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormatTextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormatTextCommandFunctionNode : CommandFunctionNode
     {
         public FormatTextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMAT.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FORMAT.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FormulaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaCommandFunctionNode : CommandFunctionNode
     {
         public FormulaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FORMULA"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FORMULA"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FormulaArrayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaArrayCommandFunctionNode : CommandFunctionNode
     {
         public FormulaArrayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.ARRAY"),
+                new NameNode(rawName ?? "FORMULA.ARRAY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1680,15 +1680,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaFillCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaFillCommandFunctionNode : CommandFunctionNode
     {
         public FormulaFillCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.FILL"),
+                new NameNode(rawName ?? "FORMULA.FILL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1696,15 +1696,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaFindCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaFindCommandFunctionNode : CommandFunctionNode
     {
         public FormulaFindCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.FIND"),
+                new NameNode(rawName ?? "FORMULA.FIND"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1712,15 +1712,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaFindNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaFindNextCommandFunctionNode : CommandFunctionNode
     {
         public FormulaFindNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.FIND.NEXT"),
+                new NameNode(rawName ?? "FORMULA.FIND.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1728,15 +1728,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaFindPrevCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaFindPrevCommandFunctionNode : CommandFunctionNode
     {
         public FormulaFindPrevCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.FIND.PREV"),
+                new NameNode(rawName ?? "FORMULA.FIND.PREV"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1744,15 +1744,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaGotoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaGotoCommandFunctionNode : CommandFunctionNode
     {
         public FormulaGotoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.GOTO"),
+                new NameNode(rawName ?? "FORMULA.GOTO"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1760,15 +1760,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FormulaReplaceCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FormulaReplaceCommandFunctionNode : CommandFunctionNode
     {
         public FormulaReplaceCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FORMULA.REPLACE"),
+                new NameNode(rawName ?? "FORMULA.REPLACE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1776,15 +1776,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FreezePanesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FreezePanesCommandFunctionNode : CommandFunctionNode
     {
         public FreezePanesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FREEZE.PANES"),
+                new NameNode(rawName ?? "FREEZE.PANES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1792,36 +1792,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class FullCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FullCommandFunctionNode : CommandFunctionNode
     {
         public FullCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FULL"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FULL"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class FullScreenCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FullScreenCommandFunctionNode : CommandFunctionNode
     {
         public FullScreenCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("FULL.SCREEN"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "FULL.SCREEN"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class FunctionWizardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class FunctionWizardCommandFunctionNode : CommandFunctionNode
     {
         public FunctionWizardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("FUNCTION.WIZARD"),
+                new NameNode(rawName ?? "FUNCTION.WIZARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1829,15 +1829,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DAreaCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.AREA"),
+                new NameNode(rawName ?? "GALLERY.3D.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1845,15 +1845,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DBarCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DBarCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DBarCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.BAR"),
+                new NameNode(rawName ?? "GALLERY.3D.BAR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1861,15 +1861,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DColumnCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DColumnCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DColumnCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.COLUMN"),
+                new NameNode(rawName ?? "GALLERY.3D.COLUMN"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1877,15 +1877,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DLineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DLineCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DLineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.LINE"),
+                new NameNode(rawName ?? "GALLERY.3D.LINE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1893,15 +1893,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DPieCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DPieCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DPieCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.PIE"),
+                new NameNode(rawName ?? "GALLERY.3D.PIE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1909,15 +1909,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class Gallery3DSurfaceCommandFunctionNode : BuiltInCommandFunctionNode
+    public class Gallery3DSurfaceCommandFunctionNode : CommandFunctionNode
     {
         public Gallery3DSurfaceCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.3D.SURFACE"),
+                new NameNode(rawName ?? "GALLERY.3D.SURFACE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1925,15 +1925,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryAreaCommandFunctionNode : CommandFunctionNode
     {
         public GalleryAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.AREA"),
+                new NameNode(rawName ?? "GALLERY.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1941,26 +1941,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryBarCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryBarCommandFunctionNode : CommandFunctionNode
     {
         public GalleryBarCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GALLERY.BAR"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GALLERY.BAR"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class GalleryColumnCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryColumnCommandFunctionNode : CommandFunctionNode
     {
         public GalleryColumnCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.COLUMN"),
+                new NameNode(rawName ?? "GALLERY.COLUMN"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1968,15 +1968,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryCustomCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryCustomCommandFunctionNode : CommandFunctionNode
     {
         public GalleryCustomCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.CUSTOM"),
+                new NameNode(rawName ?? "GALLERY.CUSTOM"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -1984,15 +1984,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryDoughnutCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryDoughnutCommandFunctionNode : CommandFunctionNode
     {
         public GalleryDoughnutCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.DOUGHNUT"),
+                new NameNode(rawName ?? "GALLERY.DOUGHNUT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2000,15 +2000,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryLineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryLineCommandFunctionNode : CommandFunctionNode
     {
         public GalleryLineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.LINE"),
+                new NameNode(rawName ?? "GALLERY.LINE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2016,26 +2016,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryPieCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryPieCommandFunctionNode : CommandFunctionNode
     {
         public GalleryPieCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GALLERY.PIE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GALLERY.PIE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class GalleryRadarCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryRadarCommandFunctionNode : CommandFunctionNode
     {
         public GalleryRadarCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.RADAR"),
+                new NameNode(rawName ?? "GALLERY.RADAR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2043,15 +2043,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GalleryScatterCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GalleryScatterCommandFunctionNode : CommandFunctionNode
     {
         public GalleryScatterCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("GALLERY.SCATTER"),
+                new NameNode(rawName ?? "GALLERY.SCATTER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2059,47 +2059,47 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class GoalSeekCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GoalSeekCommandFunctionNode : CommandFunctionNode
     {
         public GoalSeekCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GOAL.SEEK"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GOAL.SEEK"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class GridlinesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class GridlinesCommandFunctionNode : CommandFunctionNode
     {
         public GridlinesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("GRIDLINES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GRIDLINES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class HideCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HideCommandFunctionNode : CommandFunctionNode
     {
         public HideCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HIDE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HIDE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HideallInkannotsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HideallInkannotsCommandFunctionNode : CommandFunctionNode
     {
         public HideallInkannotsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("HIDEALL.INKANNOTS"),
+                new NameNode(rawName ?? "HIDEALL.INKANNOTS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2107,15 +2107,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class HideallNotesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HideallNotesCommandFunctionNode : CommandFunctionNode
     {
         public HideallNotesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("HIDEALL.NOTES"),
+                new NameNode(rawName ?? "HIDEALL.NOTES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2123,15 +2123,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class HidecurrNoteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HidecurrNoteCommandFunctionNode : CommandFunctionNode
     {
         public HidecurrNoteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("HIDECURR.NOTE"),
+                new NameNode(rawName ?? "HIDECURR.NOTE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2139,77 +2139,77 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class HideDialogCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HideDialogCommandFunctionNode : CommandFunctionNode
     {
         public HideDialogCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HIDE.DIALOG"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "HIDE.DIALOG"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class HideObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HideObjectCommandFunctionNode : CommandFunctionNode
     {
         public HideObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HIDE.OBJECT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "HIDE.OBJECT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class HLineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HLineCommandFunctionNode : CommandFunctionNode
     {
         public HLineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HPageCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HPageCommandFunctionNode : CommandFunctionNode
     {
         public HPageCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HPAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HPAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HscrollCommandFunctionNode : BuiltInCommandFunctionNode
+    public class HscrollCommandFunctionNode : CommandFunctionNode
     {
         public HscrollCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("HSCROLL"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "HSCROLL"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class InsertCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertCommandFunctionNode : CommandFunctionNode
     {
         public InsertCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("INSERT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "INSERT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class InsertdatatableCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertdatatableCommandFunctionNode : CommandFunctionNode
     {
         public InsertdatatableCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("INSERTDATATABLE"),
+                new NameNode(rawName ?? "INSERTDATATABLE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2217,15 +2217,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class InsertMapObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertMapObjectCommandFunctionNode : CommandFunctionNode
     {
         public InsertMapObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("INSERT.MAP.OBJECT"),
+                new NameNode(rawName ?? "INSERT.MAP.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2233,15 +2233,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class InsertObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertObjectCommandFunctionNode : CommandFunctionNode
     {
         public InsertObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("INSERT.OBJECT"),
+                new NameNode(rawName ?? "INSERT.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2249,15 +2249,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class InsertPictureCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertPictureCommandFunctionNode : CommandFunctionNode
     {
         public InsertPictureCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("INSERT.PICTURE"),
+                new NameNode(rawName ?? "INSERT.PICTURE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2265,15 +2265,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class InsertTitleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class InsertTitleCommandFunctionNode : CommandFunctionNode
     {
         public InsertTitleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("INSERT.TITLE"),
+                new NameNode(rawName ?? "INSERT.TITLE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2281,25 +2281,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class JustifyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class JustifyCommandFunctionNode : CommandFunctionNode
     {
         public JustifyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("JUSTIFY"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "JUSTIFY"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LabelPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LabelPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public LabelPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("LABEL.PROPERTIES"),
+                new NameNode(rawName ?? "LABEL.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2307,68 +2307,68 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class LayoutCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LayoutCommandFunctionNode : CommandFunctionNode
     {
         public LayoutCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LAYOUT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LAYOUT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LegendCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LegendCommandFunctionNode : CommandFunctionNode
     {
         public LegendCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LEGEND"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LEGEND"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class LinePrintCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LinePrintCommandFunctionNode : CommandFunctionNode
     {
         public LinePrintCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LINE.PRINT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "LINE.PRINT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class LinkComboCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LinkComboCommandFunctionNode : CommandFunctionNode
     {
         public LinkComboCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LINK.COMBO"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "LINK.COMBO"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class LinkFormatCommandFunctionNode : BuiltInCommandFunctionNode
+    public class LinkFormatCommandFunctionNode : CommandFunctionNode
     {
         public LinkFormatCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LINK.FORMAT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "LINK.FORMAT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ListboxPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ListboxPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public ListboxPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("LISTBOX.PROPERTIES"),
+                new NameNode(rawName ?? "LISTBOX.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2376,26 +2376,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ListNamesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ListNamesCommandFunctionNode : CommandFunctionNode
     {
         public ListNamesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("LIST.NAMES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "LIST.NAMES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MacroOptionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MacroOptionsCommandFunctionNode : CommandFunctionNode
     {
         public MacroOptionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MACRO.OPTIONS"),
+                new NameNode(rawName ?? "MACRO.OPTIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2403,15 +2403,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailAddMailerCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailAddMailerCommandFunctionNode : CommandFunctionNode
     {
         public MailAddMailerCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.ADD.MAILER"),
+                new NameNode(rawName ?? "MAIL.ADD.MAILER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2419,15 +2419,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailDeleteMailerCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailDeleteMailerCommandFunctionNode : CommandFunctionNode
     {
         public MailDeleteMailerCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.DELETE.MAILER"),
+                new NameNode(rawName ?? "MAIL.DELETE.MAILER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2435,15 +2435,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailEditMailerCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailEditMailerCommandFunctionNode : CommandFunctionNode
     {
         public MailEditMailerCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.EDIT.MAILER"),
+                new NameNode(rawName ?? "MAIL.EDIT.MAILER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2451,15 +2451,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailForwardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailForwardCommandFunctionNode : CommandFunctionNode
     {
         public MailForwardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.FORWARD"),
+                new NameNode(rawName ?? "MAIL.FORWARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2467,37 +2467,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailLogOffCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailLogOffCommandFunctionNode : CommandFunctionNode
     {
         public MailLogOffCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAIL.LOGOFF"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MAIL.LOGOFF"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MailLogOnCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailLogOnCommandFunctionNode : CommandFunctionNode
     {
         public MailLogOnCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAIL.LOGON"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MAIL.LOGON"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MailNextLetterCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailNextLetterCommandFunctionNode : CommandFunctionNode
     {
         public MailNextLetterCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.NEXT.LETTER"),
+                new NameNode(rawName ?? "MAIL.NEXT.LETTER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2505,26 +2505,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailReplyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailReplyCommandFunctionNode : CommandFunctionNode
     {
         public MailReplyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAIL.REPLY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MAIL.REPLY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MailReplyAllCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailReplyAllCommandFunctionNode : CommandFunctionNode
     {
         public MailReplyAllCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.REPLY.ALL"),
+                new NameNode(rawName ?? "MAIL.REPLY.ALL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2532,15 +2532,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MailSendMailerCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MailSendMailerCommandFunctionNode : CommandFunctionNode
     {
         public MailSendMailerCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIL.SEND.MAILER"),
+                new NameNode(rawName ?? "MAIL.SEND.MAILER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2548,26 +2548,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MainChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MainChartCommandFunctionNode : CommandFunctionNode
     {
         public MainChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MAIN.CHART"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MAIN.CHART"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MainChartTypeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MainChartTypeCommandFunctionNode : CommandFunctionNode
     {
         public MainChartTypeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MAIN.CHART.TYPE"),
+                new NameNode(rawName ?? "MAIN.CHART.TYPE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2575,26 +2575,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MenuEditorCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MenuEditorCommandFunctionNode : CommandFunctionNode
     {
         public MenuEditorCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MENU.EDITOR"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MENU.EDITOR"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MergeStylesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MergeStylesCommandFunctionNode : CommandFunctionNode
     {
         public MergeStylesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("MERGE.STYLES"),
+                new NameNode(rawName ?? "MERGE.STYLES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2602,89 +2602,89 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class MessageCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MessageCommandFunctionNode : CommandFunctionNode
     {
         public MessageCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MESSAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "MESSAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class MoveBrkCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MoveBrkCommandFunctionNode : CommandFunctionNode
     {
         public MoveBrkCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MOVE.BRK"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MOVE.BRK"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class MoveToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class MoveToolCommandFunctionNode : CommandFunctionNode
     {
         public MoveToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("MOVE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MOVE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class NewCommandFunctionNode : BuiltInCommandFunctionNode
+    public class NewCommandFunctionNode : CommandFunctionNode
     {
         public NewCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NEW"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NEW"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class NewwebqueryCommandFunctionNode : BuiltInCommandFunctionNode
+    public class NewwebqueryCommandFunctionNode : CommandFunctionNode
     {
         public NewwebqueryCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NEWWEBQUERY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "NEWWEBQUERY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class NewWindowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class NewWindowCommandFunctionNode : CommandFunctionNode
     {
         public NewWindowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NEW.WINDOW"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "NEW.WINDOW"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class NormalCommandFunctionNode : BuiltInCommandFunctionNode
+    public class NormalCommandFunctionNode : CommandFunctionNode
     {
         public NormalCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("NORMAL"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "NORMAL"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ObjectPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ObjectPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public ObjectPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OBJECT.PROPERTIES"),
+                new NameNode(rawName ?? "OBJECT.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2692,15 +2692,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ObjectProtectionCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ObjectProtectionCommandFunctionNode : CommandFunctionNode
     {
         public ObjectProtectionCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OBJECT.PROTECTION"),
+                new NameNode(rawName ?? "OBJECT.PROTECTION"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2708,25 +2708,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OnDataCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnDataCommandFunctionNode : CommandFunctionNode
     {
         public OnDataCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.DATA"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ON.DATA"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OnDoubleclickCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnDoubleclickCommandFunctionNode : CommandFunctionNode
     {
         public OnDoubleclickCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ON.DOUBLECLICK"),
+                new NameNode(rawName ?? "ON.DOUBLECLICK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2734,122 +2734,122 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OnEntryCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnEntryCommandFunctionNode : CommandFunctionNode
     {
         public OnEntryCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.ENTRY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ON.ENTRY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OnKeyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnKeyCommandFunctionNode : CommandFunctionNode
     {
         public OnKeyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.KEY"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ON.KEY"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OnRecalcCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnRecalcCommandFunctionNode : CommandFunctionNode
     {
         public OnRecalcCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.RECALC"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ON.RECALC"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OnSheetCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnSheetCommandFunctionNode : CommandFunctionNode
     {
         public OnSheetCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.SHEET"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ON.SHEET"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OnTimeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnTimeCommandFunctionNode : CommandFunctionNode
     {
         public OnTimeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.TIME"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ON.TIME"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OnWindowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OnWindowCommandFunctionNode : CommandFunctionNode
     {
         public OnWindowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ON.WINDOW"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ON.WINDOW"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OpenCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OpenCommandFunctionNode : CommandFunctionNode
     {
         public OpenCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OPEN"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OPEN"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OpenLinksCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OpenLinksCommandFunctionNode : CommandFunctionNode
     {
         public OpenLinksCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OPEN.LINKS"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "OPEN.LINKS"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OpenMailCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OpenMailCommandFunctionNode : CommandFunctionNode
     {
         public OpenMailCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OPEN.MAIL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "OPEN.MAIL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OpenTextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OpenTextCommandFunctionNode : CommandFunctionNode
     {
         public OpenTextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OPEN.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "OPEN.TEXT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OptionsCalculationCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsCalculationCommandFunctionNode : CommandFunctionNode
     {
         public OptionsCalculationCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.CALCULATION"),
+                new NameNode(rawName ?? "OPTIONS.CALCULATION"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2857,15 +2857,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsChartCommandFunctionNode : CommandFunctionNode
     {
         public OptionsChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.CHART"),
+                new NameNode(rawName ?? "OPTIONS.CHART"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2873,15 +2873,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsEditCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsEditCommandFunctionNode : CommandFunctionNode
     {
         public OptionsEditCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.EDIT"),
+                new NameNode(rawName ?? "OPTIONS.EDIT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2889,15 +2889,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsGeneralCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsGeneralCommandFunctionNode : CommandFunctionNode
     {
         public OptionsGeneralCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.GENERAL"),
+                new NameNode(rawName ?? "OPTIONS.GENERAL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2905,15 +2905,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsListsAddCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsListsAddCommandFunctionNode : CommandFunctionNode
     {
         public OptionsListsAddCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.LISTS.ADD"),
+                new NameNode(rawName ?? "OPTIONS.LISTS.ADD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2921,15 +2921,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsListsDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsListsDeleteCommandFunctionNode : CommandFunctionNode
     {
         public OptionsListsDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.LISTS.DELETE"),
+                new NameNode(rawName ?? "OPTIONS.LISTS.DELETE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2937,26 +2937,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsMeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsMeCommandFunctionNode : CommandFunctionNode
     {
         public OptionsMeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OPTIONS.ME"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "OPTIONS.ME"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class OptionsMenonoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsMenonoCommandFunctionNode : CommandFunctionNode
     {
         public OptionsMenonoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.MENONO"),
+                new NameNode(rawName ?? "OPTIONS.MENONO"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2964,15 +2964,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsSaveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsSaveCommandFunctionNode : CommandFunctionNode
     {
         public OptionsSaveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.SAVE"),
+                new NameNode(rawName ?? "OPTIONS.SAVE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2980,15 +2980,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsSpellCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsSpellCommandFunctionNode : CommandFunctionNode
     {
         public OptionsSpellCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.SPELL"),
+                new NameNode(rawName ?? "OPTIONS.SPELL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -2996,15 +2996,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsTransitionCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsTransitionCommandFunctionNode : CommandFunctionNode
     {
         public OptionsTransitionCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.TRANSITION"),
+                new NameNode(rawName ?? "OPTIONS.TRANSITION"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3012,15 +3012,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OptionsViewCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OptionsViewCommandFunctionNode : CommandFunctionNode
     {
         public OptionsViewCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OPTIONS.VIEW"),
+                new NameNode(rawName ?? "OPTIONS.VIEW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3028,35 +3028,35 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class OutlineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OutlineCommandFunctionNode : CommandFunctionNode
     {
         public OutlineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OUTLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OUTLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OverlayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OverlayCommandFunctionNode : CommandFunctionNode
     {
         public OverlayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("OVERLAY"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OVERLAY"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class OverlayChartTypeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class OverlayChartTypeCommandFunctionNode : CommandFunctionNode
     {
         public OverlayChartTypeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("OVERLAY.CHART.TYPE"),
+                new NameNode(rawName ?? "OVERLAY.CHART.TYPE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3064,57 +3064,57 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PageSetupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PageSetupCommandFunctionNode : CommandFunctionNode
     {
         public PageSetupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PAGE.SETUP"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PAGE.SETUP"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ParseCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ParseCommandFunctionNode : CommandFunctionNode
     {
         public ParseCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PARSE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PARSE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PasteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PasteCommandFunctionNode : CommandFunctionNode
     {
         public PasteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PASTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PASTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PasteLinkCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PasteLinkCommandFunctionNode : CommandFunctionNode
     {
         public PasteLinkCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PASTE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PASTE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PastePictureCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PastePictureCommandFunctionNode : CommandFunctionNode
     {
         public PastePictureCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PASTE.PICTURE"),
+                new NameNode(rawName ?? "PASTE.PICTURE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3122,15 +3122,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PastePictureLinkCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PastePictureLinkCommandFunctionNode : CommandFunctionNode
     {
         public PastePictureLinkCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PASTE.PICTURE.LINK"),
+                new NameNode(rawName ?? "PASTE.PICTURE.LINK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3138,15 +3138,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PasteSpecialCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PasteSpecialCommandFunctionNode : CommandFunctionNode
     {
         public PasteSpecialCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PASTE.SPECIAL"),
+                new NameNode(rawName ?? "PASTE.SPECIAL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3154,48 +3154,48 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PasteToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PasteToolCommandFunctionNode : CommandFunctionNode
     {
         public PasteToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PASTE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PASTE.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PatternsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PatternsCommandFunctionNode : CommandFunctionNode
     {
         public PatternsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PATTERNS"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PATTERNS"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PicklistCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PicklistCommandFunctionNode : CommandFunctionNode
     {
         public PicklistCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PICKLIST"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PICKLIST"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PivotAddFieldsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotAddFieldsCommandFunctionNode : CommandFunctionNode
     {
         public PivotAddFieldsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.ADD.FIELDS"),
+                new NameNode(rawName ?? "PIVOT.ADD.FIELDS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3203,26 +3203,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotFieldCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotFieldCommandFunctionNode : CommandFunctionNode
     {
         public PivotFieldCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PIVOT.FIELD"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PIVOT.FIELD"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PivotFieldGroupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotFieldGroupCommandFunctionNode : CommandFunctionNode
     {
         public PivotFieldGroupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.FIELD.GROUP"),
+                new NameNode(rawName ?? "PIVOT.FIELD.GROUP"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3230,15 +3230,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotFieldPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotFieldPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public PivotFieldPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.FIELD.PROPERTIES"),
+                new NameNode(rawName ?? "PIVOT.FIELD.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3246,15 +3246,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotFieldUngroupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotFieldUngroupCommandFunctionNode : CommandFunctionNode
     {
         public PivotFieldUngroupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.FIELD.UNGROUP"),
+                new NameNode(rawName ?? "PIVOT.FIELD.UNGROUP"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3262,26 +3262,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotItemCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotItemCommandFunctionNode : CommandFunctionNode
     {
         public PivotItemCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PIVOT.ITEM"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PIVOT.ITEM"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PivotItemPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotItemPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public PivotItemPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.ITEM.PROPERTIES"),
+                new NameNode(rawName ?? "PIVOT.ITEM.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3289,15 +3289,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotRefreshCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotRefreshCommandFunctionNode : CommandFunctionNode
     {
         public PivotRefreshCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.REFRESH"),
+                new NameNode(rawName ?? "PIVOT.REFRESH"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3305,15 +3305,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotShowPagesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotShowPagesCommandFunctionNode : CommandFunctionNode
     {
         public PivotShowPagesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.SHOW.PAGES"),
+                new NameNode(rawName ?? "PIVOT.SHOW.PAGES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3321,15 +3321,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotTableChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotTableChartCommandFunctionNode : CommandFunctionNode
     {
         public PivotTableChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.TABLE.CHART"),
+                new NameNode(rawName ?? "PIVOT.TABLE.CHART"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3337,15 +3337,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PivotTableWizardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PivotTableWizardCommandFunctionNode : CommandFunctionNode
     {
         public PivotTableWizardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PIVOT.TABLE.WIZARD"),
+                new NameNode(rawName ?? "PIVOT.TABLE.WIZARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3353,15 +3353,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PostDocumentCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PostDocumentCommandFunctionNode : CommandFunctionNode
     {
         public PostDocumentCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("POST.DOCUMENT"),
+                new NameNode(rawName ?? "POST.DOCUMENT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3369,47 +3369,47 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PrecisionCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PrecisionCommandFunctionNode : CommandFunctionNode
     {
         public PrecisionCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRECISION"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PRECISION"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PreferredCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PreferredCommandFunctionNode : CommandFunctionNode
     {
         public PreferredCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PREFERRED"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "PREFERRED"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class PrintCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PrintCommandFunctionNode : CommandFunctionNode
     {
         public PrintCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PRINT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRINT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class PrinterSetupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PrinterSetupCommandFunctionNode : CommandFunctionNode
     {
         public PrinterSetupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PRINTER.SETUP"),
+                new NameNode(rawName ?? "PRINTER.SETUP"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3417,15 +3417,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PrintPreviewCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PrintPreviewCommandFunctionNode : CommandFunctionNode
     {
         public PrintPreviewCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PRINT.PREVIEW"),
+                new NameNode(rawName ?? "PRINT.PREVIEW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3433,25 +3433,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PromoteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PromoteCommandFunctionNode : CommandFunctionNode
     {
         public PromoteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("PROMOTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PROMOTE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ProtectDocumentCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ProtectDocumentCommandFunctionNode : CommandFunctionNode
     {
         public ProtectDocumentCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PROTECT.DOCUMENT"),
+                new NameNode(rawName ?? "PROTECT.DOCUMENT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3459,15 +3459,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ProtectRevisionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ProtectRevisionsCommandFunctionNode : CommandFunctionNode
     {
         public ProtectRevisionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PROTECT.REVISIONS"),
+                new NameNode(rawName ?? "PROTECT.REVISIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3475,15 +3475,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class PushbuttonPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class PushbuttonPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public PushbuttonPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("PUSHBUTTON.PROPERTIES"),
+                new NameNode(rawName ?? "PUSHBUTTON.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3491,25 +3491,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class QuitCommandFunctionNode : BuiltInCommandFunctionNode
+    public class QuitCommandFunctionNode : CommandFunctionNode
     {
         public QuitCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("QUIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "QUIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class RemoveListItemCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RemoveListItemCommandFunctionNode : CommandFunctionNode
     {
         public RemoveListItemCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("REMOVE.LIST.ITEM"),
+                new NameNode(rawName ?? "REMOVE.LIST.ITEM"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3517,15 +3517,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class RemovePageBreakCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RemovePageBreakCommandFunctionNode : CommandFunctionNode
     {
         public RemovePageBreakCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("REMOVE.PAGE.BREAK"),
+                new NameNode(rawName ?? "REMOVE.PAGE.BREAK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3533,15 +3533,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class RenameObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RenameObjectCommandFunctionNode : CommandFunctionNode
     {
         public RenameObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("RENAME.OBJECT"),
+                new NameNode(rawName ?? "RENAME.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3549,15 +3549,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ReplaceFontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ReplaceFontCommandFunctionNode : CommandFunctionNode
     {
         public ReplaceFontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("REPLACE.FONT"),
+                new NameNode(rawName ?? "REPLACE.FONT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3565,26 +3565,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ResetToolCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ResetToolCommandFunctionNode : CommandFunctionNode
     {
         public ResetToolCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RESET.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "RESET.TOOL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class RmPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RmPrintAreaCommandFunctionNode : CommandFunctionNode
     {
         public RmPrintAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("RM.PRINT.AREA"),
+                new NameNode(rawName ?? "RM.PRINT.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3592,15 +3592,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class RouteDocumentCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RouteDocumentCommandFunctionNode : CommandFunctionNode
     {
         public RouteDocumentCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ROUTE.DOCUMENT"),
+                new NameNode(rawName ?? "ROUTE.DOCUMENT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3608,15 +3608,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class RoutingSlipCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RoutingSlipCommandFunctionNode : CommandFunctionNode
     {
         public RoutingSlipCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("ROUTING.SLIP"),
+                new NameNode(rawName ?? "ROUTING.SLIP"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3624,56 +3624,56 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class RowHeightCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RowHeightCommandFunctionNode : CommandFunctionNode
     {
         public RowHeightCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ROW.HEIGHT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ROW.HEIGHT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class RunCommandFunctionNode : BuiltInCommandFunctionNode
+    public class RunCommandFunctionNode : CommandFunctionNode
     {
         public RunCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("RUN"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "RUN"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SaveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveCommandFunctionNode : CommandFunctionNode
     {
         public SaveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SAVE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SAVE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SaveAsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveAsCommandFunctionNode : CommandFunctionNode
     {
         public SaveAsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SAVE.AS"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SAVE.AS"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SaveCopyAsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveCopyAsCommandFunctionNode : CommandFunctionNode
     {
         public SaveCopyAsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SAVE.COPY.AS"),
+                new NameNode(rawName ?? "SAVE.COPY.AS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3681,15 +3681,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SaveNewObjectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveNewObjectCommandFunctionNode : CommandFunctionNode
     {
         public SaveNewObjectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SAVE.NEW.OBJECT"),
+                new NameNode(rawName ?? "SAVE.NEW.OBJECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3697,15 +3697,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SaveWorkbookCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveWorkbookCommandFunctionNode : CommandFunctionNode
     {
         public SaveWorkbookCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SAVE.WORKBOOK"),
+                new NameNode(rawName ?? "SAVE.WORKBOOK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3713,15 +3713,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SaveWorkspaceCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SaveWorkspaceCommandFunctionNode : CommandFunctionNode
     {
         public SaveWorkspaceCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SAVE.WORKSPACE"),
+                new NameNode(rawName ?? "SAVE.WORKSPACE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3729,25 +3729,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScaleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScaleCommandFunctionNode : CommandFunctionNode
     {
         public ScaleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SCALE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SCALE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ScenarioAddCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioAddCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioAddCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.ADD"),
+                new NameNode(rawName ?? "SCENARIO.ADD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3755,15 +3755,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioCellsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioCellsCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioCellsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.CELLS"),
+                new NameNode(rawName ?? "SCENARIO.CELLS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3771,15 +3771,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioDeleteCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.DELETE"),
+                new NameNode(rawName ?? "SCENARIO.DELETE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3787,15 +3787,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioEditCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioEditCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioEditCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.EDIT"),
+                new NameNode(rawName ?? "SCENARIO.EDIT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3803,15 +3803,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioMergeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioMergeCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioMergeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.MERGE"),
+                new NameNode(rawName ?? "SCENARIO.MERGE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3819,15 +3819,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioShowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioShowCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioShowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.SHOW"),
+                new NameNode(rawName ?? "SCENARIO.SHOW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3835,15 +3835,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioShowNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioShowNextCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioShowNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.SHOW.NEXT"),
+                new NameNode(rawName ?? "SCENARIO.SHOW.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3851,15 +3851,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScenarioSummaryCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScenarioSummaryCommandFunctionNode : CommandFunctionNode
     {
         public ScenarioSummaryCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCENARIO.SUMMARY"),
+                new NameNode(rawName ?? "SCENARIO.SUMMARY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3867,15 +3867,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ScrollbarPropertiesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ScrollbarPropertiesCommandFunctionNode : CommandFunctionNode
     {
         public ScrollbarPropertiesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SCROLLBAR.PROPERTIES"),
+                new NameNode(rawName ?? "SCROLLBAR.PROPERTIES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3883,36 +3883,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SelectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectCommandFunctionNode : CommandFunctionNode
     {
         public SelectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SELECT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SELECT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SelectAllCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectAllCommandFunctionNode : CommandFunctionNode
     {
         public SelectAllCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SELECT.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SELECT.ALL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SelectChartCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectChartCommandFunctionNode : CommandFunctionNode
     {
         public SelectChartCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SELECT.CHART"),
+                new NameNode(rawName ?? "SELECT.CHART"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3920,26 +3920,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SelectEndCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectEndCommandFunctionNode : CommandFunctionNode
     {
         public SelectEndCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SELECT.END"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SELECT.END"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SelectLastCellCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectLastCellCommandFunctionNode : CommandFunctionNode
     {
         public SelectLastCellCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SELECT.LAST.CELL"),
+                new NameNode(rawName ?? "SELECT.LAST.CELL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3947,15 +3947,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SelectListItemCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectListItemCommandFunctionNode : CommandFunctionNode
     {
         public SelectListItemCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SELECT.LIST.ITEM"),
+                new NameNode(rawName ?? "SELECT.LIST.ITEM"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3963,15 +3963,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SelectPlotAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectPlotAreaCommandFunctionNode : CommandFunctionNode
     {
         public SelectPlotAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SELECT.PLOT.AREA"),
+                new NameNode(rawName ?? "SELECT.PLOT.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3979,15 +3979,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SelectSpecialCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SelectSpecialCommandFunctionNode : CommandFunctionNode
     {
         public SelectSpecialCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SELECT.SPECIAL"),
+                new NameNode(rawName ?? "SELECT.SPECIAL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -3995,37 +3995,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SendKeysCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SendKeysCommandFunctionNode : CommandFunctionNode
     {
         public SendKeysCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SEND.KEYS"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SEND.KEYS"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SendMailCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SendMailCommandFunctionNode : CommandFunctionNode
     {
         public SendMailCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SEND.MAIL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SEND.MAIL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SendToBackCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SendToBackCommandFunctionNode : CommandFunctionNode
     {
         public SendToBackCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SEND.TO.BACK"),
+                new NameNode(rawName ?? "SEND.TO.BACK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4033,26 +4033,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SeriesAxesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SeriesAxesCommandFunctionNode : CommandFunctionNode
     {
         public SeriesAxesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SERIES.AXES"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SERIES.AXES"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SeriesOrderCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SeriesOrderCommandFunctionNode : CommandFunctionNode
     {
         public SeriesOrderCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SERIES.ORDER"),
+                new NameNode(rawName ?? "SERIES.ORDER"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4060,37 +4060,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SeriesXCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SeriesXCommandFunctionNode : CommandFunctionNode
     {
         public SeriesXCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SERIES.X"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SERIES.X"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SeriesYCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SeriesYCommandFunctionNode : CommandFunctionNode
     {
         public SeriesYCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SERIES.Y"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SERIES.Y"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SetControlValueCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetControlValueCommandFunctionNode : CommandFunctionNode
     {
         public SetControlValueCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.CONTROL.VALUE"),
+                new NameNode(rawName ?? "SET.CONTROL.VALUE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4098,15 +4098,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetCriteriaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetCriteriaCommandFunctionNode : CommandFunctionNode
     {
         public SetCriteriaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.CRITERIA"),
+                new NameNode(rawName ?? "SET.CRITERIA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4114,15 +4114,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetDatabaseCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetDatabaseCommandFunctionNode : CommandFunctionNode
     {
         public SetDatabaseCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.DATABASE"),
+                new NameNode(rawName ?? "SET.DATABASE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4130,15 +4130,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetDialogDefaultCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetDialogDefaultCommandFunctionNode : CommandFunctionNode
     {
         public SetDialogDefaultCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.DIALOG.DEFAULT"),
+                new NameNode(rawName ?? "SET.DIALOG.DEFAULT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4146,15 +4146,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetDialogFocusCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetDialogFocusCommandFunctionNode : CommandFunctionNode
     {
         public SetDialogFocusCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.DIALOG.FOCUS"),
+                new NameNode(rawName ?? "SET.DIALOG.FOCUS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4162,26 +4162,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetExtractCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetExtractCommandFunctionNode : CommandFunctionNode
     {
         public SetExtractCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SET.EXTRACT"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SET.EXTRACT"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SetListItemCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetListItemCommandFunctionNode : CommandFunctionNode
     {
         public SetListItemCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.LIST.ITEM"),
+                new NameNode(rawName ?? "SET.LIST.ITEM"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4189,15 +4189,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetPageBreakCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetPageBreakCommandFunctionNode : CommandFunctionNode
     {
         public SetPageBreakCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.PAGE.BREAK"),
+                new NameNode(rawName ?? "SET.PAGE.BREAK"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4205,15 +4205,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetPreferredCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetPreferredCommandFunctionNode : CommandFunctionNode
     {
         public SetPreferredCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.PREFERRED"),
+                new NameNode(rawName ?? "SET.PREFERRED"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4221,15 +4221,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetPrintAreaCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetPrintAreaCommandFunctionNode : CommandFunctionNode
     {
         public SetPrintAreaCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.PRINT.AREA"),
+                new NameNode(rawName ?? "SET.PRINT.AREA"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4237,15 +4237,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetPrintTitlesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetPrintTitlesCommandFunctionNode : CommandFunctionNode
     {
         public SetPrintTitlesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.PRINT.TITLES"),
+                new NameNode(rawName ?? "SET.PRINT.TITLES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4253,15 +4253,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SetUpdateStatusCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SetUpdateStatusCommandFunctionNode : CommandFunctionNode
     {
         public SetUpdateStatusCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SET.UPDATE.STATUS"),
+                new NameNode(rawName ?? "SET.UPDATE.STATUS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4269,36 +4269,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ShareCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShareCommandFunctionNode : CommandFunctionNode
     {
         public ShareCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHARE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SHARE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ShareNameCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShareNameCommandFunctionNode : CommandFunctionNode
     {
         public ShareNameCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHARE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHARE.NAME"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SheetBackgroundCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SheetBackgroundCommandFunctionNode : CommandFunctionNode
     {
         public SheetBackgroundCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SHEET.BACKGROUND"),
+                new NameNode(rawName ?? "SHEET.BACKGROUND"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4306,26 +4306,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ShortMenusCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShortMenusCommandFunctionNode : CommandFunctionNode
     {
         public ShortMenusCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHORT.MENUS"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHORT.MENUS"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ShowActiveCellCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowActiveCellCommandFunctionNode : CommandFunctionNode
     {
         public ShowActiveCellCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SHOW.ACTIVE.CELL"),
+                new NameNode(rawName ?? "SHOW.ACTIVE.CELL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4333,15 +4333,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ShowClipboardCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowClipboardCommandFunctionNode : CommandFunctionNode
     {
         public ShowClipboardCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SHOW.CLIPBOARD"),
+                new NameNode(rawName ?? "SHOW.CLIPBOARD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4349,59 +4349,59 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class ShowDetailCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowDetailCommandFunctionNode : CommandFunctionNode
     {
         public ShowDetailCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHOW.DETAIL"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHOW.DETAIL"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ShowDialogCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowDialogCommandFunctionNode : CommandFunctionNode
     {
         public ShowDialogCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHOW.DIALOG"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHOW.DIALOG"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ShowInfoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowInfoCommandFunctionNode : CommandFunctionNode
     {
         public ShowInfoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHOW.INFO"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHOW.INFO"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ShowLevelsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowLevelsCommandFunctionNode : CommandFunctionNode
     {
         public ShowLevelsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SHOW.LEVELS"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SHOW.LEVELS"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ShowToolbarCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ShowToolbarCommandFunctionNode : CommandFunctionNode
     {
         public ShowToolbarCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SHOW.TOOLBAR"),
+                new NameNode(rawName ?? "SHOW.TOOLBAR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4409,15 +4409,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SortSpecialCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SortSpecialCommandFunctionNode : CommandFunctionNode
     {
         public SortSpecialCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SORT.SPECIAL"),
+                new NameNode(rawName ?? "SORT.SPECIAL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4425,58 +4425,58 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SoundNoteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SoundNoteCommandFunctionNode : CommandFunctionNode
     {
         public SoundNoteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SOUND.NOTE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SOUND.NOTE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SoundPlayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SoundPlayCommandFunctionNode : CommandFunctionNode
     {
         public SoundPlayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SOUND.PLAY"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SOUND.PLAY"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SpellingCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SpellingCommandFunctionNode : CommandFunctionNode
     {
         public SpellingCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SPELLING"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SPELLING"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class SplitCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SplitCommandFunctionNode : CommandFunctionNode
     {
         public SplitCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("SPLIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SPLIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class StandardFontCommandFunctionNode : BuiltInCommandFunctionNode
+    public class StandardFontCommandFunctionNode : CommandFunctionNode
     {
         public StandardFontCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("STANDARD.FONT"),
+                new NameNode(rawName ?? "STANDARD.FONT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4484,15 +4484,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class StandardWidthCommandFunctionNode : BuiltInCommandFunctionNode
+    public class StandardWidthCommandFunctionNode : CommandFunctionNode
     {
         public StandardWidthCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("STANDARD.WIDTH"),
+                new NameNode(rawName ?? "STANDARD.WIDTH"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4500,25 +4500,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class StyleCommandFunctionNode : BuiltInCommandFunctionNode
+    public class StyleCommandFunctionNode : CommandFunctionNode
     {
         public StyleCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("STYLE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "STYLE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class SubscribeToCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SubscribeToCommandFunctionNode : CommandFunctionNode
     {
         public SubscribeToCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SUBSCRIBE.TO"),
+                new NameNode(rawName ?? "SUBSCRIBE.TO"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4526,15 +4526,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SubtotalCreateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SubtotalCreateCommandFunctionNode : CommandFunctionNode
     {
         public SubtotalCreateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SUBTOTAL.CREATE"),
+                new NameNode(rawName ?? "SUBTOTAL.CREATE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4542,15 +4542,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SubtotalRemoveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SubtotalRemoveCommandFunctionNode : CommandFunctionNode
     {
         public SubtotalRemoveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SUBTOTAL.REMOVE"),
+                new NameNode(rawName ?? "SUBTOTAL.REMOVE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4558,15 +4558,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class SummaryInfoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class SummaryInfoCommandFunctionNode : CommandFunctionNode
     {
         public SummaryInfoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("SUMMARY.INFO"),
+                new NameNode(rawName ?? "SUMMARY.INFO"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4574,36 +4574,36 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TableCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TableCommandFunctionNode : CommandFunctionNode
     {
         public TableCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TABLE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TABLE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class TabOrderCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TabOrderCommandFunctionNode : CommandFunctionNode
     {
         public TabOrderCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("TAB.ORDER"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "TAB.ORDER"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class TextToColumnsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TextToColumnsCommandFunctionNode : CommandFunctionNode
     {
         public TextToColumnsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TEXT.TO.COLUMNS"),
+                new NameNode(rawName ?? "TEXT.TO.COLUMNS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4611,15 +4611,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TracerClearCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TracerClearCommandFunctionNode : CommandFunctionNode
     {
         public TracerClearCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TRACER.CLEAR"),
+                new NameNode(rawName ?? "TRACER.CLEAR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4627,15 +4627,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TracerDisplayCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TracerDisplayCommandFunctionNode : CommandFunctionNode
     {
         public TracerDisplayCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TRACER.DISPLAY"),
+                new NameNode(rawName ?? "TRACER.DISPLAY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4643,15 +4643,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TracerErrorCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TracerErrorCommandFunctionNode : CommandFunctionNode
     {
         public TracerErrorCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TRACER.ERROR"),
+                new NameNode(rawName ?? "TRACER.ERROR"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4659,15 +4659,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TracerNavigateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TracerNavigateCommandFunctionNode : CommandFunctionNode
     {
         public TracerNavigateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TRACER.NAVIGATE"),
+                new NameNode(rawName ?? "TRACER.NAVIGATE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4675,15 +4675,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class TraverseNotesCommandFunctionNode : BuiltInCommandFunctionNode
+    public class TraverseNotesCommandFunctionNode : CommandFunctionNode
     {
         public TraverseNotesCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("TRAVERSE.NOTES"),
+                new NameNode(rawName ?? "TRAVERSE.NOTES"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4691,35 +4691,35 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class UndoCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UndoCommandFunctionNode : CommandFunctionNode
     {
         public UndoCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("UNDO"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "UNDO"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UngroupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UngroupCommandFunctionNode : CommandFunctionNode
     {
         public UngroupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("UNGROUP"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "UNGROUP"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UngroupSheetsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UngroupSheetsCommandFunctionNode : CommandFunctionNode
     {
         public UngroupSheetsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("UNGROUP.SHEETS"),
+                new NameNode(rawName ?? "UNGROUP.SHEETS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4727,25 +4727,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class UnhideCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UnhideCommandFunctionNode : CommandFunctionNode
     {
         public UnhideCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("UNHIDE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "UNHIDE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class UnlockedNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UnlockedNextCommandFunctionNode : CommandFunctionNode
     {
         public UnlockedNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("UNLOCKED.NEXT"),
+                new NameNode(rawName ?? "UNLOCKED.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4753,15 +4753,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class UnlockedPrevCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UnlockedPrevCommandFunctionNode : CommandFunctionNode
     {
         public UnlockedPrevCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("UNLOCKED.PREV"),
+                new NameNode(rawName ?? "UNLOCKED.PREV"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4769,15 +4769,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class UnprotectRevisionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UnprotectRevisionsCommandFunctionNode : CommandFunctionNode
     {
         public UnprotectRevisionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("UNPROTECT.REVISIONS"),
+                new NameNode(rawName ?? "UNPROTECT.REVISIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4785,37 +4785,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class UpdateLinkCommandFunctionNode : BuiltInCommandFunctionNode
+    public class UpdateLinkCommandFunctionNode : CommandFunctionNode
     {
         public UpdateLinkCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("UPDATE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "UPDATE.LINK"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class VbaActivateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VbaActivateCommandFunctionNode : CommandFunctionNode
     {
         public VbaActivateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VBAACTIVATE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "VBAACTIVATE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class VbaInsertFileCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VbaInsertFileCommandFunctionNode : CommandFunctionNode
     {
         public VbaInsertFileCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("VBA.INSERT.FILE"),
+                new NameNode(rawName ?? "VBA.INSERT.FILE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4823,15 +4823,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class VbaMakeAddinCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VbaMakeAddinCommandFunctionNode : CommandFunctionNode
     {
         public VbaMakeAddinCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("VBA.MAKE.ADDIN"),
+                new NameNode(rawName ?? "VBA.MAKE.ADDIN"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4839,15 +4839,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class VbaProcedureDefinitionCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VbaProcedureDefinitionCommandFunctionNode : CommandFunctionNode
     {
         public VbaProcedureDefinitionCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("VBA.PROCEDURE.DEFINITION"),
+                new NameNode(rawName ?? "VBA.PROCEDURE.DEFINITION"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4855,109 +4855,109 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class View3DCommandFunctionNode : BuiltInCommandFunctionNode
+    public class View3DCommandFunctionNode : CommandFunctionNode
     {
         public View3DCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VIEW.3D"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VIEW.3D"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class ViewDefineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ViewDefineCommandFunctionNode : CommandFunctionNode
     {
         public ViewDefineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VIEW.DEFINE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "VIEW.DEFINE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ViewDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ViewDeleteCommandFunctionNode : CommandFunctionNode
     {
         public ViewDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VIEW.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "VIEW.DELETE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ViewShowCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ViewShowCommandFunctionNode : CommandFunctionNode
     {
         public ViewShowCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VIEW.SHOW"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "VIEW.SHOW"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class VLineCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VLineCommandFunctionNode : CommandFunctionNode
     {
         public VLineCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VLINE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VPageCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VPageCommandFunctionNode : CommandFunctionNode
     {
         public VPageCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VPAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VPAGE"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class VscrollCommandFunctionNode : BuiltInCommandFunctionNode
+    public class VscrollCommandFunctionNode : CommandFunctionNode
     {
         public VscrollCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("VSCROLL"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VSCROLL"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WaitCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WaitCommandFunctionNode : CommandFunctionNode
     {
         public WaitCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WAIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "WAIT"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class WebPublishCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WebPublishCommandFunctionNode : CommandFunctionNode
     {
         public WebPublishCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WEB.PUBLISH"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WEB.PUBLISH"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class WindowMaximizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WindowMaximizeCommandFunctionNode : CommandFunctionNode
     {
         public WindowMaximizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WINDOW.MAXIMIZE"),
+                new NameNode(rawName ?? "WINDOW.MAXIMIZE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4965,15 +4965,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WindowMinimizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WindowMinimizeCommandFunctionNode : CommandFunctionNode
     {
         public WindowMinimizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WINDOW.MINIMIZE"),
+                new NameNode(rawName ?? "WINDOW.MINIMIZE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -4981,26 +4981,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WindowMoveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WindowMoveCommandFunctionNode : CommandFunctionNode
     {
         public WindowMoveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WINDOW.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WINDOW.MOVE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class WindowRestoreCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WindowRestoreCommandFunctionNode : CommandFunctionNode
     {
         public WindowRestoreCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WINDOW.RESTORE"),
+                new NameNode(rawName ?? "WINDOW.RESTORE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5008,26 +5008,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WindowSizeCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WindowSizeCommandFunctionNode : CommandFunctionNode
     {
         public WindowSizeCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WINDOW.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WINDOW.SIZE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class WorkbookActivateCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookActivateCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookActivateCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.ACTIVATE"),
+                new NameNode(rawName ?? "WORKBOOK.ACTIVATE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5035,15 +5035,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookAddCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookAddCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookAddCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.ADD"),
+                new NameNode(rawName ?? "WORKBOOK.ADD"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5051,15 +5051,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookCopyCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookCopyCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookCopyCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.COPY"),
+                new NameNode(rawName ?? "WORKBOOK.COPY"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5067,15 +5067,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookDeleteCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookDeleteCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookDeleteCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.DELETE"),
+                new NameNode(rawName ?? "WORKBOOK.DELETE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5083,15 +5083,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookHideCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookHideCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookHideCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.HIDE"),
+                new NameNode(rawName ?? "WORKBOOK.HIDE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5099,15 +5099,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookInsertCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookInsertCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookInsertCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.INSERT"),
+                new NameNode(rawName ?? "WORKBOOK.INSERT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5115,15 +5115,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookMoveCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookMoveCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookMoveCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.MOVE"),
+                new NameNode(rawName ?? "WORKBOOK.MOVE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5131,15 +5131,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookNameCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookNameCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookNameCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.NAME"),
+                new NameNode(rawName ?? "WORKBOOK.NAME"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5147,15 +5147,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookNewCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookNewCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookNewCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.NEW"),
+                new NameNode(rawName ?? "WORKBOOK.NEW"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5163,15 +5163,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookNextCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookNextCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookNextCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.NEXT"),
+                new NameNode(rawName ?? "WORKBOOK.NEXT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5179,15 +5179,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookOptionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookOptionsCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookOptionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.OPTIONS"),
+                new NameNode(rawName ?? "WORKBOOK.OPTIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5195,15 +5195,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookPrevCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookPrevCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookPrevCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.PREV"),
+                new NameNode(rawName ?? "WORKBOOK.PREV"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5211,15 +5211,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookProtectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookProtectCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookProtectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.PROTECT"),
+                new NameNode(rawName ?? "WORKBOOK.PROTECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5227,15 +5227,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookScrollCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookScrollCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookScrollCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.SCROLL"),
+                new NameNode(rawName ?? "WORKBOOK.SCROLL"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5243,15 +5243,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookSelectCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookSelectCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookSelectCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.SELECT"),
+                new NameNode(rawName ?? "WORKBOOK.SELECT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5259,15 +5259,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookTabSplitCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookTabSplitCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookTabSplitCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.TAB.SPLIT"),
+                new NameNode(rawName ?? "WORKBOOK.TAB.SPLIT"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5275,15 +5275,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkbookUnhideCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkbookUnhideCommandFunctionNode : CommandFunctionNode
     {
         public WorkbookUnhideCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKBOOK.UNHIDE"),
+                new NameNode(rawName ?? "WORKBOOK.UNHIDE"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5291,26 +5291,26 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkgroupCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkgroupCommandFunctionNode : CommandFunctionNode
     {
         public WorkgroupCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WORKGROUP"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WORKGROUP"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class WorkgroupOptionsCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkgroupOptionsCommandFunctionNode : CommandFunctionNode
     {
         public WorkgroupOptionsCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode("WORKGROUP.OPTIONS"),
+                new NameNode(rawName ?? "WORKGROUP.OPTIONS"),
                 questionMark,
                 leadingWhitespace,
                 trailingWhitespace
@@ -5318,24 +5318,24 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         { }
     }
 
-    public class WorkspaceCommandFunctionNode : BuiltInCommandFunctionNode
+    public class WorkspaceCommandFunctionNode : CommandFunctionNode
     {
         public WorkspaceCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("WORKSPACE"), questionMark, leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WORKSPACE"), questionMark, leadingWhitespace, trailingWhitespace)
         { }
     }
 
-    public class ZoomCommandFunctionNode : BuiltInCommandFunctionNode
+    public class ZoomCommandFunctionNode : CommandFunctionNode
     {
         public ZoomCommandFunctionNode(
-            QuestionMarkNode? questionMark = null,
+            string? rawName = null, QuestionMarkNode? questionMark = null,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode("ZOOM"), questionMark, leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ZOOM"), questionMark, leadingWhitespace, trailingWhitespace) { }
     }
 }
