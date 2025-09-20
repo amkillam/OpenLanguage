@@ -30,7 +30,7 @@
   <PropertyGroup>
     <PackageId>OpenLanguage</PackageId>
     <Authors>Adam Killam</Authors>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/amkillam/openlanguage</RepositoryUrl>
     <RepositoryBranch>main</RepositoryBranch>
