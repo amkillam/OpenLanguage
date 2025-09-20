@@ -69,6 +69,7 @@ message(STATUS "Configured to build for frameworks: ${SUPPORTED_FRAMEWORKS}")
 set(SOLUTION_FILE "${CMAKE_SOURCE_DIR}/OpenLanguage.sln")
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage")
 set(GENERATED_DIR "${PROJECT_DIR}/Generated")
+set(GENERATED_ASSETS_DIR "${GENERATED_DIR}/Assets")
 set(TEST_PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage.Test")
 set(TEST_RESULTS_DIR "${TEST_PROJECT_DIR}/TestResults")
 set(TEST_RESULTS_COVERAGE_DIR "${TEST_RESULTS_DIR}/coverage")
@@ -86,6 +87,35 @@ file(GLOB_RECURSE LEX_FILES "${PROJECT_DIR}/**/*.lex")
 # Exclude files that are already in the Generated directory to avoid reprocessing.
 list(FILTER YACC_FILES EXCLUDE REGEX ^${GENERATED_DIR})
 list(FILTER LEX_FILES EXCLUDE REGEX ^${GENERATED_DIR})
+
+add_custom_target(create_generated_assets_directory
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${GENERATED_ASSETS_DIR}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Creating Generated/Assets directory"
+)
+add_custom_target(generate_package_assets
+    COMMAND ${CMAKE_COMMAND} -E copy
+         "${CMAKE_SOURCE_DIR}/docs/img/logo.png"
+         "${GENERATED_ASSETS_DIR}/logo.png"
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Copying logo asset to output directory"
+    DEPENDS create_generated_assets_directory
+
+    COMMAND ${CMAKE_COMMAND} -E copy
+         "${CMAKE_SOURCE_DIR}/LICENSE"
+         "${GENERATED_ASSETS_DIR}/LICENSE"
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Copying license asset to output directory"
+    DEPENDS create_generated_assets_directory
+
+    COMMAND ${CMAKE_COMMAND} -E copy
+         "${CMAKE_SOURCE_DIR}/README.md"
+         "${GENERATED_ASSETS_DIR}/README.md"
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Copying README asset to output directory"
+    DEPENDS create_generated_assets_directory
+
+)
 
 # Custom target to process .y and .lex files
 add_custom_target(process ALL
@@ -135,6 +165,7 @@ endforeach()
 
 add_custom_target(build
     COMMENT "Building solution for specified RIDs"
+    DEPENDS generate_package_assets
 )
 
 # Create a separate build target for each RID and framework combination for concurrent compilation
@@ -234,6 +265,8 @@ add_custom_target(test
     COMMENT "Running unit tests"
 )
 
+
+
 # Pack target for distribution - dependent on preprocessing
 add_custom_target(pack
     COMMAND dotnet pack ${PROJECT_DIR}/OpenLanguage.csproj
@@ -241,6 +274,7 @@ add_custom_target(pack
         --configuration Release
         --property:OutputPath="${CMAKE_BINARY_DIR}/packages"
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    DEPENDS process generate_package_assets build
 
     COMMAND ${CMAKE_COMMAND} -E copy
          "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/pack/package/release/*.nupkg"
@@ -248,7 +282,6 @@ add_custom_target(pack
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 
     COMMAND echo "Ready to publish to NuGet. Run: dotnet nuget push ${CMAKE_BINARY_DIR}/packages/*.nupkg --source https://api.nuget.org/v3/index.json"
-    DEPENDS process
     COMMENT "Packaging for NuGet publication"
 )
 

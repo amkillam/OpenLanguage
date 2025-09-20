@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.1.1</Version>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <DefineConstants>EXPORT_GPPG</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -14,10 +13,38 @@
     <OptimizationPreference>Speed</OptimizationPreference>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="Generated/Assets/README.md">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
+    <None Include="Generated/Assets/logo.png">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
+    <None Include="Generated/Assets/LICENSE">
+      <Pack>true</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <PackageId>OpenLanguage</PackageId>
+    <Authors>Adam Killam</Authors>
+    <Version>0.1.1</Version>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/amkillam/openlanguage</RepositoryUrl>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageProjectUrl>https://github.com/amkillam/openlanguage</PackageProjectUrl>
+    <PackageDescription>A C# library providing lexers, parsers, and other processing tools for Open Office XML DSLs.</PackageDescription>
+    <PackageTags>OpenXML;OpenOfficeXML;SpreadsheetML;WordML;Formula;DSL;Parser;Lexer;GPPG;GPLEX</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
   <ItemGroup Label="OpenLanguage.SpreadsheetML.Formula">
     <YaccFile Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
       <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
-      <Arguments>/gplex /nolines /report</Arguments>
+      <Arguments>/gplex /nolines</Arguments>
     </YaccFile>
     <None Include="Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs">
       <AutoGen>True</AutoGen>
@@ -46,5 +73,11 @@
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
     <PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.1" />
     <PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Generated/Assets/**/*" CopyToOutputDirectory="PreserveNewest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Generated/Assets/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
   </ItemGroup>
 </Project>
