@@ -73,6 +73,9 @@ jobs:
           files: |
             build/packages/*.nupkg
             build/docs/site/**
+          overwrite_files: true
+          make_latest: true
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
