@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class IndexFieldInstruction | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class IndexFieldInstruction | OpenLanguage Documentation ">
+      
+      <meta name="description" content="Represents a strongly-typed INDEX field instruction. Builds an index using the index entries specified by XE fields, and inserts that index at this place in the document. Each index entry and subentry is a separate paragraph unless the \r switch is used.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction.md&amp;value=---%0Auid%3A%20OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction">
+
+
+
+  <h1 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction" class="text-break">
+Class IndexFieldInstruction  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.WordprocessingML.html">WordprocessingML</a>.<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.html">FieldInstruction</a>.<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Typed.html">Typed</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a strongly-typed INDEX field instruction.
+Builds an index using the index entries specified by XE fields, and inserts that index at this place in the document.
+Each index entry and subentry is a separate paragraph unless the \r switch is used.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class IndexFieldInstruction : TypedFieldInstruction</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Typed.TypedFieldInstruction.html">TypedFieldInstruction</a></div>
+      <div><span class="xref">IndexFieldInstruction</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Typed.TypedFieldInstruction.html#OpenLanguage_WordprocessingML_FieldInstruction_Typed_TypedFieldInstruction_Source">TypedFieldInstruction.Source</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction__ctor_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.#ctor*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction__ctor_OpenLanguage_WordprocessingML_FieldInstruction_FieldInstruction_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.#ctor(OpenLanguage.WordprocessingML.FieldInstruction.FieldInstruction)">
+  IndexFieldInstruction(FieldInstruction)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the IndexFieldInstruction class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IndexFieldInstruction(FieldInstruction source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.FieldInstruction.html">FieldInstruction</a></dt>
+    <dd><p>The source FieldInstruction to parse.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_BookmarkName_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.BookmarkName*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_BookmarkName" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.BookmarkName">
+  BookmarkName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \b field-argument
+Builds an index for the portion of the document marked by the bookmark indicated by this field argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? BookmarkName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_CrossReferenceSeparator_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.CrossReferenceSeparator*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_CrossReferenceSeparator" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.CrossReferenceSeparator">
+  CrossReferenceSeparator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \k field-argument
+Specifies a sequence of characters that is used to separate an index entry and its cross reference.
+Used for cross references produced by XE entries having a \t switch. By default, a period (.) and space sequence is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? CrossReferenceSeparator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EnableYomiText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EnableYomiText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EnableYomiText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EnableYomiText">
+  EnableYomiText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \y
+Enables the use of yomi text for index entries. Yomi text is used for phonetic sorting in East Asian languages.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableYomiText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EntryPageSeparator_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EntryPageSeparator*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EntryPageSeparator" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EntryPageSeparator">
+  EntryPageSeparator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \e field-argument
+Specifies a sequence of characters that is used to separate an index entry and its first page number.
+By default, a comma (,) and space sequence is used. If text contains a horizontal tab character,
+the page number list is right justified in the column.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? EntryPageSeparator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EntryTypeFilter_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EntryTypeFilter*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_EntryTypeFilter" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.EntryTypeFilter">
+  EntryTypeFilter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \f field-argument
+Builds an index using only those entries having the entry type (XE) specified by this field argument.
+Without this switch, all entries are included.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? EntryTypeFilter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_IndexHeadingText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.IndexHeadingText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_IndexHeadingText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.IndexHeadingText">
+  IndexHeadingText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \h field-argument
+Builds an index such that this field argument occurs as a heading—formatted with the Index Heading style—at the start of each set of entries for any given letter.
+If the first letter in text is A or a, that letter is replaced with the corresponding letter for each letter set.
+To replace the default heading with a blank line, use a space as text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? IndexHeadingText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_LanguageId_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.LanguageId*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_LanguageId" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.LanguageId">
+  LanguageId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \z field-argument
+Uses the language ID specified by this field argument to generate the index.
+This affects sorting and formatting of the index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LanguageIdentifier? LanguageId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.LanguageIdentifier.html">LanguageIdentifier</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_LetterRange_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.LetterRange*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_LetterRange" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.LetterRange">
+  LetterRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \p field-argument
+Builds an index using only those entries whose first letter falls within the range specified by this field argument.
+Format is &quot;startLetter-endLetter&quot;. If startLetter is &quot;!&quot;, entries whose first character is not a letter are included,
+along with letters starting from A. The letters in the range can be either upper- or lowercase.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? LetterRange { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_NumberOfColumns_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.NumberOfColumns*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_NumberOfColumns" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.NumberOfColumns">
+  NumberOfColumns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \c field-argument
+Builds an index having the number of columns per page specified by this field argument.
+That number can be 1–4. Without this switch, the number of columns is 1.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? NumberOfColumns { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_PageNumberSeparator_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.PageNumberSeparator*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_PageNumberSeparator" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.PageNumberSeparator">
+  PageNumberSeparator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \l field-argument
+Specifies a sequence of characters that is used to separate two page numbers in a page number list.
+By default, a comma (,) and space sequence is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? PageNumberSeparator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_PageRangeSeparator_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.PageRangeSeparator*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_PageRangeSeparator" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.PageRangeSeparator">
+  PageRangeSeparator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \g field-argument
+Specifies a sequence of characters that is used to separate the start and end of a page range.
+By default, an en dash is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? PageRangeSeparator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_SequenceName_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.SequenceName*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_SequenceName" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.SequenceName">
+  SequenceName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \s field-argument
+Includes with each page number the sequence number of the sequence name specified by this field argument.
+The sequence number is included along with the page number, separated by a hyphen (-) by default,
+or by the character specified in \d switch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SequenceName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_SequencePageSeparator_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.SequencePageSeparator*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_SequencePageSeparator" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.SequencePageSeparator">
+  SequencePageSeparator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \d field-argument
+Specifies a sequence of characters that is used to separate sequence numbers and page numbers when the \s switch is used.
+By default, a hyphen (-) is used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SequencePageSeparator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_UseRunInFormat_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.UseRunInFormat*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_UseRunInFormat" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.UseRunInFormat">
+  UseRunInFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \r
+Runs subentries into the same line as the main entry. Colons (:) separate main entries from subentries;
+semicolons (;) separate subentries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseRunInFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_ToString_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.ToString*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_Typed_IndexFieldInstruction_ToString" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.Typed.IndexFieldInstruction.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L388"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reconstructs the field instruction as a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The field instruction string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/WordprocessingML/FieldInstruction/Typed/Instruction/IndexFieldInstruction.cs/#L12" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

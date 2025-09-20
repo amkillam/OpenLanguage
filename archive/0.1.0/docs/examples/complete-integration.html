@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Complete Integration Example | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Complete Integration Example | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/complete-integration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="complete-integration-example">Complete Integration Example</h1>
+
+<p>This document demonstrates a comprehensive real-world example that integrates multiple OpenLanguage components to create a complete document processing application.</p>
+<h2 id="scenario-mail-merge-report-generator">Scenario: Mail Merge Report Generator</h2>
+<p>This example creates a sophisticated mail merge system that combines formula parsing, field instruction processing, and localization features to generate personalized financial reports.</p>
+<h3 id="complete-application-structure">Complete Application Structure</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class FinancialReportGenerator
+{
+    private readonly LanguageIdentifier _language;
+    private readonly List&lt;CustomerData&gt; _customers;
+
+    public FinancialReportGenerator(LanguageIdentifier language)
+    {
+        _language = language;
+        _customers = new List&lt;CustomerData&gt;();
+    }
+
+    public void AddCustomer(CustomerData customer) =&gt; _customers.Add(customer);
+
+    public DocumentTemplate CreateReportTemplate()
+    {
+        var template = new DocumentTemplate(_language);
+
+        // Header section with company info and date
+        template.AddHeaderFields();
+
+        // Customer address block
+        template.AddAddressSection();
+
+        // Financial summary with calculated fields
+        template.AddFinancialSummary();
+
+        // Detailed transaction table
+        template.AddTransactionTable();
+
+        // Footer with terms and conditions
+        template.AddFooterSection();
+
+        return template;
+    }
+
+    public void GenerateReports(DocumentTemplate template)
+    {
+        foreach (var customer in _customers)
+        {
+            var personalizedDocument = template.PersonalizeForCustomer(customer);
+            Console.WriteLine($&quot;Generated report for: {customer.Name}&quot;);
+            Console.WriteLine(personalizedDocument.ToString());
+            Console.WriteLine(new string('=', 80));
+        }
+    }
+}
+
+public class CustomerData
+{
+    public string Name { get; set; } = &quot;&quot;;
+    public string Company { get; set; } = &quot;&quot;;
+    public Address Address { get; set; } = new Address();
+    public List&lt;Transaction&gt; Transactions { get; set; } = new List&lt;Transaction&gt;();
+    public decimal CreditLimit { get; set; }
+    public DateTime LastPaymentDate { get; set; }
+
+    public decimal TotalBalance =&gt; Transactions.Sum(t =&gt; t.Amount);
+    public decimal AverageTransaction =&gt; Transactions.Any() ? Transactions.Average(t =&gt; t.Amount) : 0;
+    public int TransactionCount =&gt; Transactions.Count;
+}
+
+public class Address
+{
+    public string Street { get; set; } = &quot;&quot;;
+    public string City { get; set; } = &quot;&quot;;
+    public string State { get; set; } = &quot;&quot;;
+    public PostalData ZipCode { get; set; } = new PostalData(&quot;00000&quot;);
+    public CountryRegion Country { get; set; } = CountryRegion.UnitedStates;
+}
+
+public class Transaction
+{
+    public DateTime Date { get; set; }
+    public string Description { get; set; } = &quot;&quot;;
+    public decimal Amount { get; set; }
+    public TransactionType Type { get; set; }
+}
+
+public enum TransactionType
+{
+    Sale,
+    Payment,
+    Credit,
+    Adjustment
+}
+</code></pre>
+<h3 id="document-template-builder">Document Template Builder</h3>
+<pre><code class="lang-csharp">public class DocumentTemplate
+{
+    private readonly LanguageIdentifier _language;
+    private readonly List&lt;FieldInstruction&gt; _fields;
+    private readonly List&lt;Formula&gt; _formulas;
+
+    public DocumentTemplate(LanguageIdentifier language)
+    {
+        _language = language;
+        _fields = new List&lt;FieldInstruction&gt;();
+        _formulas = new List&lt;Formula&gt;();
+    }
+
+    public void AddHeaderFields()
+    {
+        // Company name from document properties
+        var companyField = new FieldInstruction(&quot;DOCPROPERTY&quot;);
+        companyField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;Company&quot;));
+        _fields.Add(companyField);
+
+        // Localized date field
+        var dateField = CreateLocalizedDateField();
+        _fields.Add(dateField);
+
+        // Page numbering
+        var pageField = new FieldInstruction(&quot;PAGE&quot;);
+        _fields.Add(pageField);
+
+        var pageTotalField = new FieldInstruction(&quot;NUMPAGES&quot;);
+        _fields.Add(pageTotalField);
+    }
+
+    public void AddAddressSection()
+    {
+        // Customer greeting with name formatting
+        var greetingField = new FieldInstruction(&quot;GREETINGLINE&quot;);
+        greetingField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\f&quot;));
+        greetingField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, GetLocalizedGreeting()));
+        greetingField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\l&quot;));
+        greetingField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, GetLocalizedPunctuation()));
+        _fields.Add(greetingField);
+
+        // Address block with country-specific formatting
+        var addressField = new FieldInstruction(&quot;ADDRESSBLOCK&quot;);
+        addressField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\l&quot;));
+        addressField.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)_language).ToString()));
+        _fields.Add(addressField);
+
+        // Postal barcode for US addresses
+        var barcodeField = CreateConditionalBarcodeField();
+        _fields.Add(barcodeField);
+    }
+
+    public void AddFinancialSummary()
+    {
+        // Current balance
+        var balanceField = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        balanceField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;TotalBalance&quot;));
+        balanceField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\#&quot;));
+        balanceField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, GetLocalizedCurrencyFormat()));
+        _fields.Add(balanceField);
+
+        // Credit utilization calculation
+        var creditUtilizationFormula = FormulaParser.Parse(&quot;=TotalBalance/CreditLimit*100&quot;);
+        _formulas.Add(creditUtilizationFormula);
+
+        // Average transaction amount
+        var avgField = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        avgField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;AverageTransaction&quot;));
+        avgField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\#&quot;));
+        avgField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, GetLocalizedCurrencyFormat()));
+        _fields.Add(avgField);
+
+        // Days since last payment
+        var daysSincePayment = new FieldInstruction(&quot;IF&quot;);
+        var lastPaymentDate = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        lastPaymentDate.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;LastPaymentDate&quot;));
+
+        daysSincePayment.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, lastPaymentDate));
+        daysSincePayment.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;&lt;&gt;&quot;));
+        daysSincePayment.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;&quot;));
+
+        // Calculate days difference
+        var daysCalc = new FieldInstruction(&quot;DATE&quot;);
+        daysCalc.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@&quot;));
+        daysCalc.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;d&quot;));
+
+        daysSincePayment.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, daysCalc));
+        daysSincePayment.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;No payment recorded&quot;));
+
+        _fields.Add(daysSincePayment);
+    }
+
+    public void AddTransactionTable()
+    {
+        // Database field for transaction details
+        var dbField = new FieldInstruction(&quot;DATABASE&quot;);
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\d&quot;));
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;OLEDB;Provider=Microsoft.ACE.OLEDB.12.0;Data Source=transactions.xlsx;&quot;));
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\s&quot;));
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;SELECT Date, Description, Amount FROM Transactions WHERE CustomerID = { MERGEFIELD CustomerID }&quot;));
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\t&quot;));
+        dbField.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)DatabaseTableFormat.Professional).ToString()));
+
+        _fields.Add(dbField);
+    }
+
+    public void AddFooterSection()
+    {
+        // Terms and conditions with hyperlink
+        var termsLink = new FieldInstruction(&quot;HYPERLINK&quot;);
+        termsLink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;https://company.com/terms&quot;));
+        termsLink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, GetLocalizedTermsText()));
+        termsLink.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\o&quot;));
+        termsLink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;View full terms and conditions&quot;));
+        _fields.Add(termsLink);
+
+        // Contact information
+        var contactField = new FieldInstruction(&quot;DOCPROPERTY&quot;);
+        contactField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;ContactInfo&quot;));
+        _fields.Add(contactField);
+    }
+
+    private FieldInstruction CreateLocalizedDateField()
+    {
+        var dateField = new FieldInstruction(&quot;DATE&quot;);
+        dateField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@&quot;));
+
+        string dateFormat = _language switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;MMMM d, yyyy&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;d MMMM yyyy&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;d MMMM yyyy&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;d. MMMM yyyy&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;yyyy年MM月dd日&quot;,
+            _ =&gt; &quot;MMMM d, yyyy&quot;
+        };
+
+        dateField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, dateFormat));
+        return dateField;
+    }
+
+    private FieldInstruction CreateConditionalBarcodeField()
+    {
+        var ifField = new FieldInstruction(&quot;IF&quot;);
+
+        // Check if country is US
+        var countryField = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        countryField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;Country&quot;));
+
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, countryField));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;=&quot;));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;UnitedStates&quot;));
+
+        // Create barcode if US
+        var barcodeField = new FieldInstruction(&quot;BARCODE&quot;);
+        var zipField = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        zipField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;ZipCode&quot;));
+
+        barcodeField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, zipField));
+        barcodeField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\f&quot;));
+        barcodeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;A&quot;));
+
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, barcodeField));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;&quot;));
+
+        return ifField;
+    }
+
+    private string GetLocalizedGreeting()
+    {
+        return _language switch
+        {
+            LanguageIdentifier.EnglishUS or LanguageIdentifier.EnglishUK =&gt; &quot;Dear&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;Cher&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;Liebe&quot;,
+            LanguageIdentifier.Spanish =&gt; &quot;Estimado&quot;,
+            _ =&gt; &quot;Dear&quot;
+        };
+    }
+
+    private string GetLocalizedPunctuation()
+    {
+        return _language switch
+        {
+            LanguageIdentifier.FrenchFrance =&gt; &quot; :&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;,&quot;,
+            _ =&gt; &quot;,&quot;
+        };
+    }
+
+    private string GetLocalizedCurrencyFormat()
+    {
+        return _language switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;$#,##0.00&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;£#,##0.00&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;#,##0.00 €&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;#.##0,00 €&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;¥#,##0&quot;,
+            _ =&gt; &quot;$#,##0.00&quot;
+        };
+    }
+
+    private string GetLocalizedTermsText()
+    {
+        return _language switch
+        {
+            LanguageIdentifier.EnglishUS or LanguageIdentifier.EnglishUK =&gt; &quot;Terms and Conditions&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;Conditions Générales&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;Allgemeine Geschäftsbedingungen&quot;,
+            LanguageIdentifier.Spanish =&gt; &quot;Términos y Condiciones&quot;,
+            _ =&gt; &quot;Terms and Conditions&quot;
+        };
+    }
+
+    public PersonalizedDocument PersonalizeForCustomer(CustomerData customer)
+    {
+        var personalizedFields = new List&lt;string&gt;();
+
+        foreach (var field in _fields)
+        {
+            string personalizedField = PersonalizeField(field, customer);
+            personalizedFields.Add(personalizedField);
+        }
+
+        var personalizedFormulas = new List&lt;string&gt;();
+        foreach (var formula in _formulas)
+        {
+            string personalizedFormula = PersonalizeFormula(formula, customer);
+            personalizedFormulas.Add(personalizedFormula);
+        }
+
+        return new PersonalizedDocument(customer, personalizedFields, personalizedFormulas);
+    }
+
+    private string PersonalizeField(FieldInstruction field, CustomerData customer)
+    {
+        // This would typically involve mail merge data binding
+        // For demonstration, we'll show the field structure
+        return $&quot;Field: {field}&quot;;
+    }
+
+    private string PersonalizeFormula(Formula formula, CustomerData customer)
+    {
+        // Replace formula variables with actual customer data
+        string formulaText = formula.ToString();
+
+        formulaText = formulaText.Replace(&quot;TotalBalance&quot;, customer.TotalBalance.ToString());
+        formulaText = formulaText.Replace(&quot;CreditLimit&quot;, customer.CreditLimit.ToString());
+
+        try
+        {
+            Ast.Node personalizedFormula = FormulaParser.Parse(formulaText);
+            return $&quot;Formula: {personalizedFormula} (Original: {formula})&quot;;
+        }
+        catch
+        {
+            return $&quot;Formula (unparseable): {formulaText}&quot;;
+        }
+    }
+}
+
+public class PersonalizedDocument
+{
+    public CustomerData Customer { get; }
+    public List&lt;string&gt; Fields { get; }
+    public List&lt;string&gt; Formulas { get; }
+
+    public PersonalizedDocument(CustomerData customer, List&lt;string&gt; fields, List&lt;string&gt; formulas)
+    {
+        Customer = customer;
+        Fields = fields;
+        Formulas = formulas;
+    }
+
+    public override string ToString()
+    {
+        var result = new System.Text.StringBuilder();
+        result.AppendLine($&quot;FINANCIAL REPORT FOR: {Customer.Name}&quot;);
+        result.AppendLine($&quot;Company: {Customer.Company}&quot;);
+        result.AppendLine($&quot;Address: {Customer.Address.Street}, {Customer.Address.City}, {Customer.Address.State} {Customer.Address.ZipCode}&quot;);
+        result.AppendLine();
+
+        result.AppendLine(&quot;FIELDS:&quot;);
+        foreach (var field in Fields)
+        {
+            result.AppendLine($&quot;  {field}&quot;);
+        }
+
+        result.AppendLine();
+        result.AppendLine(&quot;FORMULAS:&quot;);
+        foreach (var formula in Formulas)
+        {
+            result.AppendLine($&quot;  {formula}&quot;);
+        }
+
+        result.AppendLine();
+        result.AppendLine($&quot;Total Balance: ${Customer.TotalBalance:N2}&quot;);
+        result.AppendLine($&quot;Credit Limit: ${Customer.CreditLimit:N2}&quot;);
+        result.AppendLine($&quot;Average Transaction: ${Customer.AverageTransaction:N2}&quot;);
+        result.AppendLine($&quot;Transaction Count: {Customer.TransactionCount}&quot;);
+
+        return result.ToString();
+    }
+}
+</code></pre>
+<h3 id="usage-example">Usage Example</h3>
+<pre><code class="lang-csharp">public class Program
+{
+    public static void Main()
+    {
+        // Create report generator for US English
+        var reportGenerator = new FinancialReportGenerator(LanguageIdentifier.EnglishUS);
+
+        // Add sample customers
+        reportGenerator.AddCustomer(CreateSampleCustomer1());
+        reportGenerator.AddCustomer(CreateSampleCustomer2());
+
+        // Create document template
+        var template = reportGenerator.CreateReportTemplate();
+
+        // Generate personalized reports
+        reportGenerator.GenerateReports(template);
+
+        Console.WriteLine(&quot;\n&quot; + new string('=', 80));
+        Console.WriteLine(&quot;FRENCH VERSION&quot;);
+        Console.WriteLine(new string('=', 80));
+
+        // Generate French version
+        var frenchGenerator = new FinancialReportGenerator(LanguageIdentifier.FrenchFrance);
+        frenchGenerator.AddCustomer(CreateSampleCustomer1());
+
+        var frenchTemplate = frenchGenerator.CreateReportTemplate();
+        frenchGenerator.GenerateReports(frenchTemplate);
+    }
+
+    private static CustomerData CreateSampleCustomer1()
+    {
+        return new CustomerData
+        {
+            Name = &quot;John Smith&quot;,
+            Company = &quot;Acme Corporation&quot;,
+            Address = new Address
+            {
+                Street = &quot;123 Main Street&quot;,
+                City = &quot;Anytown&quot;,
+                State = &quot;CA&quot;,
+                ZipCode = new PostalData(&quot;12345-6789&quot;),
+                Country = CountryRegion.UnitedStates
+            },
+            CreditLimit = 10000m,
+            LastPaymentDate = DateTime.Now.AddDays(-15),
+            Transactions = new List&lt;Transaction&gt;
+            {
+                new Transaction { Date = DateTime.Now.AddDays(-30), Description = &quot;Purchase #1001&quot;, Amount = 250.50m, Type = TransactionType.Sale },
+                new Transaction { Date = DateTime.Now.AddDays(-25), Description = &quot;Purchase #1002&quot;, Amount = 175.25m, Type = TransactionType.Sale },
+                new Transaction { Date = DateTime.Now.AddDays(-20), Description = &quot;Payment&quot;, Amount = -200.00m, Type = TransactionType.Payment },
+                new Transaction { Date = DateTime.Now.AddDays(-10), Description = &quot;Purchase #1003&quot;, Amount = 89.99m, Type = TransactionType.Sale }
+            }
+        };
+    }
+
+    private static CustomerData CreateSampleCustomer2()
+    {
+        return new CustomerData
+        {
+            Name = &quot;Jane Doe&quot;,
+            Company = &quot;Global Industries&quot;,
+            Address = new Address
+            {
+                Street = &quot;456 Business Ave&quot;,
+                City = &quot;Commerce City&quot;,
+                State = &quot;NY&quot;,
+                ZipCode = new PostalData(&quot;54321&quot;),
+                Country = CountryRegion.UnitedStates
+            },
+            CreditLimit = 25000m,
+            LastPaymentDate = DateTime.Now.AddDays(-5),
+            Transactions = new List&lt;Transaction&gt;
+            {
+                new Transaction { Date = DateTime.Now.AddDays(-45), Description = &quot;Bulk Order #2001&quot;, Amount = 1250.00m, Type = TransactionType.Sale },
+                new Transaction { Date = DateTime.Now.AddDays(-30), Description = &quot;Payment&quot;, Amount = -1000.00m, Type = TransactionType.Payment },
+                new Transaction { Date = DateTime.Now.AddDays(-15), Description = &quot;Service Fee&quot;, Amount = 45.00m, Type = TransactionType.Sale },
+                new Transaction { Date = DateTime.Now.AddDays(-5), Description = &quot;Payment&quot;, Amount = -295.00m, Type = TransactionType.Payment }
+            }
+        };
+    }
+}
+</code></pre>
+<h3 id="advanced-features-demonstration">Advanced Features Demonstration</h3>
+<pre><code class="lang-csharp">public static class AdvancedFeatures
+{
+    public static void DemonstrateFormulaManipulation()
+    {
+        Console.WriteLine(&quot;=== Formula Manipulation Demo ===&quot;);
+
+        // Parse complex financial formulas
+        string[] formulas = {
+            &quot;=IF(TotalBalance&gt;CreditLimit*0.8,&quot;High Risk&quot;,&quot;Normal&quot;)&quot;,
+            &quot;=ROUND((TotalBalance/CreditLimit)*100,2)&quot;,
+            &quot;=VLOOKUP(CustomerID,CreditRatings,2,FALSE)&quot;,
+            &quot;=SUM(TransactionAmounts)*TaxRate&quot;
+        };
+
+        foreach (string formulaText in formulas)
+        {
+            try
+            {
+                Ast.Node formula = FormulaParser.Parse(formulaText);
+                Console.WriteLine($&quot;✓ Parsed: {formula}&quot;);
+
+                // Demonstrate formula reconstruction
+                string reconstructed = formula.ToString();
+                Console.WriteLine($&quot;  Reconstructed: {reconstructed}&quot;);
+
+                // Verify reconstruction by re-parsing
+                Ast.Node reparsed = FormulaParser.Parse(reconstructed);
+                Console.WriteLine($&quot;  Re-parsed successfully: {reparsed}&quot;);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($&quot;✗ Error with '{formulaText}': {ex.Message}&quot;);
+            }
+            Console.WriteLine();
+        }
+    }
+
+    public static void DemonstrateComplexFieldInstructions()
+    {
+        Console.WriteLine(&quot;=== Complex Field Instructions Demo ===&quot;);
+
+        // Nested IF with multiple conditions
+        string complexIf = &quot;IF { IF { MERGEFIELD Department } = &quot;Sales&quot; { MERGEFIELD SalesTarget } { MERGEFIELD StandardTarget } } &gt; { MERGEFIELD ActualSales } &quot;Target Met&quot; &quot;Below Target&quot;&quot;;
+
+        try
+        {
+            FieldInstruction field = FieldParser.Parse(complexIf);
+            Console.WriteLine($&quot;✓ Complex IF parsed: {field}&quot;);
+
+            // Analyze nested structure
+            int nestedCount = 0;
+            foreach (var arg in field.Arguments)
+            {
+                if (arg.Type == FieldArgumentType.NestedField)
+                {
+                    nestedCount++;
+                    Console.WriteLine($&quot;  Found nested field: {arg.Value}&quot;);
+                }
+            }
+            Console.WriteLine($&quot;  Total nested fields: {nestedCount}&quot;);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($&quot;✗ Error: {ex.Message}&quot;);
+        }
+    }
+
+    public static void DemonstrateDataValidation()
+    {
+        Console.WriteLine(&quot;=== Data Validation Demo ===&quot;);
+
+        // Test postal data validation
+        string[] zipCodes = { &quot;12345&quot;, &quot;12345-6789&quot;, &quot;123456789&quot;, &quot;1234&quot;, &quot;abcde&quot; };
+
+        foreach (string zip in zipCodes)
+        {
+            try
+            {
+                PostalData postal = new PostalData(zip);
+                Console.WriteLine($&quot;✓ Valid ZIP: {postal}&quot;);
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine($&quot;✗ Invalid ZIP: {zip}&quot;);
+            }
+        }
+
+        // Test measurement values
+        int[] measurements = { -32, -31, 0, 31, 32 };
+
+        foreach (int measure in measurements)
+        {
+            try
+            {
+                PtsMeasurementValue pts = new PtsMeasurementValue(measure);
+                Console.WriteLine($&quot;✓ Valid measurement: {pts} points&quot;);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine($&quot;✗ Invalid measurement: {measure} points&quot;);
+            }
+        }
+    }
+}
+</code></pre>
+<p>This comprehensive example demonstrates how all the OpenLanguage components work together to create a sophisticated document processing application with real-world functionality including formula parsing, field instruction processing, data validation, and internationalization support.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/complete-integration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
