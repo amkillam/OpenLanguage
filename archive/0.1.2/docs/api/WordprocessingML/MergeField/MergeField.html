@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Merge Field Lexer | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Merge Field Lexer | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/MergeField/MergeField.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="merge-field-lexer">Merge Field Lexer</h1>
+
+<p>The <code>OpenLanguage.WordprocessingML.MergeField</code> namespace provides lexical analysis functionality for parsing merge field placeholders using character-by-character state machine parsing.</p>
+<h2 id="overview">Overview</h2>
+<p>The merge field lexer provides:</p>
+<ul>
+<li><strong>Placeholder Parsing</strong>: Parse merge field placeholders with « » delimiters</li>
+<li><strong>State Machine Parsing</strong>: Character-by-character lexical analysis</li>
+<li><strong>Address Block Templates</strong>: Process templates containing multiple merge fields</li>
+<li><strong>Language ID Parsing</strong>: Parse language identifiers for localization</li>
+</ul>
+<h2 id="core-classes">Core Classes</h2>
+<h3 id="mergefieldlexer">MergeFieldLexer</h3>
+<p>Static class providing lexical analysis methods:</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+
+// Parse a single merge field placeholder
+var placeholder = MergeFieldLexer.ParseMergeField(&quot;«FirstName»&quot;);
+Console.WriteLine($&quot;Field Name: {placeholder.FieldName}&quot;); // &quot;FirstName&quot;
+
+// Parse with formatting switch
+var formatted = MergeFieldLexer.ParseMergeField(&quot;«LastName\* Upper»&quot;);
+Console.WriteLine($&quot;Field: {formatted.FieldName}&quot;);        // &quot;LastName&quot;
+Console.WriteLine($&quot;Switch: {formatted.FormattingSwitch}&quot;); // &quot;\* Upper&quot;
+</code></pre>
+<h3 id="mergefieldplaceholder">MergeFieldPlaceholder</h3>
+<p>Represents a parsed merge field placeholder:</p>
+<pre><code class="lang-csharp">public class MergeFieldPlaceholder
+{
+    public string FieldName { get; set; }           // Field name without delimiters
+    public string RawText { get; set; }             // Original placeholder text
+    public bool IsValid =&gt; !string.IsNullOrWhiteSpace(FieldName);
+    public string? FormattingSwitch { get; set; }   // Optional formatting switch
+}
+</code></pre>
+<h3 id="addressblocktemplate">AddressBlockTemplate</h3>
+<p>Represents a parsed address block template with merge fields:</p>
+<pre><code class="lang-csharp">public class AddressBlockTemplate
+{
+    public string RawTemplate { get; set; }                        // Original template text
+    public List&lt;MergeFieldPlaceholder&gt; Placeholders { get; set; }  // Found placeholders
+    public string ProcessedTemplate { get; set; }                  // Template with format specifiers
+}
+</code></pre>
+<h2 id="parsing-methods">Parsing Methods</h2>
+<h3 id="single-merge-field-parsing">Single Merge Field Parsing</h3>
+<pre><code class="lang-csharp">// Parse a simple merge field
+var simple = MergeFieldLexer.ParseMergeField(&quot;«CustomerName»&quot;);
+Console.WriteLine($&quot;Field: {simple.FieldName}&quot;);   // &quot;CustomerName&quot;
+Console.WriteLine($&quot;Valid: {simple.IsValid}&quot;);     // True
+
+// Parse with formatting switch
+var withSwitch = MergeFieldLexer.ParseMergeField(&quot;«Amount\* #,##0.00»&quot;);
+Console.WriteLine($&quot;Field: {withSwitch.FieldName}&quot;);           // &quot;Amount&quot;
+Console.WriteLine($&quot;Switch: {withSwitch.FormattingSwitch}&quot;);   // &quot;\* #,##0.00&quot;
+</code></pre>
+<h3 id="address-block-template-parsing">Address Block Template Parsing</h3>
+<pre><code class="lang-csharp">// Parse an address block template with multiple merge fields
+string template = &quot;«Title» «FirstName» «LastName»\n«Address1»\n«City», «State» «PostalCode»&quot;;
+var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
+
+Console.WriteLine($&quot;Found {addressBlock.Placeholders.Count} placeholders&quot;);
+Console.WriteLine($&quot;Processed template: {addressBlock.ProcessedTemplate}&quot;);
+// Output: &quot;Processed template: {0} {1} {2}\n{3}\n{4}, {5} {6}&quot;
+
+// Access individual placeholders
+foreach (var placeholder in addressBlock.Placeholders)
+{
+    Console.WriteLine($&quot;Field: {placeholder.FieldName}&quot;);
+}
+</code></pre>
+<h3 id="field-name-extraction">Field Name Extraction</h3>
+<pre><code class="lang-csharp">// Extract all unique merge field names from text
+string document = &quot;Dear «FirstName» «LastName», your order «OrderNumber» is ready.&quot;;
+var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(document);
+
+foreach (string fieldName in fieldNames)
+{
+    Console.WriteLine($&quot;Found field: {fieldName}&quot;);
+}
+// Output: &quot;FirstName&quot;, &quot;LastName&quot;, &quot;OrderNumber&quot;
+</code></pre>
+<h2 id="utility-methods">Utility Methods</h2>
+<h3 id="validation">Validation</h3>
+<pre><code class="lang-csharp">// Check if text contains valid merge fields
+string text1 = &quot;Hello «FirstName»!&quot;;
+string text2 = &quot;Hello World!&quot;;
+
+bool hasFields1 = MergeFieldLexer.ContainsValidMergeFields(text1); // True
+bool hasFields2 = MergeFieldLexer.ContainsValidMergeFields(text2); // False
+</code></pre>
+<h3 id="formatting">Formatting</h3>
+<pre><code class="lang-csharp">// Format a field name with merge field delimiters
+string formatted = MergeFieldLexer.FormatMergeField(&quot;CustomerName&quot;);
+Console.WriteLine(formatted); // &quot;«CustomerName»&quot;
+
+// Format with a formatting switch
+string withSwitch = MergeFieldLexer.FormatMergeFieldWithSwitch(&quot;Amount&quot;, &quot;* #,##0.00&quot;);
+Console.WriteLine(withSwitch); // &quot;«Amount\* #,##0.00»&quot;
+</code></pre>
+<h3 id="reconstruction">Reconstruction</h3>
+<pre><code class="lang-csharp">// Reconstruct a merge field from a placeholder object
+var placeholder = new MergeFieldPlaceholder
+{
+    FieldName = &quot;Total&quot;,
+    FormattingSwitch = &quot;* Currency&quot;
+};
+
+string reconstructed = MergeFieldLexer.Reconstruct(placeholder);
+Console.WriteLine(reconstructed); // &quot;«Total * Currency»&quot;
+</code></pre>
+<h2 id="language-id-parsing">Language ID Parsing</h2>
+<p>The lexer includes functionality for parsing language identifiers:</p>
+<h3 id="parse-language-ids">Parse Language IDs</h3>
+<pre><code class="lang-csharp">// Parse numeric LCID
+var langId1 = MergeFieldLexer.ParseLanguageId(&quot;1033&quot;);
+Console.WriteLine(langId1); // EnglishUS
+
+// Parse enum name
+var langId2 = MergeFieldLexer.ParseLanguageId(&quot;FrenchFrance&quot;);
+Console.WriteLine(langId2); // FrenchFrance
+
+// Parse culture name
+var langId3 = MergeFieldLexer.ParseLanguageId(&quot;en-US&quot;);
+Console.WriteLine(langId3); // EnglishUS
+
+// Invalid input returns null
+var invalid = MergeFieldLexer.ParseLanguageId(&quot;invalid&quot;);
+Console.WriteLine(invalid == null); // True
+</code></pre>
+<h2 id="state-machine-implementation">State Machine Implementation</h2>
+<p>The lexer uses a character-by-character state machine for robust parsing:</p>
+<h3 id="lexer-states">Lexer States</h3>
+<pre><code class="lang-csharp">internal enum MergeFieldLexerState
+{
+    SearchingForStart,          // Looking for « character
+    ParsingFieldName,           // Inside field, parsing name
+    ParsingFormattingSwitch,    // Parsing switch after backslash
+    SearchingForEnd             // Looking for » character
+}
+</code></pre>
+<h3 id="parsing-process">Parsing Process</h3>
+<ol>
+<li><strong>SearchingForStart</strong>: Scans text looking for opening « delimiter</li>
+<li><strong>ParsingFieldName</strong>: Extracts field name until backslash or closing delimiter</li>
+<li><strong>ParsingFormattingSwitch</strong>: Captures formatting switch text after backslash</li>
+<li><strong>SearchingForEnd</strong>: Completes parsing when closing » delimiter is found</li>
+</ol>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="complete-parsing-example">Complete Parsing Example</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+
+string template = @&quot;
+Dear «Title» «FirstName» «LastName»,
+
+Your account balance is «Balance\* Currency».
+Please contact us at «CompanyPhone» if you have questions.
+
+Sincerely,
+«AgentName\* Upper»
+&quot;;
+
+// Parse the entire template
+var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
+
+Console.WriteLine($&quot;Original template:&quot;);
+Console.WriteLine(addressBlock.RawTemplate);
+
+Console.WriteLine($&quot;\nFound {addressBlock.Placeholders.Count} merge fields:&quot;);
+foreach (var placeholder in addressBlock.Placeholders)
+{
+    Console.WriteLine($&quot;  Field: {placeholder.FieldName}&quot;);
+    if (!string.IsNullOrEmpty(placeholder.FormattingSwitch))
+    {
+        Console.WriteLine($&quot;    Switch: {placeholder.FormattingSwitch}&quot;);
+    }
+}
+
+Console.WriteLine($&quot;\nProcessed template:&quot;);
+Console.WriteLine(addressBlock.ProcessedTemplate);
+</code></pre>
+<h3 id="field-name-validation">Field Name Validation</h3>
+<pre><code class="lang-csharp">// Validate merge field syntax in user input
+string userInput = &quot;«FirstName» «InvalidField «LastName»&quot;;
+
+if (MergeFieldLexer.ContainsValidMergeFields(userInput))
+{
+    var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(userInput);
+    Console.WriteLine($&quot;Valid fields found: {string.Join(&quot;, &quot;, fieldNames)}&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;No valid merge fields found&quot;);
+}
+</code></pre>
+<h3 id="dynamic-field-generation">Dynamic Field Generation</h3>
+<pre><code class="lang-csharp">// Generate merge fields programmatically
+var fieldNames = new[] { &quot;FirstName&quot;, &quot;LastName&quot;, &quot;Email&quot;, &quot;Amount&quot; };
+var formattingSwitches = new[] { null, &quot;* Upper&quot;, null, &quot;* Currency&quot; };
+
+for (int i = 0; i &lt; fieldNames.Length; i++)
+{
+    string mergeField;
+
+    if (formattingSwitches[i] != null)
+    {
+        mergeField = MergeFieldLexer.FormatMergeFieldWithSwitch(
+            fieldNames[i],
+            formattingSwitches[i]
+        );
+    }
+    else
+    {
+        mergeField = MergeFieldLexer.FormatMergeField(fieldNames[i]);
+    }
+
+    Console.WriteLine($&quot;Generated: {mergeField}&quot;);
+}
+</code></pre>
+<h2 id="technical-details">Technical Details</h2>
+<ul>
+<li><strong>Character-by-Character Parsing</strong>: Uses state machine for robust parsing</li>
+<li><strong>Delimiter Support</strong>: Recognizes « and » characters for merge field boundaries</li>
+<li><strong>Switch Parsing</strong>: Handles formatting switches after backslash character</li>
+<li><strong>Language Support</strong>: Includes comprehensive language ID mapping</li>
+<li><strong>Whitespace Handling</strong>: Properly trims field names while preserving switch formatting</li>
+<li><strong>Error Tolerance</strong>: Gracefully handles malformed input</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>Only supports « » delimiter style (not {{ }} or other formats)</li>
+<li>Formatting switches are captured as strings but not further parsed</li>
+<li>No validation of switch syntax or values</li>
+<li>Language ID mapping covers common locales but may not be exhaustive</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a> - Generic field instruction handling</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/MergeField/MergeField.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

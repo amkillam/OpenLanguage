@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Formula Parsing Examples | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Formula Parsing Examples | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/formula.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="formula-parsing-examples">Formula Parsing Examples</h1>
+
+<p>This document demonstrates how to use the OpenLanguage SpreadsheetML Formula parser to parse and manipulate Excel formulas.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<h3 id="parsing-simple-formulas">Parsing Simple Formulas</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Parse a simple arithmetic formula
+Ast.Node formula = FormulaParser.Parse(&quot;=1+2*3&quot;);
+Console.WriteLine($&quot;Parsed AST: {formula}&quot;);
+
+// Parse cell references
+Ast.Node cellRef = FormulaParser.Parse(&quot;=A1+B2&quot;);
+Console.WriteLine($&quot;Cell reference formula: {cellRef}&quot;);
+
+// Parse function calls
+Ast.Node func = FormulaParser.Parse(&quot;=SUM(A1:A10)&quot;);
+Console.WriteLine($&quot;Function call: {func}&quot;);
+</code></pre>
+<h3 id="safe-parsing-with-tryparse">Safe Parsing with TryParse</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+string[] testFormulas = {
+    &quot;=A1+B1&quot;,
+    &quot;=SUM(1,2,3)&quot;,
+    &quot;=INVALID_SYNTAX(&quot;,
+    &quot;=IF(A1&gt;0,&quot;Positive&quot;,&quot;Non-positive&quot;)&quot;
+};
+
+foreach (string formulaText in testFormulas)
+{
+    Ast.Node? result = FormulaParser.TryParse(formulaText);
+    if (result != null)
+    {
+        Console.WriteLine($&quot;✓ Successfully parsed: {result}&quot;);
+    }
+    else
+    {
+        Console.WriteLine($&quot;✗ Failed to parse: {formulaText}&quot;);
+    }
+}
+</code></pre>
+<h2 id="working-with-different-formula-types">Working with Different Formula Types</h2>
+<h3 id="arithmetic-operations">Arithmetic Operations</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Basic arithmetic
+Ast.Node addition = FormulaParser.Parse(&quot;=10+5&quot;);
+Ast.Node subtraction = FormulaParser.Parse(&quot;=10-5&quot;);
+Ast.Node multiplication = FormulaParser.Parse(&quot;=10*5&quot;);
+Ast.Node division = FormulaParser.Parse(&quot;=10/5&quot;);
+Ast.Node exponentiation = FormulaParser.Parse(&quot;=2^3&quot;);
+
+// Complex expressions with precedence
+Ast.Node complex = FormulaParser.Parse(&quot;=(1+2)*3-4/2&quot;);
+Console.WriteLine($&quot;Complex expression: {complex}&quot;);
+</code></pre>
+<h3 id="cell-references">Cell References</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Relative references
+Ast.Node relative = FormulaParser.Parse(&quot;=A1+B2&quot;);
+
+// Absolute references
+Ast.Node absolute = FormulaParser.Parse(&quot;=$A$1+$B$2&quot;);
+
+// Mixed references
+Ast.Node mixed = FormulaParser.Parse(&quot;=$A1+B$2&quot;);
+
+// Range references
+Ast.Node range = FormulaParser.Parse(&quot;=SUM(A1:B10)&quot;);
+
+Console.WriteLine($&quot;Range formula: {range}&quot;);
+</code></pre>
+<h3 id="function-calls">Function Calls</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Simple functions
+Ast.Node sum = FormulaParser.Parse(&quot;=SUM(1,2,3,4,5)&quot;);
+Ast.Node average = FormulaParser.Parse(&quot;=AVERAGE(A1:A10)&quot;);
+Ast.Node count = FormulaParser.Parse(&quot;=COUNT(A1:A10)&quot;);
+
+// Nested functions
+Ast.Node nested = FormulaParser.Parse(&quot;=IF(SUM(A1:A10)&gt;0,AVERAGE(A1:A10),0)&quot;);
+Console.WriteLine($&quot;Nested function: {nested}&quot;);
+
+// Functions with string literals
+Ast.Node vlookup = FormulaParser.Parse(&quot;=VLOOKUP(A1,Sheet2!A:B,2,FALSE)&quot;);
+Console.WriteLine($&quot;VLOOKUP: {vlookup}&quot;);
+</code></pre>
+<h3 id="array-literals">Array Literals</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Horizontal array
+Ast.Node horizontalArray = FormulaParser.Parse(&quot;={1,2,3,4}&quot;);
+
+// Vertical array
+Ast.Node verticalArray = FormulaParser.Parse(&quot;={1;2;3;4}&quot;);
+
+// 2D array
+Ast.Node twoDArray = FormulaParser.Parse(&quot;={&quot;Name&quot;,&quot;Age&quot;;&quot;John&quot;,25;&quot;Jane&quot;,30}&quot;);
+
+Console.WriteLine($&quot;2D Array: {twoDArray}&quot;);
+</code></pre>
+<h3 id="logical-operations">Logical Operations</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Comparison operations
+Ast.Node comparison = FormulaParser.Parse(&quot;=A1&gt;B1&quot;);
+Ast.Node equality = FormulaParser.Parse(&quot;=A1=B1&quot;);
+Ast.Node inequality = FormulaParser.Parse(&quot;=A1&lt;&gt;B1&quot;);
+
+// Logical functions
+Ast.Node ifFunction = FormulaParser.Parse(&quot;=IF(A1&gt;0,&quot;Positive&quot;,&quot;Non-positive&quot;)&quot;);
+Ast.Node and = FormulaParser.Parse(&quot;=AND(A1&gt;0,B1&lt;10)&quot;);
+Ast.Node or = FormulaParser.Parse(&quot;=OR(A1&gt;100,B1&lt;0)&quot;);
+
+Console.WriteLine($&quot;IF function: {ifFunction}&quot;);
+</code></pre>
+<h2 id="advanced-examples">Advanced Examples</h2>
+<h3 id="working-with-named-ranges">Working with Named Ranges</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Named range references
+Ast.Node namedRange = FormulaParser.Parse(&quot;=SUM(SalesData)&quot;);
+Ast.Node namedRangeCalc = FormulaParser.Parse(&quot;=TotalRevenue/TotalCosts&quot;);
+
+Console.WriteLine($&quot;Named range calculation: {namedRangeCalc}&quot;);
+</code></pre>
+<h3 id="table-references-excel-tables">Table References (Excel Tables)</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Structured table references
+Ast.Node tableRef = FormulaParser.Parse(&quot;=Table1[@Column1]&quot;);
+Ast.Node tableSum = FormulaParser.Parse(&quot;=SUM(Table1[Revenue])&quot;);
+
+Console.WriteLine($&quot;Table reference: {tableRef}&quot;);
+</code></pre>
+<h3 id="error-values">Error Values</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Excel error values
+Ast.Node divByZero = FormulaParser.Parse(&quot;=#DIV/0!&quot;);
+Ast.Node naError = FormulaParser.Parse(&quot;=#N/A&quot;);
+Ast.Node valueError = FormulaParser.Parse(&quot;=#VALUE!&quot;);
+
+Console.WriteLine($&quot;Error value: {valueError}&quot;);
+</code></pre>
+<h2 id="modifying-parsed-formulas">Modifying Parsed Formulas</h2>
+<h3 id="accessing-ast-astnodes">Accessing AST Ast.Nodes</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
+
+Ast.Node formula = FormulaParser.Parse(&quot;=A1+B1&quot;);
+Ast.Node rootNode = formula;
+
+// The AST can be traversed and modified
+// Note: Specific node manipulation depends on the AST structure
+Console.WriteLine($&quot;Original: {formula}&quot;);
+Console.WriteLine($&quot;Reconstructed: {rootNode}&quot;);
+</code></pre>
+<h3 id="formula-reconstruction">Formula Reconstruction</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+
+// Parse a formula
+Ast.Node original = FormulaParser.Parse(&quot;=SUM(A1:A10)/COUNT(A1:A10)&quot;);
+
+// The ToString() method reconstructs the formula from the AST
+string reconstructed = original.ToString();
+Console.WriteLine($&quot;Reconstructed: {reconstructed}&quot;);
+
+// Verify they're equivalent
+Ast.Node reparsed = FormulaParser.Parse(reconstructed);
+Console.WriteLine($&quot;Reparsed successfully: {reparsed}&quot;);
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<h3 id="invalid-formula-handling">Invalid Formula Handling</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using System;
+
+string[] invalidFormulas = {
+    &quot;=1+&quot;,           // Incomplete expression
+    &quot;=(1+2&quot;,         // Unmatched parenthesis
+    &quot;=SUM(1,&quot;,       // Incomplete function call
+    &quot;=INVALID(&quot;,     // Unknown function with incomplete syntax
+};
+
+foreach (string formula in invalidFormulas)
+{
+    try
+    {
+        Ast.Node result = FormulaParser.Parse(formula);
+        Console.WriteLine($&quot;Unexpectedly succeeded: {result}&quot;);
+    }
+    catch (InvalidOperationException ex)
+    {
+        Console.WriteLine($&quot;Expected error for '{formula}': {ex.Message}&quot;);
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($&quot;Argument error for '{formula}': {ex.Message}&quot;);
+    }
+}
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="batch-processing">Batch Processing</h3>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using System.Diagnostics;
+
+string[] formulas = {
+    &quot;=SUM(A1:A1000)&quot;,
+    &quot;=AVERAGE(B1:B1000)&quot;,
+    &quot;=COUNT(C1:C1000)&quot;,
+    &quot;=IF(D1&gt;0,D1*E1,0)&quot;,
+    &quot;=VLOOKUP(F1,Sheet2!A:Z,10,FALSE)&quot;
+};
+
+Stopwatch sw = Stopwatch.StartNew();
+
+foreach (string formulaText in formulas)
+{
+    Ast.Node? result = FormulaParser.TryParse(formulaText);
+    if (result != null)
+    {
+        // Process the parsed formula
+        string reconstructed = result.ToString();
+    }
+}
+
+sw.Stop();
+Console.WriteLine($&quot;Processed {formulas.Length} formulas in {sw.ElapsedMilliseconds}ms&quot;);
+</code></pre>
+<p>This example demonstrates the core functionality of the OpenLanguage Formula parser, showing how to parse various types of Excel formulas and work with the resulting Abstract Syntax Tree (AST).</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/formula.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

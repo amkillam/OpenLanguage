@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Grammar Files | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Grammar Files | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/grammar.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="grammar-files">Grammar Files</h1>
+
+<p>OpenLanguage uses GNU YACC and LEX style grammar files to define the lexical analysis and parsing rules for Microsoft Office document languages. This document provides comprehensive information about working with these grammar files, their structure, and the code generation process.</p>
+<h2 id="overview">Overview</h2>
+<p>The grammar files in OpenLanguage serve as the foundation for parsing SpreadsheetML formulas and WordprocessingML field instructions. The system uses:</p>
+<ul>
+<li><strong>GPPG (GNU Parser Parser Generator)</strong>: A YACC-compatible parser generator for .NET</li>
+<li><strong>GPLEX (GNU Parser Lexer Generator)</strong>: A LEX-compatible lexer generator for .NET</li>
+<li><strong>C Preprocessor Integration</strong>: Enables conditional compilation and macro expansion</li>
+</ul>
+<h2 id="grammar-file-architecture">Grammar File Architecture</h2>
+<h3 id="file-organization">File Organization</h3>
+<pre><code>OpenLanguage/SpreadsheetML/Formula/Lang/
+├── Parse/
+│   └── formula.y                    # YACC grammar for SpreadsheetML formulas
+└── Lex/
+    ├── formula.lex                  # Main lexer for SpreadsheetML formulas
+    └── function/                    # Function definition lexer files
+        ├── standard.lex             # Standard Excel functions
+        ├── worksheet.lex            # Worksheet functions
+        ├── command.lex              # Command functions
+        ├── macro.lex                # Macro functions
+        └── future.lex               # Future/experimental functions
+</code></pre>
+<h3 id="processing-pipeline">Processing Pipeline</h3>
+<ol>
+<li><strong>Source Grammar Files</strong>: Original .y and .lex files with preprocessor directives</li>
+<li><strong>Preprocessing</strong>: C preprocessor (cpp) processes conditional compilation and includes</li>
+<li><strong>Generated Grammar Files</strong>: Processed files placed in <code>Generated/</code> directory</li>
+<li><strong>Code Generation</strong>: GPPG/GPLEX generate C# parser and lexer classes</li>
+<li><strong>Compilation</strong>: Generated C# code compiled into the final assembly</li>
+</ol>
+<h2 id="yacc-grammar-files-y">YACC Grammar Files (.y)</h2>
+<h3 id="structure">Structure</h3>
+<p>YACC grammar files define the syntactic structure of the language using BNF-like notation.</p>
+<h4 id="header-section">Header Section</h4>
+<pre><code class="lang-yacc">%namespace OpenLanguage.SpreadsheetML.Formula.Generated
+%parsertype Parser
+%tokentype Tokens
+%visibility public
+
+%using OpenLanguage.SpreadsheetML.Formula.Ast;
+%using System.Linq;
+</code></pre>
+<p><strong>Key Directives:</strong></p>
+<ul>
+<li><code>%namespace</code>: Specifies the namespace for generated code</li>
+<li><code>%parsertype</code>: Names the generated parser class</li>
+<li><code>%tokentype</code>: Defines the token enumeration type</li>
+<li><code>%visibility</code>: Sets access modifier for generated classes</li>
+<li><code>%using</code>: Adds using statements to generated code</li>
+</ul>
+<h4 id="union-section">Union Section</h4>
+<pre><code class="lang-yacc">%union
+{
+    public double doubleVal;
+    public int integerVal;
+    public string stringVal;
+    public Node nodeVal;
+    public ExpressionNode expressionVal;
+    public List&lt;ExpressionNode&gt; expressionListVal;
+    // ... additional types
+}
+</code></pre>
+<p>The union section defines the data types that can be associated with grammar symbols.</p>
+<h4 id="token-declarations">Token Declarations</h4>
+<pre><code class="lang-yacc">%token T_EQUALS T_PLUS T_MINUS T_MULTIPLY T_DIVIDE
+%token T_POWER T_PERCENT T_CONCAT
+%token T_LT T_LE T_GT T_GE T_EQ T_NE
+%token &lt;stringVal&gt; T_IDENTIFIER T_STRING_LITERAL
+%token &lt;doubleVal&gt; T_NUMBER
+</code></pre>
+<p><strong>Token Types:</strong></p>
+<ul>
+<li><strong>Operators</strong>: Mathematical and logical operators</li>
+<li><strong>Literals</strong>: Numbers, strings, booleans</li>
+<li><strong>Identifiers</strong>: Cell references, named ranges, functions</li>
+<li><strong>Delimiters</strong>: Parentheses, brackets, commas</li>
+<li><strong>Special</strong>: Structured references, array delimiters</li>
+</ul>
+<h4 id="grammar-rules">Grammar Rules</h4>
+<pre><code class="lang-yacc">expression
+    : term
+    | expression T_PLUS term     { $$ = new BinaryOperatorNode($1, $3, &quot;+&quot;); }
+    | expression T_MINUS term    { $$ = new BinaryOperatorNode($1, $3, &quot;-&quot;); }
+    ;
+
+term
+    : factor
+    | term T_MULTIPLY factor     { $$ = new BinaryOperatorNode($1, $3, &quot;*&quot;); }
+    | term T_DIVIDE factor       { $$ = new BinaryOperatorNode($1, $3, &quot;/&quot;); }
+    ;
+</code></pre>
+<p><strong>Grammar Rule Components:</strong></p>
+<ul>
+<li><strong>Left-hand side</strong>: Non-terminal symbol being defined</li>
+<li><strong>Right-hand side</strong>: Sequence of terminals and non-terminals</li>
+<li><strong>Semantic action</strong>: C# code in braces <code>{ }</code> that constructs AST nodes</li>
+<li><strong><code>$$</code></strong>: Represents the value of the left-hand side symbol</li>
+<li><strong><code>$1</code>, <code>$2</code>, etc.</strong>: Represent values of right-hand side symbols</li>
+</ul>
+<h3 id="ast-node-construction">AST Node Construction</h3>
+<p>The grammar rules construct Abstract Syntax Tree (AST) nodes:</p>
+<pre><code class="lang-yacc">function_call
+    : T_IDENTIFIER T_LPAREN argument_list T_RPAREN
+    {
+        $$ = new FunctionCallNode($1, $3);
+    }
+    ;
+
+argument_list
+    : /* empty */               { $$ = new List&lt;ExpressionNode&gt;(); }
+    | expression               { $$ = new List&lt;ExpressionNode&gt; { $1 }; }
+    | argument_list T_COMMA expression
+    {
+        $1.Add($3);
+        $$ = $1;
+    }
+    ;
+</code></pre>
+<h3 id="precedence-and-associativity">Precedence and Associativity</h3>
+<pre><code class="lang-yacc">%left T_COMMA
+%left T_EQ T_NE T_LT T_LE T_GT T_GE
+%left T_CONCAT
+%left T_PLUS T_MINUS
+%left T_MULTIPLY T_DIVIDE
+%right T_POWER
+%left T_PERCENT
+</code></pre>
+<p><strong>Precedence Rules:</strong></p>
+<ul>
+<li><strong>Lower precedence</strong>: Listed first (T_COMMA)</li>
+<li><strong>Higher precedence</strong>: Listed last (T_PERCENT)</li>
+<li><strong>Associativity</strong>: <code>%left</code> (left-associative), <code>%right</code> (right-associative)</li>
+</ul>
+<h2 id="lex-grammar-files-lex">LEX Grammar Files (.lex)</h2>
+<h3 id="structure-1">Structure</h3>
+<p>LEX files define lexical analysis rules using regular expressions.</p>
+<h4 id="header-section-1">Header Section</h4>
+<pre><code class="lang-lex">%using OpenLanguage.Utils;
+%namespace OpenLanguage.SpreadsheetML.Formula.Generated
+%scannertype FormulaScanner
+%tokentype Tokens
+%visibility internal
+
+%{
+    private System.Text.StringBuilder stringBuffer = new System.Text.StringBuilder();
+    public Parser Parser { get; set; }
+%}
+</code></pre>
+<h4 id="state-declarations">State Declarations</h4>
+<pre><code class="lang-lex">%x IN_STRING
+%x IN_QUOTED_SHEET_NAME
+%x IN_A1_CELL
+%x IN_R1C1_CELL
+</code></pre>
+<p><strong>Start Conditions:</strong></p>
+<ul>
+<li><code>%x</code>: Exclusive start condition</li>
+<li><code>%s</code>: Inclusive start condition</li>
+</ul>
+<p>Start conditions enable context-sensitive lexical analysis.</p>
+<h4 id="pattern-rules">Pattern Rules</h4>
+<pre><code class="lang-lex">%%
+
+&lt;INITIAL&gt;{
+    &quot;                  { BEGIN(IN_STRING); stringBuffer.Clear(); }
+    &quot;&lt;&gt;&quot;                { return (int)Tokens.T_NE; }
+    &quot;&gt;=&quot;                { return (int)Tokens.T_GE; }
+    &quot;&lt;=&quot;                { return (int)Tokens.T_LE; }
+
+    [A-Z]+[1-9][0-9]*   { return (int)Tokens.T_A1_CELL; }
+    [0-9]+(\.[0-9]+)?   { return (int)Tokens.T_NUMBER; }
+    [A-Za-z_][A-Za-z0-9_]* { return (int)Tokens.T_IDENTIFIER; }
+}
+
+&lt;IN_STRING&gt;{
+    &quot;&quot;                { stringBuffer.Append('&quot;'); }
+    &quot;                  { BEGIN(INITIAL); return (int)Tokens.T_STRING_LITERAL; }
+    [^&quot;]+              { stringBuffer.Append(yytext); }
+}
+</code></pre>
+<p><strong>Pattern Syntax:</strong></p>
+<ul>
+<li><strong>Character classes</strong>: <code>[A-Z]</code>, <code>[0-9]</code>, <code>[^&quot;]</code></li>
+<li><strong>Quantifiers</strong>: <code>+</code> (one or more), <code>*</code> (zero or more), <code>?</code> (optional)</li>
+<li><strong>Anchors</strong>: <code>^</code> (start of line), <code>$</code> (end of line)</li>
+<li><strong>Groups</strong>: <code>()</code> for grouping</li>
+<li><strong>Alternation</strong>: <code>|</code> for alternatives</li>
+</ul>
+<h3 id="function-definition-files">Function Definition Files</h3>
+<p>The lexer includes separate files for different function categories:</p>
+<h4 id="standardlex">standard.lex</h4>
+<pre><code class="lang-lex">/* Standard Function Keywords */
+&quot;ABS&quot;       { return (int)Tokens.T_FUNC_ABS; }
+&quot;AVERAGE&quot;   { return (int)Tokens.T_FUNC_AVERAGE; }
+&quot;COUNT&quot;     { return (int)Tokens.T_FUNC_COUNT; }
+&quot;MAX&quot;       { return (int)Tokens.T_FUNC_MAX; }
+&quot;MIN&quot;       { return (int)Tokens.T_FUNC_MIN; }
+&quot;SUM&quot;       { return (int)Tokens.T_FUNC_SUM; }
+</code></pre>
+<h4 id="worksheetlex">worksheet.lex</h4>
+<pre><code class="lang-lex">/* Worksheet Function Keywords */
+&quot;VLOOKUP&quot;   { return (int)Tokens.T_FUNC_VLOOKUP; }
+&quot;HLOOKUP&quot;   { return (int)Tokens.T_FUNC_HLOOKUP; }
+&quot;INDEX&quot;     { return (int)Tokens.T_FUNC_INDEX; }
+&quot;MATCH&quot;     { return (int)Tokens.T_FUNC_MATCH; }
+</code></pre>
+<p>This modular approach enables:</p>
+<ul>
+<li><strong>Organized function definitions</strong> by category</li>
+<li><strong>Easy maintenance</strong> and updates</li>
+<li><strong>Conditional inclusion</strong> of function sets</li>
+<li><strong>Extensibility</strong> for new function categories</li>
+</ul>
+<h2 id="code-generation-process">Code Generation Process</h2>
+<h3 id="gppg-parser-generation">GPPG Parser Generation</h3>
+<p>The YACC file is processed by GPPG to generate a C# parser class:</p>
+<pre><code class="lang-xml">&lt;YaccFile Include=&quot;Generated/SpreadsheetML/Formula/Lang/Parse/formula.y&quot;&gt;
+  &lt;OutputFile&gt;Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs&lt;/OutputFile&gt;
+  &lt;Arguments&gt;/gplex /nolines&lt;/Arguments&gt;
+&lt;/YaccFile&gt;
+</code></pre>
+<p><strong>Generated Components:</strong></p>
+<ul>
+<li><strong>Parser class</strong>: Implements LALR(1) parsing algorithm</li>
+<li><strong>Token enumeration</strong>: Defines all terminal symbols</li>
+<li><strong>Parse tables</strong>: State transition and action tables</li>
+<li><strong>Error handling</strong>: Syntax error reporting and recovery</li>
+</ul>
+<h3 id="gplex-lexer-generation">GPLEX Lexer Generation</h3>
+<p>The LEX file is processed by GPLEX to generate a C# lexer class:</p>
+<pre><code class="lang-xml">&lt;LexFile Include=&quot;Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex&quot;&gt;
+  &lt;OutputFile&gt;Generated/SpreadsheetML/Formula/Lang/Lex/Formula.Lexer.Generated.cs&lt;/OutputFile&gt;
+&lt;/LexFile&gt;
+</code></pre>
+<p><strong>Generated Components:</strong></p>
+<ul>
+<li><strong>Scanner class</strong>: Implements finite automaton for tokenization</li>
+<li><strong>State machine</strong>: DFA for pattern matching</li>
+<li><strong>Token methods</strong>: Return appropriate token types</li>
+<li><strong>Buffer management</strong>: Efficient input handling</li>
+</ul>
+<h2 id="preprocessor-integration">Preprocessor Integration</h2>
+<h3 id="conditional-compilation">Conditional Compilation</h3>
+<p>Grammar files can use C preprocessor directives:</p>
+<pre><code class="lang-lex">#ifdef INCLUDE_EXPERIMENTAL_FUNCTIONS
+&quot;LAMBDA&quot;    { return (int)Tokens.T_FUNC_LAMBDA; }
+&quot;LET&quot;       { return (int)Tokens.T_FUNC_LET; }
+#endif
+
+#ifndef MINIMAL_BUILD
+#include &quot;function/future.lex&quot;
+#endif
+</code></pre>
+<h3 id="include-files">Include Files</h3>
+<p>Modularize grammar definitions:</p>
+<pre><code class="lang-lex">/* Main formula.lex file */
+%{
+    // Common definitions
+%}
+
+%%
+
+&lt;INITIAL&gt;{
+    /* Core patterns */
+
+#include &quot;function/standard.lex&quot;
+#include &quot;function/worksheet.lex&quot;
+#include &quot;function/command.lex&quot;
+}
+</code></pre>
+<h3 id="macro-definitions">Macro Definitions</h3>
+<p>Define reusable patterns:</p>
+<pre><code class="lang-lex">%{
+#define DIGIT [0-9]
+#define LETTER [A-Za-z]
+#define IDENTIFIER {LETTER}({LETTER}|{DIGIT}|_)*
+%}
+
+%%
+
+{IDENTIFIER}    { return (int)Tokens.T_IDENTIFIER; }
+{DIGIT}+        { return (int)Tokens.T_INTEGER; }
+</code></pre>
+<h2 id="development-workflow">Development Workflow</h2>
+<h3 id="modifying-grammar-files">Modifying Grammar Files</h3>
+<ol>
+<li><strong>Edit source grammar files</strong> in their original locations</li>
+<li><strong>Run preprocessing</strong>: <code>cmake --build build --target process</code></li>
+<li><strong>Rebuild project</strong>: <code>cmake --build build --target build</code></li>
+<li><strong>Test changes</strong>: <code>cmake --build build --target test</code></li>
+</ol>
+<h3 id="adding-new-tokens">Adding New Tokens</h3>
+<ol>
+<li><p><strong>Add token to LEX file</strong>:</p>
+<pre><code class="lang-lex">&quot;NEW_KEYWORD&quot;   { return (int)Tokens.T_NEW_KEYWORD; }
+</code></pre>
+</li>
+<li><p><strong>Add token to YACC file</strong>:</p>
+<pre><code class="lang-yacc">%token T_NEW_KEYWORD
+</code></pre>
+</li>
+<li><p><strong>Add grammar rules</strong>:</p>
+<pre><code class="lang-yacc">new_construct
+    : T_NEW_KEYWORD expression { $$ = new NewConstructNode($2); }
+    ;
+</code></pre>
+</li>
+</ol>
+<h3 id="adding-new-functions">Adding New Functions</h3>
+<ol>
+<li><strong>Choose appropriate function file</strong> (standard.lex, worksheet.lex, etc.)</li>
+<li><strong>Add function pattern</strong>:
+<pre><code class="lang-lex">&quot;NEWFUNCTION&quot;   { return (int)Tokens.T_FUNC_NEWFUNCTION; }
+</code></pre>
+</li>
+<li><strong>Update parser if needed</strong> for special syntax</li>
+<li><strong>Add tests</strong> for the new function</li>
+</ol>
+<h3 id="debugging-grammar-issues">Debugging Grammar Issues</h3>
+<h4 id="parser-conflicts">Parser Conflicts</h4>
+<p>GPPG reports shift/reduce and reduce/reduce conflicts:</p>
+<pre><code>warning: 1 shift/reduce conflict
+State 42: shift/reduce conflict on token T_IDENTIFIER
+</code></pre>
+<p><strong>Resolution strategies:</strong></p>
+<ul>
+<li><strong>Add precedence declarations</strong> to resolve conflicts</li>
+<li><strong>Refactor grammar rules</strong> to eliminate ambiguity</li>
+<li><strong>Use GLR parsing</strong> for inherently ambiguous grammars</li>
+</ul>
+<h4 id="lexer-issues">Lexer Issues</h4>
+<p>Common lexer problems:</p>
+<ul>
+<li><strong>Pattern order matters</strong>: More specific patterns should come first</li>
+<li><strong>Overlapping patterns</strong>: Use start conditions to disambiguate</li>
+<li><strong>Greedy matching</strong>: LEX uses longest match rule</li>
+</ul>
+<h3 id="testing-grammar-changes">Testing Grammar Changes</h3>
+<h4 id="unit-tests">Unit Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;NEW_KEYWORD(123)&quot;, typeof(NewConstructNode))]
+public void TestNewConstruct(string input, Type expectedType)
+{
+    var formula = FormulaParser.Parse(input);
+    Assert.IsType(expectedType, formula);
+}
+</code></pre>
+<h4 id="integration-tests">Integration Tests</h4>
+<pre><code class="lang-csharp">[Fact]
+public void TestComplexFormulaWithNewConstruct()
+{
+    var input = &quot;SUM(NEW_KEYWORD(A1:A10), B1)&quot;;
+    var formula = FormulaParser.Parse(input);
+
+    // Verify AST structure
+    Assert.IsType&lt;FunctionCallNode&gt;(formula);
+    // ... additional assertions
+}
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="grammar-design">Grammar Design</h3>
+<ol>
+<li><strong>Keep rules simple</strong>: Avoid overly complex right-hand sides</li>
+<li><strong>Use consistent naming</strong>: Follow established token naming conventions</li>
+<li><strong>Document complex rules</strong>: Add comments explaining non-obvious grammar constructs</li>
+<li><strong>Consider precedence</strong>: Ensure operator precedence matches Excel behavior</li>
+</ol>
+<h3 id="lexer-design">Lexer Design</h3>
+<ol>
+<li><strong>Order patterns carefully</strong>: More specific patterns first</li>
+<li><strong>Use start conditions</strong>: For context-sensitive tokenization</li>
+<li><strong>Handle whitespace appropriately</strong>: Preserve or skip as needed</li>
+<li><strong>Escape special characters</strong>: In regular expressions</li>
+</ol>
+<h3 id="code-generation">Code Generation</h3>
+<ol>
+<li><strong>Meaningful AST nodes</strong>: Create specific node types for different constructs</li>
+<li><strong>Preserve source information</strong>: Include location data for error reporting</li>
+<li><strong>Handle errors gracefully</strong>: Provide meaningful error messages</li>
+<li><strong>Optimize for performance</strong>: Consider parser table size and generation time</li>
+</ol>
+<h3 id="maintenance">Maintenance</h3>
+<ol>
+<li><strong>Version control grammar files</strong>: Track changes to language specification</li>
+<li><strong>Document grammar changes</strong>: Maintain changelog for grammar modifications</li>
+<li><strong>Test thoroughly</strong>: Ensure backward compatibility</li>
+<li><strong>Performance testing</strong>: Monitor parser performance with large inputs</li>
+</ol>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="error-recovery">Error Recovery</h3>
+<p>Implement error recovery in YACC rules:</p>
+<pre><code class="lang-yacc">statement_list
+    : statement
+    | statement_list statement
+    | statement_list error statement    { yyerrok; }
+    ;
+</code></pre>
+<h3 id="semantic-predicates">Semantic Predicates</h3>
+<p>Use semantic actions for context-sensitive parsing:</p>
+<pre><code class="lang-yacc">identifier_or_function
+    : T_IDENTIFIER
+    {
+        if (IsKnownFunction($1))
+            $$ = new FunctionNameNode($1);
+        else
+            $$ = new IdentifierNode($1);
+    }
+    ;
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="parser-performance">Parser Performance</h3>
+<ul>
+<li><strong>LALR(1) parsing</strong>: Efficient for most grammar constructs</li>
+<li><strong>Table size</strong>: Balance between grammar complexity and table size</li>
+<li><strong>Action complexity</strong>: Keep semantic actions lightweight</li>
+</ul>
+<h3 id="lexer-performance">Lexer Performance</h3>
+<ul>
+<li><strong>DFA optimization</strong>: GPLEX generates efficient state machines</li>
+<li><strong>Pattern complexity</strong>: Simpler patterns generally perform better</li>
+<li><strong>Buffer management</strong>: Efficient for large input files</li>
+</ul>
+<h3 id="memory-usage">Memory Usage</h3>
+<ul>
+<li><strong>AST node design</strong>: Minimize memory footprint of AST nodes</li>
+<li><strong>String interning</strong>: Consider interning for frequently used strings</li>
+<li><strong>Garbage collection</strong>: Design for efficient GC behavior</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>Issue</strong>: Parser conflicts<br>
+<strong>Solution</strong>: Add precedence declarations or refactor grammar</p>
+<p><strong>Issue</strong>: Lexer not recognizing tokens<br>
+<strong>Solution</strong>: Check pattern order and regular expression syntax</p>
+<p><strong>Issue</strong>: Build errors after grammar changes<br>
+<strong>Solution</strong>: Clean and rebuild: <code>cmake --build build --target clean-all &amp;&amp; cmake --build build</code></p>
+<p><strong>Issue</strong>: Performance degradation<br>
+<strong>Solution</strong>: Profile parser and optimize grammar rules or AST construction</p>
+<h3 id="debugging-tools">Debugging Tools</h3>
+<ol>
+<li><strong>GPPG verbose output</strong>: Use <code>/verbose</code> flag for detailed parser information</li>
+<li><strong>GPLEX trace output</strong>: Enable tracing for lexer debugging</li>
+<li><strong>Visual Studio debugger</strong>: Step through generated parser code</li>
+<li><strong>Unit tests</strong>: Isolate and test specific grammar constructs</li>
+</ol>
+<h2 id="integration-with-net">Integration with .NET</h2>
+<h3 id="generated-code-structure">Generated Code Structure</h3>
+<pre><code class="lang-csharp">namespace OpenLanguage.SpreadsheetML.Formula.Generated
+{
+    public partial class Parser
+    {
+        public FormulaScanner Scanner { get; set; }
+
+        public ExpressionNode Parse()
+        {
+            // Generated parsing logic
+        }
+    }
+
+    internal partial class FormulaScanner
+    {
+        public int yylex()
+        {
+            // Generated lexical analysis logic
+        }
+    }
+}
+</code></pre>
+<h3 id="api-integration">API Integration</h3>
+<p>The generated parser integrates with the main API:</p>
+<pre><code class="lang-csharp">public static class FormulaParser
+{
+    public static Formula Parse(string formulaText)
+    {
+        var scanner = new FormulaScanner();
+        var parser = new Parser() { Scanner = scanner };
+        scanner.SetSource(formulaText, 0);
+
+        var result = parser.Parse();
+        return new Formula(formulaText, result);
+    }
+}
+</code></pre>
+<p>This comprehensive grammar system enables OpenLanguage to provide accurate, high-performance parsing of Open Office XML Domain-specific Languages while maintaining flexibility for future extensions and modifications.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/grammar.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

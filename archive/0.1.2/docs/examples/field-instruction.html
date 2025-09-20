@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Field Instruction Examples | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Field Instruction Examples | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/field-instruction.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="field-instruction-examples">Field Instruction Examples</h1>
+
+<p>This document demonstrates how to use the OpenLanguage WordprocessingML FieldInstruction parser to parse and manipulate Microsoft Word field codes.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<h3 id="parsing-simple-field-instructions">Parsing Simple Field Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Parse a simple MERGEFIELD instruction
+FieldInstruction mergeField = FieldParser.Parse(&quot;MERGEFIELD FirstName&quot;);
+Console.WriteLine($&quot;Instruction: {mergeField.Instruction}&quot;);
+Console.WriteLine($&quot;Arguments count: {mergeField.Arguments.Count}&quot;);
+Console.WriteLine($&quot;Reconstructed: {mergeField}&quot;);
+
+// Parse a field with switches
+FieldInstruction dateField = FieldParser.Parse(&quot;DATE \@ &quot;MMMM d, yyyy&quot;&quot;);
+Console.WriteLine($&quot;Date field: {dateField}&quot;);
+</code></pre>
+<h3 id="safe-parsing-with-tryparse">Safe Parsing with TryParse</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+string[] fieldCodes = {
+    &quot;MERGEFIELD LastName&quot;,
+    &quot;IF { MERGEFIELD Age } &gt; 18 &quot;Adult&quot; &quot;Minor&quot;&quot;,
+    &quot;INVALID_FIELD_CODE&quot;,
+    &quot;HYPERLINK &quot;https://example.com&quot; &quot;Click here&quot;&quot;
+};
+
+foreach (string fieldCode in fieldCodes)
+{
+    FieldInstruction? result = FieldParser.TryParse(fieldCode);
+    if (result != null)
+    {
+        Console.WriteLine($&quot;✓ Successfully parsed: {result.Instruction}&quot;);
+        Console.WriteLine($&quot;  Arguments: {result.Arguments.Count}&quot;);
+    }
+    else
+    {
+        Console.WriteLine($&quot;✗ Failed to parse: {fieldCode}&quot;);
+    }
+}
+</code></pre>
+<h2 id="common-field-types">Common Field Types</h2>
+<h3 id="mergefield-instructions">MERGEFIELD Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Simple merge field
+FieldInstruction simpleMerge = FieldParser.Parse(&quot;MERGEFIELD CustomerName&quot;);
+
+// Merge field with formatting switch
+FieldInstruction formattedMerge = FieldParser.Parse(&quot;MERGEFIELD OrderDate \@ &quot;dddd, MMMM dd, yyyy&quot;&quot;);
+
+// Merge field with text formatting switches
+FieldInstruction textMerge = FieldParser.Parse(&quot;MERGEFIELD CompanyName \* Upper \* FirstCap&quot;);
+
+Console.WriteLine($&quot;Simple merge: {simpleMerge}&quot;);
+Console.WriteLine($&quot;Formatted merge: {formattedMerge}&quot;);
+Console.WriteLine($&quot;Text formatted: {textMerge}&quot;);
+</code></pre>
+<h3 id="hyperlink-instructions">HYPERLINK Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Basic hyperlink
+FieldInstruction basicLink = FieldParser.Parse(&quot;HYPERLINK &quot;https://www.example.com&quot;&quot;);
+
+// Hyperlink with display text
+FieldInstruction linkWithText = FieldParser.Parse(&quot;HYPERLINK &quot;https://www.example.com&quot; &quot;Visit Example&quot;&quot;);
+
+// Hyperlink with switches
+FieldInstruction linkWithSwitch = FieldParser.Parse(&quot;HYPERLINK &quot;mailto:user@example.com&quot; \o &quot;Send email&quot;&quot;);
+
+Console.WriteLine($&quot;Basic link: {basicLink}&quot;);
+Console.WriteLine($&quot;Link with text: {linkWithText}&quot;);
+Console.WriteLine($&quot;Link with switch: {linkWithSwitch}&quot;);
+</code></pre>
+<h3 id="if-instructions">IF Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Simple IF field
+FieldInstruction simpleIf = FieldParser.Parse(&quot;IF 1 = 1 &quot;True&quot; &quot;False&quot;&quot;);
+
+// IF field with nested MERGEFIELD
+FieldInstruction nestedIf = FieldParser.Parse(&quot;IF { MERGEFIELD Age } &gt; 18 &quot;Adult&quot; &quot;Minor&quot;&quot;);
+
+// Complex IF with comparison operators
+FieldInstruction complexIf = FieldParser.Parse(&quot;IF { MERGEFIELD Salary } &gt;= 50000 &quot;High earner&quot; &quot;Standard earner&quot;&quot;);
+
+Console.WriteLine($&quot;Simple IF: {simpleIf}&quot;);
+Console.WriteLine($&quot;Nested IF: {nestedIf}&quot;);
+Console.WriteLine($&quot;Complex IF: {complexIf}&quot;);
+</code></pre>
+<h3 id="date-and-time-instructions">DATE and TIME Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Current date
+FieldInstruction currentDate = FieldParser.Parse(&quot;DATE&quot;);
+
+// Formatted date
+FieldInstruction formattedDate = FieldParser.Parse(&quot;DATE \@ &quot;MMMM d, yyyy&quot;&quot;);
+
+// Time field
+FieldInstruction timeField = FieldParser.Parse(&quot;TIME \@ &quot;h:mm AM/PM&quot;&quot;);
+
+// Creation time
+FieldInstruction createTime = FieldParser.Parse(&quot;CREATEDATE \@ &quot;MM/dd/yyyy h:mm AM/PM&quot;&quot;);
+
+Console.WriteLine($&quot;Current date: {currentDate}&quot;);
+Console.WriteLine($&quot;Formatted date: {formattedDate}&quot;);
+Console.WriteLine($&quot;Time: {timeField}&quot;);
+Console.WriteLine($&quot;Creation time: {createTime}&quot;);
+</code></pre>
+<h3 id="docproperty-instructions">DOCPROPERTY Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Document properties
+FieldInstruction author = FieldParser.Parse(&quot;DOCPROPERTY Author&quot;);
+FieldInstruction title = FieldParser.Parse(&quot;DOCPROPERTY Title&quot;);
+FieldInstruction company = FieldParser.Parse(&quot;DOCPROPERTY Company&quot;);
+
+// Custom properties
+FieldInstruction customProp = FieldParser.Parse(&quot;DOCPROPERTY &quot;Project Name&quot;&quot;);
+
+Console.WriteLine($&quot;Author: {author}&quot;);
+Console.WriteLine($&quot;Title: {title}&quot;);
+Console.WriteLine($&quot;Company: {company}&quot;);
+Console.WriteLine($&quot;Custom property: {customProp}&quot;);
+</code></pre>
+<h2 id="working-with-arguments">Working with Arguments</h2>
+<h3 id="accessing-field-arguments">Accessing Field Arguments</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+FieldInstruction field = FieldParser.Parse(&quot;MERGEFIELD FirstName \* Upper \b &quot;Default Text&quot;&quot;);
+
+Console.WriteLine($&quot;Instruction: {field.Instruction}&quot;);
+Console.WriteLine($&quot;Number of arguments: {field.Arguments.Count}&quot;);
+
+foreach (var arg in field.Arguments)
+{
+    Console.WriteLine($&quot;  Type: {arg.Type}, Value: {arg.Value}&quot;);
+}
+</code></pre>
+<h3 id="modifying-field-arguments">Modifying Field Arguments</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Parse an existing field
+FieldInstruction field = FieldParser.Parse(&quot;MERGEFIELD CustomerName&quot;);
+
+// Add formatting switches
+field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;));
+field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* FirstCap&quot;));
+
+// Add default text
+field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;Unknown Customer&quot;));
+
+Console.WriteLine($&quot;Modified field: {field}&quot;);
+</code></pre>
+<h3 id="working-with-string-literals">Working with String Literals</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Field with quoted strings
+FieldInstruction quotedField = FieldParser.Parse(&quot;HYPERLINK &quot;https://example.com&quot; &quot;Visit &quot;Example&quot; Site&quot;&quot;);
+
+foreach (var arg in quotedField.Arguments)
+{
+    if (arg.Type == FieldArgumentType.StringLiteral)
+    {
+        Console.WriteLine($&quot;String literal: {arg.Value}&quot;);
+        Console.WriteLine($&quot;Reconstructed: {arg}&quot;); // Shows proper escaping
+    }
+}
+</code></pre>
+<h2 id="advanced-examples">Advanced Examples</h2>
+<h3 id="nested-field-instructions">Nested Field Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Complex nested field
+string complexField = &quot;IF { MERGEFIELD Department } = &quot;Sales&quot; { MERGEFIELD SalesBonus } { MERGEFIELD StandardBonus }&quot;;
+FieldInstruction nested = FieldParser.Parse(complexField);
+
+Console.WriteLine($&quot;Nested field: {nested}&quot;);
+
+// Access nested instructions
+foreach (var arg in nested.Arguments)
+{
+    if (arg.Type == FieldArgumentType.NestedField &amp;&amp; arg.Value is FieldInstruction nestedInstruction)
+    {
+        Console.WriteLine($&quot;  Nested instruction: {nestedInstruction.Instruction}&quot;);
+    }
+}
+</code></pre>
+<h3 id="addressblock-instructions">ADDRESSBLOCK Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Address block with formatting
+FieldInstruction addressBlock = FieldParser.Parse(&quot;ADDRESSBLOCK \c 2 \d \e &quot;United States&quot; \f &quot;&quot;&lt;&lt;_RETURN_&gt;&gt;&quot;&quot;&quot;);
+
+Console.WriteLine($&quot;Address block: {addressBlock}&quot;);
+
+// Address block with language formatting
+FieldInstruction addressLang = FieldParser.Parse(&quot;ADDRESSBLOCK \c 1 \l 1033&quot;);
+Console.WriteLine($&quot;Address with language: {addressLang}&quot;);
+</code></pre>
+<h3 id="greetingline-instructions">GREETINGLINE Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Standard greeting line
+FieldInstruction greeting = FieldParser.Parse(&quot;GREETINGLINE \f &quot;Dear&quot; \l &quot;,&quot; \e &quot;Dear Sir or Madam,&quot;&quot;);
+
+Console.WriteLine($&quot;Greeting line: {greeting}&quot;);
+
+// Custom greeting format
+FieldInstruction customGreeting = FieldParser.Parse(&quot;GREETINGLINE \f &quot;Hello&quot; \l &quot;!&quot; \e &quot;Hello there!&quot;&quot;);
+Console.WriteLine($&quot;Custom greeting: {customGreeting}&quot;);
+</code></pre>
+<h3 id="database-instructions">DATABASE Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Database field with connection string
+FieldInstruction database = FieldParser.Parse(&quot;DATABASE \d &quot;Data Source=server;Initial Catalog=db;&quot; \s &quot;SELECT * FROM customers&quot; \t 5&quot;);
+
+Console.WriteLine($&quot;Database field: {database}&quot;);
+</code></pre>
+<h2 id="working-with-switches">Working with Switches</h2>
+<h3 id="common-formatting-switches">Common Formatting Switches</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Date formatting switches
+FieldInstruction dateFormat = FieldParser.Parse(&quot;DATE \@ &quot;dddd, MMMM dd, yyyy&quot;&quot;);
+
+// Numeric formatting switches
+FieldInstruction numFormat = FieldParser.Parse(&quot;MERGEFIELD Amount \# &quot;$#,##0.00&quot;&quot;);
+
+// Text formatting switches
+FieldInstruction textFormat = FieldParser.Parse(&quot;MERGEFIELD Name \* Upper \* FirstCap&quot;);
+
+Console.WriteLine($&quot;Date format: {dateFormat}&quot;);
+Console.WriteLine($&quot;Number format: {numFormat}&quot;);
+Console.WriteLine($&quot;Text format: {textFormat}&quot;);
+</code></pre>
+<h3 id="custom-switch-processing">Custom Switch Processing</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+FieldInstruction field = FieldParser.Parse(&quot;MERGEFIELD Data \@ &quot;custom format&quot; \* Upper \b &quot;default&quot;&quot;);
+
+// Process switches
+foreach (var arg in field.Arguments)
+{
+    if (arg.Type == FieldArgumentType.Switch)
+    {
+        string switchValue = arg.Value?.ToString() ?? &quot;&quot;;
+        if (switchValue.StartsWith(&quot;\@&quot;))
+        {
+            Console.WriteLine($&quot;Found date/numeric format switch: {switchValue}&quot;);
+        }
+        else if (switchValue.StartsWith(&quot;\*&quot;))
+        {
+            Console.WriteLine($&quot;Found text format switch: {switchValue}&quot;);
+        }
+        else if (switchValue.StartsWith(&quot;\b&quot;))
+        {
+            Console.WriteLine($&quot;Found bookmark/default switch: {switchValue}&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="field-reconstruction-and-modification">Field Reconstruction and Modification</h2>
+<h3 id="rebuilding-fields">Rebuilding Fields</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Parse a simple field
+FieldInstruction original = FieldParser.Parse(&quot;MERGEFIELD FirstName&quot;);
+
+// Modify the instruction
+original.Instruction = &quot;MERGEFIELD&quot;;
+original.Arguments.Clear();
+original.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;LastName&quot;));
+original.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;));
+
+string rebuilt = original.ToString();
+Console.WriteLine($&quot;Rebuilt field: {rebuilt}&quot;);
+
+// Verify it parses correctly
+FieldInstruction verified = FieldParser.Parse(rebuilt);
+Console.WriteLine($&quot;Verification successful: {verified}&quot;);
+</code></pre>
+<h3 id="creating-fields-programmatically">Creating Fields Programmatically</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Create a new HYPERLINK field
+FieldInstruction hyperlink = new FieldInstruction(&quot;HYPERLINK&quot;);
+hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;https://www.example.com&quot;));
+hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;Visit Example Site&quot;));
+hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\o&quot;));
+hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;Example tooltip&quot;));
+
+Console.WriteLine($&quot;Created hyperlink: {hyperlink}&quot;);
+
+// Create a complex IF field
+FieldInstruction ifField = new FieldInstruction(&quot;IF&quot;);
+ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;1&quot;));
+ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;=&quot;));
+ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;1&quot;));
+ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;True&quot;));
+ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;False&quot;));
+
+Console.WriteLine($&quot;Created IF field: {ifField}&quot;);
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<h3 id="handling-parse-errors">Handling Parse Errors</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using System;
+
+string[] invalidFields = {
+    &quot;&quot;,                    // Empty field
+    &quot;   &quot;,                // Whitespace only
+    &quot;MERGEFIELD&quot;,         // Missing required argument
+    &quot;{ UNCLOSED&quot;,         // Unclosed brace
+};
+
+foreach (string fieldCode in invalidFields)
+{
+    try
+    {
+        FieldInstruction result = FieldParser.Parse(fieldCode);
+        Console.WriteLine($&quot;Unexpectedly succeeded: {result}&quot;);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($&quot;Expected error for '{fieldCode}': {ex.Message}&quot;);
+    }
+}
+</code></pre>
+<p>This comprehensive example demonstrates the core functionality of the OpenLanguage FieldInstruction parser, showing how to parse, manipulate, and reconstruct Microsoft Word field codes.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/field-instruction.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

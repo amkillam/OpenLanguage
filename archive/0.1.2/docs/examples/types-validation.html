@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Working with Data Types and Validation | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Working with Data Types and Validation | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/types-validation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="working-with-data-types-and-validation">Working with Data Types and Validation</h1>
+
+<p>This document demonstrates how to use the specialized data types and validation classes provided by OpenLanguage WordprocessingML.</p>
+<h2 id="measurement-values-ptsmeasurementvalue">Measurement Values (PtsMeasurementValue)</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Create measurement values within valid range (-31 to 31 points)
+PtsMeasurementValue&lt;int&gt; smallMargin = new PtsMeasurementValue&lt;int&gt;(5);
+PtsMeasurementValue&lt;int&gt; largeMargin = new PtsMeasurementValue&lt;int&gt;(20);
+PtsMeasurementValue&lt;int&gt; negativeOffset = new PtsMeasurementValue&lt;int&gt;(-10);
+
+Console.WriteLine($&quot;Small margin: {smallMargin} points&quot;);
+Console.WriteLine($&quot;Large margin: {largeMargin} points&quot;);
+Console.WriteLine($&quot;Negative offset: {negativeOffset} points&quot;);
+
+// Implicit conversion from int
+PtsMeasurementValue&lt;int&gt; converted = 15;
+Console.WriteLine($&quot;Converted value: {converted}&quot;);
+
+// Implicit conversion to int
+int pointValue = converted;
+Console.WriteLine($&quot;Point value: {pointValue}&quot;);
+</code></pre>
+<h3 id="validation-and-error-handling">Validation and Error Handling</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using System;
+
+// Test boundary values
+int[] testValues = { -32, -31, 0, 31, 32 };
+
+foreach (int value in testValues)
+{
+    try
+    {
+        PtsMeasurementValue&lt;int&gt; measurement = new PtsMeasurementValue&lt;int&gt;(value);
+        Console.WriteLine($&quot;✓ Valid: {value} points = {measurement}&quot;);
+    }
+    catch (ArgumentOutOfRangeException ex)
+    {
+        Console.WriteLine($&quot;✗ Invalid: {value} points - {ex.Message}&quot;);
+    }
+}
+</code></pre>
+<h3 id="practical-applications">Practical Applications</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class DocumentFormatter
+{
+    public static FieldInstruction CreatePositionedBarcode(
+        string barcodeData,
+        PtsMeasurementValue horizontalOffset,
+        PtsMeasurementValue verticalOffset)
+    {
+        var field = new FieldInstruction(&quot;BARCODE&quot;);
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, barcodeData));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\h&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, horizontalOffset.ToString()));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\v&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, verticalOffset.ToString()));
+
+        return field;
+    }
+}
+
+// Usage
+PtsMeasurementValue leftMargin = 10;
+PtsMeasurementValue topMargin = -5;
+
+FieldInstruction barcode = DocumentFormatter.CreatePositionedBarcode(
+    &quot;123456789&quot;,
+    leftMargin,
+    topMargin
+);
+
+Console.WriteLine($&quot;Positioned barcode field: {barcode}&quot;);
+</code></pre>
+<h2 id="postal-data-validation-postaldata">Postal Data Validation (PostalData)</h2>
+<h3 id="zip-code-validation">ZIP Code Validation</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Valid ZIP code formats
+string[] validZipCodes = {
+    &quot;12345&quot;,        // 5-digit
+    &quot;12345-6789&quot;,   // 9-digit with hyphen
+    &quot;123456789&quot;     // 9-digit without hyphen
+};
+
+foreach (string zip in validZipCodes)
+{
+    try
+    {
+        PostalData postalData = new PostalData(zip);
+        Console.WriteLine($&quot;✓ Valid ZIP: {postalData}&quot;);
+
+        // Implicit conversion
+        string zipString = postalData;
+        Console.WriteLine($&quot;  As string: {zipString}&quot;);
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($&quot;✗ Invalid ZIP: {zip} - {ex.Message}&quot;);
+    }
+}
+</code></pre>
+<h3 id="invalid-zip-code-handling">Invalid ZIP Code Handling</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using System;
+
+string[] invalidZipCodes = {
+    &quot;&quot;,             // Empty
+    &quot;1234&quot;,         // Too short
+    &quot;123456&quot;,       // Invalid length
+    &quot;12345-678&quot;,    // Invalid 9-digit format
+    &quot;12345-67890&quot;,  // Too long
+    &quot;abcde&quot;,        // Non-numeric
+    &quot;12345-abcd&quot;    // Non-numeric extension
+};
+
+foreach (string zip in invalidZipCodes)
+{
+    try
+    {
+        PostalData postalData = new PostalData(zip);
+        Console.WriteLine($&quot;Unexpectedly valid: {postalData}&quot;);
+    }
+    catch (ArgumentException)
+    {
+        Console.WriteLine($&quot;✓ Correctly rejected: '{zip}'&quot;);
+    }
+}
+</code></pre>
+<h3 id="integration-with-mail-merge-fields">Integration with Mail Merge Fields</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class AddressFieldGenerator
+{
+    public static FieldInstruction CreateBarcodeField(PostalData zipCode, FacingIdentificationMarkType fimType)
+    {
+        var field = new FieldInstruction(&quot;BARCODE&quot;);
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, zipCode.ToString()));
+
+        // Add FIM type
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\f&quot;));
+        string fimValue = fimType == FacingIdentificationMarkType.CourtesyReply ? &quot;A&quot; : &quot;C&quot;;
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fimValue));
+
+        return field;
+    }
+
+    public static FieldInstruction CreateConditionalZipField(string mergeFieldName)
+    {
+        // Create IF field that validates ZIP code format
+        var ifField = new FieldInstruction(&quot;IF&quot;);
+
+        // Create nested MERGEFIELD for ZIP code
+        var zipMergeField = new FieldInstruction(&quot;MERGEFIELD&quot;);
+        zipMergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, mergeFieldName));
+
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, zipMergeField));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;&lt;&gt;&quot;));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;&quot;));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, zipMergeField));
+        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;No ZIP code&quot;));
+
+        return ifField;
+    }
+}
+
+// Usage
+PostalData validZip = &quot;12345-6789&quot;;
+FieldInstruction barcodeField = AddressFieldGenerator.CreateBarcodeField(
+    validZip,
+    FacingIdentificationMarkType.BusinessReply
+);
+
+FieldInstruction conditionalZip = AddressFieldGenerator.CreateConditionalZipField(&quot;PostalCode&quot;);
+
+Console.WriteLine($&quot;Barcode field: {barcodeField}&quot;);
+Console.WriteLine($&quot;Conditional ZIP field: {conditionalZip}&quot;);
+</code></pre>
+<h2 id="xml-namespace-declarations-namespacedeclaration">XML Namespace Declarations (NamespaceDeclaration)</h2>
+<h3 id="basic-namespace-handling">Basic Namespace Handling</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Valid namespace declarations
+string[] validDeclarations = {
+    &quot;xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&quot;,
+    &quot;xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&quot;,
+    &quot;xmlns:wp=&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot;&quot;,
+    &quot;xmlns:custom=&quot;http://example.com/custom-namespace&quot;&quot;
+};
+
+foreach (string declaration in validDeclarations)
+{
+    try
+    {
+        NamespaceDeclaration ns = new NamespaceDeclaration(declaration);
+        Console.WriteLine($&quot;✓ Valid namespace:&quot;);
+        Console.WriteLine($&quot;  Prefix: {ns.Prefix}&quot;);
+        Console.WriteLine($&quot;  URI: {ns.Uri}&quot;);
+        Console.WriteLine($&quot;  Declaration: {ns.Declaration}&quot;);
+        Console.WriteLine();
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($&quot;✗ Invalid: {declaration} - {ex.Message}&quot;);
+    }
+}
+</code></pre>
+<h3 id="invalid-namespace-handling">Invalid Namespace Handling</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using System;
+
+string[] invalidDeclarations = {
+    &quot;&quot;,                                              // Empty
+    &quot;xmlns:prefix=uri&quot;,                             // Missing quotes
+    &quot;prefix=&quot;http://example.com&quot;&quot;,                // Missing xmlns:
+    &quot;xmlns:=&quot;http://example.com&quot;&quot;,                // Empty prefix
+    &quot;xmlns:invalid-prefix=&quot;http://example.com&quot;&quot;,  // Invalid prefix character
+    &quot;xmlns:prefix=&quot;&quot;&quot;,                            // Empty URI
+    &quot;xmlns:prefix=http://example.com&quot;,              // Missing quotes around URI
+};
+
+foreach (string declaration in invalidDeclarations)
+{
+    try
+    {
+        NamespaceDeclaration ns = new NamespaceDeclaration(declaration);
+        Console.WriteLine($&quot;Unexpectedly valid: {ns}&quot;);
+    }
+    catch (ArgumentException)
+    {
+        Console.WriteLine($&quot;✓ Correctly rejected: '{declaration}'&quot;);
+    }
+}
+</code></pre>
+<h3 id="working-with-xml-in-fields">Working with XML in Fields</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using System.Xml.Linq;
+
+public class XmlFieldProcessor
+{
+    public static FieldInstruction CreateXmlField(NamespaceDeclaration namespaceDecl, string xpath)
+    {
+        var field = new FieldInstruction(&quot;XML&quot;);
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, namespaceDecl.Declaration));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, xpath));
+
+        return field;
+    }
+
+    public static void ProcessXmlNamespace(NamespaceDeclaration namespaceDecl)
+    {
+        // Use the validated namespace in XML processing
+        XNamespace ns = namespaceDecl.Namespace;
+        XName elementName = ns + &quot;element&quot;;
+
+        Console.WriteLine($&quot;Created XName: {elementName}&quot;);
+        Console.WriteLine($&quot;Namespace: {elementName.Namespace}&quot;);
+        Console.WriteLine($&quot;Local name: {elementName.LocalName}&quot;);
+    }
+}
+
+// Usage
+NamespaceDeclaration wordNamespace = &quot;xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&quot;;
+FieldInstruction xmlField = XmlFieldProcessor.CreateXmlField(wordNamespace, &quot;//w:p/w:t&quot;);
+
+Console.WriteLine($&quot;XML field: {xmlField}&quot;);
+
+XmlFieldProcessor.ProcessXmlNamespace(wordNamespace);
+</code></pre>
+<h2 id="enumeration-usage-examples">Enumeration Usage Examples</h2>
+<h3 id="document-property-categories">Document Property Categories</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class DocumentPropertyFieldGenerator
+{
+    public static FieldInstruction CreateDocPropertyField(DocumentPropertyCategory category)
+    {
+        var field = new FieldInstruction(&quot;DOCPROPERTY&quot;);
+
+        string propertyName = category switch
+        {
+            DocumentPropertyCategory.Author =&gt; &quot;Author&quot;,
+            DocumentPropertyCategory.Title =&gt; &quot;Title&quot;,
+            DocumentPropertyCategory.Company =&gt; &quot;Company&quot;,
+            DocumentPropertyCategory.CreateTime =&gt; &quot;CreateTime&quot;,
+            DocumentPropertyCategory.LastSavedBy =&gt; &quot;LastSavedBy&quot;,
+            DocumentPropertyCategory.Pages =&gt; &quot;Pages&quot;,
+            DocumentPropertyCategory.Words =&gt; &quot;Words&quot;,
+            DocumentPropertyCategory.Characters =&gt; &quot;Characters&quot;,
+            _ =&gt; category.ToString()
+        };
+
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, propertyName));
+        return field;
+    }
+}
+
+// Usage
+DocumentPropertyCategory[] properties = {
+    DocumentPropertyCategory.Author,
+    DocumentPropertyCategory.Title,
+    DocumentPropertyCategory.Company,
+    DocumentPropertyCategory.Pages,
+    DocumentPropertyCategory.Words
+};
+
+foreach (var property in properties)
+{
+    FieldInstruction field = DocumentPropertyFieldGenerator.CreateDocPropertyField(property);
+    Console.WriteLine($&quot;{property}: {field}&quot;);
+}
+</code></pre>
+<h3 id="database-table-attributes">Database Table Attributes</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class DatabaseFieldGenerator
+{
+    public static FieldInstruction CreateDatabaseField(
+        string connectionString,
+        string query,
+        DatabaseTableFormat format,
+        DatabaseTableAttributes attributes)
+    {
+        var field = new FieldInstruction(&quot;DATABASE&quot;);
+
+        // Add connection string
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\d&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, connectionString));
+
+        // Add SQL query
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\s&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, query));
+
+        // Add table format
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\t&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)format).ToString()));
+
+        // Add attributes (bitwise combination)
+        if (attributes != DatabaseTableAttributes.None)
+        {
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\a&quot;));
+            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)attributes).ToString()));
+        }
+
+        return field;
+    }
+}
+
+// Usage with combined attributes
+DatabaseTableAttributes combinedAttributes =
+    DatabaseTableAttributes.Borders |
+    DatabaseTableAttributes.Shading |
+    DatabaseTableAttributes.HeadingRows;
+
+FieldInstruction dbField = DatabaseFieldGenerator.CreateDatabaseField(
+    &quot;Data Source=server;Initial Catalog=database;&quot;,
+    &quot;SELECT Name, Age, Salary FROM Employees&quot;,
+    DatabaseTableFormat.Professional,
+    combinedAttributes
+);
+
+Console.WriteLine($&quot;Database field: {dbField}&quot;);
+Console.WriteLine($&quot;Attributes value: {(int)combinedAttributes}&quot;); // Shows bitwise combination
+</code></pre>
+<h3 id="frame-targets-and-country-regions">Frame Targets and Country Regions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class HyperlinkFieldGenerator
+{
+    public static FieldInstruction CreateHyperlinkWithTarget(string url, string displayText, FrameTarget target)
+    {
+        var field = new FieldInstruction(&quot;HYPERLINK&quot;);
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, url));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, displayText));
+
+        // Add frame target
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\t&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, FrameTargetUtils.FrameTargetText(target)));
+
+        return field;
+    }
+
+    public static FieldInstruction CreateLocalizedAddressBlock(CountryRegion excludedCountry)
+    {
+        var field = new FieldInstruction(&quot;ADDRESSBLOCK&quot;);
+
+        // Exclude specific country from address block
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\e&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, excludedCountry.ToString()));
+
+        return field;
+    }
+}
+
+// Usage
+FrameTarget[] targets = { FrameTarget.Blank, FrameTarget.Self, FrameTarget.Top };
+
+foreach (var target in targets)
+{
+    FieldInstruction hyperlink = HyperlinkFieldGenerator.CreateHyperlinkWithTarget(
+        &quot;https://example.com&quot;,
+        &quot;Example Link&quot;,
+        target
+    );
+    Console.WriteLine($&quot;Target {target}: {hyperlink}&quot;);
+}
+
+// Country-specific address block
+FieldInstruction addressBlock = HyperlinkFieldGenerator.CreateLocalizedAddressBlock(CountryRegion.UnitedStates);
+Console.WriteLine($&quot;Address block excluding US: {addressBlock}&quot;);
+</code></pre>
+<p>This comprehensive example demonstrates how to work with the various data types, validation classes, and enumerations provided by the OpenLanguage WordprocessingML system for robust document processing applications.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/types-validation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
