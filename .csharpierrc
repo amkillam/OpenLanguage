@@ -2,7 +2,5 @@
   "printWidth": 100,
   "useTabs": false,
   "tabWidth": 4,
-  "endOfLine": "lf",
-  "insertFinalNewline": true,
-  "trimTrailingWhitespace": true
+  "endOfLine": "lf"
 }
