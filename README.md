@@ -109,7 +109,7 @@ cmake --build build --target format
 cmake --build build --target doc
 
 # Package for NuGet
-cmake --build build --target publish
+cmake --build build --target pack
 
 # Install git hooks
 cmake --build build --target install-hooks

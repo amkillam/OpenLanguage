@@ -169,12 +169,12 @@ cmake --build build --target doc
 **Dependencies**: `build`  
 **Output**: Generated documentation in `docfx/_site/`
 
-#### `publish`
+#### `pack`
 
-Creates NuGet packages for distribution.
+Packs NuGet packages for distribution.
 
 ```bash
-cmake --build build --target publish
+cmake --build build --target pack
 ```
 
 **Dependencies**: `build`  
@@ -309,7 +309,7 @@ cmake --build build --target format     # Format code
 cmake --build build --target build      # Build solution
 cmake --build build --target test       # Run tests
 cmake --build build --target doc        # Generate docs
-cmake --build build --target publish    # Create packages
+cmake --build build --target pack       # Pack for distribution
 ```
 
 ## Integration with .NET Tools
@@ -459,8 +459,8 @@ The build system is designed for CI/CD pipelines:
 - name: Test
   run: cmake --build build --target test
 
-- name: Package
-  run: cmake --build build --target publish
+- name: Pack
+  run: cmake --build build --target pack
 ```
 
 The build system's deterministic output and cross-platform support make it ideal for automated build environments.

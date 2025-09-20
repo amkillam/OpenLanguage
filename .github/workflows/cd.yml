@@ -52,7 +52,7 @@ jobs:
         run: |
           cmake --build build --target process
           cmake --build build --target build
-          cmake --build build --target publish
+          cmake --build build --target pack
 
       - name: Generate documentation
         run: |

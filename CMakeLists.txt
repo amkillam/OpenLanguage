@@ -174,11 +174,12 @@ add_custom_target(test
     COMMENT "Running unit tests"
 )
 
-# Publish target - dependent on build
-add_custom_target(publish
-    COMMAND dotnet pack ${PROJECT_DIR}/OpenLanguage.csproj --configuration Release --property:OutputPath="${CMAKE_BINARY_DIR}/packages" --no-build
+# Pack target for distribution - dependent on preprocessing
+add_custom_target(pack
+    COMMAND dotnet pack ${PROJECT_DIR}/OpenLanguage.csproj --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/pack" --configuration Release --property:OutputPath="${CMAKE_BINARY_DIR}/packages"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMAND echo "Ready to publish to NuGet. Run: dotnet nuget push ${CMAKE_BINARY_DIR}/packages/*.nupkg --source https://api.nuget.org/v3/index.json"
-    DEPENDS build
+    DEPENDS process
     COMMENT "Packaging for NuGet publication"
 )
 
