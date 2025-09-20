@@ -101,6 +101,8 @@ namespace OpenLanguage.WordprocessingML.MergeField
             };
 
             MergeFieldLexerState state = MergeFieldLexerState.SearchingForStart;
+            bool foundStart = false;
+            bool foundEnd = false;
             StringBuilder fieldNameBuilder = new StringBuilder();
             StringBuilder formattingSwitchBuilder = new StringBuilder();
 
@@ -113,6 +115,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
                     case MergeFieldLexerState.SearchingForStart:
                         if (currentChar == '«')
                         {
+                            foundStart = true;
                             state = MergeFieldLexerState.ParsingFieldName;
                         }
                         break;
@@ -125,6 +128,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
                         }
                         else if (currentChar == '»')
                         {
+                            foundEnd = true;
                             state = MergeFieldLexerState.SearchingForEnd;
                             break;
                         }
@@ -137,6 +141,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
                     case MergeFieldLexerState.ParsingFormattingSwitch:
                         if (currentChar == '»')
                         {
+                            foundEnd = true;
                             state = MergeFieldLexerState.SearchingForEnd;
                             break;
                         }
@@ -154,6 +159,15 @@ namespace OpenLanguage.WordprocessingML.MergeField
 
             // Clean up field name (trim whitespace)
             string fieldName = fieldNameBuilder.ToString().Trim();
+
+            // A valid merge field must have both opening and closing guillemets.
+            if (!foundStart || !foundEnd)
+            {
+                placeholder.FieldName = string.Empty;
+                placeholder.FormattingSwitch = null;
+                return placeholder;
+            }
+
             placeholder.FieldName = fieldName;
 
             // Set formatting switch if present
@@ -432,6 +446,7 @@ namespace OpenLanguage.WordprocessingML.MergeField
         {
             { "en-US", LanguageIdentifier.EnglishUS },
             { "en-GB", LanguageIdentifier.EnglishUK },
+            { "en-AU", LanguageIdentifier.EnglishAustralia },
             { "fr-FR", LanguageIdentifier.FrenchFrance },
             { "de-DE", LanguageIdentifier.GermanGermany },
             { "es-ES", LanguageIdentifier.SpanishSpain },
@@ -469,6 +484,10 @@ namespace OpenLanguage.WordprocessingML.MergeField
             { "hr-HR", LanguageIdentifier.Croatian },
             { "ro-RO", LanguageIdentifier.Romanian },
             { "uk-UA", LanguageIdentifier.Ukrainian },
+            { "ar", LanguageIdentifier.ArabicSaudiArabia },
+            { "ja", LanguageIdentifier.Japanese },
+            { "ko", LanguageIdentifier.Korean },
+            { "ru", LanguageIdentifier.Russian },
         };
 
         /// <summary>

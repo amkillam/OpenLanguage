@@ -8,46 +8,28 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// A recursive descent parser that builds a structured FieldInstruction object
     /// from a stream of tokens provided by the FieldLexer.
     /// </summary>
-    public static class FieldParser
+    public class FieldParser
     {
-        private static int _currentTokenIndex;
+        private int _currentTokenIndex { get; set; } = 0;
 
-        public static FieldInstruction Parse(string fieldCode)
+        public FieldInstruction Parse(string fieldCode)
         {
+            _currentTokenIndex = 0;
             if (string.IsNullOrEmpty(fieldCode))
             {
                 throw new Exception("Failed to parse FieldInstruction: empty or null input");
             }
 
             IEnumerable<FieldToken> tokenEnumerable = FieldLexer.Tokenize(fieldCode);
-            List<FieldToken> tokens = new List<FieldToken>();
+            List<FieldToken> tokens = tokenEnumerable.ToList();
 
-            _currentTokenIndex = 0;
-            FieldToken? firstToken = tokenEnumerable.FirstOrDefault();
-
-            if (firstToken == null)
+            if (tokens.Count == 0)
             {
                 throw new Exception(
                     "Failed to parse FieldInstruction: could not find instruction name"
                 );
             }
 
-            // A valid field code might start with a brace, or just the instruction for simple cases.
-            if (firstToken.Type == FieldTokenType.LeftBrace)
-            {
-                FieldInstruction? parsedNested = TryParseInstruction(tokenEnumerable.ToList());
-                if (parsedNested == null)
-                {
-                    throw new Exception("Failed to parse FieldInstruction");
-                }
-                return parsedNested;
-            }
-
-            tokens.Add(firstToken!);
-            foreach (FieldToken token in tokenEnumerable)
-            {
-                tokens.Add(token);
-            }
             FieldInstruction? parsed = TryParseInstruction(tokens);
             if (parsed == null)
             {
@@ -57,43 +39,28 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             return parsed;
         }
 
-        public static FieldInstruction? TryParse(string fieldCode)
+        public FieldInstruction? TryParse(string fieldCode)
         {
+            _currentTokenIndex = 0;
             if (string.IsNullOrEmpty(fieldCode))
             {
                 return null;
             }
 
             IEnumerable<FieldToken> tokenEnumerable = FieldLexer.Tokenize(fieldCode);
-            List<FieldToken> tokens = new List<FieldToken>();
+            List<FieldToken> tokens = tokenEnumerable.ToList();
 
-            _currentTokenIndex = 0;
-            FieldToken? firstToken = tokenEnumerable.FirstOrDefault();
-
-            if (firstToken == null)
+            if (tokens.Count == 0)
             {
                 return null;
-            }
-            // A valid field code might start with a brace, or just the instruction for simple cases.
-            if (firstToken.Type == FieldTokenType.LeftBrace)
-            {
-                return TryParseInstruction(tokenEnumerable.ToList());
-            }
-
-            tokens.Add(firstToken);
-            foreach (FieldToken token in tokenEnumerable)
-            {
-                tokens.Add(token);
             }
 
             return TryParseInstruction(tokens);
         }
 
-        public static FieldInstruction? TryParseFiltered(
-            string fieldCode,
-            HashSet<string> keywordFilter
-        )
+        public FieldInstruction? TryParseFiltered(string fieldCode, HashSet<string> keywordFilter)
         {
+            _currentTokenIndex = 0;
             if (string.IsNullOrEmpty(fieldCode))
             {
                 return null;
@@ -102,7 +69,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             IEnumerable<FieldToken> tokenEnumerable = FieldLexer.Tokenize(fieldCode);
             List<FieldToken> tokens = new List<FieldToken>();
 
-            _currentTokenIndex = 0;
             FieldToken? firstToken = tokenEnumerable.FirstOrDefault();
 
             if (firstToken == null)
@@ -129,10 +95,17 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             return TryParseInstruction(tokens);
         }
 
-        private static FieldInstruction? TryParseInstruction(List<FieldToken> tokens)
+        private FieldInstruction? TryParseInstruction(List<FieldToken> tokens)
         {
-            // Find the instruction keyword.
+            // Find the instruction keyword (skip any leading left brace and whitespace).
             FieldToken? keywordToken = GetNextNonWhitespaceToken(tokens);
+            bool startedWithBrace = false;
+            if (keywordToken != null && keywordToken.Type == FieldTokenType.LeftBrace)
+            {
+                startedWithBrace = true;
+                _currentTokenIndex++; // consume '{'
+                keywordToken = GetNextNonWhitespaceToken(tokens);
+            }
             if (keywordToken == null || keywordToken.Type != FieldTokenType.Keyword)
             {
                 return null; // Invalid structure, no keyword found.
@@ -185,6 +158,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 }
             }
 
+            bool consumedRightBrace = false;
             // Consume the closing brace for the current scope.
             if (
                 _currentTokenIndex < tokens.Count
@@ -192,12 +166,19 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             )
             {
                 _currentTokenIndex++;
+                consumedRightBrace = true;
+            }
+
+            // If an opening brace started this instruction but no matching closing brace was found before EOF, treat as invalid.
+            if (startedWithBrace && !consumedRightBrace)
+            {
+                return null;
             }
 
             return instruction;
         }
 
-        private static FieldToken? GetNextNonWhitespaceToken(List<FieldToken> tokens)
+        private FieldToken? GetNextNonWhitespaceToken(List<FieldToken> tokens)
         {
             while (_currentTokenIndex < tokens.Count)
             {

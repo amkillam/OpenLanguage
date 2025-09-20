@@ -535,6 +535,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             {
                 Indices = new List<ExpressionNode>() { tableIndex };
             }
+
+            Indices.TrimExcess();
         }
 
         public StructuredReferenceNode(
@@ -544,6 +546,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         {
             SheetReference = sheetReference;
             Indices = tableIndices ?? new List<ExpressionNode>();
+            Indices.TrimExcess();
         }
 
         public override int Precedence => Ast.Precedence.Primary;

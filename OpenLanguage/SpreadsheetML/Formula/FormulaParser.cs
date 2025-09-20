@@ -8,13 +8,12 @@ namespace OpenLanguage.SpreadsheetML.Formula
     /// </summary>
     public static class FormulaParser
     {
-        public static Ast.Node Parse(IEnumerable<char> chars)
+        public static Ast.Node Parse(string? formulaText)
         {
-            string formulaText = string.Concat(chars);
-            if (string.IsNullOrWhiteSpace(formulaText))
+            if (string.IsNullOrWhiteSpace(formulaText) || formulaText.Length == 0)
             {
                 throw new System.ArgumentException(
-                    "Formula text cannot be null or empty.",
+                    "Formula text cannot be null, empty, or only whitespace.",
                     nameof(formulaText)
                 );
             }
@@ -55,12 +54,40 @@ namespace OpenLanguage.SpreadsheetML.Formula
             return parser.root;
         }
 
-        public static Ast.Node? TryParse(IEnumerable<char> chars)
+        public static Ast.Node Parse(IEnumerable<char>? chars)
         {
+            if (chars == null)
+            {
+                throw new System.ArgumentException(
+                    "Formula text cannot be null, empty, or only whitespace.",
+                    nameof(chars)
+                );
+            }
             string formulaText = string.Concat(chars);
+
+            return Parse(formulaText);
+        }
+
+        public static Ast.Node? TryParse(IEnumerable<char>? chars)
+        {
             try
             {
-                return FormulaParser.Parse(formulaText);
+                return FormulaParser.Parse(chars);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(
+                    $"Encountered error while trying to parse formula text: \"{e}\""
+                );
+                return null;
+            }
+        }
+
+        public static Ast.Node? TryParse(string? chars)
+        {
+            try
+            {
+                return FormulaParser.Parse(chars);
             }
             catch (Exception e)
             {

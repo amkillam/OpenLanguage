@@ -5,7 +5,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 {
     public class FunctionCallNode : ExpressionNode
     {
-        public ExpressionNode FunctionIdentifier { get; set; }
+        public ExpressionNode FunctionReference { get; set; }
         public List<ExpressionNode> Arguments { get; }
 
         public override int Precedence => Ast.Precedence.Primary;
@@ -18,19 +18,20 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(leadingWhitespace, trailingWhitespace)
         {
-            FunctionIdentifier = functionIdentifier;
+            FunctionReference = functionIdentifier;
             Arguments = arguments;
+            Arguments.TrimExcess();
         }
 
         public override string ToRawString() =>
-            FunctionIdentifier.ToString()
+            FunctionReference.ToString()
             + "("
             + string.Join(",", Arguments.Select(a => a.ToString()))
             + ")";
 
         public override IEnumerable<O> Children<O>()
         {
-            if (FunctionIdentifier is O funcImp)
+            if (FunctionReference is O funcImp)
             {
                 yield return funcImp;
             }
@@ -45,24 +46,23 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override Node? ReplaceChild(int index, Node replacement)
         {
+            ExpressionNode? current = null;
             if (replacement is ExpressionNode expr)
             {
                 if (index == 0)
                 {
-                    ExpressionNode currentIdent = FunctionIdentifier;
-                    FunctionIdentifier = expr;
-                    return currentIdent;
+                    current = FunctionReference;
+                    FunctionReference = expr;
                 }
 
                 int argIdx = index - 1;
                 if (argIdx < Arguments.Count)
                 {
-                    ExpressionNode currentArgNode = Arguments[argIdx];
+                    current = Arguments[argIdx];
                     Arguments[argIdx] = expr;
-                    return currentArgNode;
                 }
             }
-            return null;
+            return current;
         }
     }
 }

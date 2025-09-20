@@ -18,7 +18,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("MERGEFIELD Status \\b \"Unknown\"")]
         public void Parse_MergeFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("MERGEFIELD", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -33,7 +34,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("HYPERLINK \"https://www.example.com\" \\t \"_blank\"")]
         public void Parse_HyperlinkVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("HYPERLINK", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -47,7 +49,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("IF { MERGEFIELD Status } = \"Active\" \"Yes\" \"No\"")]
         public void Parse_IfFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("IF", result.Instruction);
             Assert.True(result.Arguments.Count >= 5); // condition, operator, value, true_text, false_text
@@ -60,7 +63,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("DATE \\* MERGEFORMAT")]
         public void Parse_DateFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("DATE", result.Instruction);
         }
@@ -71,7 +75,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("TIME \\@ \"HH:mm:ss\"")]
         public void Parse_TimeFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("TIME", result.Instruction);
         }
@@ -84,7 +89,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("PAGE \\* ROMAN")]
         public void Parse_PageFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("PAGE", result.Instruction);
         }
@@ -97,7 +103,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("DOCPROPERTY Subject \\* Upper")]
         public void Parse_DocPropertyVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("DOCPROPERTY", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -112,7 +119,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("ADDRESSBLOCK \\l 1033")]
         public void Parse_AddressBlockVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("ADDRESSBLOCK", result.Instruction);
         }
@@ -124,7 +132,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("GREETINGLINE \\f \"Dear\" \\l \",\" \\e \"Dear Sir or Madam,\"")]
         public void Parse_GreetingLineVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("GREETINGLINE", result.Instruction);
         }
@@ -136,7 +145,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("BARCODE { MERGEFIELD PostalCode }")]
         public void Parse_BarcodeVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("BARCODE", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -152,7 +162,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         )]
         public void Parse_DatabaseVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("DATABASE", result.Instruction);
             Assert.True(result.Arguments.Count >= 4); // Should have connection and query
@@ -166,7 +177,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("REF Bookmark1 \\r")]
         public void Parse_RefFieldVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("REF", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -179,7 +191,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("PAGEREF Bookmark1 \\p")]
         public void Parse_PageRefVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("PAGEREF", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -191,7 +204,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string complexField =
                 "IF { MERGEFIELD Department } = \"Sales\" { MERGEFIELD SalesBonus } { MERGEFIELD StandardBonus }";
 
-            FieldInstruction result = FieldParser.Parse(complexField);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(complexField);
 
             Assert.Equal("IF", result.Instruction);
             Assert.Equal(5, result.Arguments.Count);
@@ -209,7 +223,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string multiNestedField =
                 "IF { IF { MERGEFIELD Age } > 65 \"Senior\" \"Adult\" } = \"Senior\" { MERGEFIELD SeniorDiscount } { MERGEFIELD StandardPrice }";
 
-            FieldInstruction result = FieldParser.Parse(multiNestedField);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(multiNestedField);
 
             Assert.Equal("IF", result.Instruction);
             Assert.True(result.Arguments.Count >= 5);
@@ -230,7 +245,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("FILENAME \\* Lower")]
         public void Parse_FilenameVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("FILENAME", result.Instruction);
         }
@@ -241,7 +257,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("AUTHOR \\* FirstCap")]
         public void Parse_AuthorVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("AUTHOR", result.Instruction);
         }
@@ -255,7 +272,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("PRINTDATE \\@ \"dddd, MMMM dd, yyyy\"")]
         public void Parse_DocumentDateVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Contains(result.Instruction, new[] { "CREATEDATE", "SAVEDATE", "PRINTDATE" });
         }
@@ -267,7 +285,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("NUMPAGES \\* ROMAN")]
         public void Parse_NumPagesVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("NUMPAGES", result.Instruction);
         }
@@ -278,7 +297,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("NUMCHARS \\p")]
         public void Parse_DocumentStatsVariations_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Contains(result.Instruction, new[] { "NUMWORDS", "NUMCHARS" });
         }
@@ -289,7 +309,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string fieldWithEscapedQuotes =
                 "MERGEFIELD Company \\b \"Company \\\"Name\\\" Unknown\"";
 
-            FieldInstruction result = FieldParser.Parse(fieldWithEscapedQuotes);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldWithEscapedQuotes);
 
             Assert.Equal("MERGEFIELD", result.Instruction);
             Assert.True(result.Arguments.Count >= 3);
@@ -306,7 +327,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             string fieldWithSpecialChars = "MERGEFIELD \"Field With Spaces & Special Chars!@#$%\"";
 
-            FieldInstruction result = FieldParser.Parse(fieldWithSpecialChars);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldWithSpecialChars);
 
             Assert.Equal("MERGEFIELD", result.Instruction);
             Assert.Single(result.Arguments);
@@ -319,7 +341,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("{ MERGEFIELD FirstName \\* Upper }")]
         public void Parse_FieldWithBraces_ParsesCorrectly(string fieldCode)
         {
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal("MERGEFIELD", result.Instruction);
             Assert.True(result.Arguments.Count >= 1);
@@ -339,11 +362,13 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 
             foreach (string original in testFields)
             {
-                FieldInstruction parsed = FieldParser.Parse(original);
+                FieldParser parser = new FieldParser();
+                FieldInstruction parsed = parser.Parse(original);
                 string reconstructed = parsed.ToString();
 
                 // Parse the reconstructed field to ensure it's valid
-                FieldInstruction reparsed = FieldParser.Parse(reconstructed);
+                FieldParser reconstructedParser = new FieldParser();
+                FieldInstruction reparsed = reconstructedParser.Parse(reconstructed);
                 Assert.Equal(parsed.Instruction, reparsed.Instruction);
                 Assert.Equal(parsed.Arguments.Count, reparsed.Arguments.Count);
             }
@@ -361,7 +386,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             // Act & Assert
             if (string.IsNullOrWhiteSpace(fieldCode))
             {
-                Assert.Throws<Exception>(() => FieldParser.Parse(fieldCode));
+                FieldParser parser = new FieldParser();
+                Assert.Throws<Exception>(() => parser.Parse(fieldCode));
             }
             else
             {
@@ -369,7 +395,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 // The exact behavior depends on the implementation
                 try
                 {
-                    FieldInstruction result = FieldParser.Parse(fieldCode);
+                    FieldParser parser = new FieldParser();
+                    FieldInstruction result = parser.Parse(fieldCode);
                     // If parsing succeeds, verify basic structure
                     Assert.NotNull(result);
                     Assert.NotNull(result.Instruction);
@@ -388,7 +415,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("DATE \\@ \"MM/dd/yyyy\"")]
         public void TryParse_ValidFields_ReturnsFieldInstruction(string fieldCode)
         {
-            FieldInstruction? result = FieldParser.TryParse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction? result = parser.TryParse(fieldCode);
 
             Assert.NotNull(result);
             Assert.NotNull(result.Instruction);
@@ -401,7 +429,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("{ UNCLOSED")]
         public void TryParse_InvalidFields_ReturnsNull(string? fieldCode)
         {
-            FieldInstruction? result = FieldParser.TryParse(fieldCode!);
+            FieldParser parser = new FieldParser();
+            FieldInstruction? result = parser.TryParse(fieldCode!);
 
             Assert.Null(result);
         }
@@ -412,7 +441,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string fieldWithMultipleSwitches =
                 "MERGEFIELD Amount \\# \"$#,##0.00\" \\* MERGEFORMAT \\b \"$0.00\"";
 
-            FieldInstruction result = FieldParser.Parse(fieldWithMultipleSwitches);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldWithMultipleSwitches);
 
             Assert.Equal("MERGEFIELD", result.Instruction);
 
@@ -431,7 +461,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         {
             string fieldCode = $"{instruction} {string.Join(" ", expectedArgs)}";
 
-            FieldInstruction result = FieldParser.Parse(fieldCode);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(fieldCode);
 
             Assert.Equal(instruction, result.Instruction);
             Assert.Equal(expectedArgs.Length, result.Arguments.Count);
@@ -455,7 +486,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
             foreach (string fieldCode in fields)
             {
-                FieldInstruction result = FieldParser.Parse(fieldCode);
+                FieldParser parser = new FieldParser();
+                FieldInstruction result = parser.Parse(fieldCode);
                 Assert.NotNull(result);
             }
             stopwatch.Stop();
@@ -474,7 +506,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 "IF { IF { MERGEFIELD Level1 } = \"A\" { MERGEFIELD Level2A } { MERGEFIELD Level2B } } = \"Result\" { MERGEFIELD Success } { MERGEFIELD Failure }";
 
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            FieldInstruction result = FieldParser.Parse(complexField);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(complexField);
             stopwatch.Stop();
 
             Assert.NotNull(result);
@@ -500,7 +533,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string complexField =
                 $"IF {string.Join(" = ", mergeFields.Take(2))} \"Match\" \"NoMatch\"";
 
-            FieldInstruction result = FieldParser.Parse(complexField);
+            FieldParser parser = new FieldParser();
+            FieldInstruction result = parser.Parse(complexField);
             Assert.NotNull(result);
             Assert.Equal("IF", result.Instruction);
         }

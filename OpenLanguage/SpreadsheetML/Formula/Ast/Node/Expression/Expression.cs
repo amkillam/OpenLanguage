@@ -27,6 +27,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         {
             LeadingWhitespace = leadingWhitespace ?? new List<Node>();
             TrailingWhitespace = trailingWhitespace ?? new List<Node>();
+
+            LeadingWhitespace.TrimExcess();
+            TrailingWhitespace.TrimExcess();
         }
 
         /// <summary>

@@ -16,7 +16,6 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 - [Typed Field Instructions](api/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
 - [MergeField Processing](api/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
 - [Expression Processing](api/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
-- [ODBC Support](api/WordprocessingML/ODBC/ODBC.md) - ODBC-related parsing components
 
 ### Development
 
@@ -37,7 +36,6 @@ The API reference is generated from XML documentation comments in the source cod
 | Typed Instructions | Strongly-typed field factory               | [Typed.md](api/WordprocessingML/FieldInstruction/Typed.md)                       |
 | MergeField Lexer   | Mail merge field lexing                    | [MergeField.md](api/WordprocessingML/MergeField/MergeField.md)                   |
 | Expression Lexer   | Expression lexical analysis                | [Expression.md](api/WordprocessingML/Expression/Expression.md)                   |
-| ODBC Components    | ODBC parsing support                       | [ODBC.md](api/WordprocessingML/ODBC/ODBC.md)                                     |
 
 ## Project Structure
 
@@ -49,13 +47,12 @@ OpenLanguage consists of:
   - Lang/Lex/formula.lex: Lexical grammar for SpreadsheetML formulas
   - Lang/Parse/formula.y: YACC grammar for SpreadsheetML formulas
 - **WordprocessingML.FieldInstruction**: WordprocessingML field instruction parser
-
   - FieldInstruction.cs: Core field instruction and argument classes
   - Typed/: Factory and base classes for strongly-typed instructions
   - Parser.cs & Lexer.cs: Parser components
 
 - **Other WordprocessingML Components**:
-  - MergeField, Expression, ODBC: Additional lexer components
+  - MergeField, Expression: Additional lexer components
 
 ## Build System
 

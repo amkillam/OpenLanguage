@@ -1195,6 +1195,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(new NameNode(rawName ?? "FACTDOUBLE"), leadingWhitespace, trailingWhitespace) { }
     }
 
+    public class FalseStandardFunctionNode : StandardFunctionNode
+    {
+        public FalseStandardFunctionNode(
+            string? rawName = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode(rawName ?? "FALSE"), leadingWhitespace, trailingWhitespace) { }
+    }
+
     public class FDistStandardFunctionNode : StandardFunctionNode
     {
         public FDistStandardFunctionNode(
@@ -3490,6 +3500,16 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(new NameNode(rawName ?? "TRIMMEAN"), leadingWhitespace, trailingWhitespace) { }
+    }
+
+    public class TrueStandardFunctionNode : StandardFunctionNode
+    {
+        public TrueStandardFunctionNode(
+            string? rawName = null,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(new NameNode(rawName ?? "TRUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class TruncStandardFunctionNode : StandardFunctionNode

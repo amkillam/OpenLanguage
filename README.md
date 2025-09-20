@@ -51,13 +51,13 @@ Install-Package OpenLanguage
 using OpenLanguage.SpreadsheetML.Formula;
 
 // Parse an Excel formula
-var formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
+Ast.Node formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
 
 // Access the AST
 Console.WriteLine($"Reconstructed: {formula.ToString()}");
 
 // Try parsing with error handling
-var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
+Ast.Node? maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
 if (maybeFormula == null)
 {
     Console.WriteLine("Parse failed - invalid syntax");
@@ -157,8 +157,7 @@ OpenLanguage/
 │   └── WordprocessingML/
 │       ├── FieldInstruction/       # WordprocessingML field instructions
 │       ├── MergeField/            # Mail merge functionality
-│       ├── Expression/            # Expression evaluation
-│       └── ODBC/                  # Database connectivity
+│       └── Expression/            # Expression evaluation
 ├── OpenLanguage.Test/              # Unit tests
 ├── docs/                          # Documentation
 └── CMakeLists.txt                 # Build system configuration
@@ -240,12 +239,91 @@ dotnet test OpenLanguage.Test/
 OpenLanguage is built with performance as a primary concern:
 
 - **Native AOT Ready**: Full compatibility with .NET Native AOT
-- **Optimized Grammar**: Hand-tuned, hyper-optimized LALR YACC-style parser used with highly optimized, minimal LEX-style grammar
+- **Optimized Grammar**: LALR YACC-style parser used for SpreadsheetML formula parsing with highly optimized, minimal LEX-style grammar.
+  Compared against the ABNF grammar specification at each step of implementation.
 
 ## Compatibility
 
 - **.NET 9.0**: Primary target framework
 - **Native AOT**: Full support for ahead-of-time compilation
+
+## TODO
+
+### Restructure
+
+- [ ] Abstract and reuse formula parser's expression lexing and parsing in all
+      applicable parsers
+- [ ] Remove hand-written C# expression lexer and parser in WordprocessingML
+      namespace
+
+### WordprocessingML
+
+**Parsers**
+
+- [ ] Rewrite field instruction parser with yacc-style GPPG parser.
+- [ ] Rewrite field instruction lexer with flex-style GPLEX lexer.
+- [ ] Refactor field instruction classes to use derived classes for strongly-typed instructions
+      rather than using factories and explicit conversion to strongly typed representation.
+- [ ] Rewrite merge field parser with yacc-style GPPG parser.
+- [ ] Rewrite merge field lexer with flex-style GPLEX lexer.
+
+**Test Coverage**
+
+- [ ] Greatly expand field instruction parsing and lexing test coverage. Current
+      coverage is insufficient for a best-effort proof of efficacy.
+- [ ] Greatly expand mergefield parsing and lexing test coverage. Current
+      coverage is minimal and does not prove even minimal efficacy.
+
+**Misc**
+
+- [ ] Complete exhaustive enumeration of `CountryRegion` enumerations. The
+      current implementation is missing all but the most common enumerations.
+
+**Evaluation**
+
+- [ ] Implement per-class evaluation of strongly typed field instructions.
+- [ ] Implement evaluation of parsed merge field.
+
+### SpreadsheetML
+
+Test coverage is quite comprehensive, as are grammar and parser rule
+specifications - there should not be anything left to complete here as far as
+implementation of parsing, parsing dependencies, nor AST. However, optimization leaves a bit to be desired, and evaluation is unimplemented.
+
+**Optimization**
+
+- [ ] Runtime memory consumption of `FormulaParser` and AST node classes, as
+      well as size of generated parser code, jumped by ~10x on adding the
+      `builtin_function_call_head_raw` rule. Investigate the cause and resolve.
+- [ ] Many Shift, Reduce, Shift/Reduce, and Reduce/Reduce conflicts are
+      automatically resolved on code generation of parser. Investigate the cause and
+      resolve.
+
+**Evaluation**
+
+- [ ] Implement evaluation of formula, with a per-AST node class method called
+      `Evaluate`, on the abstract `ExpressionNode` class and overriden by derived
+      classes.
+  - [ ] Implement all builtin SpreadsheetML functions.
+  - [ ] Implement cell, sheet, table, and range reference resolution for read
+        and write of underlying value.
+  - [ ] Implement arithmetic expression evaluation.
+  - [ ] Implement function reference resolution and call evaluation -
+        regardless of whether user-defined, `_xlpm.`-prefixed function references, or
+        `LAMBDA` functions.
+- [ ] Bonus: implement a shared `SpreadsheetContext` to abstract common data
+      reading and writing operations
+  - [ ] Bonus if completed: in `SpreadsheetContext`, use generic underlying data representation which
+        is derived from a common `Spreadsheet` class, allowing any underlying
+        matrix-like data representation to be manipulated by formulas.
+
+**Example Usage**
+
+- [ ] Write a toy formula interpreter when evaluation is implemented.
+  - [ ] Bonus: Realtime display and update of spreadsheet cell values in TUI
+        with matrix display and formula input prompt as well as vim-style selection of
+        corresponding cells. Simulaneously update underlying OPC package on modifying
+        values.
 
 ## License
 

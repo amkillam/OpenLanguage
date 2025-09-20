@@ -15,6 +15,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(leadingWhitespace, trailingWhitespace)
         {
             Nodes = nodes;
+            Nodes.TrimExcess();
         }
 
         public override string ToRawString() => string.Concat(Nodes.Select(n => n.ToString()));

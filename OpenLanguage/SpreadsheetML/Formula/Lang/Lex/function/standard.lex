@@ -116,6 +116,7 @@
 [eE][xX][pP] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXP; }
 [eE][xX][pP][oO][nN][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_EXPONDIST; }
 [fF][aA][cC][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FACT; }
+[fF][aA][lL][sS][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FALSE; }
 [fF][aA][cC][tT][dD][oO][uU][bB][lL][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FACTDOUBLE; }
 [fF][dD][iI][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FDIST; }
 [fF][iI][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_FIND; }
@@ -344,6 +345,7 @@
 [tT][rR][eE][nN][dD] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TREND; }
 [tT][rR][iI][mM] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRIM; }
 [tT][rR][iI][mM][mM][eE][aA][nN] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRIMMEAN; }
+[tT][rR][uU][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRUE; }
 [tT][rR][uU][nN][cC] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TRUNC; }
 [tT][tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TTEST; }
 [tT][yY][pP][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TYPE; }

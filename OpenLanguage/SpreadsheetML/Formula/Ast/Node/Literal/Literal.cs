@@ -94,13 +94,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                         result = result * N.CreateChecked(8) + N.CreateChecked(c - '0');
                         break;
                     default:
-                    {
-                        if (!char.IsWhiteSpace(c))
                         {
-                            return null;
+                            if (!char.IsWhiteSpace(c))
+                            {
+                                return null;
+                            }
+                            break;
                         }
-                        break;
-                    }
                 }
             }
             return result;
@@ -122,75 +122,75 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             {
                 case "0x":
                 case "&h":
-                {
-                    if (
-                        N.TryParse(
-                            trimmed,
-                            NumberStyles.HexNumber | NumberStyles.AllowHexSpecifier,
-                            CultureInfo.InvariantCulture,
-                            out N parseHexResult
-                        )
-                    )
                     {
-                        result = parseHexResult;
+                        if (
+                            N.TryParse(
+                                trimmed,
+                                NumberStyles.HexNumber | NumberStyles.AllowHexSpecifier,
+                                CultureInfo.InvariantCulture,
+                                out N parseHexResult
+                            )
+                        )
+                        {
+                            result = parseHexResult;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case "0b":
                 case "&b":
-                {
-                    // NOTE: 'NumberStyles.BinaryNumber' does not exist. The correct style for
-                    // parsing binary strings with a "0b" prefix is 'AllowBinarySpecifier'
-                    // (requires .NET 7 or later).
-                    if (
-                        N.TryParse(
-                            trimmed,
-                            NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber,
-                            CultureInfo.InvariantCulture,
-                            out N parseBinaryResult
-                        )
-                    )
                     {
-                        result = parseBinaryResult;
-                    }
-                    else if (
-                        N.TryParse(
-                            trimmed,
-                            NumberStyles.HexNumber,
-                            CultureInfo.InvariantCulture,
-                            out N parseBinaryHexFallbackResult
+                        // NOTE: 'NumberStyles.BinaryNumber' does not exist. The correct style for
+                        // parsing binary strings with a "0b" prefix is 'AllowBinarySpecifier'
+                        // (requires .NET 7 or later).
+                        if (
+                            N.TryParse(
+                                trimmed,
+                                NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber,
+                                CultureInfo.InvariantCulture,
+                                out N parseBinaryResult
+                            )
                         )
-                    )
-                    {
-                        result = parseBinaryHexFallbackResult;
+                        {
+                            result = parseBinaryResult;
+                        }
+                        else if (
+                            N.TryParse(
+                                trimmed,
+                                NumberStyles.HexNumber,
+                                CultureInfo.InvariantCulture,
+                                out N parseBinaryHexFallbackResult
+                            )
+                        )
+                        {
+                            result = parseBinaryHexFallbackResult;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case "0o":
                 case "&o":
-                {
-                    N? parseOctalResult = TryParseOctal(trimmed);
-                    if (parseOctalResult != null)
                     {
-                        result = parseOctalResult.Value;
+                        N? parseOctalResult = TryParseOctal(trimmed);
+                        if (parseOctalResult != null)
+                        {
+                            result = parseOctalResult.Value;
+                        }
+                        break;
                     }
-                    break;
-                }
                 default:
-                {
-                    if (
-                        N.TryParse(
-                            trimmed,
-                            NumberStyles.Any,
-                            CultureInfo.InvariantCulture,
-                            out N parseDecimalResult
-                        )
-                    )
                     {
-                        result = parseDecimalResult;
+                        if (
+                            N.TryParse(
+                                trimmed,
+                                NumberStyles.Any,
+                                CultureInfo.InvariantCulture,
+                                out N parseDecimalResult
+                            )
+                        )
+                        {
+                            result = parseDecimalResult;
+                        }
+                        break;
                     }
-                    break;
-                }
             }
             return result;
         }

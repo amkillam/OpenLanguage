@@ -189,9 +189,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             string? args = null
         )
         {
-            FieldInstruction source = FieldParser.Parse(
-                instruction + (args != null ? $" {args}" : "")
-            );
+            FieldParser parser = new FieldParser();
+            FieldInstruction source = parser.Parse(instruction + (args != null ? $" {args}" : ""));
 
             TypedFieldInstruction? result = TypedFieldInstructionFactory.Create(source);
 

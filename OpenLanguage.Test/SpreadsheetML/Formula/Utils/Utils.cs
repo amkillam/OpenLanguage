@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Tests
 {
@@ -7,23 +9,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
     {
         public static IEnumerable<string> DatasetFormulae()
         {
-            foreach (
-                string formulaDatasetPath in FilesystemUtils.RecurseFilePaths(
-                    "data/SpreadsheetML/Formula"
-                )
-            )
-            {
-                if (Path.GetExtension(formulaDatasetPath).ToLower() == ".txt")
-                {
-                    FileInfo fileInfo = new(formulaDatasetPath);
-                    foreach (string line in fileInfo.Lines())
-                    {
-                        yield return line;
-                    }
-                }
-            }
-
-            yield break;
+            return FilesystemUtils
+                .FileStreams(new Regex("^./data/SpreadsheetML/Formula/.*\\.txt$"))
+                .SelectMany((Stream s) => s.Lines())
+                .Where((string line) => !string.IsNullOrWhiteSpace(line) && line.Length > 0)
+                .Order()
+                .Distinct();
         }
     }
 }

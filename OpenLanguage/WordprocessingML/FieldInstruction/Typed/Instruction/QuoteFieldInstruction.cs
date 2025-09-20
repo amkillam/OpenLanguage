@@ -364,15 +364,30 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <returns>The argument type.</returns>
         private FieldArgumentType DetermineArgumentType(string token)
         {
-            if (token.StartsWith(""))
+            if (!string.IsNullOrEmpty(token) && token[0] == '\\')
             {
                 return FieldArgumentType.Switch;
             }
-            if (token.StartsWith(""") && token.EndsWith("""))
+            if (!string.IsNullOrEmpty(token) && token.Length >= 2 && token[0] == '"' && token[token.Length - 1] == '"')
             {
                 return FieldArgumentType.StringLiteral;
             }
-            if (int.TryParse(token, out _) || double.TryParse(token, out _))
+            int parsedInt;
+            double parsedDouble;
+            if (
+                int.TryParse(
+                    token,
+                    System.Globalization.NumberStyles.Integer,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out parsedInt
+                )
+                || double.TryParse(
+                    token,
+                    System.Globalization.NumberStyles.Float | System.Globalization.NumberStyles.AllowThousands,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out parsedDouble
+                )
+            )
             {
                 return FieldArgumentType.Number;
             }

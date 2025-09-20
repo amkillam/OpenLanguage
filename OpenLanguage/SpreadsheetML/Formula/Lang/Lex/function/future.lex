@@ -141,7 +141,7 @@
 [tT]"."[dD][iI][sS][tT]"."[rR][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_DIST_RT; }
 [tT]"."[iI][nN][vV] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_INV; }
 [tT]"."[iI][nN][vV]".2"[tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_INV_2T; }
-[tT]"_"[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_TEST; }
+[tT]"."[tT][eE][sS][tT] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_T_TEST; }
 [tT][aA][kK][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TAKE; }
 [tT][eE][xX][tT][aA][fF][tT][eE][rR] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTAFTER; }
 [tT][eE][xX][tT][bB][eE][fF][oO][rR][eE] { yylval.stringVal = yytext; return (int)Tokens.T_FUNC_TEXTBEFORE; }

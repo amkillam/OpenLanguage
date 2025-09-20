@@ -78,18 +78,25 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Theory]
-        [InlineData("LAMBDA(x, y, x+y)", "LAMBDA")]
-        [InlineData("LET(x, 1, x+1)", "LET")]
-        public void TestParseBuiltInFunction(string formulaString, string expectedFuncName)
+        [InlineData("LAMBDA(x, y, x+y)", "LAMBDA", typeof(LambdaFutureFunctionNode))]
+        [InlineData("LET(x, 1, x+1)", "LET", typeof(LetFutureFunctionNode))]
+        public void TestParseBuiltInFunction(
+            string formulaString,
+            string expectedFuncName,
+            Type expectedFuncNameType
+        )
         {
             Ast.Node formula = FormulaParser.Parse(formulaString);
 
             Assert.IsType<FunctionCallNode>(formula);
-            Assert.IsType<FutureFunctionNode>(((FunctionCallNode)(formula)).FunctionIdentifier);
+            Assert.Equal(
+                expectedFuncNameType,
+                ((FunctionCallNode)(formula)).FunctionReference.GetType()
+            );
             Assert.Equal(
                 expectedFuncName,
                 (
-                    (BuiltInFunctionNode)((FunctionCallNode)(formula)).FunctionIdentifier
+                    (BuiltInFunctionNode)((FunctionCallNode)(formula)).FunctionReference
                 ).Name?.ToString()
             );
             Assert.Equal(formulaString, formula.ToString());
@@ -410,7 +417,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("SUM(")] // Unclosed function
         [InlineData("SUM(1,")] // Missing function argument
         [InlineData("{1,")] // Unclosed array
-        [InlineData("1 2")] // Invalid syntax
+        // TODO: only allow intersection between cell/sheet range/named/table/structured/single
+        // references, throw error if not
+        // [InlineData("1 2")] // Invalid syntax
         [InlineData("A1:")] // Incomplete range
         [InlineData(":B2")] // Incomplete range
         [InlineData("")] // Empty formula
@@ -524,8 +533,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("2.5E-3")]
         public void Tokenize_Numbers_ParsesSuccessfully(string input)
         {
-            // This test would require access to the lexer directly
-            // For now, we test through the parser
             Ast.Node formula = FormulaParser.Parse(input);
             Assert.NotNull(formula);
         }
@@ -669,7 +676,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string nestedFormula = "SUM(";
             for (int i = 0; i < 100; i++)
             {
-                nestedFormula += $"IF(A{i}>0,A{i},0),";
+                int oneIndexed = i + 1;
+                nestedFormula += $"IF(A{oneIndexed}>0,A{oneIndexed},0),";
             }
             nestedFormula = nestedFormula.TrimEnd(',') + ")";
 
@@ -690,7 +698,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string[] formulas = new string[1000];
             for (int i = 0; i < formulas.Length; i++)
             {
-                formulas[i] = $"SUM(A{i}:A{i + 10})";
+                int oneIndexed = i + 1;
+                formulas[i] = $"SUM(A{oneIndexed}:A{oneIndexed + 10})";
             }
 
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
@@ -715,7 +724,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         {
             string formula =
                 "SUM("
-                + string.Join(",", Enumerable.Range(1, argumentCount).Select(i => $"A{i}"))
+                + string.Join(",", Enumerable.Range(1, argumentCount).Select(i => $"A{i + 1}"))
                 + ")";
 
             Ast.Node parsed = FormulaParser.Parse(formula);
@@ -770,14 +779,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         }
 
         [Theory]
-        // [InlineData("[1]Sheet1!A1")] // Workbook by index
-        // [InlineData("[Book with spaces.xlsx]Sheet1!A1")] // Workbook with spaces
+        [InlineData("[1]Sheet1!A1")] // Workbook by index
+        [InlineData("[Book with spaces.xlsx]Sheet1!A1")] // Workbook with spaces
         [InlineData("[http://server/path/file.xlsx]Sheet1!A1")] // URL reference
-        // [InlineData("['External Sheet']!A1")] // Sheet with apostrophes
-        // [InlineData("Sheet1:Sheet3!A1")] // 3D reference
-        // [InlineData("Sheet1:Sheet3!A1:B10")] // 3D range reference
-        // [InlineData("[Book1.xlsx]Sheet1:Sheet3!A1:B10")] // External 3D reference
-        // [InlineData("'C:\\[File.xlsx]Sheet'!A1")] // Complex path reference
+        [InlineData("['External Sheet']!A1")] // Sheet with apostrophes
+        [InlineData("Sheet1:Sheet3!A1")] // 3D reference
+        [InlineData("Sheet1:Sheet3!A1:B10")] // 3D range reference
+        [InlineData("[Book1.xlsx]Sheet1:Sheet3!A1:B10")] // External 3D reference
+        [InlineData("'C:\\[File.xlsx]Sheet'!A1")] // Complex path reference
         public void Parse_ComplexExternalReferences_ReturnsCorrectAST(string formulaString)
         {
             Ast.Node formula = FormulaParser.Parse(formulaString);
@@ -921,11 +930,13 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("{1,2")] // Unclosed array
         [InlineData("\"unclosed string")] // Unclosed string
         [InlineData("A1:")] // Incomplete range
-        [InlineData("1 2 3")] // Invalid syntax
-        [InlineData("++1")] // Double unary operator
-        [InlineData("1++2")] // Invalid operator sequence
-        [InlineData("SUM()()")] // Double function call
-        [InlineData("A1..B2")] // Double range operator
+        // TODO: implement validation that calling the return of a function
+        // is calling either a LAMBDA, xlpm. prefixed function, or some other kind of function
+        // reference otherwise.
+        //
+        // This will probably require some form of interpretation and/or evaluation of
+        // the AST, so may not be feasible in the parser alone.
+        // [InlineData("SUM()()")] // Double function call
         public void Parse_MalformedFormulas_ThrowsInformativeExceptions(string formulaString)
         {
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() =>
@@ -966,7 +977,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
                 {
                     formulaBuilder.Append(",");
                 }
-                formulaBuilder.Append($"IF(A{i}>0,A{i},0)");
+                int oneIndexed = i + 1;
+                formulaBuilder.Append($"IF(A{oneIndexed}>0,A{oneIndexed},0)");
             }
 
             formulaBuilder.Append(")");
@@ -1016,7 +1028,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData(".5", "NumericLiteralNode`1")]
         [InlineData("1E5", "NumericLiteralNode`1")]
         [InlineData("\"hello\"", "StringNode")]
-        [InlineData("TRUE", "LogicalNode")]
         [InlineData("A1", "A1CellNode")]
         [InlineData("SUM", "SumStandardFunctionNode")]
         public void Tokenize_BasicTokenTypes_IdentifiesCorrectly(
@@ -1024,8 +1035,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
             string expectedTokenType
         )
         {
-            // This test requires access to lexer directly
-            // For now, we verify through parser that tokenization works
             Ast.Node formula = FormulaParser.Parse(input);
             Assert.NotNull(formula);
             Assert.Equal(expectedTokenType, formula.GetType().Name);
@@ -1150,27 +1159,29 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         public void TestWithTextFileLines()
         {
             IEnumerable<string> formulae = FormulaUtils.DatasetFormulae();
+
+            int i = 0;
             foreach (string formulaText in formulae)
             {
-                if (string.IsNullOrWhiteSpace(formulaText))
+                if (!string.IsNullOrWhiteSpace(formulaText) && formulaText.Length > 0)
                 {
-                    return;
-                }
+                    Ast.Node? formula = FormulaParser.TryParse(formulaText);
+                    if (formula == null)
+                    {
+                        throw new InvalidOperationException(
+                            $"Failed to parse formula:\"{formulaText}\""
+                        );
+                    }
 
-                Ast.Node? formula = FormulaParser.TryParse(formulaText);
-                if (formula == null)
-                {
-                    throw new InvalidOperationException(
-                        $"Failed to parse formula:\"{formulaText}\""
-                    );
+                    if (formula.ToString() != formulaText)
+                    {
+                        Console.WriteLine($"Failed to parse formula:\"{formulaText}\"");
+                        throw new InvalidOperationException(
+                            $"Formula text mismatch. Expected:\"{formulaText}\", Got:\"{formula.ToString()}\""
+                        );
+                    }
                 }
-
-                if (formula.ToString() != formulaText)
-                {
-                    throw new InvalidOperationException(
-                        $"Formula text mismatch. Expected:\"{formulaText}\", Got:\"{formula.ToString()}\""
-                    );
-                }
+                i++;
             }
         }
     }

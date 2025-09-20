@@ -116,6 +116,7 @@
 %token<stringVal> T_FUNC_EXPONDIST
 %token<stringVal> T_FUNC_FACT
 %token<stringVal> T_FUNC_FACTDOUBLE
+%token<stringVal> T_FUNC_FALSE
 %token<stringVal> T_FUNC_FDIST
 %token<stringVal> T_FUNC_FIND
 %token<stringVal> T_FUNC_FINDB
@@ -343,6 +344,7 @@
 %token<stringVal> T_FUNC_TREND
 %token<stringVal> T_FUNC_TRIM
 %token<stringVal> T_FUNC_TRIMMEAN
+%token<stringVal> T_FUNC_TRUE
 %token<stringVal> T_FUNC_TRUNC
 %token<stringVal> T_FUNC_TTEST
 %token<stringVal> T_FUNC_TYPE

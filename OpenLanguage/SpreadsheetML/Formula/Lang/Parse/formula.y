@@ -89,27 +89,27 @@
 
 
 
-%token<stringVal> T_XLWS_ T_XLFN_ T_XLPM_ T_XLOP_
+%token<stringVal> T_XLWS T_XLFN T_XLPM T_XLOP
 %token<stringVal> T_FLOATING_POINT_CONSTANT T_DOLLAR T_INTEGER_CONSTANT
 %token<longVal>  T_R1C1_ROW T_R1C1_COLUMN
 %token<ulongVal>  T_A1_ROW T_A1_COLUMN
 %token<stringVal> T_UNKNOWN_CHAR T_BANG T_AT_SYMBOL T_INTERSECTION T_NEWLINE T_SR_THIS_ROW
-%token<stringVal> T_IDENTIFIER  T_STRING_CONSTANT T_QUOTED_IDENTIFIER T_SHEET_NAME_SPECIAL
+%token<stringVal> T_IDENTIFIER  T_STRING_CONSTANT T_QUOTED_IDENTIFIER T_SINGLE_QUOTE
 %token<stringVal> T_STRUCTURED_REFERENCE
 %token<stringVal> T_DIV0_ERROR T_NA_ERROR T_NAME_ERROR T_NULL_ERROR T_NUM_ERROR T_VALUE_ERROR T_GETTING_DATA_ERROR T_REF_ERROR T_SPILL_ERROR T_CALC_ERROR T_BLOCKED_ERROR T_BUSY_ERROR T_CIRCULAR_ERROR T_CONNECT_ERROR T_EXTERNAL_ERROR T_FIELD_ERROR T_PYTHON_ERROR T_UNKNOWN_ERROR
-%token<stringVal> T_LBRACK T_RBRACK  T_QUESTION_MARK
+%token<stringVal> T_LBRACK T_RBRACK T_WB_LBRACK T_WB_RBRACK T_QUESTION_MARK
 %token<stringVal> T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_HASH
 %token<stringVal> T_EQ T_NE T_LT T_LE T_GT T_GE
 %token<stringVal> T_LPAREN T_RPAREN T_LBRACE T_RBRACE T_COMMA T_COLON T_SEMICOLON
-%token<stringVal> T_TRUE T_FALSE T_EMPTY_BRACKETS
+%token<stringVal> T_EMPTY_BRACKETS
 %token T_SR_ALL T_SR_DATA T_SR_HEADERS T_SR_TOTALS
 
 %type <nodeVal>           formula whitespace
-%type <expressionVal>     expression primary constant error_constant ref_constant solo_function
+%type <expressionVal>     expression non_union_expression primary constant error_constant ref_constant solo_function
 %type <expressionVal>     function_call_head builtin_function_call_head function_call argument
+%type <stringVal>         builtin_function_call_head_raw
 %type <expressionListVal> argument_list
-%type <expressionVal>     cell_reference structured_reference structured_reference_index structured_reference_index_primitive
-// %type <expressionVal>     pivot_item pivot_items pivot_item_index
+%type <expressionVal>     cell_reference structured_reference structured_reference_index structured_reference_index_list structured_reference_index_primitive
 %type <structureTotalsVal> structured_totals
 %type <structureDataVal> structured_data
 %type <structureHeadersVal> structured_headers
@@ -141,7 +141,7 @@
 %type <R1C1CellVal>       R1C1_cell
 
 %type <expressionVal>     array cell_or_ref_constant cell_range cell
-%type <expressionVal>     name
+%type <expressionVal>     name user_defined_or_builtin_name
 %type <rowsVal>           list_rows
 %type <expressionListVal> list_row
 %type <expressionVal>     external_cell_reference sheet_range_bang_reference sheet_bang_reference
@@ -153,9 +153,9 @@
 %type <bangReferenceVal>  bang_reference
 
 %type <xlpmVal>           xlpm
-%type <xlwsVal>           xlws opt_xlws
+%type <xlwsVal>           xlws
 %type <xlopVal>           xlop
-%type <xlfnVal>           xlfn opt_xlfn
+%type <xlfnVal>           xlfn
 
 %type <floatingPointNodeVal> floating_point_constant
 %type <integerNodeVal>      integer_constant
@@ -189,17 +189,45 @@ formula:
   |  /* empty */   { $$ = null; root = null; }
   ;
 
+non_union_expression:
+    whitespace non_union_expression                              { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | non_union_expression whitespace                              { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | T_LPAREN expression T_RPAREN                                 { $$ = new ParenthesizedExpressionNode($2); }
+  | non_union_expression T_PLUS non_union_expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
+  | non_union_expression T_MINUS non_union_expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
+  | non_union_expression T_ASTERISK non_union_expression         { $$ = new MultiplyNode($1, new AsteriskLiteralNode($2), $3); }
+  | non_union_expression T_SLASH non_union_expression            { $$ = new DivideNode($1, new SlashLiteralNode($2), $3); }
+  | non_union_expression T_PERCENT non_union_expression          { $$ = new ModuloNode($1, new PercentLiteralNode($2), $3); }
+  | non_union_expression T_CARET non_union_expression            { $$ = new PowerNode($1, new CaretLiteralNode($2), $3); }
+  | non_union_expression T_AMPERSAND non_union_expression        { $$ = new AndNode($1, new AmpersandLiteralNode($2), $3); }
+  | non_union_expression T_NE non_union_expression               { $$ = new NotEqualNode($1, new NotEqualLiteralNode($2), $3); }
+  | non_union_expression T_LE non_union_expression               { $$ = new LessThanOrEqualNode($1, new LessThanOrEqualLiteralNode($2), $3); }
+  | non_union_expression T_LT non_union_expression               { $$ = new LessThanNode($1, new LessThanLiteralNode($2), $3); }
+  | non_union_expression T_GE non_union_expression               { $$ = new GreaterThanOrEqualNode($1, new GreaterThanOrEqualLiteralNode($2), $3); }
+  | non_union_expression T_GT non_union_expression               { $$ = new GreaterThanNode($1, new GreaterThanLiteralNode($2), $3); }
+  | non_union_expression T_EQ non_union_expression               { $$ = new EqualNode($1, new EqualLiteralNode($2), $3); }
+  | non_union_expression T_COLON non_union_expression            { $$ = new RangeNode($1, new ColonNode($2), $3); }
+  | non_union_expression T_PERCENT %prec T_PERCENT               { $$ = new PercentNode(new PercentLiteralNode($2), $1); }
+  | non_union_expression T_HASH                                  { $$ = new DynamicNode(new HashLiteralNode($2), $1); }
+  | T_PLUS non_union_expression %prec UMINUS                     { $$ = new UnaryPlusNode(new PlusLiteralNode($1), $2); }
+  | T_MINUS non_union_expression %prec UMINUS                    { $$ = new UnaryMinusNode(new MinusLiteralNode($1), $2); }
+  | non_union_expression T_INTERSECTION non_union_expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
+  | T_AT_SYMBOL non_union_expression %prec UMINUS                { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
+  | T_EQ non_union_expression                                    { $$ = new EqualPrefixedNode(new EqualLiteralNode($1), $2); }
+  | primary                                                      { $$ = $1; }
+  ;
+
 expression:
-    primary                                  { $$ = $1; }
-  | whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+    whitespace expression                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | expression whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
   | T_LPAREN expression T_RPAREN             { $$ = new ParenthesizedExpressionNode($2); }
   | expression T_PLUS expression             { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
   | expression T_MINUS expression            { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
   | expression T_ASTERISK expression         { $$ = new MultiplyNode($1, new AsteriskLiteralNode($2), $3); }
   | expression T_SLASH expression            { $$ = new DivideNode($1, new SlashLiteralNode($2), $3); }
+  | expression T_PERCENT expression          { $$ = new ModuloNode($1, new PercentLiteralNode($2), $3); }
   | expression T_CARET expression            { $$ = new PowerNode($1, new CaretLiteralNode($2), $3); }
-  | expression T_AMPERSAND expression        { $$ = new ConcatenateNode($1, new AmpersandLiteralNode($2), $3); }
+  | expression T_AMPERSAND expression        { $$ = new AndNode($1, new AmpersandLiteralNode($2), $3); }
   | expression T_NE expression               { $$ = new NotEqualNode($1, new NotEqualLiteralNode($2), $3); }
   | expression T_LE expression               { $$ = new LessThanOrEqualNode($1, new LessThanOrEqualLiteralNode($2), $3); }
   | expression T_LT expression               { $$ = new LessThanNode($1, new LessThanLiteralNode($2), $3); }
@@ -215,19 +243,21 @@ expression:
   | expression T_INTERSECTION expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
   | T_AT_SYMBOL expression %prec UMINUS      { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($1), $2); }
   | T_EQ expression                          { $$ = new EqualPrefixedNode(new EqualLiteralNode($1), $2); }
+  | primary                                  { $$ = $1; }
   ;
+
 
 primary:
     constant                    { $$ = $1; }
   | ref_constant                { $$ = $1; }
-  | structured_reference         { $$ = $1; }
+  | structured_reference        { $$ = $1; }
   | cell_reference              { $$ = $1; }
   | A1_row                      { $$ = $1; }
   | A1_column                   { $$ = $1; }
   | function_call               { $$ = $1; }
+  | workbook_reference          { $$ = $1; }
   | builtin_function_call_head  { $$ = $1; }
   | name                        { $$ = $1; }
-  // | pivot_items         { $$ = $1; }
   ;
 
 #include "function/command/nodes.inc"
@@ -236,14 +266,11 @@ primary:
 #include "function/standard/nodes.inc"
 #include "function/worksheet/nodes.inc"
 
-xlpm: T_XLPM_ { $$ = new XlpmFunctionPrefixNode($1); };
+xlpm: T_XLPM { $$ = new XlpmFunctionPrefixNode($1); };
 
-xlws: T_XLWS_ { $$ = new XlwsFunctionPrefixNode($1); };
-xlop: T_XLOP_ { $$ = new XlopPrefixNode($1); };
-xlfn: T_XLFN_ { $$ = new XlfnFunctionPrefixNode($1); };
-
-opt_xlws: xlws { $$ = $1; } | /* empty */ { $$ = null; };
-opt_xlfn: xlfn { $$ = $1; } | /* empty */ { $$ = null; };
+xlws: T_XLWS { $$ = new XlwsFunctionPrefixNode($1); };
+xlop: T_XLOP { $$ = new XlopPrefixNode($1); };
+xlfn: T_XLFN { $$ = new XlfnFunctionPrefixNode($1); };
 
 builtin_function_call_head:
     whitespace builtin_function_call_head        { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
@@ -254,6 +281,14 @@ builtin_function_call_head:
   | command_function_name                        { $$ = $1; }
   | worksheet_function_name                      { $$ = $1; }
   ;
+
+builtin_function_call_head_raw:
+    standard_function_name_raw                       { $$ = $1; }
+  | future_function_name_raw                         { $$ = $1; }
+  | macro_function_name_raw                          { $$ = $1; }
+  | command_function_name_raw                        { $$ = $1; }
+  | worksheet_function_name_raw                      { $$ = $1; }
+  ;
 function_call_head:
     whitespace function_call_head        { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | function_call_head whitespace        { $$ = $1; $$.TrailingWhitespace.Add($2); }
@@ -261,7 +296,10 @@ function_call_head:
   | name                                 { $$ =  new UserDefinedFunctionNode($1); }
   ;
 
-function_call: function_call_head T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3); };
+function_call:
+    function_call T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3); }
+  | function_call_head T_LPAREN argument_list T_RPAREN { $$ = new FunctionCallNode($1, $3); }
+  ;
 
 solo_function: opt_whitespace py_worksheet_function_name opt_whitespace T_LPAREN opt_whitespace integer_constant opt_whitespace T_COMMA opt_whitespace floating_point_constant opt_whitespace argument_list opt_whitespace T_RPAREN opt_whitespace
       {
@@ -280,15 +318,16 @@ solo_function: opt_whitespace py_worksheet_function_name opt_whitespace T_LPAREN
 
 argument_list:
     argument_list T_COMMA argument { $$ = $1; $$.Add($3); }
-  | expression                     { $$ = new List<ExpressionNode>() { $1 }; }
+  | argument                       { $$ = new List<ExpressionNode>() { $1 }; }
   | /* empty */                    { $$ = new List<ExpressionNode>(); }
   ;
 
 argument:
-    xlpm argument { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
-  | xlop argument { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
-  | expression    { $$ = $1; }
-  | /* empty */   { $$ = new EmptyArgumentNode(); }
+    xlpm argument           { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
+  | xlop argument           { $$ = new ConcatenatedNodes(new List<ExpressionNode>() { $1, $2 }); }
+  | cell                    { $$ = $1; }
+  | non_union_expression    { $$ = $1; }
+  | /* empty */             { $$ = new EmptyArgumentNode(); }
   ;
 
 
@@ -304,8 +343,6 @@ constant:
     floating_point_constant    { $$ = $1; }
   | integer_constant           { $$ = $1; }
   | T_STRING_CONSTANT          { $$ = new StringNode($1); }
-  | T_TRUE                     { $$ = new LogicalNode(true, $1); }
-  | T_FALSE                    { $$ = new LogicalNode(false, $1); }
   | error_constant             { $$ = $1; }
   | array                      { $$ = $1; }
   ;
@@ -363,13 +400,21 @@ list_row: expression { $$ = new List<ExpressionNode> { $1 }; }
 cell_reference:
     external_cell_reference { $$ = $1; }
   | cell_range { $$ = $1; }
-  | cell { $$ = $1; };
+  | cell { $$ = $1; }
+  ;
+
+user_defined_or_builtin_name:
+    whitespace user_defined_or_builtin_name { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | user_defined_or_builtin_name whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | name                                    { $$ = $1; }
+  | builtin_function_call_head_raw          { $$ = new NamedRangeNode($1); }
+  ;
+
 name:
     whitespace name                           { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | name whitespace                           { $$ = $1; $$.TrailingWhitespace.Add($2); }
   | T_AT_SYMBOL opt_whitespace T_IDENTIFIER   { $$ = new ImplicitIntersectionNode(new AtSymbolLiteralNode($3), new NamedRangeNode($1, $2)); }
   | T_IDENTIFIER                              { $$ = new NamedRangeNode($1); }
-  | T_SHEET_NAME_SPECIAL                      { $$ = new NamedRangeNode($1); }
   ;
 
 A1_column_absolute: T_DOLLAR T_A1_COLUMN { $$ = new A1AbsoluteColumnNode($2); };
@@ -394,8 +439,8 @@ R1C1_cell: R1C1_row R1C1_column { $$ = new R1C1CellNode($1, $2); };
 A1_cell: A1_column A1_row { $$ = new A1CellNode($1, $2); };
 
 cell:
-    R1C1_cell { $$ = $1; }
-  | A1_cell   { $$ = $1; }
+    R1C1_cell        { $$ = $1; }
+  | A1_cell          { $$ = $1; }
   ;
 cell_range:
     A1_cell   T_COLON  A1_cell        { $$ = new CellRangeNode<A1CellNode, A1CellNode, UInt64, A1RowNode, UInt64, A1ColumnNode, UInt64, A1RowNode, UInt64, A1ColumnNode>($1, new ColonNode($2), $3); }
@@ -411,7 +456,8 @@ cell_range:
 external_cell_reference:
     sheet_bang_reference        { $$ = $1; }
   | sheet_range_bang_reference  { $$ = $1; }
-  | bang_reference              { $$ = $1; };
+  | bang_reference              { $$ = $1; }
+  ;
 
 bang: opt_whitespace T_BANG opt_whitespace { $$ = new BangNode($2, $1, $3); };
 bang_reference: opt_whitespace bang cell_or_ref_constant opt_whitespace { $$ = new BangReferenceNode($2, $3, $1, $4); };
@@ -424,12 +470,12 @@ sheet_bang_reference:
   sheet_reference bang_reference { $$ = new SheetReferenceNode($1, $2); }
   ;
 sheet_reference:
-    T_SINGLE_QUOTE sheet_reference T_SINGLE_QUOTE { $$ = new QuotedSheetNode($2, $1, $3); }
-  | whitespace sheet_reference                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
-  | sheet_reference whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | workbook_reference name                       { $$ = new SheetNode($1, $2); }
-  | name                                          { $$ = new SheetNode(null, $1); }
-  | workbook_reference                            { $$ = new SheetNode($1); }
+    T_SINGLE_QUOTE sheet_reference T_SINGLE_QUOTE   { $$ = new QuotedSheetNode($2, $1, $3); }
+  | whitespace sheet_reference                      { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+  | sheet_reference whitespace                      { $$ = $1; $$.TrailingWhitespace.Add($2); }
+  | workbook_reference user_defined_or_builtin_name { $$ = new SheetNode($1, $2); }
+  | user_defined_or_builtin_name                    { $$ = new SheetNode(null, $1); }
+  | workbook_reference                              { $$ = new SheetNode($1); }
   ;
 sheet_range:
   sheet_reference T_COLON sheet_reference { $$ = new SheetRangeNode($1, new ColonNode($2), $3); }
@@ -441,41 +487,75 @@ cell_or_ref_constant:
   | name { $$ = $1; }
   | ref_constant { $$ = $1; }
   ;
-// pivot_items:  pivot_items  T_INTERSECTION opt_whitespace pivot_item { List<Node> ws = new List<Node>() { new WhitespaceNode($2) }; ws.AddRange($3); $$ = new IntersectionNode($1, $4, ws); }
-// | pivot_item { $$ = $1; };
-
-// pivot_item
-//     : name T_LBRACK pivot_item_index T_RBRACK { $$ = new IndexedPivotField($1, $3); }
-//     | name { $$ = new PivotField($1); }
-//     ;
-
-// pivot_item_index
-//     : name { $$ = $1; }
-//     | opt_whitespace T_PLUS opt_whitespace T_INTEGER_CONSTANT opt_whitespace { $$ = new PivotFieldOffset(new UnaryPlusNode(new NumericLiteralNode<long>($4, "D"), $3, $1, $5)); }
-//     | opt_whitespace T_MINUS opt_whitespace T_INTEGER_CONSTANT opt_whitespace { $$ = new PivotFieldOffset(new UnaryMinusNode(new NumericLiteralNode<long>($4, "D"), $3, $1, $5)); }
-//
-//     | opt_whitespace T_INTEGER_CONSTANT opt_whitespace { $$ = new PivotFieldOffset(new NumericLiteralNode<long>($2, "D", $1, $3)); }
-//     ;
-
-
 
 
 structured_reference:
     whitespace structured_reference                    { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | structured_reference whitespace                    { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | structured_reference T_COMMA structured_reference  { $$ = new StructuredReferenceUnion($1, new CommaNode($2), $3); }
   | structured_reference structured_reference          { $$ = new StructuredReferenceIntersection($1, $2); }
   | sheet_reference structured_reference_index         { $$ = new StructuredReferenceNode($1, $2); }
+  | structured_reference_index                         { $$ = new StructuredReferenceNode(null, $1); }
   ;
 
 structured_reference_index:
-    whitespace structured_reference_index                          { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
+    // Allow multi-word column names inside SR brackets by concatenating adjacent user_defined_or_builtin_names,
+    // preserving the whitespace between them as leading whitespace on the subsequent user_defined_or_builtin_name.
+    user_defined_or_builtin_name whitespace user_defined_or_builtin_name
+      {
+          ExpressionNode left = $1;
+          ExpressionNode right = $3;
+          right.LeadingWhitespace.Insert(0, $2);
+          $$ = new ConcatenatedNodes(new List<ExpressionNode>() { left, right });
+      }
+  | structured_reference_index whitespace user_defined_or_builtin_name
+      {
+          ExpressionNode right = $3;
+          right.LeadingWhitespace.Insert(0, $2);
+          if ($1 is ConcatenatedNodes cn)
+          {
+              List<ExpressionNode> nodes = cn.Children<ExpressionNode>().ToList();
+              nodes.Add(right);
+              $$ = new ConcatenatedNodes(nodes);
+          }
+          else
+          {
+              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, right });
+          }
+      }
+  // Support adjacent identifiers inside SR brackets without intervening whitespace,
+  // e.g., ['#OfItems] where the column name begins with a tick-escaped '#' followed by text.
+  | user_defined_or_builtin_name user_defined_or_builtin_name
+      {
+          ExpressionNode left = $1;
+          ExpressionNode right = $2;
+          $$ = new ConcatenatedNodes(new List<ExpressionNode>() { left, right });
+      }
+  | structured_reference_index user_defined_or_builtin_name
+      {
+          ExpressionNode right = $2;
+          if ($1 is ConcatenatedNodes cn)
+          {
+              List<ExpressionNode> nodes = cn.Children<ExpressionNode>().ToList();
+              nodes.Add(right);
+              $$ = new ConcatenatedNodes(nodes);
+          }
+          else
+          {
+              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, right });
+          }
+      }
+  | whitespace structured_reference_index                          { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | structured_reference_index whitespace                          { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | T_LBRACK structured_reference_index T_RBRACK                   { $$ = new StructureAllRowsReferenceNode($2); }
-  | structured_reference_index T_COMMA structured_reference_index  { $$ = new StructuredReferenceIndicesUnion($1, new CommaNode($2), $3); }
+  | T_LBRACK structured_reference_index_list T_RBRACK              { $$ = new StructureColumn(new LeftBracketNode($1), $2, new RightBracketNode($3)); }
+  | T_EMPTY_BRACKETS                                               { $$ = new StructureColumn(new LeftBracketNode("["), new EmptyArgumentNode(), new RightBracketNode("]")); }
   | column_range                                                   { $$ = $1; }
-  | name                                                           { $$ = $1; }
+  | user_defined_or_builtin_name                                                           { $$ = $1; }
   | structured_reference_index_primitive                           { $$ = $1; }
+  ;
+
+structured_reference_index_list:
+    structured_reference_index                                    { $$ = $1; }
+  | structured_reference_index_list T_COMMA structured_reference_index { $$ = new StructuredReferenceIndicesUnion($1, new CommaNode($2), $3); }
   ;
 
 
@@ -504,11 +584,11 @@ structured_reference_index_primitive:
 column_range: structured_reference_index T_COLON structured_reference_index { $$ = new StructureColumnRange($1, $3); };
 
 workbook_reference:
-    T_LBRACK opt_whitespace integer_constant opt_whitespace T_RBRACK
+    T_WB_LBRACK opt_whitespace integer_constant opt_whitespace T_WB_RBRACK
       { $$ = new WorkbookReferenceNode($3, new LeftBracketNode($1, null, $2), new RightBracketNode($5, $4, null)); }
-  | T_LBRACK opt_whitespace name opt_whitespace T_RBRACK
+  | T_WB_LBRACK opt_whitespace name opt_whitespace T_WB_RBRACK
       { $$ = new WorkbookReferenceNode($3, new LeftBracketNode($1, null, $2), new RightBracketNode($5, $4, null)); }
-  | T_LBRACK opt_whitespace T_RBRACK
+  | T_WB_LBRACK opt_whitespace T_WB_RBRACK
       { $$ = new WorkbookReferenceNode(null, new LeftBracketNode($1, null, $2), new RightBracketNode($3)); }
   ;
 

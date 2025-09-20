@@ -378,4 +378,48 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             return current;
         }
     }
+
+    public class QuotedSheetNode : ExpressionNode
+    {
+        public ExpressionNode Sheet { get; set; }
+        public string OpenQuote { get; set; }
+        public string CloseQuote { get; set; }
+
+        public QuotedSheetNode(
+            ExpressionNode sheet,
+            string openQuote,
+            string closeQuote,
+            List<Node>? leadingWs = null,
+            List<Node>? trailingWs = null
+        )
+            : base(leadingWs, trailingWs)
+        {
+            Sheet = sheet;
+            OpenQuote = openQuote;
+            CloseQuote = closeQuote;
+        }
+
+        public override int Precedence => Ast.Precedence.Primary;
+
+        public override string ToRawString() => OpenQuote + Sheet.ToString() + CloseQuote;
+
+        public override IEnumerable<O> Children<O>()
+        {
+            if (Sheet is O s)
+            {
+                yield return s;
+            }
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            if (index == 0 && replacement is ExpressionNode expr)
+            {
+                ExpressionNode current = Sheet;
+                Sheet = expr;
+                return current;
+            }
+            return null;
+        }
+    }
 }

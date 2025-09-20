@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Linq;
-using OpenLanguage.WordprocessingML.ODBC;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 {
@@ -69,7 +68,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Specifies database query instructions (SQL, QBE, Excel ranges, etc.).
         /// Quotation marks in instructions must be preceded by backslash (\).
         /// </summary>
-        public DatabaseQuery? DatabaseQueryInstruction { get; set; }
+        public string? DatabaseQueryInstruction { get; set; }
 
         /// <summary>
         /// Switch: \t field-argument
@@ -168,7 +167,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                             string queryText = GetNextArgumentAfter(i);
                             if (!string.IsNullOrWhiteSpace(queryText))
                             {
-                                DatabaseQueryInstruction = ParseDatabaseQuery(queryText);
+                                DatabaseQueryInstruction = queryText;
                                 BuildOdbcCommand();
                             }
                             break;
@@ -268,32 +267,13 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         }
 
         /// <summary>
-        /// Parses database query text into a DatabaseQuery object.
-        /// </summary>
-        private DatabaseQuery? ParseDatabaseQuery(string? queryText)
-        {
-            if (!string.IsNullOrWhiteSpace(queryText))
-            {
-                try
-                {
-                    // Unescape quotes in query text (backslash-escaped quotes)
-                    string unescapedQuery = queryText.Replace("\\\"", "\"");
-                    return new DatabaseQuery(unescapedQuery);
-                }
-                catch { }
-            }
-            return null;
-        }
-
-        /// <summary>
         /// Builds the OdbcCommand when both connection string and query are available.
         /// </summary>
         private void BuildOdbcCommand()
         {
             if (
                 ConnectionStringBuilder != null
-                && DatabaseQueryInstruction != null
-                && !string.IsNullOrWhiteSpace(DatabaseQueryInstruction.QueryText)
+                && !string.IsNullOrWhiteSpace(DatabaseQueryInstruction)
             )
             {
                 try
@@ -302,7 +282,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                         new System.Data.Odbc.OdbcConnection(
                             ConnectionStringBuilder.ConnectionString
                         );
-                    Command = new OdbcCommand(DatabaseQueryInstruction.QueryText, connection);
+                    Command = new OdbcCommand(DatabaseQueryInstruction, connection);
                 }
                 catch
                 {
@@ -395,12 +375,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
 
             if (
                 DatabaseQueryInstruction != null
-                && !string.IsNullOrWhiteSpace(DatabaseQueryInstruction.QueryText)
+                && !string.IsNullOrWhiteSpace(DatabaseQueryInstruction)
             )
             {
                 result.Add("\\s");
                 // Escape quotes in query text
-                string escapedQuery = DatabaseQueryInstruction.QueryText.Replace("\"", "\\\"");
+                string escapedQuery = DatabaseQueryInstruction.Replace("\"", "\\\"");
                 result.Add($"\"{escapedQuery}\"");
             }
 

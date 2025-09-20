@@ -295,6 +295,34 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public override int Precedence => Ast.Precedence.Multiplicative;
     }
 
+    public class ModuloNode : BinaryOperatorNode
+    {
+        public ModuloNode(
+            ExpressionNode l,
+            ExpressionNode op,
+            ExpressionNode r,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(l, op, r, lws, tws) { }
+
+        public override int Precedence => Ast.Precedence.Multiplicative;
+    }
+
+    public class AndNode : BinaryOperatorNode
+    {
+        public AndNode(
+            ExpressionNode l,
+            ExpressionNode op,
+            ExpressionNode r,
+            List<Node>? lws = null,
+            List<Node>? tws = null
+        )
+            : base(l, op, r, lws, tws) { }
+
+        public override int Precedence => Ast.Precedence.Multiplicative;
+    }
+
     public class PowerNode : BinaryOperatorNode
     {
         public PowerNode(
