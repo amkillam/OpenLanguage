@@ -10,16 +10,16 @@ This document demonstrates how to use the specialized data types and validation 
 using OpenLanguage.WordprocessingML.FieldInstruction;
 
 // Create measurement values within valid range (-31 to 31 points)
-PtsMeasurementValue smallMargin = new PtsMeasurementValue(5);
-PtsMeasurementValue largeMargin = new PtsMeasurementValue(20);
-PtsMeasurementValue negativeOffset = new PtsMeasurementValue(-10);
+PtsMeasurementValue<int> smallMargin = new PtsMeasurementValue<int>(5);
+PtsMeasurementValue<int> largeMargin = new PtsMeasurementValue<int>(20);
+PtsMeasurementValue<int> negativeOffset = new PtsMeasurementValue<int>(-10);
 
 Console.WriteLine($"Small margin: {smallMargin} points");
 Console.WriteLine($"Large margin: {largeMargin} points");
 Console.WriteLine($"Negative offset: {negativeOffset} points");
 
 // Implicit conversion from int
-PtsMeasurementValue converted = 15;
+PtsMeasurementValue<int> converted = 15;
 Console.WriteLine($"Converted value: {converted}");
 
 // Implicit conversion to int
@@ -40,7 +40,7 @@ foreach (int value in testValues)
 {
     try
     {
-        PtsMeasurementValue measurement = new PtsMeasurementValue(value);
+        PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
         Console.WriteLine($"✓ Valid: {value} points = {measurement}");
     }
     catch (ArgumentOutOfRangeException ex)

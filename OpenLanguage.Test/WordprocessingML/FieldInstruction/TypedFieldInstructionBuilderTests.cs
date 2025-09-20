@@ -242,7 +242,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CreateFieldWithMeasurement_WithValidRange_ReturnsCorrectField()
         {
-            PtsMeasurementValue measurement = new PtsMeasurementValue(15);
+            PtsMeasurementValue<sbyte> measurement = new PtsMeasurementValue<sbyte>(15);
             FieldInstruction field = CreateFieldWithMeasurement("BARCODE", "12345", measurement);
 
             Assert.Equal("BARCODE", field.Instruction);
@@ -528,7 +528,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         private static FieldInstruction CreateFieldWithMeasurement(
             string instruction,
             string data,
-            PtsMeasurementValue measurement
+            PtsMeasurementValue<sbyte> measurement
         )
         {
             FieldInstruction field = new FieldInstruction(instruction);

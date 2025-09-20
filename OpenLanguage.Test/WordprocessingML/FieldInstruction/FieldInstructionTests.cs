@@ -250,7 +250,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void Constructor_WithValidValue_SetsValue(int value)
         {
             // Act
-            PtsMeasurementValue measurement = new PtsMeasurementValue(value);
+            PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
             // Assert
             Assert.Equal(value, measurement.Value);
@@ -264,7 +264,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void Constructor_WithInvalidValue_ThrowsArgumentException(int value)
         {
             // Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PtsMeasurementValue(value));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PtsMeasurementValue<int>(value));
         }
 
         [Theory]
@@ -274,7 +274,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void ToString_ReturnsValueAsString(int value, string expected)
         {
             // Arrange
-            PtsMeasurementValue measurement = new PtsMeasurementValue(value);
+            PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
             // Act
             string result = measurement.ToString();
@@ -289,7 +289,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void ImplicitConversion_ToInt_ReturnsValue(int value, int expected)
         {
             // Arrange
-            PtsMeasurementValue measurement = new PtsMeasurementValue(value);
+            PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
             // Act
             int result = measurement;
@@ -304,7 +304,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void ImplicitConversion_FromInt_CreatesInstance(int value)
         {
             // Act
-            PtsMeasurementValue measurement = value;
+            PtsMeasurementValue<int> measurement = value;
 
             // Assert
             Assert.Equal(value, measurement.Value);

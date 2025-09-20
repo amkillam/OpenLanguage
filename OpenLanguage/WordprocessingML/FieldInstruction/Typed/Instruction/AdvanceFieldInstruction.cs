@@ -14,38 +14,38 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// Switch: \d field-argument
         /// Move text down by the specified number of points.
         /// </summary>
-        public PtsMeasurementValue? MoveDown { get; set; }
+        public PtsMeasurementValue<sbyte>? MoveDown { get; set; }
 
         /// <summary>
         /// Switch: \l field-argument
         /// Move text left by the specified number of points.
         /// </summary>
-        public PtsMeasurementValue? MoveLeft { get; set; }
+        public PtsMeasurementValue<sbyte>? MoveLeft { get; set; }
 
         /// <summary>
         /// Switch: \r field-argument
         /// Move text right by the specified number of points.
         /// </summary>
-        public PtsMeasurementValue? MoveRight { get; set; }
+        public PtsMeasurementValue<sbyte>? MoveRight { get; set; }
 
         /// <summary>
         /// Switch: \u field-argument
         /// Move text up by the specified number of points.
         /// </summary>
-        public PtsMeasurementValue? MoveUp { get; set; }
+        public PtsMeasurementValue<sbyte>? MoveUp { get; set; }
 
         /// <summary>
         /// Switch: \x field-argument
         /// Set horizontal position from left edge of column/frame/text box in points.
         /// </summary>
-        public PtsMeasurementValue? HorizontalPosition { get; set; }
+        public PtsMeasurementValue<sbyte>? HorizontalPosition { get; set; }
 
         /// <summary>
         /// Switch: \y field-argument
         /// Set vertical position relative to page in points (entire line is moved).
         /// Ignored if outside page margins or inside table/text box/footnote/endnote/annotation/header/footer.
         /// </summary>
-        public PtsMeasurementValue? VerticalPosition { get; set; }
+        public PtsMeasurementValue<sbyte>? VerticalPosition { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the AdvanceFieldInstruction class.
@@ -76,18 +76,18 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
         /// <summary>
         /// Parses a points measurement argument from a string value.
         /// </summary>
-        private PtsMeasurementValue? ParsePtsMeasurementArgument(string argumentText)
+        private PtsMeasurementValue<sbyte>? ParsePtsMeasurementArgument(string argumentText)
         {
             if (string.IsNullOrWhiteSpace(argumentText))
             {
                 return null;
             }
 
-            if (int.TryParse(argumentText.Trim(), out int value))
+            if (sbyte.TryParse(argumentText.Trim(), out sbyte value))
             {
                 try
                 {
-                    return new PtsMeasurementValue(value);
+                    return new PtsMeasurementValue<sbyte>(value);
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -168,37 +168,37 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             if (MoveDown != null)
             {
                 result.Add("\\d");
-                result.Add(MoveDown.ToString());
+                result.Add(MoveDown.ToString()!);
             }
 
             if (MoveLeft != null)
             {
                 result.Add("\\l");
-                result.Add(MoveLeft.ToString());
+                result.Add(MoveLeft.ToString()!);
             }
 
             if (MoveRight != null)
             {
                 result.Add("\\r");
-                result.Add(MoveRight.ToString());
+                result.Add(MoveRight.ToString()!);
             }
 
             if (MoveUp != null)
             {
                 result.Add("\\u");
-                result.Add(MoveUp.ToString());
+                result.Add(MoveUp.ToString()!);
             }
 
             if (HorizontalPosition != null)
             {
                 result.Add("\\x");
-                result.Add(HorizontalPosition.ToString());
+                result.Add(HorizontalPosition.ToString()!);
             }
 
             if (VerticalPosition != null)
             {
                 result.Add("\\y");
-                result.Add(VerticalPosition.ToString());
+                result.Add(VerticalPosition.ToString()!);
             }
 
             return string.Join(" ", result);

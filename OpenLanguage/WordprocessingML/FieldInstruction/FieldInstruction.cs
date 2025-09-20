@@ -1261,19 +1261,26 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// Represents a measurement value in points, bounded from -31 to 31.
     /// Used for positioning and spacing measurements in field instructions.
     /// </summary>
-    public class PtsMeasurementValue
+    public struct PtsMeasurementValue<T>
+        where T : struct,
+            System.Numerics.IBinaryNumber<T>,
+            System.Numerics.ISignedNumber<T>,
+            IComparable<T>
     {
-        private int _value;
+        private T _value;
+
+        public static readonly T MinValue = T.CreateChecked(-31);
+        public static readonly T MaxValue = T.CreateChecked(31);
 
         /// <summary>
         /// The measurement value in points.
         /// </summary>
-        public int Value
+        public T Value
         {
             get => _value;
             set
             {
-                if (value < -31 || value > 31)
+                if (value < MinValue || value > MaxValue)
                 {
                     throw new ArgumentOutOfRangeException(
                         nameof(value),
@@ -1288,23 +1295,23 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// Initializes a new instance of the PtsMeasurementValue class.
         /// </summary>
         /// <param name="value">The measurement value in points (-31 to 31).</param>
-        public PtsMeasurementValue(int value)
+        public PtsMeasurementValue(T value)
         {
             Value = value;
         }
 
         /// <summary>
-        /// Implicit conversion from Int32 to PtsMeasurementValue.
+        /// Implicit conversion from T to PtsMeasurementValue.
         /// </summary>
-        public static implicit operator PtsMeasurementValue(int value)
+        public static implicit operator PtsMeasurementValue<T>(T value)
         {
-            return new PtsMeasurementValue(value);
+            return new PtsMeasurementValue<T>(value);
         }
 
         /// <summary>
-        /// Implicit conversion from PtsMeasurementValue to int.
+        /// Implicit conversion from PtsMeasurementValue to T.
         /// </summary>
-        public static implicit operator int(PtsMeasurementValue measurement)
+        public static implicit operator T(PtsMeasurementValue<T> measurement)
         {
             return measurement.Value;
         }
@@ -1314,7 +1321,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// </summary>
         public override string ToString()
         {
-            return Value.ToString();
+            return Value.ToString() ?? Convert.ToInt32(Value).ToString();
         }
     }
 
