@@ -5,11 +5,7 @@
       "label": "cmake-configure",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "-B",
-        "build",
-        "-DCMAKE_BUILD_TYPE=Debug"
-      ],
+      "args": ["-B", "build", "-DCMAKE_BUILD_TYPE=Debug"],
       "group": "build",
       "presentation": {
         "echo": true,
@@ -28,12 +24,7 @@
       "label": "cmake-process",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "process"
-      ],
+      "args": ["--build", "build", "--target", "process"],
       "group": "build",
       "dependsOn": "cmake-configure",
       "presentation": {
@@ -53,12 +44,7 @@
       "label": "cmake-build",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "build"
-      ],
+      "args": ["--build", "build", "--target", "build"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -75,20 +61,13 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "problemMatcher": [
-        "$msCompile"
-      ]
+      "problemMatcher": ["$msCompile"]
     },
     {
       "label": "cmake-test",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "test"
-      ],
+      "args": ["--build", "build", "--target", "test"],
       "group": {
         "kind": "test",
         "isDefault": true
@@ -111,12 +90,7 @@
       "label": "cmake-format",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "format"
-      ],
+      "args": ["--build", "build", "--target", "format"],
       "group": "build",
       "presentation": {
         "echo": true,
@@ -135,12 +109,7 @@
       "label": "cmake-doc",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "doc"
-      ],
+      "args": ["--build", "build", "--target", "doc"],
       "group": "build",
       "dependsOn": "cmake-build",
       "presentation": {
@@ -160,12 +129,7 @@
       "label": "cmake-publish",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "publish"
-      ],
+      "args": ["--build", "build", "--target", "publish"],
       "group": "build",
       "dependsOn": "cmake-build",
       "presentation": {
@@ -185,12 +149,7 @@
       "label": "cmake-clean",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "clean-all"
-      ],
+      "args": ["--build", "build", "--target", "clean-all"],
       "group": "build",
       "presentation": {
         "echo": true,
@@ -209,10 +168,7 @@
       "label": "dotnet-restore",
       "type": "shell",
       "command": "dotnet",
-      "args": [
-        "restore",
-        "${workspaceFolder}/OpenLanguage.sln"
-      ],
+      "args": ["restore", "${workspaceFolder}/OpenLanguage.sln"],
       "group": "build",
       "presentation": {
         "echo": true,
@@ -251,9 +207,7 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "problemMatcher": [
-        "$msCompile"
-      ]
+      "problemMatcher": ["$msCompile"]
     },
     {
       "label": "dotnet-test",
@@ -287,10 +241,7 @@
       "label": "format-csharpier",
       "type": "shell",
       "command": "dotnet",
-      "args": [
-        "csharpier",
-        "${workspaceFolder}"
-      ],
+      "args": ["csharpier", "${workspaceFolder}"],
       "group": "build",
       "presentation": {
         "echo": true,
@@ -309,12 +260,7 @@
       "label": "install-git-hooks",
       "type": "shell",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "install-hooks"
-      ],
+      "args": ["--build", "build", "--target", "install-hooks"],
       "group": "build",
       "dependsOn": "cmake-configure",
       "presentation": {

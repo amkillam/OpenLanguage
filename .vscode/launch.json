@@ -78,10 +78,7 @@
       "type": "coreclr",
       "request": "launch",
       "program": "dotnet",
-      "args": [
-        "csharpier",
-        "${workspaceFolder}"
-      ],
+      "args": ["csharpier", "${workspaceFolder}"],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
       "console": "internalConsole"

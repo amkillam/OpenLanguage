@@ -80,12 +80,7 @@
     "source=${localWorkspaceFolder}/.git,target=${containerWorkspaceFolder}/.git,type=bind,consistency=cached"
   ],
   "remoteUser": "vscode",
-  "forwardPorts": [
-    5000,
-    5001,
-    8080,
-    3000
-  ],
+  "forwardPorts": [5000, 5001, 8080, 3000],
   "portsAttributes": {
     "5000": {
       "label": "HTTP",
