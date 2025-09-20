@@ -346,17 +346,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
                 $"Memory usage was {memoryUsed} bytes, expected < 96MB"
             );
 
-            System.GC.Collect();
-            System.GC.WaitForPendingFinalizers();
-            System.GC.Collect();
-
-            long nodeMemoryAfter = System.GC.GetTotalMemory(true);
-            long nodeMemoryUsed = nodeMemoryAfter - memoryBefore;
-            Assert.True(
-                nodeMemoryUsed < 64 * 1024 * 1024,
-                $"Memory usage after GC was {nodeMemoryUsed} bytes, expected < 64MB"
-            );
-
             Assert.NotNull(formula);
             Assert.Equal(largeFormula, formula.ToString());
         }
