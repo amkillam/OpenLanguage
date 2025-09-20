@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CellRangeNode&lt;LC, RC, LCRN, LCR, LCCN, LCC, RCRN, RCR, RCCN, RCC&gt; | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CellRangeNode&lt;LC, RC, LCRN, LCR, LCCN, LCC, RCRN, RCR, RCCN, RCC&gt; | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_SpreadsheetML_Formula_Ast_CellRangeNode_10.md&amp;value=---%0Auid%3A%20OpenLanguage.SpreadsheetML.Formula.Ast.CellRangeNode%6010%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CellRangeNode`10">
+
+
+
+  <h1 id="OpenLanguage_SpreadsheetML_Formula_Ast_CellRangeNode_10" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CellRangeNode`10" class="text-break">
+Class CellRangeNode&lt;LC, RC, LCRN, LCR, LCCN, LCC, RCRN, RCR, RCCN, RCC&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Cell/Cell.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.html">SpreadsheetML</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.html">Formula</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.html">Ast</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CellRangeNode&lt;LC, RC, LCRN, LCR, LCCN, LCC, RCRN, RCR, RCCN, RCC&gt; : ColonDelimitedNodes&lt;LC, RC&gt; where LC : CellNode&lt;LCR, LCRN, LCC, LCCN&gt; where RC : CellNode&lt;RCR, RCRN, RCC, RCCN&gt; where LCRN : INumber&lt;LCRN&gt;, IBinaryInteger&lt;LCRN&gt;, INumberBase&lt;LCRN&gt;, IParsable&lt;LCRN&gt;, IFormattable, IMinMaxValue&lt;LCRN&gt; where LCR : RowNode&lt;LCRN&gt; where LCCN : INumber&lt;LCCN&gt;, IBinaryInteger&lt;LCCN&gt;, INumberBase&lt;LCCN&gt;, IParsable&lt;LCCN&gt;, IFormattable, IMinMaxValue&lt;LCCN&gt; where LCC : ColumnNode&lt;LCCN&gt; where RCRN : INumber&lt;RCRN&gt;, IBinaryInteger&lt;RCRN&gt;, INumberBase&lt;RCRN&gt;, IParsable&lt;RCRN&gt;, IFormattable, IMinMaxValue&lt;RCRN&gt; where RCR : RowNode&lt;RCRN&gt; where RCCN : INumber&lt;RCCN&gt;, IBinaryInteger&lt;RCCN&gt;, INumberBase&lt;RCCN&gt;, IParsable&lt;RCCN&gt;, IFormattable, IMinMaxValue&lt;RCCN&gt; where RCC : ColumnNode&lt;RCCN&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>LC</code></dt>
+    <dd></dd>
+    <dt><code>RC</code></dt>
+    <dd></dd>
+    <dt><code>LCRN</code></dt>
+    <dd></dd>
+    <dt><code>LCR</code></dt>
+    <dd></dd>
+    <dt><code>LCCN</code></dt>
+    <dd></dd>
+    <dt><code>LCC</code></dt>
+    <dd></dd>
+    <dt><code>RCRN</code></dt>
+    <dd></dd>
+    <dt><code>RCR</code></dt>
+    <dd></dd>
+    <dt><code>RCCN</code></dt>
+    <dd></dd>
+    <dt><code>RCC</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html">CharacterDelimitedExpressionNodes</a>&lt;LC, <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColonNode.html">ColonNode</a>, RC&gt;</div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColonDelimitedNodes-2.html">ColonDelimitedNodes</a>&lt;LC, RC&gt;</div>
+      <div><span class="xref">CellRangeNode&lt;LC, RC, LCRN, LCR, LCCN, LCC, RCRN, RCR, RCCN, RCC&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_Left">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.Left</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_Delimiter">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.Delimiter</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_Right">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.Right</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_ToRawString">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.ToRawString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_Children__1">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.Children&lt;O&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_ReplaceChild_System_Int32_OpenLanguage_SpreadsheetML_Formula_Ast_Node_">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.ReplaceChild(int, Node)</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharacterDelimitedExpressionNodes-3.html#OpenLanguage_SpreadsheetML_Formula_Ast_CharacterDelimitedExpressionNodes_3_Precedence">CharacterDelimitedExpressionNodes&lt;LC, ColonNode, RC&gt;.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_Precedence">ExpressionNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_ToRawString">ExpressionNode.ToRawString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html#OpenLanguage_SpreadsheetML_Formula_Ast_Node_Children__1">Node.Children&lt;O&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html#OpenLanguage_SpreadsheetML_Formula_Ast_Node_ReplaceChild_System_Int32_OpenLanguage_SpreadsheetML_Formula_Ast_Node_">Node.ReplaceChild(int, Node)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_CellRangeNode_10__ctor_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CellRangeNode`10.#ctor*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_CellRangeNode_10__ctor__0_OpenLanguage_SpreadsheetML_Formula_Ast_ColonNode__1_System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CellRangeNode`10.#ctor(`0,OpenLanguage.SpreadsheetML.Formula.Ast.ColonNode,`1,System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node},System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node})">
+  CellRangeNode(LC, ColonNode, RC, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Cell/Cell.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CellRangeNode(LC left, ColonNode sep, RC right, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <span class="xref">LC</span></dt>
+    <dd></dd>
+    <dt><code>sep</code> <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColonNode.html">ColonNode</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <span class="xref">RC</span></dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v0.1.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Cell/Cell.cs/#L135" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

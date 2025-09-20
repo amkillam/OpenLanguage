@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Build System | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Build System | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/build.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="build-system">Build System</h1>
+
+<p>OpenLanguage uses a sophisticated CMake-based build system designed to handle .NET projects with YACC/LEX grammar file preprocessing. This document provides comprehensive information about the build system architecture, targets, and usage.</p>
+<h2 id="overview">Overview</h2>
+<p>The build system is architected around CMake 3.20+ and provides several key capabilities:</p>
+<ul>
+<li><strong>Cross-platform .NET Runtime Identifier (RID) detection and configuration</strong></li>
+<li><strong>Automatic preprocessing of .y (YACC) and .lex (LEX) grammar files using the C preprocessor</strong></li>
+<li><strong>Multi-target compilation for different runtime architectures</strong></li>
+<li><strong>Integration with .NET toolchain for building, testing, and packaging</strong></li>
+<li><strong>Code formatting and documentation generation</strong></li>
+<li><strong>Git hooks installation for development workflow</strong></li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<h3 id="project-structure">Project Structure</h3>
+<pre><code>OpenLanguage/
+├── CMakeLists.txt              # Main build configuration
+├── OpenLanguage/               # Main .NET project
+│   ├── OpenLanguage.csproj    # .NET project file
+│   ├── Generated/             # Preprocessed grammar files (created during build)
+│   └── SpreadsheetML/Formula/Lang/
+│       ├── Parse/formula.y    # YACC grammar file
+│       └── Lex/               # LEX lexer files
+│           ├── formula.lex    # Main lexer
+│           └── function/      # Function definition lexer files
+├── OpenLanguage.Test/         # Unit test project
+├── hooks/                     # Git hooks
+└── build/                     # CMake build directory (created during build)
+</code></pre>
+<h3 id="build-process-flow">Build Process Flow</h3>
+<ol>
+<li><strong>RID Detection</strong>: Automatically detects the target platform and architecture</li>
+<li><strong>Grammar Preprocessing</strong>: Processes .y and .lex files with cpp (C preprocessor)</li>
+<li><strong>Code Generation</strong>: GPPG/GPLEX tools generate C# parser/lexer code from grammar files</li>
+<li><strong>Compilation</strong>: Builds the .NET solution for specified RIDs</li>
+<li><strong>Testing</strong>: Runs xUnit tests with the compiled assemblies</li>
+<li><strong>Packaging</strong>: Creates NuGet packages for distribution</li>
+</ol>
+<h2 id="runtime-identifier-rid-configuration">Runtime Identifier (RID) Configuration</h2>
+<h3 id="automatic-detection">Automatic Detection</h3>
+<p>The build system automatically detects the platform and architecture:</p>
+<p><strong>Supported Architectures:</strong></p>
+<ul>
+<li><code>x64</code> (x86_64, AMD64)</li>
+<li><code>arm64</code> (aarch64, arm64)</li>
+<li><code>x86</code> (i386-i686, x86)</li>
+</ul>
+<p><strong>Supported Operating Systems:</strong></p>
+<ul>
+<li><code>linux</code> (Linux)</li>
+<li><code>osx</code> (macOS)</li>
+<li><code>win</code> (Windows)</li>
+<li><code>freebsd</code> (FreeBSD)</li>
+</ul>
+<p><strong>Example RIDs:</strong></p>
+<ul>
+<li><code>linux-x64</code></li>
+<li><code>win-x64</code></li>
+<li><code>osx-arm64</code></li>
+</ul>
+<h3 id="manual-override">Manual Override</h3>
+<p>You can override the detected RID:</p>
+<pre><code class="lang-bash"># Configure for specific RID
+cmake -B build -DRUNTIMES=&quot;linux-x64&quot;
+
+# Configure for multiple RIDs
+cmake -B build -DRUNTIMES=&quot;linux-x64;win-x64;osx-arm64&quot;
+</code></pre>
+<h2 id="grammar-file-processing">Grammar File Processing</h2>
+<h3 id="overview-1">Overview</h3>
+<p>The build system automatically processes YACC (.y) and LEX (.lex) files using the C preprocessor before compilation. This enables:</p>
+<ul>
+<li><strong>Conditional compilation</strong> using <code>#ifdef</code>, <code>#ifndef</code>, <code>#define</code></li>
+<li><strong>File inclusion</strong> using <code>#include</code></li>
+<li><strong>Macro expansion</strong> for code reuse</li>
+<li><strong>Platform-specific grammar variants</strong></li>
+</ul>
+<h3 id="processing-pipeline">Processing Pipeline</h3>
+<ol>
+<li><strong>Discovery</strong>: CMake scans for all <code>.y</code> and <code>.lex</code> files in the project</li>
+<li><strong>Filtering</strong>: Excludes files already in the <code>Generated/</code> directory</li>
+<li><strong>Preprocessing</strong>: Runs <code>cpp -P</code> with <code>-Wno-invalid-pp-token</code> flag</li>
+<li><strong>Output</strong>: Places processed files in <code>Generated/</code> directory maintaining folder structure</li>
+</ol>
+<h3 id="example">Example</h3>
+<p><strong>Source</strong>: <code>OpenLanguage/SpreadsheetML/Formula/Lang/Lex/formula.lex</code>
+<strong>Output</strong>: <code>OpenLanguage/Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex</code></p>
+<p>The preprocessed files are then used by GPPG/GPLEX tools to generate C# parser code.</p>
+<h2 id="build-targets">Build Targets</h2>
+<h3 id="core-targets">Core Targets</h3>
+<h4 id="process"><code>process</code></h4>
+<p>Preprocesses all .y and .lex files using cpp.</p>
+<pre><code class="lang-bash">cmake --build build --target process
+</code></pre>
+<p><strong>Dependencies</strong>: None<br>
+<strong>Output</strong>: Processed grammar files in <code>Generated/</code> directory</p>
+<h4 id="build"><code>build</code></h4>
+<p>Compiles the solution for all configured RIDs.</p>
+<pre><code class="lang-bash">cmake --build build --target build
+</code></pre>
+<p><strong>Dependencies</strong>: <code>process</code><br>
+<strong>Output</strong>: Compiled binaries in <code>build/publish/</code> directory</p>
+<h4 id="test"><code>test</code></h4>
+<p>Runs all unit tests using xUnit.</p>
+<pre><code class="lang-bash">cmake --build build --target test
+</code></pre>
+<p><strong>Dependencies</strong>: <code>build</code><br>
+<strong>Command</strong>: <code>dotnet test --configuration Release --no-build --verbosity normal</code></p>
+<h3 id="utility-targets">Utility Targets</h3>
+<h4 id="format"><code>format</code></h4>
+<p>Formats all C# code using CSharpier.</p>
+<pre><code class="lang-bash">cmake --build build --target format
+</code></pre>
+<p><strong>Commands</strong>:</p>
+<pre><code class="lang-bash">dotnet tool restore
+dotnet csharpier format .
+</code></pre>
+<h4 id="doc"><code>doc</code></h4>
+<p>Generates API documentation using DocFX.</p>
+<pre><code class="lang-bash">cmake --build build --target doc
+</code></pre>
+<p><strong>Dependencies</strong>: <code>build</code><br>
+<strong>Output</strong>: Generated documentation in <code>docfx/_site/</code></p>
+<h4 id="pack"><code>pack</code></h4>
+<p>Packs NuGet packages for distribution.</p>
+<pre><code class="lang-bash">cmake --build build --target pack
+</code></pre>
+<p><strong>Dependencies</strong>: <code>build</code><br>
+<strong>Output</strong>: NuGet packages in <code>build/packages/</code></p>
+<h4 id="install-hooks"><code>install-hooks</code></h4>
+<p>Installs git pre-commit hooks for development.</p>
+<pre><code class="lang-bash">cmake --build build --target install-hooks
+</code></pre>
+<p><strong>Actions</strong>:</p>
+<ul>
+<li>Copies <code>hooks/pre-commit</code> to <code>.git/hooks/pre-commit</code></li>
+<li>Makes the hook executable with <code>chmod +x</code></li>
+</ul>
+<h4 id="clean-all"><code>clean-all</code></h4>
+<p>Removes all build artifacts and generated files.</p>
+<pre><code class="lang-bash">cmake --build build --target clean-all
+</code></pre>
+<p><strong>Actions</strong>:</p>
+<ul>
+<li>Removes <code>build/</code> directory</li>
+<li>Removes <code>Generated/</code> directory</li>
+<li>Removes all <code>obj/</code> and <code>bin/</code> directories</li>
+</ul>
+<h3 id="default-target">Default Target</h3>
+<h4 id="default-all"><code>default</code> (ALL)</h4>
+<p>The default target that runs when no specific target is specified.</p>
+<pre><code class="lang-bash">cmake --build build
+</code></pre>
+<p><strong>Dependencies</strong>: <code>process</code>, <code>build</code></p>
+<h2 id="build-configuration">Build Configuration</h2>
+<h3 id="cmake-variables">CMake Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RUNTIMES</code></td>
+<td>Semicolon-separated list of .NET RIDs</td>
+<td>Auto-detected RID</td>
+</tr>
+<tr>
+<td><code>CMAKE_BUILD_TYPE</code></td>
+<td>Build configuration</td>
+<td>Release</td>
+</tr>
+</tbody>
+</table>
+<h3 id="project-variables">Project Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SOLUTION_FILE</code></td>
+<td>Path to .sln file</td>
+</tr>
+<tr>
+<td><code>PROJECT_DIR</code></td>
+<td>Main project directory</td>
+</tr>
+<tr>
+<td><code>GENERATED_DIR</code></td>
+<td>Generated files directory</td>
+</tr>
+<tr>
+<td><code>TEST_PROJECT_DIR</code></td>
+<td>Test project directory</td>
+</tr>
+</tbody>
+</table>
+<h3 id="net-project-configuration">.NET Project Configuration</h3>
+<p>The <code>OpenLanguage.csproj</code> file includes:</p>
+<pre><code class="lang-xml">&lt;PropertyGroup&gt;
+  &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+  &lt;PublishAot&gt;true&lt;/PublishAot&gt;
+  &lt;PublishTrimmed&gt;true&lt;/PublishTrimmed&gt;
+  &lt;Nullable&gt;enable&lt;/Nullable&gt;
+  &lt;TreatWarningsAsErrors&gt;true&lt;/TreatWarningsAsErrors&gt;
+&lt;/PropertyGroup&gt;
+</code></pre>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>AOT Compilation</strong>: Native ahead-of-time compilation support</li>
+<li><strong>Trimming</strong>: Removes unused code for smaller binaries</li>
+<li><strong>Nullable Reference Types</strong>: Enhanced type safety</li>
+<li><strong>Warnings as Errors</strong>: Strict code quality enforcement</li>
+</ul>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-development-workflow">Basic Development Workflow</h3>
+<pre><code class="lang-bash"># Initial setup
+cmake -B build
+
+# Development cycle
+cmake --build build --target format  # Format code
+cmake --build build --target build   # Build solution
+cmake --build build --target test    # Run tests
+
+# Install git hooks (one-time setup)
+cmake --build build --target install-hooks
+</code></pre>
+<h3 id="multi-platform-build">Multi-Platform Build</h3>
+<pre><code class="lang-bash"># Configure for multiple platforms
+cmake -B build -DRUNTIMES=&quot;linux-x64;win-x64;osx-arm64&quot;
+
+# Build for all platforms
+cmake --build build --target build
+
+# Artifacts will be in:
+# build/publish/OpenLanguage/linux-x64/
+# build/publish/OpenLanguage/win-x64/
+# build/publish/OpenLanguage/osx-arm64/
+</code></pre>
+<h3 id="grammar-file-development">Grammar File Development</h3>
+<pre><code class="lang-bash"># After modifying .y or .lex files
+cmake --build build --target process  # Preprocess grammar files
+cmake --build build --target build    # Rebuild with new grammar
+cmake --build build --target test     # Verify changes
+</code></pre>
+<h3 id="release-preparation">Release Preparation</h3>
+<pre><code class="lang-bash"># Full release build
+cmake --build build --target clean-all  # Clean everything
+cmake -B build                          # Reconfigure
+cmake --build build --target format     # Format code
+cmake --build build --target build      # Build solution
+cmake --build build --target test       # Run tests
+cmake --build build --target doc        # Generate docs
+cmake --build build --target pack       # Pack for distribution
+</code></pre>
+<h2 id="integration-with-net-tools">Integration with .NET Tools</h2>
+<h3 id="yacclextools-integration">YaccLexTools Integration</h3>
+<p>The project uses YaccLexTools packages for grammar processing:</p>
+<ul>
+<li><strong>YaccLexTools.Gppg</strong>: YACC-style parser generator</li>
+<li><strong>YaccLexTools.Gplex</strong>: LEX-style lexer generator</li>
+</ul>
+<p>The .csproj file configures these tools:</p>
+<pre><code class="lang-xml">&lt;YaccFile Include=&quot;Generated/SpreadsheetML/Formula/Lang/Parse/formula.y&quot;&gt;
+  &lt;OutputFile&gt;Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs&lt;/OutputFile&gt;
+  &lt;Arguments&gt;/gplex /nolines&lt;/Arguments&gt;
+&lt;/YaccFile&gt;
+</code></pre>
+<h3 id="csharpier-integration">CSharpier Integration</h3>
+<p>Code formatting is handled by CSharpier:</p>
+<pre><code class="lang-bash"># Format entire solution
+dotnet csharpier format .
+
+# Check formatting without changes
+dotnet csharpier check .
+</code></pre>
+<h3 id="docfx-integration">DocFX Integration</h3>
+<p>Documentation generation uses DocFX:</p>
+<pre><code class="lang-bash"># Generate API documentation
+docfx metadata docfx/docfx.json
+docfx build docfx/docfx.json
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>Issue</strong>: Grammar file changes not reflected in build<br>
+<strong>Solution</strong>: Run <code>cmake --build build --target process</code> to regenerate preprocessed files</p>
+<p><strong>Issue</strong>: RID detection fails<br>
+<strong>Solution</strong>: Manually specify RID with <code>-DRUNTIMES=&quot;your-rid&quot;</code></p>
+<p><strong>Issue</strong>: Build fails with missing cpp<br>
+<strong>Solution</strong>: Install GCC or Clang toolchain for C preprocessor</p>
+<p><strong>Issue</strong>: Tests fail after grammar changes<br>
+<strong>Solution</strong>: Rebuild completely with <code>clean-all</code> then <code>build</code></p>
+<h3 id="build-dependencies">Build Dependencies</h3>
+<p><strong>Required Tools:</strong></p>
+<ul>
+<li>CMake 3.20+</li>
+<li>.NET 8.0 or .NET 9.0</li>
+<li>C preprocessor (cpp) - usually part of GCC/Clang</li>
+<li>Git (for hooks installation)</li>
+</ul>
+<p><strong>Optional Tools:</strong></p>
+<ul>
+<li>DocFX (for documentation generation)</li>
+<li>CSharpier (for code formatting - installed via dotnet tool restore)</li>
+</ul>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<p><strong>Parallel Builds:</strong></p>
+<pre><code class="lang-bash"># Use multiple CPU cores
+cmake --build build --parallel $(nproc)
+</code></pre>
+<p><strong>Incremental Builds:</strong>
+The build system supports incremental builds - only changed files are reprocessed and recompiled.</p>
+<p><strong>Build Cache:</strong>
+Generated files are cached in the <code>Generated/</code> directory and only regenerated when source grammar files change.</p>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="custom-preprocessor-flags">Custom Preprocessor Flags</h3>
+<p>You can modify the preprocessing step by editing the CMakeLists.txt file:</p>
+<pre><code class="lang-cmake"># Add custom preprocessor definitions
+add_custom_command(
+    TARGET process PRE_BUILD
+    COMMAND cpp -P ${YACC_FILE} -o ${OUTPUT_FILE} -DCUSTOM_FLAG -Wno-invalid-pp-token
+    COMMENT &quot;Processing ${YACC_FILE} -&gt; ${OUTPUT_FILE}&quot;
+)
+</code></pre>
+<h3 id="custom-build-targets">Custom Build Targets</h3>
+<p>Add custom targets for specific workflows:</p>
+<pre><code class="lang-cmake"># Custom target for development builds
+add_custom_target(dev
+    COMMAND cmake --build . --target format
+    COMMAND cmake --build . --target build
+    COMMAND cmake --build . --target test
+    COMMENT &quot;Development build cycle&quot;
+)
+</code></pre>
+<h2 id="integration-with-ides">Integration with IDEs</h2>
+<h3 id="visual-studio-code">Visual Studio Code</h3>
+<p>Recommended extensions:</p>
+<ul>
+<li>C# Dev Kit</li>
+<li>CMake Tools</li>
+<li>EditorConfig for VS Code</li>
+</ul>
+<h3 id="visual-studio">Visual Studio</h3>
+<p>The solution file <code>OpenLanguage.sln</code> can be opened directly in Visual Studio. Use the CMake build targets from the command line or integrate with VS build system.</p>
+<h3 id="jetbrains-rider">JetBrains Rider</h3>
+<p>Rider supports both the .NET solution and CMake build system. Configure CMake profiles for different RID targets.</p>
+<h2 id="continuous-integration">Continuous Integration</h2>
+<p>The build system is designed for CI/CD pipelines:</p>
+<pre><code class="lang-yaml"># Example GitHub Actions workflow
+- name: Configure CMake
+  run: cmake -B build
+
+- name: Build
+  run: cmake --build build --target build
+
+- name: Test
+  run: cmake --build build --target test
+
+- name: Pack
+  run: cmake --build build --target pack
+</code></pre>
+<p>The build system's deterministic output and cross-platform support make it ideal for automated build environments.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/build.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
