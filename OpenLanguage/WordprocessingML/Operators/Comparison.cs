@@ -12,7 +12,7 @@ namespace OpenLanguage.WordprocessingML.Operators
         LessThan = 0b10,
         LessThanOrEqual = ComparisonOperator.Equal | ComparisonOperator.LessThan,
         GreaterThan = ~ComparisonOperator.LessThanOrEqual,
-        GreaterThanOrEqual = ComparisonOperator.Equal | ComparisonOperator.GreaterThan,
+        GreaterThanOrEqual = ~ComparisonOperator.LessThan,
     }
 
     public static class ComparisonOperatorExtensions
