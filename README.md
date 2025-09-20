@@ -218,17 +218,6 @@ dotnet test --collect:"XPlat Code Coverage"
 dotnet test OpenLanguage.Test/
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Ensure tests pass (`cmake --build build --target test`)
-5. Ensure code is formatted (`cmake --build build --target format`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
-
 ## Performance
 
 OpenLanguage is built with performance as a primary concern:
@@ -319,6 +308,17 @@ implementation of parsing, parsing dependencies, nor AST. However, optimization 
         with matrix display and formula input prompt as well as vim-style selection of
         corresponding cells. Simulaneously update underlying OPC package on modifying
         values.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Ensure tests pass (`cmake --build build --target test`)
+5. Ensure code is formatted (`cmake --build build --target format`)
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
 
 ## License
 
