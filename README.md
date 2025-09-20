@@ -4,7 +4,7 @@
 [![NuGet Version](https://img.shields.io/nuget/v/OpenLanguage.svg)](https://www.nuget.org/packages/OpenLanguage/)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-OpenLanguage is a C# library providing lexers, parsers, and other processing tools for major DSLs used in Open Office XML.
+OpenLanguage is a C# library providing lexers, parsers, and other processing tools for Open Office XML DSLs.
 
 ## Features
 
