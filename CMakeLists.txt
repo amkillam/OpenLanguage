@@ -3,25 +3,25 @@ project(OpenLanguage)
 
 # --- C++ Preprocessor Command Resolution ---
 
-# Attempt to resolve C preprocessor in priority order: clang++, g++, cpp
-find_program(CLANGPP_EXECUTABLE NAMES clang++)
-find_program(GPP_EXECUTABLE NAMES g++)
+# Attempt to resolve C preprocessor in priority order: gcc, clang, cpp
+find_program(GCC_EXECUTABLE NAMES gcc)
+find_program(CLANG_EXECUTABLE NAMES clang)
 find_program(CPP_EXECUTABLE NAMES cpp)
 
-if(CLANGPP_EXECUTABLE)
-  set(CPP_COMMAND ${CLANGPP_EXECUTABLE})
-  set(CPP_FLAGS -E -P)
-  message(STATUS "Using clang++ as C preprocessor: ${CPP_COMMAND}")
-elseif(GPP_EXECUTABLE)
-  set(CPP_COMMAND ${GPP_EXECUTABLE})
-  set(CPP_FLAGS -E -P)
-  message(STATUS "Using g++ as C preprocessor: ${CPP_COMMAND}")
+if(GCC_EXECUTABLE)
+  set(CPP_COMMAND ${GCC_EXECUTABLE})
+  set(CPP_FLAGS -E -P -fdirectives-only -x assembler-with-cpp)
+  message(STATUS "Using gcc as C preprocessor: ${CPP_COMMAND}")
+elseif(CLANG_EXECUTABLE)
+  set(CPP_COMMAND ${CLANG_EXECUTABLE})
+  set(CPP_FLAGS -E -P -fdirectives-only -x c++ -Wno-invalid-pp-token -nostdinc -nostdlibinc -fkeep-system-includes)
+  message(STATUS "Using clang as C preprocessor: ${CPP_COMMAND}")
 elseif(CPP_EXECUTABLE)
   set(CPP_COMMAND ${CPP_EXECUTABLE})
-  set(CPP_FLAGS -P)
+  set(CPP_FLAGS -P -Wno-invalid-pp-token)
   message(STATUS "Using cpp as C preprocessor: ${CPP_COMMAND}")
 else()
-  message(FATAL_ERROR "No C preprocessor found. Please install clang++, g++, or cpp.")
+  message(FATAL_ERROR "No C preprocessor found. Please install clang, gcc, or cpp.")
 endif()
 
 # --- RID Detection and Configuration ---
@@ -101,7 +101,7 @@ foreach(YACC_FILE ${YACC_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${YACC_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
+        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${YACC_FILE} -o ${OUTPUT_FILE}
         COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE} using ${CPP_COMMAND}"
     )
 endforeach()
@@ -117,7 +117,7 @@ foreach(LEX_FILE ${LEX_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${LEX_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
+        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${LEX_FILE} -o ${OUTPUT_FILE}
         COMMENT "Processing ${LEX_FILE} -> ${OUTPUT_FILE} using ${CPP_COMMAND}"
     )
 endforeach()

@@ -29,7 +29,7 @@ jobs:
           cmake-version: "3.20"
 
       - name: Install cpp
-        run: sudo apt-get update && sudo apt-get install -y gcc g++
+        run: sudo apt-get update && sudo apt-get install -y gcc
 
       - name: Restore dotnet tools
         run: dotnet tool restore
