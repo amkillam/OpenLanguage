@@ -51,7 +51,7 @@ QS_RUN              [^'\r\n\[\]]+
     private int sr_bracket_nesting_level = 0;
 
     // true iff the last significant token was an identifier or a right bracket
-    // Whitespace and newlines do NOT reset this; all other tokens do.
+    // Whitespace and newlines do not reset this; all other tokens do.
     private bool lastIdOrRbrack = false;
 
     // Tracks whether we are immediately after a leading '=' (ignoring whitespace)

@@ -7,9 +7,12 @@ set -e
 
 echo "Running pre-commit checks..."
 
+echo "Preparing CMake build..."
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+
 # Run formatter
 echo "Formatting code..."
-cmake --build . --target format
+cmake --build build --target format
 
 # Check if there are any formatting changes
 if ! git diff --quiet; then
@@ -19,7 +22,7 @@ fi
 
 # Run tests
 echo "Running tests..."
-cmake --build . --target test
+cmake --build build --target test
 
 echo "Pre-commit checks passed!"
 exit 0

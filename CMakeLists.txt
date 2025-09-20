@@ -70,6 +70,10 @@ set(SOLUTION_FILE "${CMAKE_SOURCE_DIR}/OpenLanguage.sln")
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage")
 set(GENERATED_DIR "${PROJECT_DIR}/Generated")
 set(TEST_PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage.Test")
+set(TEST_RESULTS_DIR "${TEST_PROJECT_DIR}/TestResults")
+set (TEST_RESULTS_TRX_BASENAME "TestResults.trx")
+set(TEST_RESULTS_TRX "${TEST_RESULTS_DIR}/${TEST_RESULTS_TRX_BASENAME}")
+set(TEST_RESULTS_XML "${TEST_RESULTS_DIR}/TestResults.xml")
 
 file (GLOB_RECURSE PROJECT_LIST "${PROJECT_DIR}/*.csproj")
 
@@ -174,12 +178,40 @@ add_custom_target(tool_restore
     COMMENT "Restoring dotnet tools"
 )
 
+add_custom_target(create_test_results_directory
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${TEST_RESULTS_DIR}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Creating TestResults directory"
+)
 
+add_custom_target(run_tests
+    COMMAND dotnet test "${TEST_PROJECT_DIR}/OpenLanguage.Test.csproj"
+        --results-directory="${TEST_RESULTS_DIR}"
+        --configuration="Release"
+        --framework="net9.0"
+        --logger="trx\;LogFileName=\"${TEST_RESULTS_TRX}\""
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+    DEPENDS build create_test_results_directory
+    COMMENT "Running unit tests. Outputting results to \"${TEST_RESULTS_TRX}\""
+)
+
+add_custom_target(convert_test_results
+    COMMAND dotnet tool run trx2junit "${TEST_RESULTS_TRX}" --output "${TEST_RESULTS_DIR}"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    DEPENDS run_tests tool_restore
+    COMMENT "Converting test results from TRX to JUnit XML format. Outputting results to \"${TEST_RESULTS_XML}\""
+)
 
 # Test target - dependent on build
+add_custom_target(test-ci
+    DEPENDS convert_test_results
+)
+
 add_custom_target(test
-    COMMAND dotnet test --configuration Release
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMAND dotnet test "${TEST_PROJECT_DIR}/OpenLanguage.Test.csproj"
+        --configuration="Release"
+        --framework="net9.0"
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
     DEPENDS build
     COMMENT "Running unit tests"
 )

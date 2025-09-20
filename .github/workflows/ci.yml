@@ -71,7 +71,7 @@ jobs:
           git diff --exit-code || (echo "Code is not properly formatted. Please run 'cmake --build build --target format'" && exit 1)
 
       - name: Run tests
-        run: cmake --build build --target test
+        run: cmake --build build --target test-ci
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -85,13 +85,13 @@ jobs:
       - name: Generate code coverage (Linux only)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          dotnet test --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
+          dotnet test --configuration Release --collect:"XPlat Code Coverage" -f "net9.0" --results-directory OpenLanguage.Test/coverage
 
       - name: Upload coverage to Codecov (Linux only)
         if: matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v4
         with:
-          directory: ./coverage
+          directory: OpenLanguage.Test/coverage
           fail_ci_if_error: false
           verbose: true
 

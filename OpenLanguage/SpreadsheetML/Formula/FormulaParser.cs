@@ -89,11 +89,8 @@ namespace OpenLanguage.SpreadsheetML.Formula
             {
                 return FormulaParser.Parse(chars);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.Error.WriteLine(
-                    $"Encountered error while trying to parse formula text: \"{e}\""
-                );
                 return null;
             }
         }

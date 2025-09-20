@@ -92,11 +92,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/docs/site
-          destination_dir: docs/${{ steps.get_version.outputs.VERSION }}
+          destination_dir: archive/${{ steps.get_version.outputs.VERSION }}
 
       - name: Update latest docs symlink
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/docs/site
-          destination_dir: docs/latest
+          destination_dir: docs
