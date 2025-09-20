@@ -199,7 +199,7 @@ add_custom_target(run_tests
         --framework="net9.0"
         --logger="trx\;LogFileName=\"${TEST_RESULTS_TRX}\""
     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-    DEPENDS build create_test_results_directory
+    DEPENDS process create_test_results_directory
     COMMENT "Running unit tests. Outputting results to \"${TEST_RESULTS_TRX}\""
 )
 
@@ -221,7 +221,7 @@ add_custom_target(test-collect-coverage
         --collect="\"XPlat Code Coverage\""
         --results-directory "${TEST_RESULTS_COVERAGE_DIR}"
     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-    DEPENDS build create_test_results_coverage_directory
+    DEPENDS process create_test_results_coverage_directory
     COMMENT "Running unit tests with code coverage collection"
 )
 
@@ -230,7 +230,7 @@ add_custom_target(test
         --configuration="Release"
         --framework="net9.0"
     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-    DEPENDS build
+    DEPENDS process
     COMMENT "Running unit tests"
 )
 
