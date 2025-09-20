@@ -5,7 +5,9 @@
       "src": [
         {
           "src": "../..",
-          "files": ["OpenLanguage/OpenLanguage.csproj"]
+          "files": [
+            "OpenLanguage/OpenLanguage.csproj"
+          ]
         }
       ],
       "output": "./api",
@@ -29,11 +31,16 @@
     "resource": [
       {
         "src": "docs",
-        "files": ["img/**"]
+        "files": [
+          "img/**"
+        ]
       }
     ],
     "output": "./site",
-    "template": ["default", "modern"],
+    "template": [
+      "default",
+      "modern"
+    ],
     "globalMetadata": {
       "_appName": "OpenLanguage",
       "_appTitle": "OpenLanguage Documentation",
@@ -46,7 +53,7 @@
     },
     "fileMetadata": {
       "_appLogoPath": {
-        "docs/**": "img/logo.svg"
+        "docs/**": "img/logo.png"
       }
     }
   }
