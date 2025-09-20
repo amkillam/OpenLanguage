@@ -8,7 +8,7 @@ This component provides:
 
 - **Field Instruction Creation**: Build field instructions programmatically
 - **Argument Handling**: Support for different argument types (identifiers, strings, switches, nested fields)
-- **Field Reconstruction**: Convert field objects back to field code strings
+- **Field Reconstruction**: Convert field objects back to field instruction strings
 - **Type Safety**: Strongly-typed field instruction factory
 
 ## Core Classes
@@ -25,7 +25,7 @@ var instruction = new FieldInstruction("MERGEFIELD");
 instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "FirstName"));
 instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
 
-// Reconstruct field code
+// Reconstruct field instruction
 Console.WriteLine(instruction.ToString()); // "MERGEFIELD FirstName \* Upper"
 ```
 
@@ -33,7 +33,7 @@ Console.WriteLine(instruction.ToString()); // "MERGEFIELD FirstName \* Upper"
 
 - `string Instruction` - The field keyword (e.g., "MERGEFIELD", "REF", "IF")
 - `List<FieldArgument> Arguments` - List of field arguments that can be modified
-- `ToString()` - Reconstructs the field code string
+- `ToString()` - Reconstructs the field instruction string
 
 ### FieldArgument
 
@@ -45,7 +45,7 @@ public class FieldArgument
     public FieldArgumentType Type { get; }    // Type of argument
     public object Value { get; }              // Argument value
 
-    public override string ToString()         // Reconstructs argument as field code
+    public override string ToString()         // Reconstructs argument as field instruction
 }
 ```
 
@@ -405,7 +405,7 @@ if (typedHyperlink != null)
 
 ### Field Instruction Parsing from Text
 
-The library provides robust parsing capabilities for field codes:
+The library provides robust parsing capabilities for field instructions:
 
 ```csharp
 // Parse complex nested fields
@@ -649,7 +649,7 @@ public class FieldInstructionSerializer
 
 - Field instructions are mutable objects that can be modified after creation
 - Arguments list can be manipulated directly (add, remove, modify)
-- ToString() method reconstructs valid field code syntax
+- ToString() method reconstructs valid field instruction syntax
 - All string values are properly escaped when reconstructed
 - Nested fields are formatted with proper brace spacing
 - The component includes comprehensive enumerations for Word-specific values

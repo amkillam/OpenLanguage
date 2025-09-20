@@ -10,11 +10,11 @@ OpenLanguage is a C# library providing lexers, parsers, and other processing too
 
 ### WordprocessingML
 
-- **Field Instructions**: Parse Word field codes into structured objects with arguments
+- **Field Instructions**: Parse Word field instructions into structured objects with arguments
 - **Typed Field Instructions**: Factory pattern for converting generic instructions to strongly-typed objects
 - **Comprehensive Field Types**: Support for 70+ Word field instruction types (REF, MERGEFIELD, IF, etc.) - intended to be comprehensive
 - **Argument Handling**: Process identifiers, string literals, switches, and nested fields
-- **Field Reconstruction**: Convert parsed instructions back to valid field code strings
+- **Field Reconstruction**: Convert parsed instructions back to valid field instruction strings
 
 ### SpreadsheetML
 
@@ -73,8 +73,8 @@ instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"
 // Convert to strongly-typed (if available)
 var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
 
-// Reconstruct field code
-Console.WriteLine($"Field Code: {instruction.ToString()}");
+// Reconstruct field instruction
+Console.WriteLine($"Field instruction: {instruction.ToString()}");
 ```
 
 ## Building from Source

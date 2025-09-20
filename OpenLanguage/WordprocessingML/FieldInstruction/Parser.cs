@@ -76,7 +76,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 return null;
             }
 
-            // A valid field code might start with a brace, or just the instruction for simple cases.
+            // A valid field instruction might start with a brace, or just the instruction for simple cases.
             if (firstToken.Type == FieldTokenType.LeftBrace)
             {
                 return TryParseInstruction(tokenEnumerable.ToList());

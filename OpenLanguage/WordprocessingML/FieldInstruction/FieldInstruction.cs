@@ -1572,9 +1572,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         }
 
         /// <summary>
-        /// Recompiles the argument back into its valid field code string representation.
+        /// Recompiles the argument back into its valid field instruction string representation.
         /// </summary>
-        /// <returns>A string representing the argument as it would appear in a field code.</returns>
+        /// <returns>A string representing the argument as it would appear in a field instruction.</returns>
         public override string ToString()
         {
             switch (Type)
@@ -1603,7 +1603,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// <summary>
     /// Represents a fully parsed Word field instruction, including its main
     /// instruction keyword (e.g., "MERGEFIELD") and a list of its arguments.
-    /// This object can be modified and recompiled back into a field code string.
+    /// This object can be modified and recompiled back into a field instruction string.
     /// </summary>
     public class FieldInstruction
     {
@@ -1640,9 +1640,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
 
         /// <summary>
         /// Recompiles the entire FieldInstruction object back into a valid,
-        /// standards-compliant field code string.
+        /// standards-compliant field instruction string.
         /// </summary>
-        /// <returns>The reconstructed field code string.</returns>
+        /// <returns>The reconstructed field instruction string.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

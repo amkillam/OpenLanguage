@@ -8,7 +8,7 @@ using System.Xml.Linq;
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
     /// <summary>
-    /// Defines the types of tokens that can be found in a Word field code.
+    /// Defines the types of tokens that can be found in a Word field instruction.
     /// </summary>
     public enum FieldTokenType
     {
@@ -24,7 +24,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     }
 
     /// <summary>
-    /// Represents a token extracted from a field code string by the lexer.
+    /// Represents a token extracted from a field instruction string by the lexer.
     /// </summary>
     public class FieldToken
     {
@@ -43,7 +43,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     }
 
     /// <summary>
-    /// A lexer for tokenizing Word field codes into a stream of tokens.
+    /// A lexer for tokenizing Word field instructions into a stream of tokens.
     /// </summary>
     public static class FieldLexer
     {

@@ -1,6 +1,6 @@
 # Field Instruction Examples
 
-This document demonstrates how to use the OpenLanguage WordprocessingML FieldInstruction parser to parse and manipulate Microsoft Word field codes.
+This document demonstrates how to use the OpenLanguage WordprocessingML FieldInstruction parser to parse and manipulate Microsoft Word field instructions.
 
 ## Basic Usage
 
@@ -394,4 +394,4 @@ foreach (string fieldCode in invalidFields)
 }
 ```
 
-This comprehensive example demonstrates the core functionality of the OpenLanguage FieldInstruction parser, showing how to parse, manipulate, and reconstruct Microsoft Word field codes.
+This comprehensive example demonstrates the core functionality of the OpenLanguage FieldInstruction parser, showing how to parse, manipulate, and reconstruct Microsoft Word field instructions.
