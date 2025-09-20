@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class MacroFunctionNode | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class MacroFunctionNode | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_SpreadsheetML_Formula_Ast_MacroFunctionNode.md&amp;value=---%0Auid%3A%20OpenLanguage.SpreadsheetML.Formula.Ast.MacroFunctionNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.MacroFunctionNode">
+
+
+
+  <h1 id="OpenLanguage_SpreadsheetML_Formula_Ast_MacroFunctionNode" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.MacroFunctionNode" class="text-break">
+Class MacroFunctionNode  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.html">SpreadsheetML</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.html">Formula</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.html">Ast</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MacroFunctionNode : BuiltInFunctionNode</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html">NameNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BuiltInFunctionNode.html">BuiltInFunctionNode</a></div>
+      <div><span class="xref">MacroFunctionNode</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AbsRefMacroFunctionNode.html">AbsRefMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActiveCellMacroFunctionNode.html">ActiveCellMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddBarMacroFunctionNode.html">AddBarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddCommandMacroFunctionNode.html">AddCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddMenuMacroFunctionNode.html">AddMenuMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddToolbarMacroFunctionNode.html">AddToolbarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppTitleMacroFunctionNode.html">AppTitleMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ArgumentMacroFunctionNode.html">ArgumentMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BreakMacroFunctionNode.html">BreakMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CallMacroFunctionNode.html">CallMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CallerMacroFunctionNode.html">CallerMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CancelKeyMacroFunctionNode.html">CancelKeyMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CheckCommandMacroFunctionNode.html">CheckCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CreateObjectMacroFunctionNode.html">CreateObjectMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CustomRepeatMacroFunctionNode.html">CustomRepeatMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CustomUndoMacroFunctionNode.html">CustomUndoMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeRefMacroFunctionNode.html">DeRefMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteBarMacroFunctionNode.html">DeleteBarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteCommandMacroFunctionNode.html">DeleteCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteMenuMacroFunctionNode.html">DeleteMenuMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteToolbarMacroFunctionNode.html">DeleteToolbarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DialogBoxMacroFunctionNode.html">DialogBoxMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DirectoryMacroFunctionNode.html">DirectoryMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DocumentsMacroFunctionNode.html">DocumentsMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EchoMacroFunctionNode.html">EchoMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ElseIfMacroFunctionNode.html">ElseIfMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ElseMacroFunctionNode.html">ElseMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EnableCommandMacroFunctionNode.html">EnableCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EnableToolMacroFunctionNode.html">EnableToolMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EndIfMacroFunctionNode.html">EndIfMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErrorMacroFunctionNode.html">ErrorMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EvaluateMacroFunctionNode.html">EvaluateMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExecMacroFunctionNode.html">ExecMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExecuteMacroFunctionNode.html">ExecuteMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FcloseMacroFunctionNode.html">FcloseMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FilesMacroFunctionNode.html">FilesMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FopenMacroFunctionNode.html">FopenMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ForCellMacroFunctionNode.html">ForCellMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ForMacroFunctionNode.html">ForMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaConvertMacroFunctionNode.html">FormulaConvertMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FposMacroFunctionNode.html">FposMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FreadMacroFunctionNode.html">FreadMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FreadlnMacroFunctionNode.html">FreadlnMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FsizeMacroFunctionNode.html">FsizeMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FwriteMacroFunctionNode.html">FwriteMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FwritelnMacroFunctionNode.html">FwritelnMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetBarMacroFunctionNode.html">GetBarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetCellMacroFunctionNode.html">GetCellMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetChartItemMacroFunctionNode.html">GetChartItemMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetDefMacroFunctionNode.html">GetDefMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetDocumentMacroFunctionNode.html">GetDocumentMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetFormulaMacroFunctionNode.html">GetFormulaMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetLinkInfoMacroFunctionNode.html">GetLinkInfoMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetMovieMacroFunctionNode.html">GetMovieMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetNameMacroFunctionNode.html">GetNameMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetNoteMacroFunctionNode.html">GetNoteMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetObjectMacroFunctionNode.html">GetObjectMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetToolMacroFunctionNode.html">GetToolMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetToolbarMacroFunctionNode.html">GetToolbarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetWindowMacroFunctionNode.html">GetWindowMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetWorkbookMacroFunctionNode.html">GetWorkbookMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetWorkspaceMacroFunctionNode.html">GetWorkspaceMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GotoMacroFunctionNode.html">GotoMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GroupMacroFunctionNode.html">GroupMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HaltMacroFunctionNode.html">HaltMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HelpMacroFunctionNode.html">HelpMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InitiateMacroFunctionNode.html">InitiateMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InputMacroFunctionNode.html">InputMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LastErrorMacroFunctionNode.html">LastErrorMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LinksMacroFunctionNode.html">LinksMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MovieCommandMacroFunctionNode.html">MovieCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NamesMacroFunctionNode.html">NamesMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NextMacroFunctionNode.html">NextMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NoteMacroFunctionNode.html">NoteMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OpenDialogMacroFunctionNode.html">OpenDialogMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsListsGetMacroFunctionNode.html">OptionsListsGetMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PauseMacroFunctionNode.html">PauseMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PokeMacroFunctionNode.html">PokeMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PressToolMacroFunctionNode.html">PressToolMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RefTextMacroFunctionNode.html">RefTextMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RegisterIdMacroFunctionNode.html">RegisterIdMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RegisterMacroFunctionNode.html">RegisterMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RelRefMacroFunctionNode.html">RelRefMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RenameCommandMacroFunctionNode.html">RenameCommandMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RequestMacroFunctionNode.html">RequestMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ResetToolbarMacroFunctionNode.html">ResetToolbarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RestartMacroFunctionNode.html">RestartMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ResultMacroFunctionNode.html">ResultMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ResumeMacroFunctionNode.html">ResumeMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReturnMacroFunctionNode.html">ReturnMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveDialogMacroFunctionNode.html">SaveDialogMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveToolbarMacroFunctionNode.html">SaveToolbarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioGetMacroFunctionNode.html">ScenarioGetMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectionMacroFunctionNode.html">SelectionMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetNameMacroFunctionNode.html">SetNameMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetValueMacroFunctionNode.html">SetValueMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowBarMacroFunctionNode.html">ShowBarMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SpellingCheckMacroFunctionNode.html">SpellingCheckMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StepMacroFunctionNode.html">StepMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TerminateMacroFunctionNode.html">TerminateMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TextBoxMacroFunctionNode.html">TextBoxMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TextRefMacroFunctionNode.html">TextRefMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UnregisterMacroFunctionNode.html">UnregisterMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ViewGetMacroFunctionNode.html">ViewGetMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VolatileMacroFunctionNode.html">VolatileMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WhileMacroFunctionNode.html">WhileMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowTitleMacroFunctionNode.html">WindowTitleMacroFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowsMacroFunctionNode.html">WindowsMacroFunctionNode</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_RawName">NameNode.RawName</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Name">NameNode.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Precedence">NameNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_ToRawString">NameNode.ToRawString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Children__1">NameNode.Children&lt;O&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_ReplaceChild_System_Int32_OpenLanguage_SpreadsheetML_Formula_Ast_Node_">NameNode.ReplaceChild(int, Node)</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_MacroFunctionNode__ctor_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.MacroFunctionNode.#ctor*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_MacroFunctionNode__ctor_OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.MacroFunctionNode.#ctor(OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode,System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node},System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node})">
+  MacroFunctionNode(ExpressionNode, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MacroFunctionNode(ExpressionNode name, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v0.1.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L157" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

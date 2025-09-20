@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Language Identifiers and Localization | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Language Identifiers and Localization | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/language-identifier.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="language-identifiers-and-localization">Language Identifiers and Localization</h1>
+
+<p>This document demonstrates how to work with the OpenLanguage WordprocessingML language identifier system for international document processing.</p>
+<h2 id="language-identifier-enumeration">Language Identifier Enumeration</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// Using predefined language identifiers
+LanguageIdentifier english = LanguageIdentifier.EnglishUS;
+LanguageIdentifier french = LanguageIdentifier.FrenchFrance;
+LanguageIdentifier german = LanguageIdentifier.GermanGermany;
+
+Console.WriteLine($&quot;English US LCID: {(int)english}&quot;); // 1033
+Console.WriteLine($&quot;French France LCID: {(int)french}&quot;); // 1036
+Console.WriteLine($&quot;German Germany LCID: {(int)german}&quot;); // 1031
+</code></pre>
+<h3 id="working-with-regional-variants">Working with Regional Variants</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// English variants
+LanguageIdentifier[] englishVariants = {
+    LanguageIdentifier.EnglishUS,           // 1033
+    LanguageIdentifier.EnglishUK,           // 2057
+    LanguageIdentifier.EnglishCanada,       // 4105
+    LanguageIdentifier.EnglishAustralia,    // 3081
+    LanguageIdentifier.EnglishNewZealand,   // 5129
+    LanguageIdentifier.EnglishIndia,        // 16393
+    LanguageIdentifier.EnglishSingapore     // 18441
+};
+
+foreach (var variant in englishVariants)
+{
+    Console.WriteLine($&quot;{variant}: LCID {(int)variant}&quot;);
+}
+
+// Spanish variants
+LanguageIdentifier[] spanishVariants = {
+    LanguageIdentifier.SpanishSpain,        // 3082
+    LanguageIdentifier.SpanishMexico,       // 2058
+    LanguageIdentifier.SpanishArgentina,    // 11274
+    LanguageIdentifier.SpanishChile,        // 13322
+    LanguageIdentifier.SpanishUS           // 21514
+};
+
+foreach (var variant in spanishVariants)
+{
+    Console.WriteLine($&quot;{variant}: LCID {(int)variant}&quot;);
+}
+</code></pre>
+<h3 id="european-languages">European Languages</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// Major European languages
+var europeanLanguages = new Dictionary&lt;string, LanguageIdentifier&gt;
+{
+    [&quot;French (France)&quot;] = LanguageIdentifier.FrenchFrance,
+    [&quot;French (Belgium)&quot;] = LanguageIdentifier.FrenchBelgium,
+    [&quot;French (Canada)&quot;] = LanguageIdentifier.FrenchCanada,
+    [&quot;French (Switzerland)&quot;] = LanguageIdentifier.FrenchSwitzerland,
+    [&quot;German (Germany)&quot;] = LanguageIdentifier.GermanGermany,
+    [&quot;German (Austria)&quot;] = LanguageIdentifier.GermanAustria,
+    [&quot;German (Switzerland)&quot;] = LanguageIdentifier.GermanSwitzerland,
+    [&quot;Italian (Italy)&quot;] = LanguageIdentifier.ItalianItaly,
+    [&quot;Italian (Switzerland)&quot;] = LanguageIdentifier.ItalianSwitzerland,
+    [&quot;Dutch (Netherlands)&quot;] = LanguageIdentifier.DutchNetherlands,
+    [&quot;Dutch (Belgium)&quot;] = LanguageIdentifier.DutchBelgium
+};
+
+foreach (var kvp in europeanLanguages)
+{
+    Console.WriteLine($&quot;{kvp.Key}: {(int)kvp.Value}&quot;);
+}
+</code></pre>
+<h3 id="asian-languages">Asian Languages</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// Asian language examples
+var asianLanguages = new Dictionary&lt;string, LanguageIdentifier&gt;
+{
+    [&quot;Japanese&quot;] = LanguageIdentifier.Japanese,                               // 1041
+    [&quot;Korean&quot;] = LanguageIdentifier.Korean,                                   // 1042
+    [&quot;Chinese (Simplified)&quot;] = LanguageIdentifier.ChineseSimplified,         // 2052
+    [&quot;Chinese (Traditional)&quot;] = LanguageIdentifier.ChineseTraditional,       // 1028
+    [&quot;Chinese (Hong Kong)&quot;] = LanguageIdentifier.ChineseTraditionalHongKong, // 3076
+    [&quot;Chinese (Singapore)&quot;] = LanguageIdentifier.ChineseSimplifiedSingapore, // 4100
+    [&quot;Thai&quot;] = LanguageIdentifier.Thai,                                       // 1054
+    [&quot;Vietnamese&quot;] = LanguageIdentifier.Vietnamese,                           // 1066
+    [&quot;Hindi&quot;] = LanguageIdentifier.Hindi                                      // 1081
+};
+
+foreach (var kvp in asianLanguages)
+{
+    Console.WriteLine($&quot;{kvp.Key}: {(int)kvp.Value}&quot;);
+}
+</code></pre>
+<h2 id="practical-applications">Practical Applications</h2>
+<h3 id="document-language-detection">Document Language Detection</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+public class LanguageDetector
+{
+    public static string GetLanguageName(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;English (United States)&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;English (United Kingdom)&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;French (France)&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;German (Germany)&quot;,
+            LanguageIdentifier.SpanishSpain =&gt; &quot;Spanish (Spain)&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;Japanese&quot;,
+            LanguageIdentifier.ChineseSimplified =&gt; &quot;Chinese (Simplified)&quot;,
+            LanguageIdentifier.ChineseTraditional =&gt; &quot;Chinese (Traditional)&quot;,
+            _ =&gt; $&quot;Language ID: {(int)languageId}&quot;
+        };
+    }
+
+    public static bool IsRightToLeft(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.Hebrew or
+            LanguageIdentifier.ArabicSaudiArabia or
+            LanguageIdentifier.ArabicEgypt or
+            LanguageIdentifier.ArabicIraq or
+            LanguageIdentifier.ArabicJordan or
+            LanguageIdentifier.ArabicKuwait or
+            LanguageIdentifier.ArabicLebanon or
+            LanguageIdentifier.ArabicLibya or
+            LanguageIdentifier.ArabicMorocco or
+            LanguageIdentifier.ArabicOman or
+            LanguageIdentifier.ArabicQatar or
+            LanguageIdentifier.ArabicSyria or
+            LanguageIdentifier.ArabicTunisia or
+            LanguageIdentifier.ArabicUAE or
+            LanguageIdentifier.ArabicYemen =&gt; true,
+            _ =&gt; false
+        };
+    }
+}
+
+// Usage
+LanguageIdentifier[] testLanguages = {
+    LanguageIdentifier.EnglishUS,
+    LanguageIdentifier.Hebrew,
+    LanguageIdentifier.ArabicSaudiArabia,
+    LanguageIdentifier.Japanese
+};
+
+foreach (var lang in testLanguages)
+{
+    string name = LanguageDetector.GetLanguageName(lang);
+    bool isRtl = LanguageDetector.IsRightToLeft(lang);
+    Console.WriteLine($&quot;{name}: RTL={isRtl}&quot;);
+}
+</code></pre>
+<h3 id="regional-formatting">Regional Formatting</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+using System.Globalization;
+
+public class RegionalFormatter
+{
+    public static CultureInfo GetCultureInfo(LanguageIdentifier languageId)
+    {
+        int lcid = (int)languageId;
+        return new CultureInfo(lcid);
+    }
+
+    public static string FormatCurrency(decimal amount, LanguageIdentifier languageId)
+    {
+        var culture = GetCultureInfo(languageId);
+        return amount.ToString(&quot;C&quot;, culture);
+    }
+
+    public static string FormatDate(DateTime date, LanguageIdentifier languageId)
+    {
+        var culture = GetCultureInfo(languageId);
+        return date.ToString(&quot;D&quot;, culture);
+    }
+
+    public static string FormatNumber(double number, LanguageIdentifier languageId)
+    {
+        var culture = GetCultureInfo(languageId);
+        return number.ToString(&quot;N&quot;, culture);
+    }
+}
+
+// Usage examples
+decimal price = 1234.56m;
+DateTime today = DateTime.Now;
+double largeNumber = 1234567.89;
+
+var languages = new[] {
+    LanguageIdentifier.EnglishUS,
+    LanguageIdentifier.FrenchFrance,
+    LanguageIdentifier.GermanGermany,
+    LanguageIdentifier.Japanese
+};
+
+foreach (var lang in languages)
+{
+    Console.WriteLine($&quot;Language: {LanguageDetector.GetLanguageName(lang)}&quot;);
+    Console.WriteLine($&quot;  Currency: {RegionalFormatter.FormatCurrency(price, lang)}&quot;);
+    Console.WriteLine($&quot;  Date: {RegionalFormatter.FormatDate(today, lang)}&quot;);
+    Console.WriteLine($&quot;  Number: {RegionalFormatter.FormatNumber(largeNumber, lang)}&quot;);
+    Console.WriteLine();
+}
+</code></pre>
+<h3 id="language-specific-processing">Language-Specific Processing</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+public class LanguageSpecificProcessor
+{
+    public static string GetDefaultDateFormat(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;MM/dd/yyyy&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;dd/MM/yyyy&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;dd.MM.yyyy&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;dd/MM/yyyy&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;yyyy/MM/dd&quot;,
+            LanguageIdentifier.ChineseSimplified =&gt; &quot;yyyy-MM-dd&quot;,
+            _ =&gt; &quot;MM/dd/yyyy&quot;
+        };
+    }
+
+    public static string GetDefaultTimeFormat(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;h:mm tt&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;HH:mm&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;HH:mm&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;HH:mm&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;H:mm&quot;,
+            _ =&gt; &quot;h:mm tt&quot;
+        };
+    }
+
+    public static bool Uses24HourFormat(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; false,
+            LanguageIdentifier.EnglishUK =&gt; true,
+            LanguageIdentifier.GermanGermany =&gt; true,
+            LanguageIdentifier.FrenchFrance =&gt; true,
+            LanguageIdentifier.Japanese =&gt; true,
+            _ =&gt; false
+        };
+    }
+}
+
+// Usage
+foreach (var lang in new[] {
+    LanguageIdentifier.EnglishUS,
+    LanguageIdentifier.EnglishUK,
+    LanguageIdentifier.GermanGermany,
+    LanguageIdentifier.Japanese
+})
+{
+    Console.WriteLine($&quot;{LanguageDetector.GetLanguageName(lang)}:&quot;);
+    Console.WriteLine($&quot;  Date format: {LanguageSpecificProcessor.GetDefaultDateFormat(lang)}&quot;);
+    Console.WriteLine($&quot;  Time format: {LanguageSpecificProcessor.GetDefaultTimeFormat(lang)}&quot;);
+    Console.WriteLine($&quot;  24-hour format: {LanguageSpecificProcessor.Uses24HourFormat(lang)}&quot;);
+    Console.WriteLine();
+}
+</code></pre>
+<h3 id="language-groups-and-families">Language Groups and Families</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+public enum LanguageFamily
+{
+    Germanic,
+    Romance,
+    Slavic,
+    SinoTibetan,
+    Semitic,
+    JapanoKorean,
+    Other
+}
+
+public class LanguageFamilyClassifier
+{
+    public static LanguageFamily GetLanguageFamily(LanguageIdentifier languageId)
+    {
+        return languageId switch
+        {
+            LanguageIdentifier.EnglishUS or
+            LanguageIdentifier.EnglishUK or
+            LanguageIdentifier.EnglishCanada or
+            LanguageIdentifier.EnglishAustralia or
+            LanguageIdentifier.GermanGermany or
+            LanguageIdentifier.GermanAustria or
+            LanguageIdentifier.GermanSwitzerland or
+            LanguageIdentifier.DutchNetherlands or
+            LanguageIdentifier.DutchBelgium or
+            LanguageIdentifier.Swedish or
+            LanguageIdentifier.SwedishFinland or
+            LanguageIdentifier.NorwegianBokmal or
+            LanguageIdentifier.Danish =&gt; LanguageFamily.Germanic,
+
+            LanguageIdentifier.FrenchFrance or
+            LanguageIdentifier.FrenchBelgium or
+            LanguageIdentifier.FrenchCanada or
+            LanguageIdentifier.SpanishSpain or
+            LanguageIdentifier.SpanishMexico or
+            LanguageIdentifier.SpanishArgentina or
+            LanguageIdentifier.ItalianItaly or
+            LanguageIdentifier.PortugueseBrazil or
+            LanguageIdentifier.PortuguesePortugal or
+            LanguageIdentifier.Romanian =&gt; LanguageFamily.Romance,
+
+            LanguageIdentifier.Russian or
+            LanguageIdentifier.Polish or
+            LanguageIdentifier.Czech or
+            LanguageIdentifier.Slovak or
+            LanguageIdentifier.Croatian or
+            LanguageIdentifier.Bulgarian or
+            LanguageIdentifier.Ukrainian =&gt; LanguageFamily.Slavic,
+
+            LanguageIdentifier.ChineseSimplified or
+            LanguageIdentifier.ChineseTraditional or
+            LanguageIdentifier.ChineseSimplifiedSingapore or
+            LanguageIdentifier.ChineseTraditionalHongKong =&gt; LanguageFamily.SinoTibetan,
+
+            LanguageIdentifier.ArabicSaudiArabia or
+            LanguageIdentifier.ArabicEgypt or
+            LanguageIdentifier.Hebrew =&gt; LanguageFamily.Semitic,
+
+            LanguageIdentifier.Japanese or
+            LanguageIdentifier.Korean =&gt; LanguageFamily.JapanoKorean,
+
+            _ =&gt; LanguageFamily.Other
+        };
+    }
+}
+
+// Usage
+var sampleLanguages = new[] {
+    LanguageIdentifier.EnglishUS,
+    LanguageIdentifier.FrenchFrance,
+    LanguageIdentifier.GermanGermany,
+    LanguageIdentifier.Russian,
+    LanguageIdentifier.ChineseSimplified,
+    LanguageIdentifier.Japanese,
+    LanguageIdentifier.ArabicSaudiArabia,
+    LanguageIdentifier.Hindi
+};
+
+foreach (var lang in sampleLanguages)
+{
+    var family = LanguageFamilyClassifier.GetLanguageFamily(lang);
+    Console.WriteLine($&quot;{LanguageDetector.GetLanguageName(lang)}: {family}&quot;);
+}
+</code></pre>
+<h3 id="integration-with-field-instructions">Integration with Field Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+using OpenLanguage.WordprocessingML.FieldInstruction;
+
+public class LocalizedFieldGenerator
+{
+    public static FieldInstruction CreateLocalizedDateField(LanguageIdentifier languageId)
+    {
+        var dateFormat = LanguageSpecificProcessor.GetDefaultDateFormat(languageId);
+        var field = new FieldInstruction(&quot;DATE&quot;);
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, dateFormat));
+        return field;
+    }
+
+    public static FieldInstruction CreateLocalizedAddressBlock(LanguageIdentifier languageId)
+    {
+        var field = new FieldInstruction(&quot;ADDRESSBLOCK&quot;);
+
+        // Set language-specific formatting
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\l&quot;));
+        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)languageId).ToString()));
+
+        return field;
+    }
+}
+
+// Usage
+var languages = new[] {
+    LanguageIdentifier.EnglishUS,
+    LanguageIdentifier.FrenchFrance,
+    LanguageIdentifier.GermanGermany
+};
+
+foreach (var lang in languages)
+{
+    var dateField = LocalizedFieldGenerator.CreateLocalizedDateField(lang);
+    var addressField = LocalizedFieldGenerator.CreateLocalizedAddressBlock(lang);
+
+    Console.WriteLine($&quot;Language: {LanguageDetector.GetLanguageName(lang)}&quot;);
+    Console.WriteLine($&quot;  Date field: {dateField}&quot;);
+    Console.WriteLine($&quot;  Address field: {addressField}&quot;);
+    Console.WriteLine();
+}
+</code></pre>
+<p>This example demonstrates comprehensive usage of the OpenLanguage language identifier system for creating internationalized and localized document processing applications.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/language-identifier.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

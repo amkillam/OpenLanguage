@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Typed Field Instructions | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Typed Field Instructions | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/Typed.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../img/logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="typed-field-instructions">Typed Field Instructions</h1>
+
+<p>The OpenLanguage library provides strongly-typed field instruction classes for all major Microsoft Word field types, offering type-safe access to field-specific properties and switches.</p>
+<h2 id="overview">Overview</h2>
+<p>The <code>TypedFieldInstruction</code> system converts generic field instructions into strongly-typed objects with specific properties for each field type. This is achieved through the <code>TypedFieldInstructionFactory.Create()</code> method, which supports over 60 different field instruction types.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
+
+// Parse a generic field instruction
+var instruction = FieldInstructionParser.Parse(&quot;MERGEFIELD FirstName \* Upper&quot;);
+
+// Convert to strongly-typed
+var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+// Check the type and use specific properties
+if (typedInstruction is MergeFieldFieldInstruction mergeField)
+{
+    Console.WriteLine($&quot;Field Name: {mergeField.FieldName}&quot;);
+    Console.WriteLine($&quot;Text Format: {mergeField.TextFormat}&quot;);
+}
+</code></pre>
+<h2 id="typedfieldinstruction-base-class">TypedFieldInstruction Base Class</h2>
+<p>All typed field instructions inherit from the <code>TypedFieldInstruction</code> base class:</p>
+<pre><code class="lang-csharp">public abstract class TypedFieldInstruction
+{
+    public FieldInstruction Source { get; }
+    public string Instruction { get; }
+    public string Arguments { get; }
+    public string Switches { get; }
+
+    protected TypedFieldInstruction(FieldInstruction source) { }
+}
+</code></pre>
+<h3 id="properties">Properties</h3>
+<ul>
+<li><strong>Source</strong>: The original <code>FieldInstruction</code> that this typed instruction was created from</li>
+<li><strong>Instruction</strong>: The field instruction name (e.g., &quot;MERGEFIELD&quot;, &quot;DATE&quot;, etc.)</li>
+<li><strong>Arguments</strong>: The field arguments portion of the instruction</li>
+<li><strong>Switches</strong>: The switches portion of the instruction</li>
+</ul>
+<h2 id="supported-field-types">Supported Field Types</h2>
+<p>The OpenLanguage library provides comprehensive support for Microsoft Word field instructions. Below is the complete list of supported field types:</p>
+<h3 id="document-information-fields">Document Information Fields</h3>
+<h4 id="author">AUTHOR</h4>
+<p>Retrieves and optionally sets the document author's name.</p>
+<pre><code class="lang-csharp">var author = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTHOR &quot;John Doe&quot;&quot;)) as AuthorFieldInstruction;
+Console.WriteLine($&quot;Author Name: {author?.AuthorName}&quot;);
+</code></pre>
+<h4 id="comments">COMMENTS</h4>
+<p>Retrieves the document's comments/description property.</p>
+<pre><code class="lang-csharp">var comments = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;COMMENTS&quot;)) as CommentsFieldInstruction;
+</code></pre>
+<h4 id="createdate">CREATEDATE</h4>
+<p>Inserts the date and time the document was created.</p>
+<pre><code class="lang-csharp">var createDate = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;CREATEDATE \@ &quot;MM/dd/yyyy&quot;&quot;)) as CreateDateFieldInstruction;
+Console.WriteLine($&quot;Date Format: {createDate?.DateFormat}&quot;);
+</code></pre>
+<h4 id="edittime">EDITTIME</h4>
+<p>Inserts the total editing time for the document.</p>
+<pre><code class="lang-csharp">var editTime = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;EDITTIME \@ &quot;h:mm&quot;&quot;)) as EditTimeFieldInstruction;
+</code></pre>
+<h4 id="filename">FILENAME</h4>
+<p>Retrieves the name of the current document as stored on disk.</p>
+<pre><code class="lang-csharp">var fileName = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FILENAME \p&quot;)) as FileNameFieldInstruction;
+Console.WriteLine($&quot;Include Path: {fileName?.IncludeFullPath}&quot;);
+</code></pre>
+<h4 id="filesize">FILESIZE</h4>
+<p>Retrieves the file size of the current document.</p>
+<pre><code class="lang-csharp">var fileSize = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FILESIZE \k&quot;)) as FileSizeFieldInstruction;
+Console.WriteLine($&quot;Show in KB: {fileSize?.ShowInKilobytes}&quot;);
+</code></pre>
+<h4 id="keywords">KEYWORDS</h4>
+<p>Retrieves the document's keywords property.</p>
+<pre><code class="lang-csharp">var keywords = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;KEYWORDS&quot;)) as KeywordsFieldInstruction;
+</code></pre>
+<h4 id="lastsavedby">LASTSAVEDBY</h4>
+<p>Retrieves the name of the user who last saved the document.</p>
+<pre><code class="lang-csharp">var lastSavedBy = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;LASTSAVEDBY&quot;)) as LastSavedByFieldInstruction;
+</code></pre>
+<h4 id="numchars">NUMCHARS</h4>
+<p>Retrieves the number of characters in the document.</p>
+<pre><code class="lang-csharp">var numChars = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NUMCHARS&quot;)) as NumCharsFieldInstruction;
+Console.WriteLine($&quot;Include Spaces: {numChars?.IncludeSpaces}&quot;);
+</code></pre>
+<h4 id="numpages">NUMPAGES</h4>
+<p>Retrieves the total number of pages in the document.</p>
+<pre><code class="lang-csharp">var numPages = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NUMPAGES&quot;)) as NumPagesFieldInstruction;
+</code></pre>
+<h4 id="numwords">NUMWORDS</h4>
+<p>Retrieves the number of words in the document.</p>
+<pre><code class="lang-csharp">var numWords = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NUMWORDS&quot;)) as NumWordsFieldInstruction;
+</code></pre>
+<h4 id="revnum">REVNUM</h4>
+<p>Retrieves the document's revision number.</p>
+<pre><code class="lang-csharp">var revNum = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;REVNUM&quot;)) as RevNumFieldInstruction;
+</code></pre>
+<h4 id="savedate">SAVEDATE</h4>
+<p>Inserts the date and time the document was last saved.</p>
+<pre><code class="lang-csharp">var saveDate = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SAVEDATE \@ &quot;dddd, MMMM d, yyyy&quot;&quot;)) as SaveDateFieldInstruction;
+</code></pre>
+<h4 id="subject">SUBJECT</h4>
+<p>Retrieves the document's subject property.</p>
+<pre><code class="lang-csharp">var subject = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SUBJECT&quot;)) as SubjectFieldInstruction;
+Console.WriteLine($&quot;Subject Text: {subject?.SubjectText}&quot;);
+</code></pre>
+<h4 id="template">TEMPLATE</h4>
+<p>Retrieves the name of the template attached to the document.</p>
+<pre><code class="lang-csharp">var template = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TEMPLATE&quot;)) as TemplateFieldInstruction;
+Console.WriteLine($&quot;Include Path: {template?.IncludeFullPath}&quot;);
+</code></pre>
+<h4 id="title">TITLE</h4>
+<p>Retrieves the document's title property.</p>
+<pre><code class="lang-csharp">var title = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TITLE&quot;)) as TitleFieldInstruction;
+Console.WriteLine($&quot;Title Text: {title?.TitleText}&quot;);
+</code></pre>
+<h3 id="date-and-time-fields">Date and Time Fields</h3>
+<h4 id="date">DATE</h4>
+<p>Inserts the current date.</p>
+<pre><code class="lang-csharp">var date = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;DATE \@ &quot;MMMM d, yyyy&quot; \h \s&quot;)) as DateFieldInstruction;
+Console.WriteLine($&quot;Date Format: {date?.DateFormat}&quot;);
+Console.WriteLine($&quot;Use Hijri Calendar: {date?.UseHijriCalendar}&quot;);
+Console.WriteLine($&quot;Use Saka Era Calendar: {date?.UseSakaEraCalendar}&quot;);
+</code></pre>
+<h4 id="printdate">PRINTDATE</h4>
+<p>Inserts the date and time the document was last printed.</p>
+<pre><code class="lang-csharp">var printDate = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;PRINTDATE \@ &quot;h:mm am/pm&quot;&quot;)) as PrintDateFieldInstruction;
+</code></pre>
+<h4 id="time">TIME</h4>
+<p>Inserts the current time.</p>
+<pre><code class="lang-csharp">var time = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TIME \@ &quot;h:mm am/pm&quot;&quot;)) as TimeFieldInstruction;
+Console.WriteLine($&quot;Time Format: {time?.TimeFormat}&quot;);
+</code></pre>
+<h3 id="mail-merge-fields">Mail Merge Fields</h3>
+<h4 id="addressblock">ADDRESSBLOCK</h4>
+<p>Inserts a formatted address block for mail merge.</p>
+<pre><code class="lang-csharp">var addressBlock = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;ADDRESSBLOCK \c 2 \d \e &quot;Test&quot; \f &quot;Recipient&quot;&quot;)) as AddressBlockFieldInstruction;
+Console.WriteLine($&quot;Country Format: {addressBlock?.CountryFormat}&quot;);
+Console.WriteLine($&quot;Exclude Country: {addressBlock?.ExcludeCountryOrRegion}&quot;);
+Console.WriteLine($&quot;Format Name: {addressBlock?.FormatNameAs}&quot;);
+</code></pre>
+<h4 id="greetingline">GREETINGLINE</h4>
+<p>Inserts a greeting line for mail merge.</p>
+<pre><code class="lang-csharp">var greetingLine = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;GREETINGLINE \f &quot;Dear&quot; \e &quot;Sir or Madam&quot; \d &quot;:&quot;&quot;)) as GreetingLineFieldInstruction;
+Console.WriteLine($&quot;Greeting Format: {greetingLine?.GreetingFormat}&quot;);
+Console.WriteLine($&quot;Default Greeting: {greetingLine?.DefaultGreeting}&quot;);
+</code></pre>
+<h4 id="mergefield">MERGEFIELD</h4>
+<p>Inserts data from a data source during mail merge.</p>
+<pre><code class="lang-csharp">var mergeField = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;MERGEFIELD FirstName \b &quot;(&quot; \f &quot;)&quot;) as MergeFieldFieldInstruction;
+Console.WriteLine($&quot;Field Name: {mergeField?.FieldName}&quot;);
+Console.WriteLine($&quot;Text Before: {mergeField?.TextBefore}&quot;);
+Console.WriteLine($&quot;Text After: {mergeField?.TextAfter}&quot;);
+</code></pre>
+<h4 id="mergerec">MERGEREC</h4>
+<p>Inserts the current merge record number.</p>
+<pre><code class="lang-csharp">var mergeRec = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;MERGEREC&quot;)) as MergeRecFieldInstruction;
+</code></pre>
+<h4 id="mergeseq">MERGESEQ</h4>
+<p>Inserts the merge sequence number.</p>
+<pre><code class="lang-csharp">var mergeSeq = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;MERGESEQ&quot;)) as MergeSeqFieldInstruction;
+</code></pre>
+<h4 id="next">NEXT</h4>
+<p>Merges the next data record into the current merge document.</p>
+<pre><code class="lang-csharp">var next = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NEXT&quot;)) as NextFieldInstruction;
+</code></pre>
+<h4 id="nextif">NEXTIF</h4>
+<p>Merges the next data record if a condition is met.</p>
+<pre><code class="lang-csharp">var nextIf = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NEXTIF Amount &gt; 1000&quot;)) as NextIfFieldInstruction;
+Console.WriteLine($&quot;Field Name: {nextIf?.FieldName}&quot;);
+Console.WriteLine($&quot;Comparison Operator: {nextIf?.ComparisonOperator}&quot;);
+Console.WriteLine($&quot;Comparison Value: {nextIf?.ComparisonValue}&quot;);
+</code></pre>
+<h4 id="skipif">SKIPIF</h4>
+<p>Skips the current data record if a condition is met.</p>
+<pre><code class="lang-csharp">var skipIf = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SKIPIF City = &quot;Seattle&quot;&quot;)) as SkipIfFieldInstruction;
+Console.WriteLine($&quot;Field Name: {skipIf?.FieldName}&quot;);
+Console.WriteLine($&quot;Comparison Value: {skipIf?.ComparisonValue}&quot;);
+</code></pre>
+<h3 id="reference-fields">Reference Fields</h3>
+<h4 id="ref">REF</h4>
+<p>Creates a cross-reference to a bookmark.</p>
+<pre><code class="lang-csharp">var refField = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;REF MyBookmark \h \p&quot;)) as RefFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {refField?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Insert Hyperlink: {refField?.InsertHyperlink}&quot;);
+Console.WriteLine($&quot;Insert Position: {refField?.InsertRelativePosition}&quot;);
+</code></pre>
+<h4 id="pageref">PAGEREF</h4>
+<p>Creates a cross-reference to the page number of a bookmark.</p>
+<pre><code class="lang-csharp">var pageRef = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;PAGEREF MyBookmark \h&quot;)) as PageRefFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {pageRef?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Insert Hyperlink: {pageRef?.InsertHyperlink}&quot;);
+</code></pre>
+<h4 id="styleref">STYLEREF</h4>
+<p>References text formatted with a specific style.</p>
+<pre><code class="lang-csharp">var styleRef = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;STYLEREF &quot;Heading 1&quot; \l \n \p \r \t \w&quot;)) as StyleRefFieldInstruction;
+Console.WriteLine($&quot;Style Name: {styleRef?.StyleName}&quot;);
+Console.WriteLine($&quot;Search From Bottom: {styleRef?.SearchFromBottom}&quot;);
+Console.WriteLine($&quot;Insert Paragraph Number: {styleRef?.InsertParagraphNumber}&quot;);
+</code></pre>
+<h4 id="noteref">NOTEREF</h4>
+<p>Creates a cross-reference to a footnote or endnote.</p>
+<pre><code class="lang-csharp">var noteRef = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;NOTEREF MyNote \f \h \p&quot;)) as NoteRefFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {noteRef?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Insert Footnote Reference: {noteRef?.InsertFootnoteReference}&quot;);
+</code></pre>
+<h3 id="page-and-section-fields">Page and Section Fields</h3>
+<h4 id="page">PAGE</h4>
+<p>Inserts the current page number.</p>
+<pre><code class="lang-csharp">var page = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;PAGE \* Arabic&quot;)) as PageFieldInstruction;
+Console.WriteLine($&quot;Number Format: {page?.NumberFormat}&quot;);
+</code></pre>
+<h4 id="section">SECTION</h4>
+<p>Inserts the current section number.</p>
+<pre><code class="lang-csharp">var section = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SECTION&quot;)) as SectionFieldInstruction;
+</code></pre>
+<h4 id="sectionpages">SECTIONPAGES</h4>
+<p>Inserts the total number of pages in the current section.</p>
+<pre><code class="lang-csharp">var sectionPages = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SECTIONPAGES&quot;)) as SectionPagesFieldInstruction;
+</code></pre>
+<h3 id="numbering-fields">Numbering Fields</h3>
+<h4 id="autonum">AUTONUM</h4>
+<p>Automatically numbers paragraphs.</p>
+<pre><code class="lang-csharp">var autoNum = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTONUM \s &quot;-&quot;&quot;)) as AutoNumFieldInstruction;
+Console.WriteLine($&quot;Separator Character: {autoNum?.SeparatorCharacter}&quot;);
+</code></pre>
+<h4 id="autonumlgl">AUTONUMLGL</h4>
+<p>Provides legal-style paragraph numbering.</p>
+<pre><code class="lang-csharp">var autoNumLgl = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTONUMLGL \e&quot;)) as AutoNumLglFieldInstruction;
+Console.WriteLine($&quot;Remove Trailing Period: {autoNumLgl?.RemoveTrailingSeparator}&quot;);
+</code></pre>
+<h4 id="autonumout">AUTONUMOUT</h4>
+<p>Provides outline-style paragraph numbering.</p>
+<pre><code class="lang-csharp">var autoNumOut = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTONUMOUT&quot;)) as AutoNumOutFieldInstruction;
+</code></pre>
+<h4 id="listnum">LISTNUM</h4>
+<p>Inserts numbers for paragraphs in a list.</p>
+<pre><code class="lang-csharp">var listNum = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;LISTNUM &quot;NumberDefault&quot; \l 2 \s 3&quot;)) as ListNumFieldInstruction;
+Console.WriteLine($&quot;List Name: {listNum?.ListName}&quot;);
+Console.WriteLine($&quot;List Level: {listNum?.ListLevel}&quot;);
+Console.WriteLine($&quot;Starting Value: {listNum?.StartingValue}&quot;);
+</code></pre>
+<h4 id="seq">SEQ</h4>
+<p>Creates a sequence number.</p>
+<pre><code class="lang-csharp">var seq = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SEQ Figure \c \h \n \r 5 \s 10&quot;)) as SeqFieldInstruction;
+Console.WriteLine($&quot;Sequence Identifier: {seq?.SequenceIdentifier}&quot;);
+Console.WriteLine($&quot;Insert Next Number: {seq?.InsertNextNumber}&quot;);
+Console.WriteLine($&quot;Hide Field Result: {seq?.HideFieldResult}&quot;);
+Console.WriteLine($&quot;Reset Number: {seq?.ResetNumber}&quot;);
+Console.WriteLine($&quot;Reset Value: {seq?.ResetValue}&quot;);
+Console.WriteLine($&quot;Starting Value: {seq?.StartingValue}&quot;);
+</code></pre>
+<h3 id="index-and-table-fields">Index and Table Fields</h3>
+<h4 id="index">INDEX</h4>
+<p>Creates an index.</p>
+<pre><code class="lang-csharp">var index = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;INDEX \b MyBookmark \c 3 \d &quot;-&quot; \e &quot;&quot; \f A \g &quot;:&quot; \h &quot;A&quot; \k &quot;:&quot; \l &quot;:&quot; \p A-Z \r \s A \z 1033&quot;)) as IndexFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {index?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Number of Columns: {index?.NumberOfColumns}&quot;);
+Console.WriteLine($&quot;Sequence Name: {index?.SequenceName}&quot;);
+</code></pre>
+<h4 id="toc">TOC</h4>
+<p>Creates a table of contents.</p>
+<pre><code class="lang-csharp">var toc = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TOC \o &quot;1-3&quot; \h \z \u&quot;)) as TocFieldInstruction;
+Console.WriteLine($&quot;Outline Levels: {toc?.OutlineLevels}&quot;);
+Console.WriteLine($&quot;Use Hyperlinks: {toc?.UseHyperlinks}&quot;);
+Console.WriteLine($&quot;Hide Tab Leader: {toc?.HideTabLeaderAndPageNumber}&quot;);
+Console.WriteLine($&quot;Use Outline Entries: {toc?.UseOutlineEntries}&quot;);
+</code></pre>
+<h4 id="toa">TOA</h4>
+<p>Creates a table of authorities.</p>
+<pre><code class="lang-csharp">var toa = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TOA \c 1 \b MyBookmark \e &quot;,&quot; \f \g &quot;&quot; \l &quot;,&quot; \p \s A&quot;)) as ToaFieldInstruction;
+Console.WriteLine($&quot;Category: {toa?.Category}&quot;);
+Console.WriteLine($&quot;Bookmark Name: {toa?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Entry Separator: {toa?.EntrySeparator}&quot;);
+</code></pre>
+<h4 id="xe">XE</h4>
+<p>Marks an index entry.</p>
+<pre><code class="lang-csharp">var xe = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;XE &quot;Main Entry:Sub Entry&quot; \b \f A \i \r MyBookmark \t &quot;See Also&quot;&quot;)) as XeFieldInstruction;
+Console.WriteLine($&quot;Entry Text: {xe?.EntryText}&quot;);
+Console.WriteLine($&quot;Apply Bold: {xe?.ApplyBoldFormatting}&quot;);
+Console.WriteLine($&quot;Entry Type: {xe?.EntryType}&quot;);
+Console.WriteLine($&quot;Apply Italic: {xe?.ApplyItalicFormatting}&quot;);
+Console.WriteLine($&quot;Page Range Bookmark: {xe?.PageRangeBookmarkName}&quot;);
+Console.WriteLine($&quot;Cross Reference Text: {xe?.CrossReferenceText}&quot;);
+</code></pre>
+<h4 id="ta">TA</h4>
+<p>Marks a table of authorities entry.</p>
+<pre><code class="lang-csharp">var ta = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TA \c 1 \l &quot;Long Citation&quot; \s &quot;Short Citation&quot; \b \i \r MyBookmark&quot;)) as TaFieldInstruction;
+Console.WriteLine($&quot;Category: {ta?.Category}&quot;);
+Console.WriteLine($&quot;Long Citation: {ta?.LongCitation}&quot;);
+Console.WriteLine($&quot;Short Citation: {ta?.ShortCitation}&quot;);
+Console.WriteLine($&quot;Apply Bold: {ta?.ApplyBoldFormatting}&quot;);
+Console.WriteLine($&quot;Apply Italic: {ta?.ApplyItalicFormatting}&quot;);
+Console.WriteLine($&quot;Page Range Bookmark: {ta?.PageRangeBookmarkName}&quot;);
+</code></pre>
+<h4 id="tc">TC</h4>
+<p>Marks a table of contents entry.</p>
+<pre><code class="lang-csharp">var tc = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;TC &quot;Entry Text&quot; \f C \l 2 \n&quot;)) as TcFieldInstruction;
+Console.WriteLine($&quot;Entry Text: {tc?.EntryText}&quot;);
+Console.WriteLine($&quot;Entry Type: {tc?.EntryType}&quot;);
+Console.WriteLine($&quot;Level: {tc?.Level}&quot;);
+Console.WriteLine($&quot;No Page Number: {tc?.NoPageNumber}&quot;);
+</code></pre>
+<h3 id="form-fields">Form Fields</h3>
+<h4 id="formcheckbox">FORMCHECKBOX</h4>
+<p>Creates a checkbox form field.</p>
+<pre><code class="lang-csharp">var formCheckBox = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FORMCHECKBOX \default 1 \size 12&quot;)) as FormCheckBoxFieldInstruction;
+Console.WriteLine($&quot;Default State: {formCheckBox?.DefaultState}&quot;);
+Console.WriteLine($&quot;Size: {formCheckBox?.Size}&quot;);
+</code></pre>
+<h4 id="formdropdown">FORMDROPDOWN</h4>
+<p>Creates a dropdown form field.</p>
+<pre><code class="lang-csharp">var formDropDown = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FORMDROPDOWN \l &quot;Option1,Option2,Option3&quot;&quot;)) as FormDropDownFieldInstruction;
+Console.WriteLine($&quot;Items: {formDropDown?.Items}&quot;);
+</code></pre>
+<h4 id="formtext">FORMTEXT</h4>
+<p>Creates a text form field.</p>
+<pre><code class="lang-csharp">var formText = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FORMTEXT \default &quot;Default Text&quot; \maxlen 50 \type 0 \format &quot;UPPERCASE&quot;&quot;)) as FormTextFieldInstruction;
+Console.WriteLine($&quot;Default Text: {formText?.DefaultText}&quot;);
+Console.WriteLine($&quot;Maximum Length: {formText?.MaximumLength}&quot;);
+Console.WriteLine($&quot;Text Type: {formText?.TextType}&quot;);
+Console.WriteLine($&quot;Text Format: {formText?.TextFormat}&quot;);
+</code></pre>
+<h3 id="user-information-fields">User Information Fields</h3>
+<h4 id="username">USERNAME</h4>
+<p>Retrieves the user's name.</p>
+<pre><code class="lang-csharp">var userName = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;USERNAME&quot;)) as UserNameFieldInstruction;
+</code></pre>
+<h4 id="userinitials">USERINITIALS</h4>
+<p>Retrieves the user's initials.</p>
+<pre><code class="lang-csharp">var userInitials = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;USERINITIALS&quot;)) as UserInitialsFieldInstruction;
+</code></pre>
+<h4 id="useraddress">USERADDRESS</h4>
+<p>Retrieves the user's address.</p>
+<pre><code class="lang-csharp">var userAddress = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;USERADDRESS&quot;)) as UserAddressFieldInstruction;
+</code></pre>
+<h3 id="interactive-fields">Interactive Fields</h3>
+<h4 id="ask">ASK</h4>
+<p>Prompts the user to enter information and assigns it to a bookmark.</p>
+<pre><code class="lang-csharp">var ask = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;ASK MyBookmark &quot;Enter your name:&quot; \d &quot;Default Name&quot; \o&quot;)) as AskFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {ask?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Prompt Text: {ask?.PromptText}&quot;);
+Console.WriteLine($&quot;Default Response: {ask?.DefaultResponse}&quot;);
+Console.WriteLine($&quot;Prompt Once: {ask?.PromptOncePerMailMerge}&quot;);
+</code></pre>
+<h4 id="fillin">FILLIN</h4>
+<p>Prompts the user to enter text.</p>
+<pre><code class="lang-csharp">var fillIn = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;FILLIN &quot;Enter text:&quot; \d &quot;Default&quot; \o&quot;)) as FillInFieldInstruction;
+Console.WriteLine($&quot;Prompt Text: {fillIn?.PromptText}&quot;);
+Console.WriteLine($&quot;Default Text: {fillIn?.DefaultText}&quot;);
+Console.WriteLine($&quot;Prompt Once: {fillIn?.PromptOncePerMailMerge}&quot;);
+</code></pre>
+<h3 id="button-fields">Button Fields</h3>
+<h4 id="gotobutton">GOTOBUTTON</h4>
+<p>Creates a button that jumps to a location in the document.</p>
+<pre><code class="lang-csharp">var gotoButton = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;GOTOBUTTON MyBookmark &quot;Click here&quot;&quot;)) as GoToButtonFieldInstruction;
+Console.WriteLine($&quot;Location: {gotoButton?.Location}&quot;);
+Console.WriteLine($&quot;Display Text: {gotoButton?.DisplayText}&quot;);
+</code></pre>
+<h4 id="macrobutton">MACROBUTTON</h4>
+<p>Creates a button that runs a macro.</p>
+<pre><code class="lang-csharp">var macroButton = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;MACROBUTTON MyMacro &quot;Run Macro&quot;&quot;)) as MacroButtonFieldInstruction;
+Console.WriteLine($&quot;Macro Name: {macroButton?.MacroName}&quot;);
+Console.WriteLine($&quot;Display Text: {macroButton?.DisplayText}&quot;);
+</code></pre>
+<h3 id="advanced-fields">Advanced Fields</h3>
+<h4 id="database">DATABASE</h4>
+<p>Inserts data from an external database.</p>
+<pre><code class="lang-csharp">var database = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;DATABASE \d &quot;DSN=MyDB&quot; \s &quot;SELECT * FROM Table&quot; \c FirstRecord \b Table \l LastRecord \f 1 \t \h&quot;)) as DatabaseFieldInstruction;
+Console.WriteLine($&quot;Connection String: {database?.ConnectionString}&quot;);
+Console.WriteLine($&quot;SQL Statement: {database?.SqlStatement}&quot;);
+Console.WriteLine($&quot;Connect Once: {database?.ConnectOnce}&quot;);
+</code></pre>
+<h4 id="eq">EQ</h4>
+<p>Creates mathematical equations.</p>
+<pre><code class="lang-csharp">var eq = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;EQ \f(x,y) = x + y&quot;)) as EqFieldInstruction;
+Console.WriteLine($&quot;Equation Text: {eq?.EquationText}&quot;);
+</code></pre>
+<h4 id="hyperlink">HYPERLINK</h4>
+<p>Creates a hyperlink.</p>
+<pre><code class="lang-csharp">var hyperlink = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;HYPERLINK &quot;http://example.com&quot; \l &quot;bookmark&quot; \m &quot;map&quot; \n \o &quot;tooltip&quot; \t &quot;_blank&quot;&quot;)) as HyperlinkFieldInstruction;
+Console.WriteLine($&quot;URL: {hyperlink?.Url}&quot;);
+Console.WriteLine($&quot;Bookmark: {hyperlink?.Bookmark}&quot;);
+Console.WriteLine($&quot;Image Map: {hyperlink?.ImageMapCoordinates}&quot;);
+Console.WriteLine($&quot;Create New Window: {hyperlink?.CreateNewWindow}&quot;);
+Console.WriteLine($&quot;Screen Tip: {hyperlink?.ScreenTip}&quot;);
+Console.WriteLine($&quot;Target Frame: {hyperlink?.TargetFrame}&quot;);
+</code></pre>
+<h4 id="quote">QUOTE</h4>
+<p>Includes literal text in the field result.</p>
+<pre><code class="lang-csharp">var quote = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;QUOTE &quot;Literal text&quot;&quot;)) as QuoteFieldInstruction;
+Console.WriteLine($&quot;Literal Text: {quote?.LiteralText}&quot;);
+</code></pre>
+<h3 id="conditional-fields">Conditional Fields</h3>
+<h4 id="if">IF</h4>
+<p>Performs conditional logic.</p>
+<pre><code class="lang-csharp">var ifField = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;IF { MERGEFIELD Amount } &gt; 1000 &quot;Large&quot; &quot;Small&quot;&quot;)) as IfFieldInstruction;
+Console.WriteLine($&quot;Expression1: {ifField?.Expression1}&quot;);
+Console.WriteLine($&quot;Comparison Operator: {ifField?.ComparisonOperator}&quot;);
+Console.WriteLine($&quot;Expression2: {ifField?.Expression2}&quot;);
+Console.WriteLine($&quot;True Text: {ifField?.TrueText}&quot;);
+Console.WriteLine($&quot;False Text: {ifField?.FalseText}&quot;);
+</code></pre>
+<h4 id="compare">COMPARE</h4>
+<p>Compares two expressions.</p>
+<pre><code class="lang-csharp">var compare = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;COMPARE 5 = 5&quot;)) as CompareFieldInstruction;
+Console.WriteLine($&quot;Expression1: {compare?.Expression1}&quot;);
+Console.WriteLine($&quot;Comparison Operator: {compare?.ComparisonOperator}&quot;);
+Console.WriteLine($&quot;Expression2: {compare?.Expression2}&quot;);
+</code></pre>
+<h3 id="other-fields">Other Fields</h3>
+<h4 id="advance">ADVANCE</h4>
+<p>Moves text to a specific position.</p>
+<pre><code class="lang-csharp">var advance = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;ADVANCE \d 10 \l 5 \r 15 \u 8 \x 100 \y 50&quot;)) as AdvanceFieldInstruction;
+Console.WriteLine($&quot;Down: {advance?.Down}&quot;);
+Console.WriteLine($&quot;Left: {advance?.Left}&quot;);
+Console.WriteLine($&quot;Right: {advance?.Right}&quot;);
+Console.WriteLine($&quot;Up: {advance?.Up}&quot;);
+Console.WriteLine($&quot;Horizontal Position: {advance?.HorizontalPosition}&quot;);
+Console.WriteLine($&quot;Vertical Position: {advance?.VerticalPosition}&quot;);
+</code></pre>
+<h4 id="autotext">AUTOTEXT</h4>
+<p>Inserts AutoText entries.</p>
+<pre><code class="lang-csharp">var autoText = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTOTEXT MyAutoText&quot;)) as AutoTextFieldInstruction;
+Console.WriteLine($&quot;AutoText Name: {autoText?.AutoTextName}&quot;);
+</code></pre>
+<h4 id="autotextlist">AUTOTEXTLIST</h4>
+<p>Creates a list of AutoText entries.</p>
+<pre><code class="lang-csharp">var autoTextList = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;AUTOTEXTLIST \s &quot;MyStyle&quot; \t &quot;,&quot;&quot;)) as AutoTextListFieldInstruction;
+Console.WriteLine($&quot;Style Name: {autoTextList?.StyleName}&quot;);
+Console.WriteLine($&quot;Separator: {autoTextList?.Separator}&quot;);
+</code></pre>
+<h4 id="barcode">BARCODE</h4>
+<p>Creates a barcode.</p>
+<pre><code class="lang-csharp">var barcode = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;BARCODE &quot;123456789&quot; \t PostalBarcode \u \b \d \h 50 \s 100 \c CODE128 \q 3 \r 0&quot;)) as BarcodeFieldInstruction;
+Console.WriteLine($&quot;Postal Address: {barcode?.PostalAddress}&quot;);
+Console.WriteLine($&quot;Barcode Type: {barcode?.BarcodeType}&quot;);
+Console.WriteLine($&quot;US Postal: {barcode?.IsUSPostalAddress}&quot;);
+Console.WriteLine($&quot;Add Border: {barcode?.AddBorder}&quot;);
+Console.WriteLine($&quot;Display Data: {barcode?.DisplayPostalAddressData}&quot;);
+Console.WriteLine($&quot;Height: {barcode?.Height}&quot;);
+Console.WriteLine($&quot;Scale: {barcode?.Scale}&quot;);
+Console.WriteLine($&quot;Case Code: {barcode?.CaseCode}&quot;);
+Console.WriteLine($&quot;Error Correction: {barcode?.ErrorCorrectionLevel}&quot;);
+Console.WriteLine($&quot;Rotation: {barcode?.Rotation}&quot;);
+</code></pre>
+<h4 id="bibliography">BIBLIOGRAPHY</h4>
+<p>Creates a bibliography.</p>
+<pre><code class="lang-csharp">var bibliography = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;BIBLIOGRAPHY \l 1033&quot;)) as BibliographyFieldInstruction;
+Console.WriteLine($&quot;Language ID: {bibliography?.LanguageId}&quot;);
+</code></pre>
+<h4 id="citation">CITATION</h4>
+<p>Creates a citation.</p>
+<pre><code class="lang-csharp">var citation = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;CITATION Author2023 \l 1033 \m AuthorYear \n \p 25 \s 10 \t \v 2 \y&quot;)) as CitationFieldInstruction;
+Console.WriteLine($&quot;Tag: {citation?.Tag}&quot;);
+Console.WriteLine($&quot;Language ID: {citation?.LanguageId}&quot;);
+Console.WriteLine($&quot;Format Style: {citation?.FormatStyle}&quot;);
+Console.WriteLine($&quot;Suppress Author: {citation?.SuppressAuthor}&quot;);
+Console.WriteLine($&quot;Page Number: {citation?.PageNumber}&quot;);
+Console.WriteLine($&quot;Suffix: {citation?.Suffix}&quot;);
+Console.WriteLine($&quot;Suppress Title: {citation?.SuppressTitle}&quot;);
+Console.WriteLine($&quot;Volume Number: {citation?.VolumeNumber}&quot;);
+Console.WriteLine($&quot;Suppress Year: {citation?.SuppressYear}&quot;);
+</code></pre>
+<h4 id="docproperty">DOCPROPERTY</h4>
+<p>Retrieves document properties.</p>
+<pre><code class="lang-csharp">var docProperty = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;DOCPROPERTY Title&quot;)) as DocPropertyFieldInstruction;
+Console.WriteLine($&quot;Property Name: {docProperty?.PropertyName}&quot;);
+Console.WriteLine($&quot;Category Argument: {docProperty?.PropertyCategoryArgument}&quot;);
+</code></pre>
+<h4 id="docvariable">DOCVARIABLE</h4>
+<p>Retrieves document variables.</p>
+<pre><code class="lang-csharp">var docVariable = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;DOCVARIABLE MyVariable&quot;)) as DocVariableFieldInstruction;
+Console.WriteLine($&quot;Variable Name: {docVariable?.VariableName}&quot;);
+</code></pre>
+<h4 id="includepicture">INCLUDEPICTURE</h4>
+<p>Includes a picture from an external source.</p>
+<pre><code class="lang-csharp">var includePicture = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;INCLUDEPICTURE &quot;C:\image.jpg&quot; \c converter \d&quot;)) as IncludePictureFieldInstruction;
+Console.WriteLine($&quot;Source Path: {includePicture?.SourcePath}&quot;);
+Console.WriteLine($&quot;Graphics Filter: {includePicture?.GraphicsFilter}&quot;);
+Console.WriteLine($&quot;Do Not Store: {includePicture?.DoNotStore}&quot;);
+</code></pre>
+<h4 id="includetext">INCLUDETEXT</h4>
+<p>Includes text from an external source.</p>
+<pre><code class="lang-csharp">var includeText = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;INCLUDETEXT &quot;C:\document.docx&quot; \c converter \b MyBookmark&quot;)) as IncludeTextFieldInstruction;
+Console.WriteLine($&quot;Source Path: {includeText?.SourcePath}&quot;);
+Console.WriteLine($&quot;Text Converter: {includeText?.TextConverter}&quot;);
+Console.WriteLine($&quot;Bookmark Name: {includeText?.BookmarkName}&quot;);
+</code></pre>
+<h4 id="info">INFO</h4>
+<p>Retrieves document information.</p>
+<pre><code class="lang-csharp">var info = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;INFO Title&quot;)) as InfoFieldInstruction;
+Console.WriteLine($&quot;Info Type: {info?.InfoType}&quot;);
+</code></pre>
+<h4 id="link">LINK</h4>
+<p>Creates a link to external data.</p>
+<pre><code class="lang-csharp">var link = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;LINK Excel.Sheet &quot;C:\data.xlsx&quot; Sheet1!R1C1:R10C5 \a \b \f 19 \h \p \t&quot;)) as LinkFieldInstruction;
+Console.WriteLine($&quot;Program Class: {link?.ProgramClass}&quot;);
+Console.WriteLine($&quot;Source File: {link?.SourceFile}&quot;);
+Console.WriteLine($&quot;Place Reference: {link?.PlaceReference}&quot;);
+Console.WriteLine($&quot;Update Automatically: {link?.UpdateAutomatically}&quot;);
+Console.WriteLine($&quot;Insert as Bitmap: {link?.InsertAsBitmap}&quot;);
+Console.WriteLine($&quot;Format: {link?.Format}&quot;);
+Console.WriteLine($&quot;Insert as HTML: {link?.InsertAsHtml}&quot;);
+Console.WriteLine($&quot;Insert as Picture: {link?.InsertAsPicture}&quot;);
+Console.WriteLine($&quot;Insert as RTF: {link?.InsertAsRtf}&quot;);
+Console.WriteLine($&quot;Insert as Text: {link?.InsertAsText}&quot;);
+</code></pre>
+<h4 id="print">PRINT</h4>
+<p>Sends characters to the printer.</p>
+<pre><code class="lang-csharp">var print = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;PRINT &quot;Print this text&quot;&quot;)) as PrintFieldInstruction;
+Console.WriteLine($&quot;Printer Instructions: {print?.PrinterInstructions}&quot;);
+</code></pre>
+<h4 id="rd">RD</h4>
+<p>References a document for index or table operations.</p>
+<pre><code class="lang-csharp">var rd = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;RD &quot;C:\reference.docx&quot;&quot;)) as RdFieldInstruction;
+Console.WriteLine($&quot;Referenced Document: {rd?.ReferencedDocument}&quot;);
+</code></pre>
+<h4 id="set">SET</h4>
+<p>Sets the value of a bookmark.</p>
+<pre><code class="lang-csharp">var set = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SET MyBookmark &quot;New Value&quot;&quot;)) as SetFieldInstruction;
+Console.WriteLine($&quot;Bookmark Name: {set?.BookmarkName}&quot;);
+Console.WriteLine($&quot;Bookmark Text: {set?.BookmarkText}&quot;);
+</code></pre>
+<h4 id="symbol">SYMBOL</h4>
+<p>Inserts a symbol.</p>
+<pre><code class="lang-csharp">var symbol = TypedFieldInstructionFactory.Create(FieldInstructionParser.Parse(&quot;SYMBOL 65 \f Arial \s 12 \u&quot;)) as SymbolFieldInstruction;
+Console.WriteLine($&quot;Character Code: {symbol?.CharacterCode}&quot;);
+Console.WriteLine($&quot;Font Name: {symbol?.FontName}&quot;);
+Console.WriteLine($&quot;Font Size: {symbol?.FontSize}&quot;);
+Console.WriteLine($&quot;Unicode: {symbol?.Unicode}&quot;);
+</code></pre>
+<h2 id="factory-pattern">Factory Pattern</h2>
+<p>The <code>TypedFieldInstructionFactory</code> uses a factory pattern to create appropriate typed instances:</p>
+<pre><code class="lang-csharp">public static class TypedFieldInstructionFactory
+{
+    public static TypedFieldInstruction? Create(FieldInstruction genericInstruction)
+    {
+        // Returns appropriate typed instruction or null if parsing fails
+    }
+}
+</code></pre>
+<h3 id="error-handling">Error Handling</h3>
+<p>The factory returns <code>null</code> for malformed instructions or when parsing fails, allowing graceful fallback to the generic <code>FieldInstruction</code>.</p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Typed instructions are created on-demand through the factory</li>
+<li>The original <code>FieldInstruction</code> is preserved and accessible through the <code>Source</code> property</li>
+<li>Failed conversions return <code>null</code> rather than throwing exceptions for performance</li>
+<li>Each typed instruction parses its specific switches and arguments once during construction</li>
+</ul>
+<h2 id="extensibility">Extensibility</h2>
+<p>The typed field instruction system is designed to be extensible. New field types can be added by:</p>
+<ol>
+<li>Creating a new class that inherits from <code>TypedFieldInstruction</code></li>
+<li>Implementing field-specific properties and parsing logic in the constructor</li>
+<li>Adding the type to the <code>TypedFieldInstructionFactory</code> switch statement</li>
+</ol>
+<h2 id="real-world-usage-examples">Real-World Usage Examples</h2>
+<h3 id="mail-merge-document-processing">Mail Merge Document Processing</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
+
+// Process mail merge fields in a document template
+var fields = new List&lt;string&gt;
+{
+    &quot;MERGEFIELD FirstName \b &quot;Dear &quot; \f &quot;,&quot;&quot;,
+    &quot;MERGEFIELD LastName \* Upper&quot;,
+    &quot;ADDRESSBLOCK \c 2 \e &quot;Customer&quot; \f &quot;Mr./Ms.&quot;&quot;,
+    &quot;GREETINGLINE \f &quot;Dear&quot; \e &quot;Valued Customer&quot; \d &quot;:&quot;&quot;
+};
+
+foreach (var fieldCode in fields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case MergeFieldFieldInstruction merge:
+            Console.WriteLine($&quot;Merge Field: {merge.FieldName}&quot;);
+            if (merge.TextBefore != null)
+                Console.WriteLine($&quot;  Text Before: {merge.TextBefore}&quot;);
+            if (merge.TextAfter != null)
+                Console.WriteLine($&quot;  Text After: {merge.TextAfter}&quot;);
+            break;
+
+        case AddressBlockFieldInstruction address:
+            Console.WriteLine($&quot;Address Block - Country Format: {address.CountryFormat}&quot;);
+            Console.WriteLine($&quot;  Format Name As: {address.FormatNameAs}&quot;);
+            break;
+
+        case GreetingLineFieldInstruction greeting:
+            Console.WriteLine($&quot;Greeting Line - Format: {greeting.GreetingFormat}&quot;);
+            Console.WriteLine($&quot;  Default: {greeting.DefaultGreeting}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h3 id="document-cross-references">Document Cross-References</h3>
+<pre><code class="lang-csharp">// Handle various types of cross-references
+var referenceFields = new[]
+{
+    &quot;REF MyBookmark \h \p&quot;,
+    &quot;PAGEREF ChapterStart \h&quot;,
+    &quot;STYLEREF &quot;Heading 1&quot; \l \n&quot;,
+    &quot;NOTEREF FootnoteRef \f \h&quot;
+};
+
+foreach (var fieldCode in referenceFields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case RefFieldInstruction refField:
+            Console.WriteLine($&quot;Reference to: {refField.BookmarkName}&quot;);
+            Console.WriteLine($&quot;  Insert Hyperlink: {refField.InsertHyperlink}&quot;);
+            Console.WriteLine($&quot;  Insert Position: {refField.InsertRelativePosition}&quot;);
+            break;
+
+        case PageRefFieldInstruction pageRef:
+            Console.WriteLine($&quot;Page Reference to: {pageRef.BookmarkName}&quot;);
+            Console.WriteLine($&quot;  Insert Hyperlink: {pageRef.InsertHyperlink}&quot;);
+            break;
+
+        case StyleRefFieldInstruction styleRef:
+            Console.WriteLine($&quot;Style Reference: {styleRef.StyleName}&quot;);
+            Console.WriteLine($&quot;  Search from Bottom: {styleRef.SearchFromBottom}&quot;);
+            Console.WriteLine($&quot;  Insert Paragraph Number: {styleRef.InsertParagraphNumber}&quot;);
+            break;
+
+        case NoteRefFieldInstruction noteRef:
+            Console.WriteLine($&quot;Note Reference: {noteRef.BookmarkName}&quot;);
+            Console.WriteLine($&quot;  Insert Footnote Reference: {noteRef.InsertFootnoteReference}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h3 id="form-field-processing">Form Field Processing</h3>
+<pre><code class="lang-csharp">// Process form fields for data collection
+var formFields = new[]
+{
+    &quot;FORMTEXT \default &quot;Enter name here&quot; \maxlen 50 \type 0&quot;,
+    &quot;FORMCHECKBOX \default 1 \size 12&quot;,
+    &quot;FORMDROPDOWN \l &quot;Option1,Option2,Option3&quot;&quot;
+};
+
+foreach (var fieldCode in formFields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case FormTextFieldInstruction textField:
+            Console.WriteLine($&quot;Text Field - Default: {textField.DefaultText}&quot;);
+            Console.WriteLine($&quot;  Max Length: {textField.MaximumLength}&quot;);
+            Console.WriteLine($&quot;  Type: {textField.TextType}&quot;);
+            break;
+
+        case FormCheckBoxFieldInstruction checkBox:
+            Console.WriteLine($&quot;Checkbox - Default State: {checkBox.DefaultState}&quot;);
+            Console.WriteLine($&quot;  Size: {checkBox.Size}&quot;);
+            break;
+
+        case FormDropDownFieldInstruction dropDown:
+            Console.WriteLine($&quot;Dropdown - Items: {dropDown.Items}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h3 id="date-and-time-formatting">Date and Time Formatting</h3>
+<pre><code class="lang-csharp">// Handle various date/time field formats
+var dateTimeFields = new[]
+{
+    &quot;DATE \@ &quot;MMMM d, yyyy&quot; \h \s&quot;,
+    &quot;TIME \@ &quot;h:mm am/pm&quot;&quot;,
+    &quot;CREATEDATE \@ &quot;dddd, MMMM d, yyyy&quot;&quot;,
+    &quot;SAVEDATE \@ &quot;MM/dd/yy h:mm am/pm&quot;&quot;
+};
+
+foreach (var fieldCode in dateTimeFields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case DateFieldInstruction date:
+            Console.WriteLine($&quot;Date Field - Format: {date.DateFormat}&quot;);
+            Console.WriteLine($&quot;  Use Hijri Calendar: {date.UseHijriCalendar}&quot;);
+            Console.WriteLine($&quot;  Use Saka Calendar: {date.UseSakaCalendar}&quot;);
+            break;
+
+        case TimeFieldInstruction time:
+            Console.WriteLine($&quot;Time Field - Format: {time.TimeFormat}&quot;);
+            break;
+
+        case CreateDateFieldInstruction createDate:
+            Console.WriteLine($&quot;Create Date - Format: {createDate.DateFormat}&quot;);
+            break;
+
+        case SaveDateFieldInstruction saveDate:
+            Console.WriteLine($&quot;Save Date - Format: {saveDate.DateFormat}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h3 id="table-of-contents-and-index-generation">Table of Contents and Index Generation</h3>
+<pre><code class="lang-csharp">// Process TOC and Index fields
+var tocFields = new[]
+{
+    &quot;TOC \o &quot;1-3&quot; \h \z \u&quot;,
+    &quot;INDEX \b MyBookmark \c 3 \e &quot;&quot; \h &quot;A&quot;&quot;,
+    &quot;XE &quot;Main Entry:Sub Entry&quot; \b \i \r BookmarkRange&quot;
+};
+
+foreach (var fieldCode in tocFields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case TocFieldInstruction toc:
+            Console.WriteLine($&quot;TOC - Outline Levels: {toc.OutlineLevels}&quot;);
+            Console.WriteLine($&quot;  Use Hyperlinks: {toc.UseHyperlinks}&quot;);
+            Console.WriteLine($&quot;  Hide Tab Leaders: {toc.HideTabLeaderAndPageNumber}&quot;);
+            break;
+
+        case IndexFieldInstruction index:
+            Console.WriteLine($&quot;Index - Bookmark: {index.BookmarkName}&quot;);
+            Console.WriteLine($&quot;  Columns: {index.NumberOfColumns}&quot;);
+            Console.WriteLine($&quot;  Heading Style: {index.HeadingStyle}&quot;);
+            break;
+
+        case XeFieldInstruction xe:
+            Console.WriteLine($&quot;Index Entry - Text: {xe.EntryText}&quot;);
+            Console.WriteLine($&quot;  Bold: {xe.ApplyBoldFormatting}&quot;);
+            Console.WriteLine($&quot;  Italic: {xe.ApplyItalicFormatting}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h3 id="conditional-field-processing">Conditional Field Processing</h3>
+<pre><code class="lang-csharp">// Handle conditional logic fields
+var conditionalFields = new[]
+{
+    &quot;IF { MERGEFIELD Amount } &gt; 1000 &quot;Large Order&quot; &quot;Standard Order&quot;&quot;,
+    &quot;COMPARE 5 = 5&quot;,
+    &quot;NEXTIF State = &quot;CA&quot;&quot;,
+    &quot;SKIPIF Amount &lt; 100&quot;
+};
+
+foreach (var fieldCode in conditionalFields)
+{
+    var instruction = FieldInstructionParser.Parse(fieldCode);
+    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+
+    switch (typedInstruction)
+    {
+        case IfFieldInstruction ifField:
+            Console.WriteLine($&quot;IF Field - Expression1: {ifField.Expression1}&quot;);
+            Console.WriteLine($&quot;  Operator: {ifField.ComparisonOperator}&quot;);
+            Console.WriteLine($&quot;  Expression2: {ifField.Expression2}&quot;);
+            Console.WriteLine($&quot;  True Text: {ifField.TrueText}&quot;);
+            Console.WriteLine($&quot;  False Text: {ifField.FalseText}&quot;);
+            break;
+
+        case CompareFieldInstruction compare:
+            Console.WriteLine($&quot;Compare - Expression1: {compare.Expression1}&quot;);
+            Console.WriteLine($&quot;  Operator: {compare.ComparisonOperator}&quot;);
+            Console.WriteLine($&quot;  Expression2: {compare.Expression2}&quot;);
+            break;
+
+        case NextIfFieldInstruction nextIf:
+            Console.WriteLine($&quot;NextIf - Field: {nextIf.FieldName}&quot;);
+            Console.WriteLine($&quot;  Operator: {nextIf.ComparisonOperator}&quot;);
+            Console.WriteLine($&quot;  Value: {nextIf.ComparisonValue}&quot;);
+            break;
+
+        case SkipIfFieldInstruction skipIf:
+            Console.WriteLine($&quot;SkipIf - Field: {skipIf.FieldName}&quot;);
+            Console.WriteLine($&quot;  Value: {skipIf.ComparisonValue}&quot;);
+            break;
+    }
+}
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li>Always check for <code>null</code> return values from the factory</li>
+<li>Use pattern matching with <code>is</code> operator for type checking</li>
+<li>Access the original instruction through the <code>Source</code> property when needed</li>
+<li>Handle parsing exceptions gracefully by falling back to generic <code>FieldInstruction</code></li>
+<li>Use specific typed properties instead of parsing switches manually</li>
+<li>Cache typed instructions if processing the same field multiple times</li>
+<li>Validate field-specific constraints (e.g., date formats, bookmark names) before creating instructions</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/Typed.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
