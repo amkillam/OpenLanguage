@@ -81,7 +81,7 @@ Console.WriteLine($"Field Code: {instruction.ToString()}");
 
 ### Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [.NET 8.0+ SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [CMake 3.20+](https://cmake.org/download/) (for build system)
 - [cpp](https://gcc.gnu.org/) (C preprocessor for .y/.lex file processing)
 
@@ -228,7 +228,7 @@ OpenLanguage is built with performance as a primary concern:
 
 ## Compatibility
 
-- **.NET 9.0**: Primary target framework
+- **Multi-framework**: Supports both .NET 8.0 and .NET 9.0
 - **Native AOT**: Full support for ahead-of-time compilation
 
 ## TODO

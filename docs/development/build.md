@@ -373,7 +373,7 @@ docfx build docfx/docfx.json
 **Required Tools:**
 
 - CMake 3.20+
-- .NET 9.0 SDK
+- .NET 8.0 or .NET 9.0
 - C preprocessor (cpp) - usually part of GCC/Clang
 - Git (for hooks installation)
 
