@@ -123,8 +123,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                     : new ConcatenatedNodes(new List<ExpressionNode>() { prefix, name }),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
 
         public BuiltInFunctionNode(
             ExpressionNode name,
@@ -205,15 +204,15 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             switch (xlfnPrefix, xlwsPrefix)
             {
                 case (XlfnFunctionPrefixNode xlfnPrefixNode, XlwsFunctionPrefixNode xlwsPrefixNode):
-                    {
-                        ConcatenatedNodes concatenatedPrefixes = new ConcatenatedNodes(
-                            new List<ExpressionNode>() { xlfnPrefixNode, xlwsPrefixNode }
-                        );
-                        Name = new ConcatenatedNodes(
-                            new List<ExpressionNode>() { concatenatedPrefixes, name }
-                        );
-                        break;
-                    }
+                {
+                    ConcatenatedNodes concatenatedPrefixes = new ConcatenatedNodes(
+                        new List<ExpressionNode>() { xlfnPrefixNode, xlwsPrefixNode }
+                    );
+                    Name = new ConcatenatedNodes(
+                        new List<ExpressionNode>() { concatenatedPrefixes, name }
+                    );
+                    break;
+                }
                 case (XlfnFunctionPrefixNode xlfnPrefixNode, null):
                     Name = new ConcatenatedNodes(
                         new List<ExpressionNode>() { xlfnPrefixNode, name }

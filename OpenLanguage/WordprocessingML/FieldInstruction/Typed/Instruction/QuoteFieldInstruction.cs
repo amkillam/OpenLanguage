@@ -368,7 +368,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             {
                 return FieldArgumentType.Switch;
             }
-            if (!string.IsNullOrEmpty(token) && token.Length >= 2 && token[0] == '"' && token[token.Length - 1] == '"')
+            if (
+                !string.IsNullOrEmpty(token)
+                && token.Length >= 2
+                && token[0] == '"'
+                && token[token.Length - 1] == '"'
+            )
             {
                 return FieldArgumentType.StringLiteral;
             }
@@ -383,7 +388,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
                 )
                 || double.TryParse(
                     token,
-                    System.Globalization.NumberStyles.Float | System.Globalization.NumberStyles.AllowThousands,
+                    System.Globalization.NumberStyles.Float
+                        | System.Globalization.NumberStyles.AllowThousands,
                     System.Globalization.CultureInfo.InvariantCulture,
                     out parsedDouble
                 )

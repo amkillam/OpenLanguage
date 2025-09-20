@@ -776,8 +776,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 new NameNode(rawName ?? "OPTIONSLISTSGET"),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PauseMacroFunctionNode : MacroFunctionNode

@@ -39,8 +39,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ArabicFutureFunctionNode : FutureFunctionNode
@@ -68,8 +67,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BaseFutureFunctionNode : FutureFunctionNode
@@ -97,8 +95,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BetaInvFutureFunctionNode : FutureFunctionNode
@@ -114,8 +111,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BinomDistFutureFunctionNode : FutureFunctionNode
@@ -131,8 +127,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BinomDistRangeFutureFunctionNode : FutureFunctionNode
@@ -148,8 +143,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BinomInvFutureFunctionNode : FutureFunctionNode
@@ -165,8 +159,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BitAndFutureFunctionNode : FutureFunctionNode
@@ -194,8 +187,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BitOrFutureFunctionNode : FutureFunctionNode
@@ -223,8 +215,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class BitXorFutureFunctionNode : FutureFunctionNode
@@ -276,8 +267,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CeilingPreciseFutureFunctionNode : FutureFunctionNode
@@ -293,8 +283,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChisqDistFutureFunctionNode : FutureFunctionNode
@@ -310,8 +299,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChisqDistRtFutureFunctionNode : FutureFunctionNode
@@ -327,8 +315,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChisqInvFutureFunctionNode : FutureFunctionNode
@@ -344,8 +331,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChisqInvRtFutureFunctionNode : FutureFunctionNode
@@ -361,8 +347,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChisqTestFutureFunctionNode : FutureFunctionNode
@@ -378,8 +363,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChooseColsFutureFunctionNode : FutureFunctionNode
@@ -395,8 +379,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ChooseRowsFutureFunctionNode : FutureFunctionNode
@@ -412,8 +395,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CombinaFutureFunctionNode : FutureFunctionNode
@@ -429,8 +411,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ConfidenceNormFutureFunctionNode : FutureFunctionNode
@@ -446,8 +427,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ConfidenceTFutureFunctionNode : FutureFunctionNode
@@ -463,8 +443,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CotFutureFunctionNode : FutureFunctionNode
@@ -504,8 +483,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CovarianceSFutureFunctionNode : FutureFunctionNode
@@ -521,8 +499,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CscFutureFunctionNode : FutureFunctionNode
@@ -574,8 +551,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class DecimalFutureFunctionNode : FutureFunctionNode
@@ -591,8 +567,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class DropFutureFunctionNode : FutureFunctionNode
@@ -620,8 +595,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class EncodeUrlFutureFunctionNode : FutureFunctionNode
@@ -637,8 +611,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ErfCPreciseFutureFunctionNode : FutureFunctionNode
@@ -654,8 +627,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class EuroConvertFutureFunctionNode : FutureFunctionNode
@@ -671,8 +643,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ErfPreciseFutureFunctionNode : FutureFunctionNode
@@ -688,8 +659,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ExpandFutureFunctionNode : FutureFunctionNode
@@ -717,8 +687,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FieldValueFutureFunctionNode : FutureFunctionNode
@@ -734,8 +703,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FilterXmlFutureFunctionNode : FutureFunctionNode
@@ -751,8 +719,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FloorMathFutureFunctionNode : FutureFunctionNode
@@ -768,8 +735,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FloorPreciseFutureFunctionNode : FutureFunctionNode
@@ -785,8 +751,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ForecastEtsFutureFunctionNode : FutureFunctionNode
@@ -802,8 +767,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ForecastEtsConfIntFutureFunctionNode : FutureFunctionNode
@@ -819,8 +783,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ForecastEtsSeasonalityFutureFunctionNode : FutureFunctionNode
@@ -836,8 +799,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ForecastEtsStatFutureFunctionNode : FutureFunctionNode
@@ -853,8 +815,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ForecastLinearFutureFunctionNode : FutureFunctionNode
@@ -870,8 +831,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FormulaTextFutureFunctionNode : FutureFunctionNode
@@ -887,8 +847,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FDistFutureFunctionNode : FutureFunctionNode
@@ -916,8 +875,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FInvFutureFunctionNode : FutureFunctionNode
@@ -945,8 +903,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class FTestFutureFunctionNode : FutureFunctionNode
@@ -986,8 +943,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class GammaDistFutureFunctionNode : FutureFunctionNode
@@ -1003,8 +959,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class GammaInvFutureFunctionNode : FutureFunctionNode
@@ -1020,8 +975,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class GaussFutureFunctionNode : FutureFunctionNode
@@ -1049,8 +1003,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class HStackFutureFunctionNode : FutureFunctionNode
@@ -1078,8 +1031,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ImageFutureFunctionNode : FutureFunctionNode
@@ -1215,8 +1167,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class IsOmittedFutureFunctionNode : FutureFunctionNode
@@ -1232,8 +1183,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class IsOWeekNumFutureFunctionNode : FutureFunctionNode
@@ -1249,8 +1199,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class JisFutureFunctionNode : FutureFunctionNode
@@ -1278,8 +1227,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class LambdaFutureFunctionNode : FutureFunctionNode
@@ -1319,8 +1267,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class LogNormInvFutureFunctionNode : FutureFunctionNode
@@ -1336,8 +1283,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class MakeArrayFutureFunctionNode : FutureFunctionNode
@@ -1353,8 +1299,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class MapFutureFunctionNode : FutureFunctionNode
@@ -1382,8 +1327,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ModeSnglFutureFunctionNode : FutureFunctionNode
@@ -1399,8 +1343,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class MUnitFutureFunctionNode : FutureFunctionNode
@@ -1428,8 +1371,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NetworkDaysIntlFutureFunctionNode : FutureFunctionNode
@@ -1445,8 +1387,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NormDistFutureFunctionNode : FutureFunctionNode
@@ -1462,8 +1403,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NormInvFutureFunctionNode : FutureFunctionNode
@@ -1479,8 +1419,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NormSDistFutureFunctionNode : FutureFunctionNode
@@ -1496,8 +1435,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NormSInvFutureFunctionNode : FutureFunctionNode
@@ -1513,8 +1451,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class NumberValueFutureFunctionNode : FutureFunctionNode
@@ -1530,8 +1467,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PDurationFutureFunctionNode : FutureFunctionNode
@@ -1547,8 +1483,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PercentOfFutureFunctionNode : FutureFunctionNode
@@ -1564,8 +1499,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PercentileExcFutureFunctionNode : FutureFunctionNode
@@ -1581,8 +1515,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PercentileIncFutureFunctionNode : FutureFunctionNode
@@ -1598,8 +1531,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PercentRankExcFutureFunctionNode : FutureFunctionNode
@@ -1615,8 +1547,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PercentRankIncFutureFunctionNode : FutureFunctionNode
@@ -1632,8 +1563,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PermutationaFutureFunctionNode : FutureFunctionNode
@@ -1649,8 +1579,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PhiFutureFunctionNode : FutureFunctionNode
@@ -1678,8 +1607,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PoissonDistFutureFunctionNode : FutureFunctionNode
@@ -1695,8 +1623,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PqsourceFutureFunctionNode : FutureFunctionNode
@@ -1712,8 +1639,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RegexExtractFutureFunctionNode : FutureFunctionNode
@@ -1729,8 +1655,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RegexReplaceFutureFunctionNode : FutureFunctionNode
@@ -1746,8 +1671,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RegexTestFutureFunctionNode : FutureFunctionNode
@@ -1763,8 +1687,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PythonStrFutureFunctionNode : FutureFunctionNode
@@ -1780,8 +1703,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PythonTypeFutureFunctionNode : FutureFunctionNode
@@ -1797,8 +1719,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PythonTypenameFutureFunctionNode : FutureFunctionNode
@@ -1814,8 +1735,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class QuartileExcFutureFunctionNode : FutureFunctionNode
@@ -1831,8 +1751,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class QuartileIncFutureFunctionNode : FutureFunctionNode
@@ -1848,8 +1767,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class QueryStringFutureFunctionNode : FutureFunctionNode
@@ -1865,8 +1783,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RandArrayFutureFunctionNode : FutureFunctionNode
@@ -1882,8 +1799,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RankAvgFutureFunctionNode : FutureFunctionNode
@@ -1899,8 +1815,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class RankEqFutureFunctionNode : FutureFunctionNode
@@ -1916,8 +1831,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ReduceFutureFunctionNode : FutureFunctionNode
@@ -1993,8 +1907,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class SheetFutureFunctionNode : FutureFunctionNode
@@ -2058,8 +1971,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class StDevSFutureFunctionNode : FutureFunctionNode
@@ -2075,8 +1987,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class StockHistoryFutureFunctionNode : FutureFunctionNode
@@ -2092,8 +2003,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TakeFutureFunctionNode : FutureFunctionNode
@@ -2121,8 +2031,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TextBeforeFutureFunctionNode : FutureFunctionNode
@@ -2138,8 +2047,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TextSplitFutureFunctionNode : FutureFunctionNode
@@ -2155,8 +2063,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ToColFutureFunctionNode : FutureFunctionNode
@@ -2196,8 +2103,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TrimRangeFutureFunctionNode : FutureFunctionNode
@@ -2213,8 +2119,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TDistFutureFunctionNode : FutureFunctionNode
@@ -2242,8 +2147,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TDistRtFutureFunctionNode : FutureFunctionNode
@@ -2259,8 +2163,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TInvFutureFunctionNode : FutureFunctionNode
@@ -2288,8 +2191,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class TTestFutureFunctionNode : FutureFunctionNode
@@ -2317,8 +2219,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class UnicodeFutureFunctionNode : FutureFunctionNode
@@ -2334,8 +2235,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class UniqueFutureFunctionNode : FutureFunctionNode
@@ -2363,8 +2263,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class VarPFutureFunctionNode : FutureFunctionNode
@@ -2416,8 +2315,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class WeibullDistFutureFunctionNode : FutureFunctionNode
@@ -2433,8 +2331,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class WorkdayIntlFutureFunctionNode : FutureFunctionNode
@@ -2450,8 +2347,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class WrapColsFutureFunctionNode : FutureFunctionNode
@@ -2467,8 +2363,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class WrapRowsFutureFunctionNode : FutureFunctionNode
@@ -2484,8 +2379,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class XLookupFutureFunctionNode : FutureFunctionNode
@@ -2501,8 +2395,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 prefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class XMatchFutureFunctionNode : FutureFunctionNode

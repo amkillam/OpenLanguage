@@ -17,8 +17,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 xlwsPrefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class SortWorksheetFunctionNode : WorksheetFunctionNode
@@ -36,8 +35,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 xlwsPrefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class PyFunctionNode : WorksheetFunctionNode
@@ -55,7 +53,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 xlwsPrefix,
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 }

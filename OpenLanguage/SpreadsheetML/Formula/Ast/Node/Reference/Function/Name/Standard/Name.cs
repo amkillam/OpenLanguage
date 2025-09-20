@@ -685,8 +685,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 new NameNode(rawName ?? "CUBEMEMBERPROPERTY"),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CubeRankedmemberStandardFunctionNode : StandardFunctionNode
@@ -700,8 +699,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 new NameNode(rawName ?? "CUBERANKEDMEMBER"),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class CubeSetStandardFunctionNode : StandardFunctionNode
@@ -3371,8 +3369,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 new NameNode(rawName ?? "THAIMONTHOfYear"),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ThaiNumSoundStandardFunctionNode : StandardFunctionNode
@@ -3408,8 +3405,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 new NameNode(rawName ?? "THAISTRINGLENGTH"),
                 leadingWhitespace,
                 trailingWhitespace
-            )
-        { }
+            ) { }
     }
 
     public class ThaiYearStandardFunctionNode : StandardFunctionNode

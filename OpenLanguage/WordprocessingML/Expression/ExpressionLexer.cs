@@ -507,7 +507,11 @@ namespace OpenLanguage.WordprocessingML.Expression
 
                     // Determine if a leading + or - is a numeric sign (only when appropriate)
                     bool isLeadingSign = false;
-                    if ((currentChar == '+' || currentChar == '-') && position + 1 < text.Length && char.IsDigit(text[position + 1]))
+                    if (
+                        (currentChar == '+' || currentChar == '-')
+                        && position + 1 < text.Length
+                        && char.IsDigit(text[position + 1])
+                    )
                     {
                         // Look back for previous non-whitespace character
                         int prevIndex = startIndex - 1;
@@ -516,7 +520,12 @@ namespace OpenLanguage.WordprocessingML.Expression
                             prevIndex--;
                         }
                         // Allow sign at start of string or after typical assignment/grouping characters
-                        bool allowSignedNumber = prevIndex < 0 || text[prevIndex] == '=' || text[prevIndex] == '(' || text[prevIndex] == ',' || text[prevIndex] == ':';
+                        bool allowSignedNumber =
+                            prevIndex < 0
+                            || text[prevIndex] == '='
+                            || text[prevIndex] == '('
+                            || text[prevIndex] == ','
+                            || text[prevIndex] == ':';
                         if (allowSignedNumber)
                         {
                             isLeadingSign = true;
@@ -536,16 +545,20 @@ namespace OpenLanguage.WordprocessingML.Expression
                         }
 
                         // Hexadecimal: 0x... or 0X...
-                        if (scanPos + 1 < text.Length && text[scanPos] == '0' && (text[scanPos + 1] == 'x' || text[scanPos + 1] == 'X'))
+                        if (
+                            scanPos + 1 < text.Length
+                            && text[scanPos] == '0'
+                            && (text[scanPos + 1] == 'x' || text[scanPos + 1] == 'X')
+                        )
                         {
                             int hexPos = scanPos + 2;
                             while (hexPos < text.Length)
                             {
                                 char hc = text[hexPos];
                                 bool isHex =
-                                    (hc >= '0' && hc <= '9') ||
-                                    (hc >= 'a' && hc <= 'f') ||
-                                    (hc >= 'A' && hc <= 'F');
+                                    (hc >= '0' && hc <= '9')
+                                    || (hc >= 'a' && hc <= 'f')
+                                    || (hc >= 'A' && hc <= 'F');
                                 if (!isHex)
                                 {
                                     break;
@@ -569,7 +582,11 @@ namespace OpenLanguage.WordprocessingML.Expression
                         }
 
                         // Binary: 0b... or 0B...
-                        if (scanPos + 1 < text.Length && text[scanPos] == '0' && (text[scanPos + 1] == 'b' || text[scanPos + 1] == 'B'))
+                        if (
+                            scanPos + 1 < text.Length
+                            && text[scanPos] == '0'
+                            && (text[scanPos + 1] == 'b' || text[scanPos + 1] == 'B')
+                        )
                         {
                             int binPos = scanPos + 2;
                             while (binPos < text.Length)
@@ -607,7 +624,12 @@ namespace OpenLanguage.WordprocessingML.Expression
                         }
 
                         // Fractional part
-                        if (decPos < text.Length && text[decPos] == '.' && decPos + 1 < text.Length && char.IsDigit(text[decPos + 1]))
+                        if (
+                            decPos < text.Length
+                            && text[decPos] == '.'
+                            && decPos + 1 < text.Length
+                            && char.IsDigit(text[decPos + 1])
+                        )
                         {
                             decPos++; // consume '.'
                             while (decPos < text.Length && char.IsDigit(text[decPos]))
@@ -621,7 +643,10 @@ namespace OpenLanguage.WordprocessingML.Expression
                         {
                             int expStart = decPos;
                             int tempPos = decPos + 1;
-                            if (tempPos < text.Length && (text[tempPos] == '+' || text[tempPos] == '-'))
+                            if (
+                                tempPos < text.Length
+                                && (text[tempPos] == '+' || text[tempPos] == '-')
+                            )
                             {
                                 tempPos++;
                             }
@@ -848,7 +873,9 @@ namespace OpenLanguage.WordprocessingML.Expression
             // Missing mantissa before exponent (e.g., .E5)
             if (Regex.IsMatch(masked, @"(?<!\d)\.[eE][+-]?\d+"))
             {
-                throw new FormatException("Invalid number format: missing mantissa before exponent.");
+                throw new FormatException(
+                    "Invalid number format: missing mantissa before exponent."
+                );
             }
         }
 

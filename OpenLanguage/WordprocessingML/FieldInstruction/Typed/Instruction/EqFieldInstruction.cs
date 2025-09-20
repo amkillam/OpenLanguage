@@ -574,70 +574,70 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Typed
             switch (PrimarySwitch)
             {
                 case EqPrimarySwitch.Bracket:
+                {
+                    if (ArgumentList.Count != 1)
                     {
-                        if (ArgumentList.Count != 1)
-                        {
-                            throw new ArgumentException(
-                                "Bracket (\\b) switch requires exactly one argument"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Bracket (\\b) switch requires exactly one argument"
+                        );
                     }
+                    break;
+                }
 
                 case EqPrimarySwitch.Displacement:
+                {
+                    if (ArgumentList.Count != 0)
                     {
-                        if (ArgumentList.Count != 0)
-                        {
-                            throw new ArgumentException(
-                                "Displacement (\\d) switch requires no arguments"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Displacement (\\d) switch requires no arguments"
+                        );
                     }
+                    break;
+                }
 
                 case EqPrimarySwitch.Fraction:
+                {
+                    if (ArgumentList.Count != 2)
                     {
-                        if (ArgumentList.Count != 2)
-                        {
-                            throw new ArgumentException(
-                                "Fraction (\\f) switch requires exactly two arguments (numerator, denominator)"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Fraction (\\f) switch requires exactly two arguments (numerator, denominator)"
+                        );
                     }
+                    break;
+                }
 
                 case EqPrimarySwitch.Integral:
+                {
+                    if (ArgumentList.Count != 3)
                     {
-                        if (ArgumentList.Count != 3)
-                        {
-                            throw new ArgumentException(
-                                "Integral (\\i) switch requires exactly three arguments (lower limit, upper limit, integrand)"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Integral (\\i) switch requires exactly three arguments (lower limit, upper limit, integrand)"
+                        );
                     }
+                    break;
+                }
 
                 case EqPrimarySwitch.Radical:
+                {
+                    if (ArgumentList.Count < 1 || ArgumentList.Count > 2)
                     {
-                        if (ArgumentList.Count < 1 || ArgumentList.Count > 2)
-                        {
-                            throw new ArgumentException(
-                                "Radical (\\r) switch requires one or two arguments"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Radical (\\r) switch requires one or two arguments"
+                        );
                     }
+                    break;
+                }
 
                 case EqPrimarySwitch.Box:
+                {
+                    if (ArgumentList.Count != 1)
                     {
-                        if (ArgumentList.Count != 1)
-                        {
-                            throw new ArgumentException(
-                                "Box (\\x) switch requires exactly one argument"
-                            );
-                        }
-                        break;
+                        throw new ArgumentException(
+                            "Box (\\x) switch requires exactly one argument"
+                        );
                     }
+                    break;
+                }
             }
         }
 
