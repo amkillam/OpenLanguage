@@ -61,6 +61,10 @@ endif()
 set(RUNTIMES "${DETECTED_RID}" CACHE STRING "Semicolon-separated list of .NET RIDs for AOT compilation.")
 message(STATUS "Configured to build for RIDs: ${RUNTIMES}")
 
+# Define supported .NET frameworks
+set(SUPPORTED_FRAMEWORKS "net8.0;net9.0" CACHE STRING "Semicolon-separated list of .NET frameworks to target.")
+message(STATUS "Configured to build for frameworks: ${SUPPORTED_FRAMEWORKS}")
+
 # --- Project Variables ---
 set(SOLUTION_FILE "${CMAKE_SOURCE_DIR}/OpenLanguage.sln")
 set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/OpenLanguage")
@@ -128,7 +132,7 @@ add_custom_target(build
     COMMENT "Building solution for specified RIDs"
 )
 
-# Create a separate build target for each RID for concurrent compilation
+# Create a separate build target for each RID and framework combination for concurrent compilation
 string(REPLACE ";" " " RUNTIMES_LIST "${RUNTIMES}")
 foreach (PROJECT ${PROJECT_LIST})
   get_filename_component(PROJECT_NAME ${PROJECT} NAME_WE)
@@ -139,21 +143,27 @@ foreach (PROJECT ${PROJECT_LIST})
 
     # Sanitize the RID to create a valid CMake target name (e.g., win-x64 -> win_x64)
     string(REPLACE "-" "_" RID_SAFE ${RID})
-    set(RID_TARGET_NAME "build_${PROJECT_NAME}_${RID_SAFE}")
 
-    add_custom_target(${RID_TARGET_NAME}
-        COMMAND dotnet publish ${PROJECT}
-                --configuration Release
-                -r ${RID}
-                --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${PROJECT_NAME}/${RID}"
-                --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/${RID}"
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        COMMENT "Building and publishing for RID: ${RID}"
-        VERBATIM
-    )
-    # Make the main 'build' target depend on this one
-    add_dependencies(build ${RID_TARGET_NAME})
-    add_dependencies(${RID_TARGET_NAME} process)
+    foreach(FRAMEWORK ${SUPPORTED_FRAMEWORKS})
+      # Sanitize the framework to create a valid CMake target name (e.g., net8.0 -> net8_0)
+      string(REPLACE "." "_" FRAMEWORK_SAFE ${FRAMEWORK})
+      set(TARGET_NAME "build_${PROJECT_NAME}_${RID_SAFE}_${FRAMEWORK_SAFE}")
+
+      add_custom_target(${TARGET_NAME}
+          COMMAND dotnet publish ${PROJECT}
+                  --configuration Release
+                  -r ${RID}
+                  -f ${FRAMEWORK}
+                  --property:OutputPath="${CMAKE_BINARY_DIR}/publish/${PROJECT_NAME}/${RID}/${FRAMEWORK}"
+                  --artifacts-path "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/${RID}/${FRAMEWORK}"
+          WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+          COMMENT "Building and publishing for RID: ${RID}, Framework: ${FRAMEWORK}"
+          VERBATIM
+      )
+      # Make the main 'build' target depend on this one
+      add_dependencies(build ${TARGET_NAME})
+      add_dependencies(${TARGET_NAME} process)
+    endforeach()
   endforeach()
 endforeach()
 
