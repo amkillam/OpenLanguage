@@ -1,6 +1,29 @@
 cmake_minimum_required(VERSION 3.20)
 project(OpenLanguage)
 
+# --- C++ Preprocessor Command Resolution ---
+
+# Attempt to resolve C preprocessor in priority order: clang++, g++, cpp
+find_program(CLANGPP_EXECUTABLE NAMES clang++)
+find_program(GPP_EXECUTABLE NAMES g++)
+find_program(CPP_EXECUTABLE NAMES cpp)
+
+if(CLANGPP_EXECUTABLE)
+  set(CPP_COMMAND ${CLANGPP_EXECUTABLE})
+  set(CPP_FLAGS -E -P)
+  message(STATUS "Using clang++ as C preprocessor: ${CPP_COMMAND}")
+elseif(GPP_EXECUTABLE)
+  set(CPP_COMMAND ${GPP_EXECUTABLE})
+  set(CPP_FLAGS -E -P)
+  message(STATUS "Using g++ as C preprocessor: ${CPP_COMMAND}")
+elseif(CPP_EXECUTABLE)
+  set(CPP_COMMAND ${CPP_EXECUTABLE})
+  set(CPP_FLAGS -P)
+  message(STATUS "Using cpp as C preprocessor: ${CPP_COMMAND}")
+else()
+  message(FATAL_ERROR "No C preprocessor found. Please install clang++, g++, or cpp.")
+endif()
+
 # --- RID Detection and Configuration ---
 
 # Detect the architecture
@@ -57,7 +80,7 @@ list(FILTER LEX_FILES EXCLUDE REGEX ^${GENERATED_DIR})
 
 # Custom target to process .y and .lex files
 add_custom_target(process ALL
-    COMMENT "Processing .y and .lex files with cpp"
+    COMMENT "Processing .y and .lex files with C preprocessor (${CPP_COMMAND})"
 )
 
 # Create Generated directory
@@ -78,8 +101,8 @@ foreach(YACC_FILE ${YACC_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND cpp -P ${YACC_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
-        COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE}"
+        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${YACC_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
+        COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE} using ${CPP_COMMAND}"
     )
 endforeach()
 
@@ -94,8 +117,8 @@ foreach(LEX_FILE ${LEX_FILES})
   add_custom_command(
         TARGET process PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
-        COMMAND cpp -P ${LEX_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
-        COMMENT "Processing ${LEX_FILE} -> ${OUTPUT_FILE}"
+        COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${LEX_FILE} -o ${OUTPUT_FILE} -Wno-invalid-pp-token
+        COMMENT "Processing ${LEX_FILE} -> ${OUTPUT_FILE} using ${CPP_COMMAND}"
     )
 endforeach()
 

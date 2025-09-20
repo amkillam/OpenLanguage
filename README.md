@@ -8,7 +8,7 @@ OpenLanguage is a C# library providing lexers, parsers, and other processing too
 
 ## Features
 
-### 🔍 WordprocessingML Support
+### WordprocessingML
 
 - **Field Instructions**: Parse Word field codes into structured objects with arguments
 - **Typed Field Instructions**: Factory pattern for converting generic instructions to strongly-typed objects
@@ -16,18 +16,13 @@ OpenLanguage is a C# library providing lexers, parsers, and other processing too
 - **Argument Handling**: Process identifiers, string literals, switches, and nested fields
 - **Field Reconstruction**: Convert parsed instructions back to valid field code strings
 
-### 📊 SpreadsheetML Support
+### SpreadsheetML
 
 - **Formula Parsing**: Parse SpreadsheetML formulas into Abstract Syntax Trees (AST)
 - **Grammar-Based**: Uses GPLEX GNU LEX-style lexer (.lex) and GPPG GNU YACC-style parser for concise and efficient grammar specification and parsing logic
 - **AST Manipulation**: Access and modify parsed formula structures programmatically
 - **Formula Reconstruction**: Convert modified ASTs back to valid Excel formula strings
-- **Reference Support**: Handle A1, R1C1, table references, and structured references
-
-### ⚡ Performance & Quality
-
-- **AOT Compatible**: Full support for Native AOT compilation
-- **Optimized**: Built with performance-first approach
+- **Reference Support**: Handle A1, R1C1, table references, structured, and external references
 
 ## Installation
 
