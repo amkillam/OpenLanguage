@@ -333,4 +333,3 @@ This project is licensed under the GNU General Public License v2.0 - see the [LI
 
 - 📖 [Documentation](./docs/)
 - 🐛 [Issue Tracker](https://github.com/amkillam/OpenLanguage/issues)
-- 💬 [Discussions](https://github.com/amkillam/OpenLanguage/discussions)
