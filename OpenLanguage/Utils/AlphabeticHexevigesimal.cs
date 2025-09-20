@@ -14,7 +14,7 @@ namespace OpenLanguage.Utils
     ///
     /// Usage for parsing:
     ///   string column = "AA";
-    ///   UInt64 parsed = AlphabeticHexevigesimalProvider.Parse<UInt64>(column); // 27
+    ///   UInt64 parsed = AlphabeticHexevigesimalProvider.Parse&lt;UInt64&gt;(column); // 27
     /// </summary>
     public class AlphabeticHexevigesimalProvider : IFormatProvider, ICustomFormatter
     {
