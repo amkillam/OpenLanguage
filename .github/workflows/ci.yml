@@ -85,13 +85,12 @@ jobs:
       - name: Generate code coverage (Linux only)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          dotnet test --configuration Release --collect:"XPlat Code Coverage" -f "net9.0" --results-directory OpenLanguage.Test/coverage
-
+          cmake --build build --target test-collect-coverage
       - name: Upload coverage to Codecov (Linux only)
         if: matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v4
         with:
-          directory: OpenLanguage.Test/coverage
+          directory: OpenLanguage.Test/TestResults/coverage
           fail_ci_if_error: false
           verbose: true
 

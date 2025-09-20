@@ -1,39 +1,45 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Deterministic>true</Deterministic>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <IsPackable>false</IsPackable>
-    <Nullable>enable</Nullable>
-    <Optimize>true</Optimize>
-    <TargetFramework>net9.0</TargetFramework>
-    <Optimize>true</Optimize>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DefineConstants>TRACE_ACTIONS;EXPORT_GPPG</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.3">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="../OpenLanguage/OpenLanguage.csproj" />
-  </ItemGroup>
-  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-    <Copy
-      SourceFiles="@(None)"
-      DestinationFolder="$(OutDir)/data/%(RecursiveDir)"
-      SkipUnchangedFiles="true"
-      OverwriteReadOnlyFiles="true"
-      Condition="'%(Extension)' != ''"
-    />
-  </Target>
-  <ItemGroup>
-    <None Include="data/**/*" CopyToOutputDirectory="PreserveNewest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>data/%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-  </ItemGroup>
+    <PropertyGroup>
+        <Deterministic>true</Deterministic>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <IsPackable>false</IsPackable>
+        <Nullable>enable</Nullable>
+        <Optimize>true</Optimize>
+        <TargetFramework>net9.0</TargetFramework>
+        <Optimize>true</Optimize>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <DefineConstants>TRACE_ACTIONS;EXPORT_GPPG</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+        <PackageReference Include="xunit" Version="2.9.3" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>
+                runtime; build; native; contentfiles; analyzers; buildtransitive
+            </IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../OpenLanguage/OpenLanguage.csproj" />
+    </ItemGroup>
+    <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+        <Copy
+            SourceFiles="@(None)"
+            DestinationFolder="$(OutDir)/data/%(RecursiveDir)"
+            SkipUnchangedFiles="true"
+            OverwriteReadOnlyFiles="true"
+            Condition="'%(Extension)' != ''"
+        />
+    </Target>
+    <ItemGroup>
+        <None Include="data/**/*" CopyToOutputDirectory="PreserveNewest">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>data/%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </None>
+    </ItemGroup>
 </Project>
