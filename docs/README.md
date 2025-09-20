@@ -19,7 +19,7 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 
 ### Development
 
-- [Build System](development/build.md) - CMake build system with .y/.lex processing
+- [Build System](development/build.md) - CMake build system with GPPG GNU YACC-style parser generation and GPLEX GNU Flex-style lexer generation
 - [Grammar Files](development/grammar.md) - Working with YACC and LEX grammar files
 - [Testing](development/test.md) - Unit test documentation
 
@@ -69,6 +69,6 @@ Unit tests are located in OpenLanguage.Test/ and use xUnit framework. Tests cove
 
 ## Support
 
-- 📖 View source code for implementation details
+- 📖 [View source code](https://github.com/amkillam/OpenLanguage) for implementation details
 - 🐛 [Issue Tracker](https://github.com/amkillam/OpenLanguage/issues)
 - 📧 Contact the maintainers through GitHub

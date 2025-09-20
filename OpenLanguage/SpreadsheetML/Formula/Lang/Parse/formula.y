@@ -485,6 +485,7 @@ cell_or_ref_constant:
     cell { $$ = $1; }
   | cell_range { $$ = $1; }
   | name { $$ = $1; }
+  | structured_reference { $$ = $1; }
   | ref_constant { $$ = $1; }
   ;
 

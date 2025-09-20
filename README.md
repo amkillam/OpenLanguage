@@ -256,7 +256,7 @@ OpenLanguage is built with performance as a primary concern:
 - [ ] Greatly expand field instruction parsing and lexing test coverage. Current
       coverage is insufficient for a best-effort proof of efficacy.
 - [ ] Greatly expand mergefield parsing and lexing test coverage. Current
-      coverage is minimal and does not prove even minimal efficacy.
+      coverage is sparse and does not prove even minimal efficacy.
 
 **Misc**
 
