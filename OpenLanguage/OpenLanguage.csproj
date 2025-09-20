@@ -17,7 +17,7 @@
   <ItemGroup Label="OpenLanguage.SpreadsheetML.Formula">
     <YaccFile Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
       <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
-      <Arguments>/gplex /nolines /verbose /report</Arguments>
+      <Arguments>/gplex /nolines /report</Arguments>
     </YaccFile>
     <None Include="Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs">
       <AutoGen>True</AutoGen>

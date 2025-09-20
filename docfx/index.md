@@ -8,8 +8,8 @@ OpenLanguage is a library for working with Office Open XML Domain-specific Langu
 
 ## API Reference
 
-Browse the API documentation for detailed information about classes, methods, and interfaces.
+Browse the [API documentation](api/OpenLanguage.SpreadsheetML.Formula.html) for detailed information about classes, methods, and interfaces.
 
 ## Getting Started
 
-To get started with OpenLanguage, see the [README file](https://github.com/amkillam/OpenLanguage/README.md) in the project root.
+To get started with OpenLanguage, see the [README file](https://github.com/amkillam/OpenLanguage/blob/main/README.md) in the project root.
