@@ -224,10 +224,10 @@ add_custom_target(pack
         --property:OutputPath="${CMAKE_BINARY_DIR}/packages"
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 
-     COMMAND ${CMAKE_COMMAND} -E copy
+    COMMAND ${CMAKE_COMMAND} -E copy
          "${CMAKE_BINARY_DIR}/artifacts/${PROJECT_NAME}/pack/package/release/*.nupkg"
          "${CMAKE_BINARY_DIR}/packages"
-     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 
     COMMAND echo "Ready to publish to NuGet. Run: dotnet nuget push ${CMAKE_BINARY_DIR}/packages/*.nupkg --source https://api.nuget.org/v3/index.json"
     DEPENDS process
