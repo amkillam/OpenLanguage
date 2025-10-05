@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class XeFieldInstruction | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class XeFieldInstruction | OpenLanguage Documentation ">
+      
+      <meta name="description" content="Represents a strongly-typed XE field instruction. Defines the text and page number for an index entry, which is used by an INDEX field. The text of the entry is specified in the field argument. To indicate a subentry, the main entry text and the subentry text shall be separated by a colon (:). Subentries beyond one level are permitted.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction.md&amp;value=---%0Auid%3A%20OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction">
+
+
+
+  <h1 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction" class="text-break">
+Class XeFieldInstruction  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.WordprocessingML.html">WordprocessingML</a>.<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.html">FieldInstruction</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a strongly-typed XE field instruction.
+Defines the text and page number for an index entry, which is used by an INDEX field.
+The text of the entry is specified in the field argument. To indicate a subentry, the main entry text
+and the subentry text shall be separated by a colon (:). Subentries beyond one level are permitted.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class XeFieldInstruction : FieldInstruction</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction.html">FieldInstruction</a></div>
+      <div><span class="xref">XeFieldInstruction</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction.html#OpenLanguage_WordprocessingML_FieldInstruction_Ast_FieldInstruction_Instruction">FieldInstruction.Instruction</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_Precedence">ExpressionNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction__ctor_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.#ctor*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction__ctor_OpenLanguage_WordprocessingML_Ast_StringLiteralNode_OpenLanguage_WordprocessingML_Ast_ExpressionNode_OpenLanguage_WordprocessingML_Ast_BoolFlagNode_OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_BoolFlagNode_OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__System_Collections_Generic_List_OpenLanguage_WordprocessingML_FieldInstruction_XeArgument__System_Collections_Generic_List_OpenLanguage_WordprocessingML_Ast_Node__System_Collections_Generic_List_OpenLanguage_WordprocessingML_Ast_Node__" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.#ctor(OpenLanguage.WordprocessingML.Ast.StringLiteralNode,OpenLanguage.WordprocessingML.Ast.ExpressionNode,OpenLanguage.WordprocessingML.Ast.BoolFlagNode,OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.BoolFlagNode,OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},System.Collections.Generic.List{OpenLanguage.WordprocessingML.FieldInstruction.XeArgument},System.Collections.Generic.List{OpenLanguage.WordprocessingML.Ast.Node},System.Collections.Generic.List{OpenLanguage.WordprocessingML.Ast.Node})">
+  XeFieldInstruction(StringLiteralNode, ExpressionNode, BoolFlagNode?, FlaggedArgument&lt;ExpressionNode&gt;?, BoolFlagNode?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;ExpressionNode&gt;?, List&lt;XeArgument&gt;, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public XeFieldInstruction(StringLiteralNode instruction, ExpressionNode entryText, BoolFlagNode? applyBoldFormatting, FlaggedArgument&lt;ExpressionNode&gt;? entryType, BoolFlagNode? applyItalicFormatting, FlaggedArgument&lt;ExpressionNode&gt;? bookmarkName, FlaggedArgument&lt;ExpressionNode&gt;? crossReferenceText, FlaggedArgument&lt;ExpressionNode&gt;? yomiText, List&lt;XeArgument&gt; order, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instruction</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.StringLiteralNode.html">StringLiteralNode</a></dt>
+    <dd></dd>
+    <dt><code>entryText</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>applyBoldFormatting</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+    <dt><code>entryType</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>applyItalicFormatting</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+    <dt><code>bookmarkName</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>crossReferenceText</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>yomiText</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>order</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.XeArgument.html">XeArgument</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ApplyBoldFormatting_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ApplyBoldFormatting*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ApplyBoldFormatting" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ApplyBoldFormatting">
+  ApplyBoldFormatting
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \b
+Applies bold formatting to the entry's page number. However, if the index style for that entry
+is already bold, this switch removes that formatting for that entry.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BoolFlagNode? ApplyBoldFormatting { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ApplyItalicFormatting_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ApplyItalicFormatting*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ApplyItalicFormatting" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ApplyItalicFormatting">
+  ApplyItalicFormatting
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \i
+Applies italic formatting to the entry's page number. However, if the index style for that entry
+is already italic, this switch removes that formatting for that entry.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BoolFlagNode? ApplyItalicFormatting { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_BookmarkName_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.BookmarkName*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_BookmarkName" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.BookmarkName">
+  BookmarkName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \r field-argument
+Instead of the entry's page number, uses the range of pages marked by the bookmark
+specified by this field argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? BookmarkName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_CrossReferenceText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.CrossReferenceText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_CrossReferenceText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.CrossReferenceText">
+  CrossReferenceText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \t field-argument
+Uses text from this field argument in place of a page number.
+Useful for &quot;See …&quot; or &quot;See also …&quot; entries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? CrossReferenceText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_EntryText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.EntryText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_EntryText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.EntryText">
+  EntryText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The text for the index entry (field-argument). Required.
+To indicate a subentry, separate main entry and subentry text with a colon (:).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExpressionNode EntryText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_EntryType_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.EntryType*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_EntryType" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.EntryType">
+  EntryType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \f field-argument
+Defines an index entry type. If an INDEX field has the same \f switch and field-argument,
+this entry is included in the resulting index; otherwise, it is excluded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? EntryType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_Order_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.Order*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_Order" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.Order">
+  Order
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;XeArgument&gt; Order { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.XeArgument.html">XeArgument</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_YomiText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.YomiText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_YomiText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.YomiText">
+  YomiText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \y field-argument
+Specifies that the text from this field argument defines the yomi (first phonetic character for sorting indexes) for the index entry.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? YomiText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_Children_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.Children*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_Children__1" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.Children``1">
+  Children&lt;O&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;O&gt; Children&lt;O&gt;() where O : Node</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;O&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>O</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ReplaceChild_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ReplaceChild*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ReplaceChild_System_Int32_OpenLanguage_WordprocessingML_Ast_Node_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ReplaceChild(System.Int32,OpenLanguage.WordprocessingML.Ast.Node)">
+  ReplaceChild(int, Node)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Node? ReplaceChild(int index, Node replacement)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>replacement</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ToRawString_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ToRawString*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_XeFieldInstruction_ToRawString" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.XeFieldInstruction.ToRawString">
+  ToRawString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reconstructs the field instruction as a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToRawString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The field instruction string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Xe.cs/#L27" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

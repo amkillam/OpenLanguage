@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class StandardFunctionNode | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class StandardFunctionNode | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_SpreadsheetML_Formula_Ast_StandardFunctionNode.md&amp;value=---%0Auid%3A%20OpenLanguage.SpreadsheetML.Formula.Ast.StandardFunctionNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.StandardFunctionNode">
+
+
+
+  <h1 id="OpenLanguage_SpreadsheetML_Formula_Ast_StandardFunctionNode" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.StandardFunctionNode" class="text-break">
+Class StandardFunctionNode  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.html">SpreadsheetML</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.html">Formula</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.html">Ast</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class StandardFunctionNode : BuiltInFunctionNode</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html">NameNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BuiltInFunctionNode.html">BuiltInFunctionNode</a></div>
+      <div><span class="xref">StandardFunctionNode</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AbsStandardFunctionNode.html">AbsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AccrIntMStandardFunctionNode.html">AccrIntMStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AccrIntStandardFunctionNode.html">AccrIntStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AcosStandardFunctionNode.html">AcosStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AcoshStandardFunctionNode.html">AcoshStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddressStandardFunctionNode.html">AddressStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AmorDegrCStandardFunctionNode.html">AmorDegrCStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AmorLinCStandardFunctionNode.html">AmorLinCStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AndStandardFunctionNode.html">AndStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AreasStandardFunctionNode.html">AreasStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AscStandardFunctionNode.html">AscStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AsinStandardFunctionNode.html">AsinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AsinhStandardFunctionNode.html">AsinhStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AtanStandardFunctionNode.html">AtanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AtanToStandardFunctionNode.html">AtanToStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AtanhStandardFunctionNode.html">AtanhStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AveDevStandardFunctionNode.html">AveDevStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AverageAStandardFunctionNode.html">AverageAStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AverageIfStandardFunctionNode.html">AverageIfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AverageIfsStandardFunctionNode.html">AverageIfsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AverageStandardFunctionNode.html">AverageStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BahtTextStandardFunctionNode.html">BahtTextStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BesseliStandardFunctionNode.html">BesseliStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BesseljStandardFunctionNode.html">BesseljStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BesselkStandardFunctionNode.html">BesselkStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BesselyStandardFunctionNode.html">BesselyStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BetaDistStandardFunctionNode.html">BetaDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BetaInvStandardFunctionNode.html">BetaInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BinToDecStandardFunctionNode.html">BinToDecStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BinToHexStandardFunctionNode.html">BinToHexStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BinToOctStandardFunctionNode.html">BinToOctStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BinomDistStandardFunctionNode.html">BinomDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CeilingStandardFunctionNode.html">CeilingStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CellStandardFunctionNode.html">CellStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CharStandardFunctionNode.html">CharStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChiDistStandardFunctionNode.html">ChiDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChiInvStandardFunctionNode.html">ChiInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChiTestStandardFunctionNode.html">ChiTestStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChooseStandardFunctionNode.html">ChooseStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CleanStandardFunctionNode.html">CleanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CodeStandardFunctionNode.html">CodeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColumnStandardFunctionNode.html">ColumnStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColumnsStandardFunctionNode.html">ColumnsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CombinStandardFunctionNode.html">CombinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ComplexStandardFunctionNode.html">ComplexStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConcatStandardFunctionNode.html">ConcatStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConcatenateStandardFunctionNode.html">ConcatenateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConfidenceStandardFunctionNode.html">ConfidenceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConvertStandardFunctionNode.html">ConvertStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CorrelStandardFunctionNode.html">CorrelStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CosStandardFunctionNode.html">CosStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoshStandardFunctionNode.html">CoshStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CountAStandardFunctionNode.html">CountAStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CountBlankStandardFunctionNode.html">CountBlankStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CountIfStandardFunctionNode.html">CountIfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CountIfsStandardFunctionNode.html">CountIfsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CountStandardFunctionNode.html">CountStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupDayBsStandardFunctionNode.html">CoupDayBsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupDaysNcStandardFunctionNode.html">CoupDaysNcStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupDaysStandardFunctionNode.html">CoupDaysStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupNcdStandardFunctionNode.html">CoupNcdStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupNumStandardFunctionNode.html">CoupNumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CoupPcdStandardFunctionNode.html">CoupPcdStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CovarStandardFunctionNode.html">CovarStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CritBinomStandardFunctionNode.html">CritBinomStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeKpimemberStandardFunctionNode.html">CubeKpimemberStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeMemberStandardFunctionNode.html">CubeMemberStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeMemberpropertyStandardFunctionNode.html">CubeMemberpropertyStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeRankedmemberStandardFunctionNode.html">CubeRankedmemberStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeSetStandardFunctionNode.html">CubeSetStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeSetcountStandardFunctionNode.html">CubeSetcountStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CubeValueStandardFunctionNode.html">CubeValueStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CumIpmtStandardFunctionNode.html">CumIpmtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CumPrIncStandardFunctionNode.html">CumPrIncStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DAverageStandardFunctionNode.html">DAverageStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DBCSStandardFunctionNode.html">DBCSStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DBStandardFunctionNode.html">DBStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DCountAStandardFunctionNode.html">DCountAStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DCountStandardFunctionNode.html">DCountStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DDBStandardFunctionNode.html">DDBStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DGetStandardFunctionNode.html">DGetStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DMaxStandardFunctionNode.html">DMaxStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DMinStandardFunctionNode.html">DMinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DProductStandardFunctionNode.html">DProductStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DStdDevPStandardFunctionNode.html">DStdDevPStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DStdDevStandardFunctionNode.html">DStdDevStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DSumStandardFunctionNode.html">DSumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DVarPStandardFunctionNode.html">DVarPStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DVarStandardFunctionNode.html">DVarStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DateStandardFunctionNode.html">DateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DateStringStandardFunctionNode.html">DateStringStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DateValueStandardFunctionNode.html">DateValueStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DatedIfStandardFunctionNode.html">DatedIfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DayStandardFunctionNode.html">DayStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Days360StandardFunctionNode.html">Days360StandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DecToBinStandardFunctionNode.html">DecToBinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DecToHexStandardFunctionNode.html">DecToHexStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DecToOctStandardFunctionNode.html">DecToOctStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DegreesStandardFunctionNode.html">DegreesStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeltaStandardFunctionNode.html">DeltaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DevSqStandardFunctionNode.html">DevSqStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DiscStandardFunctionNode.html">DiscStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DollarDeStandardFunctionNode.html">DollarDeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DollarFrStandardFunctionNode.html">DollarFrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DollarStandardFunctionNode.html">DollarStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DurationStandardFunctionNode.html">DurationStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EDateStandardFunctionNode.html">EDateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EOMonthStandardFunctionNode.html">EOMonthStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EffectStandardFunctionNode.html">EffectStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErfCStandardFunctionNode.html">ErfCStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErfStandardFunctionNode.html">ErfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErrorTypeStandardFunctionNode.html">ErrorTypeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EvenStandardFunctionNode.html">EvenStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExactStandardFunctionNode.html">ExactStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpStandardFunctionNode.html">ExpStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExponDistStandardFunctionNode.html">ExponDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FDistStandardFunctionNode.html">FDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FInvStandardFunctionNode.html">FInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FTestStandardFunctionNode.html">FTestStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FactDoubleStandardFunctionNode.html">FactDoubleStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FactStandardFunctionNode.html">FactStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FalseStandardFunctionNode.html">FalseStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FindBStandardFunctionNode.html">FindBStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FindStandardFunctionNode.html">FindStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FisherInvStandardFunctionNode.html">FisherInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FisherStandardFunctionNode.html">FisherStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FixedStandardFunctionNode.html">FixedStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FloorStandardFunctionNode.html">FloorStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ForecastStandardFunctionNode.html">ForecastStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FrequencyStandardFunctionNode.html">FrequencyStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FvScheduleStandardFunctionNode.html">FvScheduleStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FvStandardFunctionNode.html">FvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GammaDistStandardFunctionNode.html">GammaDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GammaInvStandardFunctionNode.html">GammaInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GammaLnStandardFunctionNode.html">GammaLnStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GcdStandardFunctionNode.html">GcdStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GeStepStandardFunctionNode.html">GeStepStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GeoMeanStandardFunctionNode.html">GeoMeanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GetPivotDataStandardFunctionNode.html">GetPivotDataStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GrowthStandardFunctionNode.html">GrowthStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HLookupStandardFunctionNode.html">HLookupStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HarMeanStandardFunctionNode.html">HarMeanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HexToBinStandardFunctionNode.html">HexToBinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HexToDecStandardFunctionNode.html">HexToDecStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HexToOctStandardFunctionNode.html">HexToOctStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HourStandardFunctionNode.html">HourStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HypGeomDistStandardFunctionNode.html">HypGeomDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HyperlinkStandardFunctionNode.html">HyperlinkStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IfErrorStandardFunctionNode.html">IfErrorStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IfStandardFunctionNode.html">IfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IfsStandardFunctionNode.html">IfsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImAbsStandardFunctionNode.html">ImAbsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImAginaryStandardFunctionNode.html">ImAginaryStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImArgumentStandardFunctionNode.html">ImArgumentStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImConjugateStandardFunctionNode.html">ImConjugateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImCosStandardFunctionNode.html">ImCosStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImDivStandardFunctionNode.html">ImDivStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImExpStandardFunctionNode.html">ImExpStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImLnStandardFunctionNode.html">ImLnStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImLog10StandardFunctionNode.html">ImLog10StandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImLogToStandardFunctionNode.html">ImLogToStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImPowerStandardFunctionNode.html">ImPowerStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImProductStandardFunctionNode.html">ImProductStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImRealStandardFunctionNode.html">ImRealStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImSinStandardFunctionNode.html">ImSinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImSqrtStandardFunctionNode.html">ImSqrtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImSubStandardFunctionNode.html">ImSubStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ImSumStandardFunctionNode.html">ImSumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IndexStandardFunctionNode.html">IndexStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IndirectStandardFunctionNode.html">IndirectStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InfoStandardFunctionNode.html">InfoStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IntStandardFunctionNode.html">IntStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InterceptStandardFunctionNode.html">InterceptStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IntrateStandardFunctionNode.html">IntrateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IpmtStandardFunctionNode.html">IpmtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IrrStandardFunctionNode.html">IrrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsBlankStandardFunctionNode.html">IsBlankStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsErrStandardFunctionNode.html">IsErrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsErrorStandardFunctionNode.html">IsErrorStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsEvenStandardFunctionNode.html">IsEvenStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsLogicalStandardFunctionNode.html">IsLogicalStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsNaStandardFunctionNode.html">IsNaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsNontextStandardFunctionNode.html">IsNontextStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsNumberStandardFunctionNode.html">IsNumberStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsOddStandardFunctionNode.html">IsOddStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsPmtStandardFunctionNode.html">IsPmtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsRefStandardFunctionNode.html">IsRefStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsTextStandardFunctionNode.html">IsTextStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.IsThaiDigitStandardFunctionNode.html">IsThaiDigitStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.KurtStandardFunctionNode.html">KurtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LargeStandardFunctionNode.html">LargeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LcmStandardFunctionNode.html">LcmStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LeftStandardFunctionNode.html">LeftStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LeftbStandardFunctionNode.html">LeftbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LenStandardFunctionNode.html">LenStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LenbStandardFunctionNode.html">LenbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LinestStandardFunctionNode.html">LinestStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LnStandardFunctionNode.html">LnStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Log10StandardFunctionNode.html">Log10StandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LogInvStandardFunctionNode.html">LogInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LogNormDistStandardFunctionNode.html">LogNormDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LogStandardFunctionNode.html">LogStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LogestStandardFunctionNode.html">LogestStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LookupStandardFunctionNode.html">LookupStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LowerStandardFunctionNode.html">LowerStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MatchStandardFunctionNode.html">MatchStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MaxStandardFunctionNode.html">MaxStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MaxaStandardFunctionNode.html">MaxaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MaxifsStandardFunctionNode.html">MaxifsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MdetermStandardFunctionNode.html">MdetermStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MdurationStandardFunctionNode.html">MdurationStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MedianStandardFunctionNode.html">MedianStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MidStandardFunctionNode.html">MidStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MidbStandardFunctionNode.html">MidbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MinStandardFunctionNode.html">MinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MinaStandardFunctionNode.html">MinaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MinifsStandardFunctionNode.html">MinifsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MinuteStandardFunctionNode.html">MinuteStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MinverseStandardFunctionNode.html">MinverseStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MirrStandardFunctionNode.html">MirrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MmultStandardFunctionNode.html">MmultStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ModStandardFunctionNode.html">ModStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ModeStandardFunctionNode.html">ModeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MonthStandardFunctionNode.html">MonthStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MroundStandardFunctionNode.html">MroundStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MultinomialStandardFunctionNode.html">MultinomialStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NStandardFunctionNode.html">NStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NaStandardFunctionNode.html">NaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NegBinomDistStandardFunctionNode.html">NegBinomDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NetworkDaysStandardFunctionNode.html">NetworkDaysStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NominalStandardFunctionNode.html">NominalStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NormDistStandardFunctionNode.html">NormDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NormInvStandardFunctionNode.html">NormInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NormsDistStandardFunctionNode.html">NormsDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NormsInvStandardFunctionNode.html">NormsInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NotStandardFunctionNode.html">NotStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NowStandardFunctionNode.html">NowStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NperStandardFunctionNode.html">NperStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NpvStandardFunctionNode.html">NpvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NumberStringStandardFunctionNode.html">NumberStringStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OctToBinStandardFunctionNode.html">OctToBinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OctToDecStandardFunctionNode.html">OctToDecStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OctToHexStandardFunctionNode.html">OctToHexStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OddFPriceStandardFunctionNode.html">OddFPriceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OddFYieldStandardFunctionNode.html">OddFYieldStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OddLPriceStandardFunctionNode.html">OddLPriceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OddLYieldStandardFunctionNode.html">OddLYieldStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OddStandardFunctionNode.html">OddStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OffsetStandardFunctionNode.html">OffsetStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OrStandardFunctionNode.html">OrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PearsonStandardFunctionNode.html">PearsonStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PercentRankStandardFunctionNode.html">PercentRankStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PercentileStandardFunctionNode.html">PercentileStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PermutStandardFunctionNode.html">PermutStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PhoneticStandardFunctionNode.html">PhoneticStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PiStandardFunctionNode.html">PiStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PmtStandardFunctionNode.html">PmtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PoissonStandardFunctionNode.html">PoissonStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PowerStandardFunctionNode.html">PowerStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PpmtStandardFunctionNode.html">PpmtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PriceStandardFunctionNode.html">PriceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PricediscStandardFunctionNode.html">PricediscStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PricematStandardFunctionNode.html">PricematStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ProbStandardFunctionNode.html">ProbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ProductStandardFunctionNode.html">ProductStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ProperStandardFunctionNode.html">ProperStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PvStandardFunctionNode.html">PvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.QuartileStandardFunctionNode.html">QuartileStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.QuotientStandardFunctionNode.html">QuotientStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RadiansStandardFunctionNode.html">RadiansStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RandStandardFunctionNode.html">RandStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RandbetweenStandardFunctionNode.html">RandbetweenStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RankStandardFunctionNode.html">RankStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RateStandardFunctionNode.html">RateStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReceivedStandardFunctionNode.html">ReceivedStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReplaceStandardFunctionNode.html">ReplaceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReplacebStandardFunctionNode.html">ReplacebStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReptStandardFunctionNode.html">ReptStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RightBStandardFunctionNode.html">RightBStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RightStandardFunctionNode.html">RightStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RomanStandardFunctionNode.html">RomanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoundBahtDownStandardFunctionNode.html">RoundBahtDownStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoundBahtUpStandardFunctionNode.html">RoundBahtUpStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoundDownStandardFunctionNode.html">RoundDownStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoundStandardFunctionNode.html">RoundStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoundUpStandardFunctionNode.html">RoundUpStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RowStandardFunctionNode.html">RowStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RowsStandardFunctionNode.html">RowsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RsqStandardFunctionNode.html">RsqStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RtdStandardFunctionNode.html">RtdStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SearchStandardFunctionNode.html">SearchStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SearchbStandardFunctionNode.html">SearchbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SecondStandardFunctionNode.html">SecondStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriesStandardFunctionNode.html">SeriesStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriessumStandardFunctionNode.html">SeriessumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SignStandardFunctionNode.html">SignStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SinStandardFunctionNode.html">SinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SinhStandardFunctionNode.html">SinhStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SkewStandardFunctionNode.html">SkewStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SlnStandardFunctionNode.html">SlnStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SlopeStandardFunctionNode.html">SlopeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SmallStandardFunctionNode.html">SmallStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SqrtStandardFunctionNode.html">SqrtStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SqrtpiStandardFunctionNode.html">SqrtpiStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StDevAStandardFunctionNode.html">StDevAStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StDevPStandardFunctionNode.html">StDevPStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StDevPaStandardFunctionNode.html">StDevPaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StDevStandardFunctionNode.html">StDevStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StandardizeStandardFunctionNode.html">StandardizeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SteyxStandardFunctionNode.html">SteyxStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SubstituteStandardFunctionNode.html">SubstituteStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SubtotalStandardFunctionNode.html">SubtotalStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumIfStandardFunctionNode.html">SumIfStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumIfsStandardFunctionNode.html">SumIfsStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumProductStandardFunctionNode.html">SumProductStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumSqStandardFunctionNode.html">SumSqStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumStandardFunctionNode.html">SumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumXMyToStandardFunctionNode.html">SumXMyToStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumXToMyToStandardFunctionNode.html">SumXToMyToStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SumXToPyToStandardFunctionNode.html">SumXToPyToStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SwitchStandardFunctionNode.html">SwitchStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SydStandardFunctionNode.html">SydStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TBillEqStandardFunctionNode.html">TBillEqStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TBillPriceStandardFunctionNode.html">TBillPriceStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TBillYieldStandardFunctionNode.html">TBillYieldStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TDistStandardFunctionNode.html">TDistStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TInvStandardFunctionNode.html">TInvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TStandardFunctionNode.html">TStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TTestStandardFunctionNode.html">TTestStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TanStandardFunctionNode.html">TanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TanhStandardFunctionNode.html">TanhStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TextJoinStandardFunctionNode.html">TextJoinStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TextStandardFunctionNode.html">TextStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiDayOfWeekStandardFunctionNode.html">ThaiDayOfWeekStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiDigitStandardFunctionNode.html">ThaiDigitStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiMonthOfYearStandardFunctionNode.html">ThaiMonthOfYearStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiNumSoundStandardFunctionNode.html">ThaiNumSoundStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiNumStringStandardFunctionNode.html">ThaiNumStringStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiStringLengthStandardFunctionNode.html">ThaiStringLengthStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ThaiYearStandardFunctionNode.html">ThaiYearStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TimeStandardFunctionNode.html">TimeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TimeValueStandardFunctionNode.html">TimeValueStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TodayStandardFunctionNode.html">TodayStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TransposeStandardFunctionNode.html">TransposeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TrendStandardFunctionNode.html">TrendStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TrimMeanStandardFunctionNode.html">TrimMeanStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TrimStandardFunctionNode.html">TrimStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TrueStandardFunctionNode.html">TrueStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TruncStandardFunctionNode.html">TruncStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TypeStandardFunctionNode.html">TypeStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UpperStandardFunctionNode.html">UpperStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UsDollarStandardFunctionNode.html">UsDollarStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VLookupStandardFunctionNode.html">VLookupStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ValueStandardFunctionNode.html">ValueStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VarAStandardFunctionNode.html">VarAStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VarPStandardFunctionNode.html">VarPStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VarPaStandardFunctionNode.html">VarPaStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VarStandardFunctionNode.html">VarStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VdbStandardFunctionNode.html">VdbStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WeekNumStandardFunctionNode.html">WeekNumStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WeekdayStandardFunctionNode.html">WeekdayStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WeibullStandardFunctionNode.html">WeibullStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkdayStandardFunctionNode.html">WorkdayStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.XirrStandardFunctionNode.html">XirrStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.XnpvStandardFunctionNode.html">XnpvStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.YearFracStandardFunctionNode.html">YearFracStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.YearStandardFunctionNode.html">YearStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.YieldDiscStandardFunctionNode.html">YieldDiscStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.YieldMatStandardFunctionNode.html">YieldMatStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.YieldStandardFunctionNode.html">YieldStandardFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ZTestStandardFunctionNode.html">ZTestStandardFunctionNode</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_RawName">NameNode.RawName</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Name">NameNode.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Precedence">NameNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_ToRawString">NameNode.ToRawString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Children__1">NameNode.Children&lt;O&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_ReplaceChild_System_Int32_OpenLanguage_SpreadsheetML_Formula_Ast_Node_">NameNode.ReplaceChild(int, Node)</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_StandardFunctionNode__ctor_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.StandardFunctionNode.#ctor*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_StandardFunctionNode__ctor_OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.StandardFunctionNode.#ctor(OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode,System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node},System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node})">
+  StandardFunctionNode(ExpressionNode, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StandardFunctionNode(ExpressionNode name, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L138" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

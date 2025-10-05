@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AlphabeticHexevigesimalProvider | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AlphabeticHexevigesimalProvider | OpenLanguage Documentation ">
+      
+      <meta name="description" content="Provides formatting services to convert a UInt64 to and from an Excel-style alphabetic column string (e.g., 1 -&amp;gt; &amp;quot;A&amp;quot;, 27 -&amp;gt; &amp;quot;AA&amp;quot;). Usage for formatting: UInt64 value = 27; string formatted = value.ToString(&amp;quot;AH&amp;quot;, new AlphabeticHexevigesimalProvider()); // &amp;quot;AA&amp;quot; Usage for parsing: string column = &amp;quot;AA&amp;quot;; UInt64 parsed = AlphabeticHexevigesimalProvider.Parse&amp;lt;UInt64&amp;gt;(column); // 27">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_Utils_AlphabeticHexevigesimalProvider.md&amp;value=---%0Auid%3A%20OpenLanguage.Utils.AlphabeticHexevigesimalProvider%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider">
+
+
+
+  <h1 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider" class="text-break">
+Class AlphabeticHexevigesimalProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.Utils.html">Utils</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides formatting services to convert a UInt64 to and from an Excel-style
+alphabetic column string (e.g., 1 -&gt; &quot;A&quot;, 27 -&gt; &quot;AA&quot;).</p>
+<p>Usage for formatting:
+UInt64 value = 27;
+string formatted = value.ToString(&quot;AH&quot;, new AlphabeticHexevigesimalProvider()); // &quot;AA&quot;</p>
+<p>Usage for parsing:
+string column = &quot;AA&quot;;
+UInt64 parsed = AlphabeticHexevigesimalProvider.Parse&lt;UInt64&gt;(column); // 27</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AlphabeticHexevigesimalProvider : IFormatProvider, ICustomFormatter</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AlphabeticHexevigesimalProvider</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icustomformatter">ICustomFormatter</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Format_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Format*"></a>
+
+  <h3 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Format_System_String_System_Object_System_IFormatProvider_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Format(System.String,System.Object,System.IFormatProvider)">
+  Format(string?, object?, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the value of a specified object to an equivalent string representation
+using specified format and culture-specific formatting information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Format(string? format, object? arg, IFormatProvider? formatProvider = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>arg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Format_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Format*"></a>
+
+  <h3 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Format__1_System_String___0_System_IFormatProvider_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Format``1(System.String,``0,System.IFormatProvider)">
+  Format&lt;N&gt;(string?, N?, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the value of a specified object to an equivalent string representation
+using specified format and culture-specific formatting information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Format&lt;N&gt;(string? format, N? arg, IFormatProvider? formatProvider = null) where N : INumber&lt;N&gt;, IBinaryNumber&lt;N&gt;, INumberBase&lt;N&gt;, IParsable&lt;N&gt;, IFormattable, IMinMaxValue&lt;N&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>arg</code> <span class="xref">N</span></dt>
+    <dd></dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>N</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_GetFormat_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.GetFormat*"></a>
+
+  <h3 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_GetFormat_System_Type_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.GetFormat(System.Type)">
+  GetFormat(Type?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns an object that provides formatting services for the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? GetFormat(Type? formatType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>formatType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Parse_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Parse*"></a>
+
+  <h3 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_Parse__1_System_String_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.Parse``1(System.String)">
+  Parse&lt;N&gt;(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the Excel-style alphabetic string to its numeric equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static N Parse&lt;N&gt;(string? sCased) where N : INumber&lt;N&gt;, IBinaryNumber&lt;N&gt;, INumberBase&lt;N&gt;, IParsable&lt;N&gt;, IFormattable, IMinMaxValue&lt;N&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sCased</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">N</span></dt>
+    <dd><p>The numeric equivalent of the number contained in s.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>N</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>s is null, empty, whitespace, or contains invalid characters.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.overflowexception">OverflowException</a></dt>
+    <dd><p>s represents a number larger than the specified type can hold.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_TryParse_" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.TryParse*"></a>
+
+  <h3 id="OpenLanguage_Utils_AlphabeticHexevigesimalProvider_TryParse__1_System_String___0__" data-uid="OpenLanguage.Utils.AlphabeticHexevigesimalProvider.TryParse``1(System.String,``0@)">
+  TryParse&lt;N&gt;(string?, out N)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tries to convert the Excel-style alphabetic string to its numeric equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse&lt;N&gt;(string? s, out N result) where N : INumber&lt;N&gt;, IBinaryNumber&lt;N&gt;, INumberBase&lt;N&gt;, IParsable&lt;N&gt;, IFormattable, IMinMaxValue&lt;N&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string containing the alphabetic number to convert.</p>
+</dd>
+    <dt><code>result</code> <span class="xref">N</span></dt>
+    <dd><p>When this method returns, contains the numeric equivalent, if the conversion succeeded.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true if s was converted successfully; otherwise, false.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>N</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.1/OpenLanguage/Utils/AlphabeticHexevigesimal.cs/#L19" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

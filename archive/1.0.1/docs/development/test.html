@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Testing | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Testing | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/test.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="testing">Testing</h1>
+
+<p>OpenLanguage uses a comprehensive testing strategy built on xUnit to ensure reliability, correctness, and performance. This document covers the testing architecture, methodologies, test organization, and development practices.</p>
+<h2 id="overview">Overview</h2>
+<p>The testing framework is designed to validate:</p>
+<ul>
+<li><strong>Parser correctness</strong>: Accurate parsing of SpreadsheetML formulas and WordprocessingML field instructions</li>
+<li><strong>AST integrity</strong>: Proper Abstract Syntax Tree construction and manipulation</li>
+<li><strong>Round-trip fidelity</strong>: Ensuring parsed structures can be reconstructed to original form</li>
+<li><strong>Error handling</strong>: Graceful handling of invalid input and edge cases</li>
+<li><strong>Performance</strong>: Parsing performance with various input sizes and complexities</li>
+</ul>
+<h2 id="test-project-structure">Test Project Structure</h2>
+<pre><code>OpenLanguage.Test/
+├── OpenLanguage.Test.csproj          # Test project configuration
+├── SpreadsheetML/
+│   └── Formula/
+│       └── ParserTests.cs            # SpreadsheetML formula parser tests
+└── WordprocessingML/
+    └── FieldInstruction/
+        ├── FieldInstructionTests.cs  # Core field instruction tests
+        ├── LexerTests.cs             # Field instruction lexer tests
+        └── TypedFieldInstructionTests.cs # Typed instruction factory tests
+</code></pre>
+<h2 id="test-project-configuration">Test Project Configuration</h2>
+<h3 id="openlanguagetestcsproj">OpenLanguage.Test.csproj</h3>
+<p>The test project is configured to work with the main <code>OpenLanguage</code> project and includes settings for testing, code coverage, and data handling.</p>
+<p><strong>Key Configuration Features:</strong></p>
+<ul>
+<li><strong>TargetFrameworks</strong>: <code>net8.0;net9.0</code></li>
+<li><strong>Package References</strong>:
+<ul>
+<li><code>Microsoft.NET.Test.Sdk</code></li>
+<li><code>xunit</code> and <code>xunit.runner.visualstudio</code> for running tests.</li>
+<li><code>coverlet.collector</code> for code coverage data collection.</li>
+</ul>
+</li>
+<li><strong>Project Reference</strong>: Includes a reference to the main <code>OpenLanguage.csproj</code>.</li>
+<li><strong>Compiler Defines</strong>: <code>TRACE_ACTIONS</code> and <code>EXPORT_GPPG</code> are defined, which can be used for conditional compilation during tests.</li>
+</ul>
+<h2 id="testing-framework">Testing Framework</h2>
+<h3 id="xunit-integration">xUnit Integration</h3>
+<p>OpenLanguage uses xUnit as the primary testing framework, providing:</p>
+<ul>
+<li><strong>Theory-based testing</strong>: Data-driven tests with multiple input values</li>
+<li><strong>Fact-based testing</strong>: Single-case unit tests</li>
+<li><strong>Async testing support</strong>: For asynchronous operations</li>
+<li><strong>Parallel test execution</strong>: Improved test performance</li>
+<li><strong>Rich assertion library</strong>: Comprehensive assertion methods</li>
+</ul>
+<h3 id="test-categories">Test Categories</h3>
+<h4 id="unit-tests">Unit Tests</h4>
+<p>Test individual components in isolation:</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+
+[Fact]
+public void Parse_SimpleInstruction_ReturnsCorrectAstNode()
+{
+    // Arrange
+    string instruction = &quot;PAGE&quot;;
+
+    // Act
+    var ast = FieldInstructionParser.Parse(instruction);
+
+    // Assert
+    Assert.IsType&lt;PageFieldInstruction&gt;(ast);
+    var pageField = (PageFieldInstruction)ast;
+    Assert.Equal(&quot;PAGE&quot;, pageField.Instruction.Value);
+}
+</code></pre>
+<h4 id="integration-tests">Integration Tests</h4>
+<p>Test component interactions:</p>
+<pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
+
+[Theory]
+[InlineData(&quot;=SUM(A1:A10)&quot;, typeof(FunctionCallNode))]
+[InlineData(&quot;=A1+B1&quot;, typeof(AddNode))]
+public void Parse_ValidFormula_ReturnsCorrectASTType(string formula, Type expectedType)
+{
+    // Act
+    var result = FormulaParser.Parse(formula);
+
+    // The root is an EqualPrefixedNode, we check its expression
+    var expression = result;
+    if (result is EqualPrefixedNode equalPrefixed)
+    {
+        expression = equalPrefixed.Expression;
+    }
+
+    // Assert
+    Assert.IsType(expectedType, expression);
+}
+</code></pre>
+<h4 id="round-trip-tests">Round-Trip Tests</h4>
+<p>Verify parsing and reconstruction fidelity:</p>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;=SUM(1,2,3)&quot;)]
+[InlineData(&quot;=IF(A1&gt;B1,\&quot;Yes\&quot;,\&quot;No\&quot;)&quot;)]
+[InlineData(&quot;=VLOOKUP(A1,Sheet2!A:B,2,FALSE)&quot;)]
+public void TestParseFunctionCall(string formulaString)
+{
+    // Act
+    Node formula = FormulaParser.Parse(formulaString);
+
+    // Assert - Round-trip test
+    Assert.Equal(formulaString, formula.ToString());
+}
+</code></pre>
+<h2 id="spreadsheetml-formula-testing">SpreadsheetML Formula Testing</h2>
+<h3 id="parser-tests-parsertestscs">Parser Tests (ParserTests.cs)</h3>
+<p>The formula parser tests are organized into several categories:</p>
+<h4 id="literal-and-identifier-tests">Literal and Identifier Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;123&quot;)]                    // Numeric literal
+[InlineData(&quot;\&quot;hello\&quot;&quot;)]              // String literal
+[InlineData(&quot;TRUE&quot;)]                   // Boolean literal
+[InlineData(&quot;#VALUE!&quot;)]                // Error literal
+[InlineData(&quot;A1&quot;)]                     // Cell reference
+[InlineData(&quot;MyNamedRange&quot;)]           // Named range
+public void TestParseLiteralAndIdentifier(string formulaString)
+{
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
+}
+</code></pre>
+<h4 id="binary-operation-tests">Binary Operation Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;1+2*3&quot;)]                  // Precedence test
+[InlineData(&quot;(1+2)*3&quot;)]                // Parentheses test
+[InlineData(&quot;1+2-3&quot;)]                  // Left associativity
+[InlineData(&quot;10/2*5&quot;)]                 // Left associativity
+[InlineData(&quot;2^3^2&quot;)]                  // Right associativity
+[InlineData(&quot;A1:B2 C3:D4&quot;)]            // Range intersection
+[InlineData(&quot;A1:B2,C3:D4&quot;)]            // Range union
+public void TestParseBinaryOperation(string formulaString)
+{
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
+}
+</code></pre>
+<h4 id="unary-operation-tests">Unary Operation Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;-5&quot;)]                     // Negative number
+[InlineData(&quot;+A1&quot;)]                    // Positive reference
+[InlineData(&quot;-A1:B2&quot;)]                 // Negative range
+public void TestParseUnaryOperation(string formulaString)
+{
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
+}
+</code></pre>
+<h4 id="function-call-tests">Function Call Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;SUM(1, 2, 3)&quot;)]
+[InlineData(&quot;IF(A1&gt;B1, \&quot;Yes\&quot;, \&quot;No\&quot;)&quot;)]
+[InlineData(&quot;VLOOKUP(A1, Sheet2!A:B, 2, FALSE)&quot;)]
+[InlineData(&quot;INDIRECT(&quot;A&quot; &amp; ROW())&quot;)]
+public void TestParseFunctionCall(string formulaString)
+{
+    Node formula = FormulaParser.Parse(formulaString);
+    Assert.Equal(formulaString, formula.ToString());
+}
+</code></pre>
+<h3 id="test-data-organization">Test Data Organization</h3>
+<p>Tests use inline data attributes for maintainable test cases:</p>
+<pre><code class="lang-csharp">public static IEnumerable&lt;object[]&gt; ComplexFormulaTestData()
+{
+    yield return new object[] { &quot;=SUM(A1:A10)*COUNT(B:B)&quot;, &quot;Arithmetic with functions&quot; };
+    yield return new object[] { &quot;=IF(AND(A1&gt;0,B1&lt;100),\&quot;Valid\&quot;,\&quot;Invalid\&quot;)&quot;, &quot;Nested logical functions&quot; };
+    yield return new object[] { &quot;=VLOOKUP(A1,Table1,2,0)+VLOOKUP(A1,Table2,3,0)&quot;, &quot;Multiple lookups&quot; };
+}
+
+[Theory]
+[MemberData(nameof(ComplexFormulaTestData))]
+public void TestComplexFormulas(string formula, string description)
+{
+    // Test implementation
+}
+</code></pre>
+<h2 id="wordprocessingml-field-instruction-testing">WordprocessingML Field Instruction Testing</h2>
+<h3 id="parser-tests-fieldinstructiontestscs">Parser Tests (FieldInstructionTests.cs)</h3>
+<p>The <code>FieldInstructionParser</code> is tested to ensure it correctly parses various field codes into their strongly-typed AST node representations.</p>
+<h4 id="validation-tests">Validation Tests</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(null)]
+[InlineData(&quot;&quot;)]
+[InlineData(&quot;    &quot;)]
+public void Parse_InvalidInput_ThrowsArgumentException(string? instruction)
+{
+    Assert.Throws&lt;ArgumentException&gt;(() =&gt; FieldInstructionParser.Parse(instruction!));
+}
+</code></pre>
+<h4 id="argument-handling-tests">Argument Handling Tests</h4>
+<pre><code class="lang-csharp">[Fact]
+public void Parse_MergeFieldWithSwitches_SetsProperties()
+{
+    // Arrange
+    string instruction = @&quot;MERGEFIELD FirstName \* Upper&quot;;
+
+    // Act
+    var ast = FieldInstructionParser.Parse(instruction);
+
+    // Assert
+    var mergeField = Assert.IsType&lt;MergeFieldFieldInstruction&gt;(ast);
+    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ToRawString());
+    Assert.NotNull(mergeField.GeneralFormat);
+    Assert.Equal(&quot;Upper&quot;, mergeField.GeneralFormat.Argument.ToRawString());
+}
+</code></pre>
+<h3 id="lexer-tests-lexertestscs">Lexer Tests (LexerTests.cs)</h3>
+<p>Test the field instruction lexical analyzer:</p>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;PAGE&quot;, TokenType.Instruction)]
+[InlineData(&quot;\* MERGEFORMAT&quot;, TokenType.Switch)]
+[InlineData(&quot;\&quot;Hello World\&quot;&quot;, TokenType.StringLiteral)]
+[InlineData(&quot;123&quot;, TokenType.Number)]
+public void Tokenize_ValidInput_ReturnsCorrectTokens(string input, TokenType expectedType)
+{
+    // Arrange
+    var lexer = new FieldInstructionLexer();
+
+    // Act
+    var tokens = lexer.Tokenize(input);
+
+    // Assert
+    Assert.Single(tokens);
+    Assert.Equal(expectedType, tokens[0].Type);
+}
+</code></pre>
+<h3 id="ast-node-property-tests">AST Node Property Tests</h3>
+<p>Tests verify that the correct properties are set on the strongly-typed AST nodes.</p>
+<pre><code class="lang-csharp">[Fact]
+public void Parse_MergeFieldInstruction_ReturnsTypedInstanceWithCorrectProperties()
+{
+    // Arrange
+    var instruction = FieldInstructionParser.Parse(&quot;MERGEFIELD FirstName&quot;);
+
+    // Act
+    var mergeField = Assert.IsType&lt;MergeFieldFieldInstruction&gt;(instruction);
+
+    // Assert
+    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ToRawString());
+}
+</code></pre>
+<h2 id="test-execution">Test Execution</h2>
+<h3 id="running-tests">Running Tests</h3>
+<h4 id="command-line">Command Line</h4>
+<pre><code class="lang-bash"># Run all tests
+dotnet test
+
+# Run tests with detailed output
+dotnet test --verbosity normal
+
+# Run tests with code coverage
+dotnet test --collect:&quot;XPlat Code Coverage&quot;
+
+# Run specific test project
+dotnet test OpenLanguage.Test/
+
+# Run specific test class
+dotnet test --filter &quot;ClassName=ParserTests&quot;
+
+# Run specific test method
+dotnet test --filter &quot;MethodName=TestParseLiteralAndIdentifier&quot;
+</code></pre>
+<h4 id="cmake-integration">CMake Integration</h4>
+<pre><code class="lang-bash"># Run tests through CMake build system
+cmake --build build --target test
+</code></pre>
+<p>This executes the <code>test</code> target defined in <code>CMakeLists.txt</code>, which runs:
+<code>dotnet test OpenLanguage.Test/OpenLanguage.Test.csproj --configuration=&quot;Release&quot; --framework=&quot;net9.0&quot;</code></p>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<p>The testing strategy integrates with CI/CD pipelines. The <code>CMakeLists.txt</code> file provides a <code>test</code> target that can be used in CI.</p>
+<pre><code class="lang-yaml"># Example GitHub Actions workflow
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: &quot;9.0.x&quot;
+
+      - name: Configure CMake
+        run: cmake -B build
+
+      - name: Run CI test target
+        run: cmake --build build --target test-ci
+</code></pre>
+<h2 id="test-development-practices">Test Development Practices</h2>
+<h3 id="writing-effective-tests">Writing Effective Tests</h3>
+<h4 id="test-naming-convention">Test Naming Convention</h4>
+<pre><code class="lang-csharp">// Pattern: MethodName_StateUnderTest_ExpectedBehavior
+[Fact]
+public void Parse_ValidFormula_ReturnsFormulaWithCorrectAST()
+
+[Fact]
+public void Constructor_NullInstruction_ThrowsArgumentException()
+
+[Theory]
+[InlineData(&quot;SUM(A1:A10)&quot;)]
+public void ToString_ParsedFormula_ReturnsOriginalString(string input)
+</code></pre>
+<h4 id="arrange-act-assert-pattern">Arrange-Act-Assert Pattern</h4>
+<pre><code class="lang-csharp">[Fact]
+public void Parse_SimpleAddition_CreatesCorrectAST()
+{
+    // Arrange
+    string formula = &quot;A1+B1&quot;;
+
+    // Act
+    var result = FormulaParser.Parse(formula);
+
+    // Assert
+    Assert.IsType&lt;BinaryOperatorNode&gt;(result);
+    var binOp = (BinaryOperatorNode)result;
+    Assert.Equal(&quot;+&quot;, binOp.Operator);
+}
+</code></pre>
+<h4 id="theory-based-testing">Theory-Based Testing</h4>
+<p>Use theories for testing multiple similar cases:</p>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;SUM&quot;, true)]
+[InlineData(&quot;AVERAGE&quot;, true)]
+[InlineData(&quot;UNKNOWN&quot;, false)]
+public void IsKnownFunction_VariousFunctions_ReturnsExpected(string functionName, bool expected)
+{
+    // Act
+    bool result = FunctionRegistry.IsKnownFunction(functionName);
+
+    // Assert
+    Assert.Equal(expected, result);
+}
+</code></pre>
+<h3 id="test-data-management">Test Data Management</h3>
+<h4 id="complex-test-cases">Complex Test Cases</h4>
+<pre><code class="lang-csharp">public static IEnumerable&lt;object[]&gt; FormulaTestCases()
+{
+    // Basic arithmetic
+    yield return new object[] { &quot;1+2&quot;, typeof(BinaryOperatorNode) };
+    yield return new object[] { &quot;A1*B1&quot;, typeof(BinaryOperatorNode) };
+
+    // Function calls
+    yield return new object[] { &quot;SUM(A1:A10)&quot;, typeof(FunctionCallNode) };
+    yield return new object[] { &quot;IF(A1&gt;0,&quot;Positive&quot;,&quot;Non-positive&quot;)&quot;, typeof(FunctionCallNode) };
+
+    // Complex nested expressions
+    yield return new object[] { &quot;SUM(A1:A10)+AVERAGE(B1:B10)*2&quot;, typeof(BinaryOperatorNode) };
+}
+
+[Theory]
+[MemberData(nameof(FormulaTestCases))]
+public void Parse_VariousFormulas_ReturnsCorrectASTType(string formula, Type expectedType)
+{
+    var result = FormulaParser.Parse(formula);
+    Assert.IsType(expectedType, result);
+}
+</code></pre>
+<h4 id="external-test-data">External Test Data</h4>
+<p>For large test datasets, consider external files:</p>
+<pre><code class="lang-csharp">[Theory]
+[JsonFileData(&quot;TestData/large-formula-set.json&quot;)]
+public void Parse_LargeFormulaSet_AllParseSuccessfully(string formula)
+{
+    var exception = Record.Exception(() =&gt; FormulaParser.Parse(formula));
+    Assert.Null(exception);
+}
+</code></pre>
+<h3 id="error-testing">Error Testing</h3>
+<h4 id="exception-testing">Exception Testing</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;&quot;)]
+[InlineData(&quot;   &quot;)]
+[InlineData(null)]
+public void Parse_InvalidInput_ThrowsArgumentException(string input)
+{
+    Assert.Throws&lt;ArgumentException&gt;(() =&gt; FormulaParser.Parse(input));
+}
+</code></pre>
+<h4 id="error-recovery-testing">Error Recovery Testing</h4>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(&quot;=SUM(A1:A10&quot;)] // Missing closing parenthesis
+[InlineData(&quot;=A1++B1&quot;)]     // Invalid operator sequence
+public void TryParse_InvalidFormula_ReturnsNull(string formula)
+{
+    // Act
+    var result = FormulaParser.TryParse(formula);
+
+    // Assert
+    Assert.Null(result);
+}
+</code></pre>
+<h2 id="performance-testing">Performance Testing</h2>
+<h3 id="benchmark-tests">Benchmark Tests</h3>
+<pre><code class="lang-csharp">[Theory]
+[InlineData(10)]
+[InlineData(100)]
+[InlineData(1000)]
+public void Parse_RepeatedCalls_PerformanceWithinLimits(int iterations)
+{
+    // Arrange
+    string formula = &quot;SUM(A1:A100)+AVERAGE(B1:B100)*COUNT(C1:C100)&quot;;
+    var stopwatch = Stopwatch.StartNew();
+
+    // Act
+    for (int i = 0; i &lt; iterations; i++)
+    {
+        FormulaParser.Parse(formula);
+    }
+    stopwatch.Stop();
+
+    // Assert
+    var averageTime = stopwatch.ElapsedMilliseconds / (double)iterations;
+    Assert.True(averageTime &lt; 10, $&quot;Average parse time {averageTime}ms exceeds limit&quot;);
+}
+</code></pre>
+<h3 id="memory-testing">Memory Testing</h3>
+<pre><code class="lang-csharp">[Fact]
+public void Parse_LargeFormula_MemoryUsageReasonable()
+{
+    // Arrange
+    var largeFormula = GenerateLargeFormula(1000); // Generate complex formula
+    var initialMemory = GC.GetTotalMemory(true);
+
+    // Act
+    var result = FormulaParser.Parse(largeFormula);
+    var finalMemory = GC.GetTotalMemory(false);
+
+    // Assert
+    var memoryIncrease = finalMemory - initialMemory;
+    Assert.True(memoryIncrease &lt; 1_000_000, $&quot;Memory increase {memoryIncrease} bytes exceeds limit&quot;);
+}
+</code></pre>
+<h2 id="test-maintenance">Test Maintenance</h2>
+<h3 id="refactoring-tests">Refactoring Tests</h3>
+<p>When refactoring production code, update tests accordingly:</p>
+<ol>
+<li><strong>Update test names</strong> to reflect new behavior</li>
+<li><strong>Modify assertions</strong> for changed return types or values</li>
+<li><strong>Add new test cases</strong> for new functionality</li>
+<li><strong>Remove obsolete tests</strong> for removed functionality</li>
+</ol>
+<h3 id="test-documentation">Test Documentation</h3>
+<p>Document complex test scenarios:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Tests that Excel-style structured references are parsed correctly.
+/// This includes table references like Table1[Column1] and special
+/// item specifiers like [#Headers], [#Data], [#Totals].
+/// &lt;/summary&gt;
+[Theory]
+[InlineData(&quot;Table1[Column1]&quot;)]
+[InlineData(&quot;Table1[[#Headers],[Column1]]&quot;)]
+[InlineData(&quot;Table1[#Data]&quot;)]
+public void Parse_StructuredReferences_CreatesCorrectAST(string formula)
+{
+    // Test implementation
+}
+</code></pre>
+<h2 id="debugging-tests">Debugging Tests</h2>
+<h3 id="test-debugging-strategies">Test Debugging Strategies</h3>
+<ol>
+<li><strong>Use descriptive test names</strong> that clearly indicate what's being tested.</li>
+<li><strong>Add intermediate assertions</strong> to isolate failure points.</li>
+<li><strong>Use debugger breakpoints</strong> in both test and production code.</li>
+<li><strong>Add logging</strong> for complex test scenarios.</li>
+</ol>
+<pre><code class="lang-csharp">[Fact]
+public void Parse_ComplexFormula_DebugExample()
+{
+    // Arrange
+    string formula = &quot;=SUM(A1:A10)+AVERAGE(B1:B10)&quot;;
+
+    // Act
+    var result = FormulaParser.Parse(formula);
+
+    // Debug assertions
+    Assert.NotNull(result);
+    var root = Assert.IsType&lt;EqualPrefixedNode&gt;(result);
+    var addNode = Assert.IsType&lt;AddNode&gt;(root.Expression);
+
+    // Main assertion
+    Assert.Equal(&quot;+&quot;, addNode.Operator.ToRawString());
+
+    // Verify operands
+    Assert.IsType&lt;FunctionCallNode&gt;(addNode.Left);
+    Assert.IsType&lt;FunctionCallNode&gt;(addNode.Right);
+}
+</code></pre>
+<h3 id="test-isolation">Test Isolation</h3>
+<p>Tests are designed to be independent. xUnit creates a new instance of the test class for each test method, ensuring isolation.</p>
+<h2 id="integration-with-development-workflow">Integration with Development Workflow</h2>
+<h3 id="pre-commit-testing">Pre-commit Testing</h3>
+<p>The git pre-commit hook (configured via <code>.husky/pre-commit</code>) runs tests before allowing commits to ensure code quality.</p>
+<h3 id="test-driven-development">Test-Driven Development</h3>
+<ol>
+<li><strong>Write failing test</strong> for new functionality</li>
+<li><strong>Implement minimal code</strong> to make test pass</li>
+<li><strong>Refactor</strong> while keeping tests green</li>
+<li><strong>Add more test cases</strong> to cover edge cases</li>
+</ol>
+<h3 id="code-coverage">Code Coverage</h3>
+<p>Monitor test coverage to ensure comprehensive testing:</p>
+<pre><code class="lang-bash"># Generate coverage report
+dotnet test --collect:&quot;XPlat Code Coverage&quot;
+
+# View coverage report
+dotnet tool install -g dotnet-reportgenerator-globaltool
+reportgenerator -reports:&quot;**/coverage.cobertura.xml&quot; -targetdir:&quot;coverage-report&quot;
+</code></pre>
+<h2 id="best-practices-summary">Best Practices Summary</h2>
+<ol>
+<li><strong>Write tests first</strong> or alongside implementation</li>
+<li><strong>Use descriptive test names</strong> that explain the scenario</li>
+<li><strong>Follow AAA pattern</strong> (Arrange-Act-Assert)</li>
+<li><strong>Test edge cases</strong> and error conditions</li>
+<li><strong>Keep tests simple</strong> and focused on single behaviors</li>
+<li><strong>Use theories</strong> for testing multiple similar cases</li>
+<li><strong>Mock dependencies</strong> appropriately</li>
+<li><strong>Maintain test performance</strong> - tests should run quickly</li>
+<li><strong>Update tests</strong> when refactoring production code</li>
+<li><strong>Document complex test scenarios</strong></li>
+</ol>
+<p>This comprehensive testing strategy ensures OpenLanguage maintains high quality, reliability, and performance while supporting confident refactoring and feature development.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/development/test.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

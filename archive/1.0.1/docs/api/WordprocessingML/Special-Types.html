@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Special Types and Enums | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Special Types and Enums | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/Special-Types.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="special-types-and-enums">Special Types and Enums</h1>
+
+<p>The <code>OpenLanguage.WordprocessingML</code> namespaces include several specialized types and enumerations to provide type-safety and clarity when working with field instructions.</p>
+<h2 id="language-identifiers">Language Identifiers</h2>
+<p>The <code>LanguageIdentifier</code> enum provides a comprehensive list of language codes based on Microsoft Windows LCID values, used for localization in fields like <code>ADDRESSBLOCK</code> and <code>DATE</code>.</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// Using predefined language identifiers
+LanguageIdentifier english = LanguageIdentifier.EnglishUS;
+LanguageIdentifier french = LanguageIdentifier.FrenchFrance;
+
+Console.WriteLine($&quot;English US LCID: {(int)english}&quot;); // 1033
+</code></pre>
+<h3 id="languageidentifierextensions">LanguageIdentifierExtensions</h3>
+<p>The <code>LanguageIdentifierExtensions</code> static class provides helper methods for conversion.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+
+// Get LCID from enum
+int lcid = LanguageIdentifier.FrenchCanada.ToLcid(); // 3084
+
+// Get enum from LCID
+LanguageIdentifier lang = LanguageIdentifierExtensions.FromLcid(1033); // EnglishUS
+
+// Convert to and from IETF language tags
+string tag = LanguageIdentifier.GermanGermany.ToTag(); // &quot;de-DE&quot;
+LanguageIdentifier? langFromTag = LanguageIdentifierExtensions.TryFromTag(&quot;en-GB&quot;); // EnglishUK
+</code></pre>
+<h3 id="integration-with-field-instructions">Integration with Field Instructions</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
+using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+using System.Collections.Generic;
+
+// Create a localized ADDRESSBLOCK field
+var langIdArg = new FlaggedArgument&lt;ExpressionNode&gt;(
+    new FlagNode(@&quot;\l&quot;),
+    new NumericLiteralNode&lt;int&gt;(((int)LanguageIdentifier.FrenchFrance).ToString(), (int)LanguageIdentifier.FrenchFrance, &quot;D&quot;)
+);
+
+var addressBlock = new AddressBlockFieldInstruction(
+    instruction: new StringLiteralNode(&quot;ADDRESSBLOCK&quot;),
+    countryRegionInclusionSetting: null,
+    formatByRecipientCountry: null,
+    excludedCountriesRegions: null,
+    formatTemplate: null,
+    languageId: langIdArg,
+    order: new List&lt;AddressBlockArgument&gt; { AddressBlockArgument.LanguageId }
+);
+
+Console.WriteLine(addressBlock.ToString()); // ADDRESSBLOCK \l 1036
+</code></pre>
+<h2 id="programmatic-identifiers-progid">Programmatic Identifiers (ProgID)</h2>
+<p>The <code>ProgrammaticIdentifier</code> class is used in fields like <code>EMBED</code> and <code>LINK</code> to specify OLE objects. It is located in the <code>OpenLanguage.WordprocessingML.ProgrammaticIdentifier</code> namespace.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.ProgrammaticIdentifier;
+
+// Create a ProgID
+var progId = new ProgrammaticIdentifier(
+    Application.Excel,
+    Object.Sheet,
+    12
+);
+
+Console.WriteLine(progId.ToString()); // &quot;Excel.Sheet.12&quot;
+
+// Parse a ProgID string
+var progIdParser = new ProgrammaticIdentifier(Application.Word, Object.Document);
+var parsedProgId = progIdParser.TryParse(&quot;Word.Document.8&quot;);
+if (parsedProgId != null)
+{
+    Console.WriteLine($&quot;Application: {parsedProgId.Application}&quot;);
+    Console.WriteLine($&quot;Object: {parsedProgId.Object}&quot;);
+    Console.WriteLine($&quot;Version: {parsedProgId.Version}&quot;);
+}
+</code></pre>
+<h2 id="comparison-operators">Comparison Operators</h2>
+<p>The <code>ComparisonOperator</code> enum provides a type-safe way to work with comparison operators in fields like <code>IF</code> and <code>COMPARE</code>. It is located in the <code>OpenLanguage.WordprocessingML.Operators</code> namespace.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Operators;
+
+// Parse from string
+var op = ComparisonOperatorExtensions.ParseOperator(&quot;&lt;=&quot;);
+Console.WriteLine(op); // LessThanOrEqual
+
+// Convert to string
+string opString = ComparisonOperatorExtensions.OperatorToString(ComparisonOperator.NotEqual);
+Console.WriteLine(opString); // &lt;&gt;
+</code></pre>
+<h2 id="field-specific-enums">Field-Specific Enums</h2>
+<p>Many field instruction AST nodes have their own enums for arguments and switches, providing clarity and type safety.</p>
+<h3 id="addressblock-field"><code>ADDRESSBLOCK</code> Field</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Use CountryRegionInclusion enum
+var inclusion = CountryRegionInclusion.IncludeIfDifferent;
+Console.WriteLine($&quot;Inclusion setting: {(int)inclusion}&quot;); // 2
+</code></pre>
+<h3 id="database-field"><code>DATABASE</code> Field</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+
+// Combine attributes with bitwise flags
+var attributes = DatabaseTableAttributes.Borders |
+                 DatabaseTableAttributes.HeadingRows |
+                 DatabaseTableAttributes.AutoFit;
+
+Console.WriteLine($&quot;Attribute value: {(int)attributes}&quot;);
+
+// Use a predefined table format
+var format = DatabaseTableFormat.Professional;
+Console.WriteLine($&quot;Table format: {(int)format}&quot;);
+</code></pre>
+<h3 id="eq-equation-field"><code>EQ</code> (Equation) Field</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+
+// Use enums for equation alignment and symbols
+var alignment = EqArrayAlignment.Center;
+var symbol = EqIntegralSymbol.Summation;
+
+Console.WriteLine($&quot;Alignment: {alignment}&quot;);
+Console.WriteLine($&quot;Symbol: {symbol}&quot;);
+</code></pre>
+<p>These specialized types ensure that you are working with valid values when constructing or manipulating field instruction ASTs, reducing errors and improving code readability.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/Special-Types.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

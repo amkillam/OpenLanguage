@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>OpenLanguage | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="OpenLanguage | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="openlanguage">OpenLanguage</h1>
+
+<p>Welcome to the documentation for OpenLanguage, a C# library for parsing Microsoft Office document languages.</p>
+<h2 id="overview">Overview</h2>
+<p>OpenLanguage provides robust, grammar-based parsers for:</p>
+<ul>
+<li><strong>SpreadsheetML Formulas</strong>: Full support for Excel formula syntax, including functions, operators, and all reference types.</li>
+<li><strong>WordprocessingML</strong>:
+<ul>
+<li><strong>Field Instructions</strong>: Support for parsing all field instructions - both standard ECMA variations and those specified in the ISO docs for legacy compatibility - into a strongly-typed Abstract Syntax Tree (AST).</li>
+<li><strong>Expressions</strong>: A parser for expressions used commonly in WordprocessingML values (e.g., conditional formatting, content controls, field instructions).</li>
+<li><strong>Merge Fields</strong>: Parsers for <code>MERGEFIELD</code> placeholders and templates.</li>
+</ul>
+</li>
+</ul>
+<p>The library's parsers and lexers are built using GPLEX and GPPG, allowing concise, declarative grammar definitions that are easy to extend and maintain.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Strongly-Typed ASTs</strong>: Convert complex language strings into easy-to-navigate C# object models.</li>
+<li><strong>Round-Trip Fidelity</strong>: Reconstruct the original string from the parsed AST, preserving all components including whitespace.</li>
+<li><strong>Extensible Grammar</strong>: The yacc/lex-based grammar is modular and easy to extend.</li>
+<li><strong>High Performance</strong>: Designed with performance in mind, including support for Native AOT.</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>To get started with OpenLanguage, install the package from NuGet and explore the examples.</p>
+<pre><code class="lang-bash">dotnet add package OpenLanguage
+</code></pre>
+<ul>
+<li><strong><a href="examples/formula.md">Formula Parsing Examples</a></strong></li>
+<li><strong><a href="examples/field-instruction.md">Field Instruction Examples</a></strong></li>
+</ul>
+<h2 id="api-reference">API Reference</h2>
+<p>Browse the <a href="api/OpenLanguage.html">API documentation</a> for detailed information about classes, methods, and interfaces.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
