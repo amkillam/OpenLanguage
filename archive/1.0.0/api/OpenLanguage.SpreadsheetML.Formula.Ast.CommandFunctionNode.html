@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CommandFunctionNode | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CommandFunctionNode | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode.md&amp;value=---%0Auid%3A%20OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode">
+
+
+
+  <h1 id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode" class="text-break">
+Class CommandFunctionNode  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.html">SpreadsheetML</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.html">Formula</a>.<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.html">Ast</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CommandFunctionNode : BuiltInFunctionNode</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html">NameNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BuiltInFunctionNode.html">BuiltInFunctionNode</a></div>
+      <div><span class="xref">CommandFunctionNode</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.A1R1C1CommandFunctionNode.html">A1R1C1CommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActivateCommandFunctionNode.html">ActivateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActivateNextCommandFunctionNode.html">ActivateNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActivateNotesCommandFunctionNode.html">ActivateNotesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActivatePrevCommandFunctionNode.html">ActivatePrevCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ActiveCellFontCommandFunctionNode.html">ActiveCellFontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddArrowCommandFunctionNode.html">AddArrowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddChartAutoFormatCommandFunctionNode.html">AddChartAutoFormatCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddListItemCommandFunctionNode.html">AddListItemCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddOverlayCommandFunctionNode.html">AddOverlayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddPrintAreaCommandFunctionNode.html">AddPrintAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddToolCommandFunctionNode.html">AddToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AddinManagerCommandFunctionNode.html">AddinManagerCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AlertCommandFunctionNode.html">AlertCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AlignmentCommandFunctionNode.html">AlignmentCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppActivateCommandFunctionNode.html">AppActivateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppActivateMicrosoftCommandFunctionNode.html">AppActivateMicrosoftCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppMaximizeCommandFunctionNode.html">AppMaximizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppMinimizeCommandFunctionNode.html">AppMinimizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppMoveCommandFunctionNode.html">AppMoveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppRestoreCommandFunctionNode.html">AppRestoreCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AppSizeCommandFunctionNode.html">AppSizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ApplyNamesCommandFunctionNode.html">ApplyNamesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ApplyStyleCommandFunctionNode.html">ApplyStyleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ArrangeAllCommandFunctionNode.html">ArrangeAllCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AssignToObjectCommandFunctionNode.html">AssignToObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AssignToToolCommandFunctionNode.html">AssignToToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AttachTextCommandFunctionNode.html">AttachTextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AttachToolbarsCommandFunctionNode.html">AttachToolbarsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AttributesCommandFunctionNode.html">AttributesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AutoOutlineCommandFunctionNode.html">AutoOutlineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AutocorrectCommandFunctionNode.html">AutocorrectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.AxesCommandFunctionNode.html">AxesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BeepCommandFunctionNode.html">BeepCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BorderCommandFunctionNode.html">BorderCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.BringToFrontCommandFunctionNode.html">BringToFrontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CalculateDocumentCommandFunctionNode.html">CalculateDocumentCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CalculateNowCommandFunctionNode.html">CalculateNowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CalculationCommandFunctionNode.html">CalculationCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CancelCopyCommandFunctionNode.html">CancelCopyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CellProtectionCommandFunctionNode.html">CellProtectionCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChangeLinkCommandFunctionNode.html">ChangeLinkCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChartAddDataCommandFunctionNode.html">ChartAddDataCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChartTrendCommandFunctionNode.html">ChartTrendCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ChartWizardCommandFunctionNode.html">ChartWizardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CheckboxPropertiesCommandFunctionNode.html">CheckboxPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ClearCommandFunctionNode.html">ClearCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ClearOutlineCommandFunctionNode.html">ClearOutlineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ClearPrintAreaCommandFunctionNode.html">ClearPrintAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ClearRoutingSlipCommandFunctionNode.html">ClearRoutingSlipCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CloseAllCommandFunctionNode.html">CloseAllCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CloseCommandFunctionNode.html">CloseCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColorPaletteCommandFunctionNode.html">ColorPaletteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ColumnWidthCommandFunctionNode.html">ColumnWidthCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CombinationCommandFunctionNode.html">CombinationCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConsolidateCommandFunctionNode.html">ConsolidateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ConstrainNumericCommandFunctionNode.html">ConstrainNumericCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CopyChartCommandFunctionNode.html">CopyChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CopyCommandFunctionNode.html">CopyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CopyPictureCommandFunctionNode.html">CopyPictureCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CopyToolCommandFunctionNode.html">CopyToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CreateNamesCommandFunctionNode.html">CreateNamesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CreatePublisherCommandFunctionNode.html">CreatePublisherCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CustomizeToolbarCommandFunctionNode.html">CustomizeToolbarCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.CutCommandFunctionNode.html">CutCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataDeleteCommandFunctionNode.html">DataDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataFindCommandFunctionNode.html">DataFindCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataFindNextCommandFunctionNode.html">DataFindNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataFindPrevCommandFunctionNode.html">DataFindPrevCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataFormCommandFunctionNode.html">DataFormCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataLabelCommandFunctionNode.html">DataLabelCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DataSeriesCommandFunctionNode.html">DataSeriesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DefineNameCommandFunctionNode.html">DefineNameCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DefineStyleCommandFunctionNode.html">DefineStyleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteArrowCommandFunctionNode.html">DeleteArrowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteChartAutoFormatCommandFunctionNode.html">DeleteChartAutoFormatCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteFormatCommandFunctionNode.html">DeleteFormatCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteNameCommandFunctionNode.html">DeleteNameCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteNoteCommandFunctionNode.html">DeleteNoteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteOverlayCommandFunctionNode.html">DeleteOverlayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteStyleCommandFunctionNode.html">DeleteStyleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DeleteToolCommandFunctionNode.html">DeleteToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DemoteCommandFunctionNode.html">DemoteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DisableInputCommandFunctionNode.html">DisableInputCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DisplayCommandFunctionNode.html">DisplayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.DuplicateCommandFunctionNode.html">DuplicateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditColorCommandFunctionNode.html">EditColorCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditDeleteCommandFunctionNode.html">EditDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditObjectCommandFunctionNode.html">EditObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditRepeatCommandFunctionNode.html">EditRepeatCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditSeriesCommandFunctionNode.html">EditSeriesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditToolCommandFunctionNode.html">EditToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditboxPropertiesCommandFunctionNode.html">EditboxPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EditionOptionsCommandFunctionNode.html">EditionOptionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EnableObjectCommandFunctionNode.html">EnableObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EnableTipwizardCommandFunctionNode.html">EnableTipwizardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.EnterDataCommandFunctionNode.html">EnterDataCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErrorbarXCommandFunctionNode.html">ErrorbarXCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ErrorbarYCommandFunctionNode.html">ErrorbarYCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExtendPolygonCommandFunctionNode.html">ExtendPolygonCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExtractCommandFunctionNode.html">ExtractCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FileCloseCommandFunctionNode.html">FileCloseCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FileDeleteCommandFunctionNode.html">FileDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillAutoCommandFunctionNode.html">FillAutoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillDownCommandFunctionNode.html">FillDownCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillGroupCommandFunctionNode.html">FillGroupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillLeftCommandFunctionNode.html">FillLeftCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillRightCommandFunctionNode.html">FillRightCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FillUpCommandFunctionNode.html">FillUpCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FilterAdvancedCommandFunctionNode.html">FilterAdvancedCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FilterShowAllCommandFunctionNode.html">FilterShowAllCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FindFileCommandFunctionNode.html">FindFileCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FontCommandFunctionNode.html">FontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FontPropertiesCommandFunctionNode.html">FontPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatAutoCommandFunctionNode.html">FormatAutoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatChartCommandFunctionNode.html">FormatChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatCharttypeCommandFunctionNode.html">FormatCharttypeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatFontCommandFunctionNode.html">FormatFontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatLegendCommandFunctionNode.html">FormatLegendCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatMainCommandFunctionNode.html">FormatMainCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatMoveCommandFunctionNode.html">FormatMoveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatNumberCommandFunctionNode.html">FormatNumberCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatOverlayCommandFunctionNode.html">FormatOverlayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatShapeCommandFunctionNode.html">FormatShapeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatSizeCommandFunctionNode.html">FormatSizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormatTextCommandFunctionNode.html">FormatTextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaArrayCommandFunctionNode.html">FormulaArrayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaCommandFunctionNode.html">FormulaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaFillCommandFunctionNode.html">FormulaFillCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaFindCommandFunctionNode.html">FormulaFindCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaFindNextCommandFunctionNode.html">FormulaFindNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaFindPrevCommandFunctionNode.html">FormulaFindPrevCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaGotoCommandFunctionNode.html">FormulaGotoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FormulaReplaceCommandFunctionNode.html">FormulaReplaceCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FreezePanesCommandFunctionNode.html">FreezePanesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FullCommandFunctionNode.html">FullCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FullScreenCommandFunctionNode.html">FullScreenCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.FunctionWizardCommandFunctionNode.html">FunctionWizardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DAreaCommandFunctionNode.html">Gallery3DAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DBarCommandFunctionNode.html">Gallery3DBarCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DColumnCommandFunctionNode.html">Gallery3DColumnCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DLineCommandFunctionNode.html">Gallery3DLineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DPieCommandFunctionNode.html">Gallery3DPieCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Gallery3DSurfaceCommandFunctionNode.html">Gallery3DSurfaceCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryAreaCommandFunctionNode.html">GalleryAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryBarCommandFunctionNode.html">GalleryBarCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryColumnCommandFunctionNode.html">GalleryColumnCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryCustomCommandFunctionNode.html">GalleryCustomCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryDoughnutCommandFunctionNode.html">GalleryDoughnutCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryLineCommandFunctionNode.html">GalleryLineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryPieCommandFunctionNode.html">GalleryPieCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryRadarCommandFunctionNode.html">GalleryRadarCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GalleryScatterCommandFunctionNode.html">GalleryScatterCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GoalSeekCommandFunctionNode.html">GoalSeekCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.GridlinesCommandFunctionNode.html">GridlinesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HLineCommandFunctionNode.html">HLineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HPageCommandFunctionNode.html">HPageCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HideCommandFunctionNode.html">HideCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HideDialogCommandFunctionNode.html">HideDialogCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HideObjectCommandFunctionNode.html">HideObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HideallInkannotsCommandFunctionNode.html">HideallInkannotsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HideallNotesCommandFunctionNode.html">HideallNotesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HidecurrNoteCommandFunctionNode.html">HidecurrNoteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.HscrollCommandFunctionNode.html">HscrollCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertCommandFunctionNode.html">InsertCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertMapObjectCommandFunctionNode.html">InsertMapObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertObjectCommandFunctionNode.html">InsertObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertPictureCommandFunctionNode.html">InsertPictureCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertTitleCommandFunctionNode.html">InsertTitleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.InsertdatatableCommandFunctionNode.html">InsertdatatableCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.JustifyCommandFunctionNode.html">JustifyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LabelPropertiesCommandFunctionNode.html">LabelPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LayoutCommandFunctionNode.html">LayoutCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LegendCommandFunctionNode.html">LegendCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LinePrintCommandFunctionNode.html">LinePrintCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LinkComboCommandFunctionNode.html">LinkComboCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.LinkFormatCommandFunctionNode.html">LinkFormatCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ListNamesCommandFunctionNode.html">ListNamesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ListboxPropertiesCommandFunctionNode.html">ListboxPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MacroOptionsCommandFunctionNode.html">MacroOptionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailAddMailerCommandFunctionNode.html">MailAddMailerCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailDeleteMailerCommandFunctionNode.html">MailDeleteMailerCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailEditMailerCommandFunctionNode.html">MailEditMailerCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailForwardCommandFunctionNode.html">MailForwardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailLogOffCommandFunctionNode.html">MailLogOffCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailLogOnCommandFunctionNode.html">MailLogOnCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailNextLetterCommandFunctionNode.html">MailNextLetterCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailReplyAllCommandFunctionNode.html">MailReplyAllCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailReplyCommandFunctionNode.html">MailReplyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MailSendMailerCommandFunctionNode.html">MailSendMailerCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MainChartCommandFunctionNode.html">MainChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MainChartTypeCommandFunctionNode.html">MainChartTypeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MenuEditorCommandFunctionNode.html">MenuEditorCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MergeStylesCommandFunctionNode.html">MergeStylesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MessageCommandFunctionNode.html">MessageCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MoveBrkCommandFunctionNode.html">MoveBrkCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.MoveToolCommandFunctionNode.html">MoveToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NewCommandFunctionNode.html">NewCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NewWindowCommandFunctionNode.html">NewWindowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NewwebqueryCommandFunctionNode.html">NewwebqueryCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NormalCommandFunctionNode.html">NormalCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ObjectPropertiesCommandFunctionNode.html">ObjectPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ObjectProtectionCommandFunctionNode.html">ObjectProtectionCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnDataCommandFunctionNode.html">OnDataCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnDoubleclickCommandFunctionNode.html">OnDoubleclickCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnEntryCommandFunctionNode.html">OnEntryCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnKeyCommandFunctionNode.html">OnKeyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnRecalcCommandFunctionNode.html">OnRecalcCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnSheetCommandFunctionNode.html">OnSheetCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnTimeCommandFunctionNode.html">OnTimeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OnWindowCommandFunctionNode.html">OnWindowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OpenCommandFunctionNode.html">OpenCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OpenLinksCommandFunctionNode.html">OpenLinksCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OpenMailCommandFunctionNode.html">OpenMailCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OpenTextCommandFunctionNode.html">OpenTextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsCalculationCommandFunctionNode.html">OptionsCalculationCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsChartCommandFunctionNode.html">OptionsChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsEditCommandFunctionNode.html">OptionsEditCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsGeneralCommandFunctionNode.html">OptionsGeneralCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsListsAddCommandFunctionNode.html">OptionsListsAddCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsListsDeleteCommandFunctionNode.html">OptionsListsDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsMeCommandFunctionNode.html">OptionsMeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsMenonoCommandFunctionNode.html">OptionsMenonoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsSaveCommandFunctionNode.html">OptionsSaveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsSpellCommandFunctionNode.html">OptionsSpellCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsTransitionCommandFunctionNode.html">OptionsTransitionCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OptionsViewCommandFunctionNode.html">OptionsViewCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OutlineCommandFunctionNode.html">OutlineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OverlayChartTypeCommandFunctionNode.html">OverlayChartTypeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.OverlayCommandFunctionNode.html">OverlayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PageSetupCommandFunctionNode.html">PageSetupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ParseCommandFunctionNode.html">ParseCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PasteCommandFunctionNode.html">PasteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PasteLinkCommandFunctionNode.html">PasteLinkCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PastePictureCommandFunctionNode.html">PastePictureCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PastePictureLinkCommandFunctionNode.html">PastePictureLinkCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PasteSpecialCommandFunctionNode.html">PasteSpecialCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PasteToolCommandFunctionNode.html">PasteToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PatternsCommandFunctionNode.html">PatternsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PicklistCommandFunctionNode.html">PicklistCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotAddFieldsCommandFunctionNode.html">PivotAddFieldsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotFieldCommandFunctionNode.html">PivotFieldCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotFieldGroupCommandFunctionNode.html">PivotFieldGroupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotFieldPropertiesCommandFunctionNode.html">PivotFieldPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotFieldUngroupCommandFunctionNode.html">PivotFieldUngroupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotItemCommandFunctionNode.html">PivotItemCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotItemPropertiesCommandFunctionNode.html">PivotItemPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotRefreshCommandFunctionNode.html">PivotRefreshCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotShowPagesCommandFunctionNode.html">PivotShowPagesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotTableChartCommandFunctionNode.html">PivotTableChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PivotTableWizardCommandFunctionNode.html">PivotTableWizardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PostDocumentCommandFunctionNode.html">PostDocumentCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PrecisionCommandFunctionNode.html">PrecisionCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PreferredCommandFunctionNode.html">PreferredCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PrintCommandFunctionNode.html">PrintCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PrintPreviewCommandFunctionNode.html">PrintPreviewCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PrinterSetupCommandFunctionNode.html">PrinterSetupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PromoteCommandFunctionNode.html">PromoteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ProtectDocumentCommandFunctionNode.html">ProtectDocumentCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ProtectRevisionsCommandFunctionNode.html">ProtectRevisionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.PushbuttonPropertiesCommandFunctionNode.html">PushbuttonPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.QuitCommandFunctionNode.html">QuitCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RemoveListItemCommandFunctionNode.html">RemoveListItemCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RemovePageBreakCommandFunctionNode.html">RemovePageBreakCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RenameObjectCommandFunctionNode.html">RenameObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ReplaceFontCommandFunctionNode.html">ReplaceFontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ResetToolCommandFunctionNode.html">ResetToolCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RmPrintAreaCommandFunctionNode.html">RmPrintAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RouteDocumentCommandFunctionNode.html">RouteDocumentCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RoutingSlipCommandFunctionNode.html">RoutingSlipCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RowHeightCommandFunctionNode.html">RowHeightCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.RunCommandFunctionNode.html">RunCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveAsCommandFunctionNode.html">SaveAsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveCommandFunctionNode.html">SaveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveCopyAsCommandFunctionNode.html">SaveCopyAsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveNewObjectCommandFunctionNode.html">SaveNewObjectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveWorkbookCommandFunctionNode.html">SaveWorkbookCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SaveWorkspaceCommandFunctionNode.html">SaveWorkspaceCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScaleCommandFunctionNode.html">ScaleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioAddCommandFunctionNode.html">ScenarioAddCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioCellsCommandFunctionNode.html">ScenarioCellsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioDeleteCommandFunctionNode.html">ScenarioDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioEditCommandFunctionNode.html">ScenarioEditCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioMergeCommandFunctionNode.html">ScenarioMergeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioShowCommandFunctionNode.html">ScenarioShowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioShowNextCommandFunctionNode.html">ScenarioShowNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScenarioSummaryCommandFunctionNode.html">ScenarioSummaryCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ScrollbarPropertiesCommandFunctionNode.html">ScrollbarPropertiesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectAllCommandFunctionNode.html">SelectAllCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectChartCommandFunctionNode.html">SelectChartCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectCommandFunctionNode.html">SelectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectEndCommandFunctionNode.html">SelectEndCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectLastCellCommandFunctionNode.html">SelectLastCellCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectListItemCommandFunctionNode.html">SelectListItemCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectPlotAreaCommandFunctionNode.html">SelectPlotAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SelectSpecialCommandFunctionNode.html">SelectSpecialCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SendKeysCommandFunctionNode.html">SendKeysCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SendMailCommandFunctionNode.html">SendMailCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SendToBackCommandFunctionNode.html">SendToBackCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriesAxesCommandFunctionNode.html">SeriesAxesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriesOrderCommandFunctionNode.html">SeriesOrderCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriesXCommandFunctionNode.html">SeriesXCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SeriesYCommandFunctionNode.html">SeriesYCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetControlValueCommandFunctionNode.html">SetControlValueCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetCriteriaCommandFunctionNode.html">SetCriteriaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetDatabaseCommandFunctionNode.html">SetDatabaseCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetDialogDefaultCommandFunctionNode.html">SetDialogDefaultCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetDialogFocusCommandFunctionNode.html">SetDialogFocusCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetExtractCommandFunctionNode.html">SetExtractCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetListItemCommandFunctionNode.html">SetListItemCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetPageBreakCommandFunctionNode.html">SetPageBreakCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetPreferredCommandFunctionNode.html">SetPreferredCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetPrintAreaCommandFunctionNode.html">SetPrintAreaCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetPrintTitlesCommandFunctionNode.html">SetPrintTitlesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SetUpdateStatusCommandFunctionNode.html">SetUpdateStatusCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShareCommandFunctionNode.html">ShareCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShareNameCommandFunctionNode.html">ShareNameCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SheetBackgroundCommandFunctionNode.html">SheetBackgroundCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShortMenusCommandFunctionNode.html">ShortMenusCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowActiveCellCommandFunctionNode.html">ShowActiveCellCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowClipboardCommandFunctionNode.html">ShowClipboardCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowDetailCommandFunctionNode.html">ShowDetailCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowDialogCommandFunctionNode.html">ShowDialogCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowInfoCommandFunctionNode.html">ShowInfoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowLevelsCommandFunctionNode.html">ShowLevelsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ShowToolbarCommandFunctionNode.html">ShowToolbarCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SortSpecialCommandFunctionNode.html">SortSpecialCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SoundNoteCommandFunctionNode.html">SoundNoteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SoundPlayCommandFunctionNode.html">SoundPlayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SpellingCommandFunctionNode.html">SpellingCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SplitCommandFunctionNode.html">SplitCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StandardFontCommandFunctionNode.html">StandardFontCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StandardWidthCommandFunctionNode.html">StandardWidthCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.StyleCommandFunctionNode.html">StyleCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SubscribeToCommandFunctionNode.html">SubscribeToCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SubtotalCreateCommandFunctionNode.html">SubtotalCreateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SubtotalRemoveCommandFunctionNode.html">SubtotalRemoveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.SummaryInfoCommandFunctionNode.html">SummaryInfoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TabOrderCommandFunctionNode.html">TabOrderCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TableCommandFunctionNode.html">TableCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TextToColumnsCommandFunctionNode.html">TextToColumnsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TracerClearCommandFunctionNode.html">TracerClearCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TracerDisplayCommandFunctionNode.html">TracerDisplayCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TracerErrorCommandFunctionNode.html">TracerErrorCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TracerNavigateCommandFunctionNode.html">TracerNavigateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.TraverseNotesCommandFunctionNode.html">TraverseNotesCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UndoCommandFunctionNode.html">UndoCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UngroupCommandFunctionNode.html">UngroupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UngroupSheetsCommandFunctionNode.html">UngroupSheetsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UnhideCommandFunctionNode.html">UnhideCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UnlockedNextCommandFunctionNode.html">UnlockedNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UnlockedPrevCommandFunctionNode.html">UnlockedPrevCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UnprotectRevisionsCommandFunctionNode.html">UnprotectRevisionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.UpdateLinkCommandFunctionNode.html">UpdateLinkCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VLineCommandFunctionNode.html">VLineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VPageCommandFunctionNode.html">VPageCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VbaActivateCommandFunctionNode.html">VbaActivateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VbaInsertFileCommandFunctionNode.html">VbaInsertFileCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VbaMakeAddinCommandFunctionNode.html">VbaMakeAddinCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VbaProcedureDefinitionCommandFunctionNode.html">VbaProcedureDefinitionCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.View3DCommandFunctionNode.html">View3DCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ViewDefineCommandFunctionNode.html">ViewDefineCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ViewDeleteCommandFunctionNode.html">ViewDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ViewShowCommandFunctionNode.html">ViewShowCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.VscrollCommandFunctionNode.html">VscrollCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WaitCommandFunctionNode.html">WaitCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WebPublishCommandFunctionNode.html">WebPublishCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowMaximizeCommandFunctionNode.html">WindowMaximizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowMinimizeCommandFunctionNode.html">WindowMinimizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowMoveCommandFunctionNode.html">WindowMoveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowRestoreCommandFunctionNode.html">WindowRestoreCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WindowSizeCommandFunctionNode.html">WindowSizeCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookActivateCommandFunctionNode.html">WorkbookActivateCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookAddCommandFunctionNode.html">WorkbookAddCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookCopyCommandFunctionNode.html">WorkbookCopyCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookDeleteCommandFunctionNode.html">WorkbookDeleteCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookHideCommandFunctionNode.html">WorkbookHideCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookInsertCommandFunctionNode.html">WorkbookInsertCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookMoveCommandFunctionNode.html">WorkbookMoveCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookNameCommandFunctionNode.html">WorkbookNameCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookNewCommandFunctionNode.html">WorkbookNewCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookNextCommandFunctionNode.html">WorkbookNextCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookOptionsCommandFunctionNode.html">WorkbookOptionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookPrevCommandFunctionNode.html">WorkbookPrevCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookProtectCommandFunctionNode.html">WorkbookProtectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookScrollCommandFunctionNode.html">WorkbookScrollCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookSelectCommandFunctionNode.html">WorkbookSelectCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookTabSplitCommandFunctionNode.html">WorkbookTabSplitCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkbookUnhideCommandFunctionNode.html">WorkbookUnhideCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkgroupCommandFunctionNode.html">WorkgroupCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkgroupOptionsCommandFunctionNode.html">WorkgroupOptionsCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.WorkspaceCommandFunctionNode.html">WorkspaceCommandFunctionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ZoomCommandFunctionNode.html">ZoomCommandFunctionNode</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_RawName">NameNode.RawName</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Name">NameNode.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Precedence">NameNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_Children__1">NameNode.Children&lt;O&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.NameNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_NameNode_ReplaceChild_System_Int32_OpenLanguage_SpreadsheetML_Formula_Ast_Node_">NameNode.ReplaceChild(int, Node)</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html#OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode__ctor_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.#ctor*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode__ctor_OpenLanguage_SpreadsheetML_Formula_Ast_ExpressionNode_OpenLanguage_SpreadsheetML_Formula_Ast_QuestionMarkNode_System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__System_Collections_Generic_List_OpenLanguage_SpreadsheetML_Formula_Ast_Node__" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.#ctor(OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode,OpenLanguage.SpreadsheetML.Formula.Ast.QuestionMarkNode,System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node},System.Collections.Generic.List{OpenLanguage.SpreadsheetML.Formula.Ast.Node})">
+  CommandFunctionNode(ExpressionNode, QuestionMarkNode?, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandFunctionNode(ExpressionNode name, QuestionMarkNode? qMarkNode = null, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>qMarkNode</code> <a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.QuestionMarkNode.html">QuestionMarkNode</a></dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode_QuestionMark_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.QuestionMark*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode_QuestionMark" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.QuestionMark">
+  QuestionMark
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QuestionMarkNode? QuestionMark { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.SpreadsheetML.Formula.Ast.QuestionMarkNode.html">QuestionMarkNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode_ToRawString_" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.ToRawString*"></a>
+
+  <h3 id="OpenLanguage_SpreadsheetML_Formula_Ast_CommandFunctionNode_ToRawString" data-uid="OpenLanguage.SpreadsheetML.Formula.Ast.CommandFunctionNode.ToRawString">
+  ToRawString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Renders the core content of the node without its own leading/trailing whitespace.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToRawString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The raw string representation of this node's specific content.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/SpreadsheetML/Formula/Ast/Node/Reference/Function/Name/Name.cs/#L169" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

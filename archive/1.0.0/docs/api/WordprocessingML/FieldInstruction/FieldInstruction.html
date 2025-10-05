@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Field Instructions | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Field Instructions | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/FieldInstruction.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="field-instructions">Field Instructions</h1>
+
+<p>The <code>OpenLanguage.WordprocessingML.FieldInstruction</code> namespace provides a robust parser for Microsoft Word field instructions, converting them into a strongly-typed Abstract Syntax Tree (AST).</p>
+<h2 id="overview">Overview</h2>
+<p>This component provides:</p>
+<ul>
+<li><strong>Grammar-Based Parsing</strong>: Uses a GPLEX/GPPG parser to accurately parse complex field instructions.</li>
+<li><strong>Strongly-Typed AST</strong>: Represents each field instruction as a specific C# class, providing type-safe access to its arguments and switches.</li>
+<li><strong>Complete Support</strong>: Support for all field instructions - both standard ECMA variations and those specified in the ISO docs for legacy compatibility</li>
+<li><strong>Round-Trip Fidelity</strong>: Parsed ASTs can be converted back to their original string representation, preserving all components.</li>
+</ul>
+<h2 id="core-classes">Core Classes</h2>
+<h3 id="fieldinstructionparser">FieldInstructionParser</h3>
+<p>A static class for parsing field instruction strings.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+
+// Parse a field instruction
+var ast = FieldInstructionParser.Parse(&quot;MERGEFIELD FirstName \\* Upper&quot;);
+
+// The result is a strongly-typed AST node
+if (ast is MergeFieldFieldInstruction mergeField)
+{
+    Console.WriteLine($&quot;Field Name: {mergeField.FieldName}&quot;);
+    if (mergeField.GeneralFormat?.Argument is StringLiteralNode format)
+    {
+        Console.WriteLine($&quot;General Format: {format.Value}&quot;);
+    }
+}
+</code></pre>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><code>Parse(string fieldInstruction)</code>: Parses a field instruction string and returns the root <code>ExpressionNode</code> of the AST. Throws <code>InvalidOperationException</code> on failure.</li>
+<li><code>TryParse(string fieldInstruction)</code>: Attempts to parse a field instruction and returns <code>null</code> if parsing fails.</li>
+</ul>
+<h3 id="fieldinstruction-ast-nodes">FieldInstruction AST Nodes</h3>
+<p>The parser generates a tree of nodes, with each field type represented by a specific class inheriting from <code>OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction</code>. This provides direct, type-safe access to arguments and switches.</p>
+<p><strong>Example Node:</strong> <code>MergeFieldFieldInstruction</code></p>
+<pre><code class="lang-csharp">public class MergeFieldFieldInstruction : FieldInstruction
+{
+    public ExpressionNode FieldName { get; set; }
+    public FlaggedArgument&lt;ExpressionNode&gt;? TextBefore { get; set; }
+    public FlaggedArgument&lt;ExpressionNode&gt;? TextAfter { get; set; }
+    // ... and other properties for switches
+}
+</code></pre>
+<h2 id="supported-field-types">Supported Field Types</h2>
+<p>The library provides strongly-typed classes for most Word field instructions. For a complete list, see <a href="SupportedFields.html">Supported Field Instructions</a>. Some examples include:</p>
+<ul>
+<li><code>AuthorFieldInstruction</code></li>
+<li><code>DateFieldInstruction</code></li>
+<li><code>IfFieldInstruction</code></li>
+<li><code>MergeFieldFieldInstruction</code></li>
+<li><code>PageRefFieldInstruction</code></li>
+<li><code>TocFieldInstruction</code></li>
+</ul>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="parsing-common-field-types">Parsing Common Field Types</h3>
+<h4 id="mergefield">MERGEFIELD</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;MERGEFIELD Amount \# &quot;&quot;$#,##0.00&quot;&quot;&quot;);
+if (ast is MergeFieldFieldInstruction mergeField)
+{
+    Console.WriteLine($&quot;Field: {mergeField.FieldName}&quot;);
+    Console.WriteLine($&quot;Numeric Format: {mergeField.NumericFormat.Argument}&quot;);
+}
+</code></pre>
+<h4 id="if">IF</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;IF { MERGEFIELD Amount } &gt; 1000 &quot;&quot;High&quot;&quot; &quot;&quot;Low&quot;&quot;&quot;);
+if (ast is IfFieldInstruction ifField)
+{
+    Console.WriteLine($&quot;Condition: {ifField.Condition}&quot;);
+    Console.WriteLine($&quot;True Value: {ifField.TrueExpression}&quot;);
+    Console.WriteLine($&quot;False Value: {ifField.FalseExpression}&quot;);
+}
+</code></pre>
+<h4 id="hyperlink">HYPERLINK</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;HYPERLINK &quot;&quot;http://example.com&quot;&quot; \o &quot;&quot;Tooltip&quot;&quot; \t &quot;&quot;_blank&quot;&quot;&quot;);
+if (ast is HyperlinkFieldInstruction hyperlink)
+{
+    Console.WriteLine($&quot;URI: {hyperlink.Uri}&quot;);
+    Console.WriteLine($&quot;Screen Tip: {hyperlink.ScreenTipText.Argument}&quot;);
+    Console.WriteLine($&quot;Target: {hyperlink.InstrFrameTarget.Argument}&quot;);
+}
+</code></pre>
+<h3 id="working-with-the-ast">Working with the AST</h3>
+<p>The AST is fully navigable and mutable.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Ast;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+
+var ast = FieldInstructionParser.Parse(&quot;PAGE \\* Arabic&quot;);
+
+if (ast is PageFieldInstruction pageField)
+{
+    // Access a property
+    Console.WriteLine($&quot;Original format: {pageField.GeneralFormat.Argument}&quot;);
+
+    // Modify the AST
+    var newFormat = new StringLiteralNode(&quot;Roman&quot;);
+    pageField.GeneralFormat.Argument = newFormat;
+
+    // Reconstruct the field code
+    Console.WriteLine($&quot;Modified field: {pageField.ToString()}&quot;);
+    // Output: Modified field: PAGE \* Roman
+}
+</code></pre>
+<h3 id="nested-fields">Nested Fields</h3>
+<p>The parser correctly handles nested field instructions, representing them as <code>NestedFieldInstruction</code> nodes within the parent's AST.</p>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(&quot;IF { COMPARE { REF a } &gt; { REF b } } = 1 \&quot;Greater\&quot; \&quot;Smaller\&quot;&quot;);
+
+if (ast is IfFieldInstruction ifField &amp;&amp; ifField.Condition is EqualNode condition)
+{
+    if (condition.LeftOperand is NestedFieldInstruction nested)
+    {
+        Console.WriteLine($&quot;Nested field type: {nested.NestedInstruction.GetType().Name}&quot;);
+        // Output: Nested field type: CompareFieldInstruction
+    }
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../Expression/Expression.html">WordprocessingML Expression Parser</a></li>
+<li><a href="../MergeField/MergeField.html">WordprocessingML Merge Fields</a></li>
+<li><a href="../Ast.html">WordprocessingML Abstract Syntax Tree</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/FieldInstruction.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
