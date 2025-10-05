@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenLanguage.WordprocessingML.Ast;
-using OpenLanguage.WordprocessingML.FieldInstruction.Generated;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
@@ -32,6 +31,30 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         NotSupportedThree = 3,
         MaintainSourceFormattingSpreadsheet = 4,
         MatchDestinationFormattingSpreadsheet = 5,
+    }
+
+    public class LinkFormattingModeNode : ExpressionNode
+    {
+        private OpenLanguage.WordprocessingML.FieldInstruction.LinkFormattingMode Value { get; set; }
+
+        public LinkFormattingModeNode(
+            LinkFormattingMode value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     /// <summary>

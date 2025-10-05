@@ -4,6 +4,142 @@ using OpenLanguage.WordprocessingML.Ast;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
 {
+    /// <summary>
+    /// Represents document property categories used in DOCPROPERTY field instructions.
+    /// </summary>
+    public enum DocumentPropertyCategory
+    {
+        /// <summary>
+        /// AUTHOR - Document author information.
+        /// </summary>
+        Author,
+
+        /// <summary>
+        /// BYTES - Document file size in bytes.
+        /// </summary>
+        Bytes,
+
+        /// <summary>
+        /// CATEGORY - Document category from Core File Properties.
+        /// </summary>
+        Category,
+
+        /// <summary>
+        /// CHARACTERS - Number of characters in the document.
+        /// </summary>
+        Characters,
+
+        /// <summary>
+        /// CHARACTERSWITHSPACES - Number of characters including spaces.
+        /// </summary>
+        CharactersWithSpaces,
+
+        /// <summary>
+        /// COMMENTS - Document comments.
+        /// </summary>
+        Comments,
+
+        /// <summary>
+        /// COMPANY - Company name from Application-Defined File Properties.
+        /// </summary>
+        Company,
+
+        /// <summary>
+        /// CREATETIME - Document creation time.
+        /// </summary>
+        CreateTime,
+
+        /// <summary>
+        /// HYPERLINKBASE - Hyperlink base from Application-Defined File Properties.
+        /// </summary>
+        HyperlinkBase,
+
+        /// <summary>
+        /// KEYWORDS - Document keywords from Core File Properties.
+        /// </summary>
+        Keywords,
+
+        /// <summary>
+        /// LASTPRINTED - Last printed date.
+        /// </summary>
+        LastPrinted,
+
+        /// <summary>
+        /// LASTSAVEDBY - Last saved by user.
+        /// </summary>
+        LastSavedBy,
+
+        /// <summary>
+        /// LASTSAVEDTIME - Last saved time.
+        /// </summary>
+        LastSavedTime,
+
+        /// <summary>
+        /// LINES - Number of lines from Application-Defined File Properties.
+        /// </summary>
+        Lines,
+
+        /// <summary>
+        /// MANAGER - Manager name from Application-Defined File Properties.
+        /// </summary>
+        Manager,
+
+        /// <summary>
+        /// NAMEOFAPPLICATION - Application name from Application-Defined File Properties.
+        /// </summary>
+        NameOfApplication,
+
+        /// <summary>
+        /// ODMADOCID - ODMA document ID.
+        /// </summary>
+        OdmaDocId,
+
+        /// <summary>
+        /// PAGES - Number of pages in the document.
+        /// </summary>
+        Pages,
+
+        /// <summary>
+        /// PARAGRAPHS - Number of paragraphs from Application-Defined File Properties.
+        /// </summary>
+        Paragraphs,
+
+        /// <summary>
+        /// REVISIONNUMBER - Document revision number.
+        /// </summary>
+        RevisionNumber,
+
+        /// <summary>
+        /// SECURITY - Document security level from Application-Defined File Properties.
+        /// </summary>
+        Security,
+
+        /// <summary>
+        /// SUBJECT - Document subject.
+        /// </summary>
+        Subject,
+
+        /// <summary>
+        /// TEMPLATE - Document template.
+        /// </summary>
+        Template,
+
+        /// <summary>
+        /// TITLE - Document title.
+        /// </summary>
+        Title,
+
+        /// <summary>
+        /// TOTALEDITINGTIME - Total editing time.
+        /// </summary>
+        TotalEditingTime,
+
+        /// <summary>
+        /// WORDS - Number of words from Application-Defined File Properties.
+        /// </summary>
+        Words,
+    }
+
     public enum DocPropertyArgument
     {
         PropertyName,

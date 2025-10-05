@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenLanguage.WordprocessingML.Ast;
-using OpenLanguage.WordprocessingML.FieldInstruction.Generated;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
 {
@@ -34,60 +33,119 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
         BorderTop,
     }
 
-    /// <summary>
-    /// Represents the primary switch types for EQ field instructions.
-    /// </summary>
-    public enum EqPrimarySwitch
+    public class EqArgumentList : ExpressionNode
     {
-        /// <summary>
-        /// \a - Produces an array using the argument values.
-        /// </summary>
-        Array,
+        public List<ExpressionNode> Items { get; set; }
+        public List<CharacterLiteralNode> Separators { get; set; }
 
-        /// <summary>
-        /// \b - Brackets the single element in appropriate size.
-        /// </summary>
-        Bracket,
+        public EqArgumentList()
+            : base(null, null)
+        {
+            Items = new List<ExpressionNode>();
+            Separators = new List<CharacterLiteralNode>();
+        }
 
-        /// <summary>
-        /// \d - Controls displacement of the next character.
-        /// </summary>
-        Displacement,
+        public EqArgumentList(
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Items = new List<ExpressionNode>();
+            Separators = new List<CharacterLiteralNode>();
+        }
 
-        /// <summary>
-        /// \f - Creates a fraction with numerator and denominator.
-        /// </summary>
-        Fraction,
+        public EqArgumentList(
+            List<ExpressionNode> items,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Items = items;
+            Separators = new List<CharacterLiteralNode>();
+        }
 
-        /// <summary>
-        /// \i - Creates an integral using specified symbol and elements.
-        /// </summary>
-        Integral,
+        public EqArgumentList(
+            List<CharacterLiteralNode> separators,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Items = new List<ExpressionNode>();
+            Separators = separators;
+        }
 
-        /// <summary>
-        /// \l - Creates a list from arbitrary number of arguments.
-        /// </summary>
-        List,
+        public EqArgumentList(
+            List<ExpressionNode> items,
+            List<CharacterLiteralNode> separators,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Items = items;
+            Separators = separators;
+        }
 
-        /// <summary>
-        /// \o - Displays arguments on top of each other.
-        /// </summary>
-        Overlay,
+        public override string ToRawString()
+        {
+            System.Text.StringBuilder result = new System.Text.StringBuilder();
+            for (int i = 0; i < Items.Count; i++)
+            {
+                result.Append(Items[i].ToString());
+                if (i < Separators.Count)
+                {
+                    result.Append(Separators[i].ToString());
+                }
+            }
 
-        /// <summary>
-        /// \r - Creates a radical (square root or nth root).
-        /// </summary>
-        Radical,
+            return result.ToString();
+        }
 
-        /// <summary>
-        /// \s - Creates subscript or superscript.
-        /// </summary>
-        Script,
+        public override IEnumerable<O> Children<O>()
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i] is O o)
+                {
+                    yield return o;
+                }
 
-        /// <summary>
-        /// \x - Creates border segments around argument.
-        /// </summary>
-        Box,
+                if (i < Separators.Count && Separators[i] is O oSep)
+                {
+                    yield return oSep;
+                }
+            }
+
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement)
+        {
+            Node? current = null;
+            int itemsCount = Items?.Count ?? 0;
+            int separatorsCount = Separators?.Count ?? 0;
+
+            if (index > -1 && index < itemsCount && replacement is ExpressionNode expr)
+            {
+                current = Items![index];
+                Items![index] = expr;
+            }
+            else if (
+                index >= itemsCount
+                && index < itemsCount + separatorsCount
+                && replacement is CharacterLiteralNode charNode
+            )
+            {
+                int sepIndex = index - itemsCount;
+                current = Separators![sepIndex];
+                Separators![sepIndex] = charNode;
+            }
+
+            return current;
+        }
     }
 
     /// <summary>
@@ -151,6 +209,78 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
         /// \su - Summation symbol (Capital Sigma).
         /// </summary>
         Summation,
+    }
+
+    public class EqArrayAlignmentNode : ExpressionNode
+    {
+        private EqArrayAlignment Value { get; set; }
+
+        public EqArrayAlignmentNode(
+            EqArrayAlignment value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement) => null;
+    }
+
+    public class EqIntegralSymbolNode : ExpressionNode
+    {
+        private EqIntegralSymbol Value { get; set; }
+
+        public EqIntegralSymbolNode(
+            EqIntegralSymbol value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement) => null;
+    }
+
+    public class EqOverlayAlignmentNode : ExpressionNode
+    {
+        private EqOverlayAlignment Value { get; set; }
+
+        public EqOverlayAlignmentNode(
+            EqOverlayAlignment value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() => Value.ToString();
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement) => null;
     }
 
     /// <summary>

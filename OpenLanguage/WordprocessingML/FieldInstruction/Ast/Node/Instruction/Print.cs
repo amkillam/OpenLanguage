@@ -4,7 +4,6 @@ using System.Linq;
 using OpenLanguage.WordprocessingML.Ast;
 using OpenLanguage.WordprocessingML.FieldInstruction;
 using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
-using OpenLanguage.WordprocessingML.FieldInstruction.Generated;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {

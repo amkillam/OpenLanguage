@@ -1,10 +1,107 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenLanguage.WordprocessingML.Ast;
-using OpenLanguage.WordprocessingML.FieldInstruction.Generated;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
+    public enum FrameTarget
+    {
+        // "_top": Whole page, default
+        Top,
+
+        // "_self": same frame
+        Self,
+
+        // "_blank": new window
+        Blank,
+
+        // "_parent": Parent frame
+        Parent,
+    }
+
+    public static class FrameTargetUtils
+    {
+        /// <summary>
+        /// Parses a frame target from text.
+        /// </summary>
+        /// <param name="frameTargetText">The operator text to parse.</param>
+        /// <returns>The parsed FrameTarget.</returns>
+        public static FrameTarget ParseFrameTarget(string frameTargetText)
+        {
+            switch (frameTargetText?.Trim().ToLowerInvariant())
+            {
+                case "_top":
+                case "top":
+                {
+                    return FrameTarget.Top;
+                }
+                case "_self":
+                case "self":
+                {
+                    return FrameTarget.Self;
+                }
+
+                case "_blank":
+                case "blank":
+                {
+                    return FrameTarget.Blank;
+                }
+                case "_parent":
+                case "parent":
+                {
+                    return FrameTarget.Parent;
+                }
+                default:
+                {
+                    throw new ArgumentException($"Invalid frame target: {frameTargetText}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Converts a frame target enumeration to text.
+        /// </summary>
+        /// <param name="frameTarget">The frame target enumeration to convert.</param>
+        /// <returns>The converted string.</returns>
+        public static string FrameTargetText(FrameTarget frameTarget)
+        {
+            return frameTarget switch
+            {
+                FrameTarget.Blank => "_blank",
+                FrameTarget.Self => "_self",
+                FrameTarget.Parent => "_parent",
+                FrameTarget.Top => "_top",
+                _ => "_top", // Default case
+            };
+        }
+    }
+
+    public class FrameTargetNode : ExpressionNode
+    {
+        private FrameTarget Value { get; set; }
+
+        public FrameTargetNode(
+            FrameTarget value,
+            List<Node>? leadingWhitespace = null,
+            List<Node>? trailingWhitespace = null
+        )
+            : base(leadingWhitespace, trailingWhitespace)
+        {
+            Value = value;
+        }
+
+        public override string ToRawString() =>
+            OpenLanguage.WordprocessingML.FieldInstruction.FrameTargetUtils.FrameTargetText(Value);
+
+        public override IEnumerable<O> Children<O>()
+        {
+            yield break;
+        }
+
+        public override Node? ReplaceChild(int index, Node replacement) => null;
+    }
+
     public enum HyperlinkArgument
     {
         Uri,

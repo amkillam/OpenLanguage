@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using OpenLanguage.WordprocessingML.Ast;
-using OpenLanguage.WordprocessingML.FieldInstruction.Generated;
 using OpenLanguage.WordprocessingML.Operators;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
