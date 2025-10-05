@@ -8,37 +8,47 @@ This document demonstrates how to use the OpenLanguage WordprocessingML FieldIns
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
 // Parse a simple MERGEFIELD instruction
-FieldInstruction mergeField = FieldParser.Parse("MERGEFIELD FirstName");
-Console.WriteLine($"Instruction: {mergeField.Instruction}");
-Console.WriteLine($"Arguments count: {mergeField.Arguments.Count}");
-Console.WriteLine($"Reconstructed: {mergeField}");
+var ast = FieldInstructionParser.Parse("MERGEFIELD FirstName");
+
+if (ast is MergeFieldFieldInstruction mergeField)
+{
+    Console.WriteLine($"Instruction: {mergeField.Instruction}");
+    Console.WriteLine($"Field Name: {mergeField.FieldName}");
+    Console.WriteLine($"Reconstructed: {mergeField}");
+}
 
 // Parse a field with switches
-FieldInstruction dateField = FieldParser.Parse("DATE \@ "MMMM d, yyyy"");
-Console.WriteLine($"Date field: {dateField}");
+var dateAst = FieldInstructionParser.Parse(@"DATE \@ ""MMMM d, yyyy""");
+if (dateAst is DateFieldInstruction dateField)
+{
+    Console.WriteLine($"Date field: {dateField}");
+    Console.WriteLine($"Date Format: {dateField.DateTimeFormat.Argument}");
+}
 ```
 
 ### Safe Parsing with TryParse
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.Ast;
 
 string[] fieldCodes = {
     "MERGEFIELD LastName",
-    "IF { MERGEFIELD Age } > 18 "Adult" "Minor"",
+    @"IF { MERGEFIELD Age } > 18 ""Adult"" ""Minor""",
     "INVALID_FIELD_CODE",
-    "HYPERLINK "https://example.com" "Click here""
+    @"HYPERLINK ""https://example.com"" ""Click here"""
 };
 
 foreach (string fieldCode in fieldCodes)
 {
-    FieldInstruction? result = FieldParser.TryParse(fieldCode);
+    ExpressionNode? result = FieldInstructionParser.TryParse(fieldCode);
     if (result != null)
     {
-        Console.WriteLine($"✓ Successfully parsed: {result.Instruction}");
-        Console.WriteLine($"  Arguments: {result.Arguments.Count}");
+        Console.WriteLine($"✓ Successfully parsed: {result}");
     }
     else
     {
@@ -53,15 +63,16 @@ foreach (string fieldCode in fieldCodes)
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 
 // Simple merge field
-FieldInstruction simpleMerge = FieldParser.Parse("MERGEFIELD CustomerName");
+var simpleMerge = FieldInstructionParser.Parse("MERGEFIELD CustomerName") as MergeFieldFieldInstruction;
 
 // Merge field with formatting switch
-FieldInstruction formattedMerge = FieldParser.Parse("MERGEFIELD OrderDate \@ "dddd, MMMM dd, yyyy"");
+var formattedMerge = FieldInstructionParser.Parse(@"MERGEFIELD OrderDate \@ ""dddd, MMMM dd, yyyy""") as MergeFieldFieldInstruction;
 
 // Merge field with text formatting switches
-FieldInstruction textMerge = FieldParser.Parse("MERGEFIELD CompanyName \* Upper \* FirstCap");
+var textMerge = FieldInstructionParser.Parse("MERGEFIELD CompanyName \\* Upper") as MergeFieldFieldInstruction;
 
 Console.WriteLine($"Simple merge: {simpleMerge}");
 Console.WriteLine($"Formatted merge: {formattedMerge}");
@@ -72,15 +83,16 @@ Console.WriteLine($"Text formatted: {textMerge}");
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 
 // Basic hyperlink
-FieldInstruction basicLink = FieldParser.Parse("HYPERLINK "https://www.example.com"");
+var basicLink = FieldInstructionParser.Parse(@"HYPERLINK ""https://www.example.com""") as HyperlinkFieldInstruction;
 
 // Hyperlink with display text
-FieldInstruction linkWithText = FieldParser.Parse("HYPERLINK "https://www.example.com" "Visit Example"");
+var linkWithText = FieldInstructionParser.Parse(@"HYPERLINK ""https://www.example.com"" ""Visit Example""") as HyperlinkFieldInstruction;
 
 // Hyperlink with switches
-FieldInstruction linkWithSwitch = FieldParser.Parse("HYPERLINK "mailto:user@example.com" \o "Send email"");
+var linkWithSwitch = FieldInstructionParser.Parse(@"HYPERLINK ""mailto:user@example.com"" \o ""Send email""") as HyperlinkFieldInstruction;
 
 Console.WriteLine($"Basic link: {basicLink}");
 Console.WriteLine($"Link with text: {linkWithText}");
@@ -90,16 +102,17 @@ Console.WriteLine($"Link with switch: {linkWithSwitch}");
 ### IF Instructions
 
 ```csharp
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 using OpenLanguage.WordprocessingML.FieldInstruction;
 
 // Simple IF field
-FieldInstruction simpleIf = FieldParser.Parse("IF 1 = 1 "True" "False"");
+var simpleIf = FieldInstructionParser.Parse(@"IF 1 = 1 ""True"" ""False""") as IfFieldInstruction;
 
 // IF field with nested MERGEFIELD
-FieldInstruction nestedIf = FieldParser.Parse("IF { MERGEFIELD Age } > 18 "Adult" "Minor"");
+var nestedIf = FieldInstructionParser.Parse(@"IF { MERGEFIELD Age } > 18 ""Adult"" ""Minor""") as IfFieldInstruction;
 
 // Complex IF with comparison operators
-FieldInstruction complexIf = FieldParser.Parse("IF { MERGEFIELD Salary } >= 50000 "High earner" "Standard earner"");
+var complexIf = FieldInstructionParser.Parse(@"IF { MERGEFIELD Salary } >= 50000 ""High earner"" ""Standard earner""") as IfFieldInstruction;
 
 Console.WriteLine($"Simple IF: {simpleIf}");
 Console.WriteLine($"Nested IF: {nestedIf}");
@@ -109,19 +122,20 @@ Console.WriteLine($"Complex IF: {complexIf}");
 ### DATE and TIME Instructions
 
 ```csharp
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 using OpenLanguage.WordprocessingML.FieldInstruction;
 
 // Current date
-FieldInstruction currentDate = FieldParser.Parse("DATE");
+var currentDate = FieldInstructionParser.Parse("DATE") as DateFieldInstruction;
 
 // Formatted date
-FieldInstruction formattedDate = FieldParser.Parse("DATE \@ "MMMM d, yyyy"");
+var formattedDate = FieldInstructionParser.Parse(@"DATE \@ ""MMMM d, yyyy""") as DateFieldInstruction;
 
 // Time field
-FieldInstruction timeField = FieldParser.Parse("TIME \@ "h:mm AM/PM"");
+var timeField = FieldInstructionParser.Parse(@"TIME \@ ""h:mm AM/PM""") as TimeFieldInstruction;
 
 // Creation time
-FieldInstruction createTime = FieldParser.Parse("CREATEDATE \@ "MM/dd/yyyy h:mm AM/PM"");
+var createTime = FieldInstructionParser.Parse(@"CREATEDATE \@ ""MM/dd/yyyy h:mm AM/PM""") as CreateDateFieldInstruction;
 
 Console.WriteLine($"Current date: {currentDate}");
 Console.WriteLine($"Formatted date: {formattedDate}");
@@ -132,15 +146,15 @@ Console.WriteLine($"Creation time: {createTime}");
 ### DOCPROPERTY Instructions
 
 ```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 
 // Document properties
-FieldInstruction author = FieldParser.Parse("DOCPROPERTY Author");
-FieldInstruction title = FieldParser.Parse("DOCPROPERTY Title");
-FieldInstruction company = FieldParser.Parse("DOCPROPERTY Company");
+var author = FieldInstructionParser.Parse("DOCPROPERTY Author") as DocPropertyFieldInstruction;
+var title = FieldInstructionParser.Parse("DOCPROPERTY Title") as DocPropertyFieldInstruction;
+var company = FieldInstructionParser.Parse("DOCPROPERTY Company") as DocPropertyFieldInstruction;
 
 // Custom properties
-FieldInstruction customProp = FieldParser.Parse("DOCPROPERTY "Project Name"");
+var customProp = FieldInstructionParser.Parse(@"DOCPROPERTY ""Project Name""") as DocPropertyFieldInstruction;
 
 Console.WriteLine($"Author: {author}");
 Console.WriteLine($"Title: {title}");
@@ -148,57 +162,46 @@ Console.WriteLine($"Company: {company}");
 Console.WriteLine($"Custom property: {customProp}");
 ```
 
-## Working with Arguments
+## Working with the AST
 
-### Accessing Field Arguments
+### Accessing Field Properties
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
-FieldInstruction field = FieldParser.Parse("MERGEFIELD FirstName \* Upper \b "Default Text"");
+var ast = FieldInstructionParser.Parse(@"MERGEFIELD FirstName \* Upper \b ""Default Text""");
 
-Console.WriteLine($"Instruction: {field.Instruction}");
-Console.WriteLine($"Number of arguments: {field.Arguments.Count}");
-
-foreach (var arg in field.Arguments)
+if (ast is MergeFieldFieldInstruction field)
 {
-    Console.WriteLine($"  Type: {arg.Type}, Value: {arg.Value}");
+    Console.WriteLine($"Instruction: {field.Instruction}");
+    Console.WriteLine($"Field Name: {field.FieldName}");
+    Console.WriteLine($"General Format: {field.GeneralFormat?.Argument}");
+    Console.WriteLine($"Text Before: {field.TextBefore?.Argument}");
 }
 ```
 
-### Modifying Field Arguments
+### Modifying the AST
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
 // Parse an existing field
-FieldInstruction field = FieldParser.Parse("MERGEFIELD CustomerName");
+var ast = FieldInstructionParser.Parse("MERGEFIELD CustomerName");
 
-// Add formatting switches
-field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
-field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* FirstCap"));
-
-// Add default text
-field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "Unknown Customer"));
-
-Console.WriteLine($"Modified field: {field}");
-```
-
-### Working with String Literals
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Field with quoted strings
-FieldInstruction quotedField = FieldParser.Parse("HYPERLINK "https://example.com" "Visit "Example" Site"");
-
-foreach (var arg in quotedField.Arguments)
+if (ast is MergeFieldFieldInstruction field)
 {
-    if (arg.Type == FieldArgumentType.StringLiteral)
-    {
-        Console.WriteLine($"String literal: {arg.Value}");
-        Console.WriteLine($"Reconstructed: {arg}"); // Shows proper escaping
-    }
+    // Add a formatting switch
+    field.GeneralFormat = new FlaggedArgument<ExpressionNode>(
+        new FlagNode(@"\*"),
+        new StringLiteralNode("Upper")
+    );
+    field.Order.Add(MergeFieldArgument.GeneralFormat);
+
+    Console.WriteLine($"Modified field: {field}");
 }
 ```
 
@@ -208,166 +211,29 @@ foreach (var arg in quotedField.Arguments)
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
 // Complex nested field
-string complexField = "IF { MERGEFIELD Department } = "Sales" { MERGEFIELD SalesBonus } { MERGEFIELD StandardBonus }";
-FieldInstruction nested = FieldParser.Parse(complexField);
+string complexField = @"IF { MERGEFIELD Department } = ""Sales"" { MERGEFIELD SalesBonus } { MERGEFIELD StandardBonus }";
+var ast = FieldInstructionParser.Parse(complexField);
 
-Console.WriteLine($"Nested field: {nested}");
-
-// Access nested instructions
-foreach (var arg in nested.Arguments)
+if (ast is IfFieldInstruction ifField)
 {
-    if (arg.Type == FieldArgumentType.NestedField && arg.Value is FieldInstruction nestedInstruction)
+    Console.WriteLine($"Nested field: {ifField}");
+
+    // Access nested instructions
+    if (ifField.Condition is EqualNode condition)
     {
-        Console.WriteLine($"  Nested instruction: {nestedInstruction.Instruction}");
-    }
-}
-```
-
-### ADDRESSBLOCK Instructions
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Address block with formatting
-FieldInstruction addressBlock = FieldParser.Parse("ADDRESSBLOCK \c 2 \d \e "United States" \f ""<<_RETURN_>>""");
-
-Console.WriteLine($"Address block: {addressBlock}");
-
-// Address block with language formatting
-FieldInstruction addressLang = FieldParser.Parse("ADDRESSBLOCK \c 1 \l 1033");
-Console.WriteLine($"Address with language: {addressLang}");
-```
-
-### GREETINGLINE Instructions
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Standard greeting line
-FieldInstruction greeting = FieldParser.Parse("GREETINGLINE \f "Dear" \l "," \e "Dear Sir or Madam,"");
-
-Console.WriteLine($"Greeting line: {greeting}");
-
-// Custom greeting format
-FieldInstruction customGreeting = FieldParser.Parse("GREETINGLINE \f "Hello" \l "!" \e "Hello there!"");
-Console.WriteLine($"Custom greeting: {customGreeting}");
-```
-
-### DATABASE Instructions
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Database field with connection string
-FieldInstruction database = FieldParser.Parse("DATABASE \d "Data Source=server;Initial Catalog=db;" \s "SELECT * FROM customers" \t 5");
-
-Console.WriteLine($"Database field: {database}");
-```
-
-## Working with Switches
-
-### Common Formatting Switches
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Date formatting switches
-FieldInstruction dateFormat = FieldParser.Parse("DATE \@ "dddd, MMMM dd, yyyy"");
-
-// Numeric formatting switches
-FieldInstruction numFormat = FieldParser.Parse("MERGEFIELD Amount \# "$#,##0.00"");
-
-// Text formatting switches
-FieldInstruction textFormat = FieldParser.Parse("MERGEFIELD Name \* Upper \* FirstCap");
-
-Console.WriteLine($"Date format: {dateFormat}");
-Console.WriteLine($"Number format: {numFormat}");
-Console.WriteLine($"Text format: {textFormat}");
-```
-
-### Custom Switch Processing
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-FieldInstruction field = FieldParser.Parse("MERGEFIELD Data \@ "custom format" \* Upper \b "default"");
-
-// Process switches
-foreach (var arg in field.Arguments)
-{
-    if (arg.Type == FieldArgumentType.Switch)
-    {
-        string switchValue = arg.Value?.ToString() ?? "";
-        if (switchValue.StartsWith("\@"))
+        if (condition.LeftOperand is NestedFieldInstruction nested)
         {
-            Console.WriteLine($"Found date/numeric format switch: {switchValue}");
-        }
-        else if (switchValue.StartsWith("\*"))
-        {
-            Console.WriteLine($"Found text format switch: {switchValue}");
-        }
-        else if (switchValue.StartsWith("\b"))
-        {
-            Console.WriteLine($"Found bookmark/default switch: {switchValue}");
+            Console.WriteLine($"  Nested instruction: {nested.NestedInstruction}");
         }
     }
 }
 ```
 
-## Field Reconstruction and Modification
-
-### Rebuilding Fields
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Parse a simple field
-FieldInstruction original = FieldParser.Parse("MERGEFIELD FirstName");
-
-// Modify the instruction
-original.Instruction = "MERGEFIELD";
-original.Arguments.Clear();
-original.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "LastName"));
-original.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
-
-string rebuilt = original.ToString();
-Console.WriteLine($"Rebuilt field: {rebuilt}");
-
-// Verify it parses correctly
-FieldInstruction verified = FieldParser.Parse(rebuilt);
-Console.WriteLine($"Verification successful: {verified}");
-```
-
-### Creating Fields Programmatically
-
-```csharp
-using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Create a new HYPERLINK field
-FieldInstruction hyperlink = new FieldInstruction("HYPERLINK");
-hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "https://www.example.com"));
-hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "Visit Example Site"));
-hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\o"));
-hyperlink.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "Example tooltip"));
-
-Console.WriteLine($"Created hyperlink: {hyperlink}");
-
-// Create a complex IF field
-FieldInstruction ifField = new FieldInstruction("IF");
-ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "1"));
-ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "="));
-ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "1"));
-ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "True"));
-ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, "False"));
-
-Console.WriteLine($"Created IF field: {ifField}");
-```
-
-## Error Handling
-
-### Handling Parse Errors
+### Error Handling
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
@@ -384,7 +250,7 @@ foreach (string fieldCode in invalidFields)
 {
     try
     {
-        FieldInstruction result = FieldParser.Parse(fieldCode);
+        var result = FieldInstructionParser.Parse(fieldCode);
         Console.WriteLine($"Unexpectedly succeeded: {result}");
     }
     catch (Exception ex)
@@ -394,4 +260,4 @@ foreach (string fieldCode in invalidFields)
 }
 ```
 
-This comprehensive example demonstrates the core functionality of the OpenLanguage FieldInstruction parser, showing how to parse, manipulate, and reconstruct Microsoft Word field instructions.
+This comprehensive example demonstrates the core functionality of the OpenLanguage FieldInstruction parser, showing how to parse, manipulate, and reconstruct Microsoft Word field instructions using a strongly-typed AST.

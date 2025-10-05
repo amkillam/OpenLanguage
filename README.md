@@ -10,16 +10,16 @@ OpenLanguage is a C# library providing lexers, parsers, and other processing too
 
 ### WordprocessingML
 
-- **Field Instructions**: Parse Word field instructions into structured objects with arguments
-- **Typed Field Instructions**: Factory pattern for converting generic instructions to strongly-typed objects
-- **Comprehensive Field Types**: Support for 70+ Word field instruction types (REF, MERGEFIELD, IF, etc.) - intended to be comprehensive
-- **Argument Handling**: Process identifiers, string literals, switches, and nested fields
-- **Field Reconstruction**: Convert parsed instructions back to valid field instruction strings
+- **Field Instructions**: Parse field instructions into strongly-typed Abstract Syntax Trees (AST)
+- **Grammar-Based**: Uses GPLEX/GPPG for robust parsing of field instructions, expressions, and merge fields
+- **Comprehensive Field Types**: Support for all field instructions - both standard ECMA variations and those specified in the ISO docs for legacy compatibility
+- **AST Manipulation**: Programmatically access and modify parsed structures
+- **Field Reconstruction**: Convert ASTs back to valid field instruction strings with round-trip fidelity
 
 ### SpreadsheetML
 
 - **Formula Parsing**: Parse SpreadsheetML formulas into Abstract Syntax Trees (AST)
-- **Grammar-Based**: Uses GPLEX POSIX lex lexer (.lex) and GPPG POSIX yacc parser for concise and efficient grammar specification and parsing logic
+- **Grammar-Based**: Uses GPLEX lexer (.lex) and GPPG yacc parser (.y) for concise and efficient grammar specification and parsing logic
 - **AST Manipulation**: Access and modify parsed formula structures programmatically
 - **Formula Reconstruction**: Convert modified ASTs back to valid Excel formula strings
 - **Reference Support**: Handle A1, R1C1, table references, structured, and external references
@@ -63,18 +63,24 @@ if (maybeFormula == null)
 
 ```csharp
 using OpenLanguage.WordprocessingML.FieldInstruction;
-using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
-// Create a field instruction
-var instruction = new FieldInstruction("MERGEFIELD");
-instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "FirstName"));
-instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, "\* Upper"));
+// Parse a field instruction into a strongly-typed AST node
+var ast = FieldInstructionParser.Parse("MERGEFIELD FirstName \\* Upper");
 
-// Convert to strongly-typed (if available)
-var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+// Check the type and use specific properties
+if (ast is MergeFieldFieldInstruction mergeField)
+{
+    Console.WriteLine($"Field Name: {mergeField.FieldName}");
+    if (mergeField.GeneralFormat?.Argument is StringLiteralNode format)
+    {
+        Console.WriteLine($"General Format: {format.Value}");
+    }
+}
 
 // Reconstruct field instruction
-Console.WriteLine($"Field instruction: {instruction.ToString()}");
+Console.WriteLine($"Field instruction: {ast.ToString()}");
 ```
 
 ## Building from Source
@@ -147,14 +153,14 @@ OpenLanguage/
 │   │       ├── Lang/
 │   │       │   ├── Lex/            # Lexical analysis (.lex files)
 │   │       │   └── Parse/          # Grammar parsing (.y files)
-│   │       ├── Formula.cs          # Main formula API
-│   │       └── FormulaParser.cs    # Parser implementation
+│   │       └── FormulaParser.cs    # Main formula API and parser implementation
 │   └── WordprocessingML/
 │       ├── FieldInstruction/       # WordprocessingML field instructions
 │       ├── MergeField/            # Mail merge functionality
 │       └── Expression/            # Expression evaluation
 ├── OpenLanguage.Test/              # Unit tests
-├── docs/                          # Documentation
+├── docs/                          # Documentation for docfx
+├── docfx/                         # Docfx configuration
 └── CMakeLists.txt                 # Build system configuration
 ```
 
@@ -164,16 +170,15 @@ The project uses POSIX yacc/lex style grammar files for robust parsing:
 
 - **Formula Grammar**: `SpreadsheetML/Formula/Lang/Parse/formula.y`
 - **Formula Lexer**: `SpreadsheetML/Formula/Lang/Lex/formula.lex`
-- **Function Definitions**: `SpreadsheetML/Formula/Lang/Lex/functions/*.lex`
+- **Function Definitions**: `SpreadsheetML/Formula/Lang/Lex/function/*.lex`
 
 These files are processed during build to generate C# parser code.
 
 ## Documentation
 
-- [API Documentation](./docs/) - Comprehensive API reference
-- [Formula Grammar](./docs/SpreadsheetML/Formula/) - Excel formula syntax guide
-- [Field Instructions](./docs/WordprocessingML/FieldInstruction/) - Word field processing
-- [Examples](./docs/examples/) - Usage examples and tutorials
+For detailed documentation, please visit the [project documentation site](https://amkillam.github.io/OpenLanguage/).
+
+The source for the documentation is in the `docs/` and `docfx/` directories.
 
 ## Development
 
@@ -233,39 +238,14 @@ OpenLanguage is built with performance as a primary concern:
 
 ## TODO
 
-### Restructure
-
-- [ ] Abstract and reuse formula parser's expression lexing and parsing in all
-      applicable parsers
-- [ ] Remove hand-written C# expression lexer and parser in WordprocessingML
-      namespace
-
 ### WordprocessingML
 
 #### Field Instruction
 
-**Parsers**
-
-- [ ] Rewrite field instruction parser with GPPG yacc parser.
-- [ ] Rewrite field instruction lexer with GPLEX lex lexer.
-- [ ] Refactor field instruction classes to use derived classes for strongly-typed instructions
-      rather than using factories and explicit conversion to strongly typed representation.
-- [ ] Rewrite merge field parser with GPPG yacc parser.
-- [ ] Rewrite merge field lexer with GPLEX lex lexer.
-
-- [ ] Allow configuration option for [`decimalSymbol`](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.decimalsymbol?view=openxml-3.0.1) used for parsing floating point numbers
-
-**Test Coverage**
-
-- [ ] Greatly expand field instruction parsing and lexing test coverage. Current
-      coverage is insufficient for a best-effort proof of efficacy.
-- [ ] Greatly expand mergefield parsing and lexing test coverage. Current
-      coverage is sparse and does not prove even minimal efficacy.
-
 **Misc**
 
-- [ ] Complete exhaustive enumeration of `CountryRegion` enumerations. The
-      current implementation is missing all but the most common enumerations.
+- [ ] Allow configuration option for `decimalSymbol` used for parsing floating point numbers
+- [ ] Complete exhaustive enumeration of `CountryRegion` enumerations.
 
 **Evaluation**
 

@@ -6,9 +6,9 @@ This directory contains the development container configuration for OpenLanguage
 
 ### 🛠️ Development Tools
 
-- **.NET 9.0 SDK**: Latest .NET SDK with C# 12 support
+- **.NET 8.0 & 9.0 SDKs**: For targeting multiple runtimes
 - **CMake 3.20+**: Build system for cross-platform builds
-- **Git**: Version control with pre-configured hooks
+- **Git**: Version control with pre-configured hooks using Husky
 - **GitHub CLI**: GitHub integration for issues, PRs, and releases
 
 ### 🗄️ Database Support
@@ -95,7 +95,7 @@ cmake --build build --target format
 cmake --build build --target doc
 
 # Package for NuGet
-cmake --build build --target publish
+cmake --build build --target pack
 
 # Install git hooks
 cmake --build build --target install-hooks

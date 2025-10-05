@@ -19,18 +19,21 @@ Static class providing the main entry point for formula parsing operations.
 
 ```csharp
 using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 
-// Parse a formula
-var formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
+// Parse a formula. Throw exception if syntax is invalid.
+Node formula = FormulaParser.Parse("=SUM(A1:A10) * 2");
 
-// Try parsing with error handling
-var maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
+// Try to parse a formula. Return null if syntax is invalid, otherwise return an
+AST root node.
+Node? maybeFormula = FormulaParser.TryParse("=INVALID_SYNTAX(");
 ```
 
 #### Methods
 
-- `Parse(string formulaText)` - Parses a formula string and returns a Formula object
-- `TryParse(string formulaText)` - Attempts to parse, returns null on failure
+- `Parse(string formulaText)` - Parses a formula string and returns an `Ast.Node` object representing the root of the Abstract Syntax Tree. Throws an exception if the syntax is invalid.
+- `TryParse(string formulaText)` - Attempts to parse, returns null if the syntax
+  is invalid.
 
 ## Parser Implementation
 
@@ -116,19 +119,34 @@ if (maybeFormula == null)
 
 ## AST Manipulation
 
-The parsed AST can be modified and reconstructed:
+The parsed AST can be modified and reconstructed. All nodes provide a `ReplaceChild` method and expose their children, allowing for traversal and manipulation.
 
 ```csharp
+using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
+
+// Parse a formula
 var formula = FormulaParser.Parse("=A1+B1");
 
-// Access the AST
-var astRoot = formula;
+// The root of a formula starting with '=' is an EqualPrefixedNode
+var astRoot = (EqualPrefixedNode)formula;
 
-// Modify the AST (implementation-specific)
-// ...
+// The expression property contains the actual formula structure
+var addNode = (AddNode)astRoot.Expression;
+
+// Access operands
+var left = addNode.Left;
+var right = addNode.Right;
+
+Console.WriteLine($"Left: {left}, Operator: {addNode.Operator}, Right: {right}");
+
+// Modify the AST: change the operator from + to *
+addNode.Operator = new AsteriskLiteralNode("*");
 
 // Reconstruct the formula
-var reconstructed = formula.ToString(); // Uses AstRoot.ToString()
+var reconstructed = formula.ToString();
+Console.WriteLine($"Original: =A1+B1");
+Console.WriteLine($"Modified: {reconstructed}"); // Outputs: =A1*B1
 ```
 
 ## Build Process
@@ -175,9 +193,11 @@ else
 ### Working with ASTs
 
 ```csharp
-var formula = FormulaParser.Parse("=A1+B1");
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 
-// The AstRoot property gives access to the parsed tree structure
+Node formula = FormulaParser.Parse("=A1+B1");
+
+// The root of the parsed formula is an AST node
 var root = formula;
 
 // Convert back to string representation

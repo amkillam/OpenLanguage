@@ -1,8 +1,8 @@
-- name: Introduction
+- name: Home
   href: README.md
-- name: Overview
-  href: api/
+- name: API
+  href: api
 - name: Examples
-  href: examples/
+  href: examples
 - name: Development
-  href: development/
+  href: development

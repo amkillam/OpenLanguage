@@ -1,5 +1,15 @@
 {
   "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+  "groups": [
+    {
+      "name": "pre-commit",
+      "tasks": [
+        "format-cs",
+        "git-add",
+        "test-cs"
+      ]
+    }
+  ],
   "tasks": [
     {
       "name": "prepare-cmake-build",

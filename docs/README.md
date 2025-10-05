@@ -13,9 +13,8 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 #### WordprocessingML
 
 - [Field Instructions](api/WordprocessingML/FieldInstruction/FieldInstruction.md) - WordprocessingML field instruction parsing
-- [Typed Field Instructions](api/WordprocessingML/FieldInstruction/Typed.md) - Strongly-typed field instruction factory
-- [MergeField Processing](api/WordprocessingML/MergeField/MergeField.md) - Mail merge field lexing
-- [Expression Processing](api/WordprocessingML/Expression/Expression.md) - Expression lexical analysis
+- [MergeField Processing](api/WordprocessingML/MergeField/MergeField.md) - Mail merge field parsing
+- [Expression Processing](api/WordprocessingML/Expression/Expression.md) - Expression parsing
 
 ### Development
 
@@ -33,9 +32,8 @@ The API reference is generated from XML documentation comments in the source cod
 | ------------------ | ------------------------------------------ | -------------------------------------------------------------------------------- |
 | Formula Parser     | SpreadsheetML formula AST parsing          | [Formula.md](api/SpreadsheetML/Formula/Formula.md)                               |
 | Field Instructions | WordprocessingML field instruction parsing | [FieldInstruction.md](api/WordprocessingML/FieldInstruction/FieldInstruction.md) |
-| Typed Instructions | Strongly-typed field factory               | [Typed.md](api/WordprocessingML/FieldInstruction/Typed.md)                       |
-| MergeField Lexer   | Mail merge field lexing                    | [MergeField.md](api/WordprocessingML/MergeField/MergeField.md)                   |
-| Expression Lexer   | Expression lexical analysis                | [Expression.md](api/WordprocessingML/Expression/Expression.md)                   |
+| MergeField Parser  | Mail merge field parsing                   | [MergeField.md](api/WordprocessingML/MergeField/MergeField.md)                   |
+| Expression Parser  | Expression parsing                         | [Expression.md](api/WordprocessingML/Expression/Expression.md)                   |
 
 ## Project Structure
 

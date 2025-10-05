@@ -31,36 +31,17 @@ OpenLanguage.Test/
 
 ### OpenLanguage.Test.csproj
 
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarnings>
-    <Deterministic>true</Deterministic>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../OpenLanguage/OpenLanguage.csproj" />
-  </ItemGroup>
-</Project>
-```
+The test project is configured to work with the main `OpenLanguage` project and includes settings for testing, code coverage, and data handling.
 
 **Key Configuration Features:**
 
-- **Nullable reference types**: Enhanced type safety in tests
-- **Treat warnings as errors**: Strict code quality enforcement
-- **Deterministic builds**: Consistent test execution
-- **Optimized builds**: Performance testing with release builds
+- **TargetFrameworks**: `net8.0;net9.0`
+- **Package References**:
+  - `Microsoft.NET.Test.Sdk`
+  - `xunit` and `xunit.runner.visualstudio` for running tests.
+  - `coverlet.collector` for code coverage data collection.
+- **Project Reference**: Includes a reference to the main `OpenLanguage.csproj`.
+- **Compiler Defines**: `TRACE_ACTIONS` and `EXPORT_GPPG` are defined, which can be used for conditional compilation during tests.
 
 ## Testing Framework
 
@@ -81,19 +62,22 @@ OpenLanguage uses xUnit as the primary testing framework, providing:
 Test individual components in isolation:
 
 ```csharp
+using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+
 [Fact]
-public void Constructor_WithValidInstruction_SetsInstructionProperty()
+public void Parse_SimpleInstruction_ReturnsCorrectAstNode()
 {
     // Arrange
     string instruction = "PAGE";
 
     // Act
-    var fieldInstruction = new FieldInstruction(instruction);
+    var ast = FieldInstructionParser.Parse(instruction);
 
     // Assert
-    Assert.Equal(instruction, fieldInstruction.Instruction);
-    Assert.NotNull(fieldInstruction.Arguments);
-    Assert.Empty(fieldInstruction.Arguments);
+    Assert.IsType<PageFieldInstruction>(ast);
+    var pageField = (PageFieldInstruction)ast;
+    Assert.Equal("PAGE", pageField.Instruction.Value);
 }
 ```
 
@@ -102,16 +86,26 @@ public void Constructor_WithValidInstruction_SetsInstructionProperty()
 Test component interactions:
 
 ```csharp
+using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
+
 [Theory]
-[InlineData("SUM(A1:A10)", typeof(FunctionCallNode))]
-[InlineData("A1+B1", typeof(BinaryOperatorNode))]
+[InlineData("=SUM(A1:A10)", typeof(FunctionCallNode))]
+[InlineData("=A1+B1", typeof(AddNode))]
 public void Parse_ValidFormula_ReturnsCorrectASTType(string formula, Type expectedType)
 {
     // Act
     var result = FormulaParser.Parse(formula);
 
+    // The root is an EqualPrefixedNode, we check its expression
+    var expression = result;
+    if (result is EqualPrefixedNode equalPrefixed)
+    {
+        expression = equalPrefixed.Expression;
+    }
+
     // Assert
-    Assert.IsType(expectedType, result);
+    Assert.IsType(expectedType, expression);
 }
 ```
 
@@ -121,9 +115,9 @@ Verify parsing and reconstruction fidelity:
 
 ```csharp
 [Theory]
-[InlineData("SUM(1, 2, 3)")]
-[InlineData("IF(A1>B1, "Yes", "No")")]
-[InlineData("VLOOKUP(A1, Sheet2!A:B, 2, FALSE)")]
+[InlineData("=SUM(1,2,3)")]
+[InlineData("=IF(A1>B1,\"Yes\",\"No\")")]
+[InlineData("=VLOOKUP(A1,Sheet2!A:B,2,FALSE)")]
 public void TestParseFunctionCall(string formulaString)
 {
     // Act
@@ -145,7 +139,7 @@ The formula parser tests are organized into several categories:
 ```csharp
 [Theory]
 [InlineData("123")]                    // Numeric literal
-[InlineData(""hello"")]              // String literal
+[InlineData("\"hello\"")]              // String literal
 [InlineData("TRUE")]                   // Boolean literal
 [InlineData("#VALUE!")]                // Error literal
 [InlineData("A1")]                     // Cell reference
@@ -194,7 +188,7 @@ public void TestParseUnaryOperation(string formulaString)
 ```csharp
 [Theory]
 [InlineData("SUM(1, 2, 3)")]
-[InlineData("IF(A1>B1, "Yes", "No")")]
+[InlineData("IF(A1>B1, \"Yes\", \"No\")")]
 [InlineData("VLOOKUP(A1, Sheet2!A:B, 2, FALSE)")]
 [InlineData("INDIRECT("A" & ROW())")]
 public void TestParseFunctionCall(string formulaString)
@@ -212,7 +206,7 @@ Tests use inline data attributes for maintainable test cases:
 public static IEnumerable<object[]> ComplexFormulaTestData()
 {
     yield return new object[] { "=SUM(A1:A10)*COUNT(B:B)", "Arithmetic with functions" };
-    yield return new object[] { "=IF(AND(A1>0,B1<100),"Valid","Invalid")", "Nested logical functions" };
+    yield return new object[] { "=IF(AND(A1>0,B1<100),\"Valid\",\"Invalid\")", "Nested logical functions" };
     yield return new object[] { "=VLOOKUP(A1,Table1,2,0)+VLOOKUP(A1,Table2,3,0)", "Multiple lookups" };
 }
 
@@ -226,28 +220,9 @@ public void TestComplexFormulas(string formula, string description)
 
 ## WordprocessingML Field Instruction Testing
 
-### Core Field Instruction Tests (FieldInstructionTests.cs)
+### Parser Tests (FieldInstructionTests.cs)
 
-#### Constructor Tests
-
-```csharp
-[Theory]
-[InlineData("PAGE")]
-[InlineData("DATE")]
-[InlineData("TIME")]
-[InlineData("AUTHOR")]
-[InlineData("FILENAME")]
-public void Constructor_WithValidInstruction_SetsInstructionProperty(string instruction)
-{
-    // Act
-    FieldInstruction fieldInstruction = new FieldInstruction(instruction);
-
-    // Assert
-    Assert.Equal(instruction, fieldInstruction.Instruction);
-    Assert.NotNull(fieldInstruction.Arguments);
-    Assert.Empty(fieldInstruction.Arguments);
-}
-```
+The `FieldInstructionParser` is tested to ensure it correctly parses various field codes into their strongly-typed AST node representations.
 
 #### Validation Tests
 
@@ -256,10 +231,10 @@ public void Constructor_WithValidInstruction_SetsInstructionProperty(string inst
 [InlineData(null)]
 [InlineData("")]
 [InlineData("    ")]
-public void Constructor_WithInvalidInstruction_ThrowsArgumentException(string? instruction)
+public void Parse_InvalidInput_ThrowsArgumentException(string? instruction)
 {
     // Act & Assert
-    Assert.Throws<ArgumentException>(() => new FieldInstruction(instruction!));
+    Assert.Throws<ArgumentException>(() => FieldInstructionParser.Parse(instruction!));
 }
 ```
 
@@ -267,22 +242,19 @@ public void Constructor_WithInvalidInstruction_ThrowsArgumentException(string? i
 
 ```csharp
 [Fact]
-public void Constructor_WithInstructionAndArguments_SetsProperties()
+public void Parse_MergeFieldWithSwitches_SetsProperties()
 {
     // Arrange
-    string instruction = "MERGEFIELD";
-    List<FieldArgument> arguments = new List<FieldArgument>
-    {
-        new FieldArgument(FieldArgumentType.Identifier, "FirstName"),
-        new FieldArgument(FieldArgumentType.Switch, "\* Upper"),
-    };
+    string instruction = @"MERGEFIELD FirstName \* Upper";
 
     // Act
-    FieldInstruction fieldInstruction = new FieldInstruction(instruction, arguments);
+    var ast = FieldInstructionParser.Parse(instruction);
 
     // Assert
-    Assert.Equal(instruction, fieldInstruction.Instruction);
-    Assert.Equal(arguments, fieldInstruction.Arguments);
+    var mergeField = Assert.IsType<MergeFieldFieldInstruction>(ast);
+    Assert.Equal("FirstName", mergeField.FieldName.ToRawString());
+    Assert.NotNull(mergeField.GeneralFormat);
+    Assert.Equal("Upper", mergeField.GeneralFormat.Argument.ToRawString());
 }
 ```
 
@@ -294,7 +266,7 @@ Test the field instruction lexical analyzer:
 [Theory]
 [InlineData("PAGE", TokenType.Instruction)]
 [InlineData("\* MERGEFORMAT", TokenType.Switch)]
-[InlineData(""Hello World"", TokenType.StringLiteral)]
+[InlineData("\"Hello World\"", TokenType.StringLiteral)]
 [InlineData("123", TokenType.Number)]
 public void Tokenize_ValidInput_ReturnsCorrectTokens(string input, TokenType expectedType)
 {
@@ -310,25 +282,22 @@ public void Tokenize_ValidInput_ReturnsCorrectTokens(string input, TokenType exp
 }
 ```
 
-### Typed Field Instruction Tests (TypedFieldInstructionTests.cs)
+### AST Node Property Tests
 
-Test the factory pattern for strongly-typed field instructions:
+Tests verify that the correct properties are set on the strongly-typed AST nodes.
 
 ```csharp
 [Fact]
-public void Create_MergeFieldInstruction_ReturnsTypedInstance()
+public void Parse_MergeFieldInstruction_ReturnsTypedInstanceWithCorrectProperties()
 {
     // Arrange
-    var instruction = new FieldInstruction("MERGEFIELD");
-    instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, "FirstName"));
+    var instruction = FieldInstructionParser.Parse("MERGEFIELD FirstName");
 
     // Act
-    var typedInstruction = TypedFieldInstructionFactory.Create(instruction);
+    var mergeField = Assert.IsType<MergeFieldFieldInstruction>(instruction);
 
     // Assert
-    Assert.IsType<MergeFieldInstruction>(typedInstruction);
-    var mergeField = (MergeFieldInstruction)typedInstruction;
-    Assert.Equal("FirstName", mergeField.FieldName);
+    Assert.Equal("FirstName", mergeField.FieldName.ToRawString());
 }
 ```
 
@@ -363,17 +332,14 @@ dotnet test --filter "MethodName=TestParseLiteralAndIdentifier"
 ```bash
 # Run tests through CMake build system
 cmake --build build --target test
-
-# This executes:
-# dotnet test OpenLanguage.Test/OpenLanguage.Test.csproj
-#   --configuration Release
-#   --no-build
-#   --verbosity normal
 ```
+
+This executes the `test` target defined in `CMakeLists.txt`, which runs:
+`dotnet test OpenLanguage.Test/OpenLanguage.Test.csproj --configuration="Release" --framework="net9.0"`
 
 ### Continuous Integration
 
-The testing strategy integrates with CI/CD pipelines:
+The testing strategy integrates with CI/CD pipelines. The `CMakeLists.txt` file provides a `test` target that can be used in CI.
 
 ```yaml
 # Example GitHub Actions workflow
@@ -394,11 +360,8 @@ jobs:
       - name: Configure CMake
         run: cmake -B build
 
-      - name: Build
-        run: cmake --build build --target build
-
-      - name: Test
-        run: cmake --build build --target test
+      - name: Run CI test target
+        run: cmake --build build --target test-ci
 ```
 
 ## Test Development Practices
@@ -521,10 +484,9 @@ public void Parse_InvalidInput_ThrowsArgumentException(string input)
 
 ```csharp
 [Theory]
-[InlineData("SUM(A1:A10", "Missing closing parenthesis")]
-[InlineData("A1++B1", "Invalid operator sequence")]
-[InlineData("=SUM()", "Empty function arguments")]
-public void TryParse_InvalidFormula_ReturnsNull(string formula, string reason)
+[InlineData("=SUM(A1:A10")] // Missing closing parenthesis
+[InlineData("=A1++B1")]     // Invalid operator sequence
+public void TryParse_InvalidFormula_ReturnsNull(string formula)
 {
     // Act
     var result = FormulaParser.TryParse(formula);
@@ -617,82 +579,44 @@ public void Parse_StructuredReferences_CreatesCorrectAST(string formula)
 
 ### Test Debugging Strategies
 
-1. **Use descriptive test names** that clearly indicate what's being tested
-2. **Add intermediate assertions** to isolate failure points
-3. **Use debugger breakpoints** in both test and production code
-4. **Add logging** for complex test scenarios
+1.  **Use descriptive test names** that clearly indicate what's being tested.
+2.  **Add intermediate assertions** to isolate failure points.
+3.  **Use debugger breakpoints** in both test and production code.
+4.  **Add logging** for complex test scenarios.
 
 ```csharp
 [Fact]
 public void Parse_ComplexFormula_DebugExample()
 {
     // Arrange
-    string formula = "SUM(A1:A10)+AVERAGE(B1:B10)";
+    string formula = "=SUM(A1:A10)+AVERAGE(B1:B10)";
 
     // Act
     var result = FormulaParser.Parse(formula);
 
     // Debug assertions
     Assert.NotNull(result);
-    Assert.NotNull(result);
+    var root = Assert.IsType<EqualPrefixedNode>(result);
+    var addNode = Assert.IsType<AddNode>(root.Expression);
 
     // Main assertion
-    Assert.IsType<BinaryOperatorNode>(result);
-
-    var binOp = (BinaryOperatorNode)result;
-    Assert.Equal("+", binOp.Operator);
+    Assert.Equal("+", addNode.Operator.ToRawString());
 
     // Verify operands
-    Assert.IsType<FunctionCallNode>(binOp.Left);
-    Assert.IsType<FunctionCallNode>(binOp.Right);
+    Assert.IsType<FunctionCallNode>(addNode.Left);
+    Assert.IsType<FunctionCallNode>(addNode.Right);
 }
 ```
 
 ### Test Isolation
 
-Ensure tests are independent:
-
-```csharp
-public class ParserTestsWithSetup : IDisposable
-{
-    private readonly FormulaParser _parser;
-
-    public ParserTestsWithSetup()
-    {
-        // Setup for each test
-        _parser = new FormulaParser();
-    }
-
-    [Fact]
-    public void TestMethod()
-    {
-        // Test using _parser
-    }
-
-    public void Dispose()
-    {
-        // Cleanup after each test
-        _parser?.Dispose();
-    }
-}
-```
+Tests are designed to be independent. xUnit creates a new instance of the test class for each test method, ensuring isolation.
 
 ## Integration with Development Workflow
 
 ### Pre-commit Testing
 
-The git pre-commit hook runs tests before allowing commits:
-
-```bash
-#!/bin/bash
-echo "Running tests..."
-cmake --build . --target test
-
-if [ $? -ne 0 ]; then
-    echo "Tests failed. Commit aborted."
-    exit 1
-fi
-```
+The git pre-commit hook (configured via `.husky/pre-commit`) runs tests before allowing commits to ensure code quality.
 
 ### Test-Driven Development
 

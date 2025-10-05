@@ -1,16 +1,32 @@
-# Working with Data Types and Validation
+# Special Types and Enums
 
-This document demonstrates how to use the specialized data types and validation classes provided by OpenLanguage.
+The `OpenLanguage.WordprocessingML` namespaces include several specialized types and enumerations to provide type-safety and clarity when working with field instructions.
 
 ## Language Identifiers
 
-The `LanguageIdentifier` enum provides a comprehensive list of language codes for localization.
+The `LanguageIdentifier` enum provides a comprehensive list of language codes based on Microsoft Windows LCID values, used for localization in fields like `ADDRESSBLOCK` and `DATE`.
+
+### Basic Usage
+
+```csharp
+using OpenLanguage.WordprocessingML;
+
+// Using predefined language identifiers
+LanguageIdentifier english = LanguageIdentifier.EnglishUS;
+LanguageIdentifier french = LanguageIdentifier.FrenchFrance;
+
+Console.WriteLine($"English US LCID: {(int)english}"); // 1033
+```
+
+### LanguageIdentifierExtensions
+
+The `LanguageIdentifierExtensions` static class provides helper methods for conversion.
 
 ```csharp
 using OpenLanguage.WordprocessingML;
 
 // Get LCID from enum
-int lcid = (int)LanguageIdentifier.FrenchCanada; // 3084
+int lcid = LanguageIdentifier.FrenchCanada.ToLcid(); // 3084
 
 // Get enum from LCID
 LanguageIdentifier lang = LanguageIdentifierExtensions.FromLcid(1033); // EnglishUS
@@ -20,9 +36,37 @@ string tag = LanguageIdentifier.GermanGermany.ToTag(); // "de-DE"
 LanguageIdentifier? langFromTag = LanguageIdentifierExtensions.TryFromTag("en-GB"); // EnglishUK
 ```
 
+### Integration with Field Instructions
+
+```csharp
+using OpenLanguage.WordprocessingML;
+using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+using System.Collections.Generic;
+
+// Create a localized ADDRESSBLOCK field
+var langIdArg = new FlaggedArgument<ExpressionNode>(
+    new FlagNode(@"\l"),
+    new NumericLiteralNode<int>(((int)LanguageIdentifier.FrenchFrance).ToString(), (int)LanguageIdentifier.FrenchFrance, "D")
+);
+
+var addressBlock = new AddressBlockFieldInstruction(
+    instruction: new StringLiteralNode("ADDRESSBLOCK"),
+    countryRegionInclusionSetting: null,
+    formatByRecipientCountry: null,
+    excludedCountriesRegions: null,
+    formatTemplate: null,
+    languageId: langIdArg,
+    order: new List<AddressBlockArgument> { AddressBlockArgument.LanguageId }
+);
+
+Console.WriteLine(addressBlock.ToString()); // ADDRESSBLOCK \l 1036
+```
+
 ## Programmatic Identifiers (ProgID)
 
-The `ProgrammaticIdentifier` class is used in fields like `EMBED` and `LINK` to specify OLE objects.
+The `ProgrammaticIdentifier` class is used in fields like `EMBED` and `LINK` to specify OLE objects. It is located in the `OpenLanguage.WordprocessingML.ProgrammaticIdentifier` namespace.
 
 ```csharp
 using OpenLanguage.WordprocessingML.ProgrammaticIdentifier;
@@ -37,7 +81,8 @@ var progId = new ProgrammaticIdentifier(
 Console.WriteLine(progId.ToString()); // "Excel.Sheet.12"
 
 // Parse a ProgID string
-var parsedProgId = new ProgrammaticIdentifier(Application.Word, Object.Document).TryParse("Word.Document.8");
+var progIdParser = new ProgrammaticIdentifier(Application.Word, Object.Document);
+var parsedProgId = progIdParser.TryParse("Word.Document.8");
 if (parsedProgId != null)
 {
     Console.WriteLine($"Application: {parsedProgId.Application}");
@@ -46,9 +91,9 @@ if (parsedProgId != null)
 }
 ```
 
-## Operator Constants
+## Comparison Operators
 
-The `OperatorConstants` and `ComparisonOperator` enums provide a type-safe way to work with comparison operators in fields like `IF` and `COMPARE`.
+The `ComparisonOperator` enum provides a type-safe way to work with comparison operators in fields like `IF` and `COMPARE`. It is located in the `OpenLanguage.WordprocessingML.Operators` namespace.
 
 ```csharp
 using OpenLanguage.WordprocessingML.Operators;
@@ -64,7 +109,7 @@ Console.WriteLine(opString); // <>
 
 ## Field-Specific Enums
 
-Many field instruction classes have their own enums for switches and arguments, providing clarity and type safety.
+Many field instruction AST nodes have their own enums for arguments and switches, providing clarity and type safety.
 
 ### `ADDRESSBLOCK` Field
 

@@ -37,7 +37,7 @@ OpenLanguage/
 
 1. **RID Detection**: Automatically detects the target platform and architecture
 2. **Grammar Preprocessing**: Processes .y and .lex files with cpp (C preprocessor)
-3. **Code Generation**: GPPG/GPLEX tools generate C# parser/lexer code from grammar files
+3. **Code Generation**: GPPG and GPLEX tools generate C# parser/lexer code from grammar files
 4. **Compilation**: Builds the .NET solution for specified RIDs
 5. **Testing**: Runs xUnit tests with the compiled assemblies
 6. **Packaging**: Creates NuGet packages for distribution
@@ -102,7 +102,7 @@ The build system automatically processes yacc (.y) and lex (.lex) files using th
 **Source**: `OpenLanguage/SpreadsheetML/Formula/Lang/Lex/formula.lex`
 **Output**: `OpenLanguage/Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex`
 
-The preprocessed files are then used by GPPG/GPLEX tools to generate C# parser code.
+The preprocessed files are then used by GPPG and GPLEX tools to generate C# parser code.
 
 ## Build Targets
 
@@ -138,8 +138,8 @@ Runs all unit tests using xUnit.
 cmake --build build --target test
 ```
 
-**Dependencies**: `build`  
-**Command**: `dotnet test --configuration Release --no-build --verbosity normal`
+**Dependencies**: `process`  
+**Command**: `dotnet test OpenLanguage.Test/OpenLanguage.Test.csproj --configuration="Release" --framework="net9.0"`
 
 ### Utility Targets
 
@@ -182,7 +182,7 @@ cmake --build build --target pack
 
 #### `install-hooks`
 
-Installs git pre-commit hooks for development.
+Installs git pre-commit hooks for development using Husky.
 
 ```bash
 cmake --build build --target install-hooks
@@ -243,7 +243,7 @@ The `OpenLanguage.csproj` file includes:
 
 ```xml
 <PropertyGroup>
-  <TargetFramework>net9.0</TargetFramework>
+  <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
   <PublishAot>true</PublishAot>
   <PublishTrimmed>true</PublishTrimmed>
   <Nullable>enable</Nullable>
@@ -319,14 +319,14 @@ cmake --build build --target pack       # Pack for distribution
 The project uses YaccLexTools packages for grammar processing:
 
 - **YaccLexTools.Gppg**: yacc parser generator
-- **YaccLexTools.GPLEX**: lex lexer generator
+- **YaccLexTools.Gplex**: lex lexer generator
 
 The .csproj file configures these tools:
 
 ```xml
 <YaccFile Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
   <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
-  <Arguments>/GPLEX /nolines</Arguments>
+  <Arguments>/gplex /nolines</Arguments>
 </YaccFile>
 ```
 

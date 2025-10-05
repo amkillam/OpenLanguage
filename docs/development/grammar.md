@@ -14,18 +14,84 @@ The grammar files in OpenLanguage serve as the foundation for parsing Spreadshee
 
 ### File Organization
 
+The grammar files are organized by language component:
+
+**SpreadsheetML Formula Parser:**
+
 ```
 OpenLanguage/SpreadsheetML/Formula/Lang/
-├── Parse/
-│   └── formula.y                    # yacc grammar for SpreadsheetML formulas
-└── Lex/
-    ├── formula.lex                  # Main lexer for SpreadsheetML formulas
-    └── function/                    # Function definition lexer files
-        ├── standard.lex             # Standard Excel functions
-        ├── worksheet.lex            # Worksheet functions
-        ├── command.lex              # Command functions
-        ├── macro.lex                # Macro functions
-        └── future.lex               # Future/experimental functions
+├── Lex/
+│   ├── core.lex
+│   ├── formula.lex
+│   ├── function/
+│   │   ├── command.lex
+│   │   ├── future.lex
+│   │   ├── macro.lex
+│   │   ├── standard.lex
+│   │   └── worksheet.lex
+│   └── whitespace.lex
+└── Parse/
+    ├── formula.y
+    └── function/
+        ├── command/
+        │   ├── nodes.inc
+        │   ├── rules.inc
+        │   ├── tokens.inc
+        │   └── types.inc
+        ├── future/
+        │   ├── nodes.inc
+        │   ├── rules.inc
+        │   ├── tokens.inc
+        │   └── types.inc
+        ├── macro/
+        │   ├── nodes.inc
+        │   ├── rules.inc
+        │   ├── tokens.inc
+        │   └── types.inc
+        ├── standard/
+        │   ├── nodes.inc
+        │   ├── rules.inc
+        │   ├── tokens.inc
+        │   └── types.inc
+        └── worksheet/
+            ├── nodes.inc
+            ├── rules.inc
+            ├── tokens.inc
+            └── types.inc
+```
+
+**WordprocessingML Parsers:**
+
+```
+OpenLanguage/WordprocessingML/
+├── Expression/Lang/
+│   ├── Lex/
+│   │   ├── expression.lex
+│   │   └── whitespace.lex
+│   └── Parse/expression.y
+├── FieldInstruction/Lang/
+│   ├── Lex/
+│   │   ├── field_instruction.lex
+│   │   ├── switch.lex
+│   │   └── whitespace.lex
+│   └── Parse/
+│       ├── field_instruction.y
+│       ├── instruction/
+│       │   ├── rule.inc
+│       │   ├── token.inc
+│       │   └── type.inc
+│       └── switch/
+│           ├── rule.inc
+│           ├── token.inc
+│           └── type.inc
+└── MergeField/Lang/
+    ├── Lex/
+    │   ├── merge_field.lex
+    │   ├── template.lex
+    │   └── whitespace.lex
+    └── Parse/
+        ├── merge_field.y
+        └── template.y
 ```
 
 ### Processing Pipeline
@@ -100,17 +166,16 @@ The union section defines the data types that can be associated with grammar sym
 #### Grammar Rules
 
 ```yacc
-expression
-    : term
-    | expression T_PLUS term     { $$ = new BinaryOperatorNode($1, $3, "+"); }
-    | expression T_MINUS term    { $$ = new BinaryOperatorNode($1, $3, "-"); }
-    ;
+expression:
+    non_union_expression { $$ = $1; }
+  | expression T_COMMA non_union_expression { $$ = new UnionNode($1, new CommaNode($2), $3); }
+  ;
 
-term
-    : factor
-    | term T_MULTIPLY factor     { $$ = new BinaryOperatorNode($1, $3, "*"); }
-    | term T_DIVIDE factor       { $$ = new BinaryOperatorNode($1, $3, "/"); }
-    ;
+non_union_expression:
+    primary                                                  { $$ = $1; }
+  | non_union_expression T_PLUS non_union_expression         { $$ = new AddNode($1, new PlusLiteralNode($2), $3); }
+  | non_union_expression T_MINUS non_union_expression        { $$ = new SubtractNode($1, new MinusLiteralNode($2), $3); }
+  ;
 ```
 
 **Grammar Rule Components:**
@@ -127,7 +192,7 @@ The grammar rules construct Abstract Syntax Tree (AST) nodes:
 
 ```yacc
 function_call
-    : T_IDENTIFIER T_LPAREN argument_list T_RPAREN
+    : function_call_head T_LPAREN argument_list T_RPAREN
     {
         $$ = new FunctionCallNode($1, $3);
     }
@@ -147,13 +212,17 @@ argument_list
 ### Precedence and Associativity
 
 ```yacc
-%left T_COMMA
+%right T_COMMA
+%left T_INTERSECTION T_NEWLINE
+%left T_COLON
 %left T_EQ T_NE T_LT T_LE T_GT T_GE
-%left T_CONCAT
+%left T_AMPERSAND
 %left T_PLUS T_MINUS
-%left T_MULTIPLY T_DIVIDE
-%right T_POWER
+%left T_ASTERISK T_SLASH
+%right T_CARET
+%left UMINUS
 %left T_PERCENT
+%right T_POUND
 ```
 
 **Precedence Rules:**
@@ -216,9 +285,9 @@ Start conditions enable context-sensitive lexical analysis.
 }
 
 <IN_STRING>{
-    ""                { stringBuffer.Append('"'); }
-    "                  { BEGIN(INITIAL); return (int)Tokens.T_STRING_LITERAL; }
-    [^"]+              { stringBuffer.Append(yytext); }
+    \"\"                  { stringBuffer.Append('"'); }
+    \"                    { BEGIN(SR_POSSIBLE); yylval.stringVal = stringBuffer.ToString(); return (int)Tokens.T_STRING_CONSTANT; }
+    [^"]+                { stringBuffer.Append(yytext); }
 }
 ```
 
@@ -232,7 +301,7 @@ Start conditions enable context-sensitive lexical analysis.
 
 ### Function Definition Files
 
-The lexer includes separate files for different function categories:
+The SpreadsheetML formula lexer includes separate files for different function categories:
 
 #### standard.lex
 
@@ -250,10 +319,9 @@ The lexer includes separate files for different function categories:
 
 ```lex
 /* Worksheet Function Keywords */
-"VLOOKUP"   { return (int)Tokens.T_FUNC_VLOOKUP; }
-"HLOOKUP"   { return (int)Tokens.T_FUNC_HLOOKUP; }
-"INDEX"     { return (int)Tokens.T_FUNC_INDEX; }
-"MATCH"     { return (int)Tokens.T_FUNC_MATCH; }
+"FILTER"   { return (int)Tokens.T_FUNC_FILTER; }
+"SORT"     { return (int)Tokens.T_FUNC_SORT; }
+"PY"       { return (int)Tokens.T_FUNC_PY; }
 ```
 
 This modular approach enables:
@@ -586,14 +654,14 @@ The generated parser integrates with the main API:
 ```csharp
 public static class FormulaParser
 {
-    public static Formula Parse(string formulaText)
+    public static Ast.Node Parse(string? formulaText)
     {
-        var scanner = new FormulaScanner();
-        var parser = new Parser() { Scanner = scanner };
+        // ...
+        var scanner = new Generated.FormulaScanner();
         scanner.SetSource(formulaText, 0);
-
-        var result = parser.Parse();
-        return new Formula(formulaText, result);
+        var parser = new Generated.Parser(scanner);
+        parser.Parse();
+        return parser.root;
     }
 }
 ```
