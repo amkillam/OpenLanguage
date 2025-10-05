@@ -1,59 +1,37 @@
 {
-  "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
-  "groups": [
-    {
-      "name": "pre-commit",
-      "tasks": [
-        "format-cs",
-        "git-add",
-        "test-cs"
-      ]
-    }
-  ],
   "tasks": [
     {
+      "group": "pre-commit",
       "name": "prepare-cmake-build",
-      "command": "bash",
-      "args": ["-c", "cmake --build build -DCMAKE_BUILD_TYPE=Release"],
-      "windows": {
-        "command": "cmd",
-        "args": ["/c", "cmake --build build -DCMAKE_BUILD_TYPE=Release"]
-      }
+      "command": "cmake",
+      "args": ["-B", "build", "-DCMAKE_BUILD_TYPE=Release"]
     },
     {
-      "name": "format-cs",
-      "command": "bash",
-      "args": ["-c", "cmake --build build --target format"],
-      "windows": {
-        "command": "cmd",
-        "args": ["/c", "cmake --build build --target format"]
-      }
-    },
-    {
+      "group": "pre-commit",
       "name": "build-cs",
-      "command": "bash",
-      "args": ["-c", "cmake --build build --target build"],
-      "windows": {
-        "command": "cmd",
-        "args": ["/c", "cmake --build build --target build"]
-      }
+      "command": "cmake",
+      "args": ["--build", "build", "--target", "build"]
     },
     {
+      "group": "pre-commit",
       "name": "test-cs",
-      "command": "bash",
-      "args": ["-c", "cmake --build build --target test"],
-      "windows": {
-        "command": "cmd",
-        "args": ["/c", "cmake --build build --target test"]
-      }
+      "command": "cmake",
+      "args": ["--build", "build", "--target", "test"]
     },
     {
+      "group": "pre-commit",
       "name": "git-add",
-      "command": "git",
-      "args": ["add", "."],
+      "command": "bash",
+      "args": [
+        "-c",
+        "STASH_NAME='husky-pre-commit'; git stash push --keep-index --include-untracked -m \"$STASH_NAME\" --quiet; trap 'if git stash list | head -n1 | grep -q \"$STASH_NAME\"; then git stash pop --quiet; fi' EXIT; dotnet format --include ${staged}; git add ${staged}"
+      ],
       "windows": {
-        "command": "git",
-        "args": ["add", "."]
+        "command": "cmd",
+        "args": [
+          "/c",
+          "set STASH_NAME=husky-pre-commit && git stash push --keep-index --include-untracked -m \"%STASH_NAME%\" --quiet && cmd /V:ON /C \"trap 'if git stash list | head -n1 | grep -q \"%STASH_NAME%\"; then git stash pop --quiet; fi' EXIT && dotnet format --include %staged% && git add %staged%"
+        ]
       }
     }
   ]

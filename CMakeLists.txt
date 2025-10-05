@@ -312,11 +312,14 @@ add_custom_target(doc
 
 # Install git hooks target
 add_custom_target(install-hooks
+    COMMAND dotnet husky install
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_SOURCE_DIR}/hooks/pre-commit
+        ${CMAKE_SOURCE_DIR}/.husky/pre-commit
         ${CMAKE_SOURCE_DIR}/.git/hooks/pre-commit
     COMMAND chmod +x ${CMAKE_SOURCE_DIR}/.git/hooks/pre-commit
     COMMENT "Installing git hooks"
+    DEPENDS tool_restore
 )
 
 # Clean target - use platform independent CMake commands
