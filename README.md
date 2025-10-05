@@ -147,18 +147,18 @@ dotnet pack --configuration Release
 
 ```
 OpenLanguage/
-├── OpenLanguage/                    # Main library
+├── OpenLanguage/                  # Main library
 │   ├── SpreadsheetML/
-│   │   └── Formula/                 # SpreadsheetML formula processing
+│   │   └── Formula/               # SpreadsheetML formula processing
 │   │       ├── Lang/
-│   │       │   ├── Lex/            # Lexical analysis (.lex files)
-│   │       │   └── Parse/          # Grammar parsing (.y files)
-│   │       └── FormulaParser.cs    # Main formula API and parser implementation
+│   │       │   ├── Lex/           # Lexical analysis (.lex files)
+│   │       │   └── Parse/         # Grammar parsing (.y files)
+│   │       └── FormulaParser.cs   # Main formula API and parser implementation
 │   └── WordprocessingML/
-│       ├── FieldInstruction/       # WordprocessingML field instructions
+│       ├── FieldInstruction/      # WordprocessingML field instructions
 │       ├── MergeField/            # Mail merge functionality
 │       └── Expression/            # Expression evaluation
-├── OpenLanguage.Test/              # Unit tests
+├── OpenLanguage.Test/             # Unit tests
 ├── docs/                          # Documentation for docfx
 ├── docfx/                         # Docfx configuration
 └── CMakeLists.txt                 # Build system configuration
@@ -242,16 +242,16 @@ OpenLanguage is built with performance as a primary concern:
 
 #### Field Instruction
 
-**Misc**
-
-- [ ] Allow configuration option for `decimalSymbol` used for parsing floating point numbers
-- [ ] Complete exhaustive enumeration of `CountryRegion` enumerations.
-
 **Evaluation**
 
 - [ ] Implement per-class evaluation of strongly typed field instructions.
 - [ ] Implement execution of parsed merge field.
 - [ ] Ensure evaluation is implemented with respect to configured [`decimalSymbol`](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.decimalsymbol?view=openxml-3.0.1)
+
+**Misc**
+
+- [ ] Allow configuration option for `decimalSymbol` used for parsing floating point numbers
+- [ ] Complete exhaustive enumeration of `CountryRegion` enumerations.
 
 #### LevelText
 
