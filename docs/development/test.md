@@ -233,7 +233,6 @@ The `FieldInstructionParser` is tested to ensure it correctly parses various fie
 [InlineData("    ")]
 public void Parse_InvalidInput_ThrowsArgumentException(string? instruction)
 {
-    // Act & Assert
     Assert.Throws<ArgumentException>(() => FieldInstructionParser.Parse(instruction!));
 }
 ```
@@ -458,7 +457,6 @@ For large test datasets, consider external files:
 [JsonFileData("TestData/large-formula-set.json")]
 public void Parse_LargeFormulaSet_AllParseSuccessfully(string formula)
 {
-    // Act & Assert
     var exception = Record.Exception(() => FormulaParser.Parse(formula));
     Assert.Null(exception);
 }
@@ -475,7 +473,6 @@ public void Parse_LargeFormulaSet_AllParseSuccessfully(string formula)
 [InlineData(null)]
 public void Parse_InvalidInput_ThrowsArgumentException(string input)
 {
-    // Act & Assert
     Assert.Throws<ArgumentException>(() => FormulaParser.Parse(input));
 }
 ```

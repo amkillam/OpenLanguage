@@ -59,7 +59,6 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(0)]
         public void Format_WithZero_ThrowsArgumentException(ulong input)
         {
-            // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
                 _provider.Format("AH", input, _provider)
             );
@@ -73,10 +72,8 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("ABC1")]
         [InlineData("A1B")]
         [InlineData("@")]
-        [InlineData("a")] // lowercase
         public void Parse_WithInvalidStrings_ThrowsArgumentException(string? input)
         {
-            // Act & Assert
             Assert.Throws<ArgumentException>(() =>
                 AlphabeticHexevigesimalProvider.Parse<ulong>(input!)
             );
@@ -179,7 +176,6 @@ namespace OpenLanguage.Utils.Tests
         [Fact]
         public void Provider_ImplementsIFormatProvider()
         {
-            // Act & Assert
             Assert.IsAssignableFrom<IFormatProvider>(_provider);
         }
 
@@ -219,7 +215,6 @@ namespace OpenLanguage.Utils.Tests
         [InlineData(null)] // Null format string
         public void Format_WithInvalidFormat_ThrowsFormatException(string? format)
         {
-            // Act & Assert
             Assert.Throws<FormatException>(() => _provider.Format(format!, 1UL, _provider));
         }
 

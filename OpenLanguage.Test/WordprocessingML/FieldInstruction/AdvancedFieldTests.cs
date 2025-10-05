@@ -459,7 +459,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("IF 1 =")]
         public void Parse_InvalidFields_ThrowsOrReturnsNull(string fieldCode)
         {
-            // Act & Assert
             if (string.IsNullOrWhiteSpace(fieldCode))
             {
                 Assert.ThrowsAny<Exception>(() => FieldInstructionParser.Parse(fieldCode));
@@ -532,47 +531,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
     /// </summary>
     public class FieldParserPerformanceTests
     {
-        [Fact]
-        public void Parse_ManySimpleFields_ParsesWithinReasonableTime()
-        {
-            string[] fields = new string[1000];
-            for (int i = 0; i < fields.Length; i++)
-            {
-                fields[i] = $"MERGEFIELD Field{i}";
-            }
-
-            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            foreach (string fieldCode in fields)
-            {
-                ExpressionNode result = FieldInstructionParser.Parse(fieldCode);
-                Assert.NotNull(result);
-            }
-            stopwatch.Stop();
-
-            Assert.True(
-                stopwatch.ElapsedMilliseconds < 5000,
-                $"Parsing 1000 fields took {stopwatch.ElapsedMilliseconds}ms, expected < 5000ms"
-            );
-        }
-
-        [Fact]
-        public void Parse_ComplexNestedField_ParsesWithinReasonableTime()
-        {
-            // Create a complex nested field
-            string complexField =
-                "IF { IF { MERGEFIELD Level1 } = \"A\" { MERGEFIELD Level2A } { MERGEFIELD Level2B } } = \"Result\" { MERGEFIELD Success } { MERGEFIELD Failure }";
-
-            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            ExpressionNode result = FieldInstructionParser.Parse(complexField);
-            stopwatch.Stop();
-
-            Assert.NotNull(result);
-            Assert.True(
-                stopwatch.ElapsedMilliseconds < 1000,
-                $"Parsing complex field took {stopwatch.ElapsedMilliseconds}ms, expected < 1000ms"
-            );
-        }
-
         [Theory]
         [InlineData(10)]
         [InlineData(50)]

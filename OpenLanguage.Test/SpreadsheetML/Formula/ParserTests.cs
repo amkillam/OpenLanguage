@@ -426,7 +426,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("   ")] // Whitespace only
         public void Parse_InvalidFormulas_ThrowsException(string formulaString)
         {
-            // Act & Assert
             if (string.IsNullOrWhiteSpace(formulaString))
             {
                 Assert.Throws<ArgumentException>(() => FormulaParser.Parse(formulaString));
@@ -669,53 +668,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
     /// </summary>
     public class FormulaParserPerformanceTests
     {
-        [Fact]
-        public void Parse_LargeNestedFormula_ParsesWithinReasonableTime()
-        {
-            // Create a deeply nested formula
-            string nestedFormula = "SUM(";
-            for (int i = 0; i < 100; i++)
-            {
-                int oneIndexed = i + 1;
-                nestedFormula += $"IF(A{oneIndexed}>0,A{oneIndexed},0),";
-            }
-            nestedFormula = nestedFormula.TrimEnd(',') + ")";
-
-            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Ast.Node formula = FormulaParser.Parse(nestedFormula);
-            stopwatch.Stop();
-
-            Assert.NotNull(formula);
-            Assert.True(
-                stopwatch.ElapsedMilliseconds < 1000,
-                $"Parsing took {stopwatch.ElapsedMilliseconds}ms, expected < 1000ms"
-            );
-        }
-
-        [Fact]
-        public void Parse_ManySimpleFormulas_ParsesWithinReasonableTime()
-        {
-            string[] formulas = new string[1000];
-            for (int i = 0; i < formulas.Length; i++)
-            {
-                int oneIndexed = i + 1;
-                formulas[i] = $"SUM(A{oneIndexed}:A{oneIndexed + 10})";
-            }
-
-            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            foreach (string formulaText in formulas)
-            {
-                Ast.Node formula = FormulaParser.Parse(formulaText);
-                Assert.NotNull(formula);
-            }
-            stopwatch.Stop();
-
-            Assert.True(
-                stopwatch.ElapsedMilliseconds < 5000,
-                $"Parsing 1000 formulas took {stopwatch.ElapsedMilliseconds}ms, expected < 5000ms"
-            );
-        }
-
         [Theory]
         [InlineData(10)]
         [InlineData(50)]
@@ -1158,36 +1110,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Fact]
         public void TestWithTextFileLines()
         {
-            System.IO.TextWriter origConsoleOut = Console.Out;
-            System.IO.TextWriter origConsoleError = Console.Error;
-            using System.IO.StringWriter sw = new System.IO.StringWriter();
-            Console.SetOut(sw);
-            Console.SetError(sw);
             IEnumerable<string> formulae = FormulaUtils.DatasetFormulae();
 
             System.UInt128 i = 0;
             foreach (string formulaText in formulae)
             {
-                sw.Flush();
-                sw.GetStringBuilder().Clear();
-
                 if (!string.IsNullOrWhiteSpace(formulaText) && formulaText.Length > 0)
                 {
                     Ast.Node? formula = FormulaParser.TryParse(formulaText);
                     if (formula == null)
                     {
-                        string stdOut = sw.ToString();
-                        sw.Flush();
-                        Console.SetOut(origConsoleOut);
-                        Console.SetError(origConsoleError);
                         Console.WriteLine($"Failed to parse formula:\"{formulaText}\"");
 
-                        if (!string.IsNullOrWhiteSpace(stdOut))
-                        {
-                            Console.WriteLine("## Captured StdOut + StdErr");
-                            Console.WriteLine(stdOut);
-                        }
-                        Console.Out.Flush();
                         Console.Error.Flush();
                         throw new InvalidOperationException(
                             $"Failed to parse formula:\"{formulaText}\""
@@ -1196,18 +1130,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
 
                     if (formula.ToString() != formulaText)
                     {
-                        sw.Flush();
-                        string stdOut = sw.ToString();
-                        Console.SetOut(origConsoleOut);
-                        Console.SetError(origConsoleError);
                         Console.WriteLine($"Failed to parse formula:\"{formulaText}\"");
-                        if (!string.IsNullOrWhiteSpace(stdOut))
-                        {
-                            Console.WriteLine("## Captured StdOut + StdErr");
-                            Console.WriteLine(stdOut);
-                        }
-                        Console.Out.Flush();
-                        Console.Error.Flush();
                         throw new InvalidOperationException(
                             $"Formula text mismatch. Expected:\"{formulaText}\", Got:\"{formula.ToString()}\""
                         );

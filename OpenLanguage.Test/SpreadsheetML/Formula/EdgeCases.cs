@@ -209,13 +209,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Fact]
         public void TryParse_WithValidFormula_ReturnsFormulaWithCorrectProperties()
         {
-            // Arrange
             string formulaText = "SUM(A1:A10)";
 
-            // Act
             Ast.Node? result = FormulaParser.TryParse(formulaText);
 
-            // Assert
             Assert.NotNull(result);
             Assert.Equal(formulaText, result.ToString());
         }
@@ -223,13 +220,10 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Fact]
         public void TryParse_WithInvalidFormula_ReturnsNull()
         {
-            // Arrange
             string invalidFormula = "SUM(A1,";
 
-            // Act
             Ast.Node? result = FormulaParser.TryParse(invalidFormula);
 
-            // Assert
             Assert.Null(result);
         }
 
@@ -239,7 +233,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("A0")] // Row 0 (invalid)
         public void Parse_InvalidCellReferences_ThrowsException(string formulaString)
         {
-            // Act & Assert
             Exception exception = Assert.ThrowsAny<Exception>(() =>
                 FormulaParser.Parse(formulaString)
             );
@@ -253,7 +246,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("SUM(A1:A10))")] // Extra closing parenthesis
         public void Parse_MismatchedParentheses_ThrowsException(string formulaString)
         {
-            // Act & Assert
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() =>
                 FormulaParser.Parse(formulaString)
             );
@@ -267,7 +259,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [InlineData("{{1,2,3}")] // Unmatched nested brace
         public void Parse_MalformedArrays_ThrowsException(string formulaString)
         {
-            // Act & Assert
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() =>
                 FormulaParser.Parse(formulaString)
             );

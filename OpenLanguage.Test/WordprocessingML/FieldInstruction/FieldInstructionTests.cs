@@ -105,55 +105,15 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         public void TestWithTextFileLines()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            System.IO.TextWriter origConsoleOut = Console.Out;
-            System.IO.TextWriter origConsoleError = Console.Error;
-            using System.IO.StringWriter sw = new System.IO.StringWriter();
-            using System.IO.StringWriter swCumulative = new System.IO.StringWriter();
-            Console.SetOut(sw);
-            Console.SetError(sw);
+
             IEnumerable<string> fieldInstructions =
                 FieldInstructionUtils.DatasetFieldInstructions();
 
-            // failedFile =
-            System.IO.FileStream failedFd = System.IO.File.OpenWrite(
-                "/tmp/failed_field_instructions.txt"
-            );
-            System.IO.FileStream failedFormattingFd = System.IO.File.OpenWrite(
-                "/tmp/failed_formatting_field_instructions.txt"
-            );
-            System.IO.FileStream successFd = System.IO.File.OpenWrite(
-                "/tmp/successful_field_instructions.txt"
-            );
-            System.IO.FileStream inProgressFd = System.IO.File.OpenWrite(
-                "/tmp/in_progress_field_instructions.txt"
-            );
-            successFd.SetLength(0);
-            failedFd.SetLength(0);
-            failedFormattingFd.SetLength(0);
-            inProgressFd.SetLength(0);
-            using System.IO.StreamWriter successWriter = new System.IO.StreamWriter(successFd);
-            using System.IO.StreamWriter failedFormattingWriter = new System.IO.StreamWriter(
-                failedFormattingFd
-            );
-            using System.IO.StreamWriter inProgressWriter = new System.IO.StreamWriter(
-                inProgressFd
-            );
-            using System.IO.StreamWriter failedWriter = new System.IO.StreamWriter(failedFd);
-            System.UInt128 i = 0;
             int total = fieldInstructions.Count();
 
-            int failedCnt = 0;
-
-            int maxFailures = 10;
+            int i = 0;
             foreach (string fieldInstructionText in fieldInstructions)
             {
-                inProgressFd.SetLength(0);
-
-                inProgressWriter.WriteLine(fieldInstructionText);
-                inProgressWriter.Flush();
-                sw.Flush();
-                sw.GetStringBuilder().Clear();
-
                 if (
                     !string.IsNullOrWhiteSpace(fieldInstructionText)
                     && fieldInstructionText.Length > 0
@@ -162,110 +122,25 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                     Node? fieldInstruction = FieldInstructionParser.TryParse(fieldInstructionText);
                     if (fieldInstruction == null)
                     {
-                        sw.Flush();
-                        System.Threading.Thread.Sleep(1000);
-                        sw.Flush();
-                        string stdOut = sw.ToString();
-                        swCumulative.Flush();
-                        swCumulative.WriteLine("");
-                        swCumulative.WriteLine("");
-                        swCumulative.WriteLine($"\n\n## {failedCnt + 1}. `{fieldInstructionText}`");
-
-                        swCumulative.WriteLine(
-                            $"### Info\nFailed to parse field instruction ({i + 1}/{total}).\nText:\"{fieldInstructionText}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
+                        throw new Exception(
+                            $"Failed to parse field instruction ({i + 1}/{total}).\nText:\"{fieldInstructionText}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
                         );
-
-                        if (!string.IsNullOrWhiteSpace(stdOut))
-                        {
-                            swCumulative.WriteLine("### Captured StdOut and StdErr");
-                            swCumulative.WriteLine(stdOut);
-                        }
-                        failedWriter.WriteLine(fieldInstructionText);
-                        failedWriter.Flush();
-                        swCumulative.Flush();
-
-                        if (++failedCnt == maxFailures)
-                        {
-                            break;
-                        }
                     }
                     else if (fieldInstruction.ToString() != fieldInstructionText)
                     {
-                        sw.Flush();
-                        System.Threading.Thread.Sleep(1000);
-                        sw.Flush();
-                        string stdOut = sw.ToString();
-
-                        swCumulative.Flush();
-                        swCumulative.WriteLine("");
-                        swCumulative.WriteLine("");
-                        swCumulative.WriteLine($"## {failedCnt + 1}. `{fieldInstructionText}`");
-                        swCumulative.WriteLine("### Info");
-                        swCumulative.WriteLine(
+                        Console.Error.WriteLine(
                             $"Failed to parse field instruction ({i + 1}/{total}).\nText:\"{fieldInstructionText}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
                         );
-                        swCumulative.WriteLine("### Parsed Field Instruction AST Tree");
-                        RecurseLogFieldInstructionTree(fieldInstruction, 0, swCumulative);
-                        swCumulative.Flush();
-
-                        if (!string.IsNullOrWhiteSpace(stdOut))
-                        {
-                            swCumulative.WriteLine("### Captured StdOut and StdErr");
-                            swCumulative.WriteLine(stdOut);
-                        }
-
-                        swCumulative.Flush();
-
-                        failedFormattingWriter.WriteLine(fieldInstructionText);
-                        failedFormattingWriter.Flush();
-
-                        swCumulative.Flush();
-
-                        if (++failedCnt == maxFailures)
-                        {
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        successWriter.WriteLine(fieldInstructionText);
-                        successWriter.Flush();
-
-                        // Console.WriteLine($"Parsed field instruction {i + 1}/{total} successfully: \"{fieldInstructionText}\"");
+                        Console.Error.WriteLine("### Parsed Field Instruction AST Tree");
+                        RecurseLogFieldInstructionTree(fieldInstruction, 0, Console.Error);
+                        Console.Error.Flush();
+                        throw new Exception(
+                            $"Field instruction text mismatch after parsing ({i + 1}/{total}).\nOriginal:\"{fieldInstructionText}\"\nParsed:\"{fieldInstruction.ToString()}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
+                        );
                     }
                 }
-                i++;
             }
-
-            successWriter.Flush();
-            failedWriter.Flush();
-            failedFormattingWriter.Flush();
-            inProgressWriter.Flush();
-            Console.SetOut(origConsoleOut);
-            Console.SetError(origConsoleError);
-            if (failedCnt > 0)
-            {
-                if (failedCnt == maxFailures)
-                {
-                    Console.Error.WriteLine($"**Parsing stopped after {maxFailures} failures.**");
-                    Console.Error.WriteLine(swCumulative.ToString());
-                }
-                else
-                {
-                    Console.Error.WriteLine($"**Parsing completed with {failedCnt} failures.**");
-
-                    Console.Error.WriteLine(swCumulative.ToString());
-                }
-                Console.Error.Flush();
-            }
-            sw.Flush();
-            swCumulative.Flush();
-            origConsoleOut.Flush();
-            origConsoleError.Flush();
-            if (failedCnt > 0)
-            {
-                throw new Exception($"TestWithTextFileLines: {failedCnt} failures");
-            }
+            i++;
         }
     }
 
@@ -278,10 +153,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(31)]
         public void Constructor_WithValidValue_SetsValue(int value)
         {
-            // Act
             PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
-            // Assert
             Assert.Equal(value, measurement.Value);
         }
 
@@ -292,7 +165,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(-100)]
         public void Constructor_WithInvalidValue_ThrowsArgumentException(int value)
         {
-            // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => new PtsMeasurementValue<int>(value));
         }
 
@@ -302,13 +174,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(31, "31")]
         public void ToString_ReturnsValueAsString(int value, string expected)
         {
-            // Arrange
             PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
-            // Act
             string result = measurement.ToString();
 
-            // Assert
             Assert.Equal(expected, result);
         }
 
@@ -317,13 +186,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(-10, -10)]
         public void ImplicitConversion_ToInt_ReturnsValue(int value, int expected)
         {
-            // Arrange
             PtsMeasurementValue<int> measurement = new PtsMeasurementValue<int>(value);
 
-            // Act
             int result = measurement;
 
-            // Assert
             Assert.Equal(expected, result);
         }
 
@@ -332,10 +198,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(-5)]
         public void ImplicitConversion_FromInt_CreatesInstance(int value)
         {
-            // Act
             PtsMeasurementValue<int> measurement = value;
 
-            // Assert
             Assert.Equal(value, measurement.Value);
         }
     }
@@ -348,10 +212,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("12345-6789")]
         public void Constructor_WithValidPostalData_SetsValue(string value)
         {
-            // Act
             PostalData postalData = new PostalData(value);
 
-            // Assert
             Assert.Equal(value, postalData.ToString());
         }
 
@@ -367,7 +229,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(null)] // Null
         public void Constructor_WithInvalidPostalData_ThrowsArgumentException(string? value)
         {
-            // Act & Assert
             ArgumentException ex = Assert.Throws<ArgumentException>(() => new PostalData(value!));
             Assert.Contains("Invalid postal data format", ex.Message);
         }
@@ -378,13 +239,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("123456789", "123456789")]
         public void ToString_ReturnsOriginalValue(string value, string expected)
         {
-            // Arrange
             PostalData postalData = new PostalData(value);
 
-            // Act
             string result = postalData.ToString();
 
-            // Assert
             Assert.Equal(expected, result);
         }
 
@@ -393,13 +251,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("12345-6789")]
         public void ImplicitConversion_ToString_ReturnsValue(string value)
         {
-            // Arrange
             PostalData postalData = new PostalData(value);
 
-            // Act
             string result = postalData;
 
-            // Assert
             Assert.Equal(value, result);
         }
 
@@ -408,10 +263,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("12345-6789")]
         public void ImplicitConversion_FromString_CreatesInstance(string value)
         {
-            // Act
             PostalData postalData = value;
 
-            // Assert
             Assert.Equal(value, postalData.ToString());
         }
     }
@@ -424,10 +277,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("xmlns:test=\"resume-schema\"")]
         public void Constructor_WithValidDeclaration_SetsValue(string declaration)
         {
-            // Act
             NamespaceDeclaration namespaceDecl = new NamespaceDeclaration(declaration);
 
-            // Assert
             Assert.Equal(declaration, namespaceDecl.ToString());
         }
 
@@ -441,7 +292,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData(null)]
         public void Constructor_WithInvalidDeclaration_ThrowsArgumentException(string? declaration)
         {
-            // Act & Assert
             Assert.Throws<ArgumentException>(() => new NamespaceDeclaration(declaration!));
         }
 
@@ -450,13 +300,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("xmlns:test=\"schema\"", "xmlns:test=\"schema\"")]
         public void ToString_ReturnsOriginalDeclaration(string declaration, string expected)
         {
-            // Arrange
             NamespaceDeclaration namespaceDecl = new NamespaceDeclaration(declaration);
 
-            // Act
             string result = namespaceDecl.ToString();
 
-            // Assert
             Assert.Equal(expected, result);
         }
 
@@ -465,13 +312,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("xmlns:test=\"schema\"")]
         public void ImplicitConversion_ToString_ReturnsValue(string declaration)
         {
-            // Arrange
             NamespaceDeclaration namespaceDecl = new NamespaceDeclaration(declaration);
 
-            // Act
             string result = namespaceDecl;
 
-            // Assert
             Assert.Equal(declaration, result);
         }
 
@@ -480,10 +324,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("xmlns:test=\"schema\"")]
         public void ImplicitConversion_FromString_CreatesInstance(string declaration)
         {
-            // Act
             NamespaceDeclaration namespaceDecl = declaration;
 
-            // Assert
             Assert.Equal(declaration, namespaceDecl.ToString());
         }
     }
@@ -493,7 +335,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void NameFormat_HasAllExpectedValues()
         {
-            // Arrange
             NameFormat[] expectedValues = new NameFormat[6]
             {
                 NameFormat.FirstName,
@@ -504,10 +345,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 NameFormat.FullFormalName,
             };
 
-            // Act
             IEnumerable<NameFormat> actualValues = Enum.GetValues<NameFormat>();
 
-            // Assert
             Assert.Equal(expectedValues.Length, actualValues.Count());
             foreach (NameFormat expected in expectedValues)
             {
@@ -518,10 +357,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CountryRegion_HasExpectedValues()
         {
-            // Act
             IEnumerable<CountryRegion> values = Enum.GetValues<CountryRegion>();
 
-            // Assert
             Assert.True(values.Count() > 200, "Should have comprehensive country list");
             Assert.Contains(CountryRegion.UnitedStates, values);
             Assert.Contains(CountryRegion.Canada, values);
@@ -531,10 +368,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void LanguageIdentifier_HasExpectedValues()
         {
-            // Act
             IEnumerable<LanguageIdentifier> values = Enum.GetValues<LanguageIdentifier>();
 
-            // Assert
             Assert.True(values.Count() > 100, "Should have comprehensive language list");
             Assert.Contains(LanguageIdentifier.EnglishUS, values);
             Assert.Contains(LanguageIdentifier.FrenchFrance, values);
@@ -544,7 +379,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void ComparisonOperator_HasAllExpectedValues()
         {
-            // Arrange
             ComparisonOperator[] expectedValues = new ComparisonOperator[6]
             {
                 ComparisonOperator.Equal,
@@ -555,10 +389,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 ComparisonOperator.GreaterThanOrEqual,
             };
 
-            // Act
             IEnumerable<ComparisonOperator> actualValues = Enum.GetValues<ComparisonOperator>();
 
-            // Assert
             Assert.Equal(expectedValues.Length, actualValues.Count());
             foreach (ComparisonOperator expected in expectedValues)
             {
@@ -569,7 +401,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [Fact]
         public void CountryRegionInclusion_HasAllExpectedValues()
         {
-            // Arrange
             CountryRegionInclusion[] expectedValues = new CountryRegionInclusion[3]
             {
                 CountryRegionInclusion.Omit,
@@ -577,11 +408,9 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
                 CountryRegionInclusion.IncludeIfDifferent,
             };
 
-            // Act
             IEnumerable<CountryRegionInclusion> actualValues =
                 Enum.GetValues<CountryRegionInclusion>();
 
-            // Assert
             Assert.Equal(expectedValues.Length, actualValues.Count());
             foreach (CountryRegionInclusion expected in expectedValues)
             {

@@ -7,14 +7,12 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
 {
     public static class FormulaUtils
     {
-        public static IEnumerable<string> DatasetFormulae()
-        {
-            return FilesystemUtils
+        public static IEnumerable<string> DatasetFormulae() =>
+            FilesystemUtils
                 .FileStreams(new Regex("^./data/SpreadsheetML/Formula/.*\\.txt$"))
                 .SelectMany((Stream s) => s.Lines())
                 .Where((string line) => !string.IsNullOrWhiteSpace(line) && line.Length > 0)
-                .Order()
-                .Distinct();
-        }
+                .Distinct()
+                .OrderBy(line => line, System.StringComparer.Ordinal);
     }
 }

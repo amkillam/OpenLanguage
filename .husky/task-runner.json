@@ -4,19 +4,33 @@
       "group": "pre-commit",
       "name": "prepare-cmake-build",
       "command": "cmake",
-      "args": ["-B", "build", "-DCMAKE_BUILD_TYPE=Release"]
+      "args": [
+        "-B",
+        "build",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ]
     },
     {
       "group": "pre-commit",
       "name": "build-cs",
       "command": "cmake",
-      "args": ["--build", "build", "--target", "build"]
+      "args": [
+        "--build",
+        "build",
+        "--target",
+        "build"
+      ]
     },
     {
       "group": "pre-commit",
       "name": "test-cs",
       "command": "cmake",
-      "args": ["--build", "build", "--target", "test"]
+      "args": [
+        "--build",
+        "build",
+        "--target",
+        "test"
+      ]
     },
     {
       "group": "pre-commit",
@@ -24,13 +38,13 @@
       "command": "bash",
       "args": [
         "-c",
-        "STASH_NAME='husky-pre-commit'; git stash push --keep-index --include-untracked -m \"$STASH_NAME\" --quiet; trap 'if git stash list | head -n1 | grep -q \"$STASH_NAME\"; then git stash pop --quiet; fi' EXIT; dotnet format --include ${staged}; git add ${staged}"
+        "STASH_NAME='husky-pre-commit'; git stash push --keep-index --include-untracked -m \"$STASH_NAME\" --quiet; trap 'if git stash list | head -n1 | grep -q \"$STASH_NAME\"; then git stash pop --quiet; fi' EXIT; cmake --build build --target format; git add ${staged}"
       ],
       "windows": {
         "command": "cmd",
         "args": [
           "/c",
-          "set STASH_NAME=husky-pre-commit && git stash push --keep-index --include-untracked -m \"%STASH_NAME%\" --quiet && cmd /V:ON /C \"trap 'if git stash list | head -n1 | grep -q \"%STASH_NAME%\"; then git stash pop --quiet; fi' EXIT && dotnet format --include %staged% && git add %staged%"
+          "set STASH_NAME=husky-pre-commit && git stash push --keep-index --include-untracked -m \"%STASH_NAME%\" --quiet && cmd /V:ON /C \"trap 'if git stash list | head -n1 | grep -q \"%STASH_NAME%\"; then git stash pop --quiet; fi' EXIT && cmake --build build --target format && git add %staged%"
         ]
       }
     }

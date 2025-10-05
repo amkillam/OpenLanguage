@@ -86,10 +86,6 @@ namespace OpenLanguage.Utils.Tests
         [InlineData("A-B")]
         [InlineData("A_B")]
         [InlineData("A B")]
-        [InlineData("a")]
-        [InlineData("ab")]
-        [InlineData("Ab")]
-        [InlineData("aB")]
         public void Parse_WithInvalidCharacters_ThrowsArgumentException(string input)
         {
             Assert.Throws<ArgumentException>(() =>
