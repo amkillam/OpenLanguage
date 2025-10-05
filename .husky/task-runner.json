@@ -4,33 +4,19 @@
       "group": "pre-commit",
       "name": "prepare-cmake-build",
       "command": "cmake",
-      "args": [
-        "-B",
-        "build",
-        "-DCMAKE_BUILD_TYPE=Release"
-      ]
+      "args": ["-B", "build", "-DCMAKE_BUILD_TYPE=Release"]
     },
     {
       "group": "pre-commit",
       "name": "build-cs",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "build"
-      ]
+      "args": ["--build", "build", "--target", "build"]
     },
     {
       "group": "pre-commit",
       "name": "test-cs",
       "command": "cmake",
-      "args": [
-        "--build",
-        "build",
-        "--target",
-        "test"
-      ]
+      "args": ["--build", "build", "--target", "test"]
     },
     {
       "group": "pre-commit",
