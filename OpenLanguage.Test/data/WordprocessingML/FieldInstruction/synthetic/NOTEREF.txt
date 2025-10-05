@@ -1,0 +1,10 @@
+NOTEREF MyNote
+noteref MyNote
+NOTEREF MyNote \f
+noteref MyNote \f
+NOTEREF MyNote \h
+noteref MyNote \h
+NOTEREF MyNote \p
+noteref MyNote \p
+NOTEREF MyNote \f \h \p
+noteref MyNote \f \h \p

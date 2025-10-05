@@ -19,7 +19,7 @@ OpenLanguage is a C# library providing lexers, parsers, and other processing too
 ### SpreadsheetML
 
 - **Formula Parsing**: Parse SpreadsheetML formulas into Abstract Syntax Trees (AST)
-- **Grammar-Based**: Uses GPLEX GNU LEX-style lexer (.lex) and GPPG GNU YACC-style parser for concise and efficient grammar specification and parsing logic
+- **Grammar-Based**: Uses GPLEX POSIX lex lexer (.lex) and GPPG POSIX yacc parser for concise and efficient grammar specification and parsing logic
 - **AST Manipulation**: Access and modify parsed formula structures programmatically
 - **Formula Reconstruction**: Convert modified ASTs back to valid Excel formula strings
 - **Reference Support**: Handle A1, R1C1, table references, structured, and external references
@@ -160,7 +160,7 @@ OpenLanguage/
 
 ## Grammar Files
 
-The project uses GNU YACC/LEX style grammar files for robust parsing:
+The project uses POSIX yacc/lex style grammar files for robust parsing:
 
 - **Formula Grammar**: `SpreadsheetML/Formula/Lang/Parse/formula.y`
 - **Formula Lexer**: `SpreadsheetML/Formula/Lang/Lex/formula.lex`
@@ -223,7 +223,7 @@ dotnet test OpenLanguage.Test/
 OpenLanguage is built with performance as a primary concern:
 
 - **Native AOT Ready**: Full compatibility with .NET Native AOT
-- **Optimized Grammar**: LALR YACC-style parser used for SpreadsheetML formula parsing with highly optimized, minimal LEX-style grammar.
+- **Optimized Grammar**: LALR yacc parser used for SpreadsheetML formula parsing with highly optimized, minimal lex grammar.
   Compared against the ABNF grammar specification at each step of implementation.
 
 ## Compatibility
@@ -242,14 +242,18 @@ OpenLanguage is built with performance as a primary concern:
 
 ### WordprocessingML
 
+#### Field Instruction
+
 **Parsers**
 
-- [ ] Rewrite field instruction parser with yacc-style GPPG parser.
-- [ ] Rewrite field instruction lexer with flex-style GPLEX lexer.
+- [ ] Rewrite field instruction parser with GPPG yacc parser.
+- [ ] Rewrite field instruction lexer with GPLEX lex lexer.
 - [ ] Refactor field instruction classes to use derived classes for strongly-typed instructions
       rather than using factories and explicit conversion to strongly typed representation.
-- [ ] Rewrite merge field parser with yacc-style GPPG parser.
-- [ ] Rewrite merge field lexer with flex-style GPLEX lexer.
+- [ ] Rewrite merge field parser with GPPG yacc parser.
+- [ ] Rewrite merge field lexer with GPLEX lex lexer.
+
+- [ ] Allow configuration option for [`decimalSymbol`](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.decimalsymbol?view=openxml-3.0.1) used for parsing floating point numbers
 
 **Test Coverage**
 
@@ -266,7 +270,15 @@ OpenLanguage is built with performance as a primary concern:
 **Evaluation**
 
 - [ ] Implement per-class evaluation of strongly typed field instructions.
-- [ ] Implement evaluation of parsed merge field.
+- [ ] Implement execution of parsed merge field.
+- [ ] Ensure evaluation is implemented with respect to configured [`decimalSymbol`](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.decimalsymbol?view=openxml-3.0.1)
+
+#### LevelText
+
+- [ ] Define and implement paragraph numbering level text [placeholder syntax](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.leveltext?view=openxml-3.0.1) grammar
+- [ ] Implement AST parsing of paragraph numbering level text
+- [ ] Implement placeholder value evaluator
+- [ ] Add API for final, evaluated numbering level text construction
 
 ### SpreadsheetML
 
@@ -308,6 +320,33 @@ implementation of parsing, parsing dependencies, nor AST. However, optimization 
         with matrix display and formula input prompt as well as vim-style selection of
         corresponding cells. Simulaneously update underlying OPC package on modifying
         values.
+
+### PowerBI
+
+- [ ] Define and implement grammar for Power Query
+- [ ] Implement Power Query AST and parser
+
+### VBA
+
+- [ ] Define and implement grammar for VBA Query
+- [ ] Implement VBA Query AST and parser
+
+### Misc
+
+**Numbering Format**
+
+- [ ] Define and implement a [numbering format](https://support.microsoft.com/en-us/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5) grammar
+- [ ] Implement numbering format AST representation
+- [ ] Implement numbering format parser
+- [ ] Implement numbering format applicator from AST class
+
+**See also**
+
+- [ST_NumberFormat OOXML WML XSD Type](https://www.datypic.com/sc/ooxml/t-w_ST_NumberFormat.html)
+- [Similar JS implementer specific to SML](https://www.npmjs.com/package/ssf)
+- [Another similar JS implementer specific to SML](https://www.npmjs.com/package/numfmt/v/2.5.2)
+- [Standard format codes](https://c-rex.net/samples/ooxml/e1/Part4/OOXML_P4_DOCX_numFmt_topic_ID0EHDH6.html)
+- [XSLT 1.0 Number Format Syntax](https://www.w3schools.com/xml/func_formatnumber.asp). Very similar to SML's, seems to be identical to WML's except for possible differing defaults/keyword-based codes
 
 ## Contributing
 

@@ -1,0 +1,8 @@
+IMPORT "image.jpg"
+import "image.jpg"
+IMPORT "image.jpg" \d
+import "image.jpg" \d
+IMPORT "image.jpg" \c "JPEG"
+import "image.jpg" \c "JPEG"
+IMPORT "image.jpg" \d \c "JPEG"
+import "image.jpg" \d \c "JPEG"

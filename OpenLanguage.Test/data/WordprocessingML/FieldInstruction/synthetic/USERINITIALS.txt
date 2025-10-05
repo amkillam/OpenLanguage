@@ -1,0 +1,32 @@
+USERINITIALS
+userinitials
+USERINITIALS "JD"
+userinitials "JD"
+USERINITIALS \* Upper
+userinitials \* Upper
+USERINITIALS \* Lower
+userinitials \* Lower
+USERINITIALS \* FirstCap
+userinitials \* FirstCap
+USERINITIALS \* Caps
+userinitials \* Caps
+USERINITIALS \* CharFormat
+userinitials \* CharFormat
+USERINITIALS \* MergeFormat
+userinitials \* MergeFormat
+USERINITIALS \* MergeFormatInet
+userinitials \* MergeFormatInet
+USERINITIALS "JD" \* Upper
+userinitials "JD" \* Upper
+USERINITIALS "JD" \* Lower
+userinitials "JD" \* Lower
+USERINITIALS "JD" \* FirstCap
+userinitials "JD" \* FirstCap
+USERINITIALS "JD" \* Caps
+userinitials "JD" \* Caps
+USERINITIALS "JD" \* CharFormat
+userinitials "JD" \* CharFormat
+USERINITIALS "JD" \* MergeFormat
+userinitials "JD" \* MergeFormat
+USERINITIALS "JD" \* MergeFormatInet
+userinitials "JD" \* MergeFormatInet

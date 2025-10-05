@@ -1,0 +1,10 @@
+LISTNUM
+listnum
+LISTNUM NumberDefault
+listnum NumberDefault
+LISTNUM \l 2
+listnum \l 2
+LISTNUM \s 5
+listnum \s 5
+LISTNUM NumberDefault \l 2 \s 5
+listnum NumberDefault \l 2 \s 5

@@ -1,0 +1,22 @@
+TIME
+time
+TIME \@ "hh:mm:ss AM/PM"
+time \@ "hh:mm:ss AM/PM"
+TIME \@ "H:mm"
+time \@ "H:mm"
+TIME \@ "hh:mm"
+time \@ "hh:mm"
+TIME \@ "hh:mm:ss AM/PM" \* Upper
+time \@ "hh:mm:ss AM/PM" \* Upper
+TIME \@ "hh:mm:ss AM/PM" \* Lower
+time \@ "hh:mm:ss AM/PM" \* Lower
+TIME \@ "hh:mm:ss AM/PM" \* FirstCap
+time \@ "hh:mm:ss AM/PM" \* FirstCap
+TIME \@ "hh:mm:ss AM/PM" \* Caps
+time \@ "hh:mm:ss AM/PM" \* Caps
+TIME \@ "hh:mm:ss AM/PM" \* CharFormat
+time \@ "hh:mm:ss AM/PM" \* CharFormat
+TIME \@ "hh:mm:ss AM/PM" \* MergeFormat
+time \@ "hh:mm:ss AM/PM" \* MergeFormat
+TIME \@ "hh:mm:ss AM/PM" \* MergeFormatInet
+time \@ "hh:mm:ss AM/PM" \* MergeFormatInet

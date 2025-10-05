@@ -1,0 +1,8 @@
+FILLIN "Enter name:"
+fillin "Enter name:"
+FILLIN "Enter name:" \d "John"
+fillin "Enter name:" \d "John"
+FILLIN "Enter name:" \o
+fillin "Enter name:" \o
+FILLIN "Enter name:" \d "John" \o
+fillin "Enter name:" \d "John" \o

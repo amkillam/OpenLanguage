@@ -1,0 +1,24 @@
+EQ \a \ac \co 2 1+2+3+4
+eq \a \ac \co 2 1/2/3/4
+EQ \b \bc \{ (7+8)
+eq \b \bc \{ (7+8)
+EQ \d \ba (5*3)
+eq \d \ba (5*3)
+EQ \f (1/2)
+eq \f (1/2)
+EQ \i \su (3+4+7)
+eq \i \su (3+4+7)
+EQ \l (3+4+5)
+eq \l (3+4+5)
+EQ \o \ac (3*4)
+eq \o \ac (3*4)
+EQ \r 1+1
+eq \r 2*1
+EQ \r 3^(4*(5^2))
+eq \r (3^4)*5^2
+EQ \s \up 3 (7*2)
+eq \s \up 3 (7*2)
+EQ \s \do 2 (8/4)
+eq \s \do 2 (8/4)
+EQ \x \to \bo (7-3)
+eq \x \to \bo (7-3)

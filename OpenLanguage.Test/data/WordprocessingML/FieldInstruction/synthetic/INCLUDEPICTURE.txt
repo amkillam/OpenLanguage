@@ -1,0 +1,8 @@
+INCLUDEPICTURE "C:\\image.jpg"
+includepicture "C:\\image.jpg"
+INCLUDEPICTURE "image.jpg" \d
+includepicture "image.jpg" \d
+INCLUDEPICTURE "image.jpg" \c "JPEG"
+includepicture "image.jpg" \c "JPEG"
+INCLUDEPICTURE "image.jpg" \d \c "JPEG"
+includepicture "image.jpg" \d \c "JPEG"

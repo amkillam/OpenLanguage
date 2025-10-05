@@ -1,0 +1,2 @@
+MACROBUTTON MyMacro "Run Macro"
+macrobutton MyMacro "Run Macro"

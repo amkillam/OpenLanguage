@@ -19,7 +19,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ACTIVECELL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ACTIVE.CELL"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class AddBarMacroFunctionNode : MacroFunctionNode
@@ -29,7 +30,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ADDBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ADD.BAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class AddCommandMacroFunctionNode : MacroFunctionNode
@@ -39,7 +40,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ADDCOMMAND"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ADD.COMMAND"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class AddMenuMacroFunctionNode : MacroFunctionNode
@@ -49,7 +51,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ADDMENU"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ADD.MENU"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class AddToolbarMacroFunctionNode : MacroFunctionNode
@@ -59,7 +61,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ADDTOOLBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ADD.TOOLBAR"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class AppTitleMacroFunctionNode : MacroFunctionNode
@@ -69,7 +72,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "APPTITLE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "APP.TITLE"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class ArgumentMacroFunctionNode : MacroFunctionNode
@@ -119,7 +122,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "CANCELKEY"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CANCEL.KEY"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class CheckCommandMacroFunctionNode : MacroFunctionNode
@@ -129,7 +132,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "CHECKCOMMAND"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CHECK.COMMAND"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -140,7 +143,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "CREATEOBJECT"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CREATE.OBJECT"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -151,7 +154,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "CUSTOMREPEAT"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "CUSTOM.REPEAT"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -162,7 +165,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "CUSTOMUNDO"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "CUSTOM.UNDO"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class DeleteBarMacroFunctionNode : MacroFunctionNode
@@ -172,7 +176,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "DELETEBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DELETE.BAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class DeleteCommandMacroFunctionNode : MacroFunctionNode
@@ -182,7 +186,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "DELETECOMMAND"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DELETE.COMMAND"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -193,7 +197,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "DELETEMENU"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DELETE.MENU"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class DeleteToolbarMacroFunctionNode : MacroFunctionNode
@@ -203,7 +208,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "DELETETOOLBAR"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "DELETE.TOOLBAR"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -224,7 +229,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "DIALOGBOX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "DIALOG.BOX"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class DirectoryMacroFunctionNode : MacroFunctionNode
@@ -274,7 +279,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ELSEIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ELSE.IF"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class EnableCommandMacroFunctionNode : MacroFunctionNode
@@ -284,7 +289,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ENABLECOMMAND"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "ENABLE.COMMAND"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -295,7 +300,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ENABLETOOL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "ENABLE.TOOL"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class EndIfMacroFunctionNode : MacroFunctionNode
@@ -305,7 +311,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "ENDIF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "END.IF"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class ErrorMacroFunctionNode : MacroFunctionNode
@@ -395,8 +401,11 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "FORMULACONVERT"), leadingWhitespace, trailingWhitespace)
-        { }
+            : base(
+                new NameNode(rawName ?? "FORMULA.CONVERT"),
+                leadingWhitespace,
+                trailingWhitespace
+            ) { }
     }
 
     public class ForCellMacroFunctionNode : MacroFunctionNode
@@ -406,7 +415,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "FORCELL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "FOR.CELL"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class FposMacroFunctionNode : MacroFunctionNode
@@ -476,7 +485,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.BAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetCellMacroFunctionNode : MacroFunctionNode
@@ -486,7 +495,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETCELL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.CELL"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetChartItemMacroFunctionNode : MacroFunctionNode
@@ -496,7 +505,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETCHARTITEM"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GET.CHART.ITEM"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -507,7 +516,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETDEF"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.DEF"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetDocumentMacroFunctionNode : MacroFunctionNode
@@ -517,7 +526,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETDOCUMENT"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GET.DOCUMENT"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -528,7 +537,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETFORMULA"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.FORMULA"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class GetLinkInfoMacroFunctionNode : MacroFunctionNode
@@ -538,7 +548,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETLINKINFO"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GET.LINK.INFO"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -549,7 +559,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETMOVIE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.MOVIE"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetNameMacroFunctionNode : MacroFunctionNode
@@ -559,7 +569,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETNAME"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.NAME"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetNoteMacroFunctionNode : MacroFunctionNode
@@ -569,7 +579,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETNOTE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.NOTE"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetObjectMacroFunctionNode : MacroFunctionNode
@@ -579,7 +589,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETOBJECT"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.OBJECT"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetToolMacroFunctionNode : MacroFunctionNode
@@ -589,7 +599,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETTOOL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.TOOL"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetToolbarMacroFunctionNode : MacroFunctionNode
@@ -599,7 +609,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETTOOLBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.TOOLBAR"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class GetWindowMacroFunctionNode : MacroFunctionNode
@@ -609,7 +620,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETWINDOW"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "GET.WINDOW"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class GetWorkbookMacroFunctionNode : MacroFunctionNode
@@ -619,7 +630,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETWORKBOOK"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GET.WORKBOOK"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -630,7 +641,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "GETWORKSPACE"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "GET.WORKSPACE"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -701,7 +712,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "LASTERROR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "LAST.ERROR"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class LinksMacroFunctionNode : MacroFunctionNode
@@ -721,7 +732,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "MOVIECOMMAND"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "MOVIE.COMMAND"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -762,7 +773,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "OPENDIALOG"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "OPEN.DIALOG"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class OptionsListsGetMacroFunctionNode : MacroFunctionNode
@@ -773,7 +785,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? trailingWhitespace = null
         )
             : base(
-                new NameNode(rawName ?? "OPTIONSLISTSGET"),
+                new NameNode(rawName ?? "OPTIONS.LISTS.GET"),
                 leadingWhitespace,
                 trailingWhitespace
             ) { }
@@ -806,7 +818,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "PRESSTOOL"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "PRESS.TOOL"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class RefTextMacroFunctionNode : MacroFunctionNode
@@ -836,7 +848,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "REGISTERID"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "REGISTER.ID"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class RelRefMacroFunctionNode : MacroFunctionNode
@@ -856,7 +869,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "RENAMECOMMAND"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "RENAME.COMMAND"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -877,7 +890,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "RESETTOOLBAR"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "RESET.TOOLBAR"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -928,7 +941,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SAVEDIALOG"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SAVE.DIALOG"), leadingWhitespace, trailingWhitespace)
+        { }
     }
 
     public class SaveToolbarMacroFunctionNode : MacroFunctionNode
@@ -938,7 +952,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SAVETOOLBAR"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SAVE.TOOLBAR"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -949,7 +963,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SCENARIOGET"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SCENARIO.GET"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -970,7 +984,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SETNAME"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SET.NAME"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class SetValueMacroFunctionNode : MacroFunctionNode
@@ -980,7 +994,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SETVALUE"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SET.VALUE"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class ShowBarMacroFunctionNode : MacroFunctionNode
@@ -990,7 +1004,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SHOWBAR"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "SHOW.BAR"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class SpellingCheckMacroFunctionNode : MacroFunctionNode
@@ -1000,7 +1014,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "SPELLINGCHECK"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "SPELLING.CHECK"), leadingWhitespace, trailingWhitespace)
         { }
     }
 
@@ -1041,7 +1055,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "TEXTBOX"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "TEXT.BOX"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class UnregisterMacroFunctionNode : MacroFunctionNode
@@ -1061,7 +1075,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "VIEWGET"), leadingWhitespace, trailingWhitespace) { }
+            : base(new NameNode(rawName ?? "VIEW.GET"), leadingWhitespace, trailingWhitespace) { }
     }
 
     public class VolatileMacroFunctionNode : MacroFunctionNode
@@ -1101,7 +1115,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null
         )
-            : base(new NameNode(rawName ?? "WINDOWTITLE"), leadingWhitespace, trailingWhitespace)
+            : base(new NameNode(rawName ?? "WINDOW.TITLE"), leadingWhitespace, trailingWhitespace)
         { }
     }
 }

@@ -19,8 +19,8 @@ Welcome to the documentation for OpenLanguage, a .NET library for parsing Micros
 
 ### Development
 
-- [Build System](development/build.md) - CMake build system with GPPG GNU YACC-style parser generation and GPLEX GNU Flex-style lexer generation
-- [Grammar Files](development/grammar.md) - Working with YACC and LEX grammar files
+- [Build System](development/build.md) - CMake build system with GPPG POSIX yacc parser generation and GPLEX POSIX lex lexer generation
+- [Grammar Files](development/grammar.md) - Working with yacc and lex grammar files
 - [Testing](development/test.md) - Unit test documentation
 
 ## API Reference
@@ -45,7 +45,7 @@ OpenLanguage consists of:
   - Formula.cs: Main API for parsing formulas into ASTs
   - FormulaParser.cs: Static parser methods
   - Lang/Lex/formula.lex: Lexical grammar for SpreadsheetML formulas
-  - Lang/Parse/formula.y: YACC grammar for SpreadsheetML formulas
+  - Lang/Parse/formula.y: yacc grammar for SpreadsheetML formulas
 - **WordprocessingML.FieldInstruction**: WordprocessingML field instruction parser
 
   - FieldInstruction.cs: Core field instruction and argument classes

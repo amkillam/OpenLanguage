@@ -1,0 +1,18 @@
+SYMBOL 65
+symbol 65
+SYMBOL 0x41
+symbol 0x41
+SYMBOL 65 \a
+symbol 65 \a
+SYMBOL 65 \u
+symbol 65 \u
+SYMBOL 65 \j
+symbol 65 \j
+SYMBOL 65 \f "Wingdings"
+symbol 65 \f "Wingdings"
+SYMBOL 65 \s 12
+symbol 65 \s 12
+SYMBOL 65 \h
+symbol 65 \h
+SYMBOL 65 \a \f "Symbol" \s 14
+symbol 65 \a \f "Symbol" \s 14

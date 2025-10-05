@@ -1,0 +1,22 @@
+DATABASE
+database
+DATABASE \b 16
+database \b 16
+DATABASE \c "ODBC;DSN=MyDB"
+database \c "ODBC;DSN=MyDB"
+DATABASE \d "C:\\data.csv"
+database \d "C:\\data.csv"
+DATABASE \f 1
+database \f 1
+DATABASE \h
+database \h
+DATABASE \l 1
+database \l 1
+DATABASE \o
+database \o
+DATABASE \s "SELECT * FROM Table"
+database \s "SELECT * FROM Table"
+DATABASE \t 10
+database \t 10
+DATABASE \d "C:\\data.csv" \s "SELECT * FROM Table" \l 1 \b 16 \h
+database \d "C:\\data.csv" \s "SELECT * FROM Table" \l 1 \b 16 \h

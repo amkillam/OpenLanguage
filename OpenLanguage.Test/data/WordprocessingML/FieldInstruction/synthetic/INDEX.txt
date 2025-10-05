@@ -1,0 +1,32 @@
+INDEX
+index
+INDEX \b MyRange
+index \b MyRange
+INDEX \c 2
+index \c 2
+INDEX \d "-"
+index \d "-"
+INDEX \e ", "
+index \e ", "
+INDEX \f legal
+index \f legal
+INDEX \g "–"
+index \g "–"
+INDEX \h "A"
+index \h "A"
+INDEX \k ". "
+index \k ". "
+INDEX \l ", "
+index \l ", "
+INDEX \p A-Z
+index \p A-Z
+INDEX \r
+index \r
+INDEX \s chap
+index \s chap
+INDEX \y
+index \y
+INDEX \z "en-US"
+index \z "en-US"
+INDEX \b MyRange \c 2 \f legal \r
+index \b MyRange \c 2 \f legal \r

@@ -1,0 +1,6 @@
+IF 1 = 1 "True" "False"
+if 1 = 1 "True" "False"
+IF { NUMPAGES } > 10 "Long" "Short"
+if { NUMPAGES } > 10 "Long" "Short"
+IF "file*.docx" = "file1.docx" "Match" "No"
+if "file*.docx" = "file1.docx" "Match" "No"

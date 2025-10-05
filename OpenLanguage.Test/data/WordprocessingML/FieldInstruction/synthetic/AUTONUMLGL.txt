@@ -1,0 +1,6 @@
+AUTONUMLGL
+autonumlgl
+AUTONUMLGL \e
+autonumlgl \e
+AUTONUMLGL \s "-"
+autonumlgl \s "-"

@@ -1,0 +1,2 @@
+SKIPIF { MERGEREC } = 5
+skipif { MERGEREC } = 5

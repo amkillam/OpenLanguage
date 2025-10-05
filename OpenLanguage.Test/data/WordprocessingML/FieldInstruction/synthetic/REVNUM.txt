@@ -1,0 +1,28 @@
+REVNUM
+revnum
+REVNUM \# "0"
+revnum \# "0"
+REVNUM \# "0.00"
+revnum \# "0.00"
+REVNUM \# "#,##0"
+revnum \# "#,##0"
+REVNUM \* Upper
+revnum \* Upper
+REVNUM \* Lower
+revnum \* Lower
+REVNUM \* FirstCap
+revnum \* FirstCap
+REVNUM \* Caps
+revnum \* Caps
+REVNUM \* CharFormat
+revnum \* CharFormat
+REVNUM \* MergeFormat
+revnum \* MergeFormat
+REVNUM \* MergeFormatInet
+revnum \* MergeFormatInet
+REVNUM \# "0" \* Upper
+revnum \# "0" \* Upper
+REVNUM \# "0.00" \* Upper
+revnum \# "0.00" \* Upper
+REVNUM \# "#,##0" \* Upper
+revnum \# "#,##0" \* Upper

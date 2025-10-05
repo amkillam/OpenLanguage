@@ -44,6 +44,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         }
 
         public override int Precedence => Ast.Precedence.Primary;
+
+        public void Add(ExpressionNode node) => Nodes.Add(node);
     }
 
     public class ConcatenatedNodePair<L, R> : ExpressionNode

@@ -1,0 +1,8 @@
+ASK MyVar "Enter value:"
+ask MyVar "Enter value:"
+ASK MyVar "Enter value:" \d "Default"
+ask MyVar "Enter value:" \d "Default"
+ASK MyVar "Enter value:" \o
+ask MyVar "Enter value:" \o
+ASK MyVar "Enter value:" \d "Default" \o
+ask MyVar "Enter value:" \d "Default" \o

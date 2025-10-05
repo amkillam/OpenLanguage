@@ -1,13 +1,13 @@
 # Build System
 
-OpenLanguage uses a sophisticated CMake-based build system designed to handle .NET projects with YACC/LEX grammar file preprocessing. This document provides comprehensive information about the build system architecture, targets, and usage.
+OpenLanguage uses a sophisticated CMake-based build system designed to handle .NET projects with yacc/lex grammar file preprocessing. This document provides comprehensive information about the build system architecture, targets, and usage.
 
 ## Overview
 
 The build system is architected around CMake 3.20+ and provides several key capabilities:
 
 - **Cross-platform .NET Runtime Identifier (RID) detection and configuration**
-- **Automatic preprocessing of .y (YACC) and .lex (LEX) grammar files using the C preprocessor**
+- **Automatic preprocessing of .y (yacc) and .lex (lex) grammar files using the C preprocessor**
 - **Multi-target compilation for different runtime architectures**
 - **Integration with .NET toolchain for building, testing, and packaging**
 - **Code formatting and documentation generation**
@@ -24,8 +24,8 @@ OpenLanguage/
 │   ├── OpenLanguage.csproj    # .NET project file
 │   ├── Generated/             # Preprocessed grammar files (created during build)
 │   └── SpreadsheetML/Formula/Lang/
-│       ├── Parse/formula.y    # YACC grammar file
-│       └── Lex/               # LEX lexer files
+│       ├── Parse/formula.y    # yacc grammar file
+│       └── Lex/               # lex lexer files
 │           ├── formula.lex    # Main lexer
 │           └── function/      # Function definition lexer files
 ├── OpenLanguage.Test/         # Unit test project
@@ -83,7 +83,7 @@ cmake -B build -DRUNTIMES="linux-x64;win-x64;osx-arm64"
 
 ### Overview
 
-The build system automatically processes YACC (.y) and LEX (.lex) files using the C preprocessor before compilation. This enables:
+The build system automatically processes yacc (.y) and lex (.lex) files using the C preprocessor before compilation. This enables:
 
 - **Conditional compilation** using `#ifdef`, `#ifndef`, `#define`
 - **File inclusion** using `#include`
@@ -318,15 +318,15 @@ cmake --build build --target pack       # Pack for distribution
 
 The project uses YaccLexTools packages for grammar processing:
 
-- **YaccLexTools.Gppg**: YACC-style parser generator
-- **YaccLexTools.Gplex**: LEX-style lexer generator
+- **YaccLexTools.Gppg**: yacc parser generator
+- **YaccLexTools.GPLEX**: lex lexer generator
 
 The .csproj file configures these tools:
 
 ```xml
 <YaccFile Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
   <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
-  <Arguments>/gplex /nolines</Arguments>
+  <Arguments>/GPLEX /nolines</Arguments>
 </YaccFile>
 ```
 
@@ -407,8 +407,8 @@ You can modify the preprocessing step by editing the CMakeLists.txt file:
 # Add custom preprocessor definitions
 add_custom_command(
     TARGET process PRE_BUILD
-    COMMAND cpp -P ${YACC_FILE} -o ${OUTPUT_FILE} -DCUSTOM_FLAG -Wno-invalid-pp-token
-    COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE}"
+    COMMAND cpp -P ${yacc_FILE} -o ${OUTPUT_FILE} -DCUSTOM_FLAG -Wno-invalid-pp-token
+    COMMENT "Processing ${yacc_FILE} -> ${OUTPUT_FILE}"
 )
 ```
 

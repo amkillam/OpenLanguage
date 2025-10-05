@@ -1,0 +1,12 @@
+INCLUDE "C:\\doc.docx"
+include "C:\\doc.docx"
+INCLUDE "C:\\doc.docx" Summary
+include "C:\\doc.docx" Summary
+INCLUDE "C:\\doc.docx" \!
+include "C:\\doc.docx" \!
+INCLUDE "C:\\doc.docx" Summary \!
+include "C:\\doc.docx" Summary \!
+INCLUDE "C:\\doc.docx" \c "Word.Document.12"
+include "C:\\doc.docx" \c "Word.Document.12"
+INCLUDE "C:\\doc.docx" Summary \! \c "Word.Document.12"
+include "C:\\doc.docx" Summary \! \c "Word.Document.12"

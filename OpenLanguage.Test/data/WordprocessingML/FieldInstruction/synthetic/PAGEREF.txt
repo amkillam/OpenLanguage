@@ -1,0 +1,12 @@
+PAGEREF MyBookmark
+pageref MyBookmark
+PAGEREF MyBookmark \h
+pageref MyBookmark \h
+PAGEREF MyBookmark \p
+pageref MyBookmark \p
+PAGEREF MyBookmark \h \p
+pageref MyBookmark \h \p
+PAGEREF MyBookmark \* Arabic
+pageref MyBookmark \* Arabic
+PAGEREF MyBookmark \# "0"
+pageref MyBookmark \# "0"

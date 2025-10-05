@@ -1,13 +1,13 @@
 # Grammar Files
 
-OpenLanguage uses GNU YACC and LEX style grammar files to define the lexical analysis and parsing rules for Microsoft Office document languages. This document provides comprehensive information about working with these grammar files, their structure, and the code generation process.
+OpenLanguage uses POSIX yacc and lex style grammar files to define the lexical analysis and parsing rules for Microsoft Office document languages. This document provides comprehensive information about working with these grammar files, their structure, and the code generation process.
 
 ## Overview
 
 The grammar files in OpenLanguage serve as the foundation for parsing SpreadsheetML formulas and WordprocessingML field instructions. The system uses:
 
-- **GPPG (GNU Parser Parser Generator)**: A YACC-compatible parser generator for .NET
-- **GPLEX (GNU Parser Lexer Generator)**: A LEX-compatible lexer generator for .NET
+- **GPPG (GNU Parser Parser Generator)**: A yacc-compatible parser generator for .NET
+- **GPLEX (GNU Parser Lexer Generator)**: A lex-compatible lexer generator for .NET
 - **C Preprocessor Integration**: Enables conditional compilation and macro expansion
 
 ## Grammar File Architecture
@@ -17,7 +17,7 @@ The grammar files in OpenLanguage serve as the foundation for parsing Spreadshee
 ```
 OpenLanguage/SpreadsheetML/Formula/Lang/
 ├── Parse/
-│   └── formula.y                    # YACC grammar for SpreadsheetML formulas
+│   └── formula.y                    # yacc grammar for SpreadsheetML formulas
 └── Lex/
     ├── formula.lex                  # Main lexer for SpreadsheetML formulas
     └── function/                    # Function definition lexer files
@@ -36,11 +36,11 @@ OpenLanguage/SpreadsheetML/Formula/Lang/
 4. **Code Generation**: GPPG/GPLEX generate C# parser and lexer classes
 5. **Compilation**: Generated C# code compiled into the final assembly
 
-## YACC Grammar Files (.y)
+## yacc Grammar Files (.y)
 
 ### Structure
 
-YACC grammar files define the syntactic structure of the language using BNF-like notation.
+yacc grammar files define the syntactic structure of the language using BNF-like notation.
 
 #### Header Section
 
@@ -162,11 +162,11 @@ argument_list
 - **Higher precedence**: Listed last (T_PERCENT)
 - **Associativity**: `%left` (left-associative), `%right` (right-associative)
 
-## LEX Grammar Files (.lex)
+## lex Grammar Files (.lex)
 
 ### Structure
 
-LEX files define lexical analysis rules using regular expressions.
+lex files define lexical analysis rules using regular expressions.
 
 #### Header Section
 
@@ -267,12 +267,12 @@ This modular approach enables:
 
 ### GPPG Parser Generation
 
-The YACC file is processed by GPPG to generate a C# parser class:
+The yacc file is processed by GPPG to generate a C# parser class:
 
 ```xml
 <YaccFile Include="Generated/SpreadsheetML/Formula/Lang/Parse/formula.y">
   <OutputFile>Generated/SpreadsheetML/Formula/Lang/Parse/Formula.Parser.Generated.cs</OutputFile>
-  <Arguments>/gplex /nolines</Arguments>
+  <Arguments>/GPLEX /nolines</Arguments>
 </YaccFile>
 ```
 
@@ -285,7 +285,7 @@ The YACC file is processed by GPPG to generate a C# parser class:
 
 ### GPLEX Lexer Generation
 
-The LEX file is processed by GPLEX to generate a C# lexer class:
+The lex file is processed by GPLEX to generate a C# lexer class:
 
 ```xml
 <LexFile Include="Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex">
@@ -366,13 +366,13 @@ Define reusable patterns:
 
 ### Adding New Tokens
 
-1. **Add token to LEX file**:
+1. **Add token to lex file**:
 
    ```lex
    "NEW_KEYWORD"   { return (int)Tokens.T_NEW_KEYWORD; }
    ```
 
-2. **Add token to YACC file**:
+2. **Add token to yacc file**:
 
    ```yacc
    %token T_NEW_KEYWORD
@@ -418,7 +418,7 @@ Common lexer problems:
 
 - **Pattern order matters**: More specific patterns should come first
 - **Overlapping patterns**: Use start conditions to disambiguate
-- **Greedy matching**: LEX uses longest match rule
+- **Greedy matching**: lex uses longest match rule
 
 ### Testing Grammar Changes
 
@@ -483,7 +483,7 @@ public void TestComplexFormulaWithNewConstruct()
 
 ### Error Recovery
 
-Implement error recovery in YACC rules:
+Implement error recovery in yacc rules:
 
 ```yacc
 statement_list

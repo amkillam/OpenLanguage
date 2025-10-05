@@ -1,0 +1,6 @@
+PRINT "ESC sequence"
+print "ESC sequence"
+PRINT \p page "PostScript code"
+print \p page "PostScript code"
+PRINT \p para "PostScript code"
+print \p para "PostScript code"

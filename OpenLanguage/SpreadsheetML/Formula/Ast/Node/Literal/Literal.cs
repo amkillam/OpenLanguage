@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using OpenLanguage.Utils;
 
 namespace OpenLanguage.SpreadsheetML.Formula.Ast
@@ -139,9 +138,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
                 case "0b":
                 case "&b":
                 {
-                    // NOTE: 'NumberStyles.BinaryNumber' does not exist. The correct style for
-                    // parsing binary strings with a "0b" prefix is 'AllowBinarySpecifier'
-                    // (requires .NET 7 or later).
                     if (
                         N.TryParse(
                             trimmed,

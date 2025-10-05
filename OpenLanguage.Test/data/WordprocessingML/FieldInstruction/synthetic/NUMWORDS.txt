@@ -1,0 +1,28 @@
+NUMWORDS
+numwords
+NUMWORDS \# "0"
+numwords \# "0"
+NUMWORDS \# "0.00"
+numwords \# "0.00"
+NUMWORDS \# "#,##0"
+numwords \# "#,##0"
+NUMWORDS \* Upper
+numwords \* Upper
+NUMWORDS \* Lower
+numwords \* Lower
+NUMWORDS \* FirstCap
+numwords \* FirstCap
+NUMWORDS \* Caps
+numwords \* Caps
+NUMWORDS \* CharFormat
+numwords \* CharFormat
+NUMWORDS \* MergeFormat
+numwords \* MergeFormat
+NUMWORDS \* MergeFormatInet
+numwords \* MergeFormatInet
+NUMWORDS \# "0" \* Upper
+numwords \# "0" \* Upper
+NUMWORDS \# "0.00" \* Upper
+numwords \# "0.00" \* Upper
+NUMWORDS \# "#,##0" \* Upper
+numwords \# "#,##0" \* Upper

@@ -1,0 +1,16 @@
+TA
+ta
+TA \b
+ta \b
+TA \c 2
+ta \c 2
+TA \i
+ta \i
+TA \l "Long citation"
+ta \l "Long citation"
+TA \r MyBookmark
+ta \r MyBookmark
+TA \s "Short"
+ta \s "Short"
+TA \c 2 \l "Long" \s "Short"
+ta \c 2 \l "Long" \s "Short"

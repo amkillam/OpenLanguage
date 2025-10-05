@@ -1,89 +1,72 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenLanguage.WordprocessingML.Ast;
 using OpenLanguage.WordprocessingML.Operators;
 using Xunit;
+using CoreAst = OpenLanguage.WordprocessingML.Ast;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
 {
     public class FieldInstructionTests
     {
+        private static void RecurseLogFieldInstructionTree(
+            CoreAst.Node? node,
+            int depth = 0,
+            System.IO.TextWriter? writer = null
+        )
+        {
+            writer ??= Console.Out;
+            string indent = new string(' ', depth * 2);
+            writer.WriteLine(
+                $"{indent}- {node?.GetType()?.Name ?? "null"}: {node?.ToString() ?? string.Empty}"
+            );
+            if (node != null)
+            {
+                foreach (CoreAst.Node child in node.Children<CoreAst.Node>())
+                {
+                    RecurseLogFieldInstructionTree(child, depth + 1, writer);
+                }
+            }
+        }
+
         [Theory]
         [InlineData("PAGE")]
         [InlineData("DATE")]
         [InlineData("TIME")]
         [InlineData("AUTHOR")]
         [InlineData("FILENAME")]
-        public void Constructor_WithValidInstruction_SetsInstructionProperty(string instruction)
+        public void Parse_WithValidInstruction_ReturnsAst(string instruction)
         {
-            // Act
-            FieldInstruction fieldInstruction = new FieldInstruction(instruction);
-
-            // Assert
-            Assert.Equal(instruction, fieldInstruction.Instruction);
-            Assert.NotNull(fieldInstruction.Arguments);
-            Assert.Empty(fieldInstruction.Arguments);
+            ExpressionNode result = FieldInstructionParser.Parse(instruction);
+            Assert.IsAssignableFrom<Ast.FieldInstruction>(result);
+            Assert.Equal(instruction, ((Ast.FieldInstruction)result).Instruction);
+            Assert.NotNull(result.Children<CoreAst.Node>());
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData("    ")]
-        public void Constructor_WithInvalidInstruction_ThrowsArgumentException(string? instruction)
+        public void Parse_WithInvalidInstruction_ThrowsArgumentException(string? instruction)
         {
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => new FieldInstruction(instruction!));
+            Assert.Throws<ArgumentException>(() => FieldInstructionParser.Parse(instruction!));
         }
 
         [Fact]
-        public void Constructor_WithInstructionAndArguments_SetsProperties()
+        public void Parse_Page_WithGeneralFormat_ParsesCorrectly()
         {
-            // Arrange
-            string instruction = "PAGE";
-            List<FieldArgument> arguments = new List<FieldArgument>
-            {
-                new FieldArgument(FieldArgumentType.Switch, "\\* MERGEFORMAT"),
-                new FieldArgument(FieldArgumentType.StringLiteral, "test"),
-            };
+            string fieldCode = "PAGE \\* MERGEFORMAT";
+            ExpressionNode result = FieldInstructionParser.Parse(fieldCode);
 
-            // Act
-            FieldInstruction fieldInstruction = new FieldInstruction(instruction, arguments);
-
-            // Assert
-            Assert.Equal(instruction, fieldInstruction.Instruction);
-            Assert.Equal(2, fieldInstruction.Arguments.Count);
-            Assert.Equal(FieldArgumentType.Switch, fieldInstruction.Arguments[0].Type);
-            Assert.Equal("\\* MERGEFORMAT", fieldInstruction.Arguments[0].Value);
-            Assert.Equal(FieldArgumentType.StringLiteral, fieldInstruction.Arguments[1].Type);
-            Assert.Equal("test", fieldInstruction.Arguments[1].Value);
-        }
-
-        [Fact]
-        public void Constructor_WithNullArguments_InitializesEmptyArgumentsList()
-        {
-            // Act
-            FieldInstruction fieldInstruction = new FieldInstruction("PAGE");
-
-            // Assert
-            Assert.Equal("PAGE", fieldInstruction.Instruction);
-            Assert.NotNull(fieldInstruction.Arguments);
-            Assert.Empty(fieldInstruction.Arguments);
-        }
-
-        [Fact]
-        public void Arguments_CanBeModified()
-        {
-            // Arrange
-            FieldInstruction fieldInstruction = new FieldInstruction("PAGE");
-
-            // Act
-            fieldInstruction.Arguments.Add(
-                new FieldArgument(FieldArgumentType.Switch, "\\* Upper")
+            Assert.IsType<OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction>(
+                result
             );
-
-            // Assert
-            Assert.Single(fieldInstruction.Arguments);
-            Assert.Equal("\\* Upper", fieldInstruction.Arguments[0].Value);
+            Assert.Equal("PAGE", ((Ast.PageFieldInstruction)result).Instruction);
+            OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction page =
+                (OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction)result;
+            Assert.NotNull(page.GeneralFormat);
+            Assert.Contains("\\*", result.ToRawString());
         }
 
         [Theory]
@@ -92,150 +75,196 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
         [InlineData("TIME \\* MERGEFORMAT", "TIME \\* MERGEFORMAT")]
         public void ToString_ReturnsInstructionString(string instruction, string expected)
         {
-            // Arrange
-            FieldInstruction fieldInstruction = new FieldInstruction(instruction);
-
-            // Act
-            string result = fieldInstruction.ToString();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void Equality_SameInstructionAndArguments_ReturnsTrue()
-        {
-            // Arrange
-            List<FieldArgument> arguments = new List<FieldArgument>
-            {
-                new FieldArgument(FieldArgumentType.Switch, "\\* Upper"),
-            };
-            FieldInstruction fieldInstruction1 = new FieldInstruction("PAGE", arguments);
-            FieldInstruction fieldInstruction2 = new FieldInstruction("PAGE", arguments);
-
-            // Act & Assert
-            Assert.Equal(fieldInstruction1.Instruction, fieldInstruction2.Instruction);
-            Assert.Equal(fieldInstruction1.Arguments.Count, fieldInstruction2.Arguments.Count);
-        }
-
-        [Fact]
-        public void Equality_DifferentInstructions_ReturnsFalse()
-        {
-            // Arrange
-            FieldInstruction fieldInstruction1 = new FieldInstruction("PAGE");
-            FieldInstruction fieldInstruction2 = new FieldInstruction("DATE");
-
-            // Act & Assert
-            Assert.NotEqual(fieldInstruction1.Instruction, fieldInstruction2.Instruction);
+            ExpressionNode result = FieldInstructionParser.Parse(instruction);
+            string actual = result.ToString();
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void CaseInsensitive_InstructionHandling()
         {
-            // Arrange & Act
-            FieldInstruction upperCase = new FieldInstruction("PAGE");
-            FieldInstruction lowerCase = new FieldInstruction("page");
-            FieldInstruction mixedCase = new FieldInstruction("Page");
+            ExpressionNode upper = FieldInstructionParser.Parse("PAGE");
+            ExpressionNode lower = FieldInstructionParser.Parse("page");
+            ExpressionNode mixed = FieldInstructionParser.Parse("Page");
 
-            // Assert
-            Assert.Equal("PAGE", upperCase.Instruction);
-            Assert.Equal("page", lowerCase.Instruction);
-            Assert.Equal("Page", mixedCase.Instruction);
-        }
-    }
-
-    public class FieldArgumentTests
-    {
-        [Theory]
-        [InlineData(FieldArgumentType.Identifier, "test")]
-        [InlineData(FieldArgumentType.StringLiteral, "\"test string\"")]
-        [InlineData(FieldArgumentType.Switch, "\\* Upper")]
-        [InlineData(FieldArgumentType.NestedField, null)]
-        public void Constructor_WithValidParameters_SetsProperties(
-            FieldArgumentType type,
-            object? value
-        )
-        {
-            // Act
-            FieldArgument argument = new FieldArgument(type, value);
-
-            // Assert
-            Assert.Equal(type, argument.Type);
-            Assert.Equal(value, argument.Value);
+            Assert.IsType<OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction>(
+                upper
+            );
+            Assert.IsType<OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction>(
+                lower
+            );
+            Assert.IsType<OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction>(
+                mixed
+            );
+            Assert.Equal("PAGE", ((Ast.FieldInstruction)upper).Instruction);
+            Assert.Equal("page", ((Ast.FieldInstruction)lower).Instruction);
+            Assert.Equal("Page", ((Ast.FieldInstruction)mixed).Instruction);
         }
 
         [Fact]
-        public void Constructor_WithNestedField_SetsNestedFieldValue()
+        public void TestWithTextFileLines()
         {
-            // Arrange
-            FieldInstruction nestedField = new FieldInstruction("DATE");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            System.IO.TextWriter origConsoleOut = Console.Out;
+            System.IO.TextWriter origConsoleError = Console.Error;
+            using System.IO.StringWriter sw = new System.IO.StringWriter();
+            using System.IO.StringWriter swCumulative = new System.IO.StringWriter();
+            Console.SetOut(sw);
+            Console.SetError(sw);
+            IEnumerable<string> fieldInstructions =
+                FieldInstructionUtils.DatasetFieldInstructions();
 
-            // Act
-            FieldArgument argument = new FieldArgument(FieldArgumentType.NestedField, nestedField);
+            // failedFile =
+            System.IO.FileStream failedFd = System.IO.File.OpenWrite(
+                "/tmp/failed_field_instructions.txt"
+            );
+            System.IO.FileStream failedFormattingFd = System.IO.File.OpenWrite(
+                "/tmp/failed_formatting_field_instructions.txt"
+            );
+            System.IO.FileStream successFd = System.IO.File.OpenWrite(
+                "/tmp/successful_field_instructions.txt"
+            );
+            System.IO.FileStream inProgressFd = System.IO.File.OpenWrite(
+                "/tmp/in_progress_field_instructions.txt"
+            );
+            successFd.SetLength(0);
+            failedFd.SetLength(0);
+            failedFormattingFd.SetLength(0);
+            inProgressFd.SetLength(0);
+            using System.IO.StreamWriter successWriter = new System.IO.StreamWriter(successFd);
+            using System.IO.StreamWriter failedFormattingWriter = new System.IO.StreamWriter(
+                failedFormattingFd
+            );
+            using System.IO.StreamWriter inProgressWriter = new System.IO.StreamWriter(
+                inProgressFd
+            );
+            using System.IO.StreamWriter failedWriter = new System.IO.StreamWriter(failedFd);
+            System.UInt128 i = 0;
+            int total = fieldInstructions.Count();
 
-            // Assert
-            Assert.Equal(FieldArgumentType.NestedField, argument.Type);
-            Assert.Equal(nestedField, argument.Value);
-        }
+            int failedCnt = 0;
 
-        [Theory]
-        [InlineData(FieldArgumentType.Identifier, "test", "test")]
-        [InlineData(FieldArgumentType.StringLiteral, "quoted", "\"quoted\"")]
-        [InlineData(FieldArgumentType.Switch, "\\p", "\\p")]
-        public void ToString_ReturnsValueAsString(
-            FieldArgumentType type,
-            object value,
-            string expected
-        )
-        {
-            // Arrange
-            FieldArgument argument = new FieldArgument(type, value);
-
-            // Act
-            string result = argument.ToString();
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void ToString_WithNullValue_ReturnsEmptyString()
-        {
-            // Arrange
-            FieldArgument argument = new FieldArgument(FieldArgumentType.Identifier, null!);
-
-            // Act
-            string result = argument.ToString();
-
-            // Assert
-            Assert.Equal(string.Empty, result);
-        }
-    }
-
-    public class FieldArgumentTypeTests
-    {
-        [Fact]
-        public void FieldArgumentType_HasAllExpectedValues()
-        {
-            // Arrange
-            FieldArgumentType[] expectedValues = new FieldArgumentType[6]
+            int maxFailures = 10;
+            foreach (string fieldInstructionText in fieldInstructions)
             {
-                FieldArgumentType.Identifier,
-                FieldArgumentType.StringLiteral,
-                FieldArgumentType.Switch,
-                FieldArgumentType.NestedField,
-                FieldArgumentType.Text,
-                FieldArgumentType.Number,
-            };
+                inProgressFd.SetLength(0);
 
-            // Act
-            IEnumerable<FieldArgumentType> actualValues = Enum.GetValues<FieldArgumentType>();
+                inProgressWriter.WriteLine(fieldInstructionText);
+                inProgressWriter.Flush();
+                sw.Flush();
+                sw.GetStringBuilder().Clear();
 
-            // Assert
-            Assert.Equal(expectedValues.Length, actualValues.Count());
-            foreach (FieldArgumentType expected in expectedValues)
+                if (
+                    !string.IsNullOrWhiteSpace(fieldInstructionText)
+                    && fieldInstructionText.Length > 0
+                )
+                {
+                    Node? fieldInstruction = FieldInstructionParser.TryParse(fieldInstructionText);
+                    if (fieldInstruction == null)
+                    {
+                        sw.Flush();
+                        System.Threading.Thread.Sleep(1000);
+                        sw.Flush();
+                        string stdOut = sw.ToString();
+                        swCumulative.Flush();
+                        swCumulative.WriteLine("");
+                        swCumulative.WriteLine("");
+                        swCumulative.WriteLine($"\n\n## {failedCnt + 1}. `{fieldInstructionText}`");
+
+                        swCumulative.WriteLine(
+                            $"### Info\nFailed to parse field instruction ({i + 1}/{total}).\nText:\"{fieldInstructionText}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
+                        );
+
+                        if (!string.IsNullOrWhiteSpace(stdOut))
+                        {
+                            swCumulative.WriteLine("### Captured StdOut and StdErr");
+                            swCumulative.WriteLine(stdOut);
+                        }
+                        failedWriter.WriteLine(fieldInstructionText);
+                        failedWriter.Flush();
+                        swCumulative.Flush();
+
+                        if (++failedCnt == maxFailures)
+                        {
+                            break;
+                        }
+                    }
+                    else if (fieldInstruction.ToString() != fieldInstructionText)
+                    {
+                        sw.Flush();
+                        System.Threading.Thread.Sleep(1000);
+                        sw.Flush();
+                        string stdOut = sw.ToString();
+
+                        swCumulative.Flush();
+                        swCumulative.WriteLine("");
+                        swCumulative.WriteLine("");
+                        swCumulative.WriteLine($"## {failedCnt + 1}. `{fieldInstructionText}`");
+                        swCumulative.WriteLine("### Info");
+                        swCumulative.WriteLine(
+                            $"Failed to parse field instruction ({i + 1}/{total}).\nText:\"{fieldInstructionText}\"\nHex:{BitConverter.ToString(System.Text.Encoding.UTF8.GetBytes(fieldInstructionText))}"
+                        );
+                        swCumulative.WriteLine("### Parsed Field Instruction AST Tree");
+                        RecurseLogFieldInstructionTree(fieldInstruction, 0, swCumulative);
+                        swCumulative.Flush();
+
+                        if (!string.IsNullOrWhiteSpace(stdOut))
+                        {
+                            swCumulative.WriteLine("### Captured StdOut and StdErr");
+                            swCumulative.WriteLine(stdOut);
+                        }
+
+                        swCumulative.Flush();
+
+                        failedFormattingWriter.WriteLine(fieldInstructionText);
+                        failedFormattingWriter.Flush();
+
+                        swCumulative.Flush();
+
+                        if (++failedCnt == maxFailures)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        successWriter.WriteLine(fieldInstructionText);
+                        successWriter.Flush();
+
+                        // Console.WriteLine($"Parsed field instruction {i + 1}/{total} successfully: \"{fieldInstructionText}\"");
+                    }
+                }
+                i++;
+            }
+
+            successWriter.Flush();
+            failedWriter.Flush();
+            failedFormattingWriter.Flush();
+            inProgressWriter.Flush();
+            Console.SetOut(origConsoleOut);
+            Console.SetError(origConsoleError);
+            if (failedCnt > 0)
             {
-                Assert.Contains(expected, actualValues);
+                if (failedCnt == maxFailures)
+                {
+                    Console.Error.WriteLine($"**Parsing stopped after {maxFailures} failures.**");
+                    Console.Error.WriteLine(swCumulative.ToString());
+                }
+                else
+                {
+                    Console.Error.WriteLine($"**Parsing completed with {failedCnt} failures.**");
+
+                    Console.Error.WriteLine(swCumulative.ToString());
+                }
+                Console.Error.Flush();
+            }
+            sw.Flush();
+            swCumulative.Flush();
+            origConsoleOut.Flush();
+            origConsoleError.Flush();
+            if (failedCnt > 0)
+            {
+                throw new Exception($"TestWithTextFileLines: {failedCnt} failures");
             }
         }
     }

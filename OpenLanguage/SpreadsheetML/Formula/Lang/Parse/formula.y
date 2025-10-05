@@ -1,18 +1,15 @@
 %namespace OpenLanguage.SpreadsheetML.Formula.Generated
 %parsertype Parser
 %tokentype Tokens
-%visibility public
+%visibility internal
 
 %using OpenLanguage.SpreadsheetML.Formula.Ast;
 %using System.Linq;
 
 %union
 {
-    public double doubleVal;
-    public int integerVal;
     public long longVal;
     public ulong ulongVal;
-    public bool boolVal;
     public string stringVal;
     public Node nodeVal;
     public ExpressionNode expressionVal;
@@ -41,18 +38,13 @@
     public R1C1ColumnNode R1C1ColumnVal;
     public R1C1RowNode R1C1RowVal;
 
-    public A1ColumnNode A1ColumnOnlyVal;
-    public A1RowNode A1RowOnlyVal;
     public A1CellNode A1CellVal;
     public R1C1CellNode R1C1CellVal;
 
     public StructureTotalsReferenceNode structureTotalsVal;
     public StructureDataReferenceNode structureDataVal;
     public StructureHeadersReferenceNode structureHeadersVal;
-    public StructureThisRowReferenceNode structureThisRowVal;
     public StructureAllReferenceNode structureAllVal;
-
-    public NameNode nameVal;
 
     // -- Function prefixes -- //
     public XlpmFunctionPrefixNode xlpmVal;
@@ -61,7 +53,6 @@
     public XlfnFunctionPrefixNode xlfnVal;
 
     public WorkbookReferenceNode workbookIndexVal;
-    public StructureThisRowColumnReferenceNode structureThisRowColumnVal;
     public StructureColumnRange structureColumnRangeVal;
 
 
@@ -98,7 +89,7 @@
 %token<stringVal> T_STRUCTURED_REFERENCE
 %token<stringVal> T_DIV0_ERROR T_NA_ERROR T_NAME_ERROR T_NULL_ERROR T_NUM_ERROR T_VALUE_ERROR T_GETTING_DATA_ERROR T_REF_ERROR T_SPILL_ERROR T_CALC_ERROR T_BLOCKED_ERROR T_BUSY_ERROR T_CIRCULAR_ERROR T_CONNECT_ERROR T_EXTERNAL_ERROR T_FIELD_ERROR T_PYTHON_ERROR T_UNKNOWN_ERROR
 %token<stringVal> T_LBRACK T_RBRACK T_WB_LBRACK T_WB_RBRACK T_QUESTION_MARK
-%token<stringVal> T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_HASH
+%token<stringVal> T_PLUS T_MINUS T_ASTERISK T_SLASH T_AMPERSAND T_CARET T_PERCENT T_POUND
 %token<stringVal> T_EQ T_NE T_LT T_LE T_GT T_GE
 %token<stringVal> T_LPAREN T_RPAREN T_LBRACE T_RBRACE T_COMMA T_COLON T_SEMICOLON
 %token<stringVal> T_EMPTY_BRACKETS
@@ -177,7 +168,7 @@
 %right T_CARET
 %left UMINUS
 %left T_PERCENT
-%right T_HASH
+%right T_POUND
 
 %start formula
 
@@ -208,7 +199,7 @@ non_union_expression:
   | non_union_expression T_EQ non_union_expression               { $$ = new EqualNode($1, new EqualLiteralNode($2), $3); }
   | non_union_expression T_COLON non_union_expression            { $$ = new RangeNode($1, new ColonNode($2), $3); }
   | non_union_expression T_PERCENT %prec T_PERCENT               { $$ = new PercentNode(new PercentLiteralNode($2), $1); }
-  | non_union_expression T_HASH                                  { $$ = new DynamicNode(new HashLiteralNode($2), $1); }
+  | non_union_expression T_POUND                                  { $$ = new DynamicNode(new PoundLiteralNode($2), $1); }
   | T_PLUS non_union_expression %prec UMINUS                     { $$ = new UnaryPlusNode(new PlusLiteralNode($1), $2); }
   | T_MINUS non_union_expression %prec UMINUS                    { $$ = new UnaryMinusNode(new MinusLiteralNode($1), $2); }
   | non_union_expression T_INTERSECTION non_union_expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
@@ -237,7 +228,7 @@ expression:
   | expression T_COLON expression            { $$ = new RangeNode($1, new ColonNode($2), $3); }
   | expression T_COMMA expression            { $$ = new UnionNode($1, new CommaNode($2), $3); }
   | expression T_PERCENT %prec T_PERCENT     { $$ = new PercentNode(new PercentLiteralNode($2), $1); }
-  | expression T_HASH                        { $$ = new DynamicNode(new HashLiteralNode($2), $1); }
+  | expression T_POUND                        { $$ = new DynamicNode(new PoundLiteralNode($2), $1); }
   | T_PLUS expression %prec UMINUS           { $$ = new UnaryPlusNode(new PlusLiteralNode($1), $2); }
   | T_MINUS expression %prec UMINUS          { $$ = new UnaryMinusNode(new MinusLiteralNode($1), $2); }
   | expression T_INTERSECTION expression     { $$ = new IntersectionNode($1, new IntersectionLiteralNode($2), $3); }
@@ -510,17 +501,15 @@ structured_reference_index:
       }
   | structured_reference_index whitespace user_defined_or_builtin_name
       {
-          ExpressionNode right = $3;
-          right.LeadingWhitespace.Insert(0, $2);
+          $3.LeadingWhitespace.Insert(0, $2);
           if ($1 is ConcatenatedNodes cn)
           {
-              List<ExpressionNode> nodes = cn.Children<ExpressionNode>().ToList();
-              nodes.Add(right);
-              $$ = new ConcatenatedNodes(nodes);
+              cn.Add($3);
+              $$ = cn;
           }
           else
           {
-              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, right });
+              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, $3 });
           }
       }
   // Support adjacent identifiers inside SR brackets without intervening whitespace,
@@ -533,16 +522,14 @@ structured_reference_index:
       }
   | structured_reference_index user_defined_or_builtin_name
       {
-          ExpressionNode right = $2;
           if ($1 is ConcatenatedNodes cn)
           {
-              List<ExpressionNode> nodes = cn.Children<ExpressionNode>().ToList();
-              nodes.Add(right);
-              $$ = new ConcatenatedNodes(nodes);
+              cn.Add($2);
+              $$ = cn;
           }
           else
           {
-              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, right });
+              $$ = new ConcatenatedNodes(new List<ExpressionNode>() { (ExpressionNode)$1, $2 });
           }
       }
   | whitespace structured_reference_index                          { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }

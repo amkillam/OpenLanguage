@@ -1,4 +1,3 @@
-
 py_worksheet_function_name:
     xlfn xlws T_FUNC_PY { $$ = new PyFunctionNode($3, $1, $2); }
   | xlfn T_FUNC_PY      { $$ = new PyFunctionNode($2, $1, null); }

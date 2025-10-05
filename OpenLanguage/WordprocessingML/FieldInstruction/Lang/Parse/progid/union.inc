@@ -1,0 +1,3 @@
+public ProgrammaticIdentifier.Application programmaticIdentifierApplicationVal;
+public ProgrammaticIdentifier.Object programmaticIdentifierObjectVal;
+public byte byteVal;

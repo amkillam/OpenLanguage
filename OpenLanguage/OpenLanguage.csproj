@@ -60,6 +60,83 @@
       <DependentUpon>Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup Label="OpenLanguage.WordprocessingML.FieldInstruction">
+    <YaccFile Include="Generated/WordprocessingML/FieldInstruction/Lang/Parse/field_instruction.y">
+      <OutputFile>Generated/WordprocessingML/FieldInstruction/Lang/Parse/FieldInstruction.Parser.Generated.cs</OutputFile>
+      <Arguments>/gplex /nolines</Arguments>
+    </YaccFile>
+    <None Include="Generated/WordprocessingML/FieldInstruction/Lang/Parse/FieldInstruction.Parser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/FieldInstruction/Lang/Parse/field_instruction.y</DependentUpon>
+    </None>
+    <LexFile Include="Generated/WordprocessingML/FieldInstruction/Lang/Lex/field_instruction.lex">
+      <OutputFile>Generated/WordprocessingML/FieldInstruction/Lang/Lex/FieldInstruction.Lexer.Generated.cs</OutputFile>
+    </LexFile>
+    <None Include="Generated/WordprocessingML/FieldInstruction/Lang/Lex/FieldInstruction.Lexer.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/FieldInstruction/Lang/Lex/field_instruction.lex</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="OpenLanguage.WordprocessingML.MergeFieldTemplate">
+    <YaccFile Include="Generated/WordprocessingML/MergeField/Lang/Parse/template.y">
+      <OutputFile>Generated/WordprocessingML/MergeField/Lang/Parse/MergeFieldTemplate.Parser.Generated.cs</OutputFile>
+      <Arguments>/gplex /nolines</Arguments>
+    </YaccFile>
+    <None Include="Generated/WordprocessingML/MergeField/Lang/Parse/MergeFieldTemplate.Parser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/MergeField/Lang/Parse/template.y</DependentUpon>
+    </None>
+    <LexFile Include="Generated/WordprocessingML/MergeField/Lang/Lex/template.lex">
+      <OutputFile>Generated/WordprocessingML/MergeField/Lang/Lex/MergeFieldTemplate.Lexer.Generated.cs</OutputFile>
+    </LexFile>
+    <None Include="Generated/WordprocessingML/MergeField/Lang/Lex/MergeFieldTemplate.Lexer.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/MergeField/Lang/Lex/template.lex</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="OpenLanguage.WordprocessingML.MergeField">
+    <YaccFile Include="Generated/WordprocessingML/MergeField/Lang/Parse/merge_field.y">
+      <OutputFile>Generated/WordprocessingML/MergeField/Lang/Parse/MergeField.Parser.Generated.cs</OutputFile>
+      <Arguments>/gplex /nolines</Arguments>
+    </YaccFile>
+    <None Include="Generated/WordprocessingML/MergeField/Lang/Parse/MergeField.Parser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/MergeField/Lang/Parse/merge_field.y</DependentUpon>
+    </None>
+    <LexFile Include="Generated/WordprocessingML/MergeField/Lang/Lex/merge_field.lex">
+      <OutputFile>Generated/WordprocessingML/MergeField/Lang/Lex/MergeField.Lexer.Generated.cs</OutputFile>
+    </LexFile>
+    <None Include="Generated/WordprocessingML/MergeField/Lang/Lex/MergeField.Lexer.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/MergeField/Lang/Lex/merge_field.lex</DependentUpon>
+    </None>
+    <Dependency Include="OpenLanguage.WordprocessingML.MergeFieldTemplate" />
+  </ItemGroup>
+  <ItemGroup Label="OpenLanguage.WordprocessingML.Expression">
+    <YaccFile Include="Generated/WordprocessingML/Expression/Lang/Parse/expression.y">
+      <OutputFile>Generated/WordprocessingML/Expression/Lang/Parse/Expression.Parser.Generated.cs</OutputFile>
+      <Arguments>/gplex /nolines</Arguments>
+    </YaccFile>
+    <None Include="Generated/WordprocessingML/Expression/Lang/Parse/Expression.Parser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/Expression/Lang/Parse/expression.y</DependentUpon>
+    </None>
+    <LexFile Include="Generated/WordprocessingML/Expression/Lang/Lex/expression.lex">
+      <OutputFile>Generated/WordprocessingML/Expression/Lang/Lex/Expression.Lexer.Generated.cs</OutputFile>
+    </LexFile>
+    <None Include="Generated/WordprocessingML/Expression/Lang/Lex/Expression.Lexer.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generated/WordprocessingML/Expression/Lang/Lex/expression.lex</DependentUpon>
+    </None>
+  </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' != 'Release'">
     <DefineConstants>TRACE_ACTIONS;EXPORT_GPPG</DefineConstants>
   </PropertyGroup>
@@ -70,6 +147,7 @@
     <PackageReference Include="System.Data.Odbc" Version="9.0.9" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
     <PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.1" />
     <PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.1" />

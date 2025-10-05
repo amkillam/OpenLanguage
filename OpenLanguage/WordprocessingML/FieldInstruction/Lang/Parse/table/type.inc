@@ -1,0 +1,12 @@
+%type <a1ColumnVal> A1_column
+%type <a1RowVal> A1_row
+%type <a1CellVal> A1_cell
+%type <cellRangeVal> cell_range
+%type <relativeCellRangeKeywordLeftVal> relative_cell_range_keyword_left
+%type <relativeCellRangeKeywordRightVal> relative_cell_range_keyword_right
+%type <relativeCellRangeKeywordAboveVal> relative_cell_range_keyword_above
+%type <relativeCellRangeKeywordBelowVal> relative_cell_range_keyword_below
+%type <relativeCellRangeKeywordVal> relative_cell_range_keyword
+%type <tableReferenceVal> table_reference
+%type <cellReferenceNodeVal> cell_ref
+%type <cellReferenceNodeListVal> cell_ref_list

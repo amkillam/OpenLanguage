@@ -1,0 +1,24 @@
+LASTSAVEDBY
+lastsavedby
+LASTSAVEDBY \* Upper
+lastsavedby \* Upper
+LASTSAVEDBY \* Lower
+lastsavedby \* Lower
+LASTSAVEDBY \* FirstCap
+lastsavedby \* FirstCap
+LASTSAVEDBY \* Caps
+lastsavedby \* Caps
+LASTSAVEDBY \* CharFormat
+lastsavedby \* CharFormat
+LASTSAVEDBY \* MergeFormat
+lastsavedby \* MergeFormat
+LASTSAVEDBY \* MergeFormatInet
+lastsavedby \* MergeFormatInet
+LASTSAVEDBY \@ "dddd, MMMM dd, yyyy"
+lastsavedby \@ "dddd, MMMM dd, yyyy"
+LASTSAVEDBY \@ "dddd, MMMM dd, yyyy" \* Upper
+lastsavedby \@ "dddd, MMMM dd, yyyy" \* Upper
+LASTSAVEDBY \# "0"
+lastsavedby \# "0"
+LASTSAVEDBY \# "0" \* Upper
+lastsavedby \# "0" \* Upper

@@ -1,0 +1,38 @@
+TOC
+toc
+TOC \a fig
+toc \a fig
+TOC \b MyRange
+toc \b MyRange
+TOC \c fig
+toc \c fig
+TOC \d "-"
+toc \d "-"
+TOC \f i
+toc \f i
+TOC \h
+toc \h
+TOC \l 1-3
+toc \l 1-3
+TOC \n
+toc \n
+TOC \n 1-2
+toc \n 1-2
+TOC \o 1-3
+toc \o 1-3
+TOC \p "\t"
+toc \p "\t"
+TOC \s chap
+toc \s chap
+TOC \t "Heading 1,1"
+toc \t "Heading 1,1"
+TOC \u
+toc \u
+TOC \w
+toc \w
+TOC \x
+toc \x
+TOC \z
+toc \z
+TOC \o 1-3 \h \p "\t"
+toc \o 1-3 \h \p "\t"

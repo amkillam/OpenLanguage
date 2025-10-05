@@ -1,0 +1,12 @@
+MERGEFIELD FirstName
+mergefield FirstName
+MERGEFIELD FirstName \b "Mr. "
+mergefield FirstName \b "Mr. "
+MERGEFIELD FirstName \f "."
+mergefield FirstName \f "."
+MERGEFIELD FirstName \m
+mergefield FirstName \m
+MERGEFIELD FirstName \v
+mergefield FirstName \v
+MERGEFIELD FirstName \b "Mr. " \f "." \m \v
+mergefield FirstName \b "Mr. " \f "." \m \v

@@ -11,9 +11,9 @@ namespace OpenLanguage.WordprocessingML.Operators
     /// Enumeration of comparison operators.
     ///
     /// This can be seen in practice as what would be a bitpacked union in C.
-    /// First bit represents "Equal": whether the two values can be equal.
-    /// Second bit represents "LessThan": whether the first value can be less than the second
-    /// Third bit represents "GreaterThan": whether the first value can be greater than the second.
+    /// First bit represents "Equal": whether the two values is equal.
+    /// Second bit represents "LessThan": whether the first value is less than the second
+    /// Third bit represents "GreaterThan": whether the first value is greater than the second.
     /// Combining these bits allows representation of all standard comparison operators.
     /// For example:
     ///   - Equal (0b001): only equal
@@ -30,7 +30,7 @@ namespace OpenLanguage.WordprocessingML.Operators
         Equal = 0b001,
         LessThan = 0b010,
         LessThanOrEqual = ComparisonOperator.Equal | ComparisonOperator.LessThan, // 0b011
-        GreaterThan = ~ComparisonOperator.LessThanOrEqual & OperatorConstants.OperatorMask, // 0b010
+        GreaterThan = ~ComparisonOperator.LessThanOrEqual & OperatorConstants.OperatorMask, // 0b100
         GreaterThanOrEqual = ~ComparisonOperator.LessThan & OperatorConstants.OperatorMask, // 0b101
         NotEqual = ComparisonOperator.LessThan | ComparisonOperator.GreaterThan, // 0b110
     }

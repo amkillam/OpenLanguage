@@ -1,0 +1,6 @@
+SECTION
+section
+SECTION \* Arabic
+section \* Arabic
+SECTION \* roman
+section \* roman

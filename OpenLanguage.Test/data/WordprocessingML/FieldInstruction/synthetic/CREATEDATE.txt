@@ -1,0 +1,36 @@
+CREATEDATE
+createdate
+CREATEDATE \@ "dddd, MMMM dd, yyyy"
+createdate \@ "dddd, MMMM dd, yyyy"
+CREATEDATE \@ "MM/dd/yyyy"
+createdate \@ "MM/dd/yyyy"
+CREATEDATE \@ "yyyy-MM-dd"
+createdate \@ "yyyy-MM-dd"
+CREATEDATE \@ "d MMM yyyy"
+createdate \@ "d MMM yyyy"
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* Upper
+createdate \@ "dddd, MMMM dd, yyyy" \* Upper
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* Lower
+createdate \@ "dddd, MMMM dd, yyyy" \* Lower
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* FirstCap
+createdate \@ "dddd, MMMM dd, yyyy" \* FirstCap
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* Caps
+createdate \@ "dddd, MMMM dd, yyyy" \* Caps
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* CharFormat
+createdate \@ "dddd, MMMM dd, yyyy" \* CharFormat
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+createdate \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+CREATEDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+createdate \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+CREATEDATE \h
+createdate \h
+CREATEDATE \s
+createdate \s
+CREATEDATE \h \@ "dddd, MMMM dd, yyyy"
+createdate \h \@ "dddd, MMMM dd, yyyy"
+CREATEDATE \s \@ "dddd, MMMM dd, yyyy"
+createdate \s \@ "dddd, MMMM dd, yyyy"
+CREATEDATE \h \@ "dddd, MMMM dd, yyyy" \* Upper
+createdate \h \@ "dddd, MMMM dd, yyyy" \* Upper
+CREATEDATE \s \@ "dddd, MMMM dd, yyyy" \* Upper
+createdate \s \@ "dddd, MMMM dd, yyyy" \* Upper

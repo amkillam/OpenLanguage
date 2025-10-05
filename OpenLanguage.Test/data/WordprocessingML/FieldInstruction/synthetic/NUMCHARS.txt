@@ -1,0 +1,28 @@
+NUMCHARS
+numchars
+NUMCHARS \# "0"
+numchars \# "0"
+NUMCHARS \# "0.00"
+numchars \# "0.00"
+NUMCHARS \# "#,##0"
+numchars \# "#,##0"
+NUMCHARS \* Upper
+numchars \* Upper
+NUMCHARS \* Lower
+numchars \* Lower
+NUMCHARS \* FirstCap
+numchars \* FirstCap
+NUMCHARS \* Caps
+numchars \* Caps
+NUMCHARS \* CharFormat
+numchars \* CharFormat
+NUMCHARS \* MergeFormat
+numchars \* MergeFormat
+NUMCHARS \* MergeFormatInet
+numchars \* MergeFormatInet
+NUMCHARS \# "0" \* Upper
+numchars \# "0" \* Upper
+NUMCHARS \# "0.00" \* Upper
+numchars \# "0.00" \* Upper
+NUMCHARS \# "#,##0" \* Upper
+numchars \# "#,##0" \* Upper

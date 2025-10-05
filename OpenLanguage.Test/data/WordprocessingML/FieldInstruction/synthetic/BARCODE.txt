@@ -1,0 +1,10 @@
+BARCODE "12345"
+barcode "12345"
+BARCODE MyBookmark \b
+barcode MyBookmark \b
+BARCODE "12345" \u
+barcode "12345" \u
+BARCODE "12345" \f "A"
+barcode "12345" \f "A"
+BARCODE MyBookmark \b \f "C"
+barcode MyBookmark \b \f "C"

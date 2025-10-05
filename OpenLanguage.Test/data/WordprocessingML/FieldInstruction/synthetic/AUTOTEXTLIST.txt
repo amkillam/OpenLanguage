@@ -1,0 +1,8 @@
+AUTOTEXTLIST "Click here"
+autotextlist "Click here"
+AUTOTEXTLIST "Click here" \s Heading1
+autotextlist "Click here" \s Heading1
+AUTOTEXTLIST "Click here" \t "Insert text"
+autotextlist "Click here" \t "Insert text"
+AUTOTEXTLIST "Click here" \s Heading1 \t "Insert text"
+autotextlist "Click here" \s Heading1 \t "Insert text"

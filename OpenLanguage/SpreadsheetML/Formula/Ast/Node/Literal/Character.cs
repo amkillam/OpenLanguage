@@ -219,9 +219,9 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             : base(rawStr, leadingWhitespace, trailingWhitespace) { }
     }
 
-    public class HashLiteralNode : CharacterLiteralNode
+    public class PoundLiteralNode : CharacterLiteralNode
     {
-        public HashLiteralNode(
+        public PoundLiteralNode(
             string rawStr,
             List<Node>? leadingWhitespace = null,
             List<Node>? trailingWhitespace = null

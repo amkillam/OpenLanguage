@@ -1,0 +1,28 @@
+EDITTIME
+edittime
+EDITTIME \# "0"
+edittime \# "0"
+EDITTIME \# "0.00"
+edittime \# "0.00"
+EDITTIME \# "#,##0"
+edittime \# "#,##0"
+EDITTIME \* Upper
+edittime \* Upper
+EDITTIME \* Lower
+edittime \* Lower
+EDITTIME \* FirstCap
+edittime \* FirstCap
+EDITTIME \* Caps
+edittime \* Caps
+EDITTIME \* CharFormat
+edittime \* CharFormat
+EDITTIME \* MergeFormat
+edittime \* MergeFormat
+EDITTIME \* MergeFormatInet
+edittime \* MergeFormatInet
+EDITTIME \# "0" \* Upper
+edittime \# "0" \* Upper
+EDITTIME \# "0.00" \* Upper
+edittime \# "0.00" \* Upper
+EDITTIME \# "#,##0" \* Upper
+edittime \# "#,##0" \* Upper

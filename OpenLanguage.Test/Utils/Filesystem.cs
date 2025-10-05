@@ -155,12 +155,23 @@ namespace OpenLanguage
 
         public static IEnumerable<string> Lines(this FileInfo file)
         {
-            using (StreamReader reader = new(file.FullName))
+            using (Stream fileStream = file.OpenRead())
             {
-                string? line;
-                while ((line = reader.ReadLine()) != null)
+                using (
+                    StreamReader reader = new(
+                        fileStream,
+                        System.Text.Encoding.UTF8,
+                        false,
+                        8192,
+                        false
+                    )
+                )
                 {
-                    yield return line;
+                    string? line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        yield return line;
+                    }
                 }
             }
 
@@ -169,7 +180,7 @@ namespace OpenLanguage
 
         public static IEnumerable<string> Lines(this Stream stream)
         {
-            using (StreamReader reader = new(stream))
+            using (StreamReader reader = new(stream, System.Text.Encoding.UTF8, false, 8192, false))
             {
                 string? line;
                 while ((line = reader.ReadLine()) != null)

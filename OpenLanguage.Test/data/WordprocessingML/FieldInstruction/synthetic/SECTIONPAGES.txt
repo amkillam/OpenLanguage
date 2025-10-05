@@ -1,0 +1,8 @@
+SECTIONPAGES
+sectionpages
+SECTIONPAGES \* Arabic
+sectionpages \* Arabic
+SECTIONPAGES \* roman
+sectionpages \* roman
+SECTIONPAGES \# "0"
+sectionpages \# "0"

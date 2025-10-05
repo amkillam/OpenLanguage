@@ -1,0 +1,14 @@
+HYPERLINK "http://example.com"
+hyperlink "http://example.com"
+HYPERLINK "MyDoc.docx" \l MyBookmark
+hyperlink "MyDoc.docx" \l MyBookmark
+HYPERLINK "http://example.com" \o "Visit site"
+hyperlink "http://example.com" \o "Visit site"
+HYPERLINK "http://example.com" \n
+hyperlink "http://example.com" \n
+HYPERLINK "http://example.com" \t "_blank"
+hyperlink "http://example.com" \t "_blank"
+HYPERLINK "http://example.com" \m
+hyperlink "http://example.com" \m
+HYPERLINK "MyDoc.docx" \l MyBookmark \o "Go there" \n \t "_blank"
+hyperlink "MyDoc.docx" \l MyBookmark \o "Go there" \n \t "_blank"

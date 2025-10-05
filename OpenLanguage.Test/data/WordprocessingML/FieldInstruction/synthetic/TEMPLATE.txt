@@ -1,0 +1,32 @@
+TEMPLATE
+template
+TEMPLATE \p
+template \p
+TEMPLATE \* Upper
+template \* Upper
+TEMPLATE \* Lower
+template \* Lower
+TEMPLATE \* FirstCap
+template \* FirstCap
+TEMPLATE \* Caps
+template \* Caps
+TEMPLATE \* CharFormat
+template \* CharFormat
+TEMPLATE \* MergeFormat
+template \* MergeFormat
+TEMPLATE \* MergeFormatInet
+template \* MergeFormatInet
+TEMPLATE \p \* Upper
+template \p \* Upper
+TEMPLATE \p \* Lower
+template \p \* Lower
+TEMPLATE \p \* FirstCap
+template \p \* FirstCap
+TEMPLATE \p \* Caps
+template \p \* Caps
+TEMPLATE \p \* CharFormat
+template \p \* CharFormat
+TEMPLATE \p \* MergeFormat
+template \p \* MergeFormat
+TEMPLATE \p \* MergeFormatInet
+template \p \* MergeFormatInet

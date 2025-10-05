@@ -1,0 +1,50 @@
+{
+  "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+  "tasks": [
+    {
+      "name": "prepare-cmake-build",
+      "command": "bash",
+      "args": ["-c", "cmake --build build -DCMAKE_BUILD_TYPE=Release"],
+      "windows": {
+        "command": "cmd",
+        "args": ["/c", "cmake --build build -DCMAKE_BUILD_TYPE=Release"]
+      }
+    },
+    {
+      "name": "format-cs",
+      "command": "bash",
+      "args": ["-c", "cmake --build build --target format"],
+      "windows": {
+        "command": "cmd",
+        "args": ["/c", "cmake --build build --target format"]
+      }
+    },
+    {
+      "name": "build-cs",
+      "command": "bash",
+      "args": ["-c", "cmake --build build --target build"],
+      "windows": {
+        "command": "cmd",
+        "args": ["/c", "cmake --build build --target build"]
+      }
+    },
+    {
+      "name": "test-cs",
+      "command": "bash",
+      "args": ["-c", "cmake --build build --target test"],
+      "windows": {
+        "command": "cmd",
+        "args": ["/c", "cmake --build build --target test"]
+      }
+    },
+    {
+      "name": "git-add",
+      "command": "git",
+      "args": ["add", "."],
+      "windows": {
+        "command": "git",
+        "args": ["add", "."]
+      }
+    }
+  ]
+}

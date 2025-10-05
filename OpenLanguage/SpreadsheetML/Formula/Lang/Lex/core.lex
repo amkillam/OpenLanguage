@@ -94,9 +94,9 @@
 ";"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_SEMICOLON; }
 "!"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_BANG; }
 "$"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_DOLLAR; }
-"#"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_HASH; }
+"#"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_POUND; }
 "?"                                                                               { yylval.stringVal = yytext; return (int)Tokens.T_QUESTION_MARK; }
 
-([_\\A-Za-z`]|[^\x00-\x7F])([_\\A-Za-z0-9.?`]|[^\x00-\x7F])*                      { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
+([_\\A-Za-z`]|[^\x00-\x7F])([_\\A-Za-z0-9\.?`]|[^\x00-\x7F])*                      { yylval.stringVal = yytext; return (int)Tokens.T_IDENTIFIER; }
 
 .                                                                                 { }

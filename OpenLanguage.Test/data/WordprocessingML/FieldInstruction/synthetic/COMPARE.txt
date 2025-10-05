@@ -1,0 +1,10 @@
+COMPARE 1 = 1
+compare 1 = 1
+COMPARE "test" = "test"
+compare "test" = "test"
+COMPARE { NUMPAGES } > 5
+compare { NUMPAGES } > 5
+COMPARE "file*.docx" = "file1.docx"
+compare "file*.docx" = "file1.docx"
+COMPARE "file?" = "fileA"
+compare "file?" = "fileA"

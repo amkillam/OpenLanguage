@@ -1,0 +1,6 @@
+QUOTE "Literal text"
+quote "Literal text"
+QUOTE "Text with { DATE }"
+quote "Text with { DATE }"
+QUOTE "Text" \* Upper
+quote "Text" \* FirstCap

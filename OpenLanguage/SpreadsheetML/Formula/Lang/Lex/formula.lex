@@ -49,7 +49,6 @@ SR_COL_NAME         (?:{SR_COL_NOSPACE}|{SR_COL_ESC})(?:{SR_COL_CHAR}*(?:{SR_COL
     "["     { BEGIN(IN_BRACKET_START); yyless(0); }
     "/*"    { BEGIN(IN_COMMENT_FROM_INITIAL); }
     .       { yyless(0); BEGIN(SR_POSSIBLE); }
-    <<EOF>> { return (int)Tokens.EOF; }
 }
 
 <SR_POSSIBLE>{
@@ -186,7 +185,7 @@ SR_COL_NAME         (?:{SR_COL_NOSPACE}|{SR_COL_ESC})(?:{SR_COL_CHAR}*(?:{SR_COL
     \"                    { BEGIN(SR_POSSIBLE); yylval.stringVal = stringBuffer.ToString(); return (int)Tokens.T_STRING_CONSTANT; }
     [^\"]+                { stringBuffer.Append(yytext); }
 }
-<IN_STRING><<EOF>>       { throw new System.FormatException("Unterminated string"); }
+<IN_STRING><<EOF>> { throw new System.FormatException("Unterminated string"); }
 
 <IN_SHEET_QUOTE_START>{
     // If the first char inside the quote is '[', begin a [workbook_reference] sub-context inside quotes

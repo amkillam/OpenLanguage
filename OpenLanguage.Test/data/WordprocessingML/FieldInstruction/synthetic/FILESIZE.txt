@@ -1,0 +1,40 @@
+FILESIZE
+filesize
+FILESIZE \k
+filesize \k
+FILESIZE \m
+filesize \m
+FILESIZE \# "0"
+filesize \# "0"
+FILESIZE \# "0.00"
+filesize \# "0.00"
+FILESIZE \# "#,##0"
+filesize \# "#,##0"
+FILESIZE \k \# "0"
+filesize \k \# "0"
+FILESIZE \m \# "0"
+filesize \m \# "0"
+FILESIZE \* Upper
+filesize \* Upper
+FILESIZE \* Lower
+filesize \* Lower
+FILESIZE \* FirstCap
+filesize \* FirstCap
+FILESIZE \* Caps
+filesize \* Caps
+FILESIZE \* CharFormat
+filesize \* CharFormat
+FILESIZE \* MergeFormat
+filesize \* MergeFormat
+FILESIZE \* MergeFormatInet
+filesize \* MergeFormatInet
+FILESIZE \k \* Upper
+filesize \k \* Upper
+FILESIZE \m \* Upper
+filesize \m \* Upper
+FILESIZE \# "0" \* Upper
+filesize \# "0" \* Upper
+FILESIZE \k \# "0" \* Upper
+filesize \k \# "0" \* Upper
+FILESIZE \m \# "0" \* Upper
+filesize \m \# "0" \* Upper

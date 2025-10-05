@@ -1,0 +1,48 @@
+KEYWORDS
+keywords
+KEYWORDS "tag1; tag2"
+keywords "tag1; tag2"
+KEYWORDS \* Upper
+keywords \* Upper
+KEYWORDS \* Lower
+keywords \* Lower
+KEYWORDS \* FirstCap
+keywords \* FirstCap
+KEYWORDS \* Caps
+keywords \* Caps
+KEYWORDS \* CharFormat
+keywords \* CharFormat
+KEYWORDS \* MergeFormat
+keywords \* MergeFormat
+KEYWORDS \* MergeFormatInet
+keywords \* MergeFormatInet
+KEYWORDS "tag1; tag2" \* Upper
+keywords "tag1; tag2" \* Upper
+KEYWORDS "tag1; tag2" \* Lower
+keywords "tag1; tag2" \* Lower
+KEYWORDS "tag1; tag2" \* FirstCap
+keywords "tag1; tag2" \* FirstCap
+KEYWORDS "tag1; tag2" \* Caps
+keywords "tag1; tag2" \* Caps
+KEYWORDS "tag1; tag2" \* CharFormat
+keywords "tag1; tag2" \* CharFormat
+KEYWORDS "tag1; tag2" \* MergeFormat
+keywords "tag1; tag2" \* MergeFormat
+KEYWORDS "tag1; tag2" \* MergeFormatInet
+keywords "tag1; tag2" \* MergeFormatInet
+KEYWORDS \@ "dddd, MMMM dd, yyyy"
+keywords \@ "dddd, MMMM dd, yyyy"
+KEYWORDS "tag1; tag2" \@ "dddd, MMMM dd, yyyy"
+keywords "tag1; tag2" \@ "dddd, MMMM dd, yyyy"
+KEYWORDS \@ "dddd, MMMM dd, yyyy" \* Upper
+keywords \@ "dddd, MMMM dd, yyyy" \* Upper
+KEYWORDS "tag1; tag2" \@ "dddd, MMMM dd, yyyy" \* Upper
+keywords "tag1; tag2" \@ "dddd, MMMM dd, yyyy" \* Upper
+KEYWORDS \# "0"
+keywords \# "0"
+KEYWORDS "tag1; tag2" \# "0"
+keywords "tag1; tag2" \# "0"
+KEYWORDS \# "0" \* Upper
+keywords \# "0" \* Upper
+KEYWORDS "tag1; tag2" \# "0" \* Upper
+keywords "tag1; tag2" \# "0" \* Upper

@@ -1,9 +1,443 @@
+using System;
+
 namespace OpenLanguage.WordprocessingML
 {
+    public static class LanguageIdentifierExtensions
+    {
+        /// <summary>
+        /// Converts the LanguageIdentifier enum value to its corresponding LCID integer value.
+        /// </summary>
+        /// <param name="languageIdentifier">The LanguageIdentifier enum value.</param>
+        /// <returns>The corresponding LCID integer value.</returns>
+        public static int ToLcid(this LanguageIdentifier languageIdentifier) =>
+            (int)languageIdentifier;
+
+        /// <summary>
+        /// Converts an LCID integer value to its corresponding LanguageIdentifier enum value.
+        /// </summary>
+        /// <param name="lcid">The LCID integer value.</param>
+        /// <returns>The corresponding LanguageIdentifier enum value.</returns>
+        /// <exception cref="ArgumentException">Thrown if the LCID does not correspond to any LanguageIdentifier.</exception>
+        public static LanguageIdentifier FromLcid(int lcid)
+        {
+            if (Enum.IsDefined(typeof(LanguageIdentifier), lcid))
+            {
+                return (LanguageIdentifier)lcid;
+            }
+            throw new ArgumentException($"LCID {lcid} is not defined in LanguageIdentifier enum.");
+        }
+
+        // TryFromLcid
+        /// <summary>
+        /// Attempts to convert an LCID integer value to its corresponding LanguageIdentifier enum value.
+        /// </summary>
+        /// <param name="lcid">The LCID integer value.</param>
+        /// <param name="languageIdentifier">The corresponding LanguageIdentifier enum value if conversion is successful; otherwise, default.</param>
+        /// <returns>True if conversion is successful; otherwise, false.</returns>
+        public static bool TryFromLcid(int lcid, out LanguageIdentifier? languageIdentifier)
+        {
+            if (Enum.IsDefined(typeof(LanguageIdentifier), lcid))
+            {
+                languageIdentifier = (LanguageIdentifier)lcid;
+                return true;
+            }
+            languageIdentifier = null;
+            return false;
+        }
+
+        // TryFromLcid
+        /// <summary>
+        /// Attempts to convert an LCID integer value to its corresponding LanguageIdentifier enum value.
+        /// </summary>
+        /// <param name="lcid">The LCID integer value.</param>
+        /// <param name="languageIdentifier">The corresponding LanguageIdentifier enum value if conversion is successful; otherwise, default.</param>
+        /// <returns>True if conversion is successful; otherwise, false.</returns>
+        public static bool TryFromLcid(int lcid, out LanguageIdentifier languageIdentifier)
+        {
+            if (Enum.IsDefined(typeof(LanguageIdentifier), lcid))
+            {
+                languageIdentifier = (LanguageIdentifier)lcid;
+                return true;
+            }
+            languageIdentifier = default;
+            return false;
+        }
+
+        public static LanguageIdentifier? TryFromLcid(int lcid)
+        {
+            if (Enum.IsDefined(typeof(LanguageIdentifier), lcid))
+            {
+                return (LanguageIdentifier)lcid;
+            }
+            return null;
+        }
+
+        public static string ToString(this LanguageIdentifier languageIdentifier) =>
+            languageIdentifier switch
+            {
+                LanguageIdentifier.EnglishUS => "en-US",
+                LanguageIdentifier.EnglishUK => "en-GB",
+                LanguageIdentifier.EnglishCanada => "en-CA",
+                LanguageIdentifier.EnglishAustralia => "en-AU",
+                LanguageIdentifier.EnglishNewZealand => "en-NZ",
+                LanguageIdentifier.EnglishIreland => "en-IE",
+                LanguageIdentifier.EnglishSouthAfrica => "en-ZA",
+                LanguageIdentifier.EnglishJamaica => "en-JM",
+                LanguageIdentifier.EnglishCaribbean => "en-029",
+                LanguageIdentifier.EnglishBelize => "en-BZ",
+                LanguageIdentifier.EnglishTrinidadTobago => "en-TT",
+                LanguageIdentifier.EnglishZimbabwe => "en-ZW",
+                LanguageIdentifier.EnglishPhilippines => "en-PH",
+                LanguageIdentifier.EnglishIndia => "en-IN",
+                LanguageIdentifier.EnglishMalaysia => "en-MY",
+                LanguageIdentifier.EnglishSingapore => "en-SG",
+                LanguageIdentifier.FrenchFrance => "fr-FR",
+                LanguageIdentifier.FrenchBelgium => "fr-BE",
+                LanguageIdentifier.FrenchCanada => "fr-CA",
+                LanguageIdentifier.FrenchSwitzerland => "fr-CH",
+                LanguageIdentifier.FrenchLuxembourg => "fr-LU",
+                LanguageIdentifier.FrenchMonaco => "fr-MC",
+                LanguageIdentifier.GermanGermany => "de-DE",
+                LanguageIdentifier.GermanSwitzerland => "de-CH",
+                LanguageIdentifier.GermanAustria => "de-AT",
+                LanguageIdentifier.GermanLuxembourg => "de-LU",
+                LanguageIdentifier.GermanLiechtenstein => "de-LI",
+                LanguageIdentifier.SpanishSpain => "es-ES",
+                LanguageIdentifier.SpanishMexico => "es-MX",
+                LanguageIdentifier.SpanishGuatemala => "es-GT",
+                LanguageIdentifier.SpanishCostaRica => "es-CR",
+                LanguageIdentifier.SpanishPanama => "es-PA",
+                LanguageIdentifier.SpanishDominicanRepublic => "es-DO",
+                LanguageIdentifier.SpanishVenezuela => "es-VE",
+                LanguageIdentifier.SpanishColombia => "es-CO",
+                LanguageIdentifier.SpanishPeru => "es-PE",
+                LanguageIdentifier.SpanishArgentina => "es-AR",
+                LanguageIdentifier.SpanishEcuador => "es-EC",
+                LanguageIdentifier.SpanishChile => "es-CL",
+                LanguageIdentifier.SpanishUruguay => "es-UY",
+                LanguageIdentifier.SpanishParaguay => "es-PY",
+                LanguageIdentifier.SpanishBolivia => "es-BO",
+                LanguageIdentifier.SpanishElSalvador => "es-SV",
+                LanguageIdentifier.SpanishHonduras => "es-HN",
+                LanguageIdentifier.SpanishNicaragua => "es-NI",
+                LanguageIdentifier.SpanishPuertoRico => "es-PR",
+                LanguageIdentifier.SpanishUS => "es-US",
+                LanguageIdentifier.ItalianItaly => "it-IT",
+                LanguageIdentifier.ItalianSwitzerland => "it-CH",
+                LanguageIdentifier.PortugueseBrazil => "pt-BR",
+                LanguageIdentifier.PortuguesePortugal => "pt-PT",
+                LanguageIdentifier.Japanese => "ja-JP",
+                LanguageIdentifier.ChineseSimplified => "zh-CN",
+                LanguageIdentifier.ChineseTraditional => "zh-TW",
+                LanguageIdentifier.ChineseSimplifiedSingapore => "zh-SG",
+                LanguageIdentifier.ChineseTraditionalHongKong => "zh-HK",
+                LanguageIdentifier.ChineseTraditionalMacao => "zh-MO",
+                LanguageIdentifier.Korean => "ko-KR",
+                LanguageIdentifier.DutchNetherlands => "nl-NL",
+                LanguageIdentifier.DutchBelgium => "nl-BE",
+                LanguageIdentifier.Russian => "ru-RU",
+                LanguageIdentifier.ArabicSaudiArabia => "ar-SA",
+                LanguageIdentifier.ArabicAlgeria => "ar-DZ",
+                LanguageIdentifier.ArabicBahrain => "ar-BH",
+                LanguageIdentifier.ArabicEgypt => "ar-EG",
+                LanguageIdentifier.ArabicIraq => "ar-IQ",
+                LanguageIdentifier.ArabicJordan => "ar-JO",
+                LanguageIdentifier.ArabicKuwait => "ar-KW",
+                LanguageIdentifier.ArabicLebanon => "ar-LB",
+                LanguageIdentifier.ArabicLibya => "ar-LY",
+                LanguageIdentifier.ArabicMorocco => "ar-MA",
+                LanguageIdentifier.ArabicOman => "ar-OM",
+                LanguageIdentifier.ArabicQatar => "ar-QA",
+                LanguageIdentifier.ArabicSyria => "ar-SY",
+                LanguageIdentifier.ArabicTunisia => "ar-TN",
+                LanguageIdentifier.ArabicUAE => "ar-AE",
+                LanguageIdentifier.ArabicYemen => "ar-YE",
+                LanguageIdentifier.Hindi => "hi-IN",
+                LanguageIdentifier.Thai => "th-TH",
+                LanguageIdentifier.Hebrew => "he-IL",
+                LanguageIdentifier.Turkish => "tr-TR",
+                LanguageIdentifier.Polish => "pl-PL",
+                LanguageIdentifier.Czech => "cs-CZ",
+                LanguageIdentifier.Hungarian => "hu-HU",
+                LanguageIdentifier.Swedish => "sv-SE",
+                LanguageIdentifier.SwedishFinland => "sv-FI",
+                LanguageIdentifier.NorwegianBokmal => "nb-NO",
+                LanguageIdentifier.Finnish => "fi-FI",
+                LanguageIdentifier.Danish => "da-DK",
+                LanguageIdentifier.Vietnamese => "vi-VN",
+                LanguageIdentifier.Bulgarian => "bg-BG",
+                LanguageIdentifier.Croatian => "hr-HR",
+                LanguageIdentifier.Estonian => "et-EE",
+                LanguageIdentifier.Greek => "el-GR",
+                LanguageIdentifier.Latvian => "lv-LV",
+                LanguageIdentifier.Lithuanian => "lt-LT",
+                LanguageIdentifier.Romanian => "ro-RO",
+                LanguageIdentifier.Slovak => "sk-SK",
+                LanguageIdentifier.Slovenian => "sl-SI",
+                LanguageIdentifier.Ukrainian => "uk-UA",
+                LanguageIdentifier.Afrikaans => "af-ZA",
+                LanguageIdentifier.Albanian => "sq-AL",
+                LanguageIdentifier.Amharic => "am-ET",
+                LanguageIdentifier.Armenian => "hy-AM",
+                LanguageIdentifier.Assamese => "as-IN",
+                LanguageIdentifier.AzeriCyrillic => "az-Cyrl-AZ",
+                LanguageIdentifier.AzeriLatin => "az-Latn-AZ",
+                LanguageIdentifier.Basque => "eu-ES",
+                LanguageIdentifier.Bengali => "bn-IN",
+                LanguageIdentifier.Bosnian => "bs-Latn-BA",
+                LanguageIdentifier.Catalan => "ca-ES",
+                LanguageIdentifier.Farsi => "fa-IR",
+                LanguageIdentifier.Filipino => "fil-PH",
+                LanguageIdentifier.Galician => "gl-ES",
+                LanguageIdentifier.Georgian => "ka-GE",
+                LanguageIdentifier.Gujarati => "gu-IN",
+                LanguageIdentifier.Hausa => "ha-Latn-NG",
+                LanguageIdentifier.Icelandic => "is-IS",
+                LanguageIdentifier.Igbo => "ig-NG",
+                LanguageIdentifier.Indonesian => "id-ID",
+                LanguageIdentifier.Irish => "ga-IE",
+                LanguageIdentifier.Kannada => "kn-IN",
+                LanguageIdentifier.Kashmiri => "ks-Arab-IN",
+                LanguageIdentifier.Kazakh => "kk-KZ",
+                LanguageIdentifier.Khmer => "km-KH",
+                LanguageIdentifier.Konkani => "kok-IN",
+                LanguageIdentifier.Kyrgyz => "ky-KG",
+                LanguageIdentifier.Lao => "lo-LA",
+                LanguageIdentifier.Macedonian => "mk-MK",
+                LanguageIdentifier.Malay => "ms-MY",
+                LanguageIdentifier.Malayalam => "ml-IN",
+                LanguageIdentifier.Maltese => "mt-MT",
+                LanguageIdentifier.Maori => "mi-NZ",
+                LanguageIdentifier.Marathi => "mr-IN",
+                LanguageIdentifier.Mongolian => "mn-MN",
+                LanguageIdentifier.Nepali => "ne-NP",
+                LanguageIdentifier.Oriya => "or-IN",
+                LanguageIdentifier.Pashto => "ps-AF",
+                LanguageIdentifier.Punjabi => "pa-IN",
+                LanguageIdentifier.QuechuaBolivia => "qu-BO",
+                LanguageIdentifier.QuechuaEcuador => "qu-EC",
+                LanguageIdentifier.QuechuaPeru => "qu-PE",
+                LanguageIdentifier.Sami => "se-NO",
+                LanguageIdentifier.Sanskrit => "sa-IN",
+                LanguageIdentifier.SerbianCyrillic => "sr-Cyrl-RS",
+                LanguageIdentifier.SerbianLatin => "sr-Latn-RS",
+                LanguageIdentifier.Sindhi => "sd-Arab-PK",
+                LanguageIdentifier.Sinhala => "si-LK",
+                LanguageIdentifier.Somali => "so-SO",
+                LanguageIdentifier.Sotho => "nso-ZA",
+                LanguageIdentifier.Swahili => "sw-KE",
+                LanguageIdentifier.Syriac => "syr-SY",
+                LanguageIdentifier.Tajik => "tg-Cyrl-TJ",
+                LanguageIdentifier.Tamil => "ta-IN",
+                LanguageIdentifier.Tatar => "tt-RU",
+                LanguageIdentifier.Telugu => "te-IN",
+                LanguageIdentifier.Tigrinya => "ti-ET",
+                LanguageIdentifier.Tswana => "tn-ZA",
+                LanguageIdentifier.Turkmen => "tk-TM",
+                LanguageIdentifier.Urdu => "ur-PK",
+                LanguageIdentifier.UzbekCyrillic => "uz-Cyrl-UZ",
+                LanguageIdentifier.UzbekLatin => "uz-Latn-UZ",
+                LanguageIdentifier.Welsh => "cy-GB",
+                LanguageIdentifier.Xhosa => "xh-ZA",
+                LanguageIdentifier.Yoruba => "yo-NG",
+                LanguageIdentifier.Zulu => "zu-ZA",
+                _ => "unknown",
+            };
+
+        public static string ToTag(this LanguageIdentifier languageIdentifier) =>
+            languageIdentifier.ToString();
+
+        public static LanguageIdentifier? TryFromTag(string langTag)
+        {
+            return langTag switch
+            {
+                "en-US" => LanguageIdentifier.EnglishUS,
+                "en-GB" => LanguageIdentifier.EnglishUK,
+                "en-CA" => LanguageIdentifier.EnglishCanada,
+                "en-AU" => LanguageIdentifier.EnglishAustralia,
+                "en-NZ" => LanguageIdentifier.EnglishNewZealand,
+                "en-IE" => LanguageIdentifier.EnglishIreland,
+                "en-ZA" => LanguageIdentifier.EnglishSouthAfrica,
+                "en-JM" => LanguageIdentifier.EnglishJamaica,
+                "en-029" => LanguageIdentifier.EnglishCaribbean,
+                "en-BZ" => LanguageIdentifier.EnglishBelize,
+                "en-TT" => LanguageIdentifier.EnglishTrinidadTobago,
+                "en-ZW" => LanguageIdentifier.EnglishZimbabwe,
+                "en-PH" => LanguageIdentifier.EnglishPhilippines,
+                "en-IN" => LanguageIdentifier.EnglishIndia,
+                "en-MY" => LanguageIdentifier.EnglishMalaysia,
+                "en-SG" => LanguageIdentifier.EnglishSingapore,
+                "fr-FR" => LanguageIdentifier.FrenchFrance,
+                "fr-BE" => LanguageIdentifier.FrenchBelgium,
+                "fr-CA" => LanguageIdentifier.FrenchCanada,
+                "fr-CH" => LanguageIdentifier.FrenchSwitzerland,
+                "fr-LU" => LanguageIdentifier.FrenchLuxembourg,
+                "fr-MC" => LanguageIdentifier.FrenchMonaco,
+                "de-DE" => LanguageIdentifier.GermanGermany,
+                "de-CH" => LanguageIdentifier.GermanSwitzerland,
+                "de-AT" => LanguageIdentifier.GermanAustria,
+                "de-LU" => LanguageIdentifier.GermanLuxembourg,
+                "de-LI" => LanguageIdentifier.GermanLiechtenstein,
+                "es-ES" => LanguageIdentifier.SpanishSpain,
+                "es-MX" => LanguageIdentifier.SpanishMexico,
+                "es-GT" => LanguageIdentifier.SpanishGuatemala,
+                "es-CR" => LanguageIdentifier.SpanishCostaRica,
+                "es-PA" => LanguageIdentifier.SpanishPanama,
+                "es-DO" => LanguageIdentifier.SpanishDominicanRepublic,
+                "es-VE" => LanguageIdentifier.SpanishVenezuela,
+                "es-CO" => LanguageIdentifier.SpanishColombia,
+                "es-PE" => LanguageIdentifier.SpanishPeru,
+                "es-AR" => LanguageIdentifier.SpanishArgentina,
+                "es-EC" => LanguageIdentifier.SpanishEcuador,
+                "es-CL" => LanguageIdentifier.SpanishChile,
+                "es-UY" => LanguageIdentifier.SpanishUruguay,
+                "es-PY" => LanguageIdentifier.SpanishParaguay,
+                "es-BO" => LanguageIdentifier.SpanishBolivia,
+                "es-SV" => LanguageIdentifier.SpanishElSalvador,
+                "es-HN" => LanguageIdentifier.SpanishHonduras,
+                "es-NI" => LanguageIdentifier.SpanishNicaragua,
+                "es-PR" => LanguageIdentifier.SpanishPuertoRico,
+                "es-US" => LanguageIdentifier.SpanishUS,
+                "it-IT" => LanguageIdentifier.ItalianItaly,
+                "it-CH" => LanguageIdentifier.ItalianSwitzerland,
+                "pt-BR" => LanguageIdentifier.PortugueseBrazil,
+                "pt-PT" => LanguageIdentifier.PortuguesePortugal,
+                "ja-JP" => LanguageIdentifier.Japanese,
+                "zh-CN" => LanguageIdentifier.ChineseSimplified,
+                "zh-TW" => LanguageIdentifier.ChineseTraditional,
+                "zh-SG" => LanguageIdentifier.ChineseSimplifiedSingapore,
+                "zh-HK" => LanguageIdentifier.ChineseTraditionalHongKong,
+                "zh-MO" => LanguageIdentifier.ChineseTraditionalMacao,
+                "ko-KR" => LanguageIdentifier.Korean,
+                "nl-NL" => LanguageIdentifier.DutchNetherlands,
+                "nl-BE" => LanguageIdentifier.DutchBelgium,
+                "ru-RU" => LanguageIdentifier.Russian,
+                "ar-SA" => LanguageIdentifier.ArabicSaudiArabia,
+                "ar-DZ" => LanguageIdentifier.ArabicAlgeria,
+                "ar-BH" => LanguageIdentifier.ArabicBahrain,
+                "ar-EG" => LanguageIdentifier.ArabicEgypt,
+                "ar-IQ" => LanguageIdentifier.ArabicIraq,
+                "ar-JO" => LanguageIdentifier.ArabicJordan,
+                "ar-KW" => LanguageIdentifier.ArabicKuwait,
+                "ar-LB" => LanguageIdentifier.ArabicLebanon,
+                "ar-LY" => LanguageIdentifier.ArabicLibya,
+                "ar-MA" => LanguageIdentifier.ArabicMorocco,
+                "ar-OM" => LanguageIdentifier.ArabicOman,
+                "ar-QA" => LanguageIdentifier.ArabicQatar,
+                "ar-SY" => LanguageIdentifier.ArabicSyria,
+                "ar-TN" => LanguageIdentifier.ArabicTunisia,
+                "ar-AE" => LanguageIdentifier.ArabicUAE,
+                "ar-YE" => LanguageIdentifier.ArabicYemen,
+                "hi-IN" => LanguageIdentifier.Hindi,
+                "th-TH" => LanguageIdentifier.Thai,
+                "he-IL" => LanguageIdentifier.Hebrew,
+                "tr-TR" => LanguageIdentifier.Turkish,
+                "pl-PL" => LanguageIdentifier.Polish,
+                "cs-CZ" => LanguageIdentifier.Czech,
+                "hu-HU" => LanguageIdentifier.Hungarian,
+                "sv-SE" => LanguageIdentifier.Swedish,
+                "sv-FI" => LanguageIdentifier.SwedishFinland,
+                "nb-NO" => LanguageIdentifier.NorwegianBokmal,
+                "fi-FI" => LanguageIdentifier.Finnish,
+                "da-DK" => LanguageIdentifier.Danish,
+                "vi-VN" => LanguageIdentifier.Vietnamese,
+                "bg-BG" => LanguageIdentifier.Bulgarian,
+                "hr-HR" => LanguageIdentifier.Croatian,
+                "et-EE" => LanguageIdentifier.Estonian,
+                "el-GR" => LanguageIdentifier.Greek,
+                "lv-LV" => LanguageIdentifier.Latvian,
+                "lt-LT" => LanguageIdentifier.Lithuanian,
+                "ro-RO" => LanguageIdentifier.Romanian,
+                "sk-SK" => LanguageIdentifier.Slovak,
+                "sl-SI" => LanguageIdentifier.Slovenian,
+                "uk-UA" => LanguageIdentifier.Ukrainian,
+                "af-ZA" => LanguageIdentifier.Afrikaans,
+                "sq-AL" => LanguageIdentifier.Albanian,
+                "am-ET" => LanguageIdentifier.Amharic,
+                "hy-AM" => LanguageIdentifier.Armenian,
+                "as-IN" => LanguageIdentifier.Assamese,
+                "az-Cyrl-AZ" => LanguageIdentifier.AzeriCyrillic,
+                "az-Latn-AZ" => LanguageIdentifier.AzeriLatin,
+                "eu-ES" => LanguageIdentifier.Basque,
+                "bn-IN" => LanguageIdentifier.Bengali,
+                "bs-Latn-BA" => LanguageIdentifier.Bosnian,
+                "ca-ES" => LanguageIdentifier.Catalan,
+                "fa-IR" => LanguageIdentifier.Farsi,
+                "fil-PH" => LanguageIdentifier.Filipino,
+                "gl-ES" => LanguageIdentifier.Galician,
+                "ka-GE" => LanguageIdentifier.Georgian,
+                "gu-IN" => LanguageIdentifier.Gujarati,
+                "ha-Latn-NG" => LanguageIdentifier.Hausa,
+                "is-IS" => LanguageIdentifier.Icelandic,
+                "ig-NG" => LanguageIdentifier.Igbo,
+                "id-ID" => LanguageIdentifier.Indonesian,
+                "ga-IE" => LanguageIdentifier.Irish,
+                "kn-IN" => LanguageIdentifier.Kannada,
+                "ks-Arab-IN" => LanguageIdentifier.Kashmiri,
+                "kk-KZ" => LanguageIdentifier.Kazakh,
+                "km-KH" => LanguageIdentifier.Khmer,
+                "kok-IN" => LanguageIdentifier.Konkani,
+                "ky-KG" => LanguageIdentifier.Kyrgyz,
+                "lo-LA" => LanguageIdentifier.Lao,
+                "mk-MK" => LanguageIdentifier.Macedonian,
+                "ms-MY" => LanguageIdentifier.Malay,
+                "ml-IN" => LanguageIdentifier.Malayalam,
+                "mt-MT" => LanguageIdentifier.Maltese,
+                "mi-NZ" => LanguageIdentifier.Maori,
+                "mr-IN" => LanguageIdentifier.Marathi,
+                "mn-MN" => LanguageIdentifier.Mongolian,
+                "ne-NP" => LanguageIdentifier.Nepali,
+                "or-IN" => LanguageIdentifier.Oriya,
+                "ps-AF" => LanguageIdentifier.Pashto,
+                "pa-IN" => LanguageIdentifier.Punjabi,
+                "qu-BO" => LanguageIdentifier.QuechuaBolivia,
+                "qu-EC" => LanguageIdentifier.QuechuaEcuador,
+                "qu-PE" => LanguageIdentifier.QuechuaPeru,
+                "se-NO" => LanguageIdentifier.Sami,
+                "sa-IN" => LanguageIdentifier.Sanskrit,
+                "sr-Cyrl-RS" => LanguageIdentifier.SerbianCyrillic,
+                "sr-Latn-RS" => LanguageIdentifier.SerbianLatin,
+                "sd-Arab-PK" => LanguageIdentifier.Sindhi,
+                "si-LK" => LanguageIdentifier.Sinhala,
+                "so-SO" => LanguageIdentifier.Somali,
+                "nso-ZA" => LanguageIdentifier.Sotho,
+                "sw-KE" => LanguageIdentifier.Swahili,
+                "syr-SY" => LanguageIdentifier.Syriac,
+                "tg-Cyrl-TJ" => LanguageIdentifier.Tajik,
+                "ta-IN" => LanguageIdentifier.Tamil,
+                "tt-RU" => LanguageIdentifier.Tatar,
+                "te-IN" => LanguageIdentifier.Telugu,
+                "ti-ET" => LanguageIdentifier.Tigrinya,
+                "tn-ZA" => LanguageIdentifier.Tswana,
+                "tk-TM" => LanguageIdentifier.Turkmen,
+                "ur-PK" => LanguageIdentifier.Urdu,
+                "uz-Cyrl-UZ" => LanguageIdentifier.UzbekCyrillic,
+                "uz-Latn-UZ" => LanguageIdentifier.UzbekLatin,
+                "cy-GB" => LanguageIdentifier.Welsh,
+                "xh-ZA" => LanguageIdentifier.Xhosa,
+                "yo-NG" => LanguageIdentifier.Yoruba,
+                "zu-ZA" => LanguageIdentifier.Zulu,
+                _ => null,
+            };
+        }
+
+        public static LanguageIdentifier FromTag(string langTag)
+        {
+            LanguageIdentifier? lang = TryFromTag(langTag);
+            if (lang is null)
+            {
+                throw new ArgumentException(
+                    $"Language tag {langTag} is not defined in LanguageIdentifier enum."
+                );
+            }
+            return lang.Value;
+        }
+    }
+
     /// <summary>
     /// Represents a language identifier for formatting based on Microsoft Windows LCID values.
     /// </summary>
-    public enum LanguageIdentifier
+    public enum LanguageIdentifier : int
     {
         /// <summary>
         /// English (United States) - LCID 1033.

@@ -1158,16 +1158,37 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
         [Fact]
         public void TestWithTextFileLines()
         {
+            System.IO.TextWriter origConsoleOut = Console.Out;
+            System.IO.TextWriter origConsoleError = Console.Error;
+            using System.IO.StringWriter sw = new System.IO.StringWriter();
+            Console.SetOut(sw);
+            Console.SetError(sw);
             IEnumerable<string> formulae = FormulaUtils.DatasetFormulae();
 
-            int i = 0;
+            System.UInt128 i = 0;
             foreach (string formulaText in formulae)
             {
+                sw.Flush();
+                sw.GetStringBuilder().Clear();
+
                 if (!string.IsNullOrWhiteSpace(formulaText) && formulaText.Length > 0)
                 {
                     Ast.Node? formula = FormulaParser.TryParse(formulaText);
                     if (formula == null)
                     {
+                        string stdOut = sw.ToString();
+                        sw.Flush();
+                        Console.SetOut(origConsoleOut);
+                        Console.SetError(origConsoleError);
+                        Console.WriteLine($"Failed to parse formula:\"{formulaText}\"");
+
+                        if (!string.IsNullOrWhiteSpace(stdOut))
+                        {
+                            Console.WriteLine("## Captured StdOut + StdErr");
+                            Console.WriteLine(stdOut);
+                        }
+                        Console.Out.Flush();
+                        Console.Error.Flush();
                         throw new InvalidOperationException(
                             $"Failed to parse formula:\"{formulaText}\""
                         );
@@ -1175,7 +1196,18 @@ namespace OpenLanguage.SpreadsheetML.Formula.Tests
 
                     if (formula.ToString() != formulaText)
                     {
+                        sw.Flush();
+                        string stdOut = sw.ToString();
+                        Console.SetOut(origConsoleOut);
+                        Console.SetError(origConsoleError);
                         Console.WriteLine($"Failed to parse formula:\"{formulaText}\"");
+                        if (!string.IsNullOrWhiteSpace(stdOut))
+                        {
+                            Console.WriteLine("## Captured StdOut + StdErr");
+                            Console.WriteLine(stdOut);
+                        }
+                        Console.Out.Flush();
+                        Console.Error.Flush();
                         throw new InvalidOperationException(
                             $"Formula text mismatch. Expected:\"{formulaText}\", Got:\"{formula.ToString()}\""
                         );

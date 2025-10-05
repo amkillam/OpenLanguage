@@ -1,0 +1,32 @@
+USERNAME
+username
+USERNAME "John Doe"
+username "John Doe"
+USERNAME \* Upper
+username \* Upper
+USERNAME \* Lower
+username \* Lower
+USERNAME \* FirstCap
+username \* FirstCap
+USERNAME \* Caps
+username \* Caps
+USERNAME \* CharFormat
+username \* CharFormat
+USERNAME \* MergeFormat
+username \* MergeFormat
+USERNAME \* MergeFormatInet
+username \* MergeFormatInet
+USERNAME "John Doe" \* Upper
+username "John Doe" \* Upper
+USERNAME "John Doe" \* Lower
+username "John Doe" \* Lower
+USERNAME "John Doe" \* FirstCap
+username "John Doe" \* FirstCap
+USERNAME "John Doe" \* Caps
+username "John Doe" \* Caps
+USERNAME "John Doe" \* CharFormat
+username "John Doe" \* CharFormat
+USERNAME "John Doe" \* MergeFormat
+username "John Doe" \* MergeFormat
+USERNAME "John Doe" \* MergeFormatInet
+username "John Doe" \* MergeFormatInet

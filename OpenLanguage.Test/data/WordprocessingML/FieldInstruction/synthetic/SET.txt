@@ -1,0 +1,4 @@
+SET MyVar "Value"
+set MyVar "Value"
+SET MyVar { DATE }
+set MyVar { DATE }

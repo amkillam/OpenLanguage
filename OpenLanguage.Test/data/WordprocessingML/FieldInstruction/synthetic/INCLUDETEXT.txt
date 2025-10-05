@@ -1,0 +1,16 @@
+INCLUDETEXT "C:\\doc.docx"
+includetext "C:\\doc.docx"
+INCLUDETEXT "C:\\doc.docx" Summary
+includetext "C:\\doc.docx" Summary
+INCLUDETEXT "C:\\doc.docx" \!
+includetext "C:\\doc.docx" \!
+INCLUDETEXT "C:\\doc.docx" Summary \!
+includetext "C:\\doc.docx" Summary \!
+INCLUDETEXT "C:\\data.xml" \x "/root/item"
+includetext "C:\\data.xml" \x "/root/item"
+INCLUDETEXT "C:\\data.xml" \x "/root/item" \n "ns=http://example"
+includetext "C:\\data.xml" \x "/root/item" \n "ns=http://example"
+INCLUDETEXT "C:\\data.xml" \x "/root/item" \t "transform.xslt"
+includetext "C:\\data.xml" \x "/root/item" \t "transform.xslt"
+INCLUDETEXT "C:\\doc.docx" Summary \! \c "Word.Document.12"
+includetext "C:\\doc.docx" Summary \! \c "Word.Document.12"

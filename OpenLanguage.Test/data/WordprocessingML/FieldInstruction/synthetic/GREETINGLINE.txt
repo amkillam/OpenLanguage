@@ -1,0 +1,10 @@
+GREETINGLINE
+greetingline
+GREETINGLINE \e "Dear Customer"
+greetingline \e "Dear Customer"
+GREETINGLINE \f "<<_FIRST0_>>"
+greetingline \f "<<_FIRST0_>>"
+GREETINGLINE \l "en-US"
+greetingline \l "en-US"
+GREETINGLINE \e "Dear Customer" \f "<<_FIRST0_>>" \l "en-US"
+greetingline \e "Dear Customer" \f "<<_FIRST0_>>" \l "en-US"

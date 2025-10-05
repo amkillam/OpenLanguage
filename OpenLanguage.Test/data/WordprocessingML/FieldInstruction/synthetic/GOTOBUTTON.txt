@@ -1,0 +1,6 @@
+GOTOBUTTON MyBookmark "Go to Bookmark"
+gotobutton MyBookmark "Go to Bookmark"
+GOTOBUTTON p5 "Page 5"
+gotobutton p5 "Page 5"
+GOTOBUTTON %50 "50% through doc"
+gotobutton %50 "50% through doc"

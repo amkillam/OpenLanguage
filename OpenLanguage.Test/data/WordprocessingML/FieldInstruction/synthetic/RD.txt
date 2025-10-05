@@ -1,0 +1,4 @@
+RD "C:\\Other.docx"
+rd "C:\\Other.docx"
+RD "Other.docx" \f
+rd "Other.docx" \f

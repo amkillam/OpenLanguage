@@ -1,0 +1,24 @@
+TOA
+toa
+TOA \b MyRange
+toa \b MyRange
+TOA \c 2
+toa \c 2
+TOA \d "-"
+toa \d "-"
+TOA \e "\t"
+toa \e "\t"
+TOA \f
+toa \f
+TOA \g "–"
+toa \g "–"
+TOA \h
+toa \h
+TOA \l ", "
+toa \l ", "
+TOA \p
+toa \p
+TOA \s chap
+toa \s chap
+TOA \c 2 \s chap
+toa \c 2 \s chap

@@ -1,0 +1,47 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default-build",
+      "displayName": "Default Build",
+      "description": "A default build configuration",
+      "generator": "Cmake",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "format",
+          "$comment": "Format all source files using csharpier"
+        },
+        {
+          "type": "build",
+          "name": "build",
+          "$comment": "Build the project"
+        },
+        {
+          "type": "test",
+          "name": "test",
+          "$comment": "Run all tests"
+        },
+        {
+          "type": "package",
+          "name": "pack",
+          "$comment": "Pack compiled binaries into a NuGet package"
+        }
+      ]
+    }
+  ]
+}

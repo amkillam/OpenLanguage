@@ -1,0 +1,32 @@
+COMMENTS
+comments
+COMMENTS "Final draft"
+comments "Final draft"
+COMMENTS \* Upper
+comments \* Upper
+COMMENTS \* Lower
+comments \* Lower
+COMMENTS \* FirstCap
+comments \* FirstCap
+COMMENTS \* Caps
+comments \* Caps
+COMMENTS \* CharFormat
+comments \* CharFormat
+COMMENTS \* MergeFormat
+comments \* MergeFormat
+COMMENTS \* MergeFormatInet
+comments \* MergeFormatInet
+COMMENTS "Final draft" \* Upper
+comments "Final draft" \* Upper
+COMMENTS "Final draft" \* Lower
+comments "Final draft" \* Lower
+COMMENTS "Final draft" \* FirstCap
+comments "Final draft" \* FirstCap
+COMMENTS "Final draft" \* Caps
+comments "Final draft" \* Caps
+COMMENTS "Final draft" \* CharFormat
+comments "Final draft" \* CharFormat
+COMMENTS "Final draft" \* MergeFormat
+comments "Final draft" \* MergeFormat
+COMMENTS "Final draft" \* MergeFormatInet
+comments "Final draft" \* MergeFormatInet

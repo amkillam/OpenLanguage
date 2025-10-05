@@ -1,0 +1,36 @@
+SAVEDATE
+savedate
+SAVEDATE \@ "dddd, MMMM dd, yyyy"
+savedate \@ "dddd, MMMM dd, yyyy"
+SAVEDATE \@ "MM/dd/yyyy"
+savedate \@ "MM/dd/yyyy"
+SAVEDATE \@ "yyyy-MM-dd"
+savedate \@ "yyyy-MM-dd"
+SAVEDATE \@ "d MMM yyyy"
+savedate \@ "d MMM yyyy"
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* Upper
+savedate \@ "dddd, MMMM dd, yyyy" \* Upper
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* Lower
+savedate \@ "dddd, MMMM dd, yyyy" \* Lower
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* FirstCap
+savedate \@ "dddd, MMMM dd, yyyy" \* FirstCap
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* Caps
+savedate \@ "dddd, MMMM dd, yyyy" \* Caps
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* CharFormat
+savedate \@ "dddd, MMMM dd, yyyy" \* CharFormat
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+savedate \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+SAVEDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+savedate \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+SAVEDATE \h
+savedate \h
+SAVEDATE \s
+savedate \s
+SAVEDATE \h \@ "dddd, MMMM dd, yyyy"
+savedate \h \@ "dddd, MMMM dd, yyyy"
+SAVEDATE \s \@ "dddd, MMMM dd, yyyy"
+savedate \s \@ "dddd, MMMM dd, yyyy"
+SAVEDATE \h \@ "dddd, MMMM dd, yyyy" \* Upper
+savedate \h \@ "dddd, MMMM dd, yyyy" \* Upper
+SAVEDATE \s \@ "dddd, MMMM dd, yyyy" \* Upper
+savedate \s \@ "dddd, MMMM dd, yyyy" \* Upper

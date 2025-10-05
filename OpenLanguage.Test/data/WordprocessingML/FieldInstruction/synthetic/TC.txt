@@ -1,0 +1,10 @@
+TC "Entry"
+tc "Entry"
+TC "Entry" \f i
+tc "Entry" \f i
+TC "Entry" \l 2
+tc "Entry" \l 2
+TC "Entry" \n
+tc "Entry" \n
+TC "Entry" \f i \l 2
+tc "Entry" \f i \l 2

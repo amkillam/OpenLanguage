@@ -1,0 +1,14 @@
+DDE Excel "C:\\data.xls"
+dde Excel "C:\\data.xls"
+DDE Excel "C:\\data.xls" "A1"
+dde Excel "C:\\data.xls" "A1"
+DDE Excel "C:\\data.xls" "A1" \b
+dde Excel "C:\\data.xls" "A1" \b
+DDE Excel "C:\\data.xls" "A1" \h
+dde Excel "C:\\data.xls" "A1" \h
+DDE Excel "C:\\data.xls" "A1" \p
+dde Excel "C:\\data.xls" "A1" \p
+DDE Excel "C:\\data.xls" "A1" \r
+dde Excel "C:\\data.xls" "A1" \r
+DDE Excel "C:\\data.xls" "A1" \t
+dde Excel "C:\\data.xls" "A1" \t

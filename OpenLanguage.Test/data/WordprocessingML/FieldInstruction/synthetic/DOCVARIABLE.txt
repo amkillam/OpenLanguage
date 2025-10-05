@@ -1,0 +1,2 @@
+DOCVARIABLE MyVar
+docvariable MyVar

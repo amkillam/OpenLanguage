@@ -1,0 +1,14 @@
+DDEAUTO Excel "C:\\data.xls"
+ddeauto Excel "C:\\data.xls"
+DDEAUTO Excel "C:\\data.xls" "A1"
+ddeauto Excel "C:\\data.xls" "A1"
+DDEAUTO Excel "C:\\data.xls" "A1" \b
+ddeauto Excel "C:\\data.xls" "A1" \b
+DDEAUTO Excel "C:\\data.xls" "A1" \h
+ddeauto Excel "C:\\data.xls" "A1" \h
+DDEAUTO Excel "C:\\data.xls" "A1" \p
+ddeauto Excel "C:\\data.xls" "A1" \p
+DDEAUTO Excel "C:\\data.xls" "A1" \r
+ddeauto Excel "C:\\data.xls" "A1" \r
+DDEAUTO Excel "C:\\data.xls" "A1" \t
+ddeauto Excel "C:\\data.xls" "A1" \t

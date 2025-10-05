@@ -1,0 +1,94 @@
+<IN_INSTRUCTION> {
+[aA][dD][dD][rR][eE][sS][sS][bB][lL][oO][cC][kK]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_ADDRESSBLOCK_INSTRUCTION; }
+[aA][dD][vV][aA][nN][cC][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_ADVANCE_INSTRUCTION; }
+[aA][sS][kK]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_ASK_INSTRUCTION; }
+[aA][uU][tT][hH][oO][rR]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTHOR_INSTRUCTION; }
+[aA][uU][tT][oO][nN][uU][mM]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTONUM_INSTRUCTION; }
+[aA][uU][tT][oO][nN][uU][mM][lL][gG][lL]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTONUMLGL_INSTRUCTION; }
+[aA][uU][tT][oO][nN][uU][mM][oO][uU][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTONUMOUT_INSTRUCTION; }
+[aA][uU][tT][oO][tT][eE][xX][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTOTEXT_INSTRUCTION; }
+[aA][uU][tT][oO][tT][eE][xX][tT][lL][iI][sS][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_AUTOTEXTLIST_INSTRUCTION; }
+[bB][aA][rR][cC][oO][dD][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_BARCODE_INSTRUCTION; }
+[bB][iI][bB][lL][iI][oO][gG][rR][aA][pP][hH][yY]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_BIBLIOGRAPHY_INSTRUCTION; }
+[bB][iI][dD][iI][oO][uU][tT][lL][iI][nN][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_BIDIOUTLINE_INSTRUCTION; }
+[cC][iI][tT][aA][tT][iI][oO][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_CITATION_INSTRUCTION; }
+[cC][oO][mM][mM][eE][nN][tT][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_COMMENTS_INSTRUCTION; }
+[cC][oO][mM][pP][aA][rR][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_COMPARE_INSTRUCTION; }
+[cC][rR][eE][aA][tT][eE][dD][aA][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_CREATEDATE_INSTRUCTION; }
+[dD][aA][tT][aA][bB][aA][sS][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DATABASE_INSTRUCTION; }
+[dD][aA][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DATE_INSTRUCTION; }
+[dD][dD][eE]                         { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DDE_INSTRUCTION; }
+[dD][dD][eE][aA][uU][tT][oO]          { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DDEAUTO_INSTRUCTION; }
+[dD][oO][cC][pP][rR][oO][pP][eE][rR][tT][yY]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DOCPROPERTY_INSTRUCTION; }
+[dD][oO][cC][vV][aA][rR][iI][aA][bB][lL][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_DOCVARIABLE_INSTRUCTION; }
+[eE][dD][iI][tT][tT][iI][mM][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_EDITTIME_INSTRUCTION; }
+[eE][mM][bB][eE][dD] { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_EMBED_INSTRUCTION; }
+[eE][qQ]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_EQ_INSTRUCTION; }
+[fF][iI][lL][eE][nN][aA][mM][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FILENAME_INSTRUCTION; }
+[fF][iI][lL][eE][sS][iI][zZ][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FILESIZE_INSTRUCTION; }
+[fF][iI][lL][lL][iI][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FILLIN_INSTRUCTION; }
+[fF][oO][rR][mM][cC][hH][eE][cC][kK][bB][oO][xX]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FORMCHECKBOX_INSTRUCTION; }
+[fF][oO][rR][mM][dD][rR][oO][pP][dD][oO][wW][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FORMDROPDOWN_INSTRUCTION; }
+[fF][oO][rR][mM][tT][eE][xX][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_FORMTEXT_INSTRUCTION; }
+[gG][oO][tT][oO][bB][uU][tT][tT][oO][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_GOTOBUTTON_INSTRUCTION; }
+[gG][lL][oO][sS][sS][aA][rR][yY]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_GLOSSARY_INSTRUCTION; }
+[gG][rR][eE][eE][tT][iI][nN][gG][lL][iI][nN][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_GREETINGLINE_INSTRUCTION; }
+[hH][yY][pP][eE][rR][lL][iI][nN][kK]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_HYPERLINK_INSTRUCTION; }
+[iI][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_IF_INSTRUCTION; }
+[iI][mM][pP][oO][rR][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_IMPORT_INSTRUCTION; }
+[iI][nN][cC][lL][uU][dD][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_INCLUDE_INSTRUCTION; }
+[iI][nN][cC][lL][uU][dD][eE][pP][iI][cC][tT][uU][rR][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_INCLUDEPICTURE_INSTRUCTION; }
+[iI][nN][cC][lL][uU][dD][eE][tT][eE][xX][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_INCLUDETEXT_INSTRUCTION; }
+[iI][nN][dD][eE][xX]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_INDEX_INSTRUCTION; }
+[iI][nN][fF][oO]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_INFO_INSTRUCTION; }
+[kK][eE][yY][wW][oO][rR][dD][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_KEYWORDS_INSTRUCTION; }
+[lL][aA][sS][tT][sS][aA][vV][eE][dD][bB][yY]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_LASTSAVEDBY_INSTRUCTION; }
+[lL][iI][nN][kK]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_LINK_INSTRUCTION; }
+[lL][iI][sS][tT][nN][uU][mM]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_LISTNUM_INSTRUCTION; }
+[mM][aA][cC][rR][oO][bB][uU][tT][tT][oO][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_MACROBUTTON_INSTRUCTION; }
+[mM][eE][rR][gG][eE][fF][iI][eE][lL][dD]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_MERGEFIELD_INSTRUCTION; }
+[mM][eE][rR][gG][eE][rR][eE][cC]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_MERGEREC_INSTRUCTION; }
+[mM][eE][rR][gG][eE][sS][eE][qQ]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_MERGESEQ_INSTRUCTION; }
+[nN][eE][xX][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NEXT_INSTRUCTION; }
+[nN][eE][xX][tT][iI][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NEXTIF_INSTRUCTION; }
+[nN][oO][tT][eE][rR][eE][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NOTEREF_INSTRUCTION; }
+[nN][uU][mM][cC][hH][aA][rR][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NUMCHARS_INSTRUCTION; }
+[nN][uU][mM][pP][aA][gG][eE][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NUMPAGES_INSTRUCTION; }
+[nN][uU][mM][wW][oO][rR][dD][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_NUMWORDS_INSTRUCTION; }
+[pP][aA][gG][eE][rR][eE][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_PAGEREF_INSTRUCTION; }
+[pP][aA][gG][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_PAGE; }
+[pP][rR][iI][nN][tT][dD][aA][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_PRINTDATE_INSTRUCTION; }
+[pP][rR][iI][nN][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_PRINT_INSTRUCTION; }
+[pP][rR][iI][vV][aA][tT][eE]       { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_PRIVATE_INSTRUCTION; }
+[qQ][uU][oO][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_QUOTE_INSTRUCTION; }
+[rR][dD]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_RD_INSTRUCTION; }
+[rR][eE][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_REF_INSTRUCTION; }
+[rR][eE][vV][nN][uU][mM]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_REVNUM_INSTRUCTION; }
+[sS][aA][vV][eE][dD][aA][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SAVEDATE_INSTRUCTION; }
+[sS][eE][cC][tT][iI][oO][nN][pP][aA][gG][eE][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SECTIONPAGES_INSTRUCTION; }
+[sS][hH][aA][pP][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SHAPE_INSTRUCTION; }
+[sS][eE][cC][tT][iI][oO][nN]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SECTION_INSTRUCTION; }
+[sS][eE][qQ]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SEQ_INSTRUCTION; }
+[sS][eE][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SET_INSTRUCTION; }
+[sS][kK][iI][pP][iI][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SKIPIF_INSTRUCTION; }
+[sS][tT][yY][lL][eE][rR][eE][fF]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_STYLEREF_INSTRUCTION; }
+[sS][uU][bB][jJ][eE][cC][tT]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SUBJECT_INSTRUCTION; }
+[sS][yY][mM][bB][oO][lL]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_SYMBOL_INSTRUCTION; }
+[tT][aA]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TA_INSTRUCTION; }
+[tT][cC]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TC_INSTRUCTION; }
+[tT][eE][mM][pP][lL][aA][tT][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TEMPLATE_INSTRUCTION; }
+[tT][iI][mM][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TIME_INSTRUCTION; }
+[tT][iI][tT][lL][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TITLE_INSTRUCTION; }
+[tT][oO][aA]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TOA_INSTRUCTION; }
+[tT][oO][cC]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_TOC_INSTRUCTION; }
+[uU][sS][eE][rR][aA][dD][dD][rR][eE][sS][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_USERADDRESS_INSTRUCTION; }
+[uU][sS][eE][rR][iI][nN][iI][tT][iI][aA][lL][sS]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_USERINITIALS_INSTRUCTION; }
+[uU][sS][eE][rR][nN][aA][mM][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_USERNAME_INSTRUCTION; }
+[xX][eE]  { BEGIN(INITIAL); yylval.stringVal = yytext; return (int)Tokens.T_XE_INSTRUCTION; }
+
+#include "../../whitespace.lex"
+#include "../../word_separators.lex"
+#include "../../switch.lex"
+
+.  { BEGIN(INITIAL); yyless(0); }
+}

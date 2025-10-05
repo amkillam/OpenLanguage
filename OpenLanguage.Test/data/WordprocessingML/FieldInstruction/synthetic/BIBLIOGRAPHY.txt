@@ -1,0 +1,10 @@
+BIBLIOGRAPHY
+bibliography
+BIBLIOGRAPHY \l "en-US"
+bibliography \l "en-US"
+BIBLIOGRAPHY \f "en-US"
+bibliography \f "en-US"
+BIBLIOGRAPHY \m Source1
+bibliography \m Source1
+BIBLIOGRAPHY \l "en-US" \f "fr-FR" \m Source1
+bibliography \l "en-US" \f "fr-FR" \m Source1

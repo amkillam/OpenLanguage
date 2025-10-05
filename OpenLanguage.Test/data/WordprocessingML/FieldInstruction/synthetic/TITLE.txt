@@ -1,0 +1,32 @@
+TITLE
+title
+TITLE "Q3 Financials"
+title "Q3 Financials"
+TITLE \* Upper
+title \* Upper
+TITLE \* Lower
+title \* Lower
+TITLE \* FirstCap
+title \* FirstCap
+TITLE \* Caps
+title \* Caps
+TITLE \* CharFormat
+title \* CharFormat
+TITLE \* MergeFormat
+title \* MergeFormat
+TITLE \* MergeFormatInet
+title \* MergeFormatInet
+TITLE "Q3 Financials" \* Upper
+title "Q3 Financials" \* Upper
+TITLE "Q3 Financials" \* Lower
+title "Q3 Financials" \* Lower
+TITLE "Q3 Financials" \* FirstCap
+title "Q3 Financials" \* FirstCap
+TITLE "Q3 Financials" \* Caps
+title "Q3 Financials" \* Caps
+TITLE "Q3 Financials" \* CharFormat
+title "Q3 Financials" \* CharFormat
+TITLE "Q3 Financials" \* MergeFormat
+title "Q3 Financials" \* MergeFormat
+TITLE "Q3 Financials" \* MergeFormatInet
+title "Q3 Financials" \* MergeFormatInet

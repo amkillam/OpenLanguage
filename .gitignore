@@ -1,7 +1,11 @@
 **/Generated/
 **/obj/
 **/bin/
+# GPPG generation info and error outputs
 **/*.lst
+**/*.conflicts
+**/*.swp
+
 **/TestResults/
 **/coverage/
 

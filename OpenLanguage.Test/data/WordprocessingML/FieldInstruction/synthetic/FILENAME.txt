@@ -1,0 +1,32 @@
+FILENAME
+filename
+FILENAME \p
+filename \p
+FILENAME \* Upper
+filename \* Upper
+FILENAME \* Lower
+filename \* Lower
+FILENAME \* FirstCap
+filename \* FirstCap
+FILENAME \* Caps
+filename \* Caps
+FILENAME \* CharFormat
+filename \* CharFormat
+FILENAME \* MergeFormat
+filename \* MergeFormat
+FILENAME \* MergeFormatInet
+filename \* MergeFormatInet
+FILENAME \p \* Upper
+filename \p \* Upper
+FILENAME \p \* Lower
+filename \p \* Lower
+FILENAME \p \* FirstCap
+filename \p \* FirstCap
+FILENAME \p \* Caps
+filename \p \* Caps
+FILENAME \p \* CharFormat
+filename \p \* CharFormat
+FILENAME \p \* MergeFormat
+filename \p \* MergeFormat
+FILENAME \p \* MergeFormatInet
+filename \p \* MergeFormatInet

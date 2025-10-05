@@ -1,0 +1,42 @@
+DATE
+date
+DATE \@ "dddd, MMMM dd, yyyy"
+date \@ "dddd, MMMM dd, yyyy"
+DATE \@ "MM/dd/yyyy"
+date \@ "MM/dd/yyyy"
+DATE \@ "yyyy-MM-dd"
+date \@ "yyyy-MM-dd"
+DATE \@ "d MMM yyyy"
+date \@ "d MMM yyyy"
+DATE \@ "dddd, MMMM dd, yyyy" \* Upper
+date \@ "dddd, MMMM dd, yyyy" \* Upper
+DATE \@ "dddd, MMMM dd, yyyy" \* Lower
+date \@ "dddd, MMMM dd, yyyy" \* Lower
+DATE \@ "dddd, MMMM dd, yyyy" \* FirstCap
+date \@ "dddd, MMMM dd, yyyy" \* FirstCap
+DATE \@ "dddd, MMMM dd, yyyy" \* Caps
+date \@ "dddd, MMMM dd, yyyy" \* Caps
+DATE \@ "dddd, MMMM dd, yyyy" \* CharFormat
+date \@ "dddd, MMMM dd, yyyy" \* CharFormat
+DATE \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+date \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+DATE \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+date \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+DATE \h
+date \h
+DATE \s
+date \s
+DATE \l
+date \l
+DATE \h \@ "dddd, MMMM dd, yyyy"
+date \h \@ "dddd, MMMM dd, yyyy"
+DATE \s \@ "dddd, MMMM dd, yyyy"
+date \s \@ "dddd, MMMM dd, yyyy"
+DATE \l \@ "dddd, MMMM dd, yyyy"
+date \l \@ "dddd, MMMM dd, yyyy"
+DATE \h \@ "dddd, MMMM dd, yyyy" \* Upper
+date \h \@ "dddd, MMMM dd, yyyy" \* Upper
+DATE \s \@ "dddd, MMMM dd, yyyy" \* Upper
+date \s \@ "dddd, MMMM dd, yyyy" \* Upper
+DATE \l \@ "dddd, MMMM dd, yyyy" \* Upper
+date \l \@ "dddd, MMMM dd, yyyy" \* Upper

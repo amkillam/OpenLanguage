@@ -1,0 +1,14 @@
+ADVANCE \d 10
+advance \d 10
+ADVANCE \l 5
+advance \l 5
+ADVANCE \r 5
+advance \r 5
+ADVANCE \u 10
+advance \u 10
+ADVANCE \x 100
+advance \x 100
+ADVANCE \y 200
+advance \y 200
+ADVANCE \d 10 \r 5
+advance \d 10 \r 5

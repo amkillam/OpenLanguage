@@ -1,0 +1,14 @@
+ADDRESSBLOCK
+addressblock
+ADDRESSBLOCK \c 1
+addressblock \c 1
+ADDRESSBLOCK \d
+addressblock \d
+ADDRESSBLOCK \e "USA"
+addressblock \e "USA"
+ADDRESSBLOCK \f "<<_FIRST0_>><<_LAST0_>>"
+addressblock \f "<<_FIRST0_>><<_LAST0_>>"
+ADDRESSBLOCK \l "en-US"
+addressblock \l "en-US"
+ADDRESSBLOCK \c 1 \d \e "USA" \f "<<_FIRST0_>><<_LAST0_>>" \l "en-US"
+addressblock \c 1 \d \e "USA" \f "<<_FIRST0_>><<_LAST0_>>" \l "en-US"

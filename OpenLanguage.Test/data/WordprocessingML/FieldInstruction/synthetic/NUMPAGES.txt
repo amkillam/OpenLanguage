@@ -1,0 +1,28 @@
+NUMPAGES
+numpages
+NUMPAGES \# "0"
+numpages \# "0"
+NUMPAGES \# "0.00"
+numpages \# "0.00"
+NUMPAGES \# "#,##0"
+numpages \# "#,##0"
+NUMPAGES \* Upper
+numpages \* Upper
+NUMPAGES \* Lower
+numpages \* Lower
+NUMPAGES \* FirstCap
+numpages \* FirstCap
+NUMPAGES \* Caps
+numpages \* Caps
+NUMPAGES \* CharFormat
+numpages \* CharFormat
+NUMPAGES \* MergeFormat
+numpages \* MergeFormat
+NUMPAGES \* MergeFormatInet
+numpages \* MergeFormatInet
+NUMPAGES \# "0" \* Upper
+numpages \# "0" \* Upper
+NUMPAGES \# "0.00" \* Upper
+numpages \# "0.00" \* Upper
+NUMPAGES \# "#,##0" \* Upper
+numpages \# "#,##0" \* Upper

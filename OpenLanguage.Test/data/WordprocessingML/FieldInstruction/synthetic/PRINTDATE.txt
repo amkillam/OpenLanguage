@@ -1,0 +1,36 @@
+PRINTDATE
+printdate
+PRINTDATE \@ "dddd, MMMM dd, yyyy"
+printdate \@ "dddd, MMMM dd, yyyy"
+PRINTDATE \@ "MM/dd/yyyy"
+printdate \@ "MM/dd/yyyy"
+PRINTDATE \@ "yyyy-MM-dd"
+printdate \@ "yyyy-MM-dd"
+PRINTDATE \@ "d MMM yyyy"
+printdate \@ "d MMM yyyy"
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* Upper
+printdate \@ "dddd, MMMM dd, yyyy" \* Upper
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* Lower
+printdate \@ "dddd, MMMM dd, yyyy" \* Lower
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* FirstCap
+printdate \@ "dddd, MMMM dd, yyyy" \* FirstCap
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* Caps
+printdate \@ "dddd, MMMM dd, yyyy" \* Caps
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* CharFormat
+printdate \@ "dddd, MMMM dd, yyyy" \* CharFormat
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+printdate \@ "dddd, MMMM dd, yyyy" \* MergeFormat
+PRINTDATE \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+printdate \@ "dddd, MMMM dd, yyyy" \* MergeFormatInet
+PRINTDATE \h
+printdate \h
+PRINTDATE \s
+printdate \s
+PRINTDATE \h \@ "dddd, MMMM dd, yyyy"
+printdate \h \@ "dddd, MMMM dd, yyyy"
+PRINTDATE \s \@ "dddd, MMMM dd, yyyy"
+printdate \s \@ "dddd, MMMM dd, yyyy"
+PRINTDATE \h \@ "dddd, MMMM dd, yyyy" \* Upper
+printdate \h \@ "dddd, MMMM dd, yyyy" \* Upper
+PRINTDATE \s \@ "dddd, MMMM dd, yyyy" \* Upper
+printdate \s \@ "dddd, MMMM dd, yyyy" \* Upper

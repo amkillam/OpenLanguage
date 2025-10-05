@@ -84,6 +84,7 @@ file (GLOB_RECURSE PROJECT_LIST "${PROJECT_DIR}/*.csproj")
 file(GLOB_RECURSE YACC_FILES "${PROJECT_DIR}/**/*.y")
 file(GLOB_RECURSE LEX_FILES "${PROJECT_DIR}/**/*.lex")
 
+
 # Exclude files that are already in the Generated directory to avoid reprocessing.
 list(FILTER YACC_FILES EXCLUDE REGEX ^${GENERATED_DIR})
 list(FILTER LEX_FILES EXCLUDE REGEX ^${GENERATED_DIR})
@@ -139,6 +140,7 @@ foreach(YACC_FILE ${YACC_FILES})
 
   add_custom_command(
         TARGET process PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E remove -f ${OUTPUT_FILE}
         COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
         COMMAND ${CPP_COMMAND} ${CPP_FLAGS} ${YACC_FILE} -o ${OUTPUT_FILE}
         COMMENT "Processing ${YACC_FILE} -> ${OUTPUT_FILE} using ${CPP_COMMAND}"
@@ -317,12 +319,17 @@ add_custom_target(install-hooks
     COMMENT "Installing git hooks"
 )
 
-# Clean target
+# Clean target - use platform independent CMake commands
 add_custom_target(clean-all
-    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${CMAKE_BINARY_DIR}"
-    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${GENERATED_DIR}"
-    COMMAND find "${CMAKE_SOURCE_DIR}" -name "obj" -type d -exec rm -rf {} + || true
-    COMMAND find "${CMAKE_SOURCE_DIR}" -name "bin" -type d -exec rm -rf {} + || true
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${GENERATED_DIR}" 2>/dev/null || "${CMAKE_COMMAND}" -E true
+    COMMAND "${CMAKE_COMMAND}" -E echo "Cleaning obj, bin, and TestResults directories..."
+    # Use platform-independent commands to remove known directory patterns
+    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${CMAKE_SOURCE_DIR}/*/obj" "${CMAKE_SOURCE_DIR}/*/*/obj" "${CMAKE_SOURCE_DIR}/*/*/*/obj" 2>/dev/null || "${CMAKE_COMMAND}" -E true
+    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${CMAKE_SOURCE_DIR}/*/bin" "${CMAKE_SOURCE_DIR}/*/*/bin" "${CMAKE_SOURCE_DIR}/*/*/*/bin" 2>/dev/null || "${CMAKE_COMMAND}" -E true
+    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${CMAKE_SOURCE_DIR}/*/TestResults" "${CMAKE_SOURCE_DIR}/*/*/TestResults" "${CMAKE_SOURCE_DIR}/*/*/*/TestResults" 2>/dev/null || "${CMAKE_COMMAND}" -E true
+    # Change working directory before removing build directory to avoid CWD deletion error
+    COMMAND git clean -Xdf
+    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
     COMMENT "Cleaning all build artifacts"
 )
 

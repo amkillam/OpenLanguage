@@ -1,0 +1,8 @@
+PAGE
+page
+PAGE \* Arabic
+page \* Arabic
+PAGE \* roman
+page \* roman
+PAGE \* Ordinal
+page \* Ordinal

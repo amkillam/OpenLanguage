@@ -1,0 +1,13 @@
+%token <stringVal> T_RELATIVE_CELL_RANGE_KEYWORD_BELOW
+%token <stringVal> T_RELATIVE_CELL_RANGE_KEYWORD_ABOVE
+%token <stringVal> T_RELATIVE_CELL_RANGE_KEYWORD_LEFT
+%token <stringVal> T_RELATIVE_CELL_RANGE_KEYWORD_RIGHT
+%token <ulongVal> T_A1_ROW
+%token <stringVal> T_A1_COLUMN // A1 column case insensitive in WML, have to use raw string
+
+%nonassoc T_RELATIVE_CELL_RANGE_KEYWORD_BELOW
+%nonassoc T_RELATIVE_CELL_RANGE_KEYWORD_ABOVE
+%nonassoc T_RELATIVE_CELL_RANGE_KEYWORD_LEFT
+%nonassoc T_RELATIVE_CELL_RANGE_KEYWORD_RIGHT
+%left     T_A1_ROW T_A1_COLUMN
+

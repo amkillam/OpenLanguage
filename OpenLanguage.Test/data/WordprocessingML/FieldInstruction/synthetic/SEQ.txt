@@ -1,0 +1,14 @@
+SEQ Figure
+seq Figure
+SEQ Figure \r 1
+seq Figure \r 1
+SEQ Figure \s 1
+seq Figure \s 1
+SEQ Figure \c
+seq Figure \c
+SEQ Figure \h
+seq Figure \h
+SEQ Figure MyBookmark
+seq Figure MyBookmark
+SEQ Figure \r 1 \s 1
+seq Figure \r 1 \s 1

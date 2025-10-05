@@ -1,0 +1,32 @@
+USERADDRESS
+useraddress
+USERADDRESS "123 Main St"
+useraddress "123 Main St"
+USERADDRESS \* Upper
+useraddress \* Upper
+USERADDRESS \* Lower
+useraddress \* Lower
+USERADDRESS \* FirstCap
+useraddress \* FirstCap
+USERADDRESS \* Caps
+useraddress \* Caps
+USERADDRESS \* CharFormat
+useraddress \* CharFormat
+USERADDRESS \* MergeFormat
+useraddress \* MergeFormat
+USERADDRESS \* MergeFormatInet
+useraddress \* MergeFormatInet
+USERADDRESS "123 Main St" \* Upper
+useraddress "123 Main St" \* Upper
+USERADDRESS "123 Main St" \* Lower
+useraddress "123 Main St" \* Lower
+USERADDRESS "123 Main St" \* FirstCap
+useraddress "123 Main St" \* FirstCap
+USERADDRESS "123 Main St" \* Caps
+useraddress "123 Main St" \* Caps
+USERADDRESS "123 Main St" \* CharFormat
+useraddress "123 Main St" \* CharFormat
+USERADDRESS "123 Main St" \* MergeFormat
+useraddress "123 Main St" \* MergeFormat
+USERADDRESS "123 Main St" \* MergeFormatInet
+useraddress "123 Main St" \* MergeFormatInet

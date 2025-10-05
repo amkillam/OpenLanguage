@@ -1,0 +1,33 @@
+AUTHOR
+author
+AUTHOR "Jane Doe"
+author "Jane Doe"
+AUTHOR \* Upper
+author \* Upper
+AUTHOR \* Lower
+author \* Lower
+AUTHOR \* FirstCap
+author \* FirstCap
+AUTHOR \* Caps
+author \* Caps
+AUTHOR \* CharFormat
+author \* CharFormat
+AUTHOR \* MergeFormat
+author \* MergeFormat
+AUTHOR \* MergeFormatInet
+author \* MergeFormatInet
+AUTHOR "Jane Doe" \* Upper
+author "Jane Doe" \* Upper
+AUTHOR "Jane Doe" \* Lower
+author "Jane Doe" \* Lower
+AUTHOR "Jane Doe" \* FirstCap
+author "Jane Doe" \* FirstCap
+AUTHOR "Jane Doe" \* Caps
+author "Jane Doe" \* Caps
+AUTHOR "Jane Doe" \* CharFormat
+author "Jane Doe" \* CharFormat
+AUTHOR "Jane Doe" \* MergeFormat
+author "Jane Doe" \* MergeFormat
+AUTHOR "Jane Doe" \* MergeFormatInet
+author "Jane Doe" \* MergeFormatInet
+

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
@@ -77,40 +75,109 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         }
     }
 
-    /// <summary>
-    /// Defines the type of a parsed argument within a field instruction.
-    /// </summary>
-    public enum FieldArgumentType
+    // Parsing helpers for typed enums used by the grammar
+    public static class NameFormatExtensions
     {
-        /// <summary>
-        /// An identifier or a simple value (e.g., a bookmark name, a number).
-        /// </summary>
-        Identifier,
+        public static NameFormat? TryParse(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return null;
+            }
 
-        /// <summary>
-        /// A string literal enclosed in double quotes.
-        /// </summary>
-        StringLiteral,
+            return s.Trim().ToLowerInvariant() switch
+            {
+                "firstname" or "first" => NameFormat.FirstName,
+                "lastname" or "last" => NameFormat.LastName,
+                "firstlastname" or "firstlast" or "first_last" or "first-last" =>
+                    NameFormat.FirstLastName,
+                "lastfirstname" or "lastfirst" or "last_first" or "last-first" =>
+                    NameFormat.LastFirstName,
+                "titlelastname" or "titlelast" or "title_last" or "title-last" =>
+                    NameFormat.TitleLastName,
+                "fullformalname" or "fullformal" or "full_formal" or "full-formal" =>
+                    NameFormat.FullFormalName,
+                _ => null,
+            };
+        }
 
-        /// <summary>
-        /// A field switch, which always begins with a backslash (e.g., \h, \@, \b).
-        /// </summary>
-        Switch,
+        public static NameFormat Parse(string? s)
+        {
+            NameFormat? nf = TryParse(s);
+            if (nf == null)
+            {
+                throw new ArgumentException($"Invalid name format: {s}");
+            }
 
-        /// <summary>
-        /// A complete, nested field instruction enclosed in braces.
-        /// </summary>
-        NestedField,
+            return nf.Value;
+        }
+    }
 
-        /// <summary>
-        /// A text value.
-        /// </summary>
-        Text,
+    public static class DatabaseOptimizationFlagExtensions
+    {
+        public static DatabaseOptimizationFlag? TryParse(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return null;
+            }
 
-        /// <summary>
-        /// A numeric value.
-        /// </summary>
-        Number,
+            return s.Trim().ToLowerInvariant() switch
+            {
+                "none" => DatabaseOptimizationFlag.None,
+                "queryonce" or "query_once" or "query-once" => DatabaseOptimizationFlag.QueryOnce,
+                "cacheresults" or "cache_results" or "cache-results" =>
+                    DatabaseOptimizationFlag.CacheResults,
+                "useconnectionpooling" or "use_connection_pooling" or "use-connection-pooling" =>
+                    DatabaseOptimizationFlag.UseConnectionPooling,
+                "optimizeforlargedata" or "optimize_for_large_data" or "optimize-for-large-data" =>
+                    DatabaseOptimizationFlag.OptimizeForLargeData,
+                "optimizeforsmalldata" or "optimize_for_small_data" or "optimize-for-small-data" =>
+                    DatabaseOptimizationFlag.OptimizeForSmallData,
+                _ => null,
+            };
+        }
+
+        public static DatabaseOptimizationFlag Parse(string? s)
+        {
+            DatabaseOptimizationFlag? val = TryParse(s);
+            if (val == null)
+            {
+                throw new ArgumentException($"Invalid database optimization flag: {s}");
+            }
+
+            return val.Value;
+        }
+    }
+
+    public static class FacingIdentificationMarkTypeExtensions
+    {
+        public static FacingIdentificationMarkType? TryParse(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return null;
+            }
+            return s.Trim().ToLowerInvariant() switch
+            {
+                "a" or "courtesyreply" or "courtesy_reply" or "courtesy-reply" =>
+                    FacingIdentificationMarkType.CourtesyReply,
+                "c" or "businessreply" or "business_reply" or "business-reply" =>
+                    FacingIdentificationMarkType.BusinessReply,
+                _ => null,
+            };
+        }
+
+        public static FacingIdentificationMarkType Parse(string? s)
+        {
+            FacingIdentificationMarkType? v = TryParse(s);
+            if (v == null)
+            {
+                throw new ArgumentException($"Invalid Facing Identification Mark Type: {s}");
+            }
+
+            return v.Value;
+        }
     }
 
     /// <summary>
@@ -254,7 +321,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     /// Values can be combined using bitwise OR operations.
     /// </summary>
     [Flags]
-    public enum DatabaseTableAttributes
+    public enum DatabaseTableAttributes : int
     {
         /// <summary>
         /// No formatting attributes (0).
@@ -511,6 +578,54 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// Include the country/region only if it is different from the excluded country/region.
         /// </summary>
         IncludeIfDifferent = 2,
+    }
+
+    public static class CountryRegionInclusionExtensions
+    {
+        public static CountryRegionInclusion Parse(string? s)
+        {
+            CountryRegionInclusion? result = TryParse(s);
+            if (result.HasValue)
+            {
+                return result.Value;
+            }
+            throw new ArgumentException($"Invalid country/region inclusion: {s}");
+        }
+
+        public static CountryRegionInclusion? TryParse(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return null;
+            }
+
+            if (int.TryParse(s.Trim(), out int intValue))
+            {
+                if (Enum.IsDefined(typeof(CountryRegionInclusion), intValue))
+                {
+                    return (CountryRegionInclusion)intValue;
+                }
+            }
+
+            return s.Trim().ToLowerInvariant() switch
+            {
+                "omit" => CountryRegionInclusion.Omit,
+                "include" => CountryRegionInclusion.Include,
+                "includeifdifferent" or "include_if_different" or "include-if-different" =>
+                    CountryRegionInclusion.IncludeIfDifferent,
+                _ => null,
+            };
+        }
+
+        public static string ToString(this CountryRegionInclusion cri)
+        {
+            return cri switch
+            {
+                CountryRegionInclusion.Include => "Include",
+                CountryRegionInclusion.IncludeIfDifferent => "IncludeIfDifferent",
+                _ => "Omit", // Default case
+            };
+        }
     }
 
     /// <summary>
@@ -1438,17 +1553,39 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 );
             }
 
-            _originalDeclaration = declaration.Trim();
+            _originalDeclaration = declaration;
+            string toParse = declaration.Trim();
 
-            // Parse xmlns:prefix="URI" format
-            if (!_originalDeclaration.StartsWith("xmlns:"))
+            if (toParse.StartsWith("\"") && toParse.EndsWith("\""))
             {
-                throw new ArgumentException(
-                    $"Invalid namespace declaration format. Expected 'xmlns:prefix=\"URI\"', got: {declaration}"
-                );
+                toParse = toParse.Substring(1, toParse.Length - 2);
             }
 
-            int equalsIndex = _originalDeclaration.IndexOf('=');
+            if (!toParse.StartsWith("xmlns:"))
+            {
+                int eqIndex = toParse.IndexOf('=');
+                if (eqIndex > 0)
+                {
+                    string prefix = toParse.Substring(0, eqIndex);
+                    string uri = toParse.Substring(eqIndex + 1);
+                    if (prefix.Contains('\"') || uri.Contains('\"'))
+                    {
+                        throw new ArgumentException(
+                            $"Invalid namespace declaration format. For 'prefix=URI' format, neither prefix nor URI should be quoted. Got: {declaration}"
+                        );
+                    }
+                    toParse = $"xmlns:{prefix}=\"{uri}\"";
+                }
+                else
+                {
+                    throw new ArgumentException(
+                        $"Invalid namespace declaration format. Expected 'xmlns:prefix=\"URI\"' or 'prefix=URI', got: {declaration}"
+                    );
+                }
+            }
+
+            // Parse xmlns:prefix="URI" format
+            int equalsIndex = toParse.IndexOf('=');
             if (equalsIndex == -1)
             {
                 throw new ArgumentException(
@@ -1456,8 +1593,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 );
             }
 
-            string prefixPart = _originalDeclaration.Substring(6, equalsIndex - 6).Trim(); // Skip "xmlns:"
-            string uriPart = _originalDeclaration.Substring(equalsIndex + 1).Trim();
+            string prefixPart = toParse.Substring(6, equalsIndex - 6).Trim(); // Skip "xmlns:"
+            string uriPart = toParse.Substring(equalsIndex + 1).Trim();
 
             // Validate prefix (must be valid XML name)
             if (string.IsNullOrWhiteSpace(prefixPart) || !IsValidNCName(prefixPart))
@@ -1471,8 +1608,8 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                 throw new ArgumentException($"Namespace URI must be quoted. Got: {uriPart}");
             }
 
-            string uri = uriPart.Substring(1, uriPart.Length - 2);
-            if (string.IsNullOrWhiteSpace(uri))
+            string uriValue = uriPart.Substring(1, uriPart.Length - 2);
+            if (string.IsNullOrWhiteSpace(uriValue))
             {
                 throw new ArgumentException("Namespace URI cannot be empty.");
             }
@@ -1480,12 +1617,12 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             try
             {
                 // Validate URI by creating XNamespace
-                _namespace = System.Xml.Linq.XNamespace.Get(uri);
+                _namespace = System.Xml.Linq.XNamespace.Get(uriValue);
                 _prefix = prefixPart;
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException($"Invalid namespace URI: {uri}", ex);
+                throw new ArgumentException($"Invalid namespace URI: {uriValue}", ex);
             }
         }
 
@@ -1545,116 +1682,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             }
 
             return true;
-        }
-    }
-
-    /// <summary>
-    /// Represents a single argument for a field instruction. An argument has a type
-    /// and a value. The value can be a string or another FieldInstruction for nested fields.
-    /// </summary>
-    public class FieldArgument
-    {
-        /// <summary>
-        /// The type of the argument.
-        /// </summary>
-        public FieldArgumentType Type { get; }
-
-        /// <summary>
-        /// The value of the argument. This is a string for simple types
-        /// and a FieldInstruction object for the NestedField type.
-        /// </summary>
-        public object? Value { get; }
-
-        public FieldArgument(FieldArgumentType type, object? value)
-        {
-            Type = type;
-            Value = value;
-        }
-
-        /// <summary>
-        /// Recompiles the argument back into its valid field instruction string representation.
-        /// </summary>
-        /// <returns>A string representing the argument as it would appear in a field instruction.</returns>
-        public override string ToString()
-        {
-            switch (Type)
-            {
-                case FieldArgumentType.Identifier:
-                case FieldArgumentType.Switch:
-                case FieldArgumentType.Text:
-                case FieldArgumentType.Number:
-                    return Value?.ToString() ?? string.Empty;
-
-                case FieldArgumentType.StringLiteral:
-                    // When recompiling, quotes within the string must be escaped with a backslash.
-                    // The Value for StringLiteral is already the unescaped string.
-                    return $"\"{Value?.ToString()?.Replace("\"", "\\\"") ?? string.Empty}\"";
-
-                case FieldArgumentType.NestedField:
-                    // Recompile the nested instruction and wrap it in braces with standard spacing.
-                    return Value == null ? string.Empty : $"{{ {Value.ToString()} }}";
-
-                default:
-                    return string.Empty;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Represents a fully parsed Word field instruction, including its main
-    /// instruction keyword (e.g., "MERGEFIELD") and a list of its arguments.
-    /// This object can be modified and recompiled back into a field instruction string.
-    /// </summary>
-    public class FieldInstruction
-    {
-        /// <summary>
-        /// The primary keyword of the field (e.g., IF, REF, HYPERLINK).
-        /// </summary>
-        public string Instruction { get; set; }
-
-        /// <summary>
-        /// A list of arguments that belong to this instruction.
-        /// You can directly manipulate this list (add, remove, replace arguments)
-        /// before recompiling the instruction to a string.
-        /// </summary>
-        public List<FieldArgument> Arguments { get; }
-
-        public FieldInstruction(string instruction)
-        {
-            if (string.IsNullOrWhiteSpace(instruction))
-            {
-                throw new ArgumentException(
-                    "Instruction cannot be null or empty.",
-                    nameof(instruction)
-                );
-            }
-            Instruction = instruction;
-            Arguments = new List<FieldArgument>();
-        }
-
-        public FieldInstruction(string instruction, List<FieldArgument> arguments)
-        {
-            Instruction = instruction;
-            Arguments = new List<FieldArgument>(arguments);
-        }
-
-        /// <summary>
-        /// Recompiles the entire FieldInstruction object back into a valid,
-        /// standards-compliant field instruction string.
-        /// </summary>
-        /// <returns>The reconstructed field instruction string.</returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(Instruction);
-
-            foreach (FieldArgument arg in Arguments)
-            {
-                sb.Append(" ");
-                sb.Append(arg.ToString());
-            }
-
-            return sb.ToString();
         }
     }
 

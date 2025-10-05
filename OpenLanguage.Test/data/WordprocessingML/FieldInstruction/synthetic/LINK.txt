@@ -1,0 +1,16 @@
+LINK Excel "C:\\data.xls"
+link Excel "C:\\data.xls"
+LINK Excel "C:\\data.xls" "A1"
+link Excel "C:\\data.xls" "A1"
+LINK Excel "C:\\data.xls" "A1" \b
+link Excel "C:\\data.xls" "A1" \b
+LINK Excel "C:\\data.xls" "A1" \h
+link Excel "C:\\data.xls" "A1" \h
+LINK Excel "C:\\data.xls" "A1" \p
+link Excel "C:\\data.xls" "A1" \p
+LINK Excel "C:\\data.xls" "A1" \r
+link Excel "C:\\data.xls" "A1" \r
+LINK Excel "C:\\data.xls" "A1" \t
+link Excel "C:\\data.xls" "A1" \t
+LINK Excel "C:\\data.xls" \a \p
+link Excel "C:\\data.xls" \a \p

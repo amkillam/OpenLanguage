@@ -1,0 +1,22 @@
+CITATION Source1
+citation Source1
+CITATION Source1 \l "en-US"
+citation Source1 \l "en-US"
+CITATION Source1 \f "See "
+citation Source1 \f "See "
+CITATION Source1 \s " endnote"
+citation Source1 \s " endnote"
+CITATION Source1 \p "42"
+citation Source1 \p "42"
+CITATION Source1 \v "3"
+citation Source1 \v "3"
+CITATION Source1 \n
+citation Source1 \n
+CITATION Source1 \t
+citation Source1 \t
+CITATION Source1 \y
+citation Source1 \y
+CITATION Source1 \m Source2
+citation Source1 \m Source2
+CITATION Source1 \l "en-US" \f "See " \p "42"
+citation Source1 \l "en-US" \f "See " \p "42"

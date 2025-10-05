@@ -27,7 +27,7 @@ namespace OpenLanguage.Utils
         /// <returns>The numeric equivalent of the number contained in s.</returns>
         /// <exception cref="ArgumentException">s is null, empty, whitespace, or contains invalid characters.</exception>
         /// <exception cref="OverflowException">s represents a number larger than the specified type can hold.</exception>
-        public static N Parse<N>(string? s)
+        public static N Parse<N>(string? sCased)
             where N : System.Numerics.INumber<N>,
                 System.Numerics.IBinaryNumber<N>,
                 System.Numerics.INumberBase<N>,
@@ -35,18 +35,20 @@ namespace OpenLanguage.Utils
                 IFormattable,
                 System.Numerics.IMinMaxValue<N>
         {
-            if (string.IsNullOrWhiteSpace(s))
+            if (string.IsNullOrWhiteSpace(sCased))
             {
                 throw new ArgumentException(
                     "Input cannot be null, empty, or whitespace.",
-                    nameof(s)
+                    nameof(sCased)
                 );
             }
+
+            string s = new StringBuilder(sCased).ToString().ToUpperInvariant();
 
             if (s.Any(c => c < 'A' || c > 'Z'))
             {
                 throw new ArgumentException(
-                    "Input string must contain only uppercase letters A-Z.",
+                    "Input string must contain only letters A-Z.",
                     nameof(s)
                 );
             }

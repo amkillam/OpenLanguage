@@ -1,0 +1,4 @@
+AUTONUM
+autonum
+AUTONUM \s "-"
+autonum \s "-"
