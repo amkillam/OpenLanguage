@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Merge Field Lexer | OpenLanguage Documentation </title>
+      <title>Merge Field Parser | OpenLanguage Documentation </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Merge Field Lexer | OpenLanguage Documentation ">
+      <meta name="title" content="Merge Field Parser | OpenLanguage Documentation ">
       
       
       <link rel="icon" href="../../../../favicon.ico">
@@ -85,244 +85,89 @@
         </div>
 
         <article data-uid="">
-<h1 id="merge-field-lexer">Merge Field Lexer</h1>
+<h1 id="merge-field-parser">Merge Field Parser</h1>
 
-<p>The <code>OpenLanguage.WordprocessingML.MergeField</code> namespace provides lexical analysis functionality for parsing merge field placeholders using character-by-character state machine parsing.</p>
+<p>The <code>OpenLanguage.WordprocessingML.MergeField</code> namespace provides parsers for <code>MERGEFIELD</code> placeholders and templates containing them.</p>
 <h2 id="overview">Overview</h2>
-<p>The merge field lexer provides:</p>
+<p>The Merge Field component offers:</p>
 <ul>
-<li><strong>Placeholder Parsing</strong>: Parse merge field placeholders with « » delimiters</li>
-<li><strong>State Machine Parsing</strong>: Character-by-character lexical analysis</li>
-<li><strong>Address Block Templates</strong>: Process templates containing multiple merge fields</li>
-<li><strong>Language ID Parsing</strong>: Parse language identifiers for localization</li>
+<li><strong>Placeholder Parsing</strong>: Parse <code>«MERGEFIELD»</code> placeholders into an Abstract Syntax Tree (AST).</li>
+<li><strong>Template Parsing</strong>: Parse strings containing a mix of literal text and merge field placeholders.</li>
+<li><strong>Grammar-Based</strong>: Uses GPLEX/GPPG for robust and accurate parsing.</li>
+<li><strong>AST Representation</strong>: Provides a structured tree of nodes for easy manipulation and analysis.</li>
 </ul>
 <h2 id="core-classes">Core Classes</h2>
-<h3 id="mergefieldlexer">MergeFieldLexer</h3>
-<p>Static class providing lexical analysis methods:</p>
+<h3 id="mergefieldparser">MergeFieldParser</h3>
+<p>A static class for parsing a single <code>«MERGEFIELD»</code> placeholder.</p>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+using OpenLanguage.WordprocessingML.Ast;
 
-// Parse a single merge field placeholder
-var placeholder = MergeFieldLexer.ParseMergeField(&quot;«FirstName»&quot;);
-Console.WriteLine($&quot;Field Name: {placeholder.FieldName}&quot;); // &quot;FirstName&quot;
+// Parse a simple merge field
+MergeFieldNode mergeField = MergeFieldParser.Parse(&quot;«FirstName»&quot;);
+Console.WriteLine($&quot;Field Name: {mergeField.FieldName}&quot;);
 
-// Parse with formatting switch
-var formatted = MergeFieldLexer.ParseMergeField(&quot;«LastName\* Upper»&quot;);
-Console.WriteLine($&quot;Field: {formatted.FieldName}&quot;);        // &quot;LastName&quot;
-Console.WriteLine($&quot;Switch: {formatted.FormattingSwitch}&quot;); // &quot;\* Upper&quot;
+// Parse with a formatting switch
+MergeFieldNode formatted = MergeFieldParser.Parse(@&quot;«Amount \* MERGEFORMAT»&quot;);
+Console.WriteLine($&quot;Field Name: {formatted.FieldName}&quot;);
+Console.WriteLine($&quot;Formatting Switch: {formatted.FormattingSwitch}&quot;);
 </code></pre>
-<h3 id="mergefieldplaceholder">MergeFieldPlaceholder</h3>
-<p>Represents a parsed merge field placeholder:</p>
-<pre><code class="lang-csharp">public class MergeFieldPlaceholder
-{
-    public string FieldName { get; set; }           // Field name without delimiters
-    public string RawText { get; set; }             // Original placeholder text
-    public bool IsValid =&gt; !string.IsNullOrWhiteSpace(FieldName);
-    public string? FormattingSwitch { get; set; }   // Optional formatting switch
-}
-</code></pre>
-<h3 id="addressblocktemplate">AddressBlockTemplate</h3>
-<p>Represents a parsed address block template with merge fields:</p>
-<pre><code class="lang-csharp">public class AddressBlockTemplate
-{
-    public string RawTemplate { get; set; }                        // Original template text
-    public List&lt;MergeFieldPlaceholder&gt; Placeholders { get; set; }  // Found placeholders
-    public string ProcessedTemplate { get; set; }                  // Template with format specifiers
-}
-</code></pre>
-<h2 id="parsing-methods">Parsing Methods</h2>
-<h3 id="single-merge-field-parsing">Single Merge Field Parsing</h3>
-<pre><code class="lang-csharp">// Parse a simple merge field
-var simple = MergeFieldLexer.ParseMergeField(&quot;«CustomerName»&quot;);
-Console.WriteLine($&quot;Field: {simple.FieldName}&quot;);   // &quot;CustomerName&quot;
-Console.WriteLine($&quot;Valid: {simple.IsValid}&quot;);     // True
-
-// Parse with formatting switch
-var withSwitch = MergeFieldLexer.ParseMergeField(&quot;«Amount\* #,##0.00»&quot;);
-Console.WriteLine($&quot;Field: {withSwitch.FieldName}&quot;);           // &quot;Amount&quot;
-Console.WriteLine($&quot;Switch: {withSwitch.FormattingSwitch}&quot;);   // &quot;\* #,##0.00&quot;
-</code></pre>
-<h3 id="address-block-template-parsing">Address Block Template Parsing</h3>
-<pre><code class="lang-csharp">// Parse an address block template with multiple merge fields
-string template = &quot;«Title» «FirstName» «LastName»\n«Address1»\n«City», «State» «PostalCode»&quot;;
-var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
-
-Console.WriteLine($&quot;Found {addressBlock.Placeholders.Count} placeholders&quot;);
-Console.WriteLine($&quot;Processed template: {addressBlock.ProcessedTemplate}&quot;);
-// Output: &quot;Processed template: {0} {1} {2}\n{3}\n{4}, {5} {6}&quot;
-
-// Access individual placeholders
-foreach (var placeholder in addressBlock.Placeholders)
-{
-    Console.WriteLine($&quot;Field: {placeholder.FieldName}&quot;);
-}
-</code></pre>
-<h3 id="field-name-extraction">Field Name Extraction</h3>
-<pre><code class="lang-csharp">// Extract all unique merge field names from text
-string document = &quot;Dear «FirstName» «LastName», your order «OrderNumber» is ready.&quot;;
-var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(document);
-
-foreach (string fieldName in fieldNames)
-{
-    Console.WriteLine($&quot;Found field: {fieldName}&quot;);
-}
-// Output: &quot;FirstName&quot;, &quot;LastName&quot;, &quot;OrderNumber&quot;
-</code></pre>
-<h2 id="utility-methods">Utility Methods</h2>
-<h3 id="validation">Validation</h3>
-<pre><code class="lang-csharp">// Check if text contains valid merge fields
-string text1 = &quot;Hello «FirstName»!&quot;;
-string text2 = &quot;Hello World!&quot;;
-
-bool hasFields1 = MergeFieldLexer.ContainsValidMergeFields(text1); // True
-bool hasFields2 = MergeFieldLexer.ContainsValidMergeFields(text2); // False
-</code></pre>
-<h3 id="formatting">Formatting</h3>
-<pre><code class="lang-csharp">// Format a field name with merge field delimiters
-string formatted = MergeFieldLexer.FormatMergeField(&quot;CustomerName&quot;);
-Console.WriteLine(formatted); // &quot;«CustomerName»&quot;
-
-// Format with a formatting switch
-string withSwitch = MergeFieldLexer.FormatMergeFieldWithSwitch(&quot;Amount&quot;, &quot;* #,##0.00&quot;);
-Console.WriteLine(withSwitch); // &quot;«Amount\* #,##0.00»&quot;
-</code></pre>
-<h3 id="reconstruction">Reconstruction</h3>
-<pre><code class="lang-csharp">// Reconstruct a merge field from a placeholder object
-var placeholder = new MergeFieldPlaceholder
-{
-    FieldName = &quot;Total&quot;,
-    FormattingSwitch = &quot;* Currency&quot;
-};
-
-string reconstructed = MergeFieldLexer.Reconstruct(placeholder);
-Console.WriteLine(reconstructed); // &quot;«Total * Currency»&quot;
-</code></pre>
-<h2 id="language-id-parsing">Language ID Parsing</h2>
-<p>The lexer includes functionality for parsing language identifiers:</p>
-<h3 id="parse-language-ids">Parse Language IDs</h3>
-<pre><code class="lang-csharp">// Parse numeric LCID
-var langId1 = MergeFieldLexer.ParseLanguageId(&quot;1033&quot;);
-Console.WriteLine(langId1); // EnglishUS
-
-// Parse enum name
-var langId2 = MergeFieldLexer.ParseLanguageId(&quot;FrenchFrance&quot;);
-Console.WriteLine(langId2); // FrenchFrance
-
-// Parse culture name
-var langId3 = MergeFieldLexer.ParseLanguageId(&quot;en-US&quot;);
-Console.WriteLine(langId3); // EnglishUS
-
-// Invalid input returns null
-var invalid = MergeFieldLexer.ParseLanguageId(&quot;invalid&quot;);
-Console.WriteLine(invalid == null); // True
-</code></pre>
-<h2 id="state-machine-implementation">State Machine Implementation</h2>
-<p>The lexer uses a character-by-character state machine for robust parsing:</p>
-<h3 id="lexer-states">Lexer States</h3>
-<pre><code class="lang-csharp">internal enum MergeFieldLexerState
-{
-    SearchingForStart,          // Looking for « character
-    ParsingFieldName,           // Inside field, parsing name
-    ParsingFormattingSwitch,    // Parsing switch after backslash
-    SearchingForEnd             // Looking for » character
-}
-</code></pre>
-<h3 id="parsing-process">Parsing Process</h3>
-<ol>
-<li><strong>SearchingForStart</strong>: Scans text looking for opening « delimiter</li>
-<li><strong>ParsingFieldName</strong>: Extracts field name until backslash or closing delimiter</li>
-<li><strong>ParsingFormattingSwitch</strong>: Captures formatting switch text after backslash</li>
-<li><strong>SearchingForEnd</strong>: Completes parsing when closing » delimiter is found</li>
-</ol>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><code>Parse(string placeholderText)</code>: Parses a merge field placeholder string and returns a <code>MergeFieldNode</code>.</li>
+<li><code>TryParse(string placeholderText)</code>: Attempts to parse a placeholder and returns <code>null</code> on failure.</li>
+</ul>
+<h3 id="template-parsing">Template Parsing</h3>
+<p>The <code>OpenLanguage.WordprocessingML.MergeFieldTemplate</code> namespace provides a parser for strings containing a mix of literal text and merge field placeholders. This is used internally by the <code>FieldInstructionParser</code> for fields like <code>ADDRESSBLOCK</code>.</p>
+<h2 id="ast-nodes">AST Nodes</h2>
+<ul>
+<li><code>MergeFieldNode</code>: Represents a <code>«MERGEFIELD»</code> placeholder parsed by <code>MergeFieldParser</code>.</li>
+<li><code>TemplateNode</code>: Represents a parsed template string, containing a list of <code>TextElementNode</code> and <code>MergeFieldElementNode</code> objects.</li>
+<li><code>TextElementNode</code>: Represents literal text within a template.</li>
+<li><code>MergeFieldElementNode</code>: Represents a merge field placeholder within a template.</li>
+</ul>
 <h2 id="usage-examples">Usage Examples</h2>
-<h3 id="complete-parsing-example">Complete Parsing Example</h3>
+<h3 id="parsing-a-single-merge-field">Parsing a Single Merge Field</h3>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+using OpenLanguage.WordprocessingML.Ast;
 
-string template = @&quot;
-Dear «Title» «FirstName» «LastName»,
+var node = MergeFieldParser.Parse(@&quot;«Amount \* MERGEFORMAT»&quot;);
 
-Your account balance is «Balance\* Currency».
-Please contact us at «CompanyPhone» if you have questions.
+Console.WriteLine($&quot;Field Name: {node.FieldName}&quot;);
+Console.WriteLine($&quot;Formatting Switch: {node.FormattingSwitch}&quot;);
+Console.WriteLine($&quot;Reconstructed: {node.ToString()}&quot;);
+</code></pre>
+<h3 id="accessing-a-parsed-template">Accessing a Parsed Template</h3>
+<p>Templates are parsed as part of other field instructions, such as <code>ADDRESSBLOCK</code>.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
-Sincerely,
-«AgentName\* Upper»
-&quot;;
+string fieldCode = @&quot;ADDRESSBLOCK \f &quot;&quot;«FirstName» «LastName»\n«Address»&quot;&quot;&quot;;
+var ast = FieldInstructionParser.Parse(fieldCode);
 
-// Parse the entire template
-var addressBlock = MergeFieldLexer.ParseAddressBlockTemplate(template);
-
-Console.WriteLine($&quot;Original template:&quot;);
-Console.WriteLine(addressBlock.RawTemplate);
-
-Console.WriteLine($&quot;\nFound {addressBlock.Placeholders.Count} merge fields:&quot;);
-foreach (var placeholder in addressBlock.Placeholders)
+if (ast is AddressBlockFieldInstruction addressBlock &amp;&amp; addressBlock.FormatTemplate?.Argument is Quoted&lt;ExpressionNode&gt; quoted)
 {
-    Console.WriteLine($&quot;  Field: {placeholder.FieldName}&quot;);
-    if (!string.IsNullOrEmpty(placeholder.FormattingSwitch))
+    if (quoted.Inner is TemplateNode template)
     {
-        Console.WriteLine($&quot;    Switch: {placeholder.FormattingSwitch}&quot;);
+        Console.WriteLine($&quot;Found {template.Elements.Count} elements in template.&quot;);
+        foreach (var element in template.Elements)
+        {
+            if (element is MergeFieldElementNode mergeField)
+            {
+                Console.WriteLine($&quot;  - Merge Field: {mergeField.FieldName}&quot;);
+            }
+            else if (element is TextElementNode text)
+            {
+                Console.WriteLine($&quot;  - Text: '{text.Text}'&quot;);
+            }
+        }
     }
 }
-
-Console.WriteLine($&quot;\nProcessed template:&quot;);
-Console.WriteLine(addressBlock.ProcessedTemplate);
 </code></pre>
-<h3 id="field-name-validation">Field Name Validation</h3>
-<pre><code class="lang-csharp">// Validate merge field syntax in user input
-string userInput = &quot;«FirstName» «InvalidField «LastName»&quot;;
-
-if (MergeFieldLexer.ContainsValidMergeFields(userInput))
-{
-    var fieldNames = MergeFieldLexer.ExtractMergeFieldNames(userInput);
-    Console.WriteLine($&quot;Valid fields found: {string.Join(&quot;, &quot;, fieldNames)}&quot;);
-}
-else
-{
-    Console.WriteLine(&quot;No valid merge fields found&quot;);
-}
-</code></pre>
-<h3 id="dynamic-field-generation">Dynamic Field Generation</h3>
-<pre><code class="lang-csharp">// Generate merge fields programmatically
-var fieldNames = new[] { &quot;FirstName&quot;, &quot;LastName&quot;, &quot;Email&quot;, &quot;Amount&quot; };
-var formattingSwitches = new[] { null, &quot;* Upper&quot;, null, &quot;* Currency&quot; };
-
-for (int i = 0; i &lt; fieldNames.Length; i++)
-{
-    string mergeField;
-
-    if (formattingSwitches[i] != null)
-    {
-        mergeField = MergeFieldLexer.FormatMergeFieldWithSwitch(
-            fieldNames[i],
-            formattingSwitches[i]
-        );
-    }
-    else
-    {
-        mergeField = MergeFieldLexer.FormatMergeField(fieldNames[i]);
-    }
-
-    Console.WriteLine($&quot;Generated: {mergeField}&quot;);
-}
-</code></pre>
-<h2 id="technical-details">Technical Details</h2>
-<ul>
-<li><strong>Character-by-Character Parsing</strong>: Uses state machine for robust parsing</li>
-<li><strong>Delimiter Support</strong>: Recognizes « and » characters for merge field boundaries</li>
-<li><strong>Switch Parsing</strong>: Handles formatting switches after backslash character</li>
-<li><strong>Language Support</strong>: Includes comprehensive language ID mapping</li>
-<li><strong>Whitespace Handling</strong>: Properly trims field names while preserving switch formatting</li>
-<li><strong>Error Tolerance</strong>: Gracefully handles malformed input</li>
-</ul>
-<h2 id="limitations">Limitations</h2>
-<ul>
-<li>Only supports « » delimiter style (not {{ }} or other formats)</li>
-<li>Formatting switches are captured as strings but not further parsed</li>
-<li>No validation of switch syntax or values</li>
-<li>Language ID mapping covers common locales but may not be exhaustive</li>
-</ul>
 <h2 id="see-also">See Also</h2>
 <ul>
-<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a> - Generic field instruction handling</li>
+<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a></li>
+<li><a href="../Ast.html">Abstract Syntax Tree (AST)</a></li>
 </ul>
 
 </article>

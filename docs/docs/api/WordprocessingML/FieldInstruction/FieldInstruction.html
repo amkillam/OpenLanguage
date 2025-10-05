@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../../public/docfx.min.css">
       <link rel="stylesheet" href="../../../../public/main.css">
       <meta name="docfx:navrel" content="../../../../toc.html">
-      <meta name="docfx:tocrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
       
       <meta name="docfx:rel" content="../../../../">
       
@@ -87,616 +87,128 @@
         <article data-uid="">
 <h1 id="field-instructions">Field Instructions</h1>
 
-<p>The <code>OpenLanguage.WordprocessingML.FieldInstruction</code> namespace provides classes for creating and manipulating Microsoft Word field instructions.</p>
+<p>The <code>OpenLanguage.WordprocessingML.FieldInstruction</code> namespace provides a robust parser for Microsoft Word field instructions, converting them into a strongly-typed Abstract Syntax Tree (AST).</p>
 <h2 id="overview">Overview</h2>
 <p>This component provides:</p>
 <ul>
-<li><strong>Field Instruction Creation</strong>: Build field instructions programmatically</li>
-<li><strong>Argument Handling</strong>: Support for different argument types (identifiers, strings, switches, nested fields)</li>
-<li><strong>Field Reconstruction</strong>: Convert field objects back to field code strings</li>
-<li><strong>Type Safety</strong>: Strongly-typed field instruction factory</li>
+<li><strong>Grammar-Based Parsing</strong>: Uses a GPLEX/GPPG parser to accurately parse complex field instructions.</li>
+<li><strong>Strongly-Typed AST</strong>: Represents each field instruction as a specific C# class, providing type-safe access to its arguments and switches.</li>
+<li><strong>Complete Support</strong>: Support for all field instructions - both standard ECMA variations and those specified in the ISO docs for legacy compatibility</li>
+<li><strong>Round-Trip Fidelity</strong>: Parsed ASTs can be converted back to their original string representation, preserving all components.</li>
 </ul>
 <h2 id="core-classes">Core Classes</h2>
-<h3 id="fieldinstruction">FieldInstruction</h3>
-<p>Represents a Word field instruction with its keyword and arguments.</p>
+<h3 id="fieldinstructionparser">FieldInstructionParser</h3>
+<p>A static class for parsing field instruction strings.</p>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
 
-// Create a field instruction
-var instruction = new FieldInstruction(&quot;MERGEFIELD&quot;);
-instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;FirstName&quot;));
-instruction.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;));
+// Parse a field instruction
+var ast = FieldInstructionParser.Parse(&quot;MERGEFIELD FirstName \\* Upper&quot;);
 
-// Reconstruct field code
-Console.WriteLine(instruction.ToString()); // &quot;MERGEFIELD FirstName \* Upper&quot;
-</code></pre>
-<h4 id="properties-and-methods">Properties and Methods</h4>
-<ul>
-<li><code>string Instruction</code> - The field keyword (e.g., &quot;MERGEFIELD&quot;, &quot;REF&quot;, &quot;IF&quot;)</li>
-<li><code>List&lt;FieldArgument&gt; Arguments</code> - List of field arguments that can be modified</li>
-<li><code>ToString()</code> - Reconstructs the field code string</li>
-</ul>
-<h3 id="fieldargument">FieldArgument</h3>
-<p>Represents a single argument within a field instruction.</p>
-<pre><code class="lang-csharp">public class FieldArgument
+// The result is a strongly-typed AST node
+if (ast is MergeFieldFieldInstruction mergeField)
 {
-    public FieldArgumentType Type { get; }    // Type of argument
-    public object Value { get; }              // Argument value
-
-    public override string ToString()         // Reconstructs argument as field code
+    Console.WriteLine($&quot;Field Name: {mergeField.FieldName}&quot;);
+    if (mergeField.GeneralFormat?.Argument is StringLiteralNode format)
+    {
+        Console.WriteLine($&quot;General Format: {format.Value}&quot;);
+    }
 }
 </code></pre>
-<h2 id="argument-types">Argument Types</h2>
-<p>The <code>FieldArgumentType</code> enumeration defines the types of arguments that can be used in field instructions:</p>
-<h3 id="fieldargumenttype-values">FieldArgumentType Values</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-<th>Example Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Identifier</code></td>
-<td>Simple identifier or bookmark name</td>
-<td><code>new FieldArgument(FieldArgumentType.Identifier, &quot;BookmarkName&quot;)</code></td>
-</tr>
-<tr>
-<td><code>StringLiteral</code></td>
-<td>Quoted string literal</td>
-<td><code>new FieldArgument(FieldArgumentType.StringLiteral, &quot;text&quot;)</code></td>
-</tr>
-<tr>
-<td><code>Switch</code></td>
-<td>Field switch (begins with backslash)</td>
-<td><code>new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;)</code></td>
-</tr>
-<tr>
-<td><code>NestedField</code></td>
-<td>Complete nested field instruction</td>
-<td><code>new FieldArgument(FieldArgumentType.NestedField, fieldObj)</code></td>
-</tr>
-<tr>
-<td><code>Text</code></td>
-<td>Plain text value</td>
-<td><code>new FieldArgument(FieldArgumentType.Text, &quot;plain text&quot;)</code></td>
-</tr>
-<tr>
-<td><code>Number</code></td>
-<td>Numeric value</td>
-<td><code>new FieldArgument(FieldArgumentType.Number, &quot;123&quot;)</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="string-literal-handling">String Literal Handling</h3>
-<p>String literals are automatically quoted when reconstructed:</p>
-<pre><code class="lang-csharp">var stringArg = new FieldArgument(FieldArgumentType.StringLiteral, &quot;Hello World&quot;);
-Console.WriteLine(stringArg.ToString()); // &quot;Hello World&quot;
-
-// Quotes in strings are escaped
-var quotedArg = new FieldArgument(FieldArgumentType.StringLiteral, &quot;Say &quot;Hello&quot;&quot;);
-Console.WriteLine(quotedArg.ToString()); // &quot;Say &quot;Hello&quot;&quot;
+<h4 id="methods">Methods</h4>
+<ul>
+<li><code>Parse(string fieldInstruction)</code>: Parses a field instruction string and returns the root <code>ExpressionNode</code> of the AST. Throws <code>InvalidOperationException</code> on failure.</li>
+<li><code>TryParse(string fieldInstruction)</code>: Attempts to parse a field instruction and returns <code>null</code> if parsing fails.</li>
+</ul>
+<h3 id="fieldinstruction-ast-nodes">FieldInstruction AST Nodes</h3>
+<p>The parser generates a tree of nodes, with each field type represented by a specific class inheriting from <code>OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction</code>. This provides direct, type-safe access to arguments and switches.</p>
+<p><strong>Example Node:</strong> <code>MergeFieldFieldInstruction</code></p>
+<pre><code class="lang-csharp">public class MergeFieldFieldInstruction : FieldInstruction
+{
+    public ExpressionNode FieldName { get; set; }
+    public FlaggedArgument&lt;ExpressionNode&gt;? TextBefore { get; set; }
+    public FlaggedArgument&lt;ExpressionNode&gt;? TextAfter { get; set; }
+    // ... and other properties for switches
+}
 </code></pre>
+<h2 id="supported-field-types">Supported Field Types</h2>
+<p>The library provides strongly-typed classes for most Word field instructions. For a complete list, see <a href="SupportedFields.html">Supported Field Instructions</a>. Some examples include:</p>
+<ul>
+<li><code>AuthorFieldInstruction</code></li>
+<li><code>DateFieldInstruction</code></li>
+<li><code>IfFieldInstruction</code></li>
+<li><code>MergeFieldFieldInstruction</code></li>
+<li><code>PageRefFieldInstruction</code></li>
+<li><code>TocFieldInstruction</code></li>
+</ul>
 <h2 id="usage-examples">Usage Examples</h2>
-<h3 id="creating-field-instructions">Creating Field Instructions</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-
-// Create a simple field
-var pageField = new FieldInstruction(&quot;PAGE&quot;);
-Console.WriteLine(pageField.ToString()); // &quot;PAGE&quot;
-
-// Create a field with arguments
-var mergeField = new FieldInstruction(&quot;MERGEFIELD&quot;);
-mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;FirstName&quot;));
-mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* MERGEFORMAT&quot;));
-Console.WriteLine(mergeField.ToString()); // &quot;MERGEFIELD FirstName \* MERGEFORMAT&quot;
-</code></pre>
-<h3 id="working-with-different-argument-types">Working with Different Argument Types</h3>
-<pre><code class="lang-csharp">// Identifier argument
-var refField = new FieldInstruction(&quot;REF&quot;);
-refField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;MyBookmark&quot;));
-
-// String literal argument
-var hyperlinkField = new FieldInstruction(&quot;HYPERLINK&quot;);
-hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;http://example.com&quot;));
-hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;Link Text&quot;));
-
-// Switch argument
-var dateField = new FieldInstruction(&quot;DATE&quot;);
-dateField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@ &quot;MM/dd/yyyy&quot;&quot;));
-
-Console.WriteLine(hyperlinkField.ToString());
-// &quot;HYPERLINK &quot;http://example.com&quot; &quot;Link Text&quot;&quot;
-</code></pre>
-<h3 id="nested-field-instructions">Nested Field Instructions</h3>
-<pre><code class="lang-csharp">// Create a nested field
-var innerField = new FieldInstruction(&quot;DATE&quot;);
-var outerField = new FieldInstruction(&quot;IF&quot;);
-outerField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, innerField));
-outerField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;Today&quot;));
-outerField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;No Date&quot;));
-
-Console.WriteLine(outerField.ToString());
-// &quot;IF { DATE } &quot;Today&quot; &quot;No Date&quot;&quot;
-</code></pre>
-<h3 id="modifying-field-instructions">Modifying Field Instructions</h3>
-<pre><code class="lang-csharp">// Create and modify a field
-var field = new FieldInstruction(&quot;MERGEFIELD&quot;);
-field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;LastName&quot;));
-
-// Add a formatting switch
-field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;));
-
-// Change the instruction type
-field.Instruction = &quot;DOCVARIABLE&quot;;
-
-Console.WriteLine(field.ToString()); // &quot;DOCVARIABLE LastName \* Upper&quot;
-</code></pre>
-<h2 id="helper-classes-and-enumerations">Helper Classes and Enumerations</h2>
-<p>The namespace includes several helper classes and enumerations for working with field instructions:</p>
-<h3 id="language-support">Language Support</h3>
-<pre><code class="lang-csharp">// Language identifiers for formatting
-var languageId = LanguageIdentifier.EnglishUS; // 1033
-var frenchId = LanguageIdentifier.FrenchFrance; // 1036
-
-// Country/region codes
-var country = CountryRegion.UnitedStates;
-var inclusion = CountryRegionInclusion.IncludeIfDifferent;
-</code></pre>
-<h3 id="measurement-values">Measurement Values</h3>
-<pre><code class="lang-csharp">// Points measurement (bounded -31 to 31)
-var measurement = new PtsMeasurementValue(15);
-Console.WriteLine(measurement.ToString()); // &quot;15&quot;
-
-// Implicit conversion
-int value = measurement; // 15
-PtsMeasurementValue newMeasurement = 20;
-</code></pre>
-<h3 id="postal-data-validation">Postal Data Validation</h3>
-<pre><code class="lang-csharp">// ZIP code validation
-var zipCode = new PostalData(&quot;12345&quot;);     // Valid 5-digit ZIP
-var zipPlus4 = new PostalData(&quot;12345-6789&quot;); // Valid 9-digit ZIP
-
-// Implicit conversion
-string zip = zipCode; // &quot;12345&quot;
-PostalData newZip = &quot;54321&quot;;
-</code></pre>
-<h3 id="namespace-declarations">Namespace Declarations</h3>
-<pre><code class="lang-csharp">// XML namespace validation
-var ns = new NamespaceDeclaration(&quot;xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&quot;);
-Console.WriteLine(ns.Prefix);    // &quot;w&quot;
-Console.WriteLine(ns.Uri);       // &quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;
-</code></pre>
-<h2 id="error-handling">Error Handling</h2>
-<p>Field instruction construction validates arguments:</p>
-<pre><code class="lang-csharp">try
+<h3 id="parsing-common-field-types">Parsing Common Field Types</h3>
+<h4 id="mergefield">MERGEFIELD</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;MERGEFIELD Amount \# &quot;&quot;$#,##0.00&quot;&quot;&quot;);
+if (ast is MergeFieldFieldInstruction mergeField)
 {
-    // This will throw ArgumentException
-    var invalidField = new FieldInstruction(&quot;&quot;);
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine($&quot;Invalid instruction: {ex.Message}&quot;);
-}
-
-try
-{
-    // This will throw ArgumentOutOfRangeException
-    var invalidMeasurement = new PtsMeasurementValue(50);
-}
-catch (ArgumentOutOfRangeException ex)
-{
-    Console.WriteLine($&quot;Invalid measurement: {ex.Message}&quot;);
+    Console.WriteLine($&quot;Field: {mergeField.FieldName}&quot;);
+    Console.WriteLine($&quot;Numeric Format: {mergeField.NumericFormat.Argument}&quot;);
 }
 </code></pre>
-<h2 id="integration-with-typed-instructions">Integration with Typed Instructions</h2>
-<p>Field instructions can be converted to strongly-typed versions using the <code>TypedFieldInstructionFactory</code>:</p>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction.Typed;
-
-// Create generic field instruction
-var genericField = new FieldInstruction(&quot;REF&quot;);
-genericField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;MyBookmark&quot;));
-
-// Convert to strongly-typed (if supported)
-var typedField = TypedFieldInstructionFactory.Create(genericField);
-
-if (typedField is RefFieldInstruction refInstruction)
+<h4 id="if">IF</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;IF { MERGEFIELD Amount } &gt; 1000 &quot;&quot;High&quot;&quot; &quot;&quot;Low&quot;&quot;&quot;);
+if (ast is IfFieldInstruction ifField)
 {
-    Console.WriteLine($&quot;Bookmark: {refInstruction.BookmarkName}&quot;);
+    Console.WriteLine($&quot;Condition: {ifField.Condition}&quot;);
+    Console.WriteLine($&quot;True Value: {ifField.TrueExpression}&quot;);
+    Console.WriteLine($&quot;False Value: {ifField.FalseExpression}&quot;);
 }
 </code></pre>
-<h3 id="supported-field-types-for-typed-instructions">Supported Field Types for Typed Instructions</h3>
-<p>The <code>TypedFieldInstructionFactory</code> supports over 60 field instruction types, providing strongly-typed access to field-specific properties and switches:</p>
-<h4 id="document-information-fields">Document Information Fields</h4>
-<ul>
-<li><code>AUTHOR</code> → <code>AuthorFieldInstruction</code></li>
-<li><code>COMMENTS</code> → <code>CommentsFieldInstruction</code></li>
-<li><code>CREATEDATE</code> → <code>CreateDateFieldInstruction</code></li>
-<li><code>EDITTIME</code> → <code>EditTimeFieldInstruction</code></li>
-<li><code>FILENAME</code> → <code>FileNameFieldInstruction</code></li>
-<li><code>FILESIZE</code> → <code>FileSizeFieldInstruction</code></li>
-<li><code>KEYWORDS</code> → <code>KeywordsFieldInstruction</code></li>
-<li><code>LASTSAVEDBY</code> → <code>LastSavedByFieldInstruction</code></li>
-<li><code>NUMCHARS</code> → <code>NumCharsFieldInstruction</code></li>
-<li><code>NUMPAGES</code> → <code>NumPagesFieldInstruction</code></li>
-<li><code>NUMWORDS</code> → <code>NumWordsFieldInstruction</code></li>
-<li><code>REVNUM</code> → <code>RevNumFieldInstruction</code></li>
-<li><code>SAVEDATE</code> → <code>SaveDateFieldInstruction</code></li>
-<li><code>SUBJECT</code> → <code>SubjectFieldInstruction</code></li>
-<li><code>TEMPLATE</code> → <code>TemplateFieldInstruction</code></li>
-<li><code>TITLE</code> → <code>TitleFieldInstruction</code></li>
-</ul>
-<h4 id="date-and-time-fields">Date and Time Fields</h4>
-<ul>
-<li><code>DATE</code> → <code>DateFieldInstruction</code></li>
-<li><code>PRINTDATE</code> → <code>PrintDateFieldInstruction</code></li>
-<li><code>TIME</code> → <code>TimeFieldInstruction</code></li>
-</ul>
-<h4 id="mail-merge-fields">Mail Merge Fields</h4>
-<ul>
-<li><code>ADDRESSBLOCK</code> → <code>AddressBlockFieldInstruction</code></li>
-<li><code>GREETINGLINE</code> → <code>GreetingLineFieldInstruction</code></li>
-<li><code>MERGEFIELD</code> → <code>MergeFieldFieldInstruction</code></li>
-<li><code>MERGEREC</code> → <code>MergeRecFieldInstruction</code></li>
-<li><code>MERGESEQ</code> → <code>MergeSeqFieldInstruction</code></li>
-<li><code>NEXT</code> → <code>NextFieldInstruction</code></li>
-<li><code>NEXTIF</code> → <code>NextIfFieldInstruction</code></li>
-<li><code>SKIPIF</code> → <code>SkipIfFieldInstruction</code></li>
-</ul>
-<h4 id="reference-fields">Reference Fields</h4>
-<ul>
-<li><code>REF</code> → <code>RefFieldInstruction</code></li>
-<li><code>PAGEREF</code> → <code>PageRefFieldInstruction</code></li>
-<li><code>STYLEREF</code> → <code>StyleRefFieldInstruction</code></li>
-<li><code>NOTEREF</code> → <code>NoteRefFieldInstruction</code></li>
-</ul>
-<h4 id="page-and-section-fields">Page and Section Fields</h4>
-<ul>
-<li><code>PAGE</code> → <code>PageFieldInstruction</code></li>
-<li><code>SECTION</code> → <code>SectionFieldInstruction</code></li>
-<li><code>SECTIONPAGES</code> → <code>SectionPagesFieldInstruction</code></li>
-</ul>
-<h4 id="numbering-fields">Numbering Fields</h4>
-<ul>
-<li><code>AUTONUM</code> → <code>AutoNumFieldInstruction</code></li>
-<li><code>AUTONUMLGL</code> → <code>AutoNumLglFieldInstruction</code></li>
-<li><code>AUTONUMOUT</code> → <code>AutoNumOutFieldInstruction</code></li>
-<li><code>LISTNUM</code> → <code>ListNumFieldInstruction</code></li>
-<li><code>SEQ</code> → <code>SeqFieldInstruction</code></li>
-</ul>
-<h4 id="index-and-table-fields">Index and Table Fields</h4>
-<ul>
-<li><code>INDEX</code> → <code>IndexFieldInstruction</code></li>
-<li><code>TOC</code> → <code>TocFieldInstruction</code></li>
-<li><code>TOA</code> → <code>ToaFieldInstruction</code></li>
-<li><code>XE</code> → <code>XeFieldInstruction</code></li>
-<li><code>TA</code> → <code>TaFieldInstruction</code></li>
-<li><code>TC</code> → <code>TcFieldInstruction</code></li>
-</ul>
-<h4 id="form-fields">Form Fields</h4>
-<ul>
-<li><code>FORMCHECKBOX</code> → <code>FormCheckBoxFieldInstruction</code></li>
-<li><code>FORMDROPDOWN</code> → <code>FormDropDownFieldInstruction</code></li>
-<li><code>FORMTEXT</code> → <code>FormTextFieldInstruction</code></li>
-</ul>
-<h4 id="user-information-fields">User Information Fields</h4>
-<ul>
-<li><code>USERNAME</code> → <code>UserNameFieldInstruction</code></li>
-<li><code>USERINITIALS</code> → <code>UserInitialsFieldInstruction</code></li>
-<li><code>USERADDRESS</code> → <code>UserAddressFieldInstruction</code></li>
-</ul>
-<h4 id="interactive-fields">Interactive Fields</h4>
-<ul>
-<li><code>ASK</code> → <code>AskFieldInstruction</code></li>
-<li><code>FILLIN</code> → <code>FillInFieldInstruction</code></li>
-</ul>
-<h4 id="button-fields">Button Fields</h4>
-<ul>
-<li><code>GOTOBUTTON</code> → <code>GoToButtonFieldInstruction</code></li>
-<li><code>MACROBUTTON</code> → <code>MacroButtonFieldInstruction</code></li>
-</ul>
-<h4 id="advanced-fields">Advanced Fields</h4>
-<ul>
-<li><code>DATABASE</code> → <code>DatabaseFieldInstruction</code></li>
-<li><code>EQ</code> → <code>EqFieldInstruction</code></li>
-<li><code>HYPERLINK</code> → <code>HyperlinkFieldInstruction</code></li>
-<li><code>QUOTE</code> → <code>QuoteFieldInstruction</code></li>
-</ul>
-<h4 id="conditional-fields">Conditional Fields</h4>
-<ul>
-<li><code>IF</code> → <code>IfFieldInstruction</code></li>
-<li><code>COMPARE</code> → <code>CompareFieldInstruction</code></li>
-</ul>
-<h4 id="other-fields">Other Fields</h4>
-<ul>
-<li><code>ADVANCE</code> → <code>AdvanceFieldInstruction</code></li>
-<li><code>AUTOTEXT</code> → <code>AutoTextFieldInstruction</code></li>
-<li><code>AUTOTEXTLIST</code> → <code>AutoTextListFieldInstruction</code></li>
-<li><code>BARCODE</code> → <code>BarcodeFieldInstruction</code></li>
-<li><code>BIBLIOGRAPHY</code> → <code>BibliographyFieldInstruction</code></li>
-<li><code>CITATION</code> → <code>CitationFieldInstruction</code></li>
-<li><code>DOCPROPERTY</code> → <code>DocPropertyFieldInstruction</code></li>
-<li><code>DOCVARIABLE</code> → <code>DocVariableFieldInstruction</code></li>
-<li><code>INCLUDEPICTURE</code> → <code>IncludePictureFieldInstruction</code></li>
-<li><code>INCLUDETEXT</code> → <code>IncludeTextFieldInstruction</code></li>
-<li><code>INFO</code> → <code>InfoFieldInstruction</code></li>
-<li><code>LINK</code> → <code>LinkFieldInstruction</code></li>
-<li><code>PRINT</code> → <code>PrintFieldInstruction</code></li>
-<li><code>RD</code> → <code>RdFieldInstruction</code></li>
-<li><code>SET</code> → <code>SetFieldInstruction</code></li>
-<li><code>SYMBOL</code> → <code>SymbolFieldInstruction</code></li>
-</ul>
-<h3 id="factory-usage-examples">Factory Usage Examples</h3>
-<pre><code class="lang-csharp">// Mail merge field with formatting
-var mergeField = new FieldInstruction(&quot;MERGEFIELD&quot;);
-mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;FirstName&quot;));
-mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\* Upper&quot;));
-
-var typedMerge = TypedFieldInstructionFactory.Create(mergeField) as MergeFieldFieldInstruction;
-if (typedMerge != null)
+<h4 id="hyperlink">HYPERLINK</h4>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(@&quot;HYPERLINK &quot;&quot;http://example.com&quot;&quot; \o &quot;&quot;Tooltip&quot;&quot; \t &quot;&quot;_blank&quot;&quot;&quot;);
+if (ast is HyperlinkFieldInstruction hyperlink)
 {
-    Console.WriteLine($&quot;Field Name: {typedMerge.FieldName}&quot;);
-    Console.WriteLine($&quot;Text Format: {typedMerge.TextFormat}&quot;);
-}
-
-// Date field with custom format
-var dateField = new FieldInstruction(&quot;DATE&quot;);
-dateField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@ &quot;MMMM d, yyyy&quot;&quot;));
-
-var typedDate = TypedFieldInstructionFactory.Create(dateField) as DateFieldInstruction;
-if (typedDate != null)
-{
-    Console.WriteLine($&quot;Date Format: {typedDate.DateFormat}&quot;);
-}
-
-// Hyperlink field
-var hyperlinkField = new FieldInstruction(&quot;HYPERLINK&quot;);
-hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;http://example.com&quot;));
-hyperlinkField.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\o &quot;Tooltip text&quot;&quot;));
-
-var typedHyperlink = TypedFieldInstructionFactory.Create(hyperlinkField) as HyperlinkFieldInstruction;
-if (typedHyperlink != null)
-{
-    Console.WriteLine($&quot;URL: {typedHyperlink.Url}&quot;);
-    Console.WriteLine($&quot;Screen Tip: {typedHyperlink.ScreenTip}&quot;);
+    Console.WriteLine($&quot;URI: {hyperlink.Uri}&quot;);
+    Console.WriteLine($&quot;Screen Tip: {hyperlink.ScreenTipText.Argument}&quot;);
+    Console.WriteLine($&quot;Target: {hyperlink.InstrFrameTarget.Argument}&quot;);
 }
 </code></pre>
-<h2 id="advanced-usage-patterns">Advanced Usage Patterns</h2>
-<h3 id="field-instruction-parsing-from-text">Field Instruction Parsing from Text</h3>
-<p>The library provides robust parsing capabilities for field codes:</p>
-<pre><code class="lang-csharp">// Parse complex nested fields
-var complexField = &quot;IF { MERGEFIELD Amount } &gt; { QUOTE 1000 } &quot;Large Order&quot; &quot;Standard Order&quot;&quot;;
-var instruction = FieldInstructionParser.Parse(complexField);
+<h3 id="working-with-the-ast">Working with the AST</h3>
+<p>The AST is fully navigable and mutable.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Ast;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 
-Console.WriteLine($&quot;Instruction: {instruction.Instruction}&quot;); // &quot;IF&quot;
-Console.WriteLine($&quot;Arguments: {instruction.Arguments.Count}&quot;); // Number of parsed arguments
+var ast = FieldInstructionParser.Parse(&quot;PAGE \\* Arabic&quot;);
 
-// Access nested fields
-foreach (var arg in instruction.Arguments)
+if (ast is PageFieldInstruction pageField)
 {
-    if (arg.Type == FieldArgumentType.NestedField &amp;&amp; arg.Value is FieldInstruction nested)
+    // Access a property
+    Console.WriteLine($&quot;Original format: {pageField.GeneralFormat.Argument}&quot;);
+
+    // Modify the AST
+    var newFormat = new StringLiteralNode(&quot;Roman&quot;);
+    pageField.GeneralFormat.Argument = newFormat;
+
+    // Reconstruct the field code
+    Console.WriteLine($&quot;Modified field: {pageField.ToString()}&quot;);
+    // Output: Modified field: PAGE \* Roman
+}
+</code></pre>
+<h3 id="nested-fields">Nested Fields</h3>
+<p>The parser correctly handles nested field instructions, representing them as <code>NestedFieldInstruction</code> nodes within the parent's AST.</p>
+<pre><code class="lang-csharp">var ast = FieldInstructionParser.Parse(&quot;IF { COMPARE { REF a } &gt; { REF b } } = 1 \&quot;Greater\&quot; \&quot;Smaller\&quot;&quot;);
+
+if (ast is IfFieldInstruction ifField &amp;&amp; ifField.Condition is EqualNode condition)
+{
+    if (condition.LeftOperand is NestedFieldInstruction nested)
     {
-        Console.WriteLine($&quot;Nested: {nested.Instruction} - {nested.Arguments.Count} args&quot;);
+        Console.WriteLine($&quot;Nested field type: {nested.NestedInstruction.GetType().Name}&quot;);
+        // Output: Nested field type: CompareFieldInstruction
     }
 }
 </code></pre>
-<h3 id="dynamic-field-construction">Dynamic Field Construction</h3>
-<p>Build field instructions programmatically based on runtime conditions:</p>
-<pre><code class="lang-csharp">public FieldInstruction CreateConditionalMergeField(string fieldName, string condition, string trueValue, string falseValue)
-{
-    var ifField = new FieldInstruction(&quot;IF&quot;);
-
-    // Create nested MERGEFIELD
-    var mergeField = new FieldInstruction(&quot;MERGEFIELD&quot;);
-    mergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fieldName));
-
-    // Add arguments to IF field
-    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, mergeField));
-    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Text, condition));
-    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, trueValue));
-    ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, falseValue));
-
-    return ifField;
-}
-
-// Usage
-var conditionalField = CreateConditionalMergeField(&quot;Status&quot;, &quot;&gt; 5&quot;, &quot;Active&quot;, &quot;Inactive&quot;);
-Console.WriteLine(conditionalField.ToString());
-// &quot;IF { MERGEFIELD Status } &gt; 5 &quot;Active&quot; &quot;Inactive&quot;&quot;
-</code></pre>
-<h3 id="field-instruction-validation">Field Instruction Validation</h3>
-<p>Implement validation for field-specific requirements:</p>
-<pre><code class="lang-csharp">public bool ValidateFieldInstruction(FieldInstruction instruction)
-{
-    switch (instruction.Instruction.ToUpperInvariant())
-    {
-        case &quot;MERGEFIELD&quot;:
-            // MERGEFIELD requires at least one identifier argument
-            return instruction.Arguments.Any(arg =&gt; arg.Type == FieldArgumentType.Identifier);
-
-        case &quot;REF&quot;:
-        case &quot;PAGEREF&quot;:
-            // Reference fields require a bookmark name
-            return instruction.Arguments.Any(arg =&gt; arg.Type == FieldArgumentType.Identifier);
-
-        case &quot;DATE&quot;:
-        case &quot;TIME&quot;:
-            // Date/time fields can have format switches
-            var hasValidFormat = true;
-            foreach (var arg in instruction.Arguments.Where(a =&gt; a.Type == FieldArgumentType.Switch))
-            {
-                if (arg.Value.ToString().StartsWith(&quot;\@&quot;))
-                {
-                    // Validate date format syntax here
-                    hasValidFormat = ValidateDateFormat(arg.Value.ToString());
-                }
-            }
-            return hasValidFormat;
-
-        default:
-            return true; // Unknown fields are considered valid
-    }
-}
-
-private bool ValidateDateFormat(string formatSwitch)
-{
-    // Extract format string and validate
-    // Implementation would check for valid date/time format patterns
-    return !string.IsNullOrEmpty(formatSwitch);
-}
-</code></pre>
-<h3 id="field-instruction-transformation">Field Instruction Transformation</h3>
-<p>Transform field instructions for different document contexts:</p>
-<pre><code class="lang-csharp">public FieldInstruction TransformForMailMerge(FieldInstruction original)
-{
-    // Clone the original instruction
-    var transformed = new FieldInstruction(original.Instruction);
-
-    foreach (var arg in original.Arguments)
-    {
-        var newArg = arg;
-
-        // Transform specific argument types
-        if (arg.Type == FieldArgumentType.Identifier)
-        {
-            // Prefix field names for mail merge context
-            var fieldName = arg.Value.ToString();
-            newArg = new FieldArgument(FieldArgumentType.Identifier, $&quot;MailMerge_{fieldName}&quot;);
-        }
-        else if (arg.Type == FieldArgumentType.NestedField &amp;&amp; arg.Value is FieldInstruction nestedField)
-        {
-            // Recursively transform nested fields
-            newArg = new FieldArgument(FieldArgumentType.NestedField, TransformForMailMerge(nestedField));
-        }
-
-        transformed.Arguments.Add(newArg);
-    }
-
-    return transformed;
-}
-</code></pre>
-<h3 id="batch-field-processing">Batch Field Processing</h3>
-<p>Process multiple field instructions efficiently:</p>
-<pre><code class="lang-csharp">public class FieldInstructionProcessor
-{
-    private readonly Dictionary&lt;string, Func&lt;FieldInstruction, string&gt;&gt; _processors;
-
-    public FieldInstructionProcessor()
-    {
-        _processors = new Dictionary&lt;string, Func&lt;FieldInstruction, string&gt;&gt;
-        {
-            [&quot;MERGEFIELD&quot;] = ProcessMergeField,
-            [&quot;DATE&quot;] = ProcessDateField,
-            [&quot;REF&quot;] = ProcessRefField,
-            [&quot;HYPERLINK&quot;] = ProcessHyperlinkField
-        };
-    }
-
-    public List&lt;string&gt; ProcessFields(IEnumerable&lt;FieldInstruction&gt; fields)
-    {
-        var results = new List&lt;string&gt;();
-
-        foreach (var field in fields)
-        {
-            if (_processors.TryGetValue(field.Instruction.ToUpperInvariant(), out var processor))
-            {
-                results.Add(processor(field));
-            }
-            else
-            {
-                results.Add($&quot;Unsupported field: {field.Instruction}&quot;);
-            }
-        }
-
-        return results;
-    }
-
-    private string ProcessMergeField(FieldInstruction field)
-    {
-        var typedField = TypedFieldInstructionFactory.Create(field) as MergeFieldFieldInstruction;
-        return typedField != null
-            ? $&quot;Merge field for: {typedField.FieldName}&quot;
-            : &quot;Invalid merge field&quot;;
-    }
-
-    private string ProcessDateField(FieldInstruction field)
-    {
-        var typedField = TypedFieldInstructionFactory.Create(field) as DateFieldInstruction;
-        return typedField != null
-            ? $&quot;Date field with format: {typedField.DateFormat ?? &quot;default&quot;}&quot;
-            : &quot;Invalid date field&quot;;
-    }
-
-    // Additional processors...
-    private string ProcessRefField(FieldInstruction field) =&gt; &quot;Reference field processed&quot;;
-    private string ProcessHyperlinkField(FieldInstruction field) =&gt; &quot;Hyperlink field processed&quot;;
-}
-</code></pre>
-<h3 id="field-instruction-serialization">Field Instruction Serialization</h3>
-<p>Serialize field instructions for storage or transmission:</p>
-<pre><code class="lang-csharp">public class FieldInstructionSerializer
-{
-    public string SerializeToJson(FieldInstruction instruction)
-    {
-        var data = new
-        {
-            Instruction = instruction.Instruction,
-            Arguments = instruction.Arguments.Select(arg =&gt; new
-            {
-                Type = arg.Type.ToString(),
-                Value = arg.Type == FieldArgumentType.NestedField &amp;&amp; arg.Value is FieldInstruction nested
-                    ? SerializeToJson(nested)
-                    : arg.Value.ToString()
-            }).ToArray()
-        };
-
-        return System.Text.Json.JsonSerializer.Serialize(data);
-    }
-
-    public FieldInstruction DeserializeFromJson(string json)
-    {
-        using var document = System.Text.Json.JsonDocument.Parse(json);
-        var root = document.RootElement;
-
-        var instruction = new FieldInstruction(root.GetProperty(&quot;Instruction&quot;).GetString());
-
-        foreach (var argElement in root.GetProperty(&quot;Arguments&quot;).EnumerateArray())
-        {
-            var type = Enum.Parse&lt;FieldArgumentType&gt;(argElement.GetProperty(&quot;Type&quot;).GetString());
-            var value = argElement.GetProperty(&quot;Value&quot;).GetString();
-
-            if (type == FieldArgumentType.NestedField)
-            {
-                var nestedField = DeserializeFromJson(value);
-                instruction.Arguments.Add(new FieldArgument(type, nestedField));
-            }
-            else
-            {
-                instruction.Arguments.Add(new FieldArgument(type, value));
-            }
-        }
-
-        return instruction;
-    }
-}
-</code></pre>
-<h2 id="technical-details">Technical Details</h2>
-<ul>
-<li>Field instructions are mutable objects that can be modified after creation</li>
-<li>Arguments list can be manipulated directly (add, remove, modify)</li>
-<li>ToString() method reconstructs valid field code syntax</li>
-<li>All string values are properly escaped when reconstructed</li>
-<li>Nested fields are formatted with proper brace spacing</li>
-<li>The component includes comprehensive enumerations for Word-specific values</li>
-<li>Field instruction parsing handles complex nested structures and quoted strings</li>
-<li>Memory-efficient argument storage using object references</li>
-<li>Thread-safe factory methods for typed instruction creation</li>
-</ul>
 <h2 id="see-also">See Also</h2>
 <ul>
-<li><a href="Typed.html">Typed Field Instructions</a> - Strongly-typed field instruction factory</li>
-<li><a href="../../../development/test.html">Testing Documentation</a> - Unit test examples</li>
+<li><a href="../Expression/Expression.html">WordprocessingML Expression Parser</a></li>
+<li><a href="../MergeField/MergeField.html">WordprocessingML Merge Fields</a></li>
+<li><a href="../Ast.html">WordprocessingML Abstract Syntax Tree</a></li>
 </ul>
 
 </article>

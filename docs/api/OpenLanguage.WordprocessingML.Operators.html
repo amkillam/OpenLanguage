@@ -98,12 +98,32 @@ Classes
       <dt><a class="xref" href="OpenLanguage.WordprocessingML.Operators.ComparisonOperatorExtensions.html">ComparisonOperatorExtensions</a></dt>
       <dd></dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="OpenLanguage.WordprocessingML.Operators.OperatorConstants.html">OperatorConstants</a></dt>
+      <dd></dd>
+    </dl>
     <h3 id="enums">
 Enums
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="OpenLanguage.WordprocessingML.Operators.ComparisonOperator.html">ComparisonOperator</a></dt>
       <dd><p>Enumeration of comparison operators.</p>
+<p>This can be seen in practice as what would be a bitpacked union in C.
+First bit represents &quot;Equal&quot;: whether the two values is equal.
+Second bit represents &quot;LessThan&quot;: whether the first value is less than the second
+Third bit represents &quot;GreaterThan&quot;: whether the first value is greater than the second.
+Combining these bits allows representation of all standard comparison operators.
+For example:</p>
+<ul>
+<li>Equal (0b001): only equal</li>
+<li>LessThan (0b010): only less than</li>
+<li>LessThanOrEqual (0b011): less than or equal</li>
+<li>GreaterThan (0b100): only greater than</li>
+<li>GreaterThanOrEqual (0b101): greater than or equal</li>
+<li>NotEqual (0b110): less than or greater than (not equal)</li>
+<li>All (0b111): equal, less than, or greater than (always true)</li>
+<li>None (0b000): no relation (always false)</li>
+</ul>
 </dd>
     </dl>
 

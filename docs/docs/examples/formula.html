@@ -111,7 +111,7 @@ string[] testFormulas = {
     &quot;=A1+B1&quot;,
     &quot;=SUM(1,2,3)&quot;,
     &quot;=INVALID_SYNTAX(&quot;,
-    &quot;=IF(A1&gt;0,&quot;Positive&quot;,&quot;Non-positive&quot;)&quot;
+    &quot;=IF(A1&gt;0,\&quot;Positive\&quot;,\&quot;Non-positive\&quot;)&quot;
 };
 
 foreach (string formulaText in testFormulas)
@@ -177,30 +177,32 @@ Console.WriteLine($&quot;VLOOKUP: {vlookup}&quot;);
 </code></pre>
 <h3 id="array-literals">Array Literals</h3>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 
 // Horizontal array
-Ast.Node horizontalArray = FormulaParser.Parse(&quot;={1,2,3,4}&quot;);
+Node horizontalArray = FormulaParser.Parse(&quot;={1,2,3,4}&quot;);
 
 // Vertical array
-Ast.Node verticalArray = FormulaParser.Parse(&quot;={1;2;3;4}&quot;);
+Node verticalArray = FormulaParser.Parse(&quot;={1;2;3;4}&quot;);
 
 // 2D array
-Ast.Node twoDArray = FormulaParser.Parse(&quot;={&quot;Name&quot;,&quot;Age&quot;;&quot;John&quot;,25;&quot;Jane&quot;,30}&quot;);
+Node twoDArray = FormulaParser.Parse(&quot;={\&quot;Name\&quot;,\&quot;Age\&quot;;\&quot;John\&quot;,25;\&quot;Jane\&quot;,30}&quot;);
 
 Console.WriteLine($&quot;2D Array: {twoDArray}&quot;);
 </code></pre>
 <h3 id="logical-operations">Logical Operations</h3>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 
 // Comparison operations
-Ast.Node comparison = FormulaParser.Parse(&quot;=A1&gt;B1&quot;);
-Ast.Node equality = FormulaParser.Parse(&quot;=A1=B1&quot;);
-Ast.Node inequality = FormulaParser.Parse(&quot;=A1&lt;&gt;B1&quot;);
+Node comparison = FormulaParser.Parse(&quot;=A1&gt;B1&quot;);
+Node equality = FormulaParser.Parse(&quot;=A1=B1&quot;);
+Node inequality = FormulaParser.Parse(&quot;=A1&lt;&gt;B1&quot;);
 
 // Logical functions
-Ast.Node ifFunction = FormulaParser.Parse(&quot;=IF(A1&gt;0,&quot;Positive&quot;,&quot;Non-positive&quot;)&quot;);
-Ast.Node and = FormulaParser.Parse(&quot;=AND(A1&gt;0,B1&lt;10)&quot;);
-Ast.Node or = FormulaParser.Parse(&quot;=OR(A1&gt;100,B1&lt;0)&quot;);
+Node ifFunction = FormulaParser.Parse(&quot;=IF(A1&gt;0,\&quot;Positive\&quot;,\&quot;Non-positive\&quot;)&quot;);
+Node and = FormulaParser.Parse(&quot;=AND(A1&gt;0,B1&lt;10)&quot;);
+Node or = FormulaParser.Parse(&quot;=OR(A1&gt;100,B1&lt;0)&quot;);
 
 Console.WriteLine($&quot;IF function: {ifFunction}&quot;);
 </code></pre>
@@ -234,35 +236,51 @@ Ast.Node valueError = FormulaParser.Parse(&quot;=#VALUE!&quot;);
 Console.WriteLine($&quot;Error value: {valueError}&quot;);
 </code></pre>
 <h2 id="modifying-parsed-formulas">Modifying Parsed Formulas</h2>
-<h3 id="accessing-ast-astnodes">Accessing AST Ast.Nodes</h3>
+<h3 id="accessing-and-modifying-ast-nodes">Accessing and Modifying AST Nodes</h3>
+<p>The parser returns a tree of AST nodes that can be traversed and modified.</p>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
 using OpenLanguage.SpreadsheetML.Formula.Ast;
 
-Ast.Node formula = FormulaParser.Parse(&quot;=A1+B1&quot;);
-Ast.Node rootNode = formula;
+// Parse a formula
+var formula = FormulaParser.Parse(&quot;=A1+B1&quot;);
 
-// The AST can be traversed and modified
-// Note: Specific node manipulation depends on the AST structure
-Console.WriteLine($&quot;Original: {formula}&quot;);
-Console.WriteLine($&quot;Reconstructed: {rootNode}&quot;);
+// The root of a formula starting with '=' is an EqualPrefixedNode
+var rootNode = (EqualPrefixedNode)formula;
+
+// The Expression property contains the actual formula structure
+var addNode = (AddNode)rootNode.Expression;
+
+// Access operands
+var left = addNode.Left;
+var right = addNode.Right;
+
+Console.WriteLine($&quot;Left: {left}, Operator: {addNode.Operator}, Right: {right}&quot;);
+
+// Modify the AST: change the operator from + to *
+addNode.Operator = new AsteriskLiteralNode(&quot;*&quot;);
+
+// Reconstruct the formula from the modified AST
+Console.WriteLine($&quot;Modified formula: {rootNode.ToString()}&quot;); // Output: =A1*B1
 </code></pre>
 <h3 id="formula-reconstruction">Formula Reconstruction</h3>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 
 // Parse a formula
-Ast.Node original = FormulaParser.Parse(&quot;=SUM(A1:A10)/COUNT(A1:A10)&quot;);
+Node original = FormulaParser.Parse(&quot;=SUM(A1:A10)/COUNT(A1:A10)&quot;);
 
 // The ToString() method reconstructs the formula from the AST
 string reconstructed = original.ToString();
 Console.WriteLine($&quot;Reconstructed: {reconstructed}&quot;);
 
 // Verify they're equivalent
-Ast.Node reparsed = FormulaParser.Parse(reconstructed);
+Node reparsed = FormulaParser.Parse(reconstructed);
 Console.WriteLine($&quot;Reparsed successfully: {reparsed}&quot;);
 </code></pre>
 <h2 id="error-handling">Error Handling</h2>
 <h3 id="invalid-formula-handling">Invalid Formula Handling</h3>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 using System;
 
 string[] invalidFormulas = {
@@ -276,7 +294,7 @@ foreach (string formula in invalidFormulas)
 {
     try
     {
-        Ast.Node result = FormulaParser.Parse(formula);
+        Node result = FormulaParser.Parse(formula);
         Console.WriteLine($&quot;Unexpectedly succeeded: {result}&quot;);
     }
     catch (InvalidOperationException ex)
@@ -292,6 +310,7 @@ foreach (string formula in invalidFormulas)
 <h2 id="performance-considerations">Performance Considerations</h2>
 <h3 id="batch-processing">Batch Processing</h3>
 <pre><code class="lang-csharp">using OpenLanguage.SpreadsheetML.Formula;
+using OpenLanguage.SpreadsheetML.Formula.Ast;
 using System.Diagnostics;
 
 string[] formulas = {
@@ -306,7 +325,7 @@ Stopwatch sw = Stopwatch.StartNew();
 
 foreach (string formulaText in formulas)
 {
-    Ast.Node? result = FormulaParser.TryParse(formulaText);
+    Node? result = FormulaParser.TryParse(formulaText);
     if (result != null)
     {
         // Process the parsed formula

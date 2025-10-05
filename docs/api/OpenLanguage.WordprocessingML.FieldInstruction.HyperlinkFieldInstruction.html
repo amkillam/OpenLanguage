@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class HyperlinkFieldInstruction | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class HyperlinkFieldInstruction | OpenLanguage Documentation ">
+      
+      <meta name="description" content="Represents a strongly-typed HYPERLINK field instruction. When selected, causes control to jump to the location specified by text in field-argument. That location can be a bookmark or a URL.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/new/main/apiSpec/new?filename=OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction.md&amp;value=---%0Auid%3A%20OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction">
+
+
+
+  <h1 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction" class="text-break">
+Class HyperlinkFieldInstruction  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="OpenLanguage.html">OpenLanguage</a>.<a class="xref" href="OpenLanguage.WordprocessingML.html">WordprocessingML</a>.<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.html">FieldInstruction</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>OpenLanguage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a strongly-typed HYPERLINK field instruction.
+When selected, causes control to jump to the location specified by text in field-argument. That location can be a bookmark or a URL.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class HyperlinkFieldInstruction : FieldInstruction</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></div>
+      <div><a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction.html">FieldInstruction</a></div>
+      <div><span class="xref">HyperlinkFieldInstruction</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction.html#OpenLanguage_WordprocessingML_FieldInstruction_Ast_FieldInstruction_Instruction">FieldInstruction.Instruction</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_LeadingWhitespace">ExpressionNode.LeadingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_TrailingWhitespace">ExpressionNode.TrailingWhitespace</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_ToString">ExpressionNode.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html#OpenLanguage_WordprocessingML_Ast_ExpressionNode_Precedence">ExpressionNode.Precedence</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction__ctor_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.#ctor*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction__ctor_OpenLanguage_WordprocessingML_Ast_StringLiteralNode_OpenLanguage_WordprocessingML_Ast_ExpressionNode_OpenLanguage_WordprocessingML_Ast_ExpressionNode_OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_BoolFlagNode_OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_ExpressionNode__OpenLanguage_WordprocessingML_Ast_FlaggedArgument_OpenLanguage_WordprocessingML_Ast_NumericLiteralNode_System_Int32___System_Collections_Generic_List_OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkArgument__System_Collections_Generic_List_OpenLanguage_WordprocessingML_Ast_Node__System_Collections_Generic_List_OpenLanguage_WordprocessingML_Ast_Node__" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.#ctor(OpenLanguage.WordprocessingML.Ast.StringLiteralNode,OpenLanguage.WordprocessingML.Ast.ExpressionNode,OpenLanguage.WordprocessingML.Ast.ExpressionNode,OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.BoolFlagNode,OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.ExpressionNode},OpenLanguage.WordprocessingML.Ast.FlaggedArgument{OpenLanguage.WordprocessingML.Ast.NumericLiteralNode{System.Int32}},System.Collections.Generic.List{OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkArgument},System.Collections.Generic.List{OpenLanguage.WordprocessingML.Ast.Node},System.Collections.Generic.List{OpenLanguage.WordprocessingML.Ast.Node})">
+  HyperlinkFieldInstruction(StringLiteralNode, ExpressionNode?, ExpressionNode?, FlaggedArgument&lt;ExpressionNode&gt;?, BoolFlagNode?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;ExpressionNode&gt;?, FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?, List&lt;HyperlinkArgument&gt;, List&lt;Node&gt;?, List&lt;Node&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HyperlinkFieldInstruction(StringLiteralNode instruction, ExpressionNode? uri, ExpressionNode? displayText, FlaggedArgument&lt;ExpressionNode&gt;? internalLocation, BoolFlagNode? newWindow, FlaggedArgument&lt;ExpressionNode&gt;? serverSideImageMapAppendCoordinates, FlaggedArgument&lt;ExpressionNode&gt;? screenTipText, FlaggedArgument&lt;ExpressionNode&gt;? instrFrameTarget, FlaggedArgument&lt;ExpressionNode&gt;? arbLocation, FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;? undocumentedC, List&lt;HyperlinkArgument&gt; order, List&lt;Node&gt;? leadingWhitespace = null, List&lt;Node&gt;? trailingWhitespace = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instruction</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.StringLiteralNode.html">StringLiteralNode</a></dt>
+    <dd></dd>
+    <dt><code>uri</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>displayText</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+    <dt><code>internalLocation</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>newWindow</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+    <dt><code>serverSideImageMapAppendCoordinates</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>screenTipText</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>instrFrameTarget</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>arbLocation</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>undocumentedC</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.NumericLiteralNode-1.html">NumericLiteralNode</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>order</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkArgument.html">HyperlinkArgument</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>leadingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>trailingWhitespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ArbLocation_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ArbLocation*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ArbLocation" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ArbLocation">
+  ArbLocation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Undocumented in OOXML, documented for Word 2003
+Used internally by Word for internally labelled, non-exported location names
+Left here for the sake of completeness, and also to not forget that this exists, where it's undocumented
+Switch: \s arbLocation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? ArbLocation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_DisplayText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.DisplayText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_DisplayText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.DisplayText">
+  DisplayText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The display text for the hyperlink.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExpressionNode? DisplayText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_InstrFrameTarget_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.InstrFrameTarget*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_InstrFrameTarget" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.InstrFrameTarget">
+  InstrFrameTarget
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \t field-argument
+Target frame</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? InstrFrameTarget { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_InternalLocation_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.InternalLocation*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_InternalLocation" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.InternalLocation">
+  InternalLocation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \L text in this switch's field-argument specifies a location in the file, such as a bookmark, where this hyperlink will jump.
+Target frame</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? InternalLocation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_NewWindow_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.NewWindow*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_NewWindow" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.NewWindow">
+  NewWindow
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \n
+Open in new window</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BoolFlagNode? NewWindow { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.BoolFlagNode.html">BoolFlagNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Order_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Order*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Order" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Order">
+  Order
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;HyperlinkArgument&gt; Order { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkArgument.html">HyperlinkArgument</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ScreenTipText_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ScreenTipText*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ScreenTipText" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ScreenTipText">
+  ScreenTipText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \o text
+text in this switch's field-argument specifies the ScreenTip text for the hyperlink.
+ScreenTip: A short description that appears when the user holds the mouse pointer over an object, such as a button or hyperlink.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? ScreenTipText { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ServerSideImageMapAppendCoordinates_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ServerSideImageMapAppendCoordinates*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ServerSideImageMapAppendCoordinates" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ServerSideImageMapAppendCoordinates">
+  ServerSideImageMapAppendCoordinates
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Switch: \m coordinates
+Appends coordinates to a hyperlink for a server-side image map
+server-side image map: A graphic containing sensitive regions, or &quot;hot spots,&quot; that a user can click to follow a hyperlink.
+A server-side image map requires a script on a Web server that identifies the sensitive regions and their corresponding hyperlinks</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;ExpressionNode&gt;? ServerSideImageMapAppendCoordinates { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_UndocumentedC_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.UndocumentedC*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_UndocumentedC" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.UndocumentedC">
+  UndocumentedC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Undocumented switch seen in the wild.
+e.g. <code>\c 3</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;? UndocumentedC { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.FlaggedArgument-1.html">FlaggedArgument</a>&lt;<a class="xref" href="OpenLanguage.WordprocessingML.Ast.NumericLiteralNode-1.html">NumericLiteralNode</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Uri_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Uri*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Uri" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Uri">
+  Uri
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The URL or path for the hyperlink</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExpressionNode? Uri { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.ExpressionNode.html">ExpressionNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Children_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Children*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_Children__1" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.Children``1">
+  Children&lt;O&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L243"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;O&gt; Children&lt;O&gt;() where O : Node</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;O&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>O</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ReplaceChild_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ReplaceChild*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ReplaceChild_System_Int32_OpenLanguage_WordprocessingML_Ast_Node_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ReplaceChild(System.Int32,OpenLanguage.WordprocessingML.Ast.Node)">
+  ReplaceChild(int, Node)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Node? ReplaceChild(int index, Node replacement)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>replacement</code> <a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="OpenLanguage.WordprocessingML.Ast.Node.html">Node</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ToRawString_" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ToRawString*"></a>
+
+  <h3 id="OpenLanguage_WordprocessingML_FieldInstruction_HyperlinkFieldInstruction_ToRawString" data-uid="OpenLanguage.WordprocessingML.FieldInstruction.HyperlinkFieldInstruction.ToRawString">
+  ToRawString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reconstructs the field instruction as a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToRawString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The field instruction string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/FieldInstruction/Ast/Node/Instruction/Hyperlink.cs/#L123" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

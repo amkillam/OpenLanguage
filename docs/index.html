@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>OpenLanguage Documentation | OpenLanguage Documentation </title>
+      <title>OpenLanguage | OpenLanguage Documentation </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="OpenLanguage Documentation | OpenLanguage Documentation ">
+      <meta name="title" content="OpenLanguage | OpenLanguage Documentation ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -71,15 +71,39 @@
         </div>
 
         <article data-uid="">
-<h1 id="openlanguage-documentation">OpenLanguage Documentation</h1>
+<h1 id="openlanguage">OpenLanguage</h1>
 
-<p>Welcome to the OpenLanguage project documentation.</p>
+<p>Welcome to the documentation for OpenLanguage, a C# library for parsing Microsoft Office document languages.</p>
 <h2 id="overview">Overview</h2>
-<p>OpenLanguage is a library for working with Office Open XML Domain-specific Languages, providing lexers, parsers, and other processing tools for various DSLs used in Open Office XML.</p>
-<h2 id="api-reference">API Reference</h2>
-<p>Browse the <a href="api/OpenLanguage.SpreadsheetML.Formula.html">API documentation</a> for detailed information about classes, methods, and interfaces.</p>
+<p>OpenLanguage provides robust, grammar-based parsers for:</p>
+<ul>
+<li><strong>SpreadsheetML Formulas</strong>: Full support for Excel formula syntax, including functions, operators, and all reference types.</li>
+<li><strong>WordprocessingML</strong>:
+<ul>
+<li><strong>Field Instructions</strong>: Support for parsing all field instructions - both standard ECMA variations and those specified in the ISO docs for legacy compatibility - into a strongly-typed Abstract Syntax Tree (AST).</li>
+<li><strong>Expressions</strong>: A parser for expressions used commonly in WordprocessingML values (e.g., conditional formatting, content controls, field instructions).</li>
+<li><strong>Merge Fields</strong>: Parsers for <code>MERGEFIELD</code> placeholders and templates.</li>
+</ul>
+</li>
+</ul>
+<p>The library's parsers and lexers are built using GPLEX and GPPG, allowing concise, declarative grammar definitions that are easy to extend and maintain.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Strongly-Typed ASTs</strong>: Convert complex language strings into easy-to-navigate C# object models.</li>
+<li><strong>Round-Trip Fidelity</strong>: Reconstruct the original string from the parsed AST, preserving all components including whitespace.</li>
+<li><strong>Extensible Grammar</strong>: The yacc/lex-based grammar is modular and easy to extend.</li>
+<li><strong>High Performance</strong>: Designed with performance in mind, including support for Native AOT.</li>
+</ul>
 <h2 id="getting-started">Getting Started</h2>
-<p>To get started with OpenLanguage, see the <a href="https://github.com/amkillam/OpenLanguage/blob/main/README.md">README file</a> in the project root.</p>
+<p>To get started with OpenLanguage, install the package from NuGet and explore the examples.</p>
+<pre><code class="lang-bash">dotnet add package OpenLanguage
+</code></pre>
+<ul>
+<li><strong><a href="examples/formula.md">Formula Parsing Examples</a></strong></li>
+<li><strong><a href="examples/field-instruction.md">Field Instruction Examples</a></strong></li>
+</ul>
+<h2 id="api-reference">API Reference</h2>
+<p>Browse the <a href="api/OpenLanguage.html">API documentation</a> for detailed information about classes, methods, and interfaces.</p>
 
 </article>
 

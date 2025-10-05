@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum ComparisonOperator | OpenLanguage Documentation ">
       
-      <meta name="description" content="Enumeration of comparison operators.">
+      <meta name="description" content="Enumeration of comparison operators. This can be seen in practice as what would be a bitpacked union in C. First bit represents &amp;quot;Equal&amp;quot;: whether the two values is equal. Second bit represents &amp;quot;LessThan&amp;quot;: whether the first value is less than the second Third bit represents &amp;quot;GreaterThan&amp;quot;: whether the first value is greater than the second. Combining these bits allows representation of all standard comparison operators. For example:  Equal (0b001): only equal LessThan (0b010): only less than LessThanOrEqual (0b011): less than or equal GreaterThan (0b100): only greater than GreaterThanOrEqual (0b101): greater than or equal NotEqual (0b110): less than or greater than (not equal) All (0b111): equal, less than, or greater than (always true) None (0b000): no relation (always false)">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -90,7 +90,7 @@
 
 
   <h1 id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator" data-uid="OpenLanguage.WordprocessingML.Operators.ComparisonOperator" class="text-break">
-Enum ComparisonOperator  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v0.1.2/OpenLanguage/WordprocessingML/Operators/Comparison.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Enum ComparisonOperator  <a class="header-action link-secondary" title="View source" href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/Operators/Comparison.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,6 +99,22 @@ Enum ComparisonOperator  <a class="header-action link-secondary" title="View sou
   </div>
 
   <div class="markdown summary"><p>Enumeration of comparison operators.</p>
+<p>This can be seen in practice as what would be a bitpacked union in C.
+First bit represents &quot;Equal&quot;: whether the two values is equal.
+Second bit represents &quot;LessThan&quot;: whether the first value is less than the second
+Third bit represents &quot;GreaterThan&quot;: whether the first value is greater than the second.
+Combining these bits allows representation of all standard comparison operators.
+For example:</p>
+<ul>
+<li>Equal (0b001): only equal</li>
+<li>LessThan (0b010): only less than</li>
+<li>LessThanOrEqual (0b011): less than or equal</li>
+<li>GreaterThan (0b100): only greater than</li>
+<li>GreaterThanOrEqual (0b101): greater than or equal</li>
+<li>NotEqual (0b110): less than or greater than (not equal)</li>
+<li>All (0b111): equal, less than, or greater than (always true)</li>
+<li>None (0b000): no relation (always false)</li>
+</ul>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -120,10 +136,10 @@ Enum ComparisonOperator  <a class="header-action link-secondary" title="View sou
     <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_Equal"><code>Equal = 1</code></dt>
   
   <dd></dd>
-    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_GreaterThan"><code>GreaterThan = -4</code></dt>
+    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_GreaterThan"><code>GreaterThan = 4</code></dt>
   
   <dd></dd>
-    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_GreaterThanOrEqual"><code>GreaterThanOrEqual = -3</code></dt>
+    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_GreaterThanOrEqual"><code>GreaterThanOrEqual = 5</code></dt>
   
   <dd></dd>
     <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_LessThan"><code>LessThan = 2</code></dt>
@@ -132,7 +148,7 @@ Enum ComparisonOperator  <a class="header-action link-secondary" title="View sou
     <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_LessThanOrEqual"><code>LessThanOrEqual = 3</code></dt>
   
   <dd></dd>
-    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_NotEqual"><code>NotEqual = -2</code></dt>
+    <dt id="OpenLanguage_WordprocessingML_Operators_ComparisonOperator_NotEqual"><code>NotEqual = 6</code></dt>
   
   <dd></dd>
   </dl>
@@ -142,7 +158,7 @@ Enum ComparisonOperator  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/amkillam/OpenLanguage/blob/v0.1.2/OpenLanguage/WordprocessingML/Operators/Comparison.cs/#L8" class="edit-link">Edit this page</a>
+          <a href="https://github.com/amkillam/OpenLanguage/blob/v1.0.0/OpenLanguage/WordprocessingML/Operators/Comparison.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 

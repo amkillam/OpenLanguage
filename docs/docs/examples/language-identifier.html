@@ -445,27 +445,47 @@ foreach (var lang in sampleLanguages)
 <h3 id="integration-with-field-instructions">Integration with Field Instructions</h3>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
 using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+using System.Collections.Generic;
 
 public class LocalizedFieldGenerator
 {
-    public static FieldInstruction CreateLocalizedDateField(LanguageIdentifier languageId)
+    public static DateFieldInstruction CreateLocalizedDateField(LanguageIdentifier languageId)
     {
         var dateFormat = LanguageSpecificProcessor.GetDefaultDateFormat(languageId);
-        var field = new FieldInstruction(&quot;DATE&quot;);
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\@&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, dateFormat));
-        return field;
+        var dateFormatArg = new FlaggedArgument&lt;ExpressionNode&gt;(
+            new FlagNode(@&quot;\@&quot;),
+            new StringLiteralNode(dateFormat)
+        );
+
+        return new DateFieldInstruction(
+            new StringLiteralNode(&quot;DATE&quot;),
+            null,
+            null,
+            null,
+            dateFormatArg,
+            null,
+            new List&lt;DateArgument&gt; { DateArgument.DateTimeFormat }
+        );
     }
 
-    public static FieldInstruction CreateLocalizedAddressBlock(LanguageIdentifier languageId)
+    public static AddressBlockFieldInstruction CreateLocalizedAddressBlock(LanguageIdentifier languageId)
     {
-        var field = new FieldInstruction(&quot;ADDRESSBLOCK&quot;);
+        var langIdArg = new FlaggedArgument&lt;ExpressionNode&gt;(
+            new FlagNode(@&quot;\l&quot;),
+            new NumericLiteralNode&lt;int&gt;(((int)languageId).ToString(), (int)languageId, &quot;D&quot;)
+        );
 
-        // Set language-specific formatting
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\l&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)languageId).ToString()));
-
-        return field;
+        return new AddressBlockFieldInstruction(
+            new StringLiteralNode(&quot;ADDRESSBLOCK&quot;),
+            null,
+            null,
+            null,
+            null,
+            langIdArg,
+            new List&lt;AddressBlockArgument&gt; { AddressBlockArgument.LanguageId }
+        );
     }
 }
 

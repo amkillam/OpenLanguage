@@ -97,14 +97,13 @@
 <h4 id="wordprocessingml">WordprocessingML</h4>
 <ul>
 <li><a href="api/WordprocessingML/FieldInstruction/FieldInstruction.html">Field Instructions</a> - WordprocessingML field instruction parsing</li>
-<li><a href="api/WordprocessingML/FieldInstruction/Typed.html">Typed Field Instructions</a> - Strongly-typed field instruction factory</li>
-<li><a href="api/WordprocessingML/MergeField/MergeField.html">MergeField Processing</a> - Mail merge field lexing</li>
-<li><a href="api/WordprocessingML/Expression/Expression.html">Expression Processing</a> - Expression lexical analysis</li>
+<li><a href="api/WordprocessingML/MergeField/MergeField.html">MergeField Processing</a> - Mail merge field parsing</li>
+<li><a href="api/WordprocessingML/Expression/Expression.html">Expression Processing</a> - Expression parsing</li>
 </ul>
 <h3 id="development">Development</h3>
 <ul>
-<li><a href="development/build.html">Build System</a> - CMake build system with GPPG GNU YACC-style parser generation and GPLEX GNU Flex-style lexer generation</li>
-<li><a href="development/grammar.html">Grammar Files</a> - Working with YACC and LEX grammar files</li>
+<li><a href="development/build.html">Build System</a> - CMake build system with GPPG POSIX yacc parser generation and GPLEX POSIX lex lexer generation</li>
+<li><a href="development/grammar.html">Grammar Files</a> - Working with yacc and lex grammar files</li>
 <li><a href="development/test.html">Testing</a> - Unit test documentation</li>
 </ul>
 <h2 id="api-reference">API Reference</h2>
@@ -130,18 +129,13 @@
 <td><a href="api/WordprocessingML/FieldInstruction/FieldInstruction.html">FieldInstruction.md</a></td>
 </tr>
 <tr>
-<td>Typed Instructions</td>
-<td>Strongly-typed field factory</td>
-<td><a href="api/WordprocessingML/FieldInstruction/Typed.html">Typed.md</a></td>
-</tr>
-<tr>
-<td>MergeField Lexer</td>
-<td>Mail merge field lexing</td>
+<td>MergeField Parser</td>
+<td>Mail merge field parsing</td>
 <td><a href="api/WordprocessingML/MergeField/MergeField.html">MergeField.md</a></td>
 </tr>
 <tr>
-<td>Expression Lexer</td>
-<td>Expression lexical analysis</td>
+<td>Expression Parser</td>
+<td>Expression parsing</td>
 <td><a href="api/WordprocessingML/Expression/Expression.html">Expression.md</a></td>
 </tr>
 </tbody>
@@ -154,7 +148,7 @@
 <li>Formula.cs: Main API for parsing formulas into ASTs</li>
 <li>FormulaParser.cs: Static parser methods</li>
 <li>Lang/Lex/formula.lex: Lexical grammar for SpreadsheetML formulas</li>
-<li>Lang/Parse/formula.y: YACC grammar for SpreadsheetML formulas</li>
+<li>Lang/Parse/formula.y: yacc grammar for SpreadsheetML formulas</li>
 </ul>
 </li>
 <li><p><strong>WordprocessingML.FieldInstruction</strong>: WordprocessingML field instruction parser</p>

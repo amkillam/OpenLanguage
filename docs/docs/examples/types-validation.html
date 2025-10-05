@@ -87,419 +87,89 @@
         <article data-uid="">
 <h1 id="working-with-data-types-and-validation">Working with Data Types and Validation</h1>
 
-<p>This document demonstrates how to use the specialized data types and validation classes provided by OpenLanguage WordprocessingML.</p>
-<h2 id="measurement-values-ptsmeasurementvalue">Measurement Values (PtsMeasurementValue)</h2>
-<h3 id="basic-usage">Basic Usage</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+<p>This document demonstrates how to use the specialized data types and validation classes provided by OpenLanguage.</p>
+<h2 id="language-identifiers">Language Identifiers</h2>
+<p>The <code>LanguageIdentifier</code> enum provides a comprehensive list of language codes for localization.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML;
 
-// Create measurement values within valid range (-31 to 31 points)
-PtsMeasurementValue&lt;int&gt; smallMargin = new PtsMeasurementValue&lt;int&gt;(5);
-PtsMeasurementValue&lt;int&gt; largeMargin = new PtsMeasurementValue&lt;int&gt;(20);
-PtsMeasurementValue&lt;int&gt; negativeOffset = new PtsMeasurementValue&lt;int&gt;(-10);
+// Get LCID from enum
+int lcid = (int)LanguageIdentifier.FrenchCanada; // 3084
 
-Console.WriteLine($&quot;Small margin: {smallMargin} points&quot;);
-Console.WriteLine($&quot;Large margin: {largeMargin} points&quot;);
-Console.WriteLine($&quot;Negative offset: {negativeOffset} points&quot;);
+// Get enum from LCID
+LanguageIdentifier lang = LanguageIdentifierExtensions.FromLcid(1033); // EnglishUS
 
-// Implicit conversion from int
-PtsMeasurementValue&lt;int&gt; converted = 15;
-Console.WriteLine($&quot;Converted value: {converted}&quot;);
-
-// Implicit conversion to int
-int pointValue = converted;
-Console.WriteLine($&quot;Point value: {pointValue}&quot;);
+// Convert to and from IETF language tags
+string tag = LanguageIdentifier.GermanGermany.ToTag(); // &quot;de-DE&quot;
+LanguageIdentifier? langFromTag = LanguageIdentifierExtensions.TryFromTag(&quot;en-GB&quot;); // EnglishUK
 </code></pre>
-<h3 id="validation-and-error-handling">Validation and Error Handling</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-using System;
+<h2 id="programmatic-identifiers-progid">Programmatic Identifiers (ProgID)</h2>
+<p>The <code>ProgrammaticIdentifier</code> class is used in fields like <code>EMBED</code> and <code>LINK</code> to specify OLE objects.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.ProgrammaticIdentifier;
 
-// Test boundary values
-int[] testValues = { -32, -31, 0, 31, 32 };
-
-foreach (int value in testValues)
-{
-    try
-    {
-        PtsMeasurementValue&lt;int&gt; measurement = new PtsMeasurementValue&lt;int&gt;(value);
-        Console.WriteLine($&quot;✓ Valid: {value} points = {measurement}&quot;);
-    }
-    catch (ArgumentOutOfRangeException ex)
-    {
-        Console.WriteLine($&quot;✗ Invalid: {value} points - {ex.Message}&quot;);
-    }
-}
-</code></pre>
-<h3 id="practical-applications">Practical Applications</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-
-public class DocumentFormatter
-{
-    public static FieldInstruction CreatePositionedBarcode(
-        string barcodeData,
-        PtsMeasurementValue horizontalOffset,
-        PtsMeasurementValue verticalOffset)
-    {
-        var field = new FieldInstruction(&quot;BARCODE&quot;);
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, barcodeData));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\h&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, horizontalOffset.ToString()));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\v&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, verticalOffset.ToString()));
-
-        return field;
-    }
-}
-
-// Usage
-PtsMeasurementValue leftMargin = 10;
-PtsMeasurementValue topMargin = -5;
-
-FieldInstruction barcode = DocumentFormatter.CreatePositionedBarcode(
-    &quot;123456789&quot;,
-    leftMargin,
-    topMargin
+// Create a ProgID
+var progId = new ProgrammaticIdentifier(
+    Application.Excel,
+    Object.Sheet,
+    12
 );
 
-Console.WriteLine($&quot;Positioned barcode field: {barcode}&quot;);
+Console.WriteLine(progId.ToString()); // &quot;Excel.Sheet.12&quot;
+
+// Parse a ProgID string
+var parsedProgId = new ProgrammaticIdentifier(Application.Word, Object.Document).TryParse(&quot;Word.Document.8&quot;);
+if (parsedProgId != null)
+{
+    Console.WriteLine($&quot;Application: {parsedProgId.Application}&quot;);
+    Console.WriteLine($&quot;Object: {parsedProgId.Object}&quot;);
+    Console.WriteLine($&quot;Version: {parsedProgId.Version}&quot;);
+}
 </code></pre>
-<h2 id="postal-data-validation-postaldata">Postal Data Validation (PostalData)</h2>
-<h3 id="zip-code-validation">ZIP Code Validation</h3>
+<h2 id="operator-constants">Operator Constants</h2>
+<p>The <code>OperatorConstants</code> and <code>ComparisonOperator</code> enums provide a type-safe way to work with comparison operators in fields like <code>IF</code> and <code>COMPARE</code>.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Operators;
+
+// Parse from string
+var op = ComparisonOperatorExtensions.ParseOperator(&quot;&lt;=&quot;);
+Console.WriteLine(op); // LessThanOrEqual
+
+// Convert to string
+string opString = ComparisonOperatorExtensions.OperatorToString(ComparisonOperator.NotEqual);
+Console.WriteLine(opString); // &lt;&gt;
+</code></pre>
+<h2 id="field-specific-enums">Field-Specific Enums</h2>
+<p>Many field instruction classes have their own enums for switches and arguments, providing clarity and type safety.</p>
+<h3 id="addressblock-field"><code>ADDRESSBLOCK</code> Field</h3>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
 
-// Valid ZIP code formats
-string[] validZipCodes = {
-    &quot;12345&quot;,        // 5-digit
-    &quot;12345-6789&quot;,   // 9-digit with hyphen
-    &quot;123456789&quot;     // 9-digit without hyphen
-};
-
-foreach (string zip in validZipCodes)
-{
-    try
-    {
-        PostalData postalData = new PostalData(zip);
-        Console.WriteLine($&quot;✓ Valid ZIP: {postalData}&quot;);
-
-        // Implicit conversion
-        string zipString = postalData;
-        Console.WriteLine($&quot;  As string: {zipString}&quot;);
-    }
-    catch (ArgumentException ex)
-    {
-        Console.WriteLine($&quot;✗ Invalid ZIP: {zip} - {ex.Message}&quot;);
-    }
-}
+// Use CountryRegionInclusion enum
+var inclusion = CountryRegionInclusion.IncludeIfDifferent;
+Console.WriteLine($&quot;Inclusion setting: {(int)inclusion}&quot;); // 2
 </code></pre>
-<h3 id="invalid-zip-code-handling">Invalid ZIP Code Handling</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-using System;
-
-string[] invalidZipCodes = {
-    &quot;&quot;,             // Empty
-    &quot;1234&quot;,         // Too short
-    &quot;123456&quot;,       // Invalid length
-    &quot;12345-678&quot;,    // Invalid 9-digit format
-    &quot;12345-67890&quot;,  // Too long
-    &quot;abcde&quot;,        // Non-numeric
-    &quot;12345-abcd&quot;    // Non-numeric extension
-};
-
-foreach (string zip in invalidZipCodes)
-{
-    try
-    {
-        PostalData postalData = new PostalData(zip);
-        Console.WriteLine($&quot;Unexpectedly valid: {postalData}&quot;);
-    }
-    catch (ArgumentException)
-    {
-        Console.WriteLine($&quot;✓ Correctly rejected: '{zip}'&quot;);
-    }
-}
-</code></pre>
-<h3 id="integration-with-mail-merge-fields">Integration with Mail Merge Fields</h3>
+<h3 id="database-field"><code>DATABASE</code> Field</h3>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
 
-public class AddressFieldGenerator
-{
-    public static FieldInstruction CreateBarcodeField(PostalData zipCode, FacingIdentificationMarkType fimType)
-    {
-        var field = new FieldInstruction(&quot;BARCODE&quot;);
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, zipCode.ToString()));
+// Combine attributes with bitwise flags
+var attributes = DatabaseTableAttributes.Borders |
+                 DatabaseTableAttributes.HeadingRows |
+                 DatabaseTableAttributes.AutoFit;
 
-        // Add FIM type
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\f&quot;));
-        string fimValue = fimType == FacingIdentificationMarkType.CourtesyReply ? &quot;A&quot; : &quot;C&quot;;
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, fimValue));
+Console.WriteLine($&quot;Attribute value: {(int)attributes}&quot;);
 
-        return field;
-    }
-
-    public static FieldInstruction CreateConditionalZipField(string mergeFieldName)
-    {
-        // Create IF field that validates ZIP code format
-        var ifField = new FieldInstruction(&quot;IF&quot;);
-
-        // Create nested MERGEFIELD for ZIP code
-        var zipMergeField = new FieldInstruction(&quot;MERGEFIELD&quot;);
-        zipMergeField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, mergeFieldName));
-
-        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, zipMergeField));
-        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, &quot;&lt;&gt;&quot;));
-        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;&quot;));
-        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.NestedField, zipMergeField));
-        ifField.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, &quot;No ZIP code&quot;));
-
-        return ifField;
-    }
-}
-
-// Usage
-PostalData validZip = &quot;12345-6789&quot;;
-FieldInstruction barcodeField = AddressFieldGenerator.CreateBarcodeField(
-    validZip,
-    FacingIdentificationMarkType.BusinessReply
-);
-
-FieldInstruction conditionalZip = AddressFieldGenerator.CreateConditionalZipField(&quot;PostalCode&quot;);
-
-Console.WriteLine($&quot;Barcode field: {barcodeField}&quot;);
-Console.WriteLine($&quot;Conditional ZIP field: {conditionalZip}&quot;);
+// Use a predefined table format
+var format = DatabaseTableFormat.Professional;
+Console.WriteLine($&quot;Table format: {(int)format}&quot;);
 </code></pre>
-<h2 id="xml-namespace-declarations-namespacedeclaration">XML Namespace Declarations (NamespaceDeclaration)</h2>
-<h3 id="basic-namespace-handling">Basic Namespace Handling</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+<h3 id="eq-equation-field"><code>EQ</code> (Equation) Field</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
 
-// Valid namespace declarations
-string[] validDeclarations = {
-    &quot;xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&quot;,
-    &quot;xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&quot;,
-    &quot;xmlns:wp=&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot;&quot;,
-    &quot;xmlns:custom=&quot;http://example.com/custom-namespace&quot;&quot;
-};
+// Use enums for equation alignment and symbols
+var alignment = EqArrayAlignment.Center;
+var symbol = EqIntegralSymbol.Summation;
 
-foreach (string declaration in validDeclarations)
-{
-    try
-    {
-        NamespaceDeclaration ns = new NamespaceDeclaration(declaration);
-        Console.WriteLine($&quot;✓ Valid namespace:&quot;);
-        Console.WriteLine($&quot;  Prefix: {ns.Prefix}&quot;);
-        Console.WriteLine($&quot;  URI: {ns.Uri}&quot;);
-        Console.WriteLine($&quot;  Declaration: {ns.Declaration}&quot;);
-        Console.WriteLine();
-    }
-    catch (ArgumentException ex)
-    {
-        Console.WriteLine($&quot;✗ Invalid: {declaration} - {ex.Message}&quot;);
-    }
-}
+Console.WriteLine($&quot;Alignment: {alignment}&quot;);
+Console.WriteLine($&quot;Symbol: {symbol}&quot;);
 </code></pre>
-<h3 id="invalid-namespace-handling">Invalid Namespace Handling</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-using System;
-
-string[] invalidDeclarations = {
-    &quot;&quot;,                                              // Empty
-    &quot;xmlns:prefix=uri&quot;,                             // Missing quotes
-    &quot;prefix=&quot;http://example.com&quot;&quot;,                // Missing xmlns:
-    &quot;xmlns:=&quot;http://example.com&quot;&quot;,                // Empty prefix
-    &quot;xmlns:invalid-prefix=&quot;http://example.com&quot;&quot;,  // Invalid prefix character
-    &quot;xmlns:prefix=&quot;&quot;&quot;,                            // Empty URI
-    &quot;xmlns:prefix=http://example.com&quot;,              // Missing quotes around URI
-};
-
-foreach (string declaration in invalidDeclarations)
-{
-    try
-    {
-        NamespaceDeclaration ns = new NamespaceDeclaration(declaration);
-        Console.WriteLine($&quot;Unexpectedly valid: {ns}&quot;);
-    }
-    catch (ArgumentException)
-    {
-        Console.WriteLine($&quot;✓ Correctly rejected: '{declaration}'&quot;);
-    }
-}
-</code></pre>
-<h3 id="working-with-xml-in-fields">Working with XML in Fields</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-using System.Xml.Linq;
-
-public class XmlFieldProcessor
-{
-    public static FieldInstruction CreateXmlField(NamespaceDeclaration namespaceDecl, string xpath)
-    {
-        var field = new FieldInstruction(&quot;XML&quot;);
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, namespaceDecl.Declaration));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, xpath));
-
-        return field;
-    }
-
-    public static void ProcessXmlNamespace(NamespaceDeclaration namespaceDecl)
-    {
-        // Use the validated namespace in XML processing
-        XNamespace ns = namespaceDecl.Namespace;
-        XName elementName = ns + &quot;element&quot;;
-
-        Console.WriteLine($&quot;Created XName: {elementName}&quot;);
-        Console.WriteLine($&quot;Namespace: {elementName.Namespace}&quot;);
-        Console.WriteLine($&quot;Local name: {elementName.LocalName}&quot;);
-    }
-}
-
-// Usage
-NamespaceDeclaration wordNamespace = &quot;xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&quot;;
-FieldInstruction xmlField = XmlFieldProcessor.CreateXmlField(wordNamespace, &quot;//w:p/w:t&quot;);
-
-Console.WriteLine($&quot;XML field: {xmlField}&quot;);
-
-XmlFieldProcessor.ProcessXmlNamespace(wordNamespace);
-</code></pre>
-<h2 id="enumeration-usage-examples">Enumeration Usage Examples</h2>
-<h3 id="document-property-categories">Document Property Categories</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-
-public class DocumentPropertyFieldGenerator
-{
-    public static FieldInstruction CreateDocPropertyField(DocumentPropertyCategory category)
-    {
-        var field = new FieldInstruction(&quot;DOCPROPERTY&quot;);
-
-        string propertyName = category switch
-        {
-            DocumentPropertyCategory.Author =&gt; &quot;Author&quot;,
-            DocumentPropertyCategory.Title =&gt; &quot;Title&quot;,
-            DocumentPropertyCategory.Company =&gt; &quot;Company&quot;,
-            DocumentPropertyCategory.CreateTime =&gt; &quot;CreateTime&quot;,
-            DocumentPropertyCategory.LastSavedBy =&gt; &quot;LastSavedBy&quot;,
-            DocumentPropertyCategory.Pages =&gt; &quot;Pages&quot;,
-            DocumentPropertyCategory.Words =&gt; &quot;Words&quot;,
-            DocumentPropertyCategory.Characters =&gt; &quot;Characters&quot;,
-            _ =&gt; category.ToString()
-        };
-
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Identifier, propertyName));
-        return field;
-    }
-}
-
-// Usage
-DocumentPropertyCategory[] properties = {
-    DocumentPropertyCategory.Author,
-    DocumentPropertyCategory.Title,
-    DocumentPropertyCategory.Company,
-    DocumentPropertyCategory.Pages,
-    DocumentPropertyCategory.Words
-};
-
-foreach (var property in properties)
-{
-    FieldInstruction field = DocumentPropertyFieldGenerator.CreateDocPropertyField(property);
-    Console.WriteLine($&quot;{property}: {field}&quot;);
-}
-</code></pre>
-<h3 id="database-table-attributes">Database Table Attributes</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-
-public class DatabaseFieldGenerator
-{
-    public static FieldInstruction CreateDatabaseField(
-        string connectionString,
-        string query,
-        DatabaseTableFormat format,
-        DatabaseTableAttributes attributes)
-    {
-        var field = new FieldInstruction(&quot;DATABASE&quot;);
-
-        // Add connection string
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\d&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, connectionString));
-
-        // Add SQL query
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\s&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, query));
-
-        // Add table format
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\t&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)format).ToString()));
-
-        // Add attributes (bitwise combination)
-        if (attributes != DatabaseTableAttributes.None)
-        {
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\a&quot;));
-            field.Arguments.Add(new FieldArgument(FieldArgumentType.Number, ((int)attributes).ToString()));
-        }
-
-        return field;
-    }
-}
-
-// Usage with combined attributes
-DatabaseTableAttributes combinedAttributes =
-    DatabaseTableAttributes.Borders |
-    DatabaseTableAttributes.Shading |
-    DatabaseTableAttributes.HeadingRows;
-
-FieldInstruction dbField = DatabaseFieldGenerator.CreateDatabaseField(
-    &quot;Data Source=server;Initial Catalog=database;&quot;,
-    &quot;SELECT Name, Age, Salary FROM Employees&quot;,
-    DatabaseTableFormat.Professional,
-    combinedAttributes
-);
-
-Console.WriteLine($&quot;Database field: {dbField}&quot;);
-Console.WriteLine($&quot;Attributes value: {(int)combinedAttributes}&quot;); // Shows bitwise combination
-</code></pre>
-<h3 id="frame-targets-and-country-regions">Frame Targets and Country Regions</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
-
-public class HyperlinkFieldGenerator
-{
-    public static FieldInstruction CreateHyperlinkWithTarget(string url, string displayText, FrameTarget target)
-    {
-        var field = new FieldInstruction(&quot;HYPERLINK&quot;);
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, url));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, displayText));
-
-        // Add frame target
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\t&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, FrameTargetUtils.FrameTargetText(target)));
-
-        return field;
-    }
-
-    public static FieldInstruction CreateLocalizedAddressBlock(CountryRegion excludedCountry)
-    {
-        var field = new FieldInstruction(&quot;ADDRESSBLOCK&quot;);
-
-        // Exclude specific country from address block
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.Switch, &quot;\e&quot;));
-        field.Arguments.Add(new FieldArgument(FieldArgumentType.StringLiteral, excludedCountry.ToString()));
-
-        return field;
-    }
-}
-
-// Usage
-FrameTarget[] targets = { FrameTarget.Blank, FrameTarget.Self, FrameTarget.Top };
-
-foreach (var target in targets)
-{
-    FieldInstruction hyperlink = HyperlinkFieldGenerator.CreateHyperlinkWithTarget(
-        &quot;https://example.com&quot;,
-        &quot;Example Link&quot;,
-        target
-    );
-    Console.WriteLine($&quot;Target {target}: {hyperlink}&quot;);
-}
-
-// Country-specific address block
-FieldInstruction addressBlock = HyperlinkFieldGenerator.CreateLocalizedAddressBlock(CountryRegion.UnitedStates);
-Console.WriteLine($&quot;Address block excluding US: {addressBlock}&quot;);
-</code></pre>
-<p>This comprehensive example demonstrates how to work with the various data types, validation classes, and enumerations provided by the OpenLanguage WordprocessingML system for robust document processing applications.</p>
+<p>These specialized types ensure that you are working with valid values when constructing or manipulating field instruction ASTs, reducing errors and improving code readability.</p>
 
 </article>
 

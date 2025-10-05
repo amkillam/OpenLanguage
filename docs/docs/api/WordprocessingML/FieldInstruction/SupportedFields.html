@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Supported Field Instructions | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Supported Field Instructions | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/SupportedFields.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="supported-field-instructions">Supported Field Instructions</h1>
+
+<p>The <code>FieldInstructionParser</code> returns strongly-typed Abstract Syntax Tree (AST) nodes for each field type. These nodes inherit from <code>OpenLanguage.WordprocessingML.FieldInstruction.Ast.FieldInstruction</code> and provide specific properties for accessing arguments and switches.</p>
+<p>Below is a list of supported field instructions and their corresponding AST node classes.</p>
+<h3 id="addressblock"><code>ADDRESSBLOCK</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AddressBlockFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>CountryRegionInclusionSetting</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>FormatByRecipientCountry</code>: <code>BoolFlagNode?</code></li>
+<li><code>ExcludedCountriesRegions</code>: <code>List&lt;FlaggedArgument&lt;ExpressionNode&gt;&gt;</code></li>
+<li><code>FormatTemplate</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>LanguageId</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="advance"><code>ADVANCE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AdvanceFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DownByPoints</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>LeftByPoints</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>RightByPoints</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UpByPoints</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>HorizontalPosition</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>VerticalPosition</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ask"><code>ASK</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AskFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>PromptText</code>: <code>ExpressionNode?</code></li>
+<li><code>DefaultText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PromptOnce</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="author"><code>AUTHOR</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AuthorFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>NewAuthorName</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="autonum"><code>AUTONUM</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AutoNumFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Separator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="autonumlgl"><code>AUTONUMLGL</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AutoNumLglFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>RemoveTrailingSeparator</code>: <code>BoolFlagNode?</code></li>
+<li><code>Separator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="autonumout"><code>AUTONUMOUT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AutoNumOutFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="autotext"><code>AUTOTEXT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AutoTextFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryName</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="autotextlist"><code>AUTOTEXTLIST</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>AutoTextListFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryName</code>: <code>ExpressionNode?</code></li>
+<li><code>StyleFilter</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ScreenTip</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="barcode"><code>BARCODE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>BarcodeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Data</code>: <code>ExpressionNode?</code></li>
+<li><code>FacingIdentificationMark</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DataIsBookmarkName</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseUSPostalAddress</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="bibliography"><code>BIBLIOGRAPHY</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>BibliographyFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Locale</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>FilterLocale</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SingleSourceTag</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="bidioutline"><code>BIDIOUTLINE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>BidiOutlineFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="citation"><code>CITATION</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>CitationFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>SourceTag</code>: <code>ExpressionNode?</code></li>
+<li><code>Locale</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>Prefix</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>Suffix</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PageNumber</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>VolumeNumber</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SuppressAuthor</code>: <code>BoolFlagNode?</code></li>
+<li><code>SuppressTitle</code>: <code>BoolFlagNode?</code></li>
+<li><code>SuppressYear</code>: <code>BoolFlagNode?</code></li>
+<li><code>AdditionalSourceTag</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="comments"><code>COMMENTS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>CommentsFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Value</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="compare"><code>COMPARE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>CompareFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>CompareExpression</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="createdate"><code>CREATEDATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>CreateDateFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseHijriCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseSakaCalendar</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="database"><code>DATABASE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DatabaseFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>TableAttributes</code>: <code>FlaggedArgument&lt;DatabaseTableAttributesNode&gt;?</code></li>
+<li><code>ConnectionString</code>: <code>FlaggedArgument&lt;OdbcConnectionStringNode&gt;?</code></li>
+<li><code>DatabasePath</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>FirstRecord</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>IncludeHeaders</code>: <code>BoolFlagNode?</code></li>
+<li><code>TableFormat</code>: <code>FlaggedArgument&lt;DatabaseTableFormatNode&gt;?</code></li>
+<li><code>OptimizationFlag</code>: <code>FlaggedArgument&lt;DatabaseOptimizationFlagNode&gt;?</code></li>
+<li><code>DatabaseQueryInstruction</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>LastRecord</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="date"><code>DATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DateFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseHijriCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseLastUsedFormat</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseSakaCalendar</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="dde"><code>DDE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DdeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ApplicationName</code>: <code>ExpressionNode?</code></li>
+<li><code>FileName</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>AutoUpdate</code>: <code>BoolFlagNode?</code></li>
+<li><code>Bitmap</code>: <code>BoolFlagNode?</code></li>
+<li><code>NoStore</code>: <code>BoolFlagNode?</code></li>
+<li><code>Html</code>: <code>BoolFlagNode?</code></li>
+<li><code>Picture</code>: <code>BoolFlagNode?</code></li>
+<li><code>Rtf</code>: <code>BoolFlagNode?</code></li>
+<li><code>Text</code>: <code>BoolFlagNode?</code></li>
+<li><code>Unicode</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ddeauto"><code>DDEAUTO</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DdeAutoFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ApplicationName</code>: <code>ExpressionNode?</code></li>
+<li><code>FileName</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>Bitmap</code>: <code>BoolFlagNode?</code></li>
+<li><code>NoStore</code>: <code>BoolFlagNode?</code></li>
+<li><code>Html</code>: <code>BoolFlagNode?</code></li>
+<li><code>Picture</code>: <code>BoolFlagNode?</code></li>
+<li><code>Rtf</code>: <code>BoolFlagNode?</code></li>
+<li><code>Text</code>: <code>BoolFlagNode?</code></li>
+<li><code>Unicode</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="docproperty"><code>DOCPROPERTY</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DocPropertyFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PropertyName</code>: <code>ExpressionNode?</code></li>
+<li><code>PropertyCategoryArgument</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormats</code>: <code>List&lt;FlaggedArgument&lt;ExpressionNode&gt;&gt;</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>HyperlinkSwitch</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="docvariable"><code>DOCVARIABLE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>DocVariableFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>VariableName</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="edittime"><code>EDITTIME</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>EditTimeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="embed"><code>EMBED</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>EmbedFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ProgId</code>: <code>ExpressionNode</code></li>
+<li><code>MergeFormattingSwitch</code>: <code>FlaggedArgument&lt;StringLiteralNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="eq"><code>EQ</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>EqFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PrimarySwitch</code>: <code>FlagNode?</code></li>
+<li><code>ArgumentList</code>: <code>List&lt;ExpressionNode&gt;</code></li>
+<li><code>ArrayAlignment</code>: <code>FlaggedArgument&lt;EqArrayAlignmentNode&gt;?</code></li>
+<li><code>ColumnCount</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>HorizontalSpacing</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>VerticalSpacing</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>BothBracketCharacter</code>: <code>FlaggedArgument&lt;CharacterLiteralNode&gt;?</code></li>
+<li><code>LeftBracketCharacter</code>: <code>FlaggedArgument&lt;CharacterLiteralNode&gt;?</code></li>
+<li><code>RightBracketCharacter</code>: <code>FlaggedArgument&lt;CharacterLiteralNode&gt;?</code></li>
+<li><code>BackwardDisplacement</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ForwardDisplacement</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UnderlineSpace</code>: <code>BoolFlagNode?</code></li>
+<li><code>FixedHeightCharacter</code>: <code>FlaggedArgument&lt;CharacterLiteralNode&gt;?</code></li>
+<li><code>InlineFormat</code>: <code>BoolFlagNode?</code></li>
+<li><code>IntegralSymbol</code>: <code>FlaggedArgument&lt;EqIntegralSymbolNode&gt;?</code></li>
+<li><code>VariableHeightCharacter</code>: <code>FlaggedArgument&lt;CharacterLiteralNode&gt;?</code></li>
+<li><code>OverlayAlignment</code>: <code>FlaggedArgument&lt;EqOverlayAlignmentNode&gt;?</code></li>
+<li><code>SpaceAboveLine</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SpaceBelowLine</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>MoveDown</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>MoveUp</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>BorderBottom</code>: <code>BoolFlagNode?</code></li>
+<li><code>BorderLeft</code>: <code>BoolFlagNode?</code></li>
+<li><code>BorderRight</code>: <code>BoolFlagNode?</code></li>
+<li><code>BorderTop</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="filename"><code>FILENAME</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FileNameFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>IncludeFullPath</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="filesize"><code>FILESIZE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FileSizeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>InKilobytes</code>: <code>BoolFlagNode?</code></li>
+<li><code>InMegabytes</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="fillin"><code>FILLIN</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FillInFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PromptText</code>: <code>ExpressionNode?</code></li>
+<li><code>DefaultText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PromptOnce</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="formcheckbox"><code>FORMCHECKBOX</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FormCheckBoxFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="formdropdown"><code>FORMDROPDOWN</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FormDropDownFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="formtext"><code>FORMTEXT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FormTextFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="formula"><code>FORMULA</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>FormulaFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Expression</code>: <code>ExpressionNode</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="glossary"><code>GLOSSARY</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>GlossaryInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryName</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="gotobutton"><code>GOTOBUTTON</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>GoToButtonFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>TargetLocation</code>: <code>ExpressionNode?</code></li>
+<li><code>ButtonDisplayContent</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="greetingline"><code>GREETINGLINE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>GreetingLineFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BlankNameText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>Format</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>LanguageId</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="hyperlink"><code>HYPERLINK</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>HyperlinkFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Uri</code>: <code>ExpressionNode?</code></li>
+<li><code>DisplayText</code>: <code>ExpressionNode?</code></li>
+<li><code>InternalLocation</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NewWindow</code>: <code>BoolFlagNode?</code></li>
+<li><code>ServerSideImageMapAppendCoordinates</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ScreenTipText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>InstrFrameTarget</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ArbLocation</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UndocumentedC</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="if"><code>IF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>IfFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Condition</code>: <code>ExpressionNode?</code></li>
+<li><code>TrueExpression</code>: <code>ExpressionNode?</code></li>
+<li><code>FalseExpression</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="import"><code>IMPORT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>ImportInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PictureFilePath</code>: <code>ExpressionNode?</code></li>
+<li><code>GraphicsFilterName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ReduceFileSize</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="include"><code>INCLUDE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>IncludeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DocumentName</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>PreventUpdateUnlessFieldsUpdated</code>: <code>BoolFlagNode?</code></li>
+<li><code>DocumentFilterName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="includepicture"><code>INCLUDEPICTURE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>IncludePictureFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PictureFilePath</code>: <code>ExpressionNode?</code></li>
+<li><code>GraphicsFilterName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ReduceFileSize</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="includetext"><code>INCLUDETEXT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>IncludeTextFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DocumentName</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>PreventUpdateUnlessFieldsUpdated</code>: <code>BoolFlagNode?</code></li>
+<li><code>DocumentFilterName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NamespaceMapping</code>: <code>FlaggedArgument&lt;NamespaceDeclarationNode&gt;?</code></li>
+<li><code>XsltPath</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>XPathExpression</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="index"><code>INDEX</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>IndexFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumberOfColumns</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>SequencePageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>EntryPageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>EntryTypeFilter</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PageRangeSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>IndexHeadingText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>CrossReferenceSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PageNumberSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>LetterRange</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseRunInFormat</code>: <code>BoolFlagNode?</code></li>
+<li><code>SequenceName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>EnableYomiText</code>: <code>BoolFlagNode?</code></li>
+<li><code>LanguageId</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="info"><code>INFO</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>InfoFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>InformationCategory</code>: <code>InfoTypeNode</code></li>
+<li><code>FieldArgument</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseHijriCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseSakaCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>IncludeFullPath</code>: <code>BoolFlagNode?</code></li>
+<li><code>InKilobytes</code>: <code>BoolFlagNode?</code></li>
+<li><code>InMegabytes</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="keywords"><code>KEYWORDS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>KeywordsFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>FieldArgument</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="lastsavedby"><code>LASTSAVEDBY</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>LastSavedByFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="link"><code>LINK</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>LinkFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ApplicationType</code>: <code>ExpressionNode</code></li>
+<li><code>SourceFileLocation</code>: <code>ExpressionNode?</code></li>
+<li><code>SourceFilePortion</code>: <code>ExpressionNode?</code></li>
+<li><code>AutomaticallyUpdate</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertAsBitmap</code>: <code>BoolFlagNode?</code></li>
+<li><code>DontStoreGraphicData</code>: <code>BoolFlagNode?</code></li>
+<li><code>FormattingMode</code>: <code>FlaggedArgument&lt;LinkFormattingModeNode&gt;?</code></li>
+<li><code>InsertAsHtml</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertAsPicture</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertAsRtf</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertAsTextOnly</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertAsUnicodeText</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="listnum"><code>LISTNUM</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>ListNumFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ListName</code>: <code>ExpressionNode?</code></li>
+<li><code>Level</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>StartingNumber</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="macrobutton"><code>MACROBUTTON</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>MacroButtonFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>MacroName</code>: <code>ExpressionNode?</code></li>
+<li><code>ButtonText</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="mergefield"><code>MERGEFIELD</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>MergeFieldFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>FieldName</code>: <code>ExpressionNode</code></li>
+<li><code>TextBefore</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>TextAfter</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>IsMapped</code>: <code>BoolFlagNode?</code></li>
+<li><code>VerticalFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="mergerec"><code>MERGEREC</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>MergeRecFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="mergeseq"><code>MERGESEQ</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>MergeSeqFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="next"><code>NEXT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NextFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="nextif"><code>NEXTIF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NextIfFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Condition</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="noteref"><code>NOTEREF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NoteRefFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>FootnoteFormat</code>: <code>BoolFlagNode?</code></li>
+<li><code>Hyperlink</code>: <code>BoolFlagNode?</code></li>
+<li><code>RelativePosition</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="numchars"><code>NUMCHARS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NumCharsFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="numpages"><code>NUMPAGES</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NumPagesFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="numwords"><code>NUMWORDS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>NumWordsFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="page"><code>PAGE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>PageFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="pageref"><code>PAGEREF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>PageRefFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>Hyperlink</code>: <code>BoolFlagNode?</code></li>
+<li><code>RelativePosition</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="print"><code>PRINT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>PrintFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>PrinterControlCodes</code>: <code>ExpressionNode</code></li>
+<li><code>UsePostScript</code>: <code>BoolFlagNode?</code></li>
+<li><code>PostScriptDrawingRectangle</code>: <code>ExpressionNode?</code></li>
+<li><code>PostScriptInstructions</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="printdate"><code>PRINTDATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>PrintDateFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseHijriCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseSakaCalendar</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="private"><code>PRIVATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>PrivateFieldInstruction</code></li>
+<li>No special properties.</li>
+</ul>
+<h3 id="quote"><code>QUOTE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>QuoteFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>QuoteText</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="rd"><code>RD</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>RdFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>FilePath</code>: <code>ExpressionNode</code></li>
+<li><code>IsRelativePath</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ref"><code>REF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>RefFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>SeparatorSequence</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>IncrementFootnote</code>: <code>BoolFlagNode?</code></li>
+<li><code>CreateHyperlink</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertParagraphNumber</code>: <code>BoolFlagNode?</code></li>
+<li><code>RelativePosition</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertParagraphNumberRelative</code>: <code>BoolFlagNode?</code></li>
+<li><code>SuppressText</code>: <code>BoolFlagNode?</code></li>
+<li><code>FullContextParagraphNumber</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="revnum"><code>REVNUM</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>RevNumFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="savedate"><code>SAVEDATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SaveDateFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseHijriCalendar</code>: <code>BoolFlagNode?</code></li>
+<li><code>UseSakaCalendar</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="section"><code>SECTION</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SectionFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="sectionpages"><code>SECTIONPAGES</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SectionPagesFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="seq"><code>SEQ</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SeqFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>SequenceName</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>RepeatPreviousNumber</code>: <code>BoolFlagNode?</code></li>
+<li><code>Hide</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertNext</code>: <code>BoolFlagNode?</code></li>
+<li><code>ResetToNumber</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>ResetToHeadingLevel</code>: <code>FlaggedArgument&lt;NumericLiteralNode&lt;int&gt;&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="set"><code>SET</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SetFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>BookmarkName</code>: <code>ExpressionNode?</code></li>
+<li><code>Value</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="shape"><code>SHAPE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>ShapeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>ShapeText</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>NumericFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="skipif"><code>SKIPIF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SkipIfFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Condition</code>: <code>ExpressionNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="styleref"><code>STYLEREF</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>StyleRefFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>StyleName</code>: <code>ExpressionNode?</code></li>
+<li><code>InsertNearestTextFollowing</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertParagraphNumber</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertRelativePosition</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertParagraphNumberRelative</code>: <code>BoolFlagNode?</code></li>
+<li><code>SuppressNonDelimiter</code>: <code>BoolFlagNode?</code></li>
+<li><code>InsertParagraphNumberFull</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UndocumentedS</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="subject"><code>SUBJECT</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SubjectFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>SubjectText</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="symbol"><code>SYMBOL</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>SymbolFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>CharacterCode</code>: <code>NumericLiteralNode&lt;int&gt;?</code></li>
+<li><code>Ansi</code>: <code>BoolFlagNode?</code></li>
+<li><code>FontName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>FontSizeHalfPoints</code>: <code>BoolFlagNode?</code></li>
+<li><code>FontSizePoints</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>Unicode</code>: <code>BoolFlagNode?</code></li>
+<li><code>ShiftJis</code>: <code>BoolFlagNode?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ta"><code>TA</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TaFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryText</code>: <code>ExpressionNode?</code></li>
+<li><code>ApplyBoldFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>CategoryNumber</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ApplyItalicFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>LongCitation</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>BookmarkName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ShortCitation</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="tc"><code>TC</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TcFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryText</code>: <code>ExpressionNode?</code></li>
+<li><code>TableType</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>Level</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>OmitPageNumber</code>: <code>BoolFlagNode?</code></li>
+<li><code>Separator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="template"><code>TEMPLATE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TemplateFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>IncludeFullPath</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="time"><code>TIME</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TimeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>DateTimeFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="title"><code>TITLE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TitleFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>NewTitle</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="toa"><code>TOA</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>ToaFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>Category</code>: <code>ExpressionNode?</code></li>
+<li><code>BookmarkName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>CategoryNumber</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SequencePageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>EntryPageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PageRangeSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>RemoveFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>IncludeCategoryHeading</code>: <code>BoolFlagNode?</code></li>
+<li><code>MultiplePageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UsePassim</code>: <code>BoolFlagNode?</code></li>
+<li><code>SequenceIdentifier</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="toc"><code>TOC</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>TocFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>CaptionIdentifier</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>BookmarkName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SequenceIdentifier</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SequenceSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>TableType</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>CreateHyperlinks</code>: <code>BoolFlagNode?</code></li>
+<li><code>TcFieldLevels</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>OmitPageNumbers</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>HeadingStyleRange</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>PageNumberSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>SeqFieldIdentifier</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>CustomStyles</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>UseOutlineLevels</code>: <code>BoolFlagNode?</code></li>
+<li><code>PreserveTabEntries</code>: <code>BoolFlagNode?</code></li>
+<li><code>PreserveNewlines</code>: <code>FlagNode?</code></li>
+<li><code>HideTabLeaderInWebView</code>: <code>BoolFlagNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>EntryPageSeparator</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="useraddress"><code>USERADDRESS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>UserAddressFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>NewAddress</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="userinitials"><code>USERINITIALS</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>UserInitialsFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>NewInitials</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="username"><code>USERNAME</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>UserNameFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>NewUserName</code>: <code>ExpressionNode?</code></li>
+<li><code>GeneralFormat</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="xe"><code>XE</code></h3>
+<ul>
+<li><strong>Class</strong>: <code>XeFieldInstruction</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><code>EntryText</code>: <code>ExpressionNode</code></li>
+<li><code>ApplyBoldFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>EntryType</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>ApplyItalicFormatting</code>: <code>BoolFlagNode?</code></li>
+<li><code>BookmarkName</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>CrossReferenceText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+<li><code>YomiText</code>: <code>FlaggedArgument&lt;ExpressionNode&gt;?</code></li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/FieldInstruction/SupportedFields.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

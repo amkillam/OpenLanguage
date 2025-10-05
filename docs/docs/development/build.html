@@ -87,12 +87,12 @@
         <article data-uid="">
 <h1 id="build-system">Build System</h1>
 
-<p>OpenLanguage uses a sophisticated CMake-based build system designed to handle .NET projects with YACC/LEX grammar file preprocessing. This document provides comprehensive information about the build system architecture, targets, and usage.</p>
+<p>OpenLanguage uses a sophisticated CMake-based build system designed to handle .NET projects with yacc/lex grammar file preprocessing. This document provides comprehensive information about the build system architecture, targets, and usage.</p>
 <h2 id="overview">Overview</h2>
 <p>The build system is architected around CMake 3.20+ and provides several key capabilities:</p>
 <ul>
 <li><strong>Cross-platform .NET Runtime Identifier (RID) detection and configuration</strong></li>
-<li><strong>Automatic preprocessing of .y (YACC) and .lex (LEX) grammar files using the C preprocessor</strong></li>
+<li><strong>Automatic preprocessing of .y (yacc) and .lex (lex) grammar files using the C preprocessor</strong></li>
 <li><strong>Multi-target compilation for different runtime architectures</strong></li>
 <li><strong>Integration with .NET toolchain for building, testing, and packaging</strong></li>
 <li><strong>Code formatting and documentation generation</strong></li>
@@ -106,8 +106,8 @@
 │   ├── OpenLanguage.csproj    # .NET project file
 │   ├── Generated/             # Preprocessed grammar files (created during build)
 │   └── SpreadsheetML/Formula/Lang/
-│       ├── Parse/formula.y    # YACC grammar file
-│       └── Lex/               # LEX lexer files
+│       ├── Parse/formula.y    # yacc grammar file
+│       └── Lex/               # lex lexer files
 │           ├── formula.lex    # Main lexer
 │           └── function/      # Function definition lexer files
 ├── OpenLanguage.Test/         # Unit test project
@@ -118,7 +118,7 @@
 <ol>
 <li><strong>RID Detection</strong>: Automatically detects the target platform and architecture</li>
 <li><strong>Grammar Preprocessing</strong>: Processes .y and .lex files with cpp (C preprocessor)</li>
-<li><strong>Code Generation</strong>: GPPG/GPLEX tools generate C# parser/lexer code from grammar files</li>
+<li><strong>Code Generation</strong>: GPPG and GPLEX tools generate C# parser/lexer code from grammar files</li>
 <li><strong>Compilation</strong>: Builds the .NET solution for specified RIDs</li>
 <li><strong>Testing</strong>: Runs xUnit tests with the compiled assemblies</li>
 <li><strong>Packaging</strong>: Creates NuGet packages for distribution</li>
@@ -155,7 +155,7 @@ cmake -B build -DRUNTIMES=&quot;linux-x64;win-x64;osx-arm64&quot;
 </code></pre>
 <h2 id="grammar-file-processing">Grammar File Processing</h2>
 <h3 id="overview-1">Overview</h3>
-<p>The build system automatically processes YACC (.y) and LEX (.lex) files using the C preprocessor before compilation. This enables:</p>
+<p>The build system automatically processes yacc (.y) and lex (.lex) files using the C preprocessor before compilation. This enables:</p>
 <ul>
 <li><strong>Conditional compilation</strong> using <code>#ifdef</code>, <code>#ifndef</code>, <code>#define</code></li>
 <li><strong>File inclusion</strong> using <code>#include</code></li>
@@ -172,7 +172,7 @@ cmake -B build -DRUNTIMES=&quot;linux-x64;win-x64;osx-arm64&quot;
 <h3 id="example">Example</h3>
 <p><strong>Source</strong>: <code>OpenLanguage/SpreadsheetML/Formula/Lang/Lex/formula.lex</code>
 <strong>Output</strong>: <code>OpenLanguage/Generated/SpreadsheetML/Formula/Lang/Lex/formula.lex</code></p>
-<p>The preprocessed files are then used by GPPG/GPLEX tools to generate C# parser code.</p>
+<p>The preprocessed files are then used by GPPG and GPLEX tools to generate C# parser code.</p>
 <h2 id="build-targets">Build Targets</h2>
 <h3 id="core-targets">Core Targets</h3>
 <h4 id="process"><code>process</code></h4>
@@ -191,8 +191,8 @@ cmake -B build -DRUNTIMES=&quot;linux-x64;win-x64;osx-arm64&quot;
 <p>Runs all unit tests using xUnit.</p>
 <pre><code class="lang-bash">cmake --build build --target test
 </code></pre>
-<p><strong>Dependencies</strong>: <code>build</code><br>
-<strong>Command</strong>: <code>dotnet test --configuration Release --no-build --verbosity normal</code></p>
+<p><strong>Dependencies</strong>: <code>process</code><br>
+<strong>Command</strong>: <code>dotnet test OpenLanguage.Test/OpenLanguage.Test.csproj --configuration=&quot;Release&quot; --framework=&quot;net9.0&quot;</code></p>
 <h3 id="utility-targets">Utility Targets</h3>
 <h4 id="format"><code>format</code></h4>
 <p>Formats all C# code using CSharpier.</p>
@@ -215,7 +215,7 @@ dotnet csharpier format .
 <p><strong>Dependencies</strong>: <code>build</code><br>
 <strong>Output</strong>: NuGet packages in <code>build/packages/</code></p>
 <h4 id="install-hooks"><code>install-hooks</code></h4>
-<p>Installs git pre-commit hooks for development.</p>
+<p>Installs git pre-commit hooks for development using Husky.</p>
 <pre><code class="lang-bash">cmake --build build --target install-hooks
 </code></pre>
 <p><strong>Actions</strong>:</p>
@@ -292,7 +292,7 @@ dotnet csharpier format .
 <h3 id="net-project-configuration">.NET Project Configuration</h3>
 <p>The <code>OpenLanguage.csproj</code> file includes:</p>
 <pre><code class="lang-xml">&lt;PropertyGroup&gt;
-  &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+  &lt;TargetFrameworks&gt;net8.0;net9.0&lt;/TargetFrameworks&gt;
   &lt;PublishAot&gt;true&lt;/PublishAot&gt;
   &lt;PublishTrimmed&gt;true&lt;/PublishTrimmed&gt;
   &lt;Nullable&gt;enable&lt;/Nullable&gt;
@@ -351,8 +351,8 @@ cmake --build build --target pack       # Pack for distribution
 <h3 id="yacclextools-integration">YaccLexTools Integration</h3>
 <p>The project uses YaccLexTools packages for grammar processing:</p>
 <ul>
-<li><strong>YaccLexTools.Gppg</strong>: YACC-style parser generator</li>
-<li><strong>YaccLexTools.Gplex</strong>: LEX-style lexer generator</li>
+<li><strong>YaccLexTools.Gppg</strong>: yacc parser generator</li>
+<li><strong>YaccLexTools.Gplex</strong>: lex lexer generator</li>
 </ul>
 <p>The .csproj file configures these tools:</p>
 <pre><code class="lang-xml">&lt;YaccFile Include=&quot;Generated/SpreadsheetML/Formula/Lang/Parse/formula.y&quot;&gt;
@@ -412,8 +412,8 @@ Generated files are cached in the <code>Generated/</code> directory and only reg
 <pre><code class="lang-cmake"># Add custom preprocessor definitions
 add_custom_command(
     TARGET process PRE_BUILD
-    COMMAND cpp -P ${YACC_FILE} -o ${OUTPUT_FILE} -DCUSTOM_FLAG -Wno-invalid-pp-token
-    COMMENT &quot;Processing ${YACC_FILE} -&gt; ${OUTPUT_FILE}&quot;
+    COMMAND cpp -P ${yacc_FILE} -o ${OUTPUT_FILE} -DCUSTOM_FLAG -Wno-invalid-pp-token
+    COMMENT &quot;Processing ${yacc_FILE} -&gt; ${OUTPUT_FILE}&quot;
 )
 </code></pre>
 <h3 id="custom-build-targets">Custom Build Targets</h3>

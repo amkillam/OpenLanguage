@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Expression Lexer | OpenLanguage Documentation </title>
+      <title>Expression Parser | OpenLanguage Documentation </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Expression Lexer | OpenLanguage Documentation ">
+      <meta name="title" content="Expression Parser | OpenLanguage Documentation ">
       
       
       <link rel="icon" href="../../../../favicon.ico">
@@ -85,320 +85,121 @@
         </div>
 
         <article data-uid="">
-<h1 id="expression-lexer">Expression Lexer</h1>
+<h1 id="expression-parser">Expression Parser</h1>
 
-<p>The <code>OpenLanguage.WordprocessingML.Expression</code> namespace provides lexical analysis for parsing expressions using character-by-character state machine parsing.</p>
+<p>The <code>OpenLanguage.WordprocessingML.Expression</code> namespace provides a robust parser for expressions found within WordprocessingML field instructions.</p>
 <h2 id="overview">Overview</h2>
-<p>The Expression lexer provides:</p>
+<p>The Expression parser provides:</p>
 <ul>
-<li><strong>Expression Tokenization</strong>: Parse expressions into individual tokens</li>
-<li><strong>Binary Expression Parsing</strong>: Extract operands and operators from simple comparisons</li>
-<li><strong>Multiple Token Types</strong>: Support for strings, numbers, operators, identifiers, merge fields</li>
-<li><strong>State Machine Parsing</strong>: Character-by-character lexical analysis</li>
+<li><strong>Expression Parsing</strong>: Parse expressions into an Abstract Syntax Tree (AST).</li>
+<li><strong>Grammar-Based Parsing</strong>: Uses a GPLEX/GPPG-based parser for accuracy and maintainability.</li>
+<li><strong>AST Representation</strong>: Represents expressions as a tree of nodes, including literals, identifiers, operators, and nested fields.</li>
+<li><strong>Round-Trip Fidelity</strong>: Parsed expressions can be reconstructed into their original string representation.</li>
 </ul>
 <h2 id="core-classes">Core Classes</h2>
-<h3 id="expressionlexer">ExpressionLexer</h3>
-<p>Static class providing lexical analysis methods:</p>
+<h3 id="expressionparser">ExpressionParser</h3>
+<p>A static class for parsing expression strings.</p>
 <pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Expression;
+using OpenLanguage.WordprocessingML.Ast;
 
-// Parse an expression into tokens
-var tokens = ExpressionLexer.TokenizeExpression(&quot;Amount &gt; 100&quot;);
+// Parse an expression
+ExpressionNode expression = ExpressionParser.Parse(&quot;Amount &gt; 100&quot;);
 
-foreach (var token in tokens)
+// The result is an AST node, e.g., a BinaryOperatorNode
+if (expression is BinaryOperatorNode binaryOp)
 {
-    Console.WriteLine($&quot;{token.Type}: {token.Value}&quot;);
-}
-// Output:
-// Identifier: Amount
-// Whitespace:
-// Operator: &gt;
-// Whitespace:
-// Number: 100
-</code></pre>
-<h3 id="expression">Expression</h3>
-<p>Represents a parsed expression with tokens and binary components:</p>
-<pre><code class="lang-csharp">public class Expression
-{
-    public string RawText { get; set; }                    // Original expression text
-    public List&lt;ExpressionToken&gt; Tokens { get; set; }     // Parsed tokens
-    public string? LeftOperand { get; set; }              // Left side of binary expression
-    public ComparisonOperator? Operator { get; set; }     // Comparison operator
-    public string? RightOperand { get; set; }             // Right side of binary expression
-
-    // Constructors for different creation scenarios
-    public Expression()
-    public Expression(string rawText)
-    public Expression(string leftOperand, ComparisonOperator op, string rightOperand)
+    Console.WriteLine($&quot;Left: {binaryOp.LeftOperand}&quot;);
+    Console.WriteLine($&quot;Operator: {binaryOp.Operator}&quot;);
+    Console.WriteLine($&quot;Right: {binaryOp.RightOperand}&quot;);
 }
 </code></pre>
-<h3 id="expressiontoken">ExpressionToken</h3>
-<p>Represents a single token within an expression:</p>
-<pre><code class="lang-csharp">public class ExpressionToken
-{
-    public ExpressionTokenType Type { get; set; }    // Type of token
-    public string Value { get; set; }                // Token value
-    public int Position { get; set; }               // Position in source text
-}
-</code></pre>
-<h2 id="token-types">Token Types</h2>
-<p>The lexer recognizes these token types:</p>
-<h3 id="expressiontokentype-enumeration">ExpressionTokenType Enumeration</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>String</code></td>
-<td>Quoted string literal</td>
-<td><code>&quot;Hello&quot;</code></td>
-</tr>
-<tr>
-<td><code>Number</code></td>
-<td>Numeric literal</td>
-<td><code>123</code>, <code>-45.6</code></td>
-</tr>
-<tr>
-<td><code>MergeField</code></td>
-<td>Merge field reference</td>
-<td><code>«FirstName»</code></td>
-</tr>
-<tr>
-<td><code>Operator</code></td>
-<td>Comparison operator</td>
-<td><code>=</code>, <code>&lt;&gt;</code>, <code>&gt;=</code></td>
-</tr>
-<tr>
-<td><code>Identifier</code></td>
-<td>Variable or field name</td>
-<td><code>Amount</code></td>
-</tr>
-<tr>
-<td><code>Whitespace</code></td>
-<td>Whitespace characters</td>
-<td><code> </code>, <code>\t</code></td>
-</tr>
-<tr>
-<td><code>Unknown</code></td>
-<td>Unrecognized token</td>
-<td><code>@</code>, <code>#</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="comparison-operators">Comparison Operators</h2>
-<p>The lexer supports these comparison operators from the <code>ComparisonOperator</code> enum:</p>
-<table>
-<thead>
-<tr>
-<th>Operator</th>
-<th>ComparisonOperator Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>=</code></td>
-<td><code>Equal</code></td>
-<td>Equal</td>
-</tr>
-<tr>
-<td><code>&lt;&gt;</code></td>
-<td><code>NotEqual</code></td>
-<td>Not equal</td>
-</tr>
-<tr>
-<td><code>&lt;</code></td>
-<td><code>LessThan</code></td>
-<td>Less than</td>
-</tr>
-<tr>
-<td><code>&lt;=</code></td>
-<td><code>LessThanOrEqual</code></td>
-<td>Less than or equal</td>
-</tr>
-<tr>
-<td><code>&gt;</code></td>
-<td><code>GreaterThan</code></td>
-<td>Greater than</td>
-</tr>
-<tr>
-<td><code>&gt;=</code></td>
-<td><code>GreaterThanOrEqual</code></td>
-<td>Greater than or equal</td>
-</tr>
-</tbody>
-</table>
-<h2 id="parsing-methods">Parsing Methods</h2>
-<h3 id="expression-parsing">Expression Parsing</h3>
-<pre><code class="lang-csharp">// Parse a complete expression
-var expression = ExpressionLexer.ParseExpression(&quot;CustomerType = &quot;Premium&quot;&quot;);
-
-Console.WriteLine($&quot;Raw text: {expression.RawText}&quot;);
-Console.WriteLine($&quot;Left operand: {expression.LeftOperand}&quot;);    // &quot;CustomerType&quot;
-Console.WriteLine($&quot;Operator: {expression.Operator}&quot;);           // Equal
-Console.WriteLine($&quot;Right operand: {expression.RightOperand}&quot;);  // &quot;&quot;Premium&quot;&quot;
-
-// Check if expression contains merge fields
-Console.WriteLine($&quot;Has merge fields: {expression.ContainsMergeFields}&quot;);
-
-// Check if expression is a literal value
-Console.WriteLine($&quot;Is literal: {expression.IsLiteral}&quot;);
-</code></pre>
-<h3 id="token-level-parsing">Token-Level Parsing</h3>
-<pre><code class="lang-csharp">// Get individual tokens from an expression
-var tokens = ExpressionLexer.TokenizeExpression(&quot;Amount &gt;= «MinimumAmount»&quot;);
-
-foreach (var token in tokens)
-{
-    Console.WriteLine($&quot;Type: {token.Type}, Value: '{token.Value}', Position: {token.Position}&quot;);
-}
-
-// Output:
-// Type: Identifier, Value: 'Amount', Position: 0
-// Type: Whitespace, Value: ' ', Position: 6
-// Type: Operator, Value: '&gt;=', Position: 7
-// Type: Whitespace, Value: ' ', Position: 9
-// Type: MergeField, Value: '«MinimumAmount»', Position: 10
-</code></pre>
-<h2 id="expression-creation">Expression Creation</h2>
-<h3 id="creating-expressions-programmatically">Creating Expressions Programmatically</h3>
-<pre><code class="lang-csharp">// Create from raw text
-var expr1 = new Expression(&quot;Status = &quot;Active&quot;&quot;);
-
-// Create binary expression directly
-var expr2 = new Expression(&quot;Amount&quot;, ComparisonOperator.GreaterThan, &quot;100&quot;);
-Console.WriteLine(expr2.ToString()); // &quot;Amount &gt; 100&quot;
-
-// Create empty expression and set properties
-var expr3 = new Expression();
-expr3.RawText = &quot;Count &lt;= 50&quot;;
-expr3.LeftOperand = &quot;Count&quot;;
-expr3.Operator = ComparisonOperator.LessThanOrEqual;
-expr3.RightOperand = &quot;50&quot;;
-</code></pre>
-<h3 id="string-tokenization">String Tokenization</h3>
-<pre><code class="lang-csharp">// Parse quoted strings with escape sequences
-var tokens = ExpressionLexer.TokenizeExpression(@&quot;&quot;&quot;Hello &quot;&quot;World&quot;&quot; Test&quot;&quot;&quot;);
-// Handles escaped quotes within strings
-
-// Parse numbers including negative values
-var numTokens = ExpressionLexer.TokenizeExpression(&quot;-123.45&quot;);
-// Recognizes negative numbers as single tokens
-
-// Parse merge fields
-var mergeTokens = ExpressionLexer.TokenizeExpression(&quot;«FirstName» + «LastName»&quot;);
-// Tokenizes merge field delimiters properly
-</code></pre>
-<h2 id="operator-parsing">Operator Parsing</h2>
-<h3 id="operator-utilities">Operator Utilities</h3>
-<pre><code class="lang-csharp">// Parse operator strings
-var op1 = ExpressionLexer.ParseOperator(&quot;&gt;=&quot;);
-Console.WriteLine(op1); // GreaterThanOrEqual
-
-// Convert operators back to strings
-var opString = ExpressionLexer.OperatorToString(ComparisonOperator.NotEqual);
-Console.WriteLine(opString); // &quot;&lt;&gt;&quot;
-
-// Handle invalid operators
-try
-{
-    var invalidOp = ExpressionLexer.ParseOperator(&quot;??&quot;);
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine($&quot;Error: {ex.Message}&quot;); // Unknown comparison operator
-}
-</code></pre>
-<h2 id="state-machine-implementation">State Machine Implementation</h2>
-<p>The lexer uses character-by-character state machine parsing:</p>
-<h3 id="internal-lexer-states">Internal Lexer States</h3>
-<pre><code class="lang-csharp">internal enum LexerState
-{
-    Initial,        // Starting state
-    InString,       // Inside quoted string
-    InNumber,       // Parsing numeric literal
-    InIdentifier,   // Parsing identifier/variable name
-    InOperator,     // Parsing comparison operator
-    InMergeField,   // Inside merge field delimiters
-    InWhitespace    // Processing whitespace
-}
-</code></pre>
-<h3 id="parsing-process">Parsing Process</h3>
-<ol>
-<li><strong>Initial</strong>: Determines token type based on first character</li>
-<li><strong>InString</strong>: Handles quoted strings with escape sequence support</li>
-<li><strong>InNumber</strong>: Parses numeric literals including negative numbers and decimals</li>
-<li><strong>InIdentifier</strong>: Extracts variable names and identifiers</li>
-<li><strong>InOperator</strong>: Recognizes single and multi-character operators</li>
-<li><strong>InMergeField</strong>: Processes merge field delimiters (« »)</li>
-<li><strong>InWhitespace</strong>: Groups consecutive whitespace characters</li>
-</ol>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><code>Parse(string expression)</code>: Parses an expression string and returns the root <code>ExpressionNode</code> of the AST. Throws <code>InvalidOperationException</code> on failure.</li>
+<li><code>TryParse(string expression)</code>: Attempts to parse an expression and returns <code>null</code> if parsing fails.</li>
+</ul>
+<h3 id="ast-nodes">AST Nodes</h3>
+<p>The parser generates a tree of nodes derived from <code>OpenLanguage.WordprocessingML.Ast.ExpressionNode</code>. Common node types include:</p>
+<ul>
+<li><code>IdentifierNode</code>: For unquoted identifiers like bookmark names.</li>
+<li><code>StringLiteralNode</code>: For text content.</li>
+<li><code>Quoted&lt;T&gt;</code>: For quoted content.</li>
+<li><code>NumericLiteralNode&lt;T&gt;</code>: For numbers.</li>
+<li><code>BinaryOperatorNode</code>: Base for operations like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>=</code>, <code>&gt;</code>.
+<ul>
+<li><code>AddNode</code>, <code>SubtractNode</code>, <code>MultiplyNode</code>, <code>DivideNode</code>, <code>EqualNode</code>, etc.</li>
+</ul>
+</li>
+<li><code>UnaryOperatorNode</code>: Base for operations like unary <code>-</code>.
+<ul>
+<li><code>UnaryMinusNode</code>, <code>UnaryPlusNode</code>.</li>
+</ul>
+</li>
+<li><code>MergeFieldNode</code>: For <code>«MergeField»</code> placeholders.</li>
+<li><code>ParenthesizedExpressionNode</code>: For expressions enclosed in <code>()</code>.</li>
+</ul>
 <h2 id="usage-examples">Usage Examples</h2>
-<h3 id="complete-expression-analysis">Complete Expression Analysis</h3>
-<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Expression;
+<h3 id="parsing-different-expression-types">Parsing Different Expression Types</h3>
+<pre><code class="lang-csharp">// Numeric comparison
+var numericExpr = ExpressionParser.Parse(&quot;123.45 &gt;= 100&quot;);
 
-string expressionText = @&quot;«CustomerType» = &quot;&quot;Premium&quot;&quot; AND Amount &gt;= 1000.00&quot;;
+// String comparison
+var stringExpr = ExpressionParser.Parse(@&quot;&quot;&quot;apples&quot;&quot; = &quot;&quot;oranges&quot;&quot;&quot;);
 
-// Parse the full expression
-var expression = ExpressionLexer.ParseExpression(expressionText);
+// Identifier (e.g., bookmark)
+var identifierExpr = ExpressionParser.Parse(&quot;MyBookmark&quot;);
 
-Console.WriteLine($&quot;Original: {expression.RawText}&quot;);
-Console.WriteLine($&quot;Tokens: {expression.Tokens.Count}&quot;);
+// Expression with a merge field
+var mergeFieldExpr = ExpressionParser.Parse(&quot;«CustomerType» = &quot;&quot;Premium&quot;&quot;&quot;);
 
-// Examine each token
-foreach (var token in expression.Tokens)
+// Reconstruct the expression
+Console.WriteLine(mergeFieldExpr.ToString());
+</code></pre>
+<h3 id="working-with-the-ast">Working with the AST</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.Ast;
+using OpenLanguage.WordprocessingML.Expression;
+
+var ast = ExpressionParser.Parse(&quot;(«Amount» + 50) * 2&quot;);
+
+// Traverse the AST
+if (ast is MultiplyNode multiply)
 {
-    if (token.Type != ExpressionTokenType.Whitespace)
+    Console.WriteLine($&quot;Main operator: {multiply.Operator}&quot;); // *
+
+    if (multiply.LeftOperand is ParenthesizedExpressionNode p)
     {
-        Console.WriteLine($&quot;  {token.Type}: '{token.Value}' at position {token.Position}&quot;);
+        if (p.Inner is AddNode add)
+        {
+            Console.WriteLine($&quot;Nested operator: {add.Operator}&quot;); // +
+            Console.WriteLine($&quot;Left operand of sum: {add.LeftOperand}&quot;); // «Amount»
+            Console.WriteLine($&quot;Right operand of sum: {add.RightOperand}&quot;); // 50
+        }
     }
 }
-
-// For simple binary expressions, components are extracted
-if (expression.LeftOperand != null)
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>The <code>Parse</code> method throws an exception for invalid syntax, while <code>TryParse</code> provides a safe way to handle potential errors.</p>
+<pre><code class="lang-csharp">// Safe parsing
+var result = ExpressionParser.TryParse(&quot;1 +&quot;); // Incomplete expression
+if (result == null)
 {
-    Console.WriteLine($&quot;Binary expression detected:&quot;);
-    Console.WriteLine($&quot;  Left: {expression.LeftOperand}&quot;);
-    Console.WriteLine($&quot;  Operator: {expression.Operator}&quot;);
-    Console.WriteLine($&quot;  Right: {expression.RightOperand}&quot;);
+    Console.WriteLine(&quot;Failed to parse expression.&quot;);
+}
+
+// Exception-based parsing
+try
+{
+    ExpressionParser.Parse(&quot;1 + (2 *&quot;); // Unmatched parenthesis
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine($&quot;Error: {ex.Message}&quot;);
 }
 </code></pre>
-<h3 id="expression-properties">Expression Properties</h3>
-<pre><code class="lang-csharp">// Create expressions and check their properties
-var mergeExpr = new Expression(&quot;«Amount» &gt; 100&quot;);
-Console.WriteLine($&quot;Contains merge fields: {mergeExpr.ContainsMergeFields}&quot;); // True
-
-var literalExpr = new Expression(&quot;42&quot;);
-Console.WriteLine($&quot;Is literal: {literalExpr.IsLiteral}&quot;); // True
-
-var binaryExpr = new Expression(&quot;Status&quot;, ComparisonOperator.Equal, &quot;Active&quot;);
-Console.WriteLine($&quot;Binary expression: {binaryExpr.ToString()}&quot;); // &quot;Status = Active&quot;
-</code></pre>
-<h2 id="technical-details">Technical Details</h2>
-<ul>
-<li><strong>Character-by-Character Parsing</strong>: Robust state machine implementation</li>
-<li><strong>Escape Sequence Support</strong>: Handles escaped quotes in string literals</li>
-<li><strong>Multi-Character Operators</strong>: Recognizes &lt;=, &gt;=, &lt;&gt; operators</li>
-<li><strong>Merge Field Support</strong>: Parses « » delimited merge fields</li>
-<li><strong>Binary Expression Extraction</strong>: Automatically extracts operands from simple comparisons</li>
-<li><strong>Position Tracking</strong>: Maintains character positions for error reporting</li>
-</ul>
-<h2 id="limitations">Limitations</h2>
-<ul>
-<li>Only lexical analysis - no expression evaluation</li>
-<li>Limited to comparison operators (no arithmetic operators)</li>
-<li>Binary expression extraction works only for simple cases</li>
-<li>No validation of merge field syntax within delimiters</li>
-<li>String escape sequences support is basic (quotes and backslashes only)</li>
-</ul>
 <h2 id="see-also">See Also</h2>
 <ul>
-<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a> - Generic field instruction handling</li>
-<li><a href="../MergeField/MergeField.html">MergeField Lexer</a> - Merge field specific parsing</li>
+<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a></li>
+<li><a href="../Ast.html">Abstract Syntax Tree (AST)</a></li>
 </ul>
 
 </article>
