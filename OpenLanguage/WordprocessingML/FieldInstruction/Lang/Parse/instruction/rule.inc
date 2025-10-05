@@ -1457,7 +1457,7 @@ includetext_field_instruction:
   | includetext_field_instruction switch_n_flag namespace_decl
       {
           $$ = $1;
-          $$.NamespaceMapping = new FlaggedArgument<NamespaceDeclarationNode>($2, $3);
+          $$.NamespaceMapping = new FlaggedArgument<OpenLanguage.WordprocessingML.FieldInstruction.Ast.NamespaceDeclarationNode>($2, $3);
           $$.Order.Add(IncludeTextArgument.NamespaceMapping);
       }
   | includetext_field_instruction xslt_path

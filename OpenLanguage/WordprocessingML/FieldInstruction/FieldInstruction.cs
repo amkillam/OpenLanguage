@@ -41,43 +41,6 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         }
     }
 
-    public static class DatabaseOptimizationFlagExtensions
-    {
-        public static DatabaseOptimizationFlag? TryParse(string? s)
-        {
-            if (string.IsNullOrWhiteSpace(s))
-            {
-                return null;
-            }
-
-            return s.Trim().ToLowerInvariant() switch
-            {
-                "none" => DatabaseOptimizationFlag.None,
-                "queryonce" or "query_once" or "query-once" => DatabaseOptimizationFlag.QueryOnce,
-                "cacheresults" or "cache_results" or "cache-results" =>
-                    DatabaseOptimizationFlag.CacheResults,
-                "useconnectionpooling" or "use_connection_pooling" or "use-connection-pooling" =>
-                    DatabaseOptimizationFlag.UseConnectionPooling,
-                "optimizeforlargedata" or "optimize_for_large_data" or "optimize-for-large-data" =>
-                    DatabaseOptimizationFlag.OptimizeForLargeData,
-                "optimizeforsmalldata" or "optimize_for_small_data" or "optimize-for-small-data" =>
-                    DatabaseOptimizationFlag.OptimizeForSmallData,
-                _ => null,
-            };
-        }
-
-        public static DatabaseOptimizationFlag Parse(string? s)
-        {
-            DatabaseOptimizationFlag? val = TryParse(s);
-            if (val == null)
-            {
-                throw new ArgumentException($"Invalid database optimization flag: {s}");
-            }
-
-            return val.Value;
-        }
-    }
-
     public static class FacingIdentificationMarkTypeExtensions
     {
         public static FacingIdentificationMarkType? TryParse(string? s)

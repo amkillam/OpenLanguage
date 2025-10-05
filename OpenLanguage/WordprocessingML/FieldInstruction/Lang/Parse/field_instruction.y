@@ -29,15 +29,15 @@
     #include "table/union.inc"
     #include "language_identifier/union.inc"
 
-    public OpenLanguage.WordprocessingML.FieldInstruction.Generated.NameFormatNode nameFormatNodeVal;
-    public OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode dbOptFlagNodeVal;
+    public NameFormatNode nameFormatNodeVal;
+    public DatabaseOptimizationFlagNode dbOptFlagNodeVal;
 
-    public OpenLanguage.WordprocessingML.FieldInstruction.Generated.EqArgumentList eqArgListVal;
+    public EqArgumentList eqArgListVal;
     public ExpressionListNode expressionListNodeVal;
-    public OpenLanguage.WordprocessingML.FieldInstruction.Generated.FrameTargetNode frameTargetNodeVal;
+    public FrameTargetNode frameTargetNodeVal;
     public LeftBracketNode leftBracketNodeVal;
     public RightBracketNode rightBracketNodeVal;
-    public OpenLanguage.WordprocessingML.FieldInstruction.Generated.NamespaceDeclarationNode namespaceDeclNodeVal;
+    public OpenLanguage.WordprocessingML.FieldInstruction.Ast.NamespaceDeclarationNode namespaceDeclNodeVal;
 
     public StringLiteralNode stringLiteralNodeVal;
     public FlaggedArgument<ExpressionNode> flaggedStringLiteralVal;
@@ -653,11 +653,11 @@ identifier_or_string_raw:
 country_region_incl:
     whitespace country_region_incl  { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | country_region_incl whitespace  { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | quote country_region_incl quote { $$ = new Quoted<OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode>($1, (OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode)$2, $3); }
-  | T_HEX_INTEGER                   { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture)), $1); }
-  | T_BINARY_INTEGER                { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.NumberStyles.AllowBinarySpecifier | System.Globalization.NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture)), $1); }
-  | T_INTEGER                       { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.CultureInfo.InvariantCulture)), $1); }
-  | identifier_or_string_raw        { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.CountryRegionInclusionNode(OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusionExtensions.Parse($1), $1); }
+  | quote country_region_incl quote { $$ = new Quoted<CountryRegionInclusionNode>($1, (CountryRegionInclusionNode)$2, $3); }
+  | T_HEX_INTEGER                   { $$ = new CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture)), $1); }
+  | T_BINARY_INTEGER                { $$ = new CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.NumberStyles.AllowBinarySpecifier | System.Globalization.NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture)), $1); }
+  | T_INTEGER                       { $$ = new CountryRegionInclusionNode((OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion)(int.Parse($1, System.Globalization.CultureInfo.InvariantCulture)), $1); }
+  | identifier_or_string_raw        { $$ = new CountryRegionInclusionNode(OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusionExtensions.Parse($1), $1); }
   ;
 
 frame_target:
@@ -683,23 +683,23 @@ name_format:
 optimization_flag:
     whitespace optimization_flag { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | optimization_flag whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | T_DBOPT_NONE                 { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.None); }
-  | T_DBOPT_QUERYONCE            { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.QueryOnce); }
-  | T_DBOPT_CACHERESULTS         { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.CacheResults); }
-  | T_DBOPT_USECONNECTIONPOOLING { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.UseConnectionPooling); }
-  | T_DBOPT_OPTIMIZEFORLARGEDATA { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.OptimizeForLargeData); }
-  | T_DBOPT_OPTIMIZEFORSMALLDATA { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.OptimizeForSmallData); }
-  | /* empty */                  { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.DatabaseOptimizationFlagNode(OpenLanguage.WordprocessingML.FieldInstruction.DatabaseOptimizationFlag.QueryOnce, true); }
+  | T_DBOPT_NONE                 { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.None); }
+  | T_DBOPT_QUERYONCE            { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.QueryOnce); }
+  | T_DBOPT_CACHERESULTS         { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.CacheResults); }
+  | T_DBOPT_USECONNECTIONPOOLING { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.UseConnectionPooling); }
+  | T_DBOPT_OPTIMIZEFORLARGEDATA { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.OptimizeForLargeData); }
+  | T_DBOPT_OPTIMIZEFORSMALLDATA { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.OptimizeForSmallData); }
+  | /* empty */                  { $$ = new DatabaseOptimizationFlagNode(DatabaseOptimizationFlag.QueryOnce, true); }
   ;
 
 namespace_decl:
     whitespace namespace_decl { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | namespace_decl whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
   | quote T_STRING_CONTENT quote {
-        $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.NamespaceDeclarationNode(new OpenLanguage.WordprocessingML.FieldInstruction.NamespaceDeclaration($1.ToRawString() + $2 + $3.ToRawString()));
+        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ToRawString() + $2 + $3.ToRawString()));
     }
   | quote quote {
-        $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.NamespaceDeclarationNode(new OpenLanguage.WordprocessingML.FieldInstruction.NamespaceDeclaration($1.ToRawString() + $2.ToRawString()));
+        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ToRawString() + $2.ToRawString()));
     }
   ;
 
@@ -719,14 +719,14 @@ xpath:
 font_size:
     whitespace font_size         { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | font_size whitespace         { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | quote T_BINARY_INTEGER quote { $$ = new Quoted<OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode>( $1, new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($2, NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $2), $3); }
-  | quote T_HEX_INTEGER quote    { $$ = new Quoted<OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode>( $1, new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($2, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $2), $3); }
-  | quote T_INTEGER quote        { $$ = new Quoted<OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode>( $1, new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = $2 }, $2), $3); }
-  | quote T_FLOAT quote          { $$ = new Quoted<OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode>( $1, new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = System.Convert.ToUInt64(double.Parse($2, System.Globalization.CultureInfo.InvariantCulture)).ToString() }, $2), $3); }
-  | T_BINARY_INTEGER             { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($1, NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $1); }
-  | T_HEX_INTEGER                { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($1, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $1); }
-  | T_INTEGER                    { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = $1 }, $1); }
-  | T_FLOAT                      { $$ = new OpenLanguage.WordprocessingML.FieldInstruction.Generated.FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = System.Convert.ToUInt64(double.Parse($1, System.Globalization.CultureInfo.InvariantCulture)).ToString() }, $1); }
+  | quote T_BINARY_INTEGER quote { $$ = new Quoted<FontSizeNode>( $1, new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($2, NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $2), $3); }
+  | quote T_HEX_INTEGER quote    { $$ = new Quoted<FontSizeNode>( $1, new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($2, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $2), $3); }
+  | quote T_INTEGER quote        { $$ = new Quoted<FontSizeNode>( $1, new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = $2 }, $2), $3); }
+  | quote T_FLOAT quote          { $$ = new Quoted<FontSizeNode>( $1, new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = System.Convert.ToUInt64(double.Parse($2, System.Globalization.CultureInfo.InvariantCulture)).ToString() }, $2), $3); }
+  | T_BINARY_INTEGER             { $$ = new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($1, NumberStyles.AllowBinarySpecifier | NumberStyles.BinaryNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $1); }
+  | T_HEX_INTEGER                { $$ = new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = int.Parse($1, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture).ToString() }, $1); }
+  | T_INTEGER                    { $$ = new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = $1 }, $1); }
+  | T_FLOAT                      { $$ = new FontSizeNode(new DocumentFormat.OpenXml.Wordprocessing.FontSize() { Val = System.Convert.ToUInt64(double.Parse($1, System.Globalization.CultureInfo.InvariantCulture)).ToString() }, $1); }
   ;
 
 
@@ -892,7 +892,7 @@ char_arg:
 %%
 
 public Node root;
-internal Parser(OpenLanguage.WordprocessingML.FieldInstruction.Generated.FieldInstructionScanner scanner) : base(scanner)
+internal Parser(FieldInstructionScanner scanner) : base(scanner)
 {
   scanner.Parser = this;
 }

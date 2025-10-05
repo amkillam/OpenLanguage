@@ -48,7 +48,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// The namespace mapping for XPath queries. Required if the \x switch refers to an element by name in an XML file that declares a namespace.
         /// Format: xmlns:prefix="URI"
         /// </summary>
-        public FlaggedArgument<NamespaceDeclarationNode>? NamespaceMapping { get; set; }
+        public FlaggedArgument<OpenLanguage.WordprocessingML.FieldInstruction.Ast.NamespaceDeclarationNode>? NamespaceMapping { get; set; }
 
         /// <summary>
         /// Switch: \t field-argument
@@ -70,7 +70,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             ExpressionNode? bookmarkName,
             BoolFlagNode? preventUpdateUnlessFieldsUpdated,
             FlaggedArgument<ExpressionNode>? documentFilterName,
-            FlaggedArgument<NamespaceDeclarationNode>? namespaceMapping,
+            FlaggedArgument<OpenLanguage.WordprocessingML.FieldInstruction.Ast.NamespaceDeclarationNode>? namespaceMapping,
             FlaggedArgument<ExpressionNode>? xsltPath,
             FlaggedArgument<ExpressionNode>? xPathExpression,
             List<IncludeTextArgument> order,
@@ -192,7 +192,10 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
                             }
                             break;
                         case IncludeTextArgument.NamespaceMapping:
-                            if (replacement is FlaggedArgument<NamespaceDeclarationNode> fa2)
+                            if (
+                                replacement
+                                is FlaggedArgument<OpenLanguage.WordprocessingML.FieldInstruction.Ast.NamespaceDeclarationNode> fa2
+                            )
                             {
                                 current = NamespaceMapping;
                                 NamespaceMapping = fa2;
