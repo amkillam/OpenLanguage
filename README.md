@@ -308,8 +308,8 @@ implementation of parsing, parsing dependencies, nor AST. However, optimization 
 
 ### VBA
 
-- [ ] Define and implement grammar for VBA Query
-- [ ] Implement VBA Query AST and parser
+- [ ] Define and implement grammar for VBA
+- [ ] Implement VBA AST and parser
 
 ### Misc
 
