@@ -59,7 +59,7 @@ public class MergeFieldFieldInstruction : FieldInstruction
 
 ## Supported Field Types
 
-The library provides strongly-typed classes for most Word field instructions. For a complete list, see [Supported Field Instructions](SupportedFields.md). Some examples include:
+The library provides strongly-typed classes for all field instruction types. For a complete list, see [Supported Field Instructions](SupportedFields.md). Some examples include:
 
 - `AuthorFieldInstruction`
 - `DateFieldInstruction`

@@ -46,7 +46,10 @@ The formula parser is built using GPLEX/GPPG tools:
 
 ### Supported Syntax
 
-Based on the test cases, the parser supports:
+All valid formula syntax is currently intended to be supported, and support seems to
+be complete.
+
+However, for those unfamiliar, formula syntax can be broadly categorised as follows.
 
 #### Literals and Identifiers
 
