@@ -23,7 +23,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Arguments.TrimExcess();
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             FunctionReference.ToString()
             + "("
             + string.Join(",", Arguments.Select(a => a.ToString()))

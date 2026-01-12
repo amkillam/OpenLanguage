@@ -19,7 +19,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             _raw = raw;
         }
 
-        public override string ToRawString() => _raw;
+        public override string ValueString() => _raw;
 
         public override IEnumerable<O> Children<O>()
         {

@@ -21,7 +21,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => EqualPrefix.ToString() + Expression.ToString();
+        public override string ValueString() => EqualPrefix.ToString() + Expression.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

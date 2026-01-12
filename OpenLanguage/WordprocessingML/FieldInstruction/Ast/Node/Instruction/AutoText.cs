@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             EntryName = entryName;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString() + (EntryName?.ToString() ?? string.Empty);
 
         public override IEnumerable<O> Children<O>()

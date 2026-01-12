@@ -36,12 +36,12 @@ namespace OpenLanguage.WordprocessingML.Ast
         /// </summary>
         public sealed override string ToString() =>
             string.Concat(LeadingWhitespace.Select((Node w) => w.ToString()))
-            + ToRawString()
+            + ValueString()
             + string.Concat(TrailingWhitespace.Select((Node w) => w.ToString()));
 
         public virtual int Precedence => Ast.Precedence.Default;
 
-        public abstract override string ToRawString();
+        public abstract override string ValueString();
 
         public abstract override IEnumerable<O> Children<O>();
 

@@ -139,7 +139,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             DateTimeFormat = dateTimeFormat;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + string.Concat(
                 Order.Select(arg =>

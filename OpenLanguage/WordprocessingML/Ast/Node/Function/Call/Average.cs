@@ -19,7 +19,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             ArgumentList = argumentList;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             System.Text.StringBuilder sb = new();
             sb.Append(FunctionHead.ToString());

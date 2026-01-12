@@ -25,28 +25,28 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
     {
         private const string Keyword = "#All";
 
-        public override string ToRawString() => Keyword;
+        public override string ValueString() => Keyword;
     }
 
     public class StructureDataReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Data";
 
-        public override string ToRawString() => Keyword;
+        public override string ValueString() => Keyword;
     }
 
     public class StructureHeadersReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Headers";
 
-        public override string ToRawString() => Keyword;
+        public override string ValueString() => Keyword;
     }
 
     public class StructureTotalsReferenceNode : StructuredReferenceKeywordNode
     {
         private const string Keyword = "#Totals";
 
-        public override string ToRawString() => Keyword;
+        public override string ValueString() => Keyword;
     }
 
     public class StructureThisRowReferenceNode : StructuredReferenceKeywordNode
@@ -58,7 +58,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             RawValue = rawValue;
         }
 
-        public override string ToRawString() => RawValue;
+        public override string ValueString() => RawValue;
     }
 
     public class StructureThisRowByPrefixReferenceNode : StructureAbsoluteColumn
@@ -74,7 +74,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             AtSymbol = atSymbol;
         }
 
-        public override string ToRawString() => AtSymbol.ToString() + base.ToRawString();
+        public override string ValueString() => AtSymbol.ToString() + base.ValueString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -123,7 +123,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             OpenBracket.ToString() + Name.ToString() + CloseBracket.ToString();
 
         public override IEnumerable<O> Children<O>()
@@ -175,7 +175,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => Name.ToString();
+        public override string ValueString() => Name.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -210,7 +210,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Start.ToString()}:{End.ToString()}";
+        public override string ValueString() => $"{Start.ToString()}:{End.ToString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -261,7 +261,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{ThisRow.ToRawString()}{Column.ToRawString()}";
+        public override string ValueString() => $"{ThisRow.ValueString()}{Column.ValueString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -309,7 +309,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Headers.ToString()},{Data.ToString()}";
+        public override string ValueString() => $"{Headers.ToString()},{Data.ToString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -357,7 +357,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Data.ToString()},{Totals.ToString()}";
+        public override string ValueString() => $"{Data.ToString()},{Totals.ToString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -402,7 +402,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Keyword.ToString()},{ColumnRange.ToString()}";
+        public override string ValueString() => $"{Keyword.ToString()},{ColumnRange.ToString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -447,7 +447,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Keyword.ToString()},{Column.ToString()}";
+        public override string ValueString() => $"{Keyword.ToString()},{Column.ToString()}";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -551,7 +551,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             (SheetReference?.ToString() ?? string.Empty)
             + string.Concat(Indices.Select((ExpressionNode i) => i.ToString()));
 
@@ -610,7 +610,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => "[" + Column.ToString() + "]";
+        public override string ValueString() => "[" + Column.ToString() + "]";
 
         public override IEnumerable<O> Children<O>()
         {

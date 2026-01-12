@@ -18,7 +18,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Nodes.TrimExcess();
         }
 
-        public override string ToRawString() => string.Concat(Nodes.Select(n => n.ToString()));
+        public override string ValueString() => string.Concat(Nodes.Select(n => n.ToString()));
 
         public override IEnumerable<O> Children<O>()
         {
@@ -67,7 +67,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Right = right;
         }
 
-        public override string ToRawString() => Left.ToString() + Right.ToString();
+        public override string ValueString() => Left.ToString() + Right.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -181,8 +181,8 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             QuestionMark = qMarkNode;
         }
 
-        public override string ToRawString() =>
-            (base.ToRawString() + (QuestionMark?.ToString() ?? string.Empty));
+        public override string ValueString() =>
+            (base.ValueString() + (QuestionMark?.ToString() ?? string.Empty));
     }
 
     public class WorksheetFunctionNode : BuiltInFunctionNode

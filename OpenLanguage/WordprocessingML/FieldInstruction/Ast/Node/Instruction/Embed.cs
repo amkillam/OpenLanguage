@@ -21,7 +21,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             MergeFormattingSwitch = mergeFormattingSwitch;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + ProgId.ToString()
             + (MergeFormattingSwitch?.ToString() ?? string.Empty);

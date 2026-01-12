@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             RightOperand = rightOperand;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             LeftOperand.ToString() + Operator.ToString() + RightOperand.ToString();
 
         public override IEnumerable<O> Children<O>()

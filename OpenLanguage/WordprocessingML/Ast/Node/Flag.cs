@@ -30,7 +30,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Argument = argument;
         }
 
-        public override string ToRawString() => Flag.ToString() + Argument.ToString();
+        public override string ValueString() => Flag.ToString() + Argument.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

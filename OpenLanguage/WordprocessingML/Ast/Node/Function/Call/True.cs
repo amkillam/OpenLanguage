@@ -13,7 +13,7 @@ namespace OpenLanguage.WordprocessingML.Ast
         )
             : base(functionHead, leftParen, rightParen, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             FunctionHead.ToString()
             + (LeftParen?.ToString() ?? string.Empty)
             + (RightParen?.ToString() ?? string.Empty);

@@ -20,7 +20,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Separators = separators;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             System.Text.StringBuilder sb = new();
             for (int i = 0; i < Items.Count; i++)

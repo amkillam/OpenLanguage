@@ -8,7 +8,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public ExpressionNode? Prefix { get; set; } = null;
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Prefix == null ? (RawPrefix ?? string.Empty) : Prefix.ToString();
 
         public override IEnumerable<O> Children<O>()

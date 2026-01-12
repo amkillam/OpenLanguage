@@ -5,7 +5,7 @@ using OpenLanguage.WordprocessingML.Ast;
 namespace OpenLanguage.WordprocessingML.FieldInstruction
 {
     /// <summary>
-    /// Represents the information categories available for INFO field instructions.
+    /// Enumerated information categories available for INFO field instructions.
     /// </summary>
     public enum InfoType
     {
@@ -140,7 +140,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             InfoType = infoType;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             return OpenLanguage.WordprocessingML.FieldInstruction.InfoTypeExtensions.ToString(
                 InfoType

@@ -20,7 +20,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Declaration = declaration;
         }
 
-        public override string ToRawString() => Declaration.ToString();
+        public override string ValueString() => Declaration.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -57,7 +57,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Value = new System.Uri(value, System.UriKind.RelativeOrAbsolute);
         }
 
-        public override string ToRawString() => _raw;
+        public override string ValueString() => _raw;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -84,7 +84,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Raw = raw;
         }
 
-        public override string ToRawString() => Raw ?? Value.ToString();
+        public override string ValueString() => Raw ?? Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -111,7 +111,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Raw = raw;
         }
 
-        public override string ToRawString() => Raw ?? Value.ToString();
+        public override string ValueString() => Raw ?? Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -135,7 +135,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Value = value;
         }
 
-        public override string ToRawString() => Value.ToString();
+        public override string ValueString() => Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -162,7 +162,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Raw = raw;
         }
 
-        public override string ToRawString() => Raw ?? Value.ToString();
+        public override string ValueString() => Raw ?? Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -192,7 +192,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Separators.TrimExcess();
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder("\"");
             for (int i = 0; i < Values.Count; i++)

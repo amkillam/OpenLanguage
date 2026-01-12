@@ -25,7 +25,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Right = right;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Left.ToString() + Delimiter.ToString() + Right.ToString();
 
         public override IEnumerable<O> Children<O>()

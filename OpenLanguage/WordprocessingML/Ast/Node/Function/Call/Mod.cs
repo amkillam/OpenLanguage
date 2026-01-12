@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Right = right;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             FunctionHead.ToString()
             + (LeftParen?.ToString() ?? string.Empty)
             + Left.ToString()

@@ -18,7 +18,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             ErrorType = errorType;
         }
 
-        public override string ToRawString() => ErrorType;
+        public override string ValueString() => ErrorType;
 
         public override IEnumerable<O> Children<O>()
         {

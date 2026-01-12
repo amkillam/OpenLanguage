@@ -40,7 +40,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Order = order;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + string.Concat(
                 Order.Select(a =>

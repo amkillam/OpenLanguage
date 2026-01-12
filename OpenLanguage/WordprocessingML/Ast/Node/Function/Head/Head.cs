@@ -17,7 +17,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             FunctionName = functionName;
         }
 
-        public override string ToRawString() => FunctionName.ToString();
+        public override string ValueString() => FunctionName.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

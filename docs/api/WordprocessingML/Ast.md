@@ -11,7 +11,7 @@ The abstract base class for all AST nodes. It defines the fundamental structure 
 - `Children<O>()`: Enumerates child nodes of a specific type.
 - `ReplaceChild(int index, Node replacement)`: Replaces a child node at a given index.
 - `ToString()`: Reconstructs the node's original string representation, including whitespace.
-- `ToRawString()`: Gets the node's content without leading/trailing whitespace.
+- `ValueString()`: Gets the node's content without leading/trailing whitespace.
 
 ### `ExpressionNode`
 

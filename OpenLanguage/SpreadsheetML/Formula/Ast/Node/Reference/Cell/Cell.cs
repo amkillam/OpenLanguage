@@ -23,7 +23,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             ColumnSpecifier = val;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             ColumnSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
         public override int Precedence => Ast.Precedence.Primary;
@@ -56,7 +56,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             RowSpecifier = val;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             RowSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
         public override int Precedence => Ast.Precedence.Primary;
@@ -101,7 +101,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Column = column;
         }
 
-        public override string ToRawString() => Row.ToRawString() + Column.ToRawString();
+        public override string ValueString() => Row.ValueString() + Column.ValueString();
 
         public override IEnumerable<O> Children<O>()
         {

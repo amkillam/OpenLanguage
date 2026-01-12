@@ -51,7 +51,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             return current;
         }
 
-        public override string ToRawString() => Operator.ToString() + Operand.ToString();
+        public override string ValueString() => Operator.ToString() + Operand.ToString();
     }
 
     public abstract class BinaryOperatorNode : ExpressionNode
@@ -114,7 +114,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             return current;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Left.ToString() + Operator.ToString() + Right.ToString();
     }
 
@@ -156,7 +156,7 @@ namespace OpenLanguage.WordprocessingML.Ast
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
+        public override string ValueString() => base.Operand.ToString() + base.Operator.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -308,7 +308,7 @@ namespace OpenLanguage.WordprocessingML.Ast
         public override int Precedence => Ast.Precedence.Percent;
 
         // Percent is a suffix operator: render operand then operator
-        public override string ToRawString() => base.Operand.ToString() + base.Operator.ToString();
+        public override string ValueString() => base.Operand.ToString() + base.Operator.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -592,7 +592,7 @@ namespace OpenLanguage.WordprocessingML.Ast
 
         public override int Precedence => Ast.Precedence.Unary;
 
-        public override string ToRawString() => Operand.ToString() + Operator.ToString();
+        public override string ValueString() => Operand.ToString() + Operator.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

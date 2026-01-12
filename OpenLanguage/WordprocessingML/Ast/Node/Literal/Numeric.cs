@@ -30,7 +30,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Unit = unit;
         }
 
-        public override string ToRawString() => Raw + (Unit?.ToRawString() ?? string.Empty);
+        public override string ValueString() => Raw + (Unit?.ValueString() ?? string.Empty);
 
         public NumericLiteralNode(
             T value,

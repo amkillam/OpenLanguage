@@ -18,7 +18,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Application = application;
         }
 
-        public override string ToRawString() => Application.ToString();
+        public override string ValueString() => Application.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

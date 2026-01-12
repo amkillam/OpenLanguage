@@ -1,7 +1,7 @@
 general_format:
     whitespace general_format { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | general_format whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
-  | identifier_or_string      { $$ = $1; } // TODO: real general format parsing! Highly critical.
+  | identifier_or_string      { $$ = $1; } // TODO: strict general format parsing
   ;
 
 general_formatting_switch:

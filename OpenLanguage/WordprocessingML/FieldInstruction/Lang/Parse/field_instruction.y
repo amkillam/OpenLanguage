@@ -696,10 +696,10 @@ namespace_decl:
     whitespace namespace_decl { $$ = $2; $$.LeadingWhitespace.Insert(0, $1); }
   | namespace_decl whitespace { $$ = $1; $$.TrailingWhitespace.Add($2); }
   | quote T_STRING_CONTENT quote {
-        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ToRawString() + $2 + $3.ToRawString()));
+        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ValueString() + $2 + $3.ValueString()));
     }
   | quote quote {
-        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ToRawString() + $2.ToRawString()));
+        $$ = new NamespaceDeclarationNode(new NamespaceDeclaration($1.ValueString() + $2.ValueString()));
     }
   ;
 

@@ -18,7 +18,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             ProgId = progId;
         }
 
-        public override string ToRawString() => ProgId.ToString();
+        public override string ValueString() => ProgId.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

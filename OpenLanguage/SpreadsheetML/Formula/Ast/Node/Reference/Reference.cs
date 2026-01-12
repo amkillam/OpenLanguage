@@ -30,7 +30,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             RawName = null;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Name == null ? (RawName ?? string.Empty) : Name.ToString();
 
         public override IEnumerable<O> Children<O>()
@@ -96,7 +96,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => Bang.ToString() + Reference.ToString();
+        public override string ValueString() => Bang.ToString() + Reference.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -146,7 +146,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
             builder.Append(Sheet.ToString());
@@ -211,7 +211,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             (WorkbookReference?.ToString() ?? string.Empty)
             + (SheetName?.ToString() ?? string.Empty);
 
@@ -271,7 +271,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             StartSheetName + ColonNode.ToString() + EndSheetName;
 
         public override IEnumerable<O> Children<O>()
@@ -338,7 +338,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             OpenBracket.ToString() + (Index?.ToString() ?? string.Empty) + CloseBracket.ToString();
 
         public override IEnumerable<O> Children<O>()
@@ -401,7 +401,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => OpenQuote + Sheet.ToString() + CloseQuote;
+        public override string ValueString() => OpenQuote + Sheet.ToString() + CloseQuote;
 
         public override IEnumerable<O> Children<O>()
         {

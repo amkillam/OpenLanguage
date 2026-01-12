@@ -65,7 +65,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
         /// Reconstructs the field instruction as a string.
         /// </summary>
         /// <returns>The field instruction string.</returns>
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + string.Concat(
                 Order.Select(a =>

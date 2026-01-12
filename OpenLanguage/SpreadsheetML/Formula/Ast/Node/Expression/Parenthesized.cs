@@ -40,6 +40,6 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             return null;
         }
 
-        public override string ToRawString() => "(" + Expression.ToString() + ")";
+        public override string ValueString() => "(" + Expression.ToString() + ")";
     }
 }

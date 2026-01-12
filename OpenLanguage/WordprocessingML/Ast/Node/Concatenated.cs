@@ -18,7 +18,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Nodes.TrimExcess();
         }
 
-        public override string ToRawString() => string.Concat(Nodes.Select(n => n.ToString()));
+        public override string ValueString() => string.Concat(Nodes.Select(n => n.ToString()));
 
         public override IEnumerable<O> Children<O>()
         {

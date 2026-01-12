@@ -20,7 +20,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => Name.ToString();
+        public override string ValueString() => Name.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -55,7 +55,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => $"{Name.ToRawString()}[{Item.ToRawString()}]";
+        public override string ValueString() => $"{Name.ValueString()}[{Item.ValueString()}]";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -106,7 +106,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
 
         public override int Precedence => Ast.Precedence.Primary;
 
-        public override string ToRawString() => Value.ToString();
+        public override string ValueString() => Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

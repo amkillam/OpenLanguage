@@ -91,7 +91,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
             Value = value;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             OpenLanguage.WordprocessingML.FieldInstruction.FrameTargetUtils.FrameTargetText(Value);
 
         public override IEnumerable<O> Children<O>()
@@ -215,7 +215,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// Reconstructs the field instruction as a string.
         /// </summary>
         /// <returns>The field instruction string.</returns>
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + string.Concat(
                 Order.Select(a =>

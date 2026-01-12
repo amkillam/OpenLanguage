@@ -22,7 +22,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Right = right;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Left.ToString() + Inner.ToString() + Right.ToString();
 
         public override IEnumerable<O> Children<O>()

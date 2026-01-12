@@ -23,7 +23,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             ColumnSpecifier = val;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             ColumnSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
         public override Node? ReplaceChild(int index, Node replacement) => null;
@@ -54,7 +54,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             RowSpecifier = val;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             RowSpecifier.ToString("D", System.Globalization.CultureInfo.InvariantCulture);
 
         public override Node? ReplaceChild(int index, Node replacement) => null;
@@ -96,7 +96,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Column = column;
         }
 
-        public override string ToRawString() => Row.ToString() + Column.ToString();
+        public override string ValueString() => Row.ToString() + Column.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

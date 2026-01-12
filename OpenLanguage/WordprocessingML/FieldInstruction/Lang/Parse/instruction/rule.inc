@@ -602,7 +602,7 @@ database_field_instruction:
           $$.Order.Add(DatabaseArgument.TableAttributes);
       }
       // NOTE: need to change this to expression to allow evaluated database connection strings
-      // DO NOT use `ToString` or `ToRawString`. Instead, just have OdbcConnectionStringNode take
+      // DO NOT use `ToString` or `ValueString`. Instead, just have OdbcConnectionStringNode take
       // an `ExpressionNode` in its constructor.
   | database_field_instruction switch_c identifier_or_string
       {

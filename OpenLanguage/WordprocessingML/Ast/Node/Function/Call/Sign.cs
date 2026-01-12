@@ -19,7 +19,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Argument = arg;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             FunctionHead.ToString()
             + (LeftParen?.ToString() ?? string.Empty)
             + Argument.ToString()

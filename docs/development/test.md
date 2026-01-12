@@ -251,9 +251,9 @@ public void Parse_MergeFieldWithSwitches_SetsProperties()
 
     // Assert
     var mergeField = Assert.IsType<MergeFieldFieldInstruction>(ast);
-    Assert.Equal("FirstName", mergeField.FieldName.ToRawString());
+    Assert.Equal("FirstName", mergeField.FieldName.ValueString());
     Assert.NotNull(mergeField.GeneralFormat);
-    Assert.Equal("Upper", mergeField.GeneralFormat.Argument.ToRawString());
+    Assert.Equal("Upper", mergeField.GeneralFormat.Argument.ValueString());
 }
 ```
 
@@ -296,7 +296,7 @@ public void Parse_MergeFieldInstruction_ReturnsTypedInstanceWithCorrectPropertie
     var mergeField = Assert.IsType<MergeFieldFieldInstruction>(instruction);
 
     // Assert
-    Assert.Equal("FirstName", mergeField.FieldName.ToRawString());
+    Assert.Equal("FirstName", mergeField.FieldName.ValueString());
 }
 ```
 
@@ -597,7 +597,7 @@ public void Parse_ComplexFormula_DebugExample()
     var addNode = Assert.IsType<AddNode>(root.Expression);
 
     // Main assertion
-    Assert.Equal("+", addNode.Operator.ToRawString());
+    Assert.Equal("+", addNode.Operator.ValueString());
 
     // Verify operands
     Assert.IsType<FunctionCallNode>(addNode.Left);

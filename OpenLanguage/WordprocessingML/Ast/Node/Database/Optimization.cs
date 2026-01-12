@@ -19,7 +19,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             IsDefault = isDefault;
         }
 
-        public override string ToRawString() => IsDefault ? string.Empty : Value.ToString();
+        public override string ValueString() => IsDefault ? string.Empty : Value.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

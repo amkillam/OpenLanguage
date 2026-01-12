@@ -54,7 +54,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Right = right;
         }
 
-        public override string ToRawString() => Left.ToString() + Sep.ToString() + Right.ToString();
+        public override string ValueString() => Left.ToString() + Sep.ToString() + Right.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

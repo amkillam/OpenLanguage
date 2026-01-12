@@ -10,7 +10,7 @@ namespace OpenLanguage.WordprocessingML.Ast
         )
             : base(leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => string.Empty;
+        public override string ValueString() => string.Empty;
 
         public override IEnumerable<O> Children<O>()
         {

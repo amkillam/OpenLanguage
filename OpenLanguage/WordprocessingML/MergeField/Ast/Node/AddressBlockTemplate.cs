@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             ProcessedTemplate = processedTemplate;
         }
 
-        public override string ToRawString() => RawTemplate;
+        public override string ValueString() => RawTemplate;
 
         public override IEnumerable<O> Children<O>()
         {

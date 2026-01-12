@@ -17,7 +17,7 @@ namespace OpenLanguage.WordprocessingML.Ast
         }
 
         // Leading and trailing whitespace is added in the base class's `ToString` method.
-        public override string ToRawString() => Value;
+        public override string ValueString() => Value;
 
         public override IEnumerable<O> Children<O>()
         {

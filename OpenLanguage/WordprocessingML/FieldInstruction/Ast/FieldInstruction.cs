@@ -17,7 +17,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Instruction = instruction;
         }
 
-        public override string ToRawString() => Instruction.ToString();
+        public override string ValueString() => Instruction.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -61,7 +61,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             RightBrace = rightBrace;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             (LeftBrace?.ToString() ?? string.Empty)
             + NestedInstruction.ToString()
             + (RightBrace?.ToString() ?? string.Empty);

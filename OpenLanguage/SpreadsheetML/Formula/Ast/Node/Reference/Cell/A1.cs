@@ -12,7 +12,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             new AlphabeticHexevigesimalProvider().Format(
                 "AH",
                 ColumnSpecifier,
@@ -29,7 +29,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "$" + base.ToRawString();
+        public override string ValueString() => "$" + base.ValueString();
     }
 
     public class A1RelativeColumnNode : A1ColumnNode
@@ -73,7 +73,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(val, leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => "$" + base.ToRawString();
+        public override string ValueString() => "$" + base.ValueString();
     }
 
     public class A1RelativeRowNode : A1RowNode
@@ -91,7 +91,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         public A1CellNode(A1ColumnNode column, A1RowNode row)
             : base(row, column) { }
 
-        public override string ToRawString() => base.Column.ToString() + base.Row.ToString();
+        public override string ValueString() => base.Column.ToString() + base.Row.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

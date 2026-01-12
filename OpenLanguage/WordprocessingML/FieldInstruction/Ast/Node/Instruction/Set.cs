@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Value = value;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             return Instruction.ToString()
                 + (BookmarkName?.ToString() ?? string.Empty)

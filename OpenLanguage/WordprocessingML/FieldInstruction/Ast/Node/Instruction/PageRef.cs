@@ -67,7 +67,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
         /// Reconstructs the field instruction as a string.
         /// </summary>
         /// <returns>The field instruction string.</returns>
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString()
             + (BookmarkName?.ToString() ?? string.Empty)
             + string.Concat(

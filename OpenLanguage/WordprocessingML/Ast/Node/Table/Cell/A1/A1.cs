@@ -7,7 +7,7 @@ namespace OpenLanguage.WordprocessingML.Ast
         public A1CellNode(A1ColumnNode column, A1RowNode row)
             : base(row, column) { }
 
-        public override string ToRawString() => base.Column.ToString() + base.Row.ToString();
+        public override string ValueString() => base.Column.ToString() + base.Row.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

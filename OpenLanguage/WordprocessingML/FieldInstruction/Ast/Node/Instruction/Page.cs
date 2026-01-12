@@ -22,7 +22,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             GeneralFormat = generalFormat;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Instruction.ToString() + (GeneralFormat?.ToString() ?? string.Empty);
 
         public override IEnumerable<O> Children<O>()

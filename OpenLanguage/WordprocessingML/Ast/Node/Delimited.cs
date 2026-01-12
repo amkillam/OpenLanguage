@@ -25,7 +25,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Right = right;
         }
 
-        public override string ToRawString() => Left.ToString() + Sep.ToString() + Right.ToString();
+        public override string ValueString() => Left.ToString() + Sep.ToString() + Right.ToString();
 
         public override IEnumerable<O> Children<O>()
         {
@@ -114,7 +114,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             RightBracket = right;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             LeftBracket.ToString() + Inner.ToString() + RightBracket.ToString();
 
         public override IEnumerable<O> Children<O>()

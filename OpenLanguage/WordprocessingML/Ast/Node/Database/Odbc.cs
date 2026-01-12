@@ -23,12 +23,12 @@ namespace OpenLanguage.WordprocessingML.Ast
             }
             else
             {
-                connectionString = value.ToRawString();
+                connectionString = value.ValueString();
             }
             Value = new OdbcConnectionStringBuilder(connectionString);
         }
 
-        public override string ToRawString() => RawExpression.ToString();
+        public override string ValueString() => RawExpression.ToString();
 
         public override IEnumerable<O> Children<O>()
         {

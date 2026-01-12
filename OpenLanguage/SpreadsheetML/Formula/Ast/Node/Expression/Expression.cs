@@ -41,14 +41,14 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         /// Renders the core content of the node without its own leading/trailing whitespace.
         /// </summary>
         /// <returns>The raw string representation of this node's specific content.</returns>
-        public abstract string ToRawString();
+        public abstract string ValueString();
 
         /// <summary>
         /// Converts the AST node back into its string representation, including all captured whitespace.
         /// </summary>
         public sealed override string ToString() =>
             string.Concat(LeadingWhitespace.Select((Node w) => w.ToString()))
-            + ToRawString()
+            + ValueString()
             + string.Concat(TrailingWhitespace.Select((Node w) => w.ToString()));
     }
 }

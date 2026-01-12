@@ -228,7 +228,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             RawValue = value.ToString(FormatSpecifier.Specifier, CultureInfo.InvariantCulture);
         }
 
-        public override string ToRawString() => RawValue;
+        public override string ValueString() => RawValue;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -253,7 +253,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Value = value;
         }
 
-        public override string ToRawString() => $"\"{Value.Replace("\"", "\"\"")}\"";
+        public override string ValueString() => $"\"{Value.Replace("\"", "\"\"")}\"";
 
         public override IEnumerable<O> Children<O>()
         {
@@ -281,7 +281,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             RawText = rawText;
         }
 
-        public override string ToRawString() => RawText;
+        public override string ValueString() => RawText;
 
         public override IEnumerable<O> Children<O>()
         {
@@ -301,7 +301,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
         )
             : base(leadingWhitespace, trailingWhitespace) { }
 
-        public override string ToRawString() => string.Empty;
+        public override string ValueString() => string.Empty;
 
         public override IEnumerable<O> Children<O>()
         {

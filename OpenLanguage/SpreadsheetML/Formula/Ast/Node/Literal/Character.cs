@@ -16,7 +16,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Raw = raw;
         }
 
-        public override string ToRawString() => Raw;
+        public override string ValueString() => Raw;
 
         public override IEnumerable<O> Children<O>()
         {

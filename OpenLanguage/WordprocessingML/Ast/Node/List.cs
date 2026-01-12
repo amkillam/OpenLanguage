@@ -40,7 +40,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Separators = new List<SeparatorNode>();
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             System.Text.StringBuilder result = new();
             for (int i = 0; i < Items.Count; i++)

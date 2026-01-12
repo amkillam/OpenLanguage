@@ -72,7 +72,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     }
 
     /// <summary>
-    /// Represents the type of Facing Identification Mark (FIM) for BARCODE field instructions.
+    /// Facing Identification Mark (FIM) for BARCODE field instructions.
     /// </summary>
     public enum FacingIdentificationMarkType
     {
@@ -88,7 +88,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     }
 
     /// <summary>
-    /// Represents country/region inclusion options for ADDRESSBLOCK field instructions.
+    /// Enumerated country/region inclusion options for ADDRESSBLOCK field instructions.
     /// </summary>
     public enum CountryRegionInclusion
     {
@@ -1214,7 +1214,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction
     }
 
     /// <summary>
-    /// Represents the format options for names in mail merge fields like GREETINGLINE and ADDRESSBLOCK.
+    /// Enumerated format options for names in mail merge fields like GREETINGLINE and ADDRESSBLOCK.
     /// </summary>
     public enum NameFormat
     {

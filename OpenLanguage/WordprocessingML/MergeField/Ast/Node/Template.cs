@@ -20,7 +20,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Elements = elements ?? new List<ExpressionNode>();
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             string.Concat(Elements.Select(element => element.ToString()));
 
         public string ToProcessedTemplate()

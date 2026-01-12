@@ -66,7 +66,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Tests
             OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction page =
                 (OpenLanguage.WordprocessingML.FieldInstruction.Ast.PageFieldInstruction)result;
             Assert.NotNull(page.GeneralFormat);
-            Assert.Contains("\\*", result.ToRawString());
+            Assert.Contains("\\*", result.ValueString());
         }
 
         [Theory]

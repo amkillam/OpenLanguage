@@ -45,7 +45,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             RightGuillemet = rightGuillemet;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             LeftGuillemet.ToString()
             + FieldName.ToString()
             + (FormattingSwitch?.ToString() ?? string.Empty)

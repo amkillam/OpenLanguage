@@ -28,7 +28,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             Raw = null;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             Raw?.ToString()
             ?? new AlphabeticHexevigesimalProvider().Format(
                 "X",

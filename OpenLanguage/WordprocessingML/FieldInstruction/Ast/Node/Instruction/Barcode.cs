@@ -62,7 +62,7 @@ namespace OpenLanguage.WordprocessingML.FieldInstruction.Ast
             Order = order;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             if (Order != null && Order.Count > 0)
             {

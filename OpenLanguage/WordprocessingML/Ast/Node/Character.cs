@@ -203,7 +203,7 @@ namespace OpenLanguage.WordprocessingML.Ast
             RightQuote = rightQuote;
         }
 
-        public override string ToRawString() =>
+        public override string ValueString() =>
             LeftQuote.ToString() + Inner.ToString() + RightQuote.ToString();
 
         public override IEnumerable<O> Children<O>()

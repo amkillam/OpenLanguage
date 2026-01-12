@@ -20,7 +20,7 @@ namespace OpenLanguage.SpreadsheetML.Formula.Ast
             Rows = rows;
         }
 
-        public override string ToRawString()
+        public override string ValueString()
         {
             IEnumerable<string> rowsStr = Rows.Select(row =>
                 string.Join(",", row.Select(cell => cell.ToString()))

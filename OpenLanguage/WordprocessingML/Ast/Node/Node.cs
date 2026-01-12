@@ -22,6 +22,6 @@ namespace OpenLanguage.WordprocessingML.Ast
         /// Renders the core content of the node without its own leading/trailing whitespace.
         /// </summary>
         /// <returns>The raw string representation of this node's specific content.</returns>
-        public abstract string ToRawString();
+        public abstract string ValueString();
     }
 }
