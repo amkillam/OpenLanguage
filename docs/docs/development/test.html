@@ -291,9 +291,9 @@ public void Parse_MergeFieldWithSwitches_SetsProperties()
 
     // Assert
     var mergeField = Assert.IsType&lt;MergeFieldFieldInstruction&gt;(ast);
-    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ToRawString());
+    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ValueString());
     Assert.NotNull(mergeField.GeneralFormat);
-    Assert.Equal(&quot;Upper&quot;, mergeField.GeneralFormat.Argument.ToRawString());
+    Assert.Equal(&quot;Upper&quot;, mergeField.GeneralFormat.Argument.ValueString());
 }
 </code></pre>
 <h3 id="lexer-tests-lexertestscs">Lexer Tests (LexerTests.cs)</h3>
@@ -328,7 +328,7 @@ public void Parse_MergeFieldInstruction_ReturnsTypedInstanceWithCorrectPropertie
     var mergeField = Assert.IsType&lt;MergeFieldFieldInstruction&gt;(instruction);
 
     // Assert
-    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ToRawString());
+    Assert.Equal(&quot;FirstName&quot;, mergeField.FieldName.ValueString());
 }
 </code></pre>
 <h2 id="test-execution">Test Execution</h2>
@@ -573,7 +573,7 @@ public void Parse_ComplexFormula_DebugExample()
     var addNode = Assert.IsType&lt;AddNode&gt;(root.Expression);
 
     // Main assertion
-    Assert.Equal(&quot;+&quot;, addNode.Operator.ToRawString());
+    Assert.Equal(&quot;+&quot;, addNode.Operator.ValueString());
 
     // Verify operands
     Assert.IsType&lt;FunctionCallNode&gt;(addNode.Left);

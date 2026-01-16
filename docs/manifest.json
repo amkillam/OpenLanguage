@@ -20658,7 +20658,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion",
-      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion.yml\" sourcestartlinenumber=\"1\">Represents country/region inclusion options for ADDRESSBLOCK field instructions.</p>\n"
+      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.CountryRegionInclusion.yml\" sourcestartlinenumber=\"1\">Enumerated country/region inclusion options for ADDRESSBLOCK field instructions.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -20686,7 +20686,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "OpenLanguage.WordprocessingML.FieldInstruction.FacingIdentificationMarkType",
-      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.FacingIdentificationMarkType.yml\" sourcestartlinenumber=\"1\">Represents the type of Facing Identification Mark (FIM) for BARCODE field instructions.</p>\n"
+      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.FacingIdentificationMarkType.yml\" sourcestartlinenumber=\"1\">Facing Identification Mark (FIM) for BARCODE field instructions.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -21036,7 +21036,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "OpenLanguage.WordprocessingML.FieldInstruction.InfoType",
-      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.InfoType.yml\" sourcestartlinenumber=\"1\">Represents the information categories available for INFO field instructions.</p>\n"
+      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.InfoType.yml\" sourcestartlinenumber=\"1\">Enumerated information categories available for INFO field instructions.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -21204,7 +21204,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "OpenLanguage.WordprocessingML.FieldInstruction.NameFormat",
-      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.NameFormat.yml\" sourcestartlinenumber=\"1\">Represents the format options for names in mail merge fields like GREETINGLINE and ADDRESSBLOCK.</p>\n"
+      "Summary": "<p sourcefile=\"api/OpenLanguage.WordprocessingML.FieldInstruction.NameFormat.yml\" sourcestartlinenumber=\"1\">Enumerated format options for names in mail merge fields like GREETINGLINE and ADDRESSBLOCK.</p>\n"
     },
     {
       "type": "ManagedReference",
