@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Complete Integration Example | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Complete Integration Example | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/complete-integration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="complete-integration-example">Complete Integration Example</h1>
+
+<p>This document demonstrates a comprehensive real-world example that integrates multiple OpenLanguage components to create a complete document processing application.</p>
+<h2 id="scenario-mail-merge-report-generator">Scenario: Mail Merge Report Generator</h2>
+<p>This example creates a sophisticated mail merge system that combines formula parsing, field instruction processing, and localization features to generate personalized financial reports.</p>
+<blockquote>
+<p><strong>Note</strong>: This example demonstrates how to build a document template by generating field instruction strings. It does not perform evaluation or data merging, as the evaluation engine is not yet implemented.</p>
+</blockquote>
+<h3 id="data-models">Data Models</h3>
+<pre><code class="lang-csharp">public class CustomerData
+{
+    public string Name { get; set; } = &quot;&quot;;
+    public string Company { get; set; } = &quot;&quot;;
+    public Address Address { get; set; } = new Address();
+    public List&lt;Transaction&gt; Transactions { get; set; } = new List&lt;Transaction&gt;();
+    public decimal CreditLimit { get; set; }
+    public DateTime LastPaymentDate { get; set; }
+
+    public decimal TotalBalance =&gt; Transactions.Sum(t =&gt; t.Amount);
+    public decimal AverageTransaction =&gt; Transactions.Any() ? Transactions.Average(t =&gt; t.Amount) : 0;
+    public int TransactionCount =&gt; Transactions.Count;
+}
+
+public class Address
+{
+    public string Street { get; set; } = &quot;&quot;;
+    public string City { get; set; } = &quot;&quot;;
+    public string State { get; set; } = &quot;&quot;;
+    public string ZipCode { get; set; } = &quot;00000&quot;;
+    public OpenLanguage.WordprocessingML.LanguageIdentifier Country { get; set; } = OpenLanguage.WordprocessingML.LanguageIdentifier.EnglishUS;
+}
+
+public class Transaction
+{
+    public DateTime Date { get; set; }
+    public string Description { get; set; } = &quot;&quot;;
+    public decimal Amount { get; set; }
+}
+</code></pre>
+<h3 id="document-template-builder">Document Template Builder</h3>
+<p>This class constructs a document template using strongly-typed AST nodes from <code>OpenLanguage</code>.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+using OpenLanguage.WordprocessingML;
+using System.Collections.Generic;
+using System.Linq;
+
+public class DocumentTemplate
+{
+    private readonly LanguageIdentifier _language;
+    public List&lt;ExpressionNode&gt; Fields { get; }
+
+    public DocumentTemplate(LanguageIdentifier language)
+    {
+        _language = language;
+        Fields = new List&lt;ExpressionNode&gt;();
+    }
+
+    public void BuildTemplate()
+    {
+        AddHeaderFields();
+        AddAddressSection();
+        AddFinancialSummary();
+        AddTransactionTable();
+        AddFooterSection();
+    }
+
+    private void AddHeaderFields()
+    {
+        Fields.Add(FieldInstructionParser.Parse(&quot;DOCPROPERTY Company&quot;));
+        Fields.Add(CreateLocalizedDateField());
+        Fields.Add(FieldInstructionParser.Parse(&quot;PAGE&quot;));
+        Fields.Add(FieldInstructionParser.Parse(&quot;NUMPAGES&quot;));
+    }
+
+    private void AddAddressSection()
+    {
+        string greeting = GetLocalizedGreeting();
+        string punctuation = GetLocalizedPunctuation();
+        Fields.Add(FieldInstructionParser.Parse($@&quot;GREETINGLINE \f &quot;&quot;{greeting}&quot;&quot; \l &quot;&quot;{punctuation}&quot;&quot;&quot;));
+        Fields.Add(FieldInstructionParser.Parse($@&quot;ADDRESSBLOCK \l {(int)_language}&quot;));
+        Fields.Add(CreateConditionalBarcodeField());
+    }
+
+    private void AddFinancialSummary()
+    {
+        string currencyFormat = GetLocalizedCurrencyFormat();
+        Fields.Add(FieldInstructionParser.Parse($@&quot;MERGEFIELD TotalBalance \# &quot;&quot;{currencyFormat}&quot;&quot;&quot;));
+        Fields.Add(FieldInstructionParser.Parse($@&quot;MERGEFIELD AverageTransaction \# &quot;&quot;{currencyFormat}&quot;&quot;&quot;));
+        Fields.Add(FieldInstructionParser.Parse(@&quot;= { MERGEFIELD TotalBalance } / { MERGEFIELD CreditLimit } * 100 \# &quot;&quot;0.00%&quot;&quot;&quot;));
+        Fields.Add(FieldInstructionParser.Parse(@&quot;= { DATE \@ d } - { MERGEFIELD LastPaymentDate \@ d }&quot;));
+    }
+
+    private void AddTransactionTable()
+    {
+        Fields.Add(FieldInstructionParser.Parse(@&quot;DATABASE \d &quot;&quot;transactions.mdb&quot;&quot; \c &quot;&quot;DSN=Access;DBQ=transactions.mdb;&quot;&quot; \s &quot;&quot;SELECT Date, Description, Amount FROM Transactions WHERE CustomerID = { MERGEFIELD CustomerID }&quot;&quot; \l 37&quot;));
+    }
+
+    private void AddFooterSection()
+    {
+        string termsText = GetLocalizedTermsText();
+        Fields.Add(FieldInstructionParser.Parse($@&quot;HYPERLINK &quot;&quot;https://company.com/terms&quot;&quot; &quot;&quot;{termsText}&quot;&quot; \o &quot;&quot;View full terms and conditions&quot;&quot;&quot;));
+        Fields.Add(FieldInstructionParser.Parse(&quot;DOCPROPERTY ContactInfo&quot;));
+    }
+
+    private ExpressionNode CreateLocalizedDateField()
+    {
+        string dateFormat = _language switch
+        {
+            LanguageIdentifier.EnglishUS =&gt; &quot;MMMM d, yyyy&quot;,
+            LanguageIdentifier.EnglishUK =&gt; &quot;d MMMM yyyy&quot;,
+            LanguageIdentifier.FrenchFrance =&gt; &quot;d MMMM yyyy&quot;,
+            LanguageIdentifier.GermanGermany =&gt; &quot;d. MMMM yyyy&quot;,
+            LanguageIdentifier.Japanese =&gt; &quot;yyyy年MM月dd日&quot;,
+            _ =&gt; &quot;MMMM d, yyyy&quot;
+        };
+        return FieldInstructionParser.Parse($@&quot;DATE \@ &quot;&quot;{dateFormat}&quot;&quot;&quot;);
+    }
+
+    private ExpressionNode CreateConditionalBarcodeField()
+    {
+        return FieldInstructionParser.Parse(@&quot;IF { MERGEFIELD Country } = &quot;&quot;UnitedStates&quot;&quot; { BARCODE { MERGEFIELD ZipCode } \f A } &quot;&quot;&quot;&quot;&quot;);
+    }
+
+    // Helper methods for localization
+    private string GetLocalizedGreeting() =&gt; _language switch { LanguageIdentifier.FrenchFrance =&gt; &quot;Cher&quot;, _ =&gt; &quot;Dear&quot; };
+    private string GetLocalizedPunctuation() =&gt; _language switch { LanguageIdentifier.FrenchFrance =&gt; &quot; :&quot;, _ =&gt; &quot;,&quot; };
+    private string GetLocalizedCurrencyFormat() =&gt; _language switch { LanguageIdentifier.EnglishUK =&gt; &quot;£#,##0.00&quot;, LanguageIdentifier.FrenchFrance =&gt; &quot;#,##0.00 €&quot;, _ =&gt; &quot;$#,##0.00&quot; };
+    private string GetLocalizedTermsText() =&gt; _language switch { LanguageIdentifier.FrenchFrance =&gt; &quot;Conditions Générales&quot;, _ =&gt; &quot;Terms and Conditions&quot; };
+}
+</code></pre>
+<h3 id="report-generation-and-usage">Report Generation and Usage</h3>
+<pre><code class="lang-csharp">public class ReportGenerator
+{
+    public void Generate(DocumentTemplate template, CustomerData customer)
+    {
+        Console.WriteLine($&quot;--- Generating Report for {customer.Name} ---&quot;);
+
+        // In a real application, you would use these ASTs to build a document.
+        // For this example, we just print the structure.
+
+        Console.WriteLine(&quot;\nFIELD INSTRUCTIONS:&quot;);
+        foreach (var field in template.Fields)
+        {
+            Console.WriteLine(field.ToString());
+        }
+
+        Console.WriteLine(&quot;--- End of Report ---&quot;);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var customer = new CustomerData
+        {
+            Name = &quot;John Smith&quot;,
+            Company = &quot;Acme Corp&quot;,
+            Address = new Address { Street = &quot;123 Main St&quot;, City = &quot;Anytown&quot;, State = &quot;CA&quot;, ZipCode = &quot;12345&quot; },
+            CreditLimit = 10000m,
+            LastPaymentDate = DateTime.Now.AddDays(-15),
+            Transactions = new List&lt;Transaction&gt; { new Transaction { Amount = 150.75m } }
+        };
+
+        // Generate report in English
+        var usTemplate = new DocumentTemplate(LanguageIdentifier.EnglishUS);
+        usTemplate.BuildTemplate();
+        var generator = new ReportGenerator();
+        generator.Generate(usTemplate, customer);
+
+        // Generate report in French
+        var frTemplate = new DocumentTemplate(LanguageIdentifier.FrenchFrance);
+        frTemplate.BuildTemplate();
+        generator.Generate(frTemplate, customer);
+    }
+}
+</code></pre>
+<p>This example demonstrates how <code>FieldInstructionParser</code> can be used to build a structured document template. The strongly-typed AST allows for easy construction and manipulation of complex fields, including nested fields and localized formats.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/examples/complete-integration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Merge Field Parser | OpenLanguage Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Merge Field Parser | OpenLanguage Documentation ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/MergeField/MergeField.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../img/logo.png" alt="OpenLanguage">
+            OpenLanguage
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="merge-field-parser">Merge Field Parser</h1>
+
+<p>The <code>OpenLanguage.WordprocessingML.MergeField</code> namespace provides parsers for <code>MERGEFIELD</code> placeholders and templates containing them.</p>
+<h2 id="overview">Overview</h2>
+<p>The Merge Field component offers:</p>
+<ul>
+<li><strong>Placeholder Parsing</strong>: Parse <code>«MERGEFIELD»</code> placeholders into an Abstract Syntax Tree (AST).</li>
+<li><strong>Template Parsing</strong>: Parse strings containing a mix of literal text and merge field placeholders.</li>
+<li><strong>Grammar-Based</strong>: Uses GPLEX/GPPG for robust and accurate parsing.</li>
+<li><strong>AST Representation</strong>: Provides a structured tree of nodes for easy manipulation and analysis.</li>
+</ul>
+<h2 id="core-classes">Core Classes</h2>
+<h3 id="mergefieldparser">MergeFieldParser</h3>
+<p>A static class for parsing a single <code>«MERGEFIELD»</code> placeholder.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+using OpenLanguage.WordprocessingML.Ast;
+
+// Parse a simple merge field
+MergeFieldNode mergeField = MergeFieldParser.Parse(&quot;«FirstName»&quot;);
+Console.WriteLine($&quot;Field Name: {mergeField.FieldName}&quot;);
+
+// Parse with a formatting switch
+MergeFieldNode formatted = MergeFieldParser.Parse(@&quot;«Amount \* MERGEFORMAT»&quot;);
+Console.WriteLine($&quot;Field Name: {formatted.FieldName}&quot;);
+Console.WriteLine($&quot;Formatting Switch: {formatted.FormattingSwitch}&quot;);
+</code></pre>
+<h4 id="methods">Methods</h4>
+<ul>
+<li><code>Parse(string placeholderText)</code>: Parses a merge field placeholder string and returns a <code>MergeFieldNode</code>.</li>
+<li><code>TryParse(string placeholderText)</code>: Attempts to parse a placeholder and returns <code>null</code> on failure.</li>
+</ul>
+<h3 id="template-parsing">Template Parsing</h3>
+<p>The <code>OpenLanguage.WordprocessingML.MergeFieldTemplate</code> namespace provides a parser for strings containing a mix of literal text and merge field placeholders. This is used internally by the <code>FieldInstructionParser</code> for fields like <code>ADDRESSBLOCK</code>.</p>
+<h2 id="ast-nodes">AST Nodes</h2>
+<ul>
+<li><code>MergeFieldNode</code>: Represents a <code>«MERGEFIELD»</code> placeholder parsed by <code>MergeFieldParser</code>.</li>
+<li><code>TemplateNode</code>: Represents a parsed template string, containing a list of <code>TextElementNode</code> and <code>MergeFieldElementNode</code> objects.</li>
+<li><code>TextElementNode</code>: Represents literal text within a template.</li>
+<li><code>MergeFieldElementNode</code>: Represents a merge field placeholder within a template.</li>
+</ul>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="parsing-a-single-merge-field">Parsing a Single Merge Field</h3>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.MergeField;
+using OpenLanguage.WordprocessingML.Ast;
+
+var node = MergeFieldParser.Parse(@&quot;«Amount \* MERGEFORMAT»&quot;);
+
+Console.WriteLine($&quot;Field Name: {node.FieldName}&quot;);
+Console.WriteLine($&quot;Formatting Switch: {node.FormattingSwitch}&quot;);
+Console.WriteLine($&quot;Reconstructed: {node.ToString()}&quot;);
+</code></pre>
+<h3 id="accessing-a-parsed-template">Accessing a Parsed Template</h3>
+<p>Templates are parsed as part of other field instructions, such as <code>ADDRESSBLOCK</code>.</p>
+<pre><code class="lang-csharp">using OpenLanguage.WordprocessingML.FieldInstruction;
+using OpenLanguage.WordprocessingML.FieldInstruction.Ast;
+using OpenLanguage.WordprocessingML.Ast;
+
+string fieldCode = @&quot;ADDRESSBLOCK \f &quot;&quot;«FirstName» «LastName»\n«Address»&quot;&quot;&quot;;
+var ast = FieldInstructionParser.Parse(fieldCode);
+
+if (ast is AddressBlockFieldInstruction addressBlock &amp;&amp; addressBlock.FormatTemplate?.Argument is Quoted&lt;ExpressionNode&gt; quoted)
+{
+    if (quoted.Inner is TemplateNode template)
+    {
+        Console.WriteLine($&quot;Found {template.Elements.Count} elements in template.&quot;);
+        foreach (var element in template.Elements)
+        {
+            if (element is MergeFieldElementNode mergeField)
+            {
+                Console.WriteLine($&quot;  - Merge Field: {mergeField.FieldName}&quot;);
+            }
+            else if (element is TextElementNode text)
+            {
+                Console.WriteLine($&quot;  - Text: '{text.Text}'&quot;);
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../FieldInstruction/FieldInstruction.html">Field Instructions</a></li>
+<li><a href="../Ast.html">Abstract Syntax Tree (AST)</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/amkillam/OpenLanguage/blob/main/build/docs/docs/api/WordprocessingML/MergeField/MergeField.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
